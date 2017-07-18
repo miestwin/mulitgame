@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "phaser": "^2.6.2"
+    "express": "^4.15.3",
+    "phaser-ce": "2.8.1",
+    "socket.io": "^2.0.3",
+    "typescript": "2.4.1"
   },
   "devDependencies": {
-    "ts-loader": "^2.2.2",
-    "tslint": "^5.5.0",
-    "tslint-loader": "^3.5.3",
-    "webpack": "^3.1.0",
-    "webpack-dev-server": "^2.5.1"
+    "expose-loader": "^0.7.3",
+    "ts-loader": "2.2.2",
+    "tslint": "5.5.0",
+    "tslint-loader": "3.5.3",
+    "webpack": "3.1.0",
+    "webpack-dev-server": "2.5.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server",
+    "dev": "webpack"
   },
   "license": "ISC"
 }
