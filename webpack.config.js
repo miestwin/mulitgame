@@ -1,4 +1,10 @@
+const webpack = require('webpack');
 const path = require('path');
+
+const phaserModule = path.join(__dirname, '/node_modules/phaser/');
+const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+const pixi = path.join(phaserModule, 'build/custom/pixi.js');
+const p2 = path.join(phaserModule, 'build/custom/p2.js');
 
 module.exports = {
     entry: {
@@ -12,9 +18,9 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
-            pixi: path.join(__dirname, 'node_modules/phaser-ce/build/custom/pixi.js'),
-            phaser: path.join(__dirname, 'node_modules/phaser-ce/build/custom/phaser-split.js'),
-            p2: path.join(__dirname, 'node_modules/phaser-ce/build/custom/p2.js'),
+            pixi: pixi,
+            phaser: phaser,
+            p2: p2,
         }
     },
     module: {

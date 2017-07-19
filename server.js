@@ -5,6 +5,7 @@ const app = express();
 const server = require('http').createServer(app);
 
 app.use(express.static(__dirname + '/dist'));
+
 require('./app/routing')(app);
 
 if (require.main === module) {
