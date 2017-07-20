@@ -10,6 +10,7 @@
   "files": [
     "./src/controllers/index.ts",
     "./src/games/index.ts",
+    "./src/utils/index.ts",
     "./node_modules/phaser/typescript/phaser.comments.d.ts",
     "./node_modules/phaser/typescript/pixi.comments.d.ts"
   ]
