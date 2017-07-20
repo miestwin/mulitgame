@@ -2,23 +2,29 @@ import * as io from 'socket.io-client';
 import 'p2';
 import 'pixi';
 import 'phaser';
+import * as QRious from 'qrious';
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    startApp();
 });
 
 function startApp(): void {
-    //generate qr
+    // generate qr
 
     const gameConfig = {
         width: window.innerWidth,
         height: window.innerHeight,
         renderer: Phaser.AUTO,
-        parent: '',
+        parent: document.getElementById('game'),
         resolution: 1
     };
 
     const game = new SimpleGame(gameConfig);
+
+    // let qr = new QRious.QRious({
+    //     element: document.getElementById('game'),
+    //     value: 'https://github.com/miestwin'
+    // });
 }
 
 class SimpleGame extends Phaser.Game {
@@ -26,7 +32,7 @@ class SimpleGame extends Phaser.Game {
     constructor (config) {
         super(config);
         this.socket = io();
-        //add states
+        // add states
     }
 }
 

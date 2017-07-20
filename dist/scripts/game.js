@@ -106866,17 +106866,22 @@ __webpack_require__(8);
 __webpack_require__(10);
 __webpack_require__(12);
 document.addEventListener('DOMContentLoaded', function () {
+    startApp();
 });
 function startApp() {
-    //generate qr
+    // generate qr
     var gameConfig = {
         width: window.innerWidth,
         height: window.innerHeight,
         renderer: Phaser.AUTO,
-        parent: '',
+        parent: document.getElementById('game'),
         resolution: 1
     };
     var game = new SimpleGame(gameConfig);
+    // let qr = new QRious.QRious({
+    //     element: document.getElementById('game'),
+    //     value: 'https://github.com/miestwin'
+    // });
 }
 var SimpleGame = (function (_super) {
     __extends(SimpleGame, _super);
@@ -106884,7 +106889,7 @@ var SimpleGame = (function (_super) {
         var _this = _super.call(this, config) || this;
         _this.socket = io();
         return _this;
-        //add states
+        // add states
     }
     return SimpleGame;
 }(Phaser.Game));
