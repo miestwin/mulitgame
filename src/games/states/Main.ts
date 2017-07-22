@@ -1,0 +1,32 @@
+import 'p2';
+import 'pixi';
+import 'phaser';
+import * as QRious from 'qrious';
+import state from '../state';
+
+export default class Main extends Phaser.State {
+
+    public preload() {
+        this.game.stage.backgroundColor = '#FFFFFF';
+        this.createQRCode();
+    }
+
+    private createQRCode () {
+        let that = this;
+        let qr = new QRious({
+            value: 'localhost:5000/controller/' + state.id,
+            size: 500
+        });
+        qr = qr.toDataURL('image/jpeg');
+        let img = new Image();
+        img.onload = function () {
+            that.game.cache.addImage('image-data', img.src, img);
+            that.loadQRCode();
+        };
+        img.src = qr;
+    }
+
+    private loadQRCode () {
+        this.game.add.sprite(100, 100, 'image-data');
+    }
+}
