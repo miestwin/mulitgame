@@ -103523,7 +103523,7 @@ var Main = (function (_super) {
         var that = this;
         var qr = new QRious({
             value: 'localhost:5000/controller/' + state_1.default.id,
-            size: 500
+            size: 300
         });
         qr = qr.toDataURL('image/jpeg');
         var img = new Image();
@@ -103534,7 +103534,7 @@ var Main = (function (_super) {
         img.src = qr;
     };
     Main.prototype.loadQRCode = function () {
-        this.game.add.sprite(100, 100, 'image-data');
+        this.game.add.sprite(window.innerWidth / 2 - 150, 100, 'image-data');
     };
     return Main;
 }(Phaser.State));

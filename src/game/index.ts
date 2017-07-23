@@ -4,7 +4,7 @@ import 'phaser';
 
 import state from './state';
 
-import Main from './states/Main';
+import Main from './games/Main';
 
 document.addEventListener('DOMContentLoaded', function () {
     startApp();

@@ -11,11 +11,13 @@ export default class Main extends Phaser.State {
         this.createQRCode();
     }
 
+
+
     private createQRCode () {
         let that = this;
         let qr = new QRious({
             value: 'localhost:5000/controller/' + state.id,
-            size: 500
+            size: 300
         });
         qr = qr.toDataURL('image/jpeg');
         let img = new Image();
@@ -27,6 +29,6 @@ export default class Main extends Phaser.State {
     }
 
     private loadQRCode () {
-        this.game.add.sprite(100, 100, 'image-data');
+        this.game.add.sprite(window.innerWidth / 2 - 150, 100, 'image-data');
     }
 }

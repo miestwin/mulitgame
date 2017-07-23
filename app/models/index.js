@@ -1,8 +1,6 @@
-function Game ({ socketId, gameRoom }) {
-    this.socketId = socketId;
-    this.gameRoom = gameRoom;
+function Game ({ id }) {
+    this.id = id;
     this.started = false;
-    this.players = {};
 }
 
 function Player ({ socketId, nick, gameRoom }) {
