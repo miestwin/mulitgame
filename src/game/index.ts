@@ -6,6 +6,8 @@ import state from './state';
 
 import Main from './games/Main';
 
+import Network from './network';
+
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -26,8 +28,9 @@ class App extends Phaser.Game {
     private socket;
     private qr;
     constructor (config) {
+        Network.connect();
+        Network.newGame(state.id);
         super(config);
-
         this.state.add('Main', Main);
         this.state.start('Main');
     }

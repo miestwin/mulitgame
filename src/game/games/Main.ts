@@ -4,14 +4,14 @@ import 'phaser';
 import * as QRious from 'qrious';
 import state from '../state';
 
+import Network from '../network';
+
 export default class Main extends Phaser.State {
 
     public preload() {
         this.game.stage.backgroundColor = '#FFFFFF';
         this.createQRCode();
     }
-
-
 
     private createQRCode () {
         let that = this;

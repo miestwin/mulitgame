@@ -14,7 +14,7 @@ export default class Network {
         });
 
         Network.socket.on('game-assigned-successful', () => {
-
+            console.log('game assigned');
         });
 
         Network.socket.on('update-game', () => {
@@ -38,7 +38,7 @@ export default class Network {
         });
     }
 
-    public newGame (id) {
+    public static newGame (id) {
         Network.socket.emit('new-game', { id: id });
     }
 }
