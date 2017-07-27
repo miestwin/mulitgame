@@ -1,6 +1,6 @@
 import * as io from 'socket.io-client';
 
-class Network {
+export default class Network {
     private static socket;
 
     static connect () {
@@ -39,5 +39,9 @@ class Network {
         Network.socket.on('game-full', function () {
             
         });
+    }
+
+    public static newController(id) {
+        Network.socket.emit('new-player', { id: id });
     }
 }

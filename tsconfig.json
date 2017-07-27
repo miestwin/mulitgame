@@ -12,5 +12,6 @@
     "./src/game/index.ts",
     "./node_modules/phaser/typescript/phaser.comments.d.ts",
     "./node_modules/phaser/typescript/pixi.comments.d.ts"
+    // "./node_modules/@orange-games/phaser-input/build/phaser-input.d.ts"
   ]
 }

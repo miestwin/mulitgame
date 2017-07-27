@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@orange-games/phaser-input": "^2.0.5",
+    "canvasinput": "^1.2.6",
     "express": "^4.15.3",
     "phaser": "^2.6.2",
     "qrious": "^4.0.2",
