@@ -111065,7 +111065,7 @@ var Main = (function (_super) {
     Main.prototype.createQRCode = function () {
         var that = this;
         var qr = new QRious({
-            value: 'localhost:5000/controller/' + state_1.default.id,
+            value: 'https://obscure-hamlet-52147.herokuapp.com/controller/' + state_1.default.id,
             size: 300
         });
         qr = qr.toDataURL('image/jpeg');

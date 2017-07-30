@@ -21,7 +21,6 @@ export default class Main extends Phaser.State {
         });
         qr = qr.toDataURL('image/jpeg');
         let img = new Image();
-        console.log(img);
         img.onload = function () {
             that.game.cache.addImage('image-data', img.src, img);
             that.loadQRCode();
