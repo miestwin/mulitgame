@@ -21,7 +21,7 @@
     "webpack-dev-server": "2.5.1"
   },
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "node server.js",
     "dev": "webpack"
   },
   "license": "ISC"
