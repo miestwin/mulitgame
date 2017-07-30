@@ -16,7 +16,8 @@ export default class Main extends Phaser.State {
     private createQRCode () {
         let that = this;
         let qr = new QRious({
-            value: 'localhost:5000/controller/' + state.id,
+            // value: 'localhost:5000/controller/' + state.id,
+            value: 'https://obscure-hamlet-52147.herokuapp.com/controller/' + state.id,
             size: 300
         });
         qr = qr.toDataURL('image/jpeg');
