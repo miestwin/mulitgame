@@ -111052,15 +111052,20 @@ var Main = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Main.prototype.preload = function () {
-        // let plugin = new PhaserInput.Plugin(this.game, this.game.plugins);
-        // this.game.add.plugin(plugin);
-        // this.game.plugins.add(PhaserInput.Plugin);
-        // this.nicknameInput = this.game.add.inputField(10, 90);
+        this.game.stage.backgroundColor = '#FFFFFF';
+        var canvasInput = document.getElementById('canvas-input-area');
+        canvasInput.style.display = 'block';
         this.nicknameInput = new CanvasInput({
-            canvas: document.getElementById('controller'),
+            canvas: canvasInput,
             backgroundColor: '#000',
-            fontColor: '#fff'
+            fontColor: '#fff',
+            width: 300,
+            height: 40
         });
+        this.bmd = this.game.add.bitmapData(200, 200);
+        this.game.add.sprite(window.innerWidth / 2, window.innerHeight / 2, this.bmd);
+        this.colors = Phaser.Color.HSVColorWheel();
+        this.bmd.circle(window.innerWidth / 2, window.innerHeight / 2, 200, this.colors[0].rgba);
     };
     Main.prototype.create = function () {
     };

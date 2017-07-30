@@ -1,8 +1,6 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-// import 'phaser-input';
-// import 'canvasinput';
 
 import state from '../state';
 
@@ -11,17 +9,26 @@ declare var CanvasInput;
 
 export default class Main extends Phaser.State {
     private nicknameInput;
+    private bmd;
+    private colors;
 
     public preload() {
-        // let plugin = new PhaserInput.Plugin(this.game, this.game.plugins);
-        // this.game.add.plugin(plugin);
-        // this.game.plugins.add(PhaserInput.Plugin);
-        // this.nicknameInput = this.game.add.inputField(10, 90);
+        this.game.stage.backgroundColor = '#FFFFFF';
+
+        const canvasInput = document.getElementById('canvas-input-area');
+        canvasInput.style.display = 'block';
         this.nicknameInput = new CanvasInput({
-            canvas: document.getElementById('controller'),
+            canvas: canvasInput,
             backgroundColor: '#000',
-            fontColor: '#fff'
+            fontColor: '#fff',
+            width: 300,
+            height: 40
         });
+
+        this.bmd = this.game.add.bitmapData(200, 200);
+        this.game.add.sprite(window.innerWidth / 2, window.innerHeight / 2, this.bmd);
+        this.colors = Phaser.Color.HSVColorWheel();
+        this.bmd.circle(window.innerWidth / 2, window.innerHeight / 2, 200, this.colors[0].rgba);
     }
 
     public create() {
