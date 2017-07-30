@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 66);
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -110980,9 +110980,7 @@ exports.default = {
 /* 61 */,
 /* 62 */,
 /* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111002,8 +111000,8 @@ __webpack_require__(11);
 __webpack_require__(12);
 __webpack_require__(13);
 var state_1 = __webpack_require__(59);
-var Main_1 = __webpack_require__(67);
-var network_1 = __webpack_require__(69);
+var Main_1 = __webpack_require__(65);
+var network_1 = __webpack_require__(67);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111034,7 +111032,7 @@ var App = (function (_super) {
 
 
 /***/ }),
-/* 67 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111053,7 +111051,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(11);
 __webpack_require__(12);
 __webpack_require__(13);
-var QRious = __webpack_require__(68);
+var QRious = __webpack_require__(66);
 var state_1 = __webpack_require__(59);
 var Main = (function (_super) {
     __extends(Main, _super);
@@ -111087,7 +111085,7 @@ exports.default = Main;
 
 
 /***/ }),
-/* 68 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -113455,7 +113453,7 @@ exports.default = Main;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 69 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

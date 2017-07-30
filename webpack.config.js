@@ -5,8 +5,8 @@ const phaserModule = path.join(__dirname, '/node_modules/phaser/');
 const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
 const pixi = path.join(phaserModule, 'build/custom/pixi.js');
 const p2 = path.join(phaserModule, 'build/custom/p2.js');
-const canvasInput = path.join(__dirname, '/node_modules/canvasinput/CanvasInput.js');
-//const phaserInput = path.join(__dirname, '/node_modules/@orange-games/phaser-input/build/phaser-input.js');
+// const phaserInput = path.join(__dirname, '/node_modules/@orange-games/phaser-input/build/phaser-input.js');
+// const canvasInput = path.join(__dirname, '/node_modules/canvasinput/CanvasInput.js');
 
 module.exports = {
     entry: {
@@ -22,8 +22,8 @@ module.exports = {
         alias: {
             pixi: pixi,
             phaser: phaser,
-            p2: p2,
-            canvasinput: canvasInput
+            p2: p2
+            // canvasinput: canvasInput
             // 'phaser-input': phaserInput
         }
     },
@@ -33,8 +33,8 @@ module.exports = {
             { test: /pixi\.js$/, loader: 'expose-loader?PIXI' },
             { test: /phaser-split\.js$/, loader: 'expose-loader?Phaser' },
             { test: /p2\.js$/, loader: 'expose-loader?p2' },
-            { test: /CanvasInput\.js$/, loader: 'expose-loader?CanvasInput' },
-            // { test: /phaser-input\.js$/, loader: 'expose-loader?PhaserInput' },
+            // { test: /phaser-input\.js$/, loader: 'expose-loader?PhaserInput!' + phaserInput },
+            // { test: /CanvasInput\.js$/, loader: 'expose-loader?CanvasInput!' + canvasInput },
             { test: /\.ts$/, loader: 'ts-loader', exclude: '/node_modules/' }
         ]
     }

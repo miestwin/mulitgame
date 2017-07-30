@@ -28,9 +28,9 @@ class App extends Phaser.Game {
     private socket;
     private qr;
     constructor (config) {
+        super(config);
         Network.connect();
         //Network.newController(state.id);
-        super(config);
         this.state.add('Main', Main);
         this.state.start('Main');
     }
