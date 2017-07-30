@@ -111001,7 +111001,7 @@ __webpack_require__(12);
 __webpack_require__(13);
 var state_1 = __webpack_require__(59);
 var Main_1 = __webpack_require__(65);
-var network_1 = __webpack_require__(67);
+var network_1 = __webpack_require__(68);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111053,6 +111053,7 @@ __webpack_require__(12);
 __webpack_require__(13);
 var QRious = __webpack_require__(66);
 var state_1 = __webpack_require__(59);
+var config_1 = __webpack_require__(67);
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
@@ -111065,7 +111066,7 @@ var Main = (function (_super) {
     Main.prototype.createQRCode = function () {
         var that = this;
         var qr = new QRious({
-            value: 'localhost:5000/controller/' + state_1.default.id,
+            value: config_1.default.url + '/controller/' + state_1.default.id,
             size: 300
         });
         qr = qr.toDataURL('image/jpeg');
@@ -113454,6 +113455,18 @@ exports.default = Main;
 
 /***/ }),
 /* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
+    url: 'https://obscure-hamlet-52147.herokuapp.com'
+};
+
+
+/***/ }),
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

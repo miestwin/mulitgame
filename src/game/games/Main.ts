@@ -3,7 +3,7 @@ import 'pixi';
 import 'phaser';
 import * as QRious from 'qrious';
 import state from '../state';
-
+import config from '../../config';
 import Network from '../network';
 
 export default class Main extends Phaser.State {
@@ -16,7 +16,7 @@ export default class Main extends Phaser.State {
     private createQRCode () {
         let that = this;
         let qr = new QRious({
-            value: 'localhost:5000/controller/' + state.id,
+            value: config.url + '/controller/' + state.id,
             size: 300
         });
         qr = qr.toDataURL('image/jpeg');
