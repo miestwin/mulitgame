@@ -1,12 +1,10 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-
 import state from './state';
-
-import Main from './controllers/Main';
-
 import Network from './network';
+import Main from './controllers/Main';
+import ColorPicker from './controllers/ColorPicker';
 
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
@@ -20,7 +18,6 @@ function startApp(): void {
         parent: document.getElementById('controller'),
         resolution: 1
     };
-    console.log(state.id);
     const controller = new App(controllerConfig);
 }
 
@@ -32,6 +29,7 @@ class App extends Phaser.Game {
         Network.connect();
         //Network.newController(state.id);
         this.state.add('Main', Main);
+        this.state.add('ColorPicker', ColorPicker);
         this.state.start('Main');
     }
 }
