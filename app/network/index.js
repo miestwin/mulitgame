@@ -14,8 +14,11 @@ module.exports = function (server) {
             io.to(socket.id).emit('game-assigned-successful');
         });
 
-        socket.on('new-player', () => {
-
+        socket.on('new-player', ({ id, gameId }) => {
+            console.log(`Try assing new player with id ${id}`);
+            socket.player = new Player({ id, gameId });
+            socket.join('game-' + gameId);
+            io.to(socket.id).emit('player-assigned-successful');
         });
 
         socket.on('game-start', () => {
@@ -36,7 +39,9 @@ module.exports = function (server) {
         });
 
         socket.on('disconnect', () => {
-            if (socket.player) socket.broadcast.to('game-' + socket.player.gameID).emit('played-disconnected'); 
+            console.log('disconnected');
+            if (socket.player) socket.broadcast.to('game-' + socket.player.gameId).emit('played-disconnected');
+            if (socket.game) socket.broadcast.to('game-' + socket.game.id).emit('game-disconnected'); 
         });
     });
 }

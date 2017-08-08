@@ -30,7 +30,7 @@ export default class Network {
         });
 
         Network.socket.on('player-disconnected', () => {
-
+            console.log('player disconnected');
         });
 
         Network.socket.on('disconnect', () => {

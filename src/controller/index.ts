@@ -18,16 +18,14 @@ function startApp(): void {
         parent: document.getElementById('controller'),
         resolution: 1
     };
+    console.log(state.id);
     const controller = new App(controllerConfig);
 }
 
 class App extends Phaser.Game {
-    private socket;
-    private qr;
     constructor (config) {
         super(config);
         Network.connect();
-        //Network.newController(state.id);
         this.state.add('Main', Main);
         this.state.add('ColorPicker', ColorPicker);
         this.state.start('Main');

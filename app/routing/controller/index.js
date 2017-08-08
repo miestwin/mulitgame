@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     fs.readFile(controllerPath, (err, data) => {
-        data = data.toString().replace('{{gameID}}', req.params.id);
+        data = data.toString().replace('{{gameId}}', req.params.id);
         res.send(data);
     })
 });

@@ -3,11 +3,11 @@ function Game ({ id }) {
     this.started = false;
 }
 
-function Player ({ socketId, nick, gameRoom }) {
-    this.socketId = socketId;
-    this.nick = nick;
-    this.gameRoom = gameRoom;
+function Player ({ id, gameId }) {
+    this.id = id;
+    this.gameId = gameId;
     this.score = 0;
+    this.color = '';
 }
 
 module.exports = {

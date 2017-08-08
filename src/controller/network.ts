@@ -12,36 +12,40 @@ export default class Network {
 
         });
 
-        Network.socket.on('game-start', function () {
+        Network.socket.on('game-start', () => {
             
         });
 
-        Network.socket.on('game-end', function () {
+        Network.socket.on('game-end', () => {
             
         });
 
-        Network.socket.on('disconnect', function () {
+        Network.socket.on('disconnect', () => {
             document.location.reload();
         });
 
-        Network.socket.on('game-not-available', function () {
-            
+        Network.socket.on('game-disconnected', () => {
+            console.log('game-disconnected');
         });
 
         Network.socket.on('game-invalid', () => {
             
         });
 
-        Network.socket.on('game-has-started', function () {
+        Network.socket.on('game-has-started', () => {
             
         });
 
-        Network.socket.on('game-full', function () {
+        Network.socket.on('game-full', () => {
             
+        });
+
+        Network.socket.on('player-assigned-successful', () => {
+            console.log('Player assigned');
         });
     }
 
-    public static newController(id) {
-        Network.socket.emit('new-player', { id: id });
+    public static newPlayer({ id, gameId }) {
+        Network.socket.emit('new-player', { id: id, gameId: gameId });
     }
 }
