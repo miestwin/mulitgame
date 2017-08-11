@@ -110987,6 +110987,7 @@ var Network = (function () {
     }
     Network.connect = function () {
         Network.socket = io();
+        Network.initialize();
     };
     Network.initialize = function () {
         Network.socket.on('player-joined', function () {
@@ -111006,6 +111007,9 @@ var Network = (function () {
         Network.socket.on('game-has-started', function () {
         });
         Network.socket.on('game-full', function () {
+        });
+        Network.socket.on('game-not-available', function () {
+            console.log('game-not-available');
         });
         Network.socket.on('player-assigned-successful', function () {
             console.log('Player assigned');
@@ -111101,6 +111105,7 @@ var Main = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Main.prototype.preload = function () {
+        this.game.stage.disableVisibilityChange = true;
         this.game.load.image('start', '../assets/images/start-game.png');
     };
     Main.prototype.create = function () {

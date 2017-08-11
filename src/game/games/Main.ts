@@ -9,6 +9,7 @@ import Network from '../network';
 export default class Main extends Phaser.State {
 
     public preload() {
+        this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#FFFFFF';
         this.createQRCode();
     }

@@ -11,6 +11,7 @@ export default class Main extends Phaser.State {
     private button: Phaser.Button;
 
     public preload() {
+        this.game.stage.disableVisibilityChange = true;
         this.game.load.image('start', '../assets/images/start-game.png');
     }
 

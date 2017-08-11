@@ -5,6 +5,7 @@ export default class Network {
 
     static connect () {
         Network.socket = io();
+        Network.initialize();
     }
 
     private static initialize () {
@@ -38,6 +39,10 @@ export default class Network {
 
         Network.socket.on('game-full', () => {
             
+        });
+
+        Network.socket.on('game-not-available', () => {
+            console.log('game-not-available');
         });
 
         Network.socket.on('player-assigned-successful', () => {

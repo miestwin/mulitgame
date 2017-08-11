@@ -111020,10 +111020,9 @@ function startApp() {
 var App = (function (_super) {
     __extends(App, _super);
     function App(config) {
-        var _this = this;
+        var _this = _super.call(this, config) || this;
         network_1.default.connect();
         network_1.default.newGame(state_1.default.id);
-        _this = _super.call(this, config) || this;
         _this.state.add('Main', Main_1.default);
         _this.state.start('Main');
         return _this;
@@ -111061,6 +111060,7 @@ var Main = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Main.prototype.preload = function () {
+        this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#FFFFFF';
         this.createQRCode();
     };
