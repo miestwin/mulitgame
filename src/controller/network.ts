@@ -40,17 +40,25 @@ export default class Network {
         Network.socket.on('game-full', () => {
             
         });
-
-        Network.socket.on('game-not-available', () => {
-            console.log('game-not-available');
-        });
-
-        Network.socket.on('player-assigned-successful', () => {
-            console.log('Player assigned');
-        });
     }
 
     public static newPlayer({ id, gameId }) {
         Network.socket.emit('new-player', { id: id, gameId: gameId });
+    }
+
+    public static gameNotAvailable(fn: Function) {
+        Network.socket.on('game-not-available', fn);
+    }
+
+    public static playerAssignedSuccessful(fn: Function) {
+        Network.socket.on('player-assigned-successful', fn);
+    }
+
+    public static setTheme(theme: string) {
+        Network.socket.emit('player-theme', { theme: theme });
+    }
+
+    public static receiveConfirmation(fn: Function) {
+        Network.socket.on('receive-confirmation', fn);
     }
 }

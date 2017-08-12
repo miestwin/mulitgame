@@ -6,7 +6,6 @@ import Network from '../network';
 declare var gameId;
 
 export default class Main extends Phaser.State {
-    //private colorPicker: Phaser.Sprite;
     private text: Phaser.Text;
     private button: Phaser.Button;
 
@@ -20,10 +19,17 @@ export default class Main extends Phaser.State {
         this.text.anchor.set(0.5);
         this.button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 200, 'start', this.goToNextState);
         this.button.anchor.set(0.5);
+
+        Network.playerAssignedSuccessful(() => {
+            this.game.state.start('ThemePicker');
+        });
+
+        Network.gameNotAvailable(() => {
+            this.game.state.start('Error');
+        });
     }
 
     private goToNextState() {
         Network.newPlayer({ id: state.id, gameId: gameId });
-        this.game.state.start('ColorPicker');
     }
 }

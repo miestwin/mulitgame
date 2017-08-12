@@ -7,7 +7,8 @@ function Player ({ id, gameId }) {
     this.id = id;
     this.gameId = gameId;
     this.score = 0;
-    this.color = '';
+    this.theme = '';
+    this.position = null;
 }
 
 module.exports = {

@@ -5,34 +5,49 @@ import state from '../state';
 import Network from '../network';
 
 
-export default class ColorPicker extends Phaser.State {
+export default class ThemePicker extends Phaser.State {
+    private text: Phaser.Text;
 
     public preload() {
         this.game.load.spritesheet('button', '../assets/images/button-sprite-sheet.png', 193, 71);
     }
 
     public create() {
-        const text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Chose theme color', { font: '65px Arial', fill: '#ffffff', align: 'center'});
-        text.anchor.set(0.5);   
-        const button_CC6600 = <any>this.game.add.button(this.game.world.centerX - 210, this.game.world.centerY - 86, 'button', this.onClick, this, 0);
-        button_CC6600.anchor.set(0.5);
-        button_CC6600.color = '#CC6600';
-        const button_009900 = <any>this.game.add.button(this.game.world.centerX + 210, this.game.world.centerY - 86, 'button', this.onClick, this, 0);
-        button_009900.anchor.set(0.5);
-        button_009900.color = '#009900';
-        const button_0066ff = <any>this.game.add.button(this.game.world.centerX - 210, this.game.world.centerY + 86, 'button', this.onClick, this, 0);
-        button_0066ff.anchor.set(0.5);
-        button_0066ff.color = '#0066ff';
-        const button_ff00ff = <any>this.game.add.button(this.game.world.centerX + 210, this.game.world.centerY + 86, 'button', this.onClick, this, 0);
-        button_ff00ff.anchor.set(0.5);
-        button_ff00ff.color = '#ff00ff';
+        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Chose theme', { font: '65px Arial', fill: '#ffffff', align: 'center'});
+        this.text.anchor.set(0.5);  
+
+        const button_0C374D = <any>this.game.add.button(this.game.world.centerX - 210, this.game.world.centerY - 86, 'button', this.onClick, this, 0);
+        button_0C374D.anchor.set(0.5);
+        button_0C374D.theme = '#0C374D';
+
+        const button_AD2A1A = <any>this.game.add.button(this.game.world.centerX + 210, this.game.world.centerY - 86, 'button', this.onClick, this, 0);
+        button_AD2A1A.anchor.set(0.5);
+        button_AD2A1A.theme = '#AD2A1A';
+
+        const button_829356 = <any>this.game.add.button(this.game.world.centerX - 210, this.game.world.centerY + 86, 'button', this.onClick, this, 0);
+        button_829356.anchor.set(0.5);
+        button_829356.theme = '#829356';
+
+        const button_C2571A = <any>this.game.add.button(this.game.world.centerX + 210, this.game.world.centerY + 86, 'button', this.onClick, this, 0);
+        button_C2571A.anchor.set(0.5);
+        button_C2571A.theme = '#C2571A';
+
+        this.registerEvent();
     }
 
     public onClick(pointer) {
-        console.log(pointer.color);
+        Network.setTheme(pointer.theme);
     }
 
-    private goToNextState() {
-       
+    private registerEvent() {
+       Network.receiveConfirmation(({ confirm, theme }) => {
+            if (confirm) {
+                state.theme = theme;
+                //this.game.state.start('WaitForPlayers');
+                this.text.setText('Theme ready ' + state.theme);
+            } else {
+                this.text.setText('Theme already in use.\nChoose another');
+            }
+        });
     }
 }

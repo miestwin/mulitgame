@@ -15,7 +15,7 @@ module.exports = (server) => {
             io.to(socket.id).emit('game-assigned-successful');
 
             socket.on('disconnect', () => {
-                socket.broadcast.to('game-' + socket.game.id).emit('game-disconnected'); 
+                if (socket.game) socket.broadcast.to('game-' + socket.game.id).emit('game-disconnected'); 
             });
         });
 
@@ -30,8 +30,16 @@ module.exports = (server) => {
             }
 
             socket.on('disconnect', () => {
-                socket.broadcast.to('game-' + socket.player.gameId).emit('played-disconnected');
+                if(socket.player) socket.broadcast.to('game-' + socket.player.gameId).emit('player-disconnected')
             });
+        });
+
+        socket.on('player-theme', ({ theme }) => {
+            const confirm = !checkIfThemeIsInUse(socket.player.gameId, theme);
+            if (confirm) {
+                socket.player.theme = theme;
+            }
+            io.to(socket.id).emit('receive-confirmation', { confirm: confirm, theme: theme });
         });
 
         socket.on('game-start', () => {
@@ -53,18 +61,29 @@ module.exports = (server) => {
         });
     });
 
-    const checkIfGameExist = (id) => {
+    const checkIfGameExist = (gameId) => {
         let exist = false;
         Object.keys(io.sockets.connected).forEach((socketID) => {
-            if (io.sockets.connected[socketID].game && io.sockets.connected[socketID].game.id === id) {
+            if (io.sockets.connected[socketID].game && io.sockets.connected[socketID].game.id === gameId) {
                 exist = true;
             }
         });
         return exist;
     };
 
+    const checkIfThemeIsInUse = (gameId, theme) => {
+        let inUse = false;
+        Object.keys(io.sockets.connected).forEach((socketID) => {
+            const player = io.sockets.connected[socketID].player;
+            if (player && player.gameId === gameId && player.theme === theme) {
+                inUse = true;
+            }
+        });
+        return inUse;
+    };
+
     const getAllPlayers = (id) => {
         const players = io.sockets.clients('game-' + id).filter((client) => client.player ? true : false);
         return players;
-    }
+    };
 }
