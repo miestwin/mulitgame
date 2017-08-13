@@ -1505,21 +1505,21 @@ function localstorage() {
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(25);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(26);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -3734,6 +3734,23 @@ module.exports = function(obj, fn){
 
 /***/ }),
 /* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var guid_1 = __webpack_require__(29);
+exports.default = {
+    id: guid_1.default(),
+    theme: '',
+    score: '',
+    gameStarted: false,
+    position: null
+};
+
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;/**
@@ -17351,7 +17368,7 @@ World.prototype.raycast = function(result, ray){
 });
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -26477,7 +26494,7 @@ Object.defineProperty(PIXI.TilingSprite.prototype, 'height', {
 }).call(this);
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -106844,23 +106861,6 @@ PIXI.TextureSilentFail = true;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var guid_1 = __webpack_require__(29);
-exports.default = {
-    id: guid_1.default(),
-    theme: '',
-    score: '',
-    gameStarted: false,
-    position: null
-};
-
-
-/***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -111055,11 +111055,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(8);
 __webpack_require__(9);
 __webpack_require__(10);
-var state_1 = __webpack_require__(28);
+var state_1 = __webpack_require__(25);
 var network_1 = __webpack_require__(30);
 var Main_1 = __webpack_require__(63);
 var ColorPicker_1 = __webpack_require__(64);
 var GameError_1 = __webpack_require__(65);
+var WaitForGame_1 = __webpack_require__(66);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111082,6 +111083,7 @@ var App = (function (_super) {
         _this.state.add('Main', Main_1.default);
         _this.state.add('Error', GameError_1.default);
         _this.state.add('ThemePicker', ColorPicker_1.default);
+        _this.state.add('WaitForGame', WaitForGame_1.default);
         _this.state.start('Main');
         return _this;
     }
@@ -111109,7 +111111,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(8);
 __webpack_require__(9);
 __webpack_require__(10);
-var state_1 = __webpack_require__(28);
+var state_1 = __webpack_require__(25);
 var network_1 = __webpack_require__(30);
 var Main = (function (_super) {
     __extends(Main, _super);
@@ -111161,7 +111163,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(8);
 __webpack_require__(9);
 __webpack_require__(10);
-var state_1 = __webpack_require__(28);
+var state_1 = __webpack_require__(25);
 var network_1 = __webpack_require__(30);
 var ThemePicker = (function (_super) {
     __extends(ThemePicker, _super);
@@ -111197,8 +111199,7 @@ var ThemePicker = (function (_super) {
             var confirm = _a.confirm, theme = _a.theme;
             if (confirm) {
                 state_1.default.theme = theme;
-                //this.game.state.start('WaitForPlayers');
-                _this.text.setText('Theme ready ' + state_1.default.theme);
+                _this.game.state.start('WaitForGame');
             }
             else {
                 _this.text.setText('Theme already in use.\nChoose another');
@@ -111245,6 +111246,44 @@ var GameError = (function (_super) {
     return GameError;
 }(Phaser.State));
 exports.default = GameError;
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(8);
+__webpack_require__(9);
+__webpack_require__(10);
+var state_1 = __webpack_require__(25);
+var WeitForGame = (function (_super) {
+    __extends(WeitForGame, _super);
+    function WeitForGame() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    WeitForGame.prototype.preload = function () {
+        this.stage.backgroundColor = state_1.default.theme;
+    };
+    WeitForGame.prototype.create = function () {
+        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Wait for game', { font: '65px Arial', fill: '#ffffff', align: 'center' });
+        this.text.anchor.set(0.5);
+    };
+    return WeitForGame;
+}(Phaser.State));
+exports.default = WeitForGame;
 
 
 /***/ })

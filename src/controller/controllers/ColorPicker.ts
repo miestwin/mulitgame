@@ -43,8 +43,7 @@ export default class ThemePicker extends Phaser.State {
        Network.receiveConfirmation(({ confirm, theme }) => {
             if (confirm) {
                 state.theme = theme;
-                //this.game.state.start('WaitForPlayers');
-                this.text.setText('Theme ready ' + state.theme);
+                this.game.state.start('WaitForGame');
             } else {
                 this.text.setText('Theme already in use.\nChoose another');
             }

@@ -38,6 +38,11 @@ module.exports = (server) => {
             const confirm = !checkIfThemeIsInUse(socket.player.gameId, theme);
             if (confirm) {
                 socket.player.theme = theme;
+                const gameSocketID = findGameSocketID(socket.player.gameId);
+                if (gameSocketID) {
+                    const allPlayers = getAllPlayers();
+                    io.to(gameSocketID).emit('updata-players', allPlayers);
+                }
             }
             io.to(socket.id).emit('receive-confirmation', { confirm: confirm, theme: theme });
         });
@@ -62,24 +67,39 @@ module.exports = (server) => {
     });
 
     const checkIfGameExist = (gameId) => {
-        let exist = false;
-        Object.keys(io.sockets.connected).forEach((socketID) => {
-            if (io.sockets.connected[socketID].game && io.sockets.connected[socketID].game.id === gameId) {
-                exist = true;
+        for (let socketID in io.sockets.connected) {
+            if (io.sockets.connected.hasOwnProperty(socketID)) {
+                const game = io.sockets.connected[socketID].game;
+                if (game && game.gameId === gameId) {
+                    return true;
+                }
             }
-        });
-        return exist;
+        }
+        return false;
     };
 
     const checkIfThemeIsInUse = (gameId, theme) => {
-        let inUse = false;
-        Object.keys(io.sockets.connected).forEach((socketID) => {
-            const player = io.sockets.connected[socketID].player;
-            if (player && player.gameId === gameId && player.theme === theme) {
-                inUse = true;
+        for (let socketID in io.sockets.connected) {
+            if (io.sockets.connected.hasOwnProperty(socketID)) {
+                const player = io.sockets.connected[socketID].player;
+                if (player && player.gameId === gameId && player.theme === theme) {
+                    return true;
+                }
             }
-        });
-        return inUse;
+        }
+        return false;
+    };
+
+    const findGameSocketID = (gameId) => {
+        for (let socketID in io.sockets.connected) {
+            if (io.sockets.connected.hasOwnProperty(socketID)) {
+                const game = io.sockets.connected[socketID].game;
+                if (game && game.id === gameId) {
+                    return socketID;
+                }                
+            }
+        }
+        return null;
     };
 
     const getAllPlayers = (id) => {

@@ -6,6 +6,7 @@ import Network from './network';
 import Main from './controllers/Main';
 import ThemePicker from './controllers/ColorPicker';
 import GameError from './controllers/GameError';
+import WaitForGame from './controllers/WaitForGame';
 
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
@@ -30,6 +31,7 @@ class App extends Phaser.Game {
         this.state.add('Main', Main);
         this.state.add('Error', GameError);
         this.state.add('ThemePicker', ThemePicker);
+        this.state.add('WaitForGame', WaitForGame)
         this.state.start('Main');
     }
 }
