@@ -1,6 +1,7 @@
 const socketio = require('socket.io');
 const _ = require('lodash');
 const { Game, Player } = require('../models');
+const MAX_PLAYERS = 4;
 
 module.exports = (server) => {
     var io = socketio.listen(server);
@@ -10,10 +11,9 @@ module.exports = (server) => {
         
         socket.on('new-game', ({ id }) => {
             console.log(`Try assing new game with id ${id}`);
-            socket.game = new Game({ id });
+            socket.game = new Game({ id: id, socketID: socket.id});
             socket.join('game-' + id);
             io.to(socket.id).emit('game-assigned-successful');
-
             socket.on('disconnect', () => {
                 if (socket.game) socket.broadcast.to('game-' + socket.game.id).emit('game-disconnected'); 
             });
@@ -21,12 +21,21 @@ module.exports = (server) => {
 
         socket.on('new-player', ({ id, gameId }) => {
             console.log(`Try assing new player with id ${id}`);
-            if (checkIfGameExist(gameId)) {
-                socket.player = new Player({ id, gameId });
-                socket.join('game-' + gameId);
-                io.to(socket.id).emit('player-assigned-successful');
+            const game = getGame(gameId);
+            if (game) {
+                if (!game.started) {
+                    if (numberOfPlayersInGame(gameId) < MAX_PLAYERS) {
+                        socket.player = new Player({ id: id, gameId: gameId, socketID: socket.id });
+                        socket.join('game-' + gameId);
+                        io.to(socket.id).emit('player-assigned-successful');
+                    } else {
+                        io.to(socket.id).emit('game-not-available', { codeError: 3});
+                    }
+                } else {
+                    io.to(socket.id).emit('game-not-available', { codeError: 2});
+                }
             } else {
-                io.to(socket.id).emit('game-not-available');
+                io.to(socket.id).emit('game-not-available', { codeError: 1});
             }
 
             socket.on('disconnect', () => {
@@ -66,16 +75,16 @@ module.exports = (server) => {
         });
     });
 
-    const checkIfGameExist = (gameId) => {
+    const getGame = (gameId) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
                 const game = io.sockets.connected[socketID].game;
                 if (game && game.id == gameId) {
-                    return true;
+                    return game;
                 }
             }
         }
-        return false;
+        return null;
     };
 
     const checkIfThemeIsInUse = (gameId, theme) => {
@@ -111,4 +120,12 @@ module.exports = (server) => {
             return players;
         }, {});
     };
+
+    const numberOfPlayersInGame = (gameId) => {
+        return Object.keys(io.sockets.connected).reduce((count, socketID) => {
+            const player = io.sockets.connected[socketID].player;
+            if (player && player.gameId == gameId) count +=1;
+            return count;
+        }, 0);
+    }
 }
