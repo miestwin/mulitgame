@@ -13,10 +13,6 @@ export default class Network {
 
         });
 
-        Network.socket.on('game-assigned-successful', () => {
-            console.log('game assigned');
-        });
-
         Network.socket.on('update-game', () => {
 
         });
@@ -38,7 +34,15 @@ export default class Network {
         });
     }
 
+    public static gameAssignedSuccessful(fn: Function) {
+        Network.socket.on('game-assigned-successful', fn);
+    }
+
     public static newGame (id) {
         Network.socket.emit('new-game', { id: id });
+    }
+
+    public static updatePlayersState(fn: Function) {
+        Network.socket.on('update-players-state', fn);
     }
 }

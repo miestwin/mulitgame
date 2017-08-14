@@ -40,8 +40,8 @@ module.exports = (server) => {
                 socket.player.theme = theme;
                 const gameSocketID = findGameSocketID(socket.player.gameId);
                 if (gameSocketID) {
-                    const allPlayers = getAllPlayers();
-                    io.to(gameSocketID).emit('updata-players', allPlayers);
+                    const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
+                    io.to(gameSocketID).emit('update-players-state', allPlayersForGame);
                 }
             }
             io.to(socket.id).emit('receive-confirmation', { confirm: confirm, theme: theme });
@@ -70,7 +70,7 @@ module.exports = (server) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
                 const game = io.sockets.connected[socketID].game;
-                if (game && game.gameId === gameId) {
+                if (game && game.id == gameId) {
                     return true;
                 }
             }
@@ -82,7 +82,7 @@ module.exports = (server) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
                 const player = io.sockets.connected[socketID].player;
-                if (player && player.gameId === gameId && player.theme === theme) {
+                if (player && player.gameId == gameId && player.theme == theme) {
                     return true;
                 }
             }
@@ -94,7 +94,7 @@ module.exports = (server) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
                 const game = io.sockets.connected[socketID].game;
-                if (game && game.id === gameId) {
+                if (game && game.id == gameId) {
                     return socketID;
                 }                
             }
@@ -102,8 +102,13 @@ module.exports = (server) => {
         return null;
     };
 
-    const getAllPlayers = (id) => {
-        const players = io.sockets.clients('game-' + id).filter((client) => client.player ? true : false);
-        return players;
+    const getAllPlayersForGame = (gameId) => {
+        return Object.keys(io.sockets.connected).reduce((players, socketID) => {
+            const player = io.sockets.connected[socketID].player;
+            if (player && player.gameId == gameId) {
+                players[player.id] = player;
+            }
+            return players;
+        }, {});
     };
 }
