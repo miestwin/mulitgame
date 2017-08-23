@@ -59,7 +59,7 @@ module.exports = (server) => {
 
         socket.on('update-game', ({ position }) => {
             socket.player.position = position;
-            socket.broadcast.to('game-' + socket.player.gameId).emit('update-game', );
+            socket.broadcast.to('game-' + socket.player.gameId).emit('update-game', {});
         });
 
         socket.on('update-score', ({ id, socketID, score }) => {
