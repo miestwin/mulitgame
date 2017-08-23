@@ -27,6 +27,14 @@ export default class Main extends Phaser.State {
         Network.gameNotAvailable(() => {
             this.game.state.start('Error');
         });
+
+        Network.gameAlreadyStarted(() => {
+            this.game.state.start('Error');
+        });
+
+        Network.gameFull(() => {
+            this.game.state.start('Error');
+        });
     }
 
     private goToNextState() {

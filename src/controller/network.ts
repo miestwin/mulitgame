@@ -50,6 +50,14 @@ export default class Network {
         Network.socket.on('game-not-available', fn);
     }
 
+    public static gameFull(fn: Function) {
+        Network.socket.on('game-full', fn);
+    }
+
+    public static gameAlreadyStarted(fn: Function) {
+        Network.socket.on('game-already-started', fn);
+    }
+
     public static playerAssignedSuccessful(fn: Function) {
         Network.socket.on('player-assigned-successful', fn);
     }

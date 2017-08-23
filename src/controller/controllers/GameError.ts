@@ -9,6 +9,10 @@ export default class GameError extends Phaser.State {
     private text: Phaser.Text;
     private button: Phaser.Button;
 
+    public init() {
+        
+    }
+
     public preload() {
         this.game.stage.disableVisibilityChange = true;
     }

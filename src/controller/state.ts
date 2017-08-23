@@ -4,6 +4,5 @@ export default {
     id: guid(),
     theme: '',
     score: '',
-    gameStarted: false,
     position: null
 }

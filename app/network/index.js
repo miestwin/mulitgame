@@ -29,13 +29,13 @@ module.exports = (server) => {
                         socket.join('game-' + gameId);
                         io.to(socket.id).emit('player-assigned-successful');
                     } else {
-                        io.to(socket.id).emit('game-not-available', { codeError: 3});
+                        io.to(socket.id).emit('game-full');
                     }
                 } else {
-                    io.to(socket.id).emit('game-not-available', { codeError: 2});
+                    io.to(socket.id).emit('game-already-started');
                 }
             } else {
-                io.to(socket.id).emit('game-not-available', { codeError: 1});
+                io.to(socket.id).emit('game-not-available');
             }
 
             socket.on('disconnect', () => {
@@ -54,21 +54,22 @@ module.exports = (server) => {
         });
 
         socket.on('game-start', () => {
-            socket.game.started = true;
-            console.log(getAllPlayers());
-            //io.to('game-' + socket.game.id);
+            
         });
 
-        socket.on('update-game', () => {
-
+        socket.on('update-game', ({ position }) => {
+            socket.player.position = position;
+            socket.broadcast.to('game-' + socket.player.gameId).emit('update-game', );
         });
 
-        socket.on('update-score', () => {
-
+        socket.on('update-score', ({ id, socketID, score }) => {
+            const player = io.sockets.connected[socketID].player;
+            if (player) player.score = score;
+            io.to(player.socketID).emit('update-score', { score: player.score });
         });
 
         socket.on('game-end', () => {
-            
+            socket.broadcast.to('game-' + socket.game.id).emit('game-end');
         });
     });
 
