@@ -3744,7 +3744,6 @@ exports.default = {
     id: guid_1.default(),
     theme: '',
     score: '',
-    gameStarted: false,
     position: null
 };
 
@@ -106944,6 +106943,12 @@ var Network = (function () {
     Network.gameNotAvailable = function (fn) {
         Network.socket.on('game-not-available', fn);
     };
+    Network.gameFull = function (fn) {
+        Network.socket.on('game-full', fn);
+    };
+    Network.gameAlreadyStarted = function (fn) {
+        Network.socket.on('game-already-started', fn);
+    };
     Network.playerAssignedSuccessful = function (fn) {
         Network.socket.on('player-assigned-successful', fn);
     };
@@ -111135,6 +111140,12 @@ var Main = (function (_super) {
         network_1.default.gameNotAvailable(function () {
             _this.game.state.start('Error');
         });
+        network_1.default.gameAlreadyStarted(function () {
+            _this.game.state.start('Error');
+        });
+        network_1.default.gameFull(function () {
+            _this.game.state.start('Error');
+        });
     };
     Main.prototype.goToNextState = function () {
         network_1.default.newPlayer({ id: state_1.default.id, gameId: gameId });
@@ -111237,6 +111248,8 @@ var GameError = (function (_super) {
     function GameError() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    GameError.prototype.init = function () {
+    };
     GameError.prototype.preload = function () {
         this.game.stage.disableVisibilityChange = true;
     };
