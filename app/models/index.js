@@ -1,6 +1,5 @@
-function Game ({ id, socketID }) {
+function Game ({ id }) {
     this.id = id;
-    this.socketID = socketID;
     this.started = false;
 }
 
@@ -10,7 +9,6 @@ function Player ({ id, gameId, socketID }) {
     this.socketID = socketID;
     this.score = 0;
     this.theme = '';
-    this.position = null;
 }
 
 module.exports = {

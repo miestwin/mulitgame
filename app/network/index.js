@@ -11,7 +11,7 @@ module.exports = (server) => {
         
         socket.on('new-game', ({ id }) => {
             console.log(`Try assing new game with id ${id}`);
-            socket.game = new Game({ id: id, socketID: socket.id});
+            socket.game = new Game({ id: id });
             socket.join('game-' + id);
             io.to(socket.id).emit('game-assigned-successful');
             socket.on('disconnect', () => {
@@ -47,11 +47,8 @@ module.exports = (server) => {
             const confirm = !checkIfThemeIsInUse(socket.player.gameId, theme);
             if (confirm) {
                 socket.player.theme = theme;
-                const gameSocketID = findGameSocketID(socket.player.gameId);
-                if (gameSocketID) {
-                    const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
-                    io.to(gameSocketID).emit('update-players-state', allPlayersForGame);
-                }
+                const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
+                socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', allPlayersForGame);
             }
             io.to(socket.id).emit('receive-confirmation', { confirm: confirm, theme: theme });
         });
