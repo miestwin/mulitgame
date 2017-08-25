@@ -25,13 +25,13 @@ export default class Network {
 
         });
 
-        Network.socket.on('player-disconnected', () => {
-            console.log('player disconnected');
-        });
-
         Network.socket.on('disconnect', () => {
             document.location.reload();
         });
+    }
+
+    public static playerDisconnected(fn: Function) {
+        Network.socket.on('player-disconnected', fn);
     }
 
     public static gameAssignedSuccessful(fn: Function) {

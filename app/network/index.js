@@ -39,7 +39,9 @@ module.exports = (server) => {
             }
 
             socket.on('disconnect', () => {
-                if(socket.player) socket.broadcast.to('game-' + socket.player.gameId).emit('player-disconnected')
+                if(socket.player) {
+                    socket.broadcast.to('game-' + socket.player.gameId).emit('player-disconnected', socket.player);
+                }
             });
         });
 

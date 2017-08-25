@@ -110973,6 +110973,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var guid_1 = __webpack_require__(30);
 exports.default = {
     id: guid_1.default(),
+    level: 1,
     players: {}
 };
 
@@ -111001,12 +111002,12 @@ var Network = (function () {
         });
         Network.socket.on('game-end', function () {
         });
-        Network.socket.on('player-disconnected', function () {
-            console.log('player disconnected');
-        });
         Network.socket.on('disconnect', function () {
             document.location.reload();
         });
+    };
+    Network.playerDisconnected = function (fn) {
+        Network.socket.on('player-disconnected', fn);
     };
     Network.gameAssignedSuccessful = function (fn) {
         Network.socket.on('game-assigned-successful', fn);
@@ -111113,14 +111114,25 @@ var Main = (function (_super) {
         return _this;
     }
     Main.prototype.preload = function () {
+        this.game.load.image('LUMBER', '../assets/spritesheets/lumber-test.png');
         this.game.stage.disableVisibilityChange = true;
-        this.game.stage.backgroundColor = '#FFFFFF';
+        this.game.stage.backgroundColor = '#000000';
         this.createQRCode();
     };
     Main.prototype.create = function () {
         var _this = this;
         network_1.default.updatePlayersState(function (players) {
-            state_1.default.players = _.assign({}, state_1.default.players, players);
+            state_1.default.players = _.assign({}, players);
+            _this.updateConnectedPlayers();
+        });
+        network_1.default.playerDisconnected(function (player) {
+            var remainderPlayers = Object.keys(state_1.default.players).reduce(function (remainder, playerID) {
+                if (playerID != player.id) {
+                    remainder[playerID] = state_1.default.players[playerID];
+                }
+                return remainder;
+            }, {});
+            state_1.default.players = _.assign({}, remainderPlayers);
             _this.updateConnectedPlayers();
         });
     };
@@ -111128,7 +111140,9 @@ var Main = (function (_super) {
         var that = this;
         var qr = new QRious({
             value: config_1.default.url + '/controller/' + state_1.default.id,
-            size: 300
+            background: '#ffffff',
+            padding: 20,
+            size: 340
         });
         qr = qr.toDataURL('image/jpeg');
         var img = new Image();
@@ -111136,23 +111150,34 @@ var Main = (function (_super) {
             that.game.cache.addImage('image-data', img.src, img);
             that.loadQRCode();
         };
+        img.title = state_1.default.id;
         img.src = qr;
     };
     Main.prototype.loadQRCode = function () {
-        this.game.add.sprite(window.innerWidth / 2 - 150, 50, 'image-data');
+        var qr = this.game.add.sprite(this.game.world.centerX, 210, 'image-data');
+        qr.anchor.set(0.5);
+        var text = this.game.add.text(this.game.world.centerX, 400, state_1.default.id, { font: '18px Arial', fill: '#ffffff', align: 'center' });
+        text.anchor.set(0.5);
     };
     Main.prototype.updateConnectedPlayers = function () {
         var _this = this;
         this.removePlayersConnected();
-        var i = 10;
+        var i = 200;
         Object.keys(state_1.default.players).forEach(function (player) {
-            var text = _this.game.add.text(_this.game.world.centerX, 450 + i, "Player 1 connected", { font: '20px Arial', fill: state_1.default.players[player].theme, align: 'center' });
-            _this.playersConnected.push();
-            i += 30;
+            var text = _this.game.add.text(_this.game.world.centerX - i, 480, "Player 1 connected", { font: '20px Arial', fill: state_1.default.players[player].theme, align: 'center' });
+            text.anchor.set(0.5);
+            var sprite = _this.game.add.sprite(_this.game.world.centerX - i, 550, 'LUMBER');
+            sprite.anchor.set(0.5);
+            sprite.scale.set(0.5);
+            _this.playersConnected.push({ text: text, sprite: sprite });
+            i -= 100;
         });
     };
     Main.prototype.removePlayersConnected = function () {
-        this.playersConnected.forEach(function (text) { return text.destroy(); });
+        this.playersConnected.forEach(function (player) {
+            player.text.destroy();
+            player.sprite.destroy();
+        });
         this.playersConnected = [];
     };
     return Main;
