@@ -12,6 +12,7 @@ export default class Main extends Phaser.State {
 
     public preload() {
         this.game.load.image('LUMBER', '../assets/spritesheets/lumber-test.png');
+        this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
         this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#000000';
         this.createQRCode();
@@ -33,6 +34,11 @@ export default class Main extends Phaser.State {
             state.players = _.assign({}, remainderPlayers);
             this.updateConnectedPlayers();
         });
+
+        var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
+        jack.scale.set(0.1);
+        var walk = jack.animations.add('run');
+        jack.animations.play('run', 30, true);
     }
 
     private createQRCode () {

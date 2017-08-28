@@ -1,0 +1,92 @@
+{"frames": [
+
+{
+	"filename": "Dead__000.png",
+	"frame": {"x":0,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__001.png",
+	"frame": {"x":482,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__002.png",
+	"frame": {"x":964,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__003.png",
+	"frame": {"x":1446,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__004.png",
+	"frame": {"x":1928,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__005.png",
+	"frame": {"x":2410,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__006.png",
+	"frame": {"x":2892,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__007.png",
+	"frame": {"x":3374,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__008.png",
+	"frame": {"x":3856,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+},
+{
+	"filename": "Dead__009.png",
+	"frame": {"x":4338,"y":0,"w":482,"h":498},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":482,"h":498},
+	"sourceSize": {"w":482,"h":498}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sprite.png",
+	"format": "RGBA8888",
+	"size": {"w":4820,"h":498},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:d77157582dde5d8c972a6b1670a8a2a7:113cbb7f3a5475f7bf12df10d3d00608:68d88b3cf7eafc9b5accfffdfb2fda91$"
+}
+}

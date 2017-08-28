@@ -111115,6 +111115,7 @@ var Main = (function (_super) {
     }
     Main.prototype.preload = function () {
         this.game.load.image('LUMBER', '../assets/spritesheets/lumber-test.png');
+        this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
         this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#000000';
         this.createQRCode();
@@ -111135,6 +111136,10 @@ var Main = (function (_super) {
             state_1.default.players = _.assign({}, remainderPlayers);
             _this.updateConnectedPlayers();
         });
+        var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
+        jack.scale.set(0.1);
+        var walk = jack.animations.add('run');
+        jack.animations.play('run', 30, true);
     };
     Main.prototype.createQRCode = function () {
         var that = this;
