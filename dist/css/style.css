@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Kenvector Future';
+  font-style: normal;
+  src: url('../assets/fonts/kenvector/kenvector_future-webfont.woff2') format('woff2'),
+       url('../assets/fonts/kenvector/kenvector_future-webfont.woff') format('woff');
+}
+
 body {
     margin: 0;
     padding: 0;

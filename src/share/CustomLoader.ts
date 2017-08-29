@@ -1,8 +1,9 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
+import * as FontFaceObserver from 'fontfaceobserver';
 
-export default class WebFontLoader extends Phaser.Loader {
+export default class CustomLoader extends Phaser.Loader {
     constructor(game) {
         super(game);
     }
@@ -18,7 +19,12 @@ export default class WebFontLoader extends Phaser.Loader {
     public loadFile(file) {
         super.loadFile(file);
         if (file.type === 'webfont') {
-            const font = new FontFaceObserver();
+            const font = new FontFaceObserver(file.url);
+            font.load(null, 10000).then(() => {
+                this.asyncComplete(file);
+            }, () => {
+                this.asyncComplete(file, 'Error loading font ' + file.url);
+            });
         }
     }
 }

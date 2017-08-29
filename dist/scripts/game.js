@@ -874,6 +874,27 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(28);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(29);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1063,7 +1084,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1252,10 +1273,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /**
@@ -1298,7 +1319,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports) {
 
 
@@ -1310,7 +1331,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1499,28 +1520,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(27);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(28);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(29);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 11 */
@@ -2284,7 +2284,7 @@ var Emitter = __webpack_require__(1);
 var parser = __webpack_require__(11);
 var on = __webpack_require__(23);
 var bind = __webpack_require__(24);
-var debug = __webpack_require__(4)('socket.io-client:manager');
+var debug = __webpack_require__(7)('socket.io-client:manager');
 var indexOf = __webpack_require__(21);
 var Backoff = __webpack_require__(60);
 
@@ -2917,11 +2917,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(13);
-var parseqs = __webpack_require__(5);
+var parseqs = __webpack_require__(8);
 var parser = __webpack_require__(2);
-var inherit = __webpack_require__(6);
+var inherit = __webpack_require__(9);
 var yeast = __webpack_require__(20);
-var debug = __webpack_require__(7)('engine.io-client:polling');
+var debug = __webpack_require__(10)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3263,8 +3263,8 @@ var Emitter = __webpack_require__(1);
 var toArray = __webpack_require__(59);
 var on = __webpack_require__(23);
 var bind = __webpack_require__(24);
-var debug = __webpack_require__(4)('socket.io-client:socket');
-var parseqs = __webpack_require__(5);
+var debug = __webpack_require__(7)('socket.io-client:socket');
+var parseqs = __webpack_require__(8);
 
 /**
  * Module exports.
@@ -106870,7 +106870,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 30 */
@@ -106899,7 +106899,7 @@ exports.default = guid;
 var url = __webpack_require__(33);
 var parser = __webpack_require__(11);
 var Manager = __webpack_require__(17);
-var debug = __webpack_require__(4)('socket.io-client');
+var debug = __webpack_require__(7)('socket.io-client');
 
 /**
  * Module exports.
@@ -106997,7 +106997,7 @@ exports.Socket = __webpack_require__(22);
  */
 
 var parseuri = __webpack_require__(14);
-var debug = __webpack_require__(4)('socket.io-client:url');
+var debug = __webpack_require__(7)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -107625,7 +107625,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 37 */
@@ -108197,12 +108197,12 @@ module.exports.parser = __webpack_require__(2);
 
 var transports = __webpack_require__(18);
 var Emitter = __webpack_require__(1);
-var debug = __webpack_require__(7)('engine.io-client:socket');
+var debug = __webpack_require__(10)('engine.io-client:socket');
 var index = __webpack_require__(21);
 var parser = __webpack_require__(2);
 var parseuri = __webpack_require__(14);
 var parsejson = __webpack_require__(58);
-var parseqs = __webpack_require__(5);
+var parseqs = __webpack_require__(8);
 
 /**
  * Module exports.
@@ -108972,8 +108972,8 @@ try {
 var XMLHttpRequest = __webpack_require__(12);
 var Polling = __webpack_require__(19);
 var Emitter = __webpack_require__(1);
-var inherit = __webpack_require__(6);
-var debug = __webpack_require__(7)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(9);
+var debug = __webpack_require__(10)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110288,7 +110288,7 @@ function plural(ms, n, name) {
  */
 
 var Polling = __webpack_require__(19);
-var inherit = __webpack_require__(6);
+var inherit = __webpack_require__(9);
 
 /**
  * Module exports.
@@ -110526,10 +110526,10 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(13);
 var parser = __webpack_require__(2);
-var parseqs = __webpack_require__(5);
-var inherit = __webpack_require__(6);
+var parseqs = __webpack_require__(8);
+var inherit = __webpack_require__(9);
 var yeast = __webpack_require__(20);
-var debug = __webpack_require__(7)('engine.io-client:websocket');
+var debug = __webpack_require__(10)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -111045,9 +111045,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(8);
-__webpack_require__(9);
-__webpack_require__(10);
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
 var state_1 = __webpack_require__(61);
 var Main_1 = __webpack_require__(69);
 var network_1 = __webpack_require__(62);
@@ -111098,14 +111098,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(8);
-__webpack_require__(9);
-__webpack_require__(10);
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
 var _ = __webpack_require__(70);
 var QRious = __webpack_require__(71);
 var state_1 = __webpack_require__(61);
 var config_1 = __webpack_require__(72);
 var network_1 = __webpack_require__(62);
+var CustomLoader_1 = __webpack_require__(73);
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
@@ -111113,12 +111114,16 @@ var Main = (function (_super) {
         _this.playersConnected = [];
         return _this;
     }
+    Main.prototype.init = function () {
+        this.game.load = new CustomLoader_1.default(this.game);
+    };
     Main.prototype.preload = function () {
+        this.game.load.webfont('kenvector', 'Kenvector Future');
         this.game.load.image('LUMBER', '../assets/spritesheets/lumber-test.png');
-        this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
+        // this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
         this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#000000';
-        this.createQRCode();
+        // this.createQRCode();
     };
     Main.prototype.create = function () {
         var _this = this;
@@ -111136,10 +111141,11 @@ var Main = (function (_super) {
             state_1.default.players = _.assign({}, remainderPlayers);
             _this.updateConnectedPlayers();
         });
-        var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
-        jack.scale.set(0.1);
-        var walk = jack.animations.add('run');
-        jack.animations.play('run', 30, true);
+        this.createQRCode();
+        // var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
+        // jack.scale.set(0.1);
+        // var walk = jack.animations.add('run');
+        // jack.animations.play('run', 30, true);
     };
     Main.prototype.createQRCode = function () {
         var that = this;
@@ -111161,7 +111167,7 @@ var Main = (function (_super) {
     Main.prototype.loadQRCode = function () {
         var qr = this.game.add.sprite(this.game.world.centerX, 210, 'image-data');
         qr.anchor.set(0.5);
-        var text = this.game.add.text(this.game.world.centerX, 400, state_1.default.id, { font: '18px Arial', fill: '#ffffff', align: 'center' });
+        var text = this.game.add.text(this.game.world.centerX, 400, state_1.default.id, { font: '20px Kenvector Future', fill: '#ffffff', align: 'center' });
         text.anchor.set(0.5);
     };
     Main.prototype.updateConnectedPlayers = function () {
@@ -130660,6 +130666,70 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     url: 'https://obscure-hamlet-52147.herokuapp.com'
 };
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+var FontFaceObserver = __webpack_require__(74);
+var CustomLoader = (function (_super) {
+    __extends(CustomLoader, _super);
+    function CustomLoader(game) {
+        return _super.call(this, game) || this;
+    }
+    CustomLoader.prototype.webfont = function (key, fontName, overwrite) {
+        if (typeof overwrite === 'undefined') {
+            overwrite = false;
+        }
+        this.addToFileList('webfont', key, fontName);
+        return this;
+    };
+    CustomLoader.prototype.loadFile = function (file) {
+        var _this = this;
+        _super.prototype.loadFile.call(this, file);
+        if (file.type === 'webfont') {
+            var font = new FontFaceObserver(file.url);
+            font.load(null, 10000).then(function () {
+                _this.asyncComplete(file);
+            }, function () {
+                _this.asyncComplete(file, 'Error loading font ' + file.url);
+            });
+        }
+    };
+    return CustomLoader;
+}(Phaser.Loader));
+exports.default = CustomLoader;
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
+this.f.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.h.style.cssText="display:inline-block;width:200%;height:200%;font-size:16px;max-width:none;";this.b.appendChild(this.h);this.c.appendChild(this.f);this.a.appendChild(this.b);this.a.appendChild(this.c)}
+function t(a,b){a.a.style.cssText="max-width:none;min-width:20px;min-height:20px;display:inline-block;overflow:hidden;position:absolute;width:auto;margin:0;padding:0;top:-999px;white-space:nowrap;font-synthesis:none;font:"+b+";"}function y(a){var b=a.a.offsetWidth,c=b+100;a.f.style.width=c+"px";a.c.scrollLeft=c;a.b.scrollLeft=a.b.scrollWidth+100;return a.g!==b?(a.g=b,!0):!1}function z(a,b){function c(){var a=k;y(a)&&a.a.parentNode&&b(a.g)}var k=a;l(a.b,c);l(a.c,c);y(a)};function A(a,b){var c=b||{};this.family=a;this.style=c.style||"normal";this.weight=c.weight||"normal";this.stretch=c.stretch||"normal"}var B=null,C=null,E=null,F=null;function G(){if(null===C)if(J()&&/Apple/.test(window.navigator.vendor)){var a=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))/.exec(window.navigator.userAgent);C=!!a&&603>parseInt(a[1],10)}else C=!1;return C}function J(){null===F&&(F=!!document.fonts);return F}
+function K(){if(null===E){var a=document.createElement("div");try{a.style.font="condensed 100px sans-serif"}catch(b){}E=""!==a.style.font}return E}function L(a,b){return[a.style,a.weight,K()?a.stretch:"","100px",b].join(" ")}
+A.prototype.load=function(a,b){var c=this,k=a||"BESbswy",q=0,D=b||3E3,H=(new Date).getTime();return new Promise(function(a,b){if(J()&&!G()){var M=new Promise(function(a,b){function e(){(new Date).getTime()-H>=D?b():document.fonts.load(L(c,'"'+c.family+'"'),k).then(function(c){1<=c.length?a():setTimeout(e,25)},function(){b()})}e()}),N=new Promise(function(a,c){q=setTimeout(c,D)});Promise.race([N,M]).then(function(){clearTimeout(q);a(c)},function(){b(c)})}else m(function(){function u(){var b;if(b=-1!=
+f&&-1!=g||-1!=f&&-1!=h||-1!=g&&-1!=h)(b=f!=g&&f!=h&&g!=h)||(null===B&&(b=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent),B=!!b&&(536>parseInt(b[1],10)||536===parseInt(b[1],10)&&11>=parseInt(b[2],10))),b=B&&(f==v&&g==v&&h==v||f==w&&g==w&&h==w||f==x&&g==x&&h==x)),b=!b;b&&(d.parentNode&&d.parentNode.removeChild(d),clearTimeout(q),a(c))}function I(){if((new Date).getTime()-H>=D)d.parentNode&&d.parentNode.removeChild(d),b(c);else{var a=document.hidden;if(!0===a||void 0===a)f=e.a.offsetWidth,
+g=n.a.offsetWidth,h=p.a.offsetWidth,u();q=setTimeout(I,50)}}var e=new r(k),n=new r(k),p=new r(k),f=-1,g=-1,h=-1,v=-1,w=-1,x=-1,d=document.createElement("div");d.dir="ltr";t(e,L(c,"sans-serif"));t(n,L(c,"serif"));t(p,L(c,"monospace"));d.appendChild(e.a);d.appendChild(n.a);d.appendChild(p.a);document.body.appendChild(d);v=e.a.offsetWidth;w=n.a.offsetWidth;x=p.a.offsetWidth;I();z(e,function(a){f=a;u()});t(e,L(c,'"'+c.family+'",sans-serif'));z(n,function(a){g=a;u()});t(n,L(c,'"'+c.family+'",serif'));
+z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module.exports=A:(window.FontFaceObserver=A,window.FontFaceObserver.prototype.load=A.prototype.load);}());
 
 
 /***/ })

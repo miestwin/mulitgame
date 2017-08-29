@@ -6,16 +6,22 @@ import * as QRious from 'qrious';
 import state from '../state';
 import config from '../../config';
 import Network from '../network';
+import CustomLoader from '../../share/CustomLoader';
 
 export default class Main extends Phaser.State {
     private playersConnected: Array<{ text: Phaser.Text, sprite: Phaser.Sprite }> = [];
 
+    public init() {
+        this.game.load = new CustomLoader(this.game);
+    }
+
     public preload() {
+        (<any>this.game.load).webfont('kenvector', 'Kenvector Future');
         this.game.load.image('LUMBER', '../assets/spritesheets/lumber-test.png');
-        this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
+       // this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
         this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#000000';
-        this.createQRCode();
+        // this.createQRCode();
     }
 
     public create() {
@@ -35,10 +41,12 @@ export default class Main extends Phaser.State {
             this.updateConnectedPlayers();
         });
 
-        var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
-        jack.scale.set(0.1);
-        var walk = jack.animations.add('run');
-        jack.animations.play('run', 30, true);
+        this.createQRCode();
+        
+        // var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
+        // jack.scale.set(0.1);
+        // var walk = jack.animations.add('run');
+        // jack.animations.play('run', 30, true);
     }
 
     private createQRCode () {
@@ -62,7 +70,7 @@ export default class Main extends Phaser.State {
     private loadQRCode () {
         var qr = this.game.add.sprite(this.game.world.centerX, 210, 'image-data');
         qr.anchor.set(0.5);
-        var text = this.game.add.text(this.game.world.centerX, 400, state.id, { font: '18px Arial', fill: '#ffffff', align: 'center'});
+        var text = this.game.add.text(this.game.world.centerX, 400, state.id, { font: '20px Kenvector Future', fill: '#ffffff', align: 'center'});
         text.anchor.set(0.5);
     }
 
