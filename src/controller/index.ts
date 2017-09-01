@@ -3,10 +3,12 @@ import 'pixi';
 import 'phaser';
 import state from './state';
 import Network from './network';
-import Main from './controllers/Main';
-import ThemePicker from './controllers/ColorPicker';
-import GameError from './controllers/GameError';
-import WaitForGame from './controllers/WaitForGame';
+import {
+    Main,
+    ThemePicker,
+    GameError,
+    WaitForGame
+} from './states';
 
 document.addEventListener('DOMContentLoaded', function () {
     startApp();

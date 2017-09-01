@@ -4,7 +4,9 @@ import 'phaser';
 
 import state from './state';
 
-import Main from './games/Main';
+import {
+    Main
+} from './states';
 
 import Network from './network';
 

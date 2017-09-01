@@ -3,7 +3,7 @@ import 'pixi';
 import 'phaser';
 import * as FontFaceObserver from 'fontfaceobserver';
 
-export default class CustomLoader extends Phaser.Loader {
+export class CustomLoader extends Phaser.Loader {
     constructor(game) {
         super(game);
     }

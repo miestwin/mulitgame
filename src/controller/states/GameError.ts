@@ -5,7 +5,7 @@ import state from '../state';
 import Network from '../network';
 declare var gameId;
 
-export default class GameError extends Phaser.State {
+export class GameError extends Phaser.State {
     private text: Phaser.Text;
     private button: Phaser.Button;
 

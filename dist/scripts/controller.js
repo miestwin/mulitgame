@@ -111063,10 +111063,7 @@ __webpack_require__(4);
 __webpack_require__(5);
 var state_1 = __webpack_require__(25);
 var network_1 = __webpack_require__(31);
-var Main_1 = __webpack_require__(64);
-var ColorPicker_1 = __webpack_require__(65);
-var GameError_1 = __webpack_require__(66);
-var WaitForGame_1 = __webpack_require__(67);
+var states_1 = __webpack_require__(64);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111086,10 +111083,10 @@ var App = (function (_super) {
     function App(config) {
         var _this = _super.call(this, config) || this;
         network_1.default.connect();
-        _this.state.add('Main', Main_1.default);
-        _this.state.add('Error', GameError_1.default);
-        _this.state.add('ThemePicker', ColorPicker_1.default);
-        _this.state.add('WaitForGame', WaitForGame_1.default);
+        _this.state.add('Main', states_1.Main);
+        _this.state.add('Error', states_1.GameError);
+        _this.state.add('ThemePicker', states_1.ThemePicker);
+        _this.state.add('WaitForGame', states_1.WaitForGame);
         _this.state.start('Main');
         return _this;
     }
@@ -111103,56 +111100,14 @@ var App = (function (_super) {
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
-var state_1 = __webpack_require__(25);
-var network_1 = __webpack_require__(31);
-var Main = (function (_super) {
-    __extends(Main, _super);
-    function Main() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Main.prototype.preload = function () {
-        this.game.stage.disableVisibilityChange = true;
-        this.game.load.image('start', '../assets/images/start-game.png');
-    };
-    Main.prototype.create = function () {
-        var _this = this;
-        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Hello player\nlets start', { font: '65px Arial', fill: '#ffffff', align: 'center' });
-        this.text.anchor.set(0.5);
-        this.button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 200, 'start', this.goToNextState);
-        this.button.anchor.set(0.5);
-        network_1.default.playerAssignedSuccessful(function () {
-            _this.game.state.start('ThemePicker');
-        });
-        network_1.default.gameNotAvailable(function () {
-            _this.game.state.start('Error');
-        });
-        network_1.default.gameAlreadyStarted(function () {
-            _this.game.state.start('Error');
-        });
-        network_1.default.gameFull(function () {
-            _this.game.state.start('Error');
-        });
-    };
-    Main.prototype.goToNextState = function () {
-        network_1.default.newPlayer({ id: state_1.default.id, gameId: gameId });
-    };
-    return Main;
-}(Phaser.State));
-exports.default = Main;
+__export(__webpack_require__(65));
+__export(__webpack_require__(66));
+__export(__webpack_require__(67));
+__export(__webpack_require__(68));
 
 
 /***/ }),
@@ -111220,7 +111175,7 @@ var ThemePicker = (function (_super) {
     };
     return ThemePicker;
 }(Phaser.State));
-exports.default = ThemePicker;
+exports.ThemePicker = ThemePicker;
 
 
 /***/ }),
@@ -111259,7 +111214,7 @@ var GameError = (function (_super) {
     };
     return GameError;
 }(Phaser.State));
-exports.default = GameError;
+exports.GameError = GameError;
 
 
 /***/ }),
@@ -111283,21 +111238,79 @@ __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
 var state_1 = __webpack_require__(25);
-var WeitForGame = (function (_super) {
-    __extends(WeitForGame, _super);
-    function WeitForGame() {
+var network_1 = __webpack_require__(31);
+var Main = (function (_super) {
+    __extends(Main, _super);
+    function Main() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    WeitForGame.prototype.preload = function () {
+    Main.prototype.preload = function () {
+        this.game.stage.disableVisibilityChange = true;
+        this.game.load.image('start', '../assets/images/start-game.png');
+    };
+    Main.prototype.create = function () {
+        var _this = this;
+        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Hello player\nlets start', { font: '65px Arial', fill: '#ffffff', align: 'center' });
+        this.text.anchor.set(0.5);
+        this.button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 200, 'start', this.goToNextState);
+        this.button.anchor.set(0.5);
+        network_1.default.playerAssignedSuccessful(function () {
+            _this.game.state.start('ThemePicker');
+        });
+        network_1.default.gameNotAvailable(function () {
+            _this.game.state.start('Error');
+        });
+        network_1.default.gameAlreadyStarted(function () {
+            _this.game.state.start('Error');
+        });
+        network_1.default.gameFull(function () {
+            _this.game.state.start('Error');
+        });
+    };
+    Main.prototype.goToNextState = function () {
+        network_1.default.newPlayer({ id: state_1.default.id, gameId: gameId });
+    };
+    return Main;
+}(Phaser.State));
+exports.Main = Main;
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+var state_1 = __webpack_require__(25);
+var WaitForGame = (function (_super) {
+    __extends(WaitForGame, _super);
+    function WaitForGame() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    WaitForGame.prototype.preload = function () {
         this.stage.backgroundColor = state_1.default.theme;
     };
-    WeitForGame.prototype.create = function () {
+    WaitForGame.prototype.create = function () {
         this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Wait for game', { font: '65px Arial', fill: '#ffffff', align: 'center' });
         this.text.anchor.set(0.5);
     };
-    return WeitForGame;
+    return WaitForGame;
 }(Phaser.State));
-exports.default = WeitForGame;
+exports.WaitForGame = WaitForGame;
 
 
 /***/ })

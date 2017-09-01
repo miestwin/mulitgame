@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 68);
+/******/ 	return __webpack_require__(__webpack_require__.s = 69);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111029,59 +111029,7 @@ exports.default = Network;
 /* 65 */,
 /* 66 */,
 /* 67 */,
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
-var state_1 = __webpack_require__(61);
-var Main_1 = __webpack_require__(69);
-var network_1 = __webpack_require__(62);
-document.addEventListener('DOMContentLoaded', function () {
-    startApp();
-});
-function startApp() {
-    var gameConfig = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        renderer: Phaser.AUTO,
-        parent: document.getElementById('game'),
-        resolution: 1
-    };
-    console.log(state_1.default.id);
-    var game = new App(gameConfig);
-}
-var App = (function (_super) {
-    __extends(App, _super);
-    function App(config) {
-        var _this = _super.call(this, config) || this;
-        _this.state.add('Main', Main_1.default);
-        network_1.default.connect();
-        network_1.default.gameAssignedSuccessful(function () {
-            _this.state.start('Main');
-        });
-        network_1.default.newGame(state_1.default.id);
-        return _this;
-    }
-    return App;
-}(Phaser.Game));
-
-
-/***/ }),
+/* 68 */,
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -111101,29 +111049,95 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
-var _ = __webpack_require__(70);
-var QRious = __webpack_require__(71);
 var state_1 = __webpack_require__(61);
-var config_1 = __webpack_require__(72);
+var states_1 = __webpack_require__(70);
 var network_1 = __webpack_require__(62);
-var CustomLoader_1 = __webpack_require__(73);
+document.addEventListener('DOMContentLoaded', function () {
+    startApp();
+});
+function startApp() {
+    var gameConfig = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        renderer: Phaser.AUTO,
+        parent: document.getElementById('game'),
+        resolution: 1
+    };
+    console.log(state_1.default.id);
+    var game = new App(gameConfig);
+}
+var App = (function (_super) {
+    __extends(App, _super);
+    function App(config) {
+        var _this = _super.call(this, config) || this;
+        _this.state.add('Main', states_1.Main);
+        network_1.default.connect();
+        network_1.default.gameAssignedSuccessful(function () {
+            _this.state.start('Main');
+        });
+        network_1.default.newGame(state_1.default.id);
+        return _this;
+    }
+    return App;
+}(Phaser.Game));
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(71));
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+var _ = __webpack_require__(72);
+var QRious = __webpack_require__(73);
+var state_1 = __webpack_require__(61);
+var config_1 = __webpack_require__(74);
+var network_1 = __webpack_require__(62);
+var share_1 = __webpack_require__(75);
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.y = 0;
+        _this.margin = window.innerHeight / 20;
         _this.playersConnected = [];
         return _this;
     }
     Main.prototype.init = function () {
-        this.game.load = new CustomLoader_1.default(this.game);
+        this.game.load = new share_1.CustomLoader(this.game);
     };
     Main.prototype.preload = function () {
         this.game.load.webfont('kenvector', 'Kenvector Future');
-        this.game.load.image('LUMBER', '../assets/spritesheets/lumber-test.png');
         // this.game.load.spritesheet('jack', '../assets/spritesheets/characters/jack/run/jack-run.png', 579, 763, 8);
         this.game.stage.disableVisibilityChange = true;
         this.game.stage.backgroundColor = '#000000';
-        // this.createQRCode();
     };
     Main.prototype.create = function () {
         var _this = this;
@@ -111141,6 +111155,10 @@ var Main = (function (_super) {
             state_1.default.players = _.assign({}, remainderPlayers);
             _this.updateConnectedPlayers();
         });
+        this.y += this.margin;
+        var text = this.game.add.text(this.game.world.centerX, this.y, 'GAME TITLE', { font: (window.innerHeight / 20) + 'px ' + 'Kenvector Future', fill: '#ffffff', align: 'center' });
+        text.anchor.set(0.5, 0);
+        this.y += (window.innerHeight / 20 + this.margin);
         this.createQRCode();
         // var jack = this.game.add.sprite(this.game.world.centerX, window.innerHeight - 200, 'jack');
         // jack.scale.set(0.1);
@@ -111153,13 +111171,18 @@ var Main = (function (_super) {
             value: config_1.default.url + '/controller/' + state_1.default.id,
             background: '#ffffff',
             padding: 20,
-            size: 340
+            size: 300
         });
         qr = qr.toDataURL('image/jpeg');
         var img = new Image();
         img.onload = function () {
             that.game.cache.addImage('image-data', img.src, img);
-            that.loadQRCode();
+            var qr = that.game.add.sprite(that.game.world.centerX, that.y, 'image-data');
+            qr.anchor.set(0.5, 0);
+            that.y += 320;
+            var text = that.game.add.text(that.game.world.centerX, that.y, state_1.default.id, { font: (window.innerHeight / 50) + 'px ' + 'Kenvector Future', fill: '#ffffff', align: 'center' });
+            text.anchor.set(0.5, 0);
+            that.y += (window.innerHeight / 50 + that.margin);
         };
         img.title = state_1.default.id;
         img.src = qr;
@@ -111193,11 +111216,11 @@ var Main = (function (_super) {
     };
     return Main;
 }(Phaser.State));
-exports.default = Main;
+exports.Main = Main;
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -128289,7 +128312,7 @@ exports.default = Main;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(26)(module)))
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -130657,7 +130680,7 @@ exports.default = Main;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130669,7 +130692,20 @@ exports.default = {
 
 
 /***/ }),
-/* 73 */
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(76));
+
+
+/***/ }),
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130688,7 +130724,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
-var FontFaceObserver = __webpack_require__(74);
+var FontFaceObserver = __webpack_require__(77);
 var CustomLoader = (function (_super) {
     __extends(CustomLoader, _super);
     function CustomLoader(game) {
@@ -130715,11 +130751,11 @@ var CustomLoader = (function (_super) {
     };
     return CustomLoader;
 }(Phaser.Loader));
-exports.default = CustomLoader;
+exports.CustomLoader = CustomLoader;
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";

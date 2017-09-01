@@ -4,7 +4,7 @@ import 'phaser';
 import state from '../state';
 import Network from '../network';
 
-export default class WeitForGame extends Phaser.State {
+export class WaitForGame extends Phaser.State {
     private text: Phaser.Text;
 
     public preload() {

@@ -4,8 +4,7 @@ import 'phaser';
 import state from '../state';
 import Network from '../network';
 
-
-export default class ThemePicker extends Phaser.State {
+export class ThemePicker extends Phaser.State {
     private text: Phaser.Text;
 
     public preload() {
