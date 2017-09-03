@@ -1,14 +1,4 @@
-import 'p2';
-import 'pixi';
-import 'phaser';
-
-import state from './state';
-
-import {
-    Main
-} from './states';
-
-import Network from './network';
+import Game from './Game';
 
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
@@ -22,22 +12,7 @@ function startApp(): void {
         parent: document.getElementById('game'),
         resolution: 1
     };
-    console.log(state.id);
-    const game = new App(gameConfig);
-}
-
-class App extends Phaser.Game {
-    private socket;
-    private qr;
-    constructor (config) {
-        super(config);
-        this.state.add('Main', Main);
-        Network.connect();
-        Network.gameAssignedSuccessful(() => {
-            this.state.start('Main');
-        });
-        Network.newGame(state.id);
-    }
+    const game = new Game(gameConfig);
 }
 
 

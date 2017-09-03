@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
+    "target": "es2015",
     "sourceMap": true,
     "types": [
       "node"
@@ -12,6 +12,5 @@
     "./src/game/index.ts",
     "./node_modules/phaser/typescript/phaser.comments.d.ts",
     "./node_modules/phaser/typescript/pixi.comments.d.ts"
-    // "./node_modules/@orange-games/phaser-input/build/phaser-input.d.ts"
   ]
 }
