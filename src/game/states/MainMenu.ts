@@ -8,24 +8,16 @@ import Network from '../network';
 
 
 export class MainMenu extends Phaser.State {
-    private y: number = 0;
-
 
     public preload() {
         this.game.stage.backgroundColor = '#000000';
 
         Network.updatePlayersState((players) => {
-            //state.players = _.assign({}, players);
-        })
+            
+        });
 
         Network.playerDisconnected((player) => {
-            // const remainderPlayers = Object.keys(state.players).reduce((remainder,playerID) => {
-            //     if (playerID != player.id) {
-            //         remainder[playerID] = state.players[playerID];
-            //     }
-            //     return remainder;
-            // }, {});
-            // state.players = _.assign({}, remainderPlayers);
+            
         });
     }
 

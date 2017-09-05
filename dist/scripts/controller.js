@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 63);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -876,21 +876,21 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(25);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(26);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(27);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -3734,22 +3734,6 @@ module.exports = function(obj, fn){
 
 /***/ }),
 /* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const guid_1 = __webpack_require__(29);
-exports.default = {
-    id: guid_1.default(),
-    theme: '',
-    score: '',
-    position: null
-};
-
-
-/***/ }),
-/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;/**
@@ -17367,7 +17351,7 @@ World.prototype.raycast = function(result, ray){
 });
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -26493,7 +26477,7 @@ Object.defineProperty(PIXI.TilingSprite.prototype, 'height', {
 }).call(this);
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -106860,75 +106844,67 @@ PIXI.TextureSilentFail = true;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(29));
+
+
+/***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function guid() {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+const FontFaceObserver = __webpack_require__(30);
+class CustomLoader extends Phaser.Loader {
+    constructor(game) {
+        super(game);
+    }
+    webfont(key, fontName, overwrite) {
+        if (typeof overwrite === 'undefined') {
+            overwrite = false;
+        }
+        this.addToFileList('webfont', key, fontName);
+        return this;
+    }
+    loadFile(file) {
+        super.loadFile(file);
+        if (file.type === 'webfont') {
+            const font = new FontFaceObserver(file.url);
+            font.load(null, 10000).then(() => {
+                this.asyncComplete(file);
+            }, () => {
+                this.asyncComplete(file, 'Error loading font ' + file.url);
+            });
+        }
+    }
 }
-exports.default = guid;
+exports.CustomLoader = CustomLoader;
 
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const io = __webpack_require__(31);
-class Network {
-    static connect() {
-        Network.socket = io();
-        Network.initialize();
-    }
-    static initialize() {
-        Network.socket.on('player-joined', () => {
-        });
-        Network.socket.on('game-start', () => {
-        });
-        Network.socket.on('game-end', () => {
-        });
-        Network.socket.on('disconnect', () => {
-            document.location.reload();
-        });
-        Network.socket.on('game-disconnected', () => {
-            console.log('game-disconnected');
-        });
-        Network.socket.on('game-invalid', () => {
-        });
-        Network.socket.on('game-has-started', () => {
-        });
-        Network.socket.on('game-full', () => {
-        });
-    }
-    static newPlayer({ id, gameId }) {
-        Network.socket.emit('new-player', { id: id, gameId: gameId });
-    }
-    static gameNotAvailable(fn) {
-        Network.socket.on('game-not-available', fn);
-    }
-    static gameFull(fn) {
-        Network.socket.on('game-full', fn);
-    }
-    static gameAlreadyStarted(fn) {
-        Network.socket.on('game-already-started', fn);
-    }
-    static playerAssignedSuccessful(fn) {
-        Network.socket.on('player-assigned-successful', fn);
-    }
-    static setTheme(theme) {
-        Network.socket.emit('player-theme', { theme: theme });
-    }
-    static receiveConfirmation(fn) {
-        Network.socket.on('receive-confirmation', fn);
-    }
-}
-exports.default = Network;
+/* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
+this.f.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.h.style.cssText="display:inline-block;width:200%;height:200%;font-size:16px;max-width:none;";this.b.appendChild(this.h);this.c.appendChild(this.f);this.a.appendChild(this.b);this.a.appendChild(this.c)}
+function t(a,b){a.a.style.cssText="max-width:none;min-width:20px;min-height:20px;display:inline-block;overflow:hidden;position:absolute;width:auto;margin:0;padding:0;top:-999px;white-space:nowrap;font-synthesis:none;font:"+b+";"}function y(a){var b=a.a.offsetWidth,c=b+100;a.f.style.width=c+"px";a.c.scrollLeft=c;a.b.scrollLeft=a.b.scrollWidth+100;return a.g!==b?(a.g=b,!0):!1}function z(a,b){function c(){var a=k;y(a)&&a.a.parentNode&&b(a.g)}var k=a;l(a.b,c);l(a.c,c);y(a)};function A(a,b){var c=b||{};this.family=a;this.style=c.style||"normal";this.weight=c.weight||"normal";this.stretch=c.stretch||"normal"}var B=null,C=null,E=null,F=null;function G(){if(null===C)if(J()&&/Apple/.test(window.navigator.vendor)){var a=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))/.exec(window.navigator.userAgent);C=!!a&&603>parseInt(a[1],10)}else C=!1;return C}function J(){null===F&&(F=!!document.fonts);return F}
+function K(){if(null===E){var a=document.createElement("div");try{a.style.font="condensed 100px sans-serif"}catch(b){}E=""!==a.style.font}return E}function L(a,b){return[a.style,a.weight,K()?a.stretch:"","100px",b].join(" ")}
+A.prototype.load=function(a,b){var c=this,k=a||"BESbswy",q=0,D=b||3E3,H=(new Date).getTime();return new Promise(function(a,b){if(J()&&!G()){var M=new Promise(function(a,b){function e(){(new Date).getTime()-H>=D?b():document.fonts.load(L(c,'"'+c.family+'"'),k).then(function(c){1<=c.length?a():setTimeout(e,25)},function(){b()})}e()}),N=new Promise(function(a,c){q=setTimeout(c,D)});Promise.race([N,M]).then(function(){clearTimeout(q);a(c)},function(){b(c)})}else m(function(){function u(){var b;if(b=-1!=
+f&&-1!=g||-1!=f&&-1!=h||-1!=g&&-1!=h)(b=f!=g&&f!=h&&g!=h)||(null===B&&(b=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent),B=!!b&&(536>parseInt(b[1],10)||536===parseInt(b[1],10)&&11>=parseInt(b[2],10))),b=B&&(f==v&&g==v&&h==v||f==w&&g==w&&h==w||f==x&&g==x&&h==x)),b=!b;b&&(d.parentNode&&d.parentNode.removeChild(d),clearTimeout(q),a(c))}function I(){if((new Date).getTime()-H>=D)d.parentNode&&d.parentNode.removeChild(d),b(c);else{var a=document.hidden;if(!0===a||void 0===a)f=e.a.offsetWidth,
+g=n.a.offsetWidth,h=p.a.offsetWidth,u();q=setTimeout(I,50)}}var e=new r(k),n=new r(k),p=new r(k),f=-1,g=-1,h=-1,v=-1,w=-1,x=-1,d=document.createElement("div");d.dir="ltr";t(e,L(c,"sans-serif"));t(n,L(c,"serif"));t(p,L(c,"monospace"));d.appendChild(e.a);d.appendChild(n.a);d.appendChild(p.a);document.body.appendChild(d);v=e.a.offsetWidth;w=n.a.offsetWidth;x=p.a.offsetWidth;I();z(e,function(a){f=a;u()});t(e,L(c,'"'+c.family+'",sans-serif'));z(n,function(a){g=a;u()});t(n,L(c,'"'+c.family+'",serif'));
+z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module.exports=A:(window.FontFaceObserver=A,window.FontFaceObserver.prototype.load=A.prototype.load);}());
 
 
 /***/ }),
@@ -111036,20 +111012,87 @@ Backoff.prototype.setJitter = function(jitter){
 
 
 /***/ }),
-/* 61 */,
-/* 62 */,
-/* 63 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
-const state_1 = __webpack_require__(25);
-const network_1 = __webpack_require__(30);
-const states_1 = __webpack_require__(64);
+function guid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+exports.default = guid;
+
+
+/***/ }),
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const io = __webpack_require__(31);
+class Network {
+    static connect() {
+        Network.socket = io();
+        Network.initialize();
+    }
+    static initialize() {
+        Network.socket.on('player-joined', () => {
+        });
+        Network.socket.on('game-start', () => {
+        });
+        Network.socket.on('game-end', () => {
+        });
+        Network.socket.on('disconnect', () => {
+            document.location.reload();
+        });
+        Network.socket.on('game-disconnected', () => {
+            console.log('game-disconnected');
+        });
+        Network.socket.on('game-invalid', () => {
+        });
+        Network.socket.on('game-has-started', () => {
+        });
+        Network.socket.on('game-full', () => {
+        });
+    }
+    static newPlayer({ id, gameId }) {
+        Network.socket.emit('new-player', { id: id, gameId: gameId });
+    }
+    static gameNotAvailable(fn) {
+        Network.socket.on('game-not-available', fn);
+    }
+    static gameFull(fn) {
+        Network.socket.on('game-full', fn);
+    }
+    static gameAlreadyStarted(fn) {
+        Network.socket.on('game-already-started', fn);
+    }
+    static playerAssignedSuccessful(fn) {
+        Network.socket.on('player-assigned-successful', fn);
+    }
+    static setTheme(theme) {
+        Network.socket.emit('player-theme', { theme: theme });
+    }
+    static receiveConfirmation(fn) {
+        Network.socket.on('receive-confirmation', fn);
+    }
+}
+exports.default = Network;
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const Controller_1 = __webpack_require__(66);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111061,87 +111104,8 @@ function startApp() {
         parent: document.getElementById('controller'),
         resolution: 1
     };
-    console.log(state_1.default.id);
-    const controller = new App(controllerConfig);
+    const controller = new Controller_1.default(controllerConfig);
 }
-class App extends Phaser.Game {
-    constructor(config) {
-        super(config);
-        network_1.default.connect();
-        this.state.add('Main', states_1.Main);
-        this.state.add('Error', states_1.GameError);
-        this.state.add('ThemePicker', states_1.ThemePicker);
-        this.state.add('WaitForGame', states_1.WaitForGame);
-        this.state.start('Main');
-    }
-}
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(65));
-__export(__webpack_require__(66));
-__export(__webpack_require__(67));
-__export(__webpack_require__(68));
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
-const state_1 = __webpack_require__(25);
-const network_1 = __webpack_require__(30);
-class ThemePicker extends Phaser.State {
-    preload() {
-        this.game.load.spritesheet('button', '../assets/images/button-sprite-sheet.png', 193, 71);
-    }
-    create() {
-        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Chose theme', { font: '65px Arial', fill: '#ffffff', align: 'center' });
-        this.text.anchor.set(0.5);
-        const button_0C374D = this.game.add.button(this.game.world.centerX - 210, this.game.world.centerY - 86, 'button', this.onClick, this, 0);
-        button_0C374D.anchor.set(0.5);
-        button_0C374D.theme = '#0C374D';
-        const button_AD2A1A = this.game.add.button(this.game.world.centerX + 210, this.game.world.centerY - 86, 'button', this.onClick, this, 0);
-        button_AD2A1A.anchor.set(0.5);
-        button_AD2A1A.theme = '#AD2A1A';
-        const button_829356 = this.game.add.button(this.game.world.centerX - 210, this.game.world.centerY + 86, 'button', this.onClick, this, 0);
-        button_829356.anchor.set(0.5);
-        button_829356.theme = '#829356';
-        const button_C2571A = this.game.add.button(this.game.world.centerX + 210, this.game.world.centerY + 86, 'button', this.onClick, this, 0);
-        button_C2571A.anchor.set(0.5);
-        button_C2571A.theme = '#C2571A';
-        this.registerEvent();
-    }
-    onClick(pointer) {
-        network_1.default.setTheme(pointer.theme);
-    }
-    registerEvent() {
-        network_1.default.receiveConfirmation(({ confirm, theme }) => {
-            if (confirm) {
-                state_1.default.theme = theme;
-                this.game.state.start('WaitForGame');
-            }
-            else {
-                this.text.setText('Theme already in use.\nChoose another');
-            }
-        });
-    }
-}
-exports.ThemePicker = ThemePicker;
 
 
 /***/ }),
@@ -111154,18 +111118,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
-class GameError extends Phaser.State {
-    init() {
-    }
-    preload() {
-        this.game.stage.disableVisibilityChange = true;
-    }
-    create() {
-        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Error with game', { font: '65px Arial', fill: '#ffffff', align: 'center' });
-        this.text.anchor.set(0.5);
+const states_1 = __webpack_require__(67);
+const network_1 = __webpack_require__(64);
+class Controller extends Phaser.Game {
+    constructor(config) {
+        super(config);
+        // connect to server
+        network_1.default.connect();
+        // add states to controller
+        this.state.add('Boot', states_1.Boot);
+        this.state.add('Loading', states_1.Loading);
+        this.state.add('MainMenu', states_1.MainMenu);
+        this.state.start('Boot');
     }
 }
-exports.GameError = GameError;
+exports.default = Controller;
 
 
 /***/ }),
@@ -111174,40 +111141,13 @@ exports.GameError = GameError;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
-const state_1 = __webpack_require__(25);
-const network_1 = __webpack_require__(30);
-class Main extends Phaser.State {
-    preload() {
-        this.game.stage.disableVisibilityChange = true;
-        this.game.load.image('start', '../assets/images/start-game.png');
-    }
-    create() {
-        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Hello player\nlets start', { font: '65px Arial', fill: '#ffffff', align: 'center' });
-        this.text.anchor.set(0.5);
-        this.button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 200, 'start', this.goToNextState);
-        this.button.anchor.set(0.5);
-        network_1.default.playerAssignedSuccessful(() => {
-            this.game.state.start('ThemePicker');
-        });
-        network_1.default.gameNotAvailable(() => {
-            this.game.state.start('Error');
-        });
-        network_1.default.gameAlreadyStarted(() => {
-            this.game.state.start('Error');
-        });
-        network_1.default.gameFull(() => {
-            this.game.state.start('Error');
-        });
-    }
-    goToNextState() {
-        network_1.default.newPlayer({ id: state_1.default.id, gameId: gameId });
-    }
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-exports.Main = Main;
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(68));
+__export(__webpack_require__(70));
+__export(__webpack_require__(71));
 
 
 /***/ }),
@@ -111220,17 +111160,126 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
-const state_1 = __webpack_require__(25);
-class WaitForGame extends Phaser.State {
+const share_1 = __webpack_require__(28);
+const network_1 = __webpack_require__(64);
+const state_1 = __webpack_require__(69);
+class Boot extends Phaser.State {
+    init() {
+        // set the scale mode
+        this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        // set custom loader
+        this.game.load = new share_1.CustomLoader(this.game);
+    }
     preload() {
-        this.stage.backgroundColor = state_1.default.theme;
+        // initialize response from server
+        network_1.default.playerAssignedSuccessful(() => {
+            this.game.state.start('Loading');
+        });
+        // load font
+        this.game.load.webfont('kenvector', 'Kenvector Future');
+        // load loading sprite
+        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/templerun/run/sprite.png', 415, 507, 9);
     }
     create() {
-        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Wait for game', { font: '65px Arial', fill: '#ffffff', align: 'center' });
-        this.text.anchor.set(0.5);
+        // assign new game
+        network_1.default.newPlayer({ id: state_1.default.id, gameId: gameId });
     }
 }
-exports.WaitForGame = WaitForGame;
+exports.Boot = Boot;
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const guid_1 = __webpack_require__(61);
+exports.default = {
+    id: guid_1.default(),
+    theme: '',
+    score: '',
+    position: null
+};
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+class Loading extends Phaser.State {
+    preload() {
+        this.game.stage.backgroundColor = '#000000';
+        this.game.load.onLoadStart.add(this.loadStart, this);
+        this.game.load.onFileComplete.add(this.fileComplete, this);
+        this.game.load.onLoadComplete.add(this.loadComplete, this);
+        this.game.load.spritesheet('cat-idle', '../assets/spritesheets/characters/cat/idle/sprite.png', 542, 473, 10);
+        this.game.load.spritesheet('dog-idle', '../assets/spritesheets/characters/dog/idle/sprite.png', 547, 481, 10);
+        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 10);
+        this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
+        this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 556, 10);
+        this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
+    }
+    create() {
+        this.game.state.start('MainMenu');
+    }
+    loadStart() {
+        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 25, 'templerun');
+        this.loadingSprite.anchor.set(0.5);
+        this.loadingSprite.scale.set(0.15);
+        this.loadingSprite.animations.add('run');
+        this.loadingSprite.animations.play('run', 30, true);
+        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 25, 'Loading ...', {
+            font: '20px Kenvector Future',
+            fill: '#ffffff',
+            align: 'center'
+        });
+        this.loadingText.anchor.set(0.5);
+    }
+    fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
+        this.loadingText.setText(`Loading ${progress}%`);
+    }
+    loadComplete() {
+        this.loadingText.setText('Load Complete');
+    }
+}
+exports.Loading = Loading;
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+class MainMenu extends Phaser.State {
+    preload() {
+    }
+    create() {
+        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 40, 'Hello player\nlets start', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        helloText.anchor.set(0.5, 0);
+        var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 5, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
+        button.anchor.set(0.5, 0);
+        var buttonText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 7, 'CONTINUE', { font: '10px Kenvector Future', fill: '#ffffff', align: 'center' });
+        helloText.anchor.set(0.5, 0);
+    }
+    actionOnClick() {
+        // go to next state
+        console.log('next state');
+    }
+}
+exports.MainMenu = MainMenu;
 
 
 /***/ })

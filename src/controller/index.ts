@@ -1,14 +1,4 @@
-import 'p2';
-import 'pixi';
-import 'phaser';
-import state from './state';
-import Network from './network';
-import {
-    Main,
-    ThemePicker,
-    GameError,
-    WaitForGame
-} from './states';
+import Controller from './Controller';
 
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
@@ -22,20 +12,8 @@ function startApp(): void {
         parent: document.getElementById('controller'),
         resolution: 1
     };
-    console.log(state.id);
-    const controller = new App(controllerConfig);
-}
-
-class App extends Phaser.Game {
-    constructor (config) {
-        super(config);
-        Network.connect();
-        this.state.add('Main', Main);
-        this.state.add('Error', GameError);
-        this.state.add('ThemePicker', ThemePicker);
-        this.state.add('WaitForGame', WaitForGame)
-        this.state.start('Main');
-    }
+    
+    const controller = new Controller(controllerConfig);
 }
 
 

@@ -10,13 +10,13 @@ import {
 
 import Network from './network';
 
-export default class Game extends Phaser.Game {
+export default class Controller extends Phaser.Game {
     constructor (config) {
         super(config);
         // connect to server
         Network.connect();
 
-        // add sstates to game
+        // add states to controller
         this.state.add('Boot', Boot);
         this.state.add('Loading', Loading);
         this.state.add('MainMenu', MainMenu);

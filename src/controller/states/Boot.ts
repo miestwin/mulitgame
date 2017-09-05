@@ -9,6 +9,8 @@ import {
 import Network from '../network';
 import state from '../state';
 
+declare var gameId;
+
 export class Boot extends Phaser.State {
 
     init() {
@@ -21,7 +23,7 @@ export class Boot extends Phaser.State {
 
     preload() {
         // initialize response from server
-        Network.gameAssignedSuccessful(() => {
+        Network.playerAssignedSuccessful(() => {
             this.game.state.start('Loading');
         });
 
@@ -33,7 +35,6 @@ export class Boot extends Phaser.State {
 
     create() {
         // assign new game
-        console.log(state.id);
-        Network.newGame(state.id);
+        Network.newPlayer({ id: state.id, gameId: gameId });
     }
 }

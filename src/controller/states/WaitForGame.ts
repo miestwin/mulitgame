@@ -12,7 +12,7 @@ export class WaitForGame extends Phaser.State {
     }
 
     public create() {
-        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Wait for game', { font: '65px Arial', fill: '#ffffff', align: 'center'});
+        this.text = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 300, 'Wait for game', { font: '65px Kenvector Future', fill: '#ffffff', align: 'center'});
         this.text.anchor.set(0.5);
     }
 }
