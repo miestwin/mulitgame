@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 72);
+/******/ 	return __webpack_require__(__webpack_require__.s = 73);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111091,13 +111091,14 @@ exports.default = {
 /* 69 */,
 /* 70 */,
 /* 71 */,
-/* 72 */
+/* 72 */,
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(73);
+const Game_1 = __webpack_require__(74);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111114,7 +111115,7 @@ function startApp() {
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111123,7 +111124,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
-const states_1 = __webpack_require__(74);
+const states_1 = __webpack_require__(75);
 const network_1 = __webpack_require__(62);
 class Game extends Phaser.Game {
     constructor(config) {
@@ -111141,7 +111142,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111150,13 +111151,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(75));
 __export(__webpack_require__(76));
-__export(__webpack_require__(79));
+__export(__webpack_require__(77));
+__export(__webpack_require__(80));
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111183,7 +111184,7 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/templerun/run/sprite.png', 415, 507, 9);
+        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
     }
     create() {
         // assign new game
@@ -111195,7 +111196,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111204,9 +111205,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
-const QRious = __webpack_require__(77);
+const QRious = __webpack_require__(78);
 const state_1 = __webpack_require__(63);
-const config_1 = __webpack_require__(78);
+const config_1 = __webpack_require__(79);
 class Loading extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = '#000000';
@@ -111290,7 +111291,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -113658,7 +113659,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113670,7 +113671,7 @@ exports.default = {
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

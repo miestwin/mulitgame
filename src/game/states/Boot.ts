@@ -28,7 +28,7 @@ export class Boot extends Phaser.State {
         // load font
         (<any>this.game.load).webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/templerun/run/sprite.png', 415, 507, 9);
+        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
     }
 
     create() {

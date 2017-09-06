@@ -16,9 +16,11 @@ export class Loading extends Phaser.State {
 
         this.game.load.spritesheet('cat-idle', '../assets/spritesheets/characters/cat/idle/sprite.png', 542, 473, 10);
         this.game.load.spritesheet('dog-idle', '../assets/spritesheets/characters/dog/idle/sprite.png', 547, 481, 10);
-        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 10);
+        this.game.load.spritesheet('temple-run', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
         this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
         this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 556, 10);
+
+        this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
@@ -30,10 +32,10 @@ export class Loading extends Phaser.State {
     private loadStart() {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
-            this.game.world.centerY - 25,
-            'templerun');
+            this.game.world.centerY - 30,
+            'jack-idle');
         this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(0.15);
+        this.loadingSprite.scale.set(0.1);
         this.loadingSprite.animations.add('run');
         this.loadingSprite.animations.play('run', 30, true);
 

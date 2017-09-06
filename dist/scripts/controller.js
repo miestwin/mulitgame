@@ -111129,6 +111129,7 @@ class Controller extends Phaser.Game {
         this.state.add('Boot', states_1.Boot);
         this.state.add('Loading', states_1.Loading);
         this.state.add('MainMenu', states_1.MainMenu);
+        this.state.add('CharacterSelector', states_1.CharacterSelector);
         this.state.start('Boot');
     }
 }
@@ -111148,6 +111149,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(68));
 __export(__webpack_require__(70));
 __export(__webpack_require__(71));
+__export(__webpack_require__(72));
 
 
 /***/ }),
@@ -111178,7 +111180,7 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/templerun/run/sprite.png', 415, 507, 9);
+        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 8);
     }
     create() {
         // assign new game
@@ -111222,18 +111224,19 @@ class Loading extends Phaser.State {
         this.game.load.onLoadComplete.add(this.loadComplete, this);
         this.game.load.spritesheet('cat-idle', '../assets/spritesheets/characters/cat/idle/sprite.png', 542, 473, 10);
         this.game.load.spritesheet('dog-idle', '../assets/spritesheets/characters/dog/idle/sprite.png', 547, 481, 10);
-        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 10);
+        this.game.load.spritesheet('temple-run', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
         this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
         this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 556, 10);
+        this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
     create() {
         this.game.state.start('MainMenu');
     }
     loadStart() {
-        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 25, 'templerun');
+        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 30, 'jack-idle');
         this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(0.15);
+        this.loadingSprite.scale.set(0.1);
         this.loadingSprite.animations.add('run');
         this.loadingSprite.animations.play('run', 30, true);
         this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 25, 'Loading ...', {
@@ -111264,22 +111267,79 @@ __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
 class MainMenu extends Phaser.State {
-    preload() {
-    }
+    preload() { }
     create() {
-        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 40, 'Hello player\nlets start', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 90, 'Hello player\nlets start', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
-        var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 5, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
+        var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 10, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 0);
-        var buttonText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 7, 'CONTINUE', { font: '10px Kenvector Future', fill: '#ffffff', align: 'center' });
+        var buttonText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 20, 'Continue', { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
+        buttonText.anchor.set(0.5, 0);
+    }
+    actionOnClick() {
+        this.game.state.start('CharacterSelector');
+    }
+}
+exports.MainMenu = MainMenu;
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(3);
+__webpack_require__(4);
+__webpack_require__(5);
+class CharacterSelector extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        this.characters = ['cat-idle', 'dog-idle', 'temple-run', 'ninja-idle', 'robot-idle'];
+    }
+    preload() { }
+    create() {
+        var helloText = this.game.add.text(this.game.world.centerX, 50, 'Select your character', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
+        this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.characters.length * 90 + 64, this.game.height - 180, 'transparent');
+        this.scrolingMap.inputEnabled = true;
+        this.scrolingMap.input.enableDrag(false);
+        this.scrolingMap.savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
+        this.scrolingMap.isBeingDraged = false;
+        this.scrolingMap.movingSpeed = 0;
+        this.scrolingMap.input.allowVerticalDrag = false;
+        // this.scrolingMap.input.boundsRect = new Phaser.Rectangle(
+        //     this.game.width - this.scrolingMap.width,
+        //     this.game.height - this.scrolingMap.height,
+        //     this.scrolingMap.width * 2 - this.game.width,
+        //     this.scrolingMap.height * 2 - this.game.height);
+        for (var i = 0; i < this.characters.length; i++) {
+            const character = this.game.add.sprite(this.game.world.centerX + i * 100, this.game.world.centerY - 50, this.characters[i]);
+            character.anchor.set(0.5, 1);
+            character.scale.set(0.15);
+            character.animations.add('idle');
+            character.animations.play('idle', 15, true);
+            this.scrolingMap.addChild(character);
+        }
+        this.scrolingMap.events.onDragStart.add(() => {
+            this.scrolingMap.isBeingDraged = true;
+            this.scrolingMap.movingSpeed = 0;
+        });
+        this.scrolingMap.events.onDragStop.add(() => {
+            this.scrolingMap.isBeingDraged = false;
+        });
+        var button = this.game.add.button(this.game.world.centerX, this.game.height - 50, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
+        button.anchor.set(0.5, 1);
+        var buttonText = this.game.add.text(this.game.world.centerX, this.game.height - 55, 'Continue', { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
+        buttonText.anchor.set(0.5, 1);
     }
     actionOnClick() {
         // go to next state
         console.log('next state');
     }
 }
-exports.MainMenu = MainMenu;
+exports.CharacterSelector = CharacterSelector;
 
 
 /***/ })

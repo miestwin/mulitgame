@@ -5,7 +5,8 @@ import 'phaser';
 import {
     Boot,
     Loading,
-    MainMenu
+    MainMenu,
+    CharacterSelector
 } from './states';
 
 import Network from './network';
@@ -20,6 +21,7 @@ export default class Controller extends Phaser.Game {
         this.state.add('Boot', Boot);
         this.state.add('Loading', Loading);
         this.state.add('MainMenu', MainMenu);
+        this.state.add('CharacterSelector', CharacterSelector);
 
         this.state.start('Boot');
     }
