@@ -22,7 +22,7 @@ export class CharacterSelector extends Phaser.State {
         
         this.scrolingMap = this.game.add.tileSprite(
             0, 80,
-            this.game.width / 2 + this.characters.length * 90 + 64,
+            this.game.width / 2 + this.characters.length * 130 + 70,
             this.game.height - 180,
             'transparent');
         this.scrolingMap.inputEnabled = true;
@@ -31,11 +31,10 @@ export class CharacterSelector extends Phaser.State {
         (<any>this.scrolingMap).isBeingDraged = false;
         (<any>this.scrolingMap).movingSpeed = 0;
         this.scrolingMap.input.allowVerticalDrag = false;
-        // this.scrolingMap.input.boundsRect = new Phaser.Rectangle(
-        //     this.game.width - this.scrolingMap.width,
-        //     this.game.height - this.scrolingMap.height,
-        //     this.scrolingMap.width * 2 - this.game.width,
-        //     this.scrolingMap.height * 2 - this.game.height);
+        this.scrolingMap.input.boundsRect = new Phaser.Rectangle(
+            this.game.width - this.scrolingMap.width, 80,
+            this.scrolingMap.width * 2 - this.game.width,
+            this.game.height - 180);
 
         for (var i = 0; i < this.characters.length; i++) {
             const character = this.game.add.sprite(
@@ -62,6 +61,23 @@ export class CharacterSelector extends Phaser.State {
         button.anchor.set(0.5, 1);
         var buttonText = this.game.add.text(this.game.world.centerX, this.game.height - 55, 'Continue', { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
         buttonText.anchor.set(0.5, 1);
+    }
+
+    update() {
+        let zoomed: boolean = false;
+        for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
+            if (Math.abs(this.scrolingMap.children[_i].x - this.game.width / 2) < 46 && !zoomed) {
+                this.scrolingMap.getChildAt(_i).scale.set(0.25, 0.25);
+                zoomed = true;
+            } else {
+                this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
+            }
+        }
+        if ((<any>this.scrolingMap).isBeingDraged) {
+            (<any>this.scrolingMap).savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
+        } else {
+            
+        }
     }
 
     private actionOnClick() {
