@@ -94,6 +94,27 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /**
  * Expose `Emitter`.
@@ -260,7 +281,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 2 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -870,27 +891,6 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -1532,7 +1532,7 @@ function localstorage() {
  */
 
 var debug = __webpack_require__(36)('socket.io-parser');
-var Emitter = __webpack_require__(1);
+var Emitter = __webpack_require__(4);
 var hasBin = __webpack_require__(15);
 var binary = __webpack_require__(40);
 var isBuf = __webpack_require__(16);
@@ -1980,8 +1980,8 @@ module.exports = function (opts) {
  * Module dependencies.
  */
 
-var parser = __webpack_require__(2);
-var Emitter = __webpack_require__(1);
+var parser = __webpack_require__(5);
+var Emitter = __webpack_require__(4);
 
 /**
  * Module exports.
@@ -2280,7 +2280,7 @@ function isBuf(obj) {
 
 var eio = __webpack_require__(42);
 var Socket = __webpack_require__(22);
-var Emitter = __webpack_require__(1);
+var Emitter = __webpack_require__(4);
 var parser = __webpack_require__(11);
 var on = __webpack_require__(23);
 var bind = __webpack_require__(24);
@@ -2918,7 +2918,7 @@ function polling (opts) {
 
 var Transport = __webpack_require__(13);
 var parseqs = __webpack_require__(8);
-var parser = __webpack_require__(2);
+var parser = __webpack_require__(5);
 var inherit = __webpack_require__(9);
 var yeast = __webpack_require__(20);
 var debug = __webpack_require__(10)('engine.io-client:polling');
@@ -3259,7 +3259,7 @@ module.exports = function(arr, obj){
  */
 
 var parser = __webpack_require__(11);
-var Emitter = __webpack_require__(1);
+var Emitter = __webpack_require__(4);
 var toArray = __webpack_require__(60);
 var on = __webpack_require__(23);
 var bind = __webpack_require__(24);
@@ -3745,6 +3745,7 @@ States.BOOT = 'Boot';
 States.LOADING = 'Loading';
 States.MAINMENU = 'MainMenu';
 States.CHARACTERSELECTOR = 'CharacterSelector';
+States.MESSAGE = 'Message';
 exports.States = States;
 
 
@@ -106879,9 +106880,9 @@ __export(__webpack_require__(30));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
 const FontFaceObserver = __webpack_require__(31);
 class CustomLoader extends Phaser.Loader {
     constructor(game) {
@@ -108220,7 +108221,7 @@ module.exports = __webpack_require__(44);
  * @api public
  *
  */
-module.exports.parser = __webpack_require__(2);
+module.exports.parser = __webpack_require__(5);
 
 
 /***/ }),
@@ -108232,10 +108233,10 @@ module.exports.parser = __webpack_require__(2);
  */
 
 var transports = __webpack_require__(18);
-var Emitter = __webpack_require__(1);
+var Emitter = __webpack_require__(4);
 var debug = __webpack_require__(10)('engine.io-client:socket');
 var index = __webpack_require__(21);
-var parser = __webpack_require__(2);
+var parser = __webpack_require__(5);
 var parseuri = __webpack_require__(14);
 var parsejson = __webpack_require__(59);
 var parseqs = __webpack_require__(8);
@@ -108373,7 +108374,7 @@ Socket.protocol = parser.protocol; // this is an int
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(13);
 Socket.transports = __webpack_require__(18);
-Socket.parser = __webpack_require__(2);
+Socket.parser = __webpack_require__(5);
 
 /**
  * Creates transport of the given type.
@@ -109007,7 +109008,7 @@ try {
 
 var XMLHttpRequest = __webpack_require__(12);
 var Polling = __webpack_require__(19);
-var Emitter = __webpack_require__(1);
+var Emitter = __webpack_require__(4);
 var inherit = __webpack_require__(9);
 var debug = __webpack_require__(10)('engine.io-client:polling-xhr');
 
@@ -110589,7 +110590,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  */
 
 var Transport = __webpack_require__(13);
-var parser = __webpack_require__(2);
+var parser = __webpack_require__(5);
 var parseqs = __webpack_require__(8);
 var inherit = __webpack_require__(9);
 var yeast = __webpack_require__(20);
@@ -111132,9 +111133,9 @@ function startApp() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
 const states_1 = __webpack_require__(68);
 const network_1 = __webpack_require__(65);
 const guid_1 = __webpack_require__(62);
@@ -111150,6 +111151,7 @@ class Controller extends Phaser.Game {
         this.state.add(states_1.States.LOADING, states_1.Loading);
         this.state.add(states_1.States.MAINMENU, states_1.MainMenu);
         this.state.add(states_1.States.CHARACTERSELECTOR, states_1.CharacterSelector);
+        this.state.add(states_1.States.MESSAGE, states_1.Message);
         this.state.start(states_1.States.BOOT);
     }
 }
@@ -111171,6 +111173,7 @@ __export(__webpack_require__(69));
 __export(__webpack_require__(70));
 __export(__webpack_require__(71));
 __export(__webpack_require__(72));
+__export(__webpack_require__(73));
 
 
 /***/ }),
@@ -111180,9 +111183,9 @@ __export(__webpack_require__(72));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
 const States_1 = __webpack_require__(25);
 const shared_1 = __webpack_require__(29);
 const network_1 = __webpack_require__(65);
@@ -111197,6 +111200,18 @@ class Boot extends Phaser.State {
         // initialize response from server
         network_1.default.playerAssignedSuccessful(() => {
             this.game.state.start(States_1.States.LOADING);
+        });
+        network_1.default.gameAlreadyStarted(() => {
+            const message = 'Game already started';
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
+        });
+        network_1.default.gameFull(() => {
+            const message = 'Game is full';
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
+        });
+        network_1.default.gameNotAvailable(() => {
+            const message = 'Gaem not available';
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
         });
         // load font
         this.game.load.webfont('kenvector', 'Kenvector Future');
@@ -111218,9 +111233,9 @@ exports.Boot = Boot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
 const States_1 = __webpack_require__(25);
 class Loading extends Phaser.State {
     preload() {
@@ -111269,9 +111284,9 @@ exports.Loading = Loading;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
 const States_1 = __webpack_require__(25);
 class MainMenu extends Phaser.State {
     preload() { }
@@ -111297,9 +111312,9 @@ exports.MainMenu = MainMenu;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(4);
-__webpack_require__(5);
 class CharacterSelector extends Phaser.State {
     constructor() {
         super(...arguments);
@@ -111356,6 +111371,29 @@ class CharacterSelector extends Phaser.State {
     }
 }
 exports.CharacterSelector = CharacterSelector;
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+class Message extends Phaser.State {
+    init(message) {
+        this.message = message;
+    }
+    preload() { }
+    create() {
+        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, this.message, { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        message.anchor.set(0.5);
+    }
+}
+exports.Message = Message;
 
 
 /***/ })

@@ -9,9 +9,6 @@ export default class Network {
     }
 
     private static initialize () {
-        Network.socket.on('player-joined', () => {
-
-        });
 
         Network.socket.on('game-start', () => {
             
@@ -30,14 +27,6 @@ export default class Network {
         });
 
         Network.socket.on('game-invalid', () => {
-            
-        });
-
-        Network.socket.on('game-has-started', () => {
-            
-        });
-
-        Network.socket.on('game-full', () => {
             
         });
     }
@@ -62,8 +51,8 @@ export default class Network {
         Network.socket.on('player-assigned-successful', fn);
     }
 
-    public static setTheme(theme: string) {
-        Network.socket.emit('player-theme', { theme: theme });
+    public static setPlayerCharacter(character: string) {
+        Network.socket.emit('set-player-character', { character: character });
     }
 
     public static receiveConfirmation(fn: Function) {

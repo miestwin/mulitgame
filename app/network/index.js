@@ -45,14 +45,14 @@ module.exports = (server) => {
             });
         });
 
-        socket.on('player-theme', ({ theme }) => {
-            const confirm = !checkIfThemeIsInUse(socket.player.gameId, theme);
+        socket.on('set-player-character', ({ character }) => {
+            const confirm = !checkIfCharacterIsInUse(socket.player.gameId, character);
             if (confirm) {
-                socket.player.theme = theme;
+                socket.player.character = character;
                 const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
                 socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', allPlayersForGame);
             }
-            io.to(socket.id).emit('receive-confirmation', { confirm: confirm, theme: theme });
+            io.to(socket.id).emit('receive-confirmation', { confirm: confirm, character: character });
         });
 
         socket.on('game-start', () => {
@@ -87,11 +87,11 @@ module.exports = (server) => {
         return null;
     };
 
-    const checkIfThemeIsInUse = (gameId, theme) => {
+    const checkIfCharacterIsInUse = (gameId, character) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
                 const player = io.sockets.connected[socketID].player;
-                if (player && player.gameId == gameId && player.theme == theme) {
+                if (player && player.gameId == gameId && player.character == character) {
                     return true;
                 }
             }

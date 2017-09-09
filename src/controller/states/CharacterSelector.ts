@@ -6,9 +6,15 @@ import { States } from './States';
 import Network from '../network';
 
 export class CharacterSelector extends Phaser.State {
-    private characters: Array<any> = ['cat', 'dog', 'temple', 'ninja', 'robot'];
+    private characters: Array<any> = [
+        { name: 'cat', use: false },
+        { name: 'dog', use: false },
+        { name: 'temple', use: false },
+        { name: 'ninja', use: false },
+        { name: 'robot', use: false }
+    ];
     private scrolingMap: Phaser.TileSprite;
-    private selectedCharacter;
+    private selectedCharacterIndex: number;
 
     public preload() {}
 
@@ -39,7 +45,7 @@ export class CharacterSelector extends Phaser.State {
             const character = this.game.add.sprite(
                 this.game.world.centerX + i * 100,
                 this.game.world.centerY - 50,
-                this.characters[i] + '-idle');
+                this.characters[i].name + '-idle');
             character.anchor.set(0.5, 1);
             character.scale.set(0.15);
             character.animations.add('idle');
@@ -65,11 +71,13 @@ export class CharacterSelector extends Phaser.State {
     update() {
         let zoomed: boolean = false;
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
+            if (!this.characters[_i].use) {
+                this.scrolingMap.children[_i].alpha = 0.5;
+            }
             if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
                 && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 50) {
                 this.scrolingMap.getChildAt(_i).scale.set(0.20, 0.20);
-                this.selectedCharacter = this.scrolingMap.children[_i];
-
+                this.selectedCharacterIndex = _i;
             } else {
                 this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
             }
@@ -77,7 +85,8 @@ export class CharacterSelector extends Phaser.State {
     }
 
     private actionOnClick() {
-        // go to next state
-        console.log('next state');
+        if (!this.characters[this.selectedCharacterIndex].use) {
+            // network
+        }
     }
 }

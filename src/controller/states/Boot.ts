@@ -27,6 +27,21 @@ export class Boot extends Phaser.State {
             this.game.state.start(States.LOADING);
         });
 
+        Network.gameAlreadyStarted(() => {
+            const message = 'Game already started';
+            this.game.state.start(States.MESSAGE, true, false, message);
+        });
+
+        Network.gameFull(() => {
+            const message = 'Game is full';
+            this.game.state.start(States.MESSAGE, true, false, message);
+        });
+
+        Network.gameNotAvailable(() => {
+            const message = 'Gaem not available';
+            this.game.state.start(States.MESSAGE, true, false, message);
+        });
+
         // load font
         (<any>this.game.load).webfont('kenvector', 'Kenvector Future');
         // load loading sprite

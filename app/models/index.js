@@ -8,7 +8,7 @@ function Player ({ id, gameId, socketID }) {
     this.gameId = gameId;
     this.socketID = socketID;
     this.score = 0;
-    this.theme = '';
+    this.character = '';
     this.position = null;
 }
 
