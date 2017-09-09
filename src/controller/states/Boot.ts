@@ -2,12 +2,12 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { States } from './States';
 import {
     CustomLoader
-} from '../../share';
+} from '../../shared';
 
 import Network from '../network';
-import state from '../state';
 
 declare var gameId;
 
@@ -24,7 +24,7 @@ export class Boot extends Phaser.State {
     preload() {
         // initialize response from server
         Network.playerAssignedSuccessful(() => {
-            this.game.state.start('Loading');
+            this.game.state.start(States.LOADING);
         });
 
         // load font
@@ -35,6 +35,6 @@ export class Boot extends Phaser.State {
 
     create() {
         // assign new game
-        Network.newPlayer({ id: state.id, gameId: gameId });
+        Network.newPlayer({ id: (<any>this.game.state).id, gameId: gameId });
     }
 }

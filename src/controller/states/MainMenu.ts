@@ -2,6 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { States } from './States';
+
 export class MainMenu extends Phaser.State {
 
     public preload() {}
@@ -16,6 +18,6 @@ export class MainMenu extends Phaser.State {
     }
 
     private actionOnClick() {
-        this.game.state.start('CharacterSelector');
+        this.game.state.start(States.CHARACTERSELECTOR);
     }
 }

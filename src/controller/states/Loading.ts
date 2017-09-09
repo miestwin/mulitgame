@@ -2,6 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { States } from './States';
+
 export class Loading extends Phaser.State {
 
     private loadingSprite: Phaser.Sprite;
@@ -16,9 +18,9 @@ export class Loading extends Phaser.State {
 
         this.game.load.spritesheet('cat-idle', '../assets/spritesheets/characters/cat/idle/sprite.png', 542, 473, 10);
         this.game.load.spritesheet('dog-idle', '../assets/spritesheets/characters/dog/idle/sprite.png', 547, 481, 10);
-        this.game.load.spritesheet('temple-run', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
+        this.game.load.spritesheet('temple-idle', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
         this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
-        this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 556, 10);
+        this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 516, 10);
 
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
 
@@ -26,7 +28,7 @@ export class Loading extends Phaser.State {
     }
 
     create() {
-        this.game.state.start('MainMenu');
+        this.game.state.start(States.MAINMENU);
     }
 
     private loadStart() {

@@ -3,7 +3,7 @@ import 'pixi';
 import 'phaser';
 import * as QRious from 'qrious';
 
-import state from '../state';
+import { States } from './States';
 import config from '../../config';
 
 export class Loading extends Phaser.State {
@@ -54,7 +54,7 @@ export class Loading extends Phaser.State {
         this.loadingText.setText('Create QRCode ...');
         this.createQRCode().then(() => {
             this.loadingText.setText('Create QRCode Complete');
-            this.game.state.start('MainMenu');
+            this.game.state.start(States.MAINMENU);
         });
     }
 
@@ -92,7 +92,7 @@ export class Loading extends Phaser.State {
         let that = this;
         return new Promise((resolve, reject) => {
             let qr = new QRious({
-                value: config.url + '/controller/' + state.id,
+                value: config.url + '/controller/' + (<any>this.game.state).id,
                 background: '#ffffff',
                 padding: 20,
                 size: 300
@@ -103,7 +103,7 @@ export class Loading extends Phaser.State {
                 that.game.cache.addImage('qrcode', img.src, img); 
                 resolve();
             };
-            img.title = state.id;
+            img.title = (<any>this.game.state).id;
             img.src = qr;
         });
     }

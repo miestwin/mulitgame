@@ -2,14 +2,13 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
-import state from '../state';
+import { States } from './States';
 import Network from '../network';
 
-declare var gameId;
-
 export class CharacterSelector extends Phaser.State {
-    private characters: Array<any> = ['cat-idle', 'dog-idle', 'temple-run', 'ninja-idle', 'robot-idle'];
+    private characters: Array<any> = ['cat', 'dog', 'temple', 'ninja', 'robot'];
     private scrolingMap: Phaser.TileSprite;
+    private selectedCharacter;
 
     public preload() {}
 
@@ -40,7 +39,7 @@ export class CharacterSelector extends Phaser.State {
             const character = this.game.add.sprite(
                 this.game.world.centerX + i * 100,
                 this.game.world.centerY - 50,
-                this.characters[i]);
+                this.characters[i] + '-idle');
             character.anchor.set(0.5, 1);
             character.scale.set(0.15);
             character.animations.add('idle');
@@ -51,11 +50,11 @@ export class CharacterSelector extends Phaser.State {
         this.scrolingMap.events.onDragStart.add(() => {
             (<any>this.scrolingMap).isBeingDraged = true;
             (<any>this.scrolingMap).movingSpeed = 0;
-        });
+        }, this);
 
         this.scrolingMap.events.onDragStop.add(() => {
             (<any>this.scrolingMap).isBeingDraged = false;
-        });
+        }, this);
         
         var button = this.game.add.button(this.game.world.centerX, this.game.height - 50, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 1);
@@ -66,17 +65,14 @@ export class CharacterSelector extends Phaser.State {
     update() {
         let zoomed: boolean = false;
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
-            if (Math.abs(this.scrolingMap.children[_i].x - this.game.width / 2) < 46 && !zoomed) {
-                this.scrolingMap.getChildAt(_i).scale.set(0.25, 0.25);
-                zoomed = true;
+            if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
+                && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 50) {
+                this.scrolingMap.getChildAt(_i).scale.set(0.20, 0.20);
+                this.selectedCharacter = this.scrolingMap.children[_i];
+
             } else {
                 this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
             }
-        }
-        if ((<any>this.scrolingMap).isBeingDraged) {
-            (<any>this.scrolingMap).savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
-        } else {
-            
         }
     }
 

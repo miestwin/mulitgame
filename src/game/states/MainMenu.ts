@@ -3,7 +3,7 @@ import 'pixi';
 import 'phaser';
 import  * as _ from 'lodash';
 
-import state from '../state';
+import { States } from './States';
 import Network from '../network';
 
 
@@ -38,7 +38,7 @@ export class MainMenu extends Phaser.State {
         qr.anchor.set(0.5, 0);
         // show game id
         var gameIdText = this.game.add.text(this.game.world.centerX, 405,
-            state.id,
+            (<any>this.game.state).id,
             { 
                 font: '15px Kenvector Future',
                 fill: '#ffffff',
