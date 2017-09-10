@@ -38,7 +38,7 @@ export class Boot extends Phaser.State {
         });
 
         Network.gameNotAvailable(() => {
-            const message = 'Gaem not available';
+            const message = 'Game not available';
             this.game.state.start(States.MESSAGE, true, false, message);
         });
 

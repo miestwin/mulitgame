@@ -45,11 +45,12 @@ module.exports = (server) => {
             });
         });
 
-        socket.on('set-player-character', ({ character }) => {
+        socket.on('set-player-character', (character) => {
             const confirm = !checkIfCharacterIsInUse(socket.player.gameId, character);
             if (confirm) {
                 socket.player.character = character;
                 const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
+                socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', character);
                 socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', allPlayersForGame);
             }
             io.to(socket.id).emit('receive-confirmation', { confirm: confirm, character: character });

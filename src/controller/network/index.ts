@@ -35,6 +35,10 @@ export default class Network {
         Network.socket.emit('new-player', { id: id, gameId: gameId });
     }
 
+    public static setPlayerCharacter(character: string) {
+        Network.socket.emit('set-player-character', character);
+    }
+
     public static gameNotAvailable(fn: Function) {
         Network.socket.on('game-not-available', fn);
     }
@@ -51,11 +55,12 @@ export default class Network {
         Network.socket.on('player-assigned-successful', fn);
     }
 
-    public static setPlayerCharacter(character: string) {
-        Network.socket.emit('set-player-character', { character: character });
-    }
 
     public static receiveConfirmation(fn: Function) {
         Network.socket.on('receive-confirmation', fn);
+    }
+
+    public static updateCharacterSelector(fn: Function) {
+        Network.socket.on('update-character-selector', fn);
     }
 }

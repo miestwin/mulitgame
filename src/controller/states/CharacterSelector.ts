@@ -16,7 +16,17 @@ export class CharacterSelector extends Phaser.State {
     private scrolingMap: Phaser.TileSprite;
     private selectedCharacterIndex: number;
 
-    public preload() {}
+    public preload() {
+        Network.updateCharacterSelector((res) => {
+            this.characters = this.characters.map(character => {
+                console.log(res);
+                if (character.name == res) {
+                    character.use = true;
+                }
+                return character;
+            });
+        });
+    }
 
     public create() {
         var helloText = this.game.add.text(
@@ -71,7 +81,7 @@ export class CharacterSelector extends Phaser.State {
     update() {
         let zoomed: boolean = false;
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
-            if (!this.characters[_i].use) {
+            if (this.characters[_i].use) {
                 this.scrolingMap.children[_i].alpha = 0.5;
             }
             if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
@@ -86,7 +96,8 @@ export class CharacterSelector extends Phaser.State {
 
     private actionOnClick() {
         if (!this.characters[this.selectedCharacterIndex].use) {
-            // network
+            Network.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);
+            this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
         }
     }
 }
