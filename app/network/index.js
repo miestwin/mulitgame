@@ -46,14 +46,15 @@ module.exports = (server) => {
         });
 
         socket.on('set-player-character', (character) => {
-            const confirm = !checkIfCharacterIsInUse(socket.player.gameId, character);
-            if (confirm) {
-                socket.player.character = character;
-                const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
-                socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', character);
-                socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', allPlayersForGame);
-            }
-            io.to(socket.id).emit('receive-confirmation', { confirm: confirm, character: character });
+            socket.player.character = character;
+            socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', character);
+            const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
+            socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', allPlayersForGame);
+        });
+
+        socket.on('get-characters-in-use', () => {
+            const characters = getCharactersInUse(socket.player.gameId);
+            io.to(socket.id).emit('update-character-selector', characters);
         });
 
         socket.on('game-start', () => {
@@ -88,16 +89,17 @@ module.exports = (server) => {
         return null;
     };
 
-    const checkIfCharacterIsInUse = (gameId, character) => {
+    const getCharactersInUse = (gameId) => {
+        let characters = [];
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
                 const player = io.sockets.connected[socketID].player;
-                if (player && player.gameId == gameId && player.character == character) {
-                    return true;
+                if (player && player.gameId == gameId && player.character !== '') {
+                    characters.push(player.character);
                 }
             }
         }
-        return false;
+        return characters;
     };
 
     const findGameSocketID = (gameId) => {

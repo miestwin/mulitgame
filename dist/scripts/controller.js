@@ -106957,6 +106957,9 @@ class Network {
     static setPlayerCharacter(character) {
         Network.socket.emit('set-player-character', character);
     }
+    static getCharactersInUse() {
+        Network.socket.emit('get-characters-in-use');
+    }
     static gameNotAvailable(fn) {
         Network.socket.on('game-not-available', fn);
     }
@@ -111327,14 +111330,24 @@ class CharacterSelector extends Phaser.State {
     }
     preload() {
         network_1.default.updateCharacterSelector((res) => {
-            this.characters = this.characters.map(character => {
-                console.log(res);
-                if (character.name == res) {
-                    character.use = true;
-                }
-                return character;
-            });
+            if (res instanceof Array) {
+                this.characters = this.characters.map(character => {
+                    if (~res.indexOf(character.name)) {
+                        character.use = true;
+                    }
+                    return character;
+                });
+            }
+            else {
+                this.characters = this.characters.map(character => {
+                    if (character.name == res) {
+                        character.use = true;
+                    }
+                    return character;
+                });
+            }
         });
+        network_1.default.getCharactersInUse();
     }
     create() {
         var helloText = this.game.add.text(this.game.world.centerX, 50, 'Select your character', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });

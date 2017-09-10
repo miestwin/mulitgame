@@ -39,6 +39,10 @@ export default class Network {
         Network.socket.emit('set-player-character', character);
     }
 
+    public static getCharactersInUse() {
+        Network.socket.emit('get-characters-in-use');
+    }
+
     public static gameNotAvailable(fn: Function) {
         Network.socket.on('game-not-available', fn);
     }

@@ -17,15 +17,25 @@ export class CharacterSelector extends Phaser.State {
     private selectedCharacterIndex: number;
 
     public preload() {
-        Network.updateCharacterSelector((res) => {
-            this.characters = this.characters.map(character => {
-                console.log(res);
-                if (character.name == res) {
-                    character.use = true;
-                }
-                return character;
-            });
+        Network.updateCharacterSelector((res: string | Array<string>) => {
+            if (res instanceof Array) {
+                this.characters = this.characters.map(character => {
+                    if (~res.indexOf(character.name)) {
+                        character.use = true;
+                    }
+                    return character;
+                });
+            } else {
+                this.characters = this.characters.map(character => {
+                    if (character.name == res) {
+                        character.use = true;
+                    }
+                    return character;
+                });
+            }
         });
+
+        Network.getCharactersInUse();
     }
 
     public create() {
