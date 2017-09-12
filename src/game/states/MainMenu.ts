@@ -13,7 +13,7 @@ export class MainMenu extends Phaser.State {
         this.game.stage.backgroundColor = '#000000';
 
         Network.updatePlayersState((players) => {
-            
+            console.log(players);
         });
 
         Network.playerDisconnected((player) => {

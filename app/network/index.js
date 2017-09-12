@@ -40,6 +40,9 @@ module.exports = (server) => {
 
             socket.on('disconnect', () => {
                 if(socket.player) {
+                    console.log('disconnect');
+                    const characters = getCharactersInUse(socket.player.gameId);
+                    socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', characters);
                     socket.broadcast.to('game-' + socket.player.gameId).emit('player-disconnected', socket.player);
                 }
             });
@@ -62,14 +65,14 @@ module.exports = (server) => {
         });
 
         socket.on('update-game', ({ position }) => {
-            socket.player.position = position;
-            socket.broadcast.to('game-' + socket.player.gameId).emit('update-game', {});
+            // socket.player.position = position;
+            // socket.broadcast.to('game-' + socket.player.gameId).emit('update-game', {});
         });
 
         socket.on('update-score', ({ id, socketID, score }) => {
-            const player = io.sockets.connected[socketID].player;
-            if (player) player.score = score;
-            io.to(player.socketID).emit('update-score', { score: player.score });
+            // const player = io.sockets.connected[socketID].player;
+            // if (player) player.score = score;
+            // io.to(player.socketID).emit('update-score', { score: player.score });
         });
 
         socket.on('game-end', () => {

@@ -30,11 +30,11 @@ export class Loading extends Phaser.State {
         this.game.load.spritesheet('dog-run', '../assets/spritesheets/characters/dog/run/sprite.png', 547, 481, 8);
         this.game.load.spritesheet('dog-walk', '../assets/spritesheets/characters/dog/walk/sprite.png', 547, 481, 10);
 
-        this.game.load.spritesheet('jack-dead', '../assets/spritesheets/characters/jack/dead/sprite.png', 986, 796, 10);
-        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 10);
-        this.game.load.spritesheet('jack-jump', '../assets/spritesheets/characters/jack/jump/sprite.png', 579, 763, 10);
-        this.game.load.spritesheet('jack-run', '../assets/spritesheets/characters/jack/run/sprite.png', 579, 763, 8);
-        this.game.load.spritesheet('jack-walk', '../assets/spritesheets/characters/jack/walk/sprite.png', 579, 763, 10);
+        this.game.load.spritesheet('temple-dead', '../assets/spritesheets/characters/temple/dead/sprite.png', 588, 600, 9);
+        this.game.load.spritesheet('temple-idle', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
+        this.game.load.spritesheet('temple-jump', '../assets/spritesheets/characters/temple/jump/sprite.png', 407, 536, 9);
+        this.game.load.spritesheet('temple-run', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
+        this.game.load.spritesheet('temple-walk', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
 
         this.game.load.spritesheet('ninja-dead', '../assets/spritesheets/characters/ninja/dead/sprite.png', 482, 498, 9);
         this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
@@ -62,9 +62,9 @@ export class Loading extends Phaser.State {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
             this.game.world.centerY - 50,
-            'templerun');
+            'jack-run');
         this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(0.2);
+        this.loadingSprite.scale.set(0.15);
         this.loadingSprite.animations.add('run');
         this.loadingSprite.animations.play('run', 30, true);
 

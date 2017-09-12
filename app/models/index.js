@@ -9,7 +9,6 @@ function Player ({ id, gameId, socketID }) {
     this.socketID = socketID;
     this.score = 0;
     this.character = '';
-    this.position = null;
 }
 
 module.exports = {

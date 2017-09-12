@@ -20,6 +20,7 @@ export class CharacterSelector extends Phaser.State {
         Network.updateCharacterSelector((res: string | Array<string>) => {
             if (res instanceof Array) {
                 this.characters = this.characters.map(character => {
+                    character.use = false;
                     if (~res.indexOf(character.name)) {
                         character.use = true;
                     }
@@ -89,10 +90,11 @@ export class CharacterSelector extends Phaser.State {
     }
 
     update() {
-        let zoomed: boolean = false;
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
             if (this.characters[_i].use) {
                 this.scrolingMap.children[_i].alpha = 0.5;
+            } else {
+                this.scrolingMap.children[_i].alpha = 1;
             }
             if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
                 && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 50) {

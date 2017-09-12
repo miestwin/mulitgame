@@ -111061,8 +111061,6 @@ class Network {
         });
         Network.socket.on('update-game', () => {
         });
-        Network.socket.on('player-joined', () => {
-        });
         Network.socket.on('game-end', () => {
         });
         Network.socket.on('disconnect', () => {
@@ -111190,7 +111188,7 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('templerun', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
+        this.game.load.spritesheet('jack-run', '../assets/spritesheets/characters/jack/run/sprite.png', 579, 763, 8);
     }
     create() {
         // assign new game
@@ -111230,11 +111228,11 @@ class Loading extends Phaser.State {
         this.game.load.spritesheet('dog-jump', '../assets/spritesheets/characters/dog/jump/sprite.png', 547, 481, 8);
         this.game.load.spritesheet('dog-run', '../assets/spritesheets/characters/dog/run/sprite.png', 547, 481, 8);
         this.game.load.spritesheet('dog-walk', '../assets/spritesheets/characters/dog/walk/sprite.png', 547, 481, 10);
-        this.game.load.spritesheet('jack-dead', '../assets/spritesheets/characters/jack/dead/sprite.png', 986, 796, 10);
-        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 10);
-        this.game.load.spritesheet('jack-jump', '../assets/spritesheets/characters/jack/jump/sprite.png', 579, 763, 10);
-        this.game.load.spritesheet('jack-run', '../assets/spritesheets/characters/jack/run/sprite.png', 579, 763, 8);
-        this.game.load.spritesheet('jack-walk', '../assets/spritesheets/characters/jack/walk/sprite.png', 579, 763, 10);
+        this.game.load.spritesheet('temple-dead', '../assets/spritesheets/characters/temple/dead/sprite.png', 588, 600, 9);
+        this.game.load.spritesheet('temple-idle', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
+        this.game.load.spritesheet('temple-jump', '../assets/spritesheets/characters/temple/jump/sprite.png', 407, 536, 9);
+        this.game.load.spritesheet('temple-run', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
+        this.game.load.spritesheet('temple-walk', '../assets/spritesheets/characters/temple/run/sprite.png', 415, 507, 9);
         this.game.load.spritesheet('ninja-dead', '../assets/spritesheets/characters/ninja/dead/sprite.png', 482, 498, 9);
         this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
         this.game.load.spritesheet('ninja-jump', '../assets/spritesheets/characters/ninja/jump/sprite.png', 362, 483, 9);
@@ -111255,9 +111253,9 @@ class Loading extends Phaser.State {
         });
     }
     loadStart() {
-        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 50, 'templerun');
+        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 50, 'jack-run');
         this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(0.2);
+        this.loadingSprite.scale.set(0.15);
         this.loadingSprite.animations.add('run');
         this.loadingSprite.animations.play('run', 30, true);
         this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 50, 'Loading ...', {
@@ -113691,6 +113689,7 @@ class MainMenu extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = '#000000';
         network_1.default.updatePlayersState((players) => {
+            console.log(players);
         });
         network_1.default.playerDisconnected((player) => {
         });

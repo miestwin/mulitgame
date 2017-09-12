@@ -45,7 +45,7 @@ export class Boot extends Phaser.State {
         // load font
         (<any>this.game.load).webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 8);
+        this.game.load.spritesheet('jack-run', '../assets/spritesheets/characters/jack/run/sprite.png', 579, 763, 8);
     }
 
     create() {

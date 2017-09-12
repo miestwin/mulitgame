@@ -35,7 +35,7 @@ export class Loading extends Phaser.State {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
             this.game.world.centerY - 30,
-            'jack-idle');
+            'jack-run');
         this.loadingSprite.anchor.set(0.5);
         this.loadingSprite.scale.set(0.1);
         this.loadingSprite.animations.add('run');

@@ -17,10 +17,6 @@ export default class Network {
 
         });
 
-        Network.socket.on('player-joined', () => {
-
-        });
-
         Network.socket.on('game-end', () => {
 
         });

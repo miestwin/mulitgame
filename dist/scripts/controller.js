@@ -111216,7 +111216,7 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('jack-idle', '../assets/spritesheets/characters/jack/idle/sprite.png', 579, 763, 8);
+        this.game.load.spritesheet('jack-run', '../assets/spritesheets/characters/jack/run/sprite.png', 579, 763, 8);
     }
     create() {
         // assign new game
@@ -111255,7 +111255,7 @@ class Loading extends Phaser.State {
         this.game.state.start(States_1.States.MAINMENU);
     }
     loadStart() {
-        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 30, 'jack-idle');
+        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 30, 'jack-run');
         this.loadingSprite.anchor.set(0.5);
         this.loadingSprite.scale.set(0.1);
         this.loadingSprite.animations.add('run');
@@ -111332,6 +111332,7 @@ class CharacterSelector extends Phaser.State {
         network_1.default.updateCharacterSelector((res) => {
             if (res instanceof Array) {
                 this.characters = this.characters.map(character => {
+                    character.use = false;
                     if (~res.indexOf(character.name)) {
                         character.use = true;
                     }
@@ -111381,10 +111382,12 @@ class CharacterSelector extends Phaser.State {
         buttonText.anchor.set(0.5, 1);
     }
     update() {
-        let zoomed = false;
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
             if (this.characters[_i].use) {
                 this.scrolingMap.children[_i].alpha = 0.5;
+            }
+            else {
+                this.scrolingMap.children[_i].alpha = 1;
             }
             if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
                 && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 50) {
