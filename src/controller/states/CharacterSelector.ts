@@ -34,6 +34,7 @@ export class CharacterSelector extends Phaser.State {
                     return character;
                 });
             }
+            console.log(this.characters);
         });
 
         Network.getCharactersInUse();
@@ -104,6 +105,10 @@ export class CharacterSelector extends Phaser.State {
                 this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
             }
         }
+    }
+
+    shutdown() {
+        Network.removeListener(Network.UPDATE_CHARACTER_SELECTOR);
     }
 
     private actionOnClick() {

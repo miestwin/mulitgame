@@ -6,14 +6,19 @@ import  * as _ from 'lodash';
 import { States } from './States';
 import Network from '../network';
 
+import { Player } from '../../models';
 
 export class MainMenu extends Phaser.State {
 
     public preload() {
         this.game.stage.backgroundColor = '#000000';
+        (<any>this.game.state).players = {};
 
         Network.updatePlayersState((players) => {
-            console.log(players);
+            (<any>this.game.state).players = {};
+            players.forEach((player) => {
+                (<any>this.game.state).players[player.id] = new Player(this.game, player.id, player.socketID, player.character);
+            });
         });
 
         Network.playerDisconnected((player) => {
@@ -45,5 +50,10 @@ export class MainMenu extends Phaser.State {
                 align: 'center'
             });
         gameIdText.anchor.set(0.5, 0);
+    }
+
+    shutdown() {
+        Network.removeListener(Network.UPDATE_PLAYERS_STATE);
+        Network.removeListener(Network.PLAYER_DISCONNECTED);
     }
 }

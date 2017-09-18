@@ -113688,8 +113688,10 @@ const network_1 = __webpack_require__(65);
 class MainMenu extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = '#000000';
+        this.game.state.players = {};
         network_1.default.updatePlayersState((players) => {
-            console.log(players);
+            this.game.state.players = players;
+            console.log(this.game.state.players);
         });
         network_1.default.playerDisconnected((player) => {
         });

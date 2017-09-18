@@ -36,4 +36,8 @@ export class Boot extends Phaser.State {
         console.log((<any>this.game.state).id);
         Network.newGame((<any>this.game.state).id);
     }
+
+    shutdown() {
+        Network.removeListener(Network.GAME_ASSIGNED_SUCCESSFUL);
+    }
 }

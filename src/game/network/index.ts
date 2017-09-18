@@ -3,6 +3,14 @@ import * as io from 'socket.io-client';
 export default class Network {
     private static socket;
 
+    // emit
+    public static NEW_GAME = 'new-game';
+
+    // on
+    public static PLAYER_DISCONNECTED = 'player-disconnected';
+    public static GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
+    public static UPDATE_PLAYERS_STATE = 'update-players-state';
+
     public static connect () {
         Network.socket = io();
         Network.initialize();
@@ -26,19 +34,23 @@ export default class Network {
         });
     }
 
-    public static playerDisconnected(fn: Function) {
-        Network.socket.on('player-disconnected', fn);
-    }
-
-    public static gameAssignedSuccessful(fn: Function) {
-        Network.socket.on('game-assigned-successful', fn);
+    public static removeListener(listener: string) {
+        Network.socket.off(listener);
     }
 
     public static newGame (id) {
-        Network.socket.emit('new-game', { id: id });
+        Network.socket.emit(Network.NEW_GAME, { id: id });
+    }
+
+    public static playerDisconnected(fn: Function) {
+        Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
+    }
+
+    public static gameAssignedSuccessful(fn: Function) {
+        Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
     }
 
     public static updatePlayersState(fn: Function) {
-        Network.socket.on('update-players-state', fn);
+        Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
     }
 }

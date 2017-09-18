@@ -106951,34 +106951,48 @@ class Network {
         Network.socket.on('game-invalid', () => {
         });
     }
+    static removeListener(listener) {
+        Network.socket.off(listener);
+    }
     static newPlayer({ id, gameId }) {
-        Network.socket.emit('new-player', { id: id, gameId: gameId });
+        Network.socket.emit(Network.NEW_PLAYER, { id: id, gameId: gameId });
     }
     static setPlayerCharacter(character) {
-        Network.socket.emit('set-player-character', character);
+        Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
     }
     static getCharactersInUse() {
-        Network.socket.emit('get-characters-in-use');
+        Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
     }
     static gameNotAvailable(fn) {
-        Network.socket.on('game-not-available', fn);
+        Network.socket.on(Network.GAME_NOT_AVAILABLE, fn);
     }
     static gameFull(fn) {
-        Network.socket.on('game-full', fn);
+        Network.socket.on(Network.GAME_FULL, fn);
     }
     static gameAlreadyStarted(fn) {
-        Network.socket.on('game-already-started', fn);
+        Network.socket.on(Network.GAME_ALREADY_STARTED, fn);
     }
     static playerAssignedSuccessful(fn) {
-        Network.socket.on('player-assigned-successful', fn);
+        Network.socket.on(Network.PLAYER_ASSIGNED_SUCCESSFUL, fn);
     }
     static receiveConfirmation(fn) {
-        Network.socket.on('receive-confirmation', fn);
+        Network.socket.on(Network.RECEIVE_CONFIRMATION, fn);
     }
     static updateCharacterSelector(fn) {
-        Network.socket.on('update-character-selector', fn);
+        Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
     }
 }
+// emit
+Network.NEW_PLAYER = 'new-player';
+Network.SET_PLAYER_CHARACTER = 'set-player-character';
+Network.GET_CHARACTERS_IN_USE = 'get-characters-in-use';
+// on
+Network.GAME_NOT_AVAILABLE = 'game-not-available';
+Network.GAME_FULL = 'game-full';
+Network.GAME_ALREADY_STARTED = 'game-already-started';
+Network.PLAYER_ASSIGNED_SUCCESSFUL = 'player-assigned-successful';
+Network.RECEIVE_CONFIRMATION = 'receive-confirmation';
+Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
 exports.default = Network;
 
 
@@ -111347,6 +111361,7 @@ class CharacterSelector extends Phaser.State {
                     return character;
                 });
             }
+            console.log(this.characters);
         });
         network_1.default.getCharactersInUse();
     }
@@ -111398,6 +111413,10 @@ class CharacterSelector extends Phaser.State {
                 this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
             }
         }
+    }
+    shutdown() {
+        console.log(network_1.default.UPDATE_CHARACTER_SELECTOR);
+        network_1.default.removeListener(network_1.default.UPDATE_CHARACTER_SELECTOR);
     }
     actionOnClick() {
         if (!this.characters[this.selectedCharacterIndex].use) {

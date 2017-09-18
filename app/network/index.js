@@ -121,10 +121,10 @@ module.exports = (server) => {
         return Object.keys(io.sockets.connected).reduce((players, socketID) => {
             const player = io.sockets.connected[socketID].player;
             if (player && player.gameId == gameId) {
-                players[player.id] = player;
+                players.push(player);
             }
             return players;
-        }, {});
+        }, []);
     };
 
     const numberOfPlayersInGame = (gameId) => {
