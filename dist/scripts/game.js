@@ -94,21 +94,21 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -106864,9 +106864,9 @@ __export(__webpack_require__(30));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const FontFaceObserver = __webpack_require__(31);
 class CustomLoader extends Phaser.Loader {
     constructor(game) {
@@ -111067,19 +111067,28 @@ class Network {
             document.location.reload();
         });
     }
-    static playerDisconnected(fn) {
-        Network.socket.on('player-disconnected', fn);
-    }
-    static gameAssignedSuccessful(fn) {
-        Network.socket.on('game-assigned-successful', fn);
+    static removeListener(listener) {
+        Network.socket.off(listener);
     }
     static newGame(id) {
-        Network.socket.emit('new-game', { id: id });
+        Network.socket.emit(Network.NEW_GAME, { id: id });
+    }
+    static playerDisconnected(fn) {
+        Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
+    }
+    static gameAssignedSuccessful(fn) {
+        Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
     }
     static updatePlayersState(fn) {
-        Network.socket.on('update-players-state', fn);
+        Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
     }
 }
+// emit
+Network.NEW_GAME = 'new-game';
+// on
+Network.PLAYER_DISCONNECTED = 'player-disconnected';
+Network.GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
+Network.UPDATE_PLAYERS_STATE = 'update-players-state';
 exports.default = Network;
 
 
@@ -111121,9 +111130,9 @@ function startApp() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const states_1 = __webpack_require__(76);
 const network_1 = __webpack_require__(65);
 const guid_1 = __webpack_require__(63);
@@ -111167,9 +111176,9 @@ __export(__webpack_require__(81));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const States_1 = __webpack_require__(64);
 const shared_1 = __webpack_require__(29);
 const network_1 = __webpack_require__(65);
@@ -111195,6 +111204,9 @@ class Boot extends Phaser.State {
         console.log(this.game.state.id);
         network_1.default.newGame(this.game.state.id);
     }
+    shutdown() {
+        network_1.default.removeListener(network_1.default.GAME_ASSIGNED_SUCCESSFUL);
+    }
 }
 exports.Boot = Boot;
 
@@ -111206,9 +111218,9 @@ exports.Boot = Boot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const QRious = __webpack_require__(79);
 const States_1 = __webpack_require__(64);
 const config_1 = __webpack_require__(80);
@@ -113681,17 +113693,22 @@ exports.default = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const network_1 = __webpack_require__(65);
+const models_1 = __webpack_require__(82);
 class MainMenu extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = '#000000';
         this.game.state.players = {};
         network_1.default.updatePlayersState((players) => {
-            this.game.state.players = players;
-            console.log(this.game.state.players);
+            this.game.state.players = {};
+            players.forEach((player, index) => {
+                this.game.state.players[player.id] = new models_1.Player(player);
+                this.game.state.players[player.id].sprite
+                    = this.game.add.sprite((this.game.world.centerX - 250) + (index * 100), 550, player.character + '-idle');
+            });
         });
         network_1.default.playerDisconnected((player) => {
         });
@@ -113715,8 +113732,49 @@ class MainMenu extends Phaser.State {
         });
         gameIdText.anchor.set(0.5, 0);
     }
+    shutdown() {
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
+        network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
+    }
 }
 exports.MainMenu = MainMenu;
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(83));
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+class Player {
+    constructor(player) {
+        this.id = player.id;
+        this.socketId = player.socketId;
+        this.character = player.character;
+        this.score = 0;
+        this.position = {};
+    }
+    init() {
+    }
+    update() {
+    }
+}
+exports.Player = Player;
 
 
 /***/ })

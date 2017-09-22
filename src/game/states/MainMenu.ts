@@ -16,8 +16,11 @@ export class MainMenu extends Phaser.State {
 
         Network.updatePlayersState((players) => {
             (<any>this.game.state).players = {};
-            players.forEach((player) => {
-                (<any>this.game.state).players[player.id] = new Player(this.game, player.id, player.socketID, player.character);
+            players.forEach((player, index) => {
+                (<any>this.game.state).players[player.id] = new Player(player);
+                // init
+                (<any>this.game.state).players[player.id].sprite 
+                    = this.game.add.sprite((this.game.world.centerX - 250) + (index * 100), 550, player.character + '-idle');
             });
         });
 

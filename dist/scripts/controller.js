@@ -94,21 +94,21 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(26);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(28);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(27);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -106880,9 +106880,9 @@ __export(__webpack_require__(30));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const FontFaceObserver = __webpack_require__(31);
 class CustomLoader extends Phaser.Loader {
     constructor(game) {
@@ -111147,9 +111147,9 @@ function startApp() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const states_1 = __webpack_require__(68);
 const network_1 = __webpack_require__(32);
 const guid_1 = __webpack_require__(63);
@@ -111197,9 +111197,9 @@ __export(__webpack_require__(73));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const States_1 = __webpack_require__(14);
 const shared_1 = __webpack_require__(29);
 const network_1 = __webpack_require__(32);
@@ -111247,9 +111247,9 @@ exports.Boot = Boot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const States_1 = __webpack_require__(14);
 class Loading extends Phaser.State {
     preload() {
@@ -111298,9 +111298,9 @@ exports.Loading = Loading;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const States_1 = __webpack_require__(14);
 class MainMenu extends Phaser.State {
     preload() { }
@@ -111326,9 +111326,9 @@ exports.MainMenu = MainMenu;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 const States_1 = __webpack_require__(14);
 const network_1 = __webpack_require__(32);
 class CharacterSelector extends Phaser.State {
@@ -111415,7 +111415,6 @@ class CharacterSelector extends Phaser.State {
         }
     }
     shutdown() {
-        console.log(network_1.default.UPDATE_CHARACTER_SELECTOR);
         network_1.default.removeListener(network_1.default.UPDATE_CHARACTER_SELECTOR);
     }
     actionOnClick() {
@@ -111435,9 +111434,9 @@ exports.CharacterSelector = CharacterSelector;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(1);
 class Message extends Phaser.State {
     init(message) {
         this.message = message;
