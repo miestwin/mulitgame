@@ -8,7 +8,11 @@ export class Player {
      * @type {string}
      * @memberof Player
      */
-    private id: string;
+    private _id: string;
+
+    get id() {
+        return this._id;
+    }
 
     /**
      * Identyfikator socket
@@ -16,7 +20,11 @@ export class Player {
      * @type {string}
      * @memberof Player
      */
-    private socketId: string;
+    private _socketId: string;
+
+    get sockket() {
+        return this._socketId;
+    }
 
     /**
      * Nazwa używanej postać
@@ -51,12 +59,13 @@ export class Player {
     private sprite: Phaser.Sprite;
 
     constructor(player) {
-        this.id = player.id;
-        this.socketId = player.socketId;
+        this._id = player.id;
+        this._socketId = player.socketId;
         this.character = player.character;
         this.score = 0;
         this.position = {};
     }
+
 
     /**
      * Inicjalizacja awatara gracza
@@ -104,5 +113,13 @@ export class Player {
      */
     idle() {
         this.sprite.animations.play('idle', 15, true);
+    }
+
+    /**
+     * Usunięcie sprite
+     * @memberof Player
+     */
+    destroy() {
+        this.sprite.destroy();
     }
 }

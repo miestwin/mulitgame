@@ -2142,11 +2142,16 @@ Transport.prototype.onClose = function () {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Nazwy stanów kontrolera
+ * @export
+ * @class States
+ */
 class States {
 }
 States.BOOT = 'Boot';
 States.LOADING = 'Loading';
-States.MAINMENU = 'MainMenu';
+States.MAIN_MENU = 'MainMenu';
 States.CHARACTERSELECTOR = 'CharacterSelector';
 States.MESSAGE = 'Message';
 exports.States = States;
@@ -106884,10 +106889,25 @@ __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
 const FontFaceObserver = __webpack_require__(31);
+/**
+ * Własna impementacja Loadera zasobów
+ * @export
+ * @class CustomLoader
+ * @extends {Phaser.Loader}
+ */
 class CustomLoader extends Phaser.Loader {
     constructor(game) {
         super(game);
     }
+    /**
+     * Ładuje czcionke
+     * Wymagane jest wstawienie czcionki w głównym pliku css
+     * @param {any} key
+     * @param {any} fontName
+     * @param {any} overwrite
+     * @returns
+     * @memberof CustomLoader
+     */
     webfont(key, fontName, overwrite) {
         if (typeof overwrite === 'undefined') {
             overwrite = false;
@@ -106895,6 +106915,12 @@ class CustomLoader extends Phaser.Loader {
         this.addToFileList('webfont', key, fontName);
         return this;
     }
+    /**
+     * Ładowanie pliku
+     * @extends
+     * @param {any} file
+     * @memberof CustomLoader
+     */
     loadFile(file) {
         super.loadFile(file);
         if (file.type === 'webfont') {
@@ -111107,7 +111133,11 @@ Backoff.prototype.setJitter = function(jitter){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// create guid
+/**
+ * Tworzy identyfikator globalnie unikatowy
+ * @export
+ * @returns
+ */
 function guid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
@@ -111128,6 +111158,10 @@ const Controller_1 = __webpack_require__(67);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
+/**
+ * Uruchamia aplikację
+ *
+ */
 function startApp() {
     const controllerConfig = {
         width: window.innerWidth,
@@ -111136,6 +111170,7 @@ function startApp() {
         parent: document.getElementById('controller'),
         resolution: 1
     };
+    // create controller
     const controller = new Controller_1.default(controllerConfig);
 }
 
@@ -111153,6 +111188,12 @@ __webpack_require__(1);
 const states_1 = __webpack_require__(68);
 const network_1 = __webpack_require__(32);
 const guid_1 = __webpack_require__(63);
+/**
+ * Utworzenie kontrolera
+ * @export
+ * @class Controller
+ * @extends {Phaser.Game}
+ */
 class Controller extends Phaser.Game {
     constructor(config) {
         super(config);
@@ -111163,7 +111204,7 @@ class Controller extends Phaser.Game {
         // add states to controller
         this.state.add(states_1.States.BOOT, states_1.Boot);
         this.state.add(states_1.States.LOADING, states_1.Loading);
-        this.state.add(states_1.States.MAINMENU, states_1.MainMenu);
+        this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
         this.state.add(states_1.States.CHARACTERSELECTOR, states_1.CharacterSelector);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
         this.state.start(states_1.States.BOOT);
@@ -111203,6 +111244,12 @@ __webpack_require__(1);
 const States_1 = __webpack_require__(14);
 const shared_1 = __webpack_require__(29);
 const network_1 = __webpack_require__(32);
+/**
+ * Uruchamianie systemu
+ * @export
+ * @class Boot
+ * @extends {Phaser.State}
+ */
 class Boot extends Phaser.State {
     init() {
         // set the scale mode
@@ -111251,6 +111298,12 @@ __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
 const States_1 = __webpack_require__(14);
+/**
+ * Ładowanie zasobów
+ * @export
+ * @class Loading
+ * @extends {Phaser.State}
+ */
 class Loading extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = '#000000';
@@ -111266,8 +111319,15 @@ class Loading extends Phaser.State {
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
     create() {
-        this.game.state.start(States_1.States.MAINMENU);
+        this.game.state.start(States_1.States.MAIN_MENU);
     }
+    /**
+     * Funkcja stanu ładowania
+     * Tworzy ekran ładowania
+     * Wywoływana jest na początku
+     * @private
+     * @memberof Loading
+     */
     loadStart() {
         this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 30, 'jack-run');
         this.loadingSprite.anchor.set(0.5);
@@ -111281,9 +111341,26 @@ class Loading extends Phaser.State {
         });
         this.loadingText.anchor.set(0.5);
     }
+    /**
+     * Funkcja stanu ładowania
+     * Aktualizuje informację o postępach ładowania
+     * @private
+     * @param {any} progress
+     * @param {any} cacheKey
+     * @param {any} success
+     * @param {any} totalLoaded
+     * @param {any} totalFiles
+     * @memberof Loading
+     */
     fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
         this.loadingText.setText(`Loading ${progress}%`);
     }
+    /**
+     * Funkcja stanu ładowania
+     * Informuje o zakończeniu ładowania zasobów
+     * @private
+     * @memberof Loading
+     */
     loadComplete() {
         this.loadingText.setText('Load Complete');
     }
@@ -111302,6 +111379,12 @@ __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
 const States_1 = __webpack_require__(14);
+/**
+ * Informacje wstępne
+ * @export
+ * @class MainMenu
+ * @extends {Phaser.State}
+ */
 class MainMenu extends Phaser.State {
     preload() { }
     create() {
@@ -111331,9 +111414,21 @@ __webpack_require__(3);
 __webpack_require__(1);
 const States_1 = __webpack_require__(14);
 const network_1 = __webpack_require__(32);
+/**
+ * Wybór postaci
+ * @export
+ * @class CharacterSelector
+ * @extends {Phaser.State}
+ */
 class CharacterSelector extends Phaser.State {
     constructor() {
         super(...arguments);
+        /**
+         * Dostępne postacie
+         * @private
+         * @type {Array<any>}
+         * @memberof CharacterSelector
+         */
         this.characters = [
             { name: 'cat', use: false },
             { name: 'dog', use: false },
@@ -111416,6 +111511,11 @@ class CharacterSelector extends Phaser.State {
     shutdown() {
         network_1.default.removeListener(network_1.default.UPDATE_CHARACTER_SELECTOR);
     }
+    /**
+     * Akcja wyboru postaci
+     * @private
+     * @memberof CharacterSelector
+     */
     actionOnClick() {
         if (!this.characters[this.selectedCharacterIndex].use) {
             network_1.default.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);
@@ -111436,6 +111536,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
+/**
+ * Wyświetlanie wiadomości z błędami
+ * @export
+ * @class Message
+ * @extends {Phaser.State}
+ */
 class Message extends Phaser.State {
     init(message) {
         this.message = message;

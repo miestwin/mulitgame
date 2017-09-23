@@ -106868,10 +106868,25 @@ __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
 const FontFaceObserver = __webpack_require__(31);
+/**
+ * Własna impementacja Loadera zasobów
+ * @export
+ * @class CustomLoader
+ * @extends {Phaser.Loader}
+ */
 class CustomLoader extends Phaser.Loader {
     constructor(game) {
         super(game);
     }
+    /**
+     * Ładuje czcionke
+     * Wymagane jest wstawienie czcionki w głównym pliku css
+     * @param {any} key
+     * @param {any} fontName
+     * @param {any} overwrite
+     * @returns
+     * @memberof CustomLoader
+     */
     webfont(key, fontName, overwrite) {
         if (typeof overwrite === 'undefined') {
             overwrite = false;
@@ -106879,6 +106894,12 @@ class CustomLoader extends Phaser.Loader {
         this.addToFileList('webfont', key, fontName);
         return this;
     }
+    /**
+     * Ładowanie pliku
+     * @extends
+     * @param {any} file
+     * @memberof CustomLoader
+     */
     loadFile(file) {
         super.loadFile(file);
         if (file.type === 'webfont') {
@@ -111020,7 +111041,11 @@ Backoff.prototype.setJitter = function(jitter){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// create guid
+/**
+ * Tworzy identyfikator globalnie unikatowy
+ * @export
+ * @returns
+ */
 function guid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
@@ -111035,11 +111060,16 @@ exports.guid = guid;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Nazwy stanów gry
+ * @export
+ * @class States
+ */
 class States {
 }
 States.BOOT = 'Boot';
 States.LOADING = 'Loading';
-States.MAINMENU = 'MainMenu';
+States.MAIN_MENU = 'MainMenu';
 exports.States = States;
 
 
@@ -111051,6 +111081,11 @@ exports.States = States;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const io = __webpack_require__(33);
+/**
+ * Połączenie z serwerem
+ * @export
+ * @class Network
+ */
 class Network {
     static connect() {
         Network.socket = io();
@@ -111067,25 +111102,63 @@ class Network {
             document.location.reload();
         });
     }
+    /**
+     * Usunięcie podanego listenere
+     * @static
+     * @param {string} listener
+     * @memberof Network
+     */
     static removeListener(listener) {
         Network.socket.off(listener);
     }
+    /**
+     * Nadaje informację o nowej grze
+     * @static
+     * @param {any} id
+     * @memberof Network
+     */
     static newGame(id) {
         Network.socket.emit(Network.NEW_GAME, { id: id });
     }
+    /**
+     * Nasłuchiwanie czy gracz się rozłączył
+     * @static
+     * @param {Function} fn Funkcja która zostanie wykonana
+     * @memberof Network
+     */
     static playerDisconnected(fn) {
         Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
     }
+    /**
+     * Nasłuchiwanie czy gra została utworzona pomyślnie
+     * @static
+     * @param {Function} fn Funkcja która zostanie wykonana
+     * @memberof Network
+     */
     static gameAssignedSuccessful(fn) {
         Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
     }
+    /**
+     * Nasłuchiwanie zaktualizowania stanu graczy
+     * @static
+     * @param {Function} fn Funkcja która zostanie wykonana
+     * @memberof Network
+     */
     static updatePlayersState(fn) {
         Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
     }
 }
-// emit
+/**
+ * Nazwy emiterów
+ * @static
+ * @memberof Network
+ */
 Network.NEW_GAME = 'new-game';
-// on
+/**
+ * Nazwy listenerów
+ * @static
+ * @memberof Network
+ */
 Network.PLAYER_DISCONNECTED = 'player-disconnected';
 Network.GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
 Network.UPDATE_PLAYERS_STATE = 'update-players-state';
@@ -111111,6 +111184,10 @@ const Game_1 = __webpack_require__(75);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
+/**
+ * Uruchamia aplikację
+ *
+ */
 function startApp() {
     const gameConfig = {
         width: window.innerWidth,
@@ -111119,6 +111196,7 @@ function startApp() {
         parent: document.getElementById('game'),
         resolution: 1
     };
+    // create game
     const game = new Game_1.default(gameConfig);
 }
 
@@ -111136,26 +111214,24 @@ __webpack_require__(1);
 const states_1 = __webpack_require__(76);
 const network_1 = __webpack_require__(65);
 const guid_1 = __webpack_require__(63);
+/**
+ * Utworzenie gry
+ * @export
+ * @class Game
+ * @extends {Phaser.Game}
+ */
 class Game extends Phaser.Game {
     constructor(config) {
         super(config);
-        window.addEventListener('resize', this.resize);
         // create game id
         this.state.id = guid_1.guid();
         // connect to server
         network_1.default.connect();
-        // add sstates to game
+        // add states to game
         this.state.add(states_1.States.BOOT, states_1.Boot);
         this.state.add(states_1.States.LOADING, states_1.Loading);
-        this.state.add(states_1.States.MAINMENU, states_1.MainMenu);
+        this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
         this.state.start(states_1.States.BOOT);
-    }
-    resize() {
-        const height = window.innerHeight;
-        const ratio = this.canvas.width / this.canvas.height;
-        const width = height * ratio;
-        this.canvas.width = width;
-        this.canvas.height = height;
     }
 }
 exports.default = Game;
@@ -111190,6 +111266,12 @@ __webpack_require__(1);
 const States_1 = __webpack_require__(64);
 const shared_1 = __webpack_require__(29);
 const network_1 = __webpack_require__(65);
+/**
+ * Uruchamianie systemu
+ * @export
+ * @class Boot
+ * @extends {Phaser.State}
+ */
 class Boot extends Phaser.State {
     init() {
         // set the scale mode
@@ -111232,6 +111314,12 @@ __webpack_require__(1);
 const QRious = __webpack_require__(79);
 const States_1 = __webpack_require__(64);
 const config_1 = __webpack_require__(80);
+/**
+ * Ładowanie zasobów
+ * @export
+ * @class Loading
+ * @extends {Phaser.State}
+ */
 class Loading extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = '#000000';
@@ -111269,9 +111357,16 @@ class Loading extends Phaser.State {
         this.loadingText.setText('Create QRCode ...');
         this.createQRCode().then(() => {
             this.loadingText.setText('Create QRCode Complete');
-            this.game.state.start(States_1.States.MAINMENU);
+            this.game.state.start(States_1.States.MAIN_MENU);
         });
     }
+    /**
+     * Funkcja stanu ładowania
+     * Tworzy ekran ładowania
+     * Wywoływana jest na początku
+     * @private
+     * @memberof Loading
+     */
     loadStart() {
         this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 50, 'jack-run');
         this.loadingSprite.anchor.set(0.5);
@@ -111285,12 +111380,35 @@ class Loading extends Phaser.State {
         });
         this.loadingText.anchor.set(0.5);
     }
+    /**
+     * Funkcja stanu ładowania
+     * Aktualizuje informację o postępach ładowania
+     * @private
+     * @param {any} progress
+     * @param {any} cacheKey
+     * @param {any} success
+     * @param {any} totalLoaded
+     * @param {any} totalFiles
+     * @memberof Loading
+     */
     fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
         this.loadingText.setText(`Loading ${progress}%`);
     }
+    /**
+     * Funkcja stanu ładowania
+     * Informuje o zakończeniu ładowania zasobów
+     * @private
+     * @memberof Loading
+     */
     loadComplete() {
         this.loadingText.setText('Load Complete');
     }
+    /**
+     * Tworzenie kodu QR
+     * @private
+     * @returns {Promise<any>}
+     * @memberof Loading
+     */
     createQRCode() {
         let that = this;
         return new Promise((resolve, reject) => {
@@ -113715,31 +113833,25 @@ class MainMenu extends Phaser.State {
         this.game.stage.backgroundColor = '#000000';
         this.game.state.players = {};
         network_1.default.updatePlayersState((player) => {
+            // update players state
             if (!this.game.state.players[player.id]) {
                 this.game.state.players[player.id] = new models_1.Player(player);
                 this.game.state.players[player.id].init(this.game, -100, 540);
                 this.game.state.players[player.id].idle();
             }
-            this.messages.forEach((text) => {
-                text.destroy();
-            });
-            this.messages.length = 0;
-            Object.keys(this.game.state.players).forEach((playerId, index, playersId) => {
-                const count = playersId.length;
-                const step = this.game.world.centerX / count;
-                const offset = step / 2;
-                const x = step * (index + 1) + (offset * (count - 1));
-                this.game.state.players[playerId].setX(x);
-                const text = this.game.add.text(x, 555, `Player ${index + 1}\nconnected`, {
-                    font: '11px Kenvector Future',
-                    fill: '#ffffff',
-                    align: 'center'
-                });
-                text.anchor.set(0.5, 0);
-                this.messages.push(text);
-            });
+            this.showConnected();
         });
         network_1.default.playerDisconnected((player) => {
+            // remove player
+            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
+                if (this.game.state.players[nextId].id == player.id) {
+                    this.game.state.players[nextId].destroy();
+                    return players;
+                }
+                players[nextId] = this.game.state.players[nextId];
+                return players;
+            }, {});
+            this.showConnected();
         });
     }
     create() {
@@ -113764,6 +113876,28 @@ class MainMenu extends Phaser.State {
     shutdown() {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
         network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
+    }
+    showConnected() {
+        // remove all messages
+        this.messages.forEach((text) => {
+            text.destroy();
+        });
+        this.messages.length = 0;
+        // show players idle
+        Object.keys(this.game.state.players).forEach((playerId, index, playersId) => {
+            const count = playersId.length;
+            const step = this.game.world.centerX / count;
+            const offset = step / 2;
+            const x = step * (index + 1) + (offset * (count - 1));
+            this.game.state.players[playerId].setX(x);
+            const text = this.game.add.text(x, 555, `Player ${index + 1}\nconnected`, {
+                font: '11px Kenvector Future',
+                fill: '#ffffff',
+                align: 'center'
+            });
+            text.anchor.set(0.5, 0);
+            this.messages.push(text);
+        });
     }
 }
 exports.MainMenu = MainMenu;
@@ -113791,13 +113925,26 @@ __export(__webpack_require__(83));
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 class Player {
+    get id() {
+        return this._id;
+    }
+    get sockket() {
+        return this._socketId;
+    }
     constructor(player) {
-        this.id = player.id;
-        this.socketId = player.socketId;
+        this._id = player.id;
+        this._socketId = player.socketId;
         this.character = player.character;
         this.score = 0;
         this.position = {};
     }
+    /**
+     * Inicjalizacja awatara gracza
+     * @param {Phaser.Game} game
+     * @param {number} x
+     * @param {number} y
+     * @memberof Player
+     */
     init(game, x, y) {
         this.sprite = game.add.sprite(x, y, this.character + '-idle');
         this.sprite.anchor.set(0.5, 1);
@@ -113806,18 +113953,39 @@ class Player {
     }
     update() {
     }
+    /**
+     * Ustawia X
+     * @param {number} value
+     * @memberof Player
+     */
     setX(value) {
         if (this.sprite != null) {
             this.sprite.x = value;
         }
     }
+    /**
+     * Ustawia Y
+     * @param {number} value
+     * @memberof Player
+     */
     setY(value) {
         if (this.sprite != null) {
             this.sprite.y = value;
         }
     }
+    /**
+     * Uruchamia animację idle
+     * @memberof Player
+     */
     idle() {
         this.sprite.animations.play('idle', 15, true);
+    }
+    /**
+     * Usunięcie sprite
+     * @memberof Player
+     */
+    destroy() {
+        this.sprite.destroy();
     }
 }
 exports.Player = Player;

@@ -8,6 +8,16 @@ import Network from '../network';
 
 import { Player } from '../../models';
 
+//TODO licznik do rozpoczęcia gry
+//? uruchom licznik gdy pojawi się co najmniej dwóch graczy
+//TODO zatrzymaj licznik gdy nie ma graczy
+
+/**
+ * Menu główne
+ * @export
+ * @class MainMenu
+ * @extends {Phaser.State}
+ */
 export class MainMenu extends Phaser.State {
     private messages: Array<Phaser.Text> = [];
 
@@ -16,41 +26,26 @@ export class MainMenu extends Phaser.State {
         (<any>this.game.state).players = {};
 
         Network.updatePlayersState((player) => {
-            
             // update players state
             if (!(<any>this.game.state).players[player.id]) {
                 (<any>this.game.state).players[player.id] = new Player(player);
                 (<any>this.game.state).players[player.id].init(this.game, -100, 540);
                 (<any>this.game.state).players[player.id].idle();
             } 
-
-            // remove all messages
-            this.messages.forEach((text) => {
-                text.destroy()
-            });
-            this.messages.length = 0;
-            
-            // show players idle
-            Object.keys((<any>this.game.state).players).forEach((playerId, index, playersId) => {
-                const count = playersId.length;
-                const step = this.game.world.centerX / count;
-                const offset = step / 2;
-                const x = step * (index + 1) + (offset * (count - 1));
-                (<any>this.game.state).players[playerId].setX(x);
-                const text = this.game.add.text(x, 555, 
-                    `Player ${index + 1}\nconnected`, 
-                    { 
-                        font: '11px Kenvector Future',
-                        fill: '#ffffff',
-                        align: 'center'
-                    });
-                text.anchor.set(0.5, 0);
-                this.messages.push(text);
-            });
+            this.showConnected();
         });
 
         Network.playerDisconnected((player) => {
-            
+            // remove player
+            (<any>this.game.state).players = Object.keys((<any>this.game.state).players).reduce((players, nextId) => {
+                if ((<any>this.game.state).players[nextId].id == player.id) {
+                    (<any>this.game.state).players[nextId].destroy();
+                    return players;
+                }
+                players[nextId] = (<any>this.game.state).players[nextId];
+                return players;
+            }, {});
+            this.showConnected();
         });
     }
 
@@ -83,5 +78,31 @@ export class MainMenu extends Phaser.State {
     shutdown() {
         Network.removeListener(Network.UPDATE_PLAYERS_STATE);
         Network.removeListener(Network.PLAYER_DISCONNECTED);
+    }
+
+    private showConnected() {
+        // remove all messages
+        this.messages.forEach((text) => {
+            text.destroy();
+        });
+        this.messages.length = 0;
+            
+        // show players idle
+        Object.keys((<any>this.game.state).players).forEach((playerId, index, playersId) => {
+            const count = playersId.length;
+            const step = this.game.world.centerX / count;
+            const offset = step / 2;
+            const x = step * (index + 1) + (offset * (count - 1));
+            (<any>this.game.state).players[playerId].setX(x);
+            const text = this.game.add.text(x, 555, 
+                `Player ${index + 1}\nconnected`, 
+                { 
+                    font: '11px Kenvector Future',
+                    fill: '#ffffff',
+                    align: 'center'
+                });
+            text.anchor.set(0.5, 0);
+            this.messages.push(text);
+        });
     }
 }
