@@ -4,6 +4,12 @@ import 'phaser';
 
 import { States } from './States';
 
+/**
+ * Ładowanie zasobów
+ * @export
+ * @class Loading
+ * @extends {Phaser.State}
+ */
 export class Loading extends Phaser.State {
 
     private loadingSprite: Phaser.Sprite;
@@ -28,9 +34,16 @@ export class Loading extends Phaser.State {
     }
 
     create() {
-        this.game.state.start(States.MAINMENU);
+        this.game.state.start(States.MAIN_MENU);
     }
 
+    /**
+     * Funkcja stanu ładowania
+     * Tworzy ekran ładowania
+     * Wywoływana jest na początku
+     * @private
+     * @memberof Loading
+     */
     private loadStart() {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
@@ -53,10 +66,27 @@ export class Loading extends Phaser.State {
         this.loadingText.anchor.set(0.5);
     }
 
+    /**
+     * Funkcja stanu ładowania
+     * Aktualizuje informację o postępach ładowania
+     * @private
+     * @param {any} progress 
+     * @param {any} cacheKey 
+     * @param {any} success 
+     * @param {any} totalLoaded 
+     * @param {any} totalFiles 
+     * @memberof Loading
+     */
     private fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
         this.loadingText.setText(`Loading ${progress}%`);
     }
 
+    /**
+     * Funkcja stanu ładowania
+     * Informuje o zakończeniu ładowania zasobów
+     * @private
+     * @memberof Loading
+     */
     private loadComplete() {
         this.loadingText.setText('Load Complete');
     }

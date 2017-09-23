@@ -9,8 +9,17 @@ import {
 
 import Network from '../network';
 
+/**
+ * Identyfikator gry
+ */
 declare var gameId;
 
+/**
+ * Uruchamianie systemu
+ * @export
+ * @class Boot
+ * @extends {Phaser.State}
+ */
 export class Boot extends Phaser.State {
 
     init() {

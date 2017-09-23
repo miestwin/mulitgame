@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
 
+/**
+ * Uruchamia aplikację
+ * 
+ */
 function startApp(): void {
     const gameConfig = {
         width: window.innerWidth,
@@ -12,6 +16,7 @@ function startApp(): void {
         parent: document.getElementById('game'),
         resolution: 1
     };
+    // create game
     const game = new Game(gameConfig);
 }
 

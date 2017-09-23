@@ -111139,6 +111139,7 @@ const guid_1 = __webpack_require__(63);
 class Game extends Phaser.Game {
     constructor(config) {
         super(config);
+        window.addEventListener('resize', this.resize);
         // create game id
         this.state.id = guid_1.guid();
         // connect to server
@@ -111148,6 +111149,13 @@ class Game extends Phaser.Game {
         this.state.add(states_1.States.LOADING, states_1.Loading);
         this.state.add(states_1.States.MAINMENU, states_1.MainMenu);
         this.state.start(states_1.States.BOOT);
+    }
+    resize() {
+        const height = window.innerHeight;
+        const ratio = this.canvas.width / this.canvas.height;
+        const width = height * ratio;
+        this.canvas.width = width;
+        this.canvas.height = height;
     }
 }
 exports.default = Game;
@@ -113699,15 +113707,36 @@ __webpack_require__(1);
 const network_1 = __webpack_require__(65);
 const models_1 = __webpack_require__(82);
 class MainMenu extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        this.messages = [];
+    }
     preload() {
         this.game.stage.backgroundColor = '#000000';
         this.game.state.players = {};
-        network_1.default.updatePlayersState((players) => {
-            this.game.state.players = {};
-            players.forEach((player, index) => {
+        network_1.default.updatePlayersState((player) => {
+            if (!this.game.state.players[player.id]) {
                 this.game.state.players[player.id] = new models_1.Player(player);
-                this.game.state.players[player.id].sprite
-                    = this.game.add.sprite((this.game.world.centerX - 250) + (index * 100), 550, player.character + '-idle');
+                this.game.state.players[player.id].init(this.game, -100, 540);
+                this.game.state.players[player.id].idle();
+            }
+            this.messages.forEach((text) => {
+                text.destroy();
+            });
+            this.messages.length = 0;
+            Object.keys(this.game.state.players).forEach((playerId, index, playersId) => {
+                const count = playersId.length;
+                const step = this.game.world.centerX / count;
+                const offset = step / 2;
+                const x = step * (index + 1) + (offset * (count - 1));
+                this.game.state.players[playerId].setX(x);
+                const text = this.game.add.text(x, 555, `Player ${index + 1}\nconnected`, {
+                    font: '11px Kenvector Future',
+                    fill: '#ffffff',
+                    align: 'center'
+                });
+                text.anchor.set(0.5, 0);
+                this.messages.push(text);
             });
         });
         network_1.default.playerDisconnected((player) => {
@@ -113769,9 +113798,26 @@ class Player {
         this.score = 0;
         this.position = {};
     }
-    init() {
+    init(game, x, y) {
+        this.sprite = game.add.sprite(x, y, this.character + '-idle');
+        this.sprite.anchor.set(0.5, 1);
+        this.sprite.scale.set(0.18);
+        this.sprite.animations.add('idle');
     }
     update() {
+    }
+    setX(value) {
+        if (this.sprite != null) {
+            this.sprite.x = value;
+        }
+    }
+    setY(value) {
+        if (this.sprite != null) {
+            this.sprite.y = value;
+        }
+    }
+    idle() {
+        this.sprite.animations.play('idle', 15, true);
     }
 }
 exports.Player = Player;

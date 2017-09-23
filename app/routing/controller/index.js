@@ -3,6 +3,9 @@ const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 
+/**
+ * Ścieżka do pliku html kontrolera
+ */
 const controllerPath = path.join(__dirname, '../../../dist/controller/index.html');
 
 router.get('/', (req, res) => {

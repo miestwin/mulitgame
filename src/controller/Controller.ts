@@ -14,6 +14,12 @@ import {
 import Network from './network';
 import { guid } from '../utils/guid';
 
+/**
+ * Utworzenie kontrolera
+ * @export
+ * @class Controller
+ * @extends {Phaser.Game}
+ */
 export default class Controller extends Phaser.Game {
     constructor (config) {
         super(config);
@@ -26,7 +32,7 @@ export default class Controller extends Phaser.Game {
         // add states to controller
         this.state.add(States.BOOT, Boot);
         this.state.add(States.LOADING, Loading);
-        this.state.add(States.MAINMENU, MainMenu);
+        this.state.add(States.MAIN_MENU, MainMenu);
         this.state.add(States.CHARACTERSELECTOR, CharacterSelector);
         this.state.add(States.MESSAGE, Message);
 

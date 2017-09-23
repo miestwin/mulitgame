@@ -12,6 +12,12 @@ import {
 import Network from './network';
 import { guid } from '../utils/guid';
 
+/**
+ * Utworzenie gry
+ * @export
+ * @class Game
+ * @extends {Phaser.Game}
+ */
 export default class Game extends Phaser.Game {
 
     constructor (config) {
@@ -22,10 +28,10 @@ export default class Game extends Phaser.Game {
         // connect to server
         Network.connect();
 
-        // add sstates to game
+        // add states to game
         this.state.add(States.BOOT, Boot);
         this.state.add(States.LOADING, Loading);
-        this.state.add(States.MAINMENU, MainMenu);
+        this.state.add(States.MAIN_MENU, MainMenu);
 
         this.state.start(States.BOOT);
     }

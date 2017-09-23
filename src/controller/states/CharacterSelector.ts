@@ -5,7 +5,20 @@ import 'phaser';
 import { States } from './States';
 import Network from '../network';
 
+/**
+ * Wybór postaci
+ * @export
+ * @class CharacterSelector
+ * @extends {Phaser.State}
+ */
 export class CharacterSelector extends Phaser.State {
+
+    /**
+     * Dostępne postacie
+     * @private
+     * @type {Array<any>}
+     * @memberof CharacterSelector
+     */
     private characters: Array<any> = [
         { name: 'cat', use: false },
         { name: 'dog', use: false },
@@ -13,7 +26,21 @@ export class CharacterSelector extends Phaser.State {
         { name: 'ninja', use: false },
         { name: 'robot', use: false }
     ];
+
+    /**
+     * Obszar wyboru postaci
+     * @private
+     * @type {Phaser.TileSprite}
+     * @memberof CharacterSelector
+     */
     private scrolingMap: Phaser.TileSprite;
+
+    /**
+     * Indeks w tablicy wybranej postaci
+     * @private
+     * @type {number}
+     * @memberof CharacterSelector
+     */
     private selectedCharacterIndex: number;
 
     public preload() {
@@ -34,7 +61,6 @@ export class CharacterSelector extends Phaser.State {
                     return character;
                 });
             }
-            console.log(this.characters);
         });
 
         Network.getCharactersInUse();
@@ -111,6 +137,11 @@ export class CharacterSelector extends Phaser.State {
         Network.removeListener(Network.UPDATE_CHARACTER_SELECTOR);
     }
 
+    /**
+     * Akcja wyboru postaci
+     * @private
+     * @memberof CharacterSelector
+     */
     private actionOnClick() {
         if (!this.characters[this.selectedCharacterIndex].use) {
             Network.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);

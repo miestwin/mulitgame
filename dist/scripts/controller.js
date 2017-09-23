@@ -111361,7 +111361,6 @@ class CharacterSelector extends Phaser.State {
                     return character;
                 });
             }
-            console.log(this.characters);
         });
         network_1.default.getCharactersInUse();
     }

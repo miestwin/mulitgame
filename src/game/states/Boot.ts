@@ -9,6 +9,12 @@ import {
 
 import Network from '../network';
 
+/**
+ * Uruchamianie systemu
+ * @export
+ * @class Boot
+ * @extends {Phaser.State}
+ */
 export class Boot extends Phaser.State {
 
     init() {

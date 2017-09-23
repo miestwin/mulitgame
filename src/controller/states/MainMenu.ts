@@ -4,6 +4,12 @@ import 'phaser';
 
 import { States } from './States';
 
+/**
+ * Informacje wstępne
+ * @export
+ * @class MainMenu
+ * @extends {Phaser.State}
+ */
 export class MainMenu extends Phaser.State {
 
     public preload() {}

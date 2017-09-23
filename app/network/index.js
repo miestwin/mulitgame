@@ -51,8 +51,7 @@ module.exports = (server) => {
         socket.on('set-player-character', (character) => {
             socket.player.character = character;
             socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', character);
-            const allPlayersForGame = getAllPlayersForGame(socket.player.gameId);
-            socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', allPlayersForGame);
+            socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', socket.player);
         });
 
         socket.on('get-characters-in-use', () => {
@@ -80,6 +79,10 @@ module.exports = (server) => {
         });
     });
 
+    /**
+     * Zwraca grę na podstawie podanego id gry
+     * @param {*} gameId 
+     */
     const getGame = (gameId) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
@@ -92,6 +95,10 @@ module.exports = (server) => {
         return null;
     };
 
+    /**
+     * Zwraca wykorzystywane postacie dla danej gry
+     * @param {*} gameId 
+     */
     const getCharactersInUse = (gameId) => {
         let characters = [];
         for (let socketID in io.sockets.connected) {
@@ -105,6 +112,10 @@ module.exports = (server) => {
         return characters;
     };
 
+    /**
+     * Zwraca socket id dla danej gry
+     * @param {*} gameId 
+     */
     const findGameSocketID = (gameId) => {
         for (let socketID in io.sockets.connected) {
             if (io.sockets.connected.hasOwnProperty(socketID)) {
@@ -117,6 +128,10 @@ module.exports = (server) => {
         return null;
     };
 
+    /**
+     * Zwraca wszystkich graczy dla danej gry
+     * @param {*} gameId 
+     */
     const getAllPlayersForGame = (gameId) => {
         return Object.keys(io.sockets.connected).reduce((players, socketID) => {
             const player = io.sockets.connected[socketID].player;
@@ -127,6 +142,10 @@ module.exports = (server) => {
         }, []);
     };
 
+    /**
+     * Zwraca liczbę graczy dla danej gry
+     * @param {*} gameId 
+     */
     const numberOfPlayersInGame = (gameId) => {
         return Object.keys(io.sockets.connected).reduce((count, socketID) => {
             const player = io.sockets.connected[socketID].player;

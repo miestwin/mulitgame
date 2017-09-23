@@ -4,6 +4,12 @@ import 'phaser';
 
 import { States } from './States';
 
+/**
+ * Wyświetlanie wiadomości z błędami
+ * @export
+ * @class Message
+ * @extends {Phaser.State}
+ */
 export class Message extends Phaser.State {
     private message: string;
 
