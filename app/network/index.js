@@ -2,6 +2,7 @@ const socketio = require('socket.io');
 const _ = require('lodash');
 const { Game, Player } = require('../models');
 const MAX_PLAYERS = 4;
+const TIME = 10;
 
 module.exports = (server) => {
     var io = socketio.listen(server);
@@ -12,6 +13,8 @@ module.exports = (server) => {
         socket.on('new-game', ({ id }) => {
             console.log(`Try assing new game with id ${id}`);
             socket.game = new Game({ id: id });
+            socket.timerInterval = null;
+            socket.timerSeconds = TIME;
             socket.join('game-' + id);
             io.to(socket.id).emit('game-assigned-successful');
             socket.on('disconnect', () => {
@@ -59,23 +62,17 @@ module.exports = (server) => {
             io.to(socket.id).emit('update-character-selector', characters);
         });
 
-        socket.on('game-start', () => {
-            
-        });
-
-        socket.on('update-game', ({ position }) => {
-            // socket.player.position = position;
-            // socket.broadcast.to('game-' + socket.player.gameId).emit('update-game', {});
-        });
-
-        socket.on('update-score', ({ id, socketID, score }) => {
-            // const player = io.sockets.connected[socketID].player;
-            // if (player) player.score = score;
-            // io.to(player.socketID).emit('update-score', { score: player.score });
-        });
-
-        socket.on('game-end', () => {
-            socket.broadcast.to('game-' + socket.game.id).emit('game-end');
+        socket.on('start-timer', () => {
+            socket.timerSeconds = TIME;
+            socket.timerInterval = setInterval(() => {
+                socket.timerSeconds -= 1;
+                io.to('game-' + socket.game.id).emit('update-timer', socket.timerSeconds);
+                if (socket.timerSeconds <= 0) {
+                    clearInterval(socket.timerInterval);
+                    io.to('game-' + socket.game.id).emit('start-game');
+                    //TODO if game started player can't join
+                }
+            }, 1000);
         });
     });
 

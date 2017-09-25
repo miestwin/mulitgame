@@ -44,7 +44,7 @@ export class CharacterSelector extends Phaser.State {
     private selectedCharacterIndex: number;
 
     public preload() {
-        Network.updateCharacterSelector((res: string | Array<string>) => {
+        Network.onUpdateCharacterSelector((res: string | Array<string>) => {
             if (res instanceof Array) {
                 this.characters = this.characters.map(character => {
                     character.use = false;

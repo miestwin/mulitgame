@@ -32,21 +32,21 @@ export class Boot extends Phaser.State {
 
     preload() {
         // initialize response from server
-        Network.playerAssignedSuccessful(() => {
+        Network.onPlayerAssignedSuccessful(() => {
             this.game.state.start(States.LOADING);
         });
 
-        Network.gameAlreadyStarted(() => {
+        Network.onGameAlreadyStarted(() => {
             const message = 'Game already started';
             this.game.state.start(States.MESSAGE, true, false, message);
         });
 
-        Network.gameFull(() => {
+        Network.onGameFull(() => {
             const message = 'Game is full';
             this.game.state.start(States.MESSAGE, true, false, message);
         });
 
-        Network.gameNotAvailable(() => {
+        Network.onGameNotAvailable(() => {
             const message = 'Game not available';
             this.game.state.start(States.MESSAGE, true, false, message);
         });

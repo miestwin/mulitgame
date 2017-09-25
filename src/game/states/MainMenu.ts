@@ -19,13 +19,28 @@ import { Player } from '../../models';
  * @extends {Phaser.State}
  */
 export class MainMenu extends Phaser.State {
+
+    /**
+     * Tablica wiadomości o połączonychgraczach
+     * @private
+     * @type {Array<Phaser.Text>}
+     * @memberof MainMenu
+     */
     private messages: Array<Phaser.Text> = [];
+
+    /**
+     * Wiadomość informująca kiedy zacznie się gra
+     * @private
+     * @type {Phaser.Text}
+     * @memberof MainMenu
+     */
+    private timer: Phaser.Text;
 
     public preload() {
         this.game.stage.backgroundColor = '#000000';
         (<any>this.game.state).players = {};
 
-        Network.updatePlayersState((player) => {
+        Network.onUpdatePlayersState((player) => {
             // update players state
             if (!(<any>this.game.state).players[player.id]) {
                 (<any>this.game.state).players[player.id] = new Player(player);
@@ -35,7 +50,7 @@ export class MainMenu extends Phaser.State {
             this.showConnected();
         });
 
-        Network.playerDisconnected((player) => {
+        Network.onPlayerDisconnected((player) => {
             // remove player
             (<any>this.game.state).players = Object.keys((<any>this.game.state).players).reduce((players, nextId) => {
                 if ((<any>this.game.state).players[nextId].id == player.id) {
@@ -47,6 +62,16 @@ export class MainMenu extends Phaser.State {
             }, {});
             this.showConnected();
         });
+
+        Network.onUpdateTimer((sec) => {
+            this.timer.setText(sec);
+        });
+
+        Network.onStartGame(() => {
+            this.game.state.start(States.START_GAME);
+        });
+
+        Network.startTimer();
     }
 
     public create() {
@@ -60,6 +85,15 @@ export class MainMenu extends Phaser.State {
                 align: 'center'
             });
         text.anchor.set(0.5, 0);
+
+        this.timer = this.game.add.text(
+            this.game.world.width - 150, 32.5, '10',
+            {
+                font: '50px Kenvector Future',
+                fill: '#ffffff',
+                align: 'center'
+            });
+        this.timer.anchor.set(0.5, 0);
 
         // show qrcode
         const qr = this.game.add.sprite(this.game.world.centerX, 100, 'qrcode');
@@ -78,6 +112,8 @@ export class MainMenu extends Phaser.State {
     shutdown() {
         Network.removeListener(Network.UPDATE_PLAYERS_STATE);
         Network.removeListener(Network.PLAYER_DISCONNECTED);
+        Network.removeListener(Network.UPDATE_TIMER);
+        Network.removeListener(Network.START_GAME);
     }
 
     private showConnected() {

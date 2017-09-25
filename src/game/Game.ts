@@ -6,7 +6,8 @@ import {
     States,
     Boot,
     Loading,
-    MainMenu
+    MainMenu,
+    StartGame
 } from './states';
 
 import Network from './network';
@@ -32,6 +33,7 @@ export default class Game extends Phaser.Game {
         this.state.add(States.BOOT, Boot);
         this.state.add(States.LOADING, Loading);
         this.state.add(States.MAIN_MENU, MainMenu);
+        this.state.add(States.START_GAME, StartGame);
 
         this.state.start(States.BOOT);
     }

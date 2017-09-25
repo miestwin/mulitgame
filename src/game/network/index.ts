@@ -14,6 +14,7 @@ export default class Network {
      * @memberof Network
      */
     public static NEW_GAME = 'new-game';
+    public static START_TIMER = 'start-timer';
 
     /**
      * Nazwy listenerów
@@ -23,6 +24,8 @@ export default class Network {
     public static PLAYER_DISCONNECTED = 'player-disconnected';
     public static GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
     public static UPDATE_PLAYERS_STATE = 'update-players-state';
+    public static UPDATE_TIMER = 'update-timer';
+    public static START_GAME = 'start-game';
 
     public static connect () {
         Network.socket = io();
@@ -30,18 +33,6 @@ export default class Network {
     }
 
     private static initialize () {
-        Network.socket.on('game-start', () => {
-
-        });
-
-        Network.socket.on('update-game', () => {
-
-        });
-
-        Network.socket.on('game-end', () => {
-
-        });
-
         Network.socket.on('disconnect', () => {
             document.location.reload();
         });
@@ -63,8 +54,17 @@ export default class Network {
      * @param {any} id 
      * @memberof Network
      */
-    public static newGame (id) {
+    public static newGame(id) {
         Network.socket.emit(Network.NEW_GAME, { id: id });
+    }
+
+    /**
+     * Polecenie rozpoczęcia odliczania do rozpoczęcia gry 
+     * @static
+     * @memberof Network
+     */
+    public static startTimer() {
+        Network.socket.emit(Network.START_TIMER);
     }
 
     /**
@@ -73,7 +73,7 @@ export default class Network {
      * @param {Function} fn Funkcja która zostanie wykonana
      * @memberof Network
      */
-    public static playerDisconnected(fn: Function) {
+    public static onPlayerDisconnected(fn: Function) {
         Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
     }
 
@@ -83,7 +83,7 @@ export default class Network {
      * @param {Function} fn Funkcja która zostanie wykonana
      * @memberof Network
      */
-    public static gameAssignedSuccessful(fn: Function) {
+    public static onGameAssignedSuccessful(fn: Function) {
         Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
     }
 
@@ -93,7 +93,27 @@ export default class Network {
      * @param {Function} fn Funkcja która zostanie wykonana
      * @memberof Network
      */
-    public static updatePlayersState(fn: Function) {
+    public static onUpdatePlayersState(fn: Function) {
         Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
+    }
+
+    /**
+     * Aktualizacja odliczania
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onUpdateTimer(fn: Function) {
+        Network.socket.on(Network.UPDATE_TIMER, fn);
+    }
+
+    /**
+     * Rozpoczęcie gry
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onStartGame(fn: Function) {
+        Network.socket.on(Network.START_GAME, fn);
     }
 }

@@ -1,20 +1,34 @@
 import * as io from 'socket.io-client';
 
+/**
+ * Połączenie z serwerem
+ * @export
+ * @class Network
+ */
 export default class Network {
     private static socket;
 
-    // emit
+    /**
+     * Nazwy emiterów
+     * @static
+     * @memberof Network
+     */
     public static NEW_PLAYER = 'new-player';
     public static SET_PLAYER_CHARACTER = 'set-player-character';
     public static GET_CHARACTERS_IN_USE = 'get-characters-in-use';
 
-    // on
+    /**
+     * Nazwy listenerów
+     * @static
+     * @memberof Network
+     */
     public static GAME_NOT_AVAILABLE = 'game-not-available';
     public static GAME_FULL = 'game-full';
     public static GAME_ALREADY_STARTED = 'game-already-started';
     public static PLAYER_ASSIGNED_SUCCESSFUL = 'player-assigned-successful';
     public static RECEIVE_CONFIRMATION = 'receive-confirmation';
     public static UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
+    public static START_GAME = 'start-game';
 
     static connect () {
         Network.socket = io();
@@ -22,66 +36,117 @@ export default class Network {
     }
 
     private static initialize () {
-
-        Network.socket.on('game-start', () => {
-            
-        });
-
-        Network.socket.on('game-end', () => {
-            
-        });
-
         Network.socket.on('disconnect', () => {
             document.location.reload();
         });
-
-        Network.socket.on('game-disconnected', () => {
-            console.log('game-disconnected');
-        });
-
-        Network.socket.on('game-invalid', () => {
-            
-        });
     }
 
+    /**
+     * Usunięcie podanego listenere
+     * @static
+     * @param {string} listener 
+     * @memberof Network
+     */
     public static removeListener(listener: string) {
         Network.socket.off(listener);
     }
 
+    /**
+     * Nadaje informację o nowym graczu
+     * @static
+     * @param {any} id 
+     * @memberof Network
+     */
     public static newPlayer({ id, gameId }) {
         Network.socket.emit(Network.NEW_PLAYER, { id: id, gameId: gameId });
     }
 
+    /**
+     * Ustawia postać gracza
+     * @static
+     * @param {string} character 
+     * @memberof Network
+     */
     public static setPlayerCharacter(character: string) {
         Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
     }
 
+    /**
+     * Pobiera postacie które są już używane
+     * @static
+     * @memberof Network
+     */
     public static getCharactersInUse() {
         Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
     }
 
-    public static gameNotAvailable(fn: Function) {
+    /**
+     * Gra jest niedostępna 
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onGameNotAvailable(fn: Function) {
         Network.socket.on(Network.GAME_NOT_AVAILABLE, fn);
     }
 
-    public static gameFull(fn: Function) {
+    /**
+     * Gra ma zajęte wszystkie sloty
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onGameFull(fn: Function) {
         Network.socket.on(Network.GAME_FULL, fn);
     }
 
-    public static gameAlreadyStarted(fn: Function) {
+    /**
+     * Gra już się rozpoczeła
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onGameAlreadyStarted(fn: Function) {
         Network.socket.on(Network.GAME_ALREADY_STARTED, fn);
     }
 
-    public static playerAssignedSuccessful(fn: Function) {
+    /**
+     * Gracz został utworzony pomyślnie
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onPlayerAssignedSuccessful(fn: Function) {
         Network.socket.on(Network.PLAYER_ASSIGNED_SUCCESSFUL, fn);
     }
 
-
-    public static receiveConfirmation(fn: Function) {
+    /**
+     * Otrzymanie potwierdzenia
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onReceiveConfirmation(fn: Function) {
         Network.socket.on(Network.RECEIVE_CONFIRMATION, fn);
     }
 
-    public static updateCharacterSelector(fn: Function) {
+    /**
+     * Aktualizacja wyboru postaci
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onUpdateCharacterSelector(fn: Function) {
         Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
+    }
+
+    /**
+     * Rozpoczęcie gry
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onStartGame(fn: Function) {
+        Network.socket.on(Network.START_GAME, fn);
     }
 }

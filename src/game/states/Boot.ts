@@ -27,7 +27,7 @@ export class Boot extends Phaser.State {
 
     preload() {
         // initialize response from server
-        Network.gameAssignedSuccessful(() => {
+        Network.onGameAssignedSuccessful(() => {
             this.game.state.start(States.LOADING);
         });
 
