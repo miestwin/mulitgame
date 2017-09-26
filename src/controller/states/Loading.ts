@@ -31,6 +31,13 @@ export class Loading extends Phaser.State {
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
+
+        this.game.load.image('left-flat', '../assets/spritesheets/controller/light/leftFlat.png');
+        this.game.load.image('left-shaded', '../assets/spritesheets/controller/light/leftShaded.png');
+        this.game.load.image('right-flat', '../assets/spritesheets/controller/light/rightFlat.png');
+        this.game.load.image('right-shaded', '../assets/spritesheets/controller/light/rightShaded.png');
+        this.game.load.image('x-flat', '../assets/spritesheets/controller/light/xFlat.png');
+        this.game.load.image('x-shaded', '../assets/spritesheets/controller/light/xShaded.png');
     }
 
     create() {

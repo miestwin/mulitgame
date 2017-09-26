@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 74);
+/******/ 	return __webpack_require__(__webpack_require__.s = 75);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111198,13 +111198,14 @@ exports.default = Network;
 /* 71 */,
 /* 72 */,
 /* 73 */,
-/* 74 */
+/* 74 */,
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(75);
+const Game_1 = __webpack_require__(76);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111226,7 +111227,7 @@ function startApp() {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111235,7 +111236,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
-const states_1 = __webpack_require__(76);
+const states_1 = __webpack_require__(77);
 const network_1 = __webpack_require__(65);
 const guid_1 = __webpack_require__(64);
 /**
@@ -111263,7 +111264,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111273,14 +111274,14 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(27));
-__export(__webpack_require__(77));
 __export(__webpack_require__(78));
-__export(__webpack_require__(81));
-__export(__webpack_require__(84));
+__export(__webpack_require__(79));
+__export(__webpack_require__(82));
+__export(__webpack_require__(85));
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111328,7 +111329,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111337,9 +111338,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
-const QRious = __webpack_require__(79);
+const QRious = __webpack_require__(80);
 const States_1 = __webpack_require__(27);
-const config_1 = __webpack_require__(80);
+const config_1 = __webpack_require__(81);
 /**
  * Ładowanie zasobów
  * @export
@@ -111459,7 +111460,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -113827,7 +113828,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113839,7 +113840,7 @@ exports.default = {
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113850,7 +113851,7 @@ __webpack_require__(3);
 __webpack_require__(1);
 const States_1 = __webpack_require__(27);
 const network_1 = __webpack_require__(65);
-const models_1 = __webpack_require__(82);
+const models_1 = __webpack_require__(83);
 //TODO licznik do rozpoczęcia gry
 //? uruchom licznik gdy pojawi się co najmniej dwóch graczy
 //TODO zatrzymaj licznik gdy nie ma graczy
@@ -113961,7 +113962,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113970,11 +113971,11 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(83));
+__export(__webpack_require__(84));
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114049,7 +114050,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

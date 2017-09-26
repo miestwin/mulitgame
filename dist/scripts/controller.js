@@ -2154,6 +2154,7 @@ States.LOADING = 'Loading';
 States.MAIN_MENU = 'MainMenu';
 States.CHARACTERSELECTOR = 'CharacterSelector';
 States.MESSAGE = 'Message';
+States.GAME_CONTROLLER = 'GameController';
 exports.States = States;
 
 
@@ -111280,6 +111281,7 @@ class Controller extends Phaser.Game {
         this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
         this.state.add(states_1.States.CHARACTERSELECTOR, states_1.CharacterSelector);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
+        this.state.add(states_1.States.GAME_CONTROLLER, states_1.GameController);
         this.state.start(states_1.States.BOOT);
     }
 }
@@ -111302,6 +111304,7 @@ __export(__webpack_require__(70));
 __export(__webpack_require__(71));
 __export(__webpack_require__(72));
 __export(__webpack_require__(73));
+__export(__webpack_require__(74));
 
 
 /***/ }),
@@ -111390,6 +111393,12 @@ class Loading extends Phaser.State {
         this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 516, 10);
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
+        this.game.load.image('left-flat', '../assets/spritesheets/controller/light/leftFlat.png');
+        this.game.load.image('left-shaded', '../assets/spritesheets/controller/light/leftShaded.png');
+        this.game.load.image('right-flat', '../assets/spritesheets/controller/light/rightFlat.png');
+        this.game.load.image('right-shaded', '../assets/spritesheets/controller/light/rightShaded.png');
+        this.game.load.image('x-flat', '../assets/spritesheets/controller/light/xFlat.png');
+        this.game.load.image('x-shaded', '../assets/spritesheets/controller/light/xShaded.png');
     }
     create() {
         this.game.state.start(States_1.States.MAIN_MENU);
@@ -111469,7 +111478,8 @@ class MainMenu extends Phaser.State {
         buttonText.anchor.set(0.5, 0);
     }
     actionOnClick() {
-        this.game.state.start(States_1.States.CHARACTERSELECTOR);
+        // this.game.state.start(States.CHARACTERSELECTOR);
+        this.game.state.start(States_1.States.GAME_CONTROLLER);
     }
 }
 exports.MainMenu = MainMenu;
@@ -111635,6 +111645,35 @@ class Message extends Phaser.State {
     }
 }
 exports.Message = Message;
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(2);
+__webpack_require__(3);
+__webpack_require__(1);
+class GameController extends Phaser.State {
+    preload() {
+    }
+    create() {
+        this.leftButton = this.game.add.sprite(this.game.world.centerX / 4 + 50, this.game.world.centerY, 'left-shaded');
+        this.leftButton.anchor.set(0.5);
+        this.rightButton = this.game.add.sprite((this.game.world.centerX / 4) * 3 + 50, this.game.world.centerY, 'right-shaded');
+        this.rightButton.anchor.set(0.5);
+        this.jumbButton = this.game.add.sprite(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, 'x-shaded');
+        this.jumbButton.anchor.set(0.5);
+    }
+    update() {
+    }
+    shutdown() {
+    }
+}
+exports.GameController = GameController;
 
 
 /***/ })

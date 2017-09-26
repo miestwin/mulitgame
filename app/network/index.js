@@ -2,7 +2,7 @@ const socketio = require('socket.io');
 const _ = require('lodash');
 const { Game, Player } = require('../models');
 const MAX_PLAYERS = 4;
-const TIME = 10;
+const TIME = 30;
 
 module.exports = (server) => {
     var io = socketio.listen(server);
@@ -71,6 +71,7 @@ module.exports = (server) => {
                     clearInterval(socket.timerInterval);
                     io.to('game-' + socket.game.id).emit('start-game');
                     //TODO if game started player can't join
+                    //TODO change game started to true
                 }
             }, 1000);
         });
