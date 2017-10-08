@@ -53,6 +53,11 @@ export class Loading extends Phaser.State {
         this.game.load.spritesheet('robot-jump', '../assets/spritesheets/characters/robot/jump/sprite.png', 567, 556, 10);
         this.game.load.spritesheet('robot-run', '../assets/spritesheets/characters/robot/run/sprite.png', 567, 556, 8);
         this.game.load.spritesheet('robot-walk', '../assets/spritesheets/characters/robot/run/sprite.png', 567, 556, 8);
+
+        this.game.load.image('tile-1', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (1).png');
+        this.game.load.image('tile-2', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (2).png');
+        this.game.load.image('tile-3', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (3).png');
+        this.game.load.image('tile-5', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (5).png');
     }
 
     create() {

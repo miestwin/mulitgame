@@ -111378,6 +111378,10 @@ class Loading extends Phaser.State {
         this.game.load.spritesheet('robot-jump', '../assets/spritesheets/characters/robot/jump/sprite.png', 567, 556, 10);
         this.game.load.spritesheet('robot-run', '../assets/spritesheets/characters/robot/run/sprite.png', 567, 556, 8);
         this.game.load.spritesheet('robot-walk', '../assets/spritesheets/characters/robot/run/sprite.png', 567, 556, 8);
+        this.game.load.image('tile-1', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (1).png');
+        this.game.load.image('tile-2', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (2).png');
+        this.game.load.image('tile-3', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (3).png');
+        this.game.load.image('tile-5', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (5).png');
     }
     create() {
         // create qrcode and go to next state
@@ -113879,7 +113883,7 @@ class MainMenu extends Phaser.State {
             // update players state
             if (!this.game.state.players[player.id]) {
                 this.game.state.players[player.id] = new models_1.Player(player);
-                this.game.state.players[player.id].init(this.game, -100, 540);
+                this.game.state.players[player.id].showCharacter(this.game, -100, 540);
                 this.game.state.players[player.id].idle();
             }
             this.showConnected();
@@ -113989,6 +113993,9 @@ class Player {
     get sockket() {
         return this._socketId;
     }
+    get sprite() {
+        return this._sprite;
+    }
     constructor(player) {
         this._id = player.id;
         this._socketId = player.socketId;
@@ -114004,10 +114011,21 @@ class Player {
      * @memberof Player
      */
     init(game, x, y) {
-        this.sprite = game.add.sprite(x, y, this.character + '-idle');
-        this.sprite.anchor.set(0.5, 1);
-        this.sprite.scale.set(0.18);
-        this.sprite.animations.add('idle');
+        this._sprite = game.add.sprite(x, y, this.character + '-run');
+        this._sprite.anchor.set(0.5, 1);
+        this._sprite.scale.set(0.18);
+        //
+        game.physics.arcade.enable(this._sprite);
+        this._sprite.body.bounce.y = 0.2;
+        this._sprite.body.gravity.y = 300;
+        this._sprite.body.collideWorldBounds = true;
+        this._sprite.animations.add('run');
+    }
+    showCharacter(game, x, y) {
+        this._sprite = game.add.sprite(x, y, this.character + '-idle');
+        this._sprite.anchor.set(0.5, 1);
+        this._sprite.scale.set(0.18);
+        this._sprite.animations.add('idle');
     }
     update() {
     }
@@ -114017,8 +114035,8 @@ class Player {
      * @memberof Player
      */
     setX(value) {
-        if (this.sprite != null) {
-            this.sprite.x = value;
+        if (this._sprite != null) {
+            this._sprite.x = value;
         }
     }
     /**
@@ -114027,8 +114045,8 @@ class Player {
      * @memberof Player
      */
     setY(value) {
-        if (this.sprite != null) {
-            this.sprite.y = value;
+        if (this._sprite != null) {
+            this._sprite.y = value;
         }
     }
     /**
@@ -114036,14 +114054,17 @@ class Player {
      * @memberof Player
      */
     idle() {
-        this.sprite.animations.play('idle', 15, true);
+        this._sprite.animations.play('idle', 15, true);
+    }
+    run() {
+        this._sprite.animations.play('run', 30, true);
     }
     /**
      * Usunięcie sprite
      * @memberof Player
      */
     destroy() {
-        this.sprite.destroy();
+        this._sprite.destroy();
     }
 }
 exports.Player = Player;
@@ -114066,10 +114087,112 @@ __webpack_require__(1);
  * @extends {Phaser.State}
  */
 class StartGame extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        this.platform = {
+            step: 77,
+            scale: 0.3
+        };
+    }
     preload() { }
     create() {
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'GAME START NOW', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
-        message.anchor.set(0.5);
+        // var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'GAME START NOW', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        // message.anchor.set(0.5);
+        this.game.world.setBounds(0, 0, 50000, this.game.height);
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.cursor = this.game.input.keyboard.createCursorKeys();
+        this.game.input.keyboard.addKey(Phaser.Keyboard.W);
+        this.game.input.keyboard.addKey(Phaser.Keyboard.A);
+        this.game.input.keyboard.addKey(Phaser.Keyboard.D);
+        this.createPlatforms();
+        Object.keys(this.game.state.players).forEach(playerId => {
+            this.game.state.players[playerId].init(this.game, 20, this.game.world.height - (5 * this.platform.step));
+            this.game.state.players[playerId].run();
+        });
+        this.game.camera.follow(this.game.state.players[Object.keys(this.game.state.players)[0]].sprite);
+        // this.game.camera.focusOnXY(window.innerWidth / 2, window.innerHeight / 2);
+    }
+    createPlatforms() {
+        let width = 0;
+        this.platforms = this.game.add.group();
+        this.platforms.enableBody = true;
+        for (let i = 0; i < this.game.world.bounds.width; i = i + this.platform.step) {
+            let tile = this.platforms.create(i, 0, 'tile-5');
+            tile.scale.setTo(this.platform.scale);
+            tile.body.immovable = true;
+        }
+        // create ground
+        for (let i = 0; i < this.game.world.bounds.width; i = i + this.platform.step) {
+            let tile = this.platforms.create(i, this.game.world.height - this.platform.step, 'tile-2');
+            tile.scale.setTo(this.platform.scale);
+            tile.body.immovable = true;
+        }
+        width += (10 * this.platform.step);
+        this.generatePyramid(width, 3);
+    }
+    generatePyramid(start, rows) {
+        let end = start;
+        if (rows === 1) {
+            let tile = this.platforms.create(start, this.game.world.height - (2 * this.platform.step), 'tile-2');
+            tile.scale.setTo(this.platform.scale);
+            tile.immovable = true;
+            return start + this.platform.step;
+        }
+        let n = rows;
+        let step = start;
+        for (let i = 1; i <= rows; i++) {
+            // let leftTile = this.platforms.create(start, this.game.world.height - (2 * this.platform.step), 'tile-1');
+            // leftTile.scale.setTo(this.platform.scale);
+            // leftTile.immovable = true;
+            for (let j = 1; j <= (2 * n + 1); j++) {
+                let tile = this.platforms.create(step + (this.platform.step * j), this.game.world.height - ((i + 1) * this.platform.step), 'tile-5');
+                tile.scale.setTo(this.platform.scale);
+                tile.body.immovable = true;
+                if (start <= step) {
+                    start += this.platform.step;
+                }
+            }
+            step += this.platform.step;
+            n--;
+            // let rightTile = this.platforms.create(start * rows, this.game.world.height - (2 * this.platform.step), 'tile-3');
+            // rightTile.scale.setTo(this.platform.scale);
+            // rightTile.immovable = true;
+        }
+        return start;
+    }
+    update() {
+        var hit;
+        let minX = 0;
+        let maxX = this.game.world.bounds.width;
+        let minY = 0;
+        let maxY = this.game.world.bounds.height;
+        Object.keys(this.game.state.players).forEach(playerId => {
+            const player = this.game.state.players[playerId];
+            if (player.sprite.body.x < minX)
+                minX = player.sprite.body.x;
+            if (player.sprite.body.x > maxX)
+                maxX = player.sprite.body.x;
+            if (player.sprite.body.y < minY)
+                minY = player.sprite.body.y;
+            if (player.sprite.body.y > maxY)
+                maxY = player.sprite.body.y;
+            hit = this.game.physics.arcade.collide(player.sprite, this.platforms);
+        });
+        const medianX = maxX - minX;
+        const medianY = maxY - minY;
+        // this.game.camera.focusOnXY(medianX, this.game.world.centerY);
+        if (this.cursor.left.isDown) {
+            this.game.state.players[Object.keys(this.game.state.players)[0]].sprite.body.velocity.x = -400;
+        }
+        else if (this.cursor.right.isDown) {
+            this.game.state.players[Object.keys(this.game.state.players)[0]].sprite.body.velocity.x = 400;
+        }
+        else {
+            this.game.state.players[Object.keys(this.game.state.players)[0]].sprite.body.velocity.x = 0;
+        }
+        if (this.cursor.up.isDown && this.game.state.players[Object.keys(this.game.state.players)[0]].sprite.body.touching.down && hit) {
+            this.game.state.players[Object.keys(this.game.state.players)[0]].sprite.body.velocity.y = -300;
+        }
     }
     shutdown() { }
 }

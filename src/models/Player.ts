@@ -56,7 +56,11 @@ export class Player {
      * @type {Phaser.Sprite}
      * @memberof Player
      */
-    private sprite: Phaser.Sprite;
+    private _sprite: Phaser.Sprite;
+
+    get sprite() {
+        return this._sprite;
+    }
 
     constructor(player) {
         this._id = player.id;
@@ -75,10 +79,23 @@ export class Player {
      * @memberof Player
      */
     init(game: Phaser.Game, x: number, y: number) {
-        this.sprite = game.add.sprite(x, y, this.character + '-idle');
-        this.sprite.anchor.set(0.5, 1);
-        this.sprite.scale.set(0.18);
-        this.sprite.animations.add('idle');
+        this._sprite = game.add.sprite(x, y, this.character + '-run');
+        this._sprite.anchor.set(0.5, 1);
+        this._sprite.scale.set(0.18);
+        //
+        game.physics.arcade.enable(this._sprite);
+        this._sprite.body.bounce.y = 0.2;
+        this._sprite.body.gravity.y = 300;
+        this._sprite.body.collideWorldBounds = true;
+        
+        this._sprite.animations.add('run');
+    }
+
+    showCharacter(game: Phaser.Game, x: number, y: number) {
+        this._sprite = game.add.sprite(x, y, this.character + '-idle');
+        this._sprite.anchor.set(0.5, 1);
+        this._sprite.scale.set(0.18);
+        this._sprite.animations.add('idle');
     }
 
     update() {
@@ -91,8 +108,8 @@ export class Player {
      * @memberof Player
      */
     setX(value: number) {
-        if (this.sprite != null) {
-            this.sprite.x = value;
+        if (this._sprite != null) {
+            this._sprite.x = value;
         }
     }
 
@@ -102,8 +119,8 @@ export class Player {
      * @memberof Player
      */
     setY(value: number) {
-        if (this.sprite != null) {
-            this.sprite.y = value;
+        if (this._sprite != null) {
+            this._sprite.y = value;
         }
     }
 
@@ -112,7 +129,11 @@ export class Player {
      * @memberof Player
      */
     idle() {
-        this.sprite.animations.play('idle', 15, true);
+        this._sprite.animations.play('idle', 15, true);
+    }
+
+    run() {
+        this._sprite.animations.play('run', 30, true);
     }
 
     /**
@@ -120,6 +141,6 @@ export class Player {
      * @memberof Player
      */
     destroy() {
-        this.sprite.destroy();
+        this._sprite.destroy();
     }
 }

@@ -44,7 +44,7 @@ export class MainMenu extends Phaser.State {
             // update players state
             if (!(<any>this.game.state).players[player.id]) {
                 (<any>this.game.state).players[player.id] = new Player(player);
-                (<any>this.game.state).players[player.id].init(this.game, -100, 540);
+                (<any>this.game.state).players[player.id].showCharacter(this.game, -100, 540);
                 (<any>this.game.state).players[player.id].idle();
             } 
             this.showConnected();

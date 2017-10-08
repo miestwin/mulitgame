@@ -111478,8 +111478,8 @@ class MainMenu extends Phaser.State {
         buttonText.anchor.set(0.5, 0);
     }
     actionOnClick() {
-        // this.game.state.start(States.CHARACTERSELECTOR);
-        this.game.state.start(States_1.States.GAME_CONTROLLER);
+        this.game.state.start(States_1.States.CHARACTERSELECTOR);
+        // this.game.state.start(States.GAME_CONTROLLER);
     }
 }
 exports.MainMenu = MainMenu;
