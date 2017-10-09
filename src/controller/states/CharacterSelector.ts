@@ -145,7 +145,8 @@ export class CharacterSelector extends Phaser.State {
     private actionOnClick() {
         if (!this.characters[this.selectedCharacterIndex].use) {
             Network.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);
-            this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
+            // this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
+            this.game.state.start(States.GAME_CONTROLLER);
         }
     }
 }

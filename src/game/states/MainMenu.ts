@@ -1,7 +1,6 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-import  * as _ from 'lodash';
 
 import { States } from './States';
 import Network from '../network';

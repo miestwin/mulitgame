@@ -25,6 +25,5 @@ export class MainMenu extends Phaser.State {
 
     private actionOnClick() {
         this.game.state.start(States.CHARACTERSELECTOR);
-        // this.game.state.start(States.GAME_CONTROLLER);
     }
 }

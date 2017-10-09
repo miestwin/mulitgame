@@ -111479,7 +111479,6 @@ class MainMenu extends Phaser.State {
     }
     actionOnClick() {
         this.game.state.start(States_1.States.CHARACTERSELECTOR);
-        // this.game.state.start(States.GAME_CONTROLLER);
     }
 }
 exports.MainMenu = MainMenu;
@@ -111602,7 +111601,8 @@ class CharacterSelector extends Phaser.State {
     actionOnClick() {
         if (!this.characters[this.selectedCharacterIndex].use) {
             network_1.default.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);
-            this.game.state.start(States_1.States.MESSAGE, true, false, 'Wait for game');
+            // this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
+            this.game.state.start(States_1.States.GAME_CONTROLLER);
         }
     }
 }
@@ -111658,22 +111658,130 @@ __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
 class GameController extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        this.leftTouchPos = new Victor(0, 0);
+        this.leftTouchStartPos = new Victor(0, 0);
+        this.leftVector = new Victor(0, 0);
+    }
     preload() {
+        window.addEventListener('touchstart', this.onTouchStart, false);
+        window.addEventListener('touchmove', this.onTouchMove, false);
+        window.addEventListener('touchend', this.onTouchEnd, false);
     }
     create() {
-        this.leftButton = this.game.add.sprite(this.game.world.centerX / 4 + 50, this.game.world.centerY, 'left-shaded');
-        this.leftButton.anchor.set(0.5);
-        this.rightButton = this.game.add.sprite((this.game.world.centerX / 4) * 3 + 50, this.game.world.centerY, 'right-shaded');
-        this.rightButton.anchor.set(0.5);
-        this.jumbButton = this.game.add.sprite(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, 'x-shaded');
-        this.jumbButton.anchor.set(0.5);
+        this.graphics = this.game.add.graphics(0, 0);
     }
     update() {
+        this.game.world.removeAll();
+        if (this.touches != null) {
+            for (let i = 0; i < this.touches.length; i++) {
+                const touch = this.touches[i];
+                if (touch.identifier == this.leftTouchID) {
+                    this.graphics.lineStyle(6, 0x66ffff);
+                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 40);
+                    this.graphics.lineStyle(2, 0x66ffff);
+                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60);
+                    this.graphics.lineStyle(2, 0x66ffff);
+                    this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 40);
+                }
+                else {
+                    this.graphics.lineStyle(6, 0xff0000);
+                    this.graphics.drawCircle(touch.clientX, touch.clientY, 40);
+                }
+            }
+        }
     }
     shutdown() {
+        window.removeEventListener('touchstart', this.onTouchStart);
+        window.removeEventListener('touchmove', this.onTouchMove, false);
+        window.removeEventListener('touchend', this.onTouchEnd, false);
+    }
+    onTouchStart(e) {
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            const touch = e.changedTouches[i];
+            // lewa strona sterowania
+            if ((this.leftTouchID < 0) && (touch.clientX < this.halfWidth)) {
+                this.leftTouchID = touch.identifier;
+                this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
+                this.leftTouchPos.copy(this.leftTouchStartPos);
+                this.leftVector = new Victor(0, 0);
+                continue;
+            }
+            else {
+                // prawa strona akcji
+            }
+        }
+        this.touches = e.touches;
+    }
+    onTouchMove(e) {
+        e.preventDefault();
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            const touch = e.changedTouches[i];
+            if (this.leftTouchID == touch.identifier) {
+                this.leftTouchPos = new Victor(touch.clientX, touch.clientY);
+                this.leftVector.copy(this.leftTouchPos);
+                this.leftVector.subtract(this.leftTouchStartPos);
+                break;
+            }
+        }
+    }
+    onTouchEnd(e) {
+        this.touches = e.touches;
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            const touch = e.changedTouches[i];
+            if (this.leftTouchID == touch.identifier) {
+                this.leftTouchID = -1;
+                this.leftVector = new Victor(0, 0);
+                break;
+            }
+        }
     }
 }
 exports.GameController = GameController;
+// this.game.canvas.addEventListener('touchstart', this.onTouchStart, false);
+// this.game.canvas.addEventListener('touchmove', this.onTouchMove, false);
+// this.game.canvas.addEventListener('touchend', this.onTouchEnd, false);
+// this.game.canvas.removeEventListener('touchstart', this.onTouchStart);
+// this.game.canvas.removeEventListener('touchmove', this.onTouchMove, false);
+// this.game.canvas.removeEventListener('touchend', this.onTouchEnd, false);
+// private leftButton: Phaser.Sprite;
+// private rightButton: Phaser.Sprite;
+// private jumbButton: Phaser.Sprite;
+// this.leftButton = this.game.add.sprite(
+//     this.game.world.centerX / 4 + 50,
+//     this.game.world.centerY,
+//     'left-shaded');
+// this.leftButton.anchor.set(0.5);
+// this.rightButton = this.game.add.sprite(
+//     (this.game.world.centerX / 4) * 3 + 50,
+//     this.game.world.centerY,
+//     'right-shaded');
+// this.rightButton.anchor.set(0.5);
+// this.jumbButton = this.game.add.sprite(
+//     this.game.world.centerX + this.game.world.centerX / 2,
+//     this.game.world.centerY,
+//     'x-shaded');
+// this.jumbButton.anchor.set(0.5);
+// this.context.beginPath();
+// this.context.strokeStyle = "cyan";
+// this.context.lineWidth = 6;
+// this.context.arc(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 40,0,Math.PI*2,true); 
+// this.context.stroke();
+// this.context.beginPath(); 
+// this.context.strokeStyle = "cyan"; 
+// this.context.lineWidth = 2; 
+// this.context.arc(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60,0,Math.PI*2,true); 
+// this.context.stroke();
+// this.context.beginPath(); 
+// this.context.strokeStyle = "cyan"; 
+// this.context.arc(this.leftTouchPos.x, this.leftTouchPos.y, 40, 0,Math.PI*2, true); 
+// this.context.stroke(); 
+// this.context.beginPath();
+// this.context.strokeStyle = "red";
+// this.context.lineWidth = 6;
+// this.context.arc(touch.clientX, touch.clientY, 40, 0, Math.PI*2, true);
+// this.context.stroke(); 
 
 
 /***/ })

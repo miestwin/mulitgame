@@ -10,7 +10,8 @@
     "phaser": "2.6.2",
     "qrious": "4.0.2",
     "socket.io": "2.0.3",
-    "typescript": "2.4.1"
+    "typescript": "2.4.1",
+    "victor": "^1.1.0"
   },
   "devDependencies": {
     "expose-loader": "0.7.3",
