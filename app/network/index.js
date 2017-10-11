@@ -1,5 +1,4 @@
 const socketio = require('socket.io');
-const _ = require('lodash');
 const { Game, Player } = require('../models');
 const MAX_PLAYERS = 4;
 const TIME = 30;
