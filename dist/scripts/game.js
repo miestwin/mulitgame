@@ -113839,7 +113839,7 @@ exports.Loading = Loading;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
-    url: 'https://obscure-hamlet-52147.herokuapp.com'
+    url: 'https://thawing-ravine-92822.herokuapp.com/'
 };
 
 
