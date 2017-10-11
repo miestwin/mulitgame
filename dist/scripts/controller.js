@@ -111665,18 +111665,21 @@ class GameController extends Phaser.State {
         this.leftVector = new Victor(0, 0);
     }
     preload() {
-        window.addEventListener('touchstart', this.onTouchStart, false);
-        window.addEventListener('touchmove', this.onTouchMove, false);
-        window.addEventListener('touchend', this.onTouchEnd, false);
+        console.log("preloader");
+        document.getElementById('controller').addEventListener('touchstart', this.onTouchStart);
+        document.getElementById('controller').addEventListener('touchmove', this.onTouchMove);
+        document.getElementById('controller').addEventListener('touchend', this.onTouchEnd);
     }
     create() {
         this.graphics = this.game.add.graphics(0, 0);
+        console.log('create', this.graphics);
     }
     update() {
         this.game.world.removeAll();
         if (this.touches != null) {
             for (let i = 0; i < this.touches.length; i++) {
                 const touch = this.touches[i];
+                console.log('update touch', touch);
                 if (touch.identifier == this.leftTouchID) {
                     this.graphics.lineStyle(6, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 40);
@@ -111689,15 +111692,17 @@ class GameController extends Phaser.State {
                     this.graphics.lineStyle(6, 0xff0000);
                     this.graphics.drawCircle(touch.clientX, touch.clientY, 40);
                 }
+                console.log('update', this.graphics);
             }
         }
     }
     shutdown() {
-        window.removeEventListener('touchstart', this.onTouchStart);
-        window.removeEventListener('touchmove', this.onTouchMove, false);
-        window.removeEventListener('touchend', this.onTouchEnd, false);
+        document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart);
+        document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove);
+        document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd);
     }
     onTouchStart(e) {
+        console.log('start', e);
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             // lewa strona sterowania
@@ -111706,6 +111711,7 @@ class GameController extends Phaser.State {
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
+                console.log('start', touch);
                 continue;
             }
             else {
@@ -111716,6 +111722,7 @@ class GameController extends Phaser.State {
     }
     onTouchMove(e) {
         e.preventDefault();
+        console.log('move', e);
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             if (this.leftTouchID == touch.identifier) {
