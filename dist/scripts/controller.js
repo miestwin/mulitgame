@@ -111660,26 +111660,31 @@ __webpack_require__(1);
 class GameController extends Phaser.State {
     constructor() {
         super(...arguments);
+        this.logEvents = false;
+        this.tpCache = new Array();
         this.leftTouchPos = new Victor(0, 0);
         this.leftTouchStartPos = new Victor(0, 0);
         this.leftVector = new Victor(0, 0);
     }
     preload() {
         console.log("preloader");
-        document.getElementById('controller').addEventListener('touchstart', this.onTouchStart);
-        document.getElementById('controller').addEventListener('touchmove', this.onTouchMove);
-        document.getElementById('controller').addEventListener('touchend', this.onTouchEnd);
+        document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
+        document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
+        document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
+        // document.getElementById('controller').addEventListener('touchcancel', this.onTouchEnd);
     }
     create() {
         this.graphics = this.game.add.graphics(0, 0);
-        console.log('create', this.graphics);
+        // console.log('create', this.graphics);
     }
     update() {
-        this.game.world.removeAll();
-        if (this.touches != null) {
+        // this.game.world.removeAll();
+        // console.log(this.touches);
+        this.graphics.clear();
+        if (this.touches) {
             for (let i = 0; i < this.touches.length; i++) {
                 const touch = this.touches[i];
-                console.log('update touch', touch);
+                // console.log('update touch', touch);
                 if (touch.identifier == this.leftTouchID) {
                     this.graphics.lineStyle(6, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 40);
@@ -111692,21 +111697,23 @@ class GameController extends Phaser.State {
                     this.graphics.lineStyle(6, 0xff0000);
                     this.graphics.drawCircle(touch.clientX, touch.clientY, 40);
                 }
-                console.log('update', this.graphics);
+                // console.log('update', this.graphics);
             }
         }
     }
     shutdown() {
-        document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart);
-        document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove);
-        document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd);
+        document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));
+        document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
+        document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
+        // document.getElementById('controller').removeEventListener('touchcancel', this.onTouchEnd);
     }
     onTouchStart(e) {
-        console.log('start', e);
+        // console.log('start', e);
+        e.preventDefault();
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             // lewa strona sterowania
-            if ((this.leftTouchID < 0) && (touch.clientX < this.halfWidth)) {
+            if ((this.leftTouchID < 0) && (touch.clientX < this.game.world.centerX)) {
                 this.leftTouchID = touch.identifier;
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
@@ -111722,7 +111729,7 @@ class GameController extends Phaser.State {
     }
     onTouchMove(e) {
         e.preventDefault();
-        console.log('move', e);
+        // console.log('move', e);
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             if (this.leftTouchID == touch.identifier) {
