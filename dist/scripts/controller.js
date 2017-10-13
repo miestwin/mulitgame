@@ -111657,13 +111657,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(2);
 __webpack_require__(3);
 __webpack_require__(1);
+/**
+ * Kontroler gry
+ * @export
+ * @class GameController
+ * @extends {Phaser.State}
+ */
 class GameController extends Phaser.State {
     constructor() {
         super(...arguments);
-        this.logEvents = false;
-        this.tpCache = new Array();
-        this.leftTouchPos = new Victor(0, 0);
+        /**
+         * Wektor pozycji początkowej kontolera
+         * @private
+         * @memberof GameController
+         */
         this.leftTouchStartPos = new Victor(0, 0);
+        /**
+         * Wektor aktualnej pozycji kontolera
+         * @private
+         * @memberof GameController
+         */
+        this.leftTouchPos = new Victor(0, 0);
+        /**
+         * Wektor pozycji gracza
+         * @private
+         * @memberof GameController
+         */
         this.leftVector = new Victor(0, 0);
     }
     preload() {
@@ -111671,16 +111690,15 @@ class GameController extends Phaser.State {
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
-        // document.getElementById('controller').addEventListener('touchcancel', this.onTouchEnd);
     }
     create() {
         this.graphics = this.game.add.graphics(0, 0);
     }
     update() {
         this.graphics.clear();
-        if (this.touches) {
-            for (let i = 0; i < this.touches.length; i++) {
-                const touch = this.touches[i];
+        if (this.tpCache) {
+            for (let i = 0; i < this.tpCache.length; i++) {
+                const touch = this.tpCache[i];
                 if (touch.identifier == this.leftTouchID) {
                     this.graphics.lineStyle(6, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60);
@@ -111700,13 +111718,11 @@ class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
-        // document.getElementById('controller').removeEventListener('touchcancel', this.onTouchEnd);
     }
     onTouchStart(e) {
         e.preventDefault();
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
-            // lewa strona sterowania
             if (touch.clientX < this.game.world.centerX) {
                 this.leftTouchID = touch.identifier;
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
@@ -111715,7 +111731,7 @@ class GameController extends Phaser.State {
                 continue;
             }
         }
-        this.touches = e.touches;
+        this.tpCache = e.touches;
     }
     onTouchMove(e) {
         e.preventDefault();
@@ -111736,7 +111752,7 @@ class GameController extends Phaser.State {
         }
     }
     onTouchEnd(e) {
-        this.touches = e.touches;
+        this.tpCache = e.touches;
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
@@ -111748,25 +111764,6 @@ class GameController extends Phaser.State {
     }
 }
 exports.GameController = GameController;
-// this.context.beginPath();
-// this.context.strokeStyle = "cyan";
-// this.context.lineWidth = 6;
-// this.context.arc(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 40,0,Math.PI*2,true); 
-// this.context.stroke();
-// this.context.beginPath(); 
-// this.context.strokeStyle = "cyan"; 
-// this.context.lineWidth = 2; 
-// this.context.arc(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60,0,Math.PI*2,true); 
-// this.context.stroke();
-// this.context.beginPath(); 
-// this.context.strokeStyle = "cyan"; 
-// this.context.arc(this.leftTouchPos.x, this.leftTouchPos.y, 40, 0,Math.PI*2, true); 
-// this.context.stroke(); 
-// this.context.beginPath();
-// this.context.strokeStyle = "red";
-// this.context.lineWidth = 6;
-// this.context.arc(touch.clientX, touch.clientY, 40, 0, Math.PI*2, true);
-// this.context.stroke(); 
 
 
 /***/ })

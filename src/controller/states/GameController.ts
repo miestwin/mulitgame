@@ -6,27 +6,71 @@ import { States } from './States';
 
 import Network from '../network';
 
+/**
+ * Deklaracja biblioteki Victor 
+ */
 declare var Victor;
 
+/**
+ * Kontroler gry
+ * @export
+ * @class GameController
+ * @extends {Phaser.State}
+ */
 export class GameController extends Phaser.State {
 
-    private logEvents = false;
-    private tpCache = new Array();
-    
-    leftTouchID: number;
-    leftTouchPos = new Victor(0, 0);
-    leftTouchStartPos = new Victor(0, 0);
-    leftVector = new Victor(0, 0);
+    /**
+     * Grafika do rysowania kontrolera
+     * @private
+     * @type {Phaser.Graphics}
+     * @memberof GameController
+     */
+    private graphics: Phaser.Graphics;
 
-    touches: TouchList;
-    graphics: Phaser.Graphics;
+    /**
+     * Zdarzenia z touch device
+     * @private
+     * @type {TouchList}
+     * @memberof GameController
+     */
+    private tpCache: TouchList;
+
+    /**
+     * Identyfikator zdarzenia dla lewej części kontrolera
+     * @private
+     * @type {number}
+     * @memberof GameController
+     */
+    private leftTouchID: number;
+
+    /**
+     * Wektor pozycji początkowej kontolera
+     * @private
+     * @memberof GameController
+     */
+    private leftTouchStartPos = new Victor(0, 0);
+
+    /**
+     * Wektor aktualnej pozycji kontolera
+     * @private
+     * @memberof GameController
+     */
+    private leftTouchPos = new Victor(0, 0);
+
+
+    /**
+     * Wektor pozycji gracza
+     * @private
+     * @memberof GameController
+     */
+    private leftVector = new Victor(0, 0);
+
 
     preload() {
         console.log("preloader");
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
-        // document.getElementById('controller').addEventListener('touchcancel', this.onTouchEnd);
     }
 
     create() {
@@ -35,9 +79,9 @@ export class GameController extends Phaser.State {
 
     update() {
         this.graphics.clear();
-        if (this.touches) {
-            for (let i = 0; i < this.touches.length; i++) {
-                const touch = this.touches[i];
+        if (this.tpCache) {
+            for (let i = 0; i < this.tpCache.length; i++) {
+                const touch = this.tpCache[i];
                 if (touch.identifier == this.leftTouchID) {
                     this.graphics.lineStyle(6, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60);
@@ -57,14 +101,12 @@ export class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
-        // document.getElementById('controller').removeEventListener('touchcancel', this.onTouchEnd);
     }
 
     onTouchStart(e: TouchEvent) {
         e.preventDefault();
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
-            // lewa strona sterowania
             if (touch.clientX < this.game.world.centerX) {
                 this.leftTouchID = touch.identifier;
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
@@ -73,7 +115,7 @@ export class GameController extends Phaser.State {
                 continue;
             }
         }
-        this.touches = e.touches;
+        this.tpCache = e.touches;
     }
 
     onTouchMove(e: TouchEvent) {
@@ -96,7 +138,7 @@ export class GameController extends Phaser.State {
     }
 
     onTouchEnd(e: TouchEvent) {
-        this.touches = e.touches;
+        this.tpCache = e.touches;
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
@@ -107,27 +149,3 @@ export class GameController extends Phaser.State {
         }
     }
 }
-
-
-
-        // this.context.beginPath();
-                // this.context.strokeStyle = "cyan";
-                // this.context.lineWidth = 6;
-                // this.context.arc(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 40,0,Math.PI*2,true); 
-				// this.context.stroke();
-				// this.context.beginPath(); 
-				// this.context.strokeStyle = "cyan"; 
-				// this.context.lineWidth = 2; 
-				// this.context.arc(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60,0,Math.PI*2,true); 
-				// this.context.stroke();
-				// this.context.beginPath(); 
-				// this.context.strokeStyle = "cyan"; 
-				// this.context.arc(this.leftTouchPos.x, this.leftTouchPos.y, 40, 0,Math.PI*2, true); 
-				// this.context.stroke(); 
-
-
-// this.context.beginPath();
-                // this.context.strokeStyle = "red";
-                // this.context.lineWidth = 6;
-                // this.context.arc(touch.clientX, touch.clientY, 40, 0, Math.PI*2, true);
-                // this.context.stroke();
