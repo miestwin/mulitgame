@@ -111713,12 +111713,11 @@ class GameController extends Phaser.State {
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             // lewa strona sterowania
-            if ((this.leftTouchID < 0) && (touch.clientX < this.game.world.centerX)) {
+            if (touch.clientX < this.game.world.centerX) {
                 this.leftTouchID = touch.identifier;
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
-                console.log('start', touch);
                 continue;
             }
             else {
@@ -111732,7 +111731,7 @@ class GameController extends Phaser.State {
         // console.log('move', e);
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
-            if (this.leftTouchID == touch.identifier) {
+            if (touch.identifier == this.leftTouchID) {
                 this.leftTouchPos = new Victor(touch.clientX, touch.clientY);
                 this.leftVector.copy(this.leftTouchPos);
                 this.leftVector.subtract(this.leftTouchStartPos);
@@ -111744,7 +111743,7 @@ class GameController extends Phaser.State {
         this.touches = e.touches;
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
-            if (this.leftTouchID == touch.identifier) {
+            if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
                 this.leftVector = new Victor(0, 0);
                 break;
