@@ -9,7 +9,8 @@ import {
     MainMenu,
     AvatarSelector,
     Message,
-    GameController
+    GameController,
+    WaitForGame
 } from './states';
 
 import Network from './network';
@@ -36,6 +37,7 @@ export default class Controller extends Phaser.Game {
         this.state.add(States.MAIN_MENU, MainMenu);
         this.state.add(States.AVATAR_SELECTOR, AvatarSelector);
         this.state.add(States.MESSAGE, Message);
+        this.state.add(States.WAIT_FOR_GAME, WaitForGame);
         this.state.add(States.GAME_CONTROLLER, GameController);
 
         this.state.start(States.BOOT);

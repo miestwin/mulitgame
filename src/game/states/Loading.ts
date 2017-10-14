@@ -29,10 +29,7 @@ export class Loading extends Phaser.State {
         this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
         this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
 
-        this.game.load.image('tile-1', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (1).png');
-        this.game.load.image('tile-2', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (2).png');
-        this.game.load.image('tile-3', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (3).png');
-        this.game.load.image('tile-5', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (5).png');
+        this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
 
     create() {

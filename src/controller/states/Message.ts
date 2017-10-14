@@ -12,6 +12,13 @@ import Network from '../network';
  * @extends {Phaser.State}
  */
 export class Message extends Phaser.State {
+
+    /**
+     * Wiadomość dla gracza
+     * @private
+     * @type {string}
+     * @memberof Message
+     */
     private message: string;
 
     init(message: string) {

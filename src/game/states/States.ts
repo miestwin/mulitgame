@@ -8,4 +8,5 @@ export class States {
     static LOADING: string = 'Loading';
     static MAIN_MENU: string = 'MainMenu';
     static START_GAME: string = 'StartGame';
+    static MESSAGE: string = 'MESSAGE';
 }

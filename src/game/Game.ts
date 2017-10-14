@@ -7,7 +7,8 @@ import {
     Boot,
     Loading,
     MainMenu,
-    StartGame
+    StartGame,
+    Message
 } from './states';
 
 import Network from './network';
@@ -25,6 +26,7 @@ export default class Game extends Phaser.Game {
         super(config);
         // create game id
         (<any>this.state).id = guid();
+        (<any>this.state).started = false;
         
         // connect to server
         Network.connect();
@@ -34,6 +36,7 @@ export default class Game extends Phaser.Game {
         this.state.add(States.LOADING, Loading);
         this.state.add(States.MAIN_MENU, MainMenu);
         this.state.add(States.START_GAME, StartGame);
+        this.state.add(States.MESSAGE, Message);
 
         this.state.start(States.BOOT);
     }

@@ -18,7 +18,8 @@ export default class Network {
     public static RECEIVE_CONFIRMATION = 'receive-confirmation';
     public static UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
     public static START_GAME = 'start-game';
-    public static UPDATE_PLAYER_XY = 'update-player-xy'
+    public static UPDATE_PLAYER_XY = 'update-player-xy';
+    public static UPDATE_TIMER = 'update-timer';
 
     static connect () {
         Network.socket = io();
@@ -147,5 +148,15 @@ export default class Network {
      */
     public static onStartGame(fn: Function) {
         Network.socket.on(Network.START_GAME, fn);
+    }
+
+    /**
+     * Aktualizacja odliczania
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onUpdateTimer(fn: Function) {
+        Network.socket.on(Network.UPDATE_TIMER, fn);
     }
 }

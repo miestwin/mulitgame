@@ -18,15 +18,6 @@ declare var Victor;
  */
 export class StartGame extends Phaser.State {
 
-    private cursor;
-    private platform = {
-        step: 77,
-        scale: 0.3
-    };
-
-    private platforms: Phaser.Group;
-    private ground: Phaser.Group;
-
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -45,13 +36,22 @@ export class StartGame extends Phaser.State {
            player.vector = new Victor(update.x, update.y);
         });
 
+        Network.onPlayerDisconnected((player) => {
+            // remove player
+            (<any>this.game.state).players = Object.keys((<any>this.game.state).players).reduce((players, nextId) => {
+                if ((<any>this.game.state).players[nextId].id == player.id) {
+                    (<any>this.game.state).players[nextId].destroy();
+                    return players;
+                }
+                players[nextId] = (<any>this.game.state).players[nextId];
+                return players;
+            }, {});
+        });
+
         Network.getAllPlayers();
     }
 
     create() {
-        // var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'GAME START NOW', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
-        // message.anchor.set(0.5);
-
         this.game.world.setBounds(0, 0, 50000, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
     }
@@ -60,5 +60,9 @@ export class StartGame extends Phaser.State {
         Object.keys((<any>this.game.state).players).forEach(playerId => (<any>this.game.state).players[playerId].update());
     }
 
-    shutdown() {}
+    shutdown() {
+        Network.removeListener(Network.ALL_PLAYERS);
+        Network.removeListener(Network.UPDATE_PLAYER_XY);
+        Network.removeListener(Network.PLAYER_DISCONNECTED);
+    }
 }

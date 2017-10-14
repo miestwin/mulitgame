@@ -5,3 +5,4 @@ export * from './MainMenu';
 export * from './AvatarSelector';
 export * from './Message';
 export * from './GameController';
+export * from './WaitForGame';

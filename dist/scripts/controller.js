@@ -2155,6 +2155,7 @@ States.MAIN_MENU = 'MainMenu';
 States.AVATAR_SELECTOR = 'AvatarSelector';
 States.MESSAGE = 'Message';
 States.GAME_CONTROLLER = 'GameController';
+States.WAIT_FOR_GAME = 'WaitForGame';
 exports.States = States;
 
 
@@ -2287,6 +2288,15 @@ class Network {
     static onStartGame(fn) {
         Network.socket.on(Network.START_GAME, fn);
     }
+    /**
+     * Aktualizacja odliczania
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateTimer(fn) {
+        Network.socket.on(Network.UPDATE_TIMER, fn);
+    }
 }
 Network.NEW_PLAYER = 'new-player';
 Network.SET_PLAYER_CHARACTER = 'set-player-character';
@@ -2299,6 +2309,7 @@ Network.RECEIVE_CONFIRMATION = 'receive-confirmation';
 Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
 Network.START_GAME = 'start-game';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
+Network.UPDATE_TIMER = 'update-timer';
 exports.default = Network;
 
 
@@ -111281,6 +111292,7 @@ class Controller extends Phaser.Game {
         this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
         this.state.add(states_1.States.AVATAR_SELECTOR, states_1.AvatarSelector);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
+        this.state.add(states_1.States.WAIT_FOR_GAME, states_1.WaitForGame);
         this.state.add(states_1.States.GAME_CONTROLLER, states_1.GameController);
         this.state.start(states_1.States.BOOT);
     }
@@ -111305,6 +111317,7 @@ __export(__webpack_require__(72));
 __export(__webpack_require__(73));
 __export(__webpack_require__(74));
 __export(__webpack_require__(75));
+__export(__webpack_require__(76));
 
 
 /***/ }),
@@ -111590,8 +111603,7 @@ class AvatarSelector extends Phaser.State {
     actionOnClick() {
         if (!this.ships[this.selectedShipIndex].use) {
             network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
-            // this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
-            this.game.state.start(States_1.States.GAME_CONTROLLER);
+            this.game.state.start(States_1.States.WAIT_FOR_GAME);
         }
     }
 }
@@ -111608,8 +111620,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(14);
-const network_1 = __webpack_require__(15);
 /**
  * Wyświetlanie wiadomości z błędami
  * @export
@@ -111620,17 +111630,10 @@ class Message extends Phaser.State {
     init(message) {
         this.message = message;
     }
-    preload() {
-        network_1.default.onStartGame(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, 'CONTROLLER ACTIVE');
-        });
-    }
+    preload() { }
     create() {
         var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, this.message, { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
         message.anchor.set(0.5);
-    }
-    shutdown() {
-        network_1.default.removeListener(network_1.default.START_GAME);
     }
 }
 exports.Message = Message;
@@ -111755,6 +111758,49 @@ class GameController extends Phaser.State {
     }
 }
 exports.GameController = GameController;
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const States_1 = __webpack_require__(14);
+const network_1 = __webpack_require__(15);
+/**
+ * Czekanie na rozpoczęcie gry
+ * @export
+ * @class WaitForGame
+ * @extends {Phaser.State}
+ */
+class WaitForGame extends Phaser.State {
+    preload() {
+        network_1.default.onUpdateTimer((sec) => {
+            this.timer.setText('The game will start in\n' + sec);
+        });
+        network_1.default.onStartGame(() => {
+            this.game.state.start(States_1.States.GAME_CONTROLLER);
+        });
+    }
+    create() {
+        this.timer = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'The game will start in\n...', {
+            font: '35px Kenvector Future',
+            fill: '#ffffff',
+            align: 'center'
+        });
+        this.timer.anchor.set(0.5);
+    }
+    shutdown() {
+        network_1.default.removeListener(network_1.default.UPDATE_TIMER);
+        network_1.default.removeListener(network_1.default.START_GAME);
+    }
+}
+exports.WaitForGame = WaitForGame;
 
 
 /***/ })

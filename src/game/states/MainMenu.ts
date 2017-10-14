@@ -7,10 +7,6 @@ import Network from '../network';
 
 import { Player } from '../../models';
 
-//TODO licznik do rozpoczęcia gry
-//? uruchom licznik gdy pojawi się co najmniej dwóch graczy
-//TODO zatrzymaj licznik gdy nie ma graczy
-
 /**
  * Menu główne
  * @export
@@ -64,12 +60,20 @@ export class MainMenu extends Phaser.State {
         });
 
         Network.onUpdateTimer((sec) => {
-            this.timer.setText(sec);
+            this.timer.setText('The game will start in ' + sec);
         });
 
         Network.onStartGame(() => {
             (<any>this.game.state).players = {};
-            this.game.state.start(States.START_GAME);
+            if (Object.keys((<any>this.game.state).players).length < 1) {
+                const message = 'No connected players';
+                const text = 'Try again';
+                const action = () => this.game.state.start(States.MAIN_MENU);
+                this.game.state.start(States.MESSAGE, true, false, message, text, action);
+            } else {
+                (<any>this.game.state).started = true;
+                this.game.state.start(States.START_GAME);
+            }
         });
 
         Network.startTimer();
@@ -77,7 +81,7 @@ export class MainMenu extends Phaser.State {
 
     public create() {
         // show game title
-        const text = this.game.add.text(
+        const title = this.game.add.text(
             this.game.world.centerX, 40,
             'SUPER GAME TITLE',
             { 
@@ -85,16 +89,7 @@ export class MainMenu extends Phaser.State {
                 fill: '#ffffff',
                 align: 'center'
             });
-        text.anchor.set(0.5, 0);
-
-        this.timer = this.game.add.text(
-            this.game.world.width - 150, 32.5, '10',
-            {
-                font: '50px Kenvector Future',
-                fill: '#ffffff',
-                align: 'center'
-            });
-        this.timer.anchor.set(0.5, 0);
+        title.anchor.set(0.5, 0);
 
         // show qrcode
         const qr = this.game.add.sprite(this.game.world.centerX, 100, 'qrcode');
@@ -108,6 +103,15 @@ export class MainMenu extends Phaser.State {
                 align: 'center'
             });
         gameIdText.anchor.set(0.5, 0);
+
+        this.timer = this.game.add.text(
+            this.game.world.centerX, 440, 'The game will start in ...',
+            {
+                font: '30px Kenvector Future',
+                fill: '#ffffff',
+                align: 'center'
+            });
+        this.timer.anchor.set(0.5, 0);
     }
 
     shutdown() {

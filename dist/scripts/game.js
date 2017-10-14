@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 76);
+/******/ 	return __webpack_require__(__webpack_require__.s = 77);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3752,6 +3752,7 @@ States.BOOT = 'Boot';
 States.LOADING = 'Loading';
 States.MAIN_MENU = 'MainMenu';
 States.START_GAME = 'StartGame';
+States.MESSAGE = 'MESSAGE';
 exports.States = States;
 
 
@@ -111211,7 +111212,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(84));
+__export(__webpack_require__(85));
 
 
 /***/ }),
@@ -111224,13 +111225,14 @@ __export(__webpack_require__(84));
 /* 73 */,
 /* 74 */,
 /* 75 */,
-/* 76 */
+/* 76 */,
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(77);
+const Game_1 = __webpack_require__(78);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111252,7 +111254,7 @@ function startApp() {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111261,7 +111263,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(78);
+const states_1 = __webpack_require__(79);
 const network_1 = __webpack_require__(28);
 const guid_1 = __webpack_require__(65);
 /**
@@ -111275,6 +111277,7 @@ class Game extends Phaser.Game {
         super(config);
         // create game id
         this.state.id = guid_1.guid();
+        this.state.started = false;
         // connect to server
         network_1.default.connect();
         // add states to game
@@ -111282,6 +111285,7 @@ class Game extends Phaser.Game {
         this.state.add(states_1.States.LOADING, states_1.Loading);
         this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
         this.state.add(states_1.States.START_GAME, states_1.StartGame);
+        this.state.add(states_1.States.MESSAGE, states_1.Message);
         this.state.start(states_1.States.BOOT);
     }
 }
@@ -111289,7 +111293,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111299,14 +111303,15 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(27));
-__export(__webpack_require__(79));
 __export(__webpack_require__(80));
-__export(__webpack_require__(83));
-__export(__webpack_require__(85));
+__export(__webpack_require__(81));
+__export(__webpack_require__(84));
+__export(__webpack_require__(86));
+__export(__webpack_require__(87));
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111354,7 +111359,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111363,9 +111368,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(81);
+const QRious = __webpack_require__(82);
 const States_1 = __webpack_require__(27);
-const config_1 = __webpack_require__(82);
+const config_1 = __webpack_require__(83);
 /**
  * Ładowanie zasobów
  * @export
@@ -111382,10 +111387,7 @@ class Loading extends Phaser.State {
         this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
         this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
         this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
-        this.game.load.image('tile-1', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (1).png');
-        this.game.load.image('tile-2', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (2).png');
-        this.game.load.image('tile-3', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (3).png');
-        this.game.load.image('tile-5', '../assets/spritesheets/tileset/freescifiplatform/png/Tiles/Tile (5).png');
+        this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
     create() {
         // create qrcode and go to next state
@@ -111468,7 +111470,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -113836,7 +113838,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113848,7 +113850,7 @@ exports.default = {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113860,9 +113862,6 @@ __webpack_require__(3);
 const States_1 = __webpack_require__(27);
 const network_1 = __webpack_require__(28);
 const models_1 = __webpack_require__(66);
-//TODO licznik do rozpoczęcia gry
-//? uruchom licznik gdy pojawi się co najmniej dwóch graczy
-//TODO zatrzymaj licznik gdy nie ma graczy
 /**
  * Menu główne
  * @export
@@ -113906,28 +113905,31 @@ class MainMenu extends Phaser.State {
             this.showConnected();
         });
         network_1.default.onUpdateTimer((sec) => {
-            this.timer.setText(sec);
+            this.timer.setText('The game will start in ' + sec);
         });
         network_1.default.onStartGame(() => {
             this.game.state.players = {};
-            this.game.state.start(States_1.States.START_GAME);
+            if (Object.keys(this.game.state.players).length < 1) {
+                const message = 'No connected players';
+                const text = 'Try again';
+                const action = () => this.game.state.start(States_1.States.MAIN_MENU);
+                this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
+            }
+            else {
+                this.game.state.started = true;
+                this.game.state.start(States_1.States.START_GAME);
+            }
         });
         network_1.default.startTimer();
     }
     create() {
         // show game title
-        const text = this.game.add.text(this.game.world.centerX, 40, 'SUPER GAME TITLE', {
+        const title = this.game.add.text(this.game.world.centerX, 40, 'SUPER GAME TITLE', {
             font: '35px Kenvector Future',
             fill: '#ffffff',
             align: 'center'
         });
-        text.anchor.set(0.5, 0);
-        this.timer = this.game.add.text(this.game.world.width - 150, 32.5, '10', {
-            font: '50px Kenvector Future',
-            fill: '#ffffff',
-            align: 'center'
-        });
-        this.timer.anchor.set(0.5, 0);
+        title.anchor.set(0.5, 0);
         // show qrcode
         const qr = this.game.add.sprite(this.game.world.centerX, 100, 'qrcode');
         qr.anchor.set(0.5, 0);
@@ -113938,6 +113940,12 @@ class MainMenu extends Phaser.State {
             align: 'center'
         });
         gameIdText.anchor.set(0.5, 0);
+        this.timer = this.game.add.text(this.game.world.centerX, 440, 'The game will start in ...', {
+            font: '30px Kenvector Future',
+            fill: '#ffffff',
+            align: 'center'
+        });
+        this.timer.anchor.set(0.5, 0);
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
@@ -113972,7 +113980,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114012,15 +114020,17 @@ class Player extends Phaser.Sprite {
         this.y = y;
     }
     update() {
-        this.body.velocity.x = this.vector.x * 6;
-        this.body.velocity.y = this.vector.y * 6;
+        const x = this.game.state.started ? 100 + (this.vector.x * 6) : 0;
+        const y = this.game.state.started ? this.vector.y * 6 : 0;
+        this.body.velocity.x = x;
+        this.body.velocity.y = y;
     }
 }
 exports.Player = Player;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114038,13 +114048,6 @@ const models_1 = __webpack_require__(66);
  * @extends {Phaser.State}
  */
 class StartGame extends Phaser.State {
-    constructor() {
-        super(...arguments);
-        this.platform = {
-            step: 77,
-            scale: 0.3
-        };
-    }
     preload() {
         network_1.default.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -114061,20 +114064,68 @@ class StartGame extends Phaser.State {
             const player = this.game.state.players[playerId];
             player.vector = new Victor(update.x, update.y);
         });
+        network_1.default.onPlayerDisconnected((player) => {
+            // remove player
+            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
+                if (this.game.state.players[nextId].id == player.id) {
+                    this.game.state.players[nextId].destroy();
+                    return players;
+                }
+                players[nextId] = this.game.state.players[nextId];
+                return players;
+            }, {});
+        });
         network_1.default.getAllPlayers();
     }
     create() {
-        // var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'GAME START NOW', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
-        // message.anchor.set(0.5);
         this.game.world.setBounds(0, 0, 50000, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => this.game.state.players[playerId].update());
     }
-    shutdown() { }
+    shutdown() {
+        network_1.default.removeListener(network_1.default.ALL_PLAYERS);
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
+        network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
+    }
 }
 exports.StartGame = StartGame;
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+/**
+ * Wyświetlanie wiadomości z błędami
+ * @export
+ * @class Message
+ * @extends {Phaser.State}
+ */
+class Message extends Phaser.State {
+    init(message, text, action) {
+        this.message = message;
+        this.text = text;
+        this.action = action.bind(this);
+    }
+    preload() { }
+    create() {
+        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        message.anchor.set(0.5);
+        var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, 'grey-button-04', this.action, this, 2, 1, 0);
+        button.anchor.set(0.5);
+        var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
+        buttonText.anchor.set(0.5);
+    }
+}
+exports.Message = Message;
 
 
 /***/ })

@@ -1,7 +1,7 @@
 const socketio = require('socket.io');
 const { Game, Player } = require('../models');
 const MAX_PLAYERS = 4;
-const TIME = 30;
+const TIME = 45;
 
 module.exports = (server) => {
     var io = socketio.listen(server);
@@ -17,7 +17,7 @@ module.exports = (server) => {
             socket.join('game-' + id);
             io.to(socket.id).emit('game-assigned-successful');
             socket.on('disconnect', () => {
-                if (socket.game) socket.broadcast.to('game-' + socket.game.id).emit('game-disconnected'); 
+                if (socket.game) socket.broadcast.to('game-' + socket.game.id).emit('game-not-available'); 
             });
         });
 
@@ -52,8 +52,17 @@ module.exports = (server) => {
 
         socket.on('set-player-character', (character) => {
             socket.player.character = character;
-            socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', character);
-            socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', socket.player);
+            const game = getGame(socket.player.gameId);
+            if (!game) {
+                io.to(socket.id).emit('game-not-available');
+            } else if (numberOfPlayersInGame(socket.player.gameId) >= MAX_PLAYERS) {
+                io.to(socket.id).emit('game-full');
+            } else if (game.started) {
+                io.to(socket.id).emit('game-already-started');
+            } else {
+                socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', character);
+                socket.broadcast.to('game-' + socket.player.gameId).emit('update-players-state', socket.player);
+            }
         });
 
         socket.on('get-characters-in-use', () => {
@@ -68,9 +77,8 @@ module.exports = (server) => {
                 io.to('game-' + socket.game.id).emit('update-timer', socket.timerSeconds);
                 if (socket.timerSeconds <= 0) {
                     clearInterval(socket.timerInterval);
+                    socket.game.started = true;
                     io.to('game-' + socket.game.id).emit('start-game');
-                    //TODO if game started player can't join
-                    //TODO change game started to true
                 }
             }, 1000);
         });
@@ -80,7 +88,6 @@ module.exports = (server) => {
         });
 
         socket.on('update-player-xy', (gameId, update) => {
-            console.log(update);
             socket.broadcast.to('game-' + gameId).emit('update-player-xy', socket.player.id, update);
         });
     });
