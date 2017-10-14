@@ -113908,7 +113908,6 @@ class MainMenu extends Phaser.State {
             this.timer.setText('The game will start in ' + sec);
         });
         network_1.default.onStartGame(() => {
-            this.game.state.players = {};
             if (Object.keys(this.game.state.players).length < 1) {
                 const message = 'No connected players';
                 const text = 'Try again';
@@ -113916,6 +113915,7 @@ class MainMenu extends Phaser.State {
                 this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
             }
             else {
+                this.game.state.players = {};
                 this.game.state.started = true;
                 this.game.state.start(States_1.States.START_GAME);
             }

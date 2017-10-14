@@ -64,13 +64,13 @@ export class MainMenu extends Phaser.State {
         });
 
         Network.onStartGame(() => {
-            (<any>this.game.state).players = {};
             if (Object.keys((<any>this.game.state).players).length < 1) {
                 const message = 'No connected players';
                 const text = 'Try again';
                 const action = () => this.game.state.start(States.MAIN_MENU);
                 this.game.state.start(States.MESSAGE, true, false, message, text, action);
             } else {
+                (<any>this.game.state).players = {};
                 (<any>this.game.state).started = true;
                 this.game.state.start(States.START_GAME);
             }
