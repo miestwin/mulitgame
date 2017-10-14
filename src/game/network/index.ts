@@ -16,6 +16,7 @@ export default class Network {
     public static UPDATE_TIMER = 'update-timer';
     public static START_GAME = 'start-game';
     public static ALL_PLAYERS = 'all-players';
+    private static UPDATE_PLAYER_XY = 'update-player-xy';
 
     public static connect () {
         Network.socket = io();
@@ -124,5 +125,9 @@ export default class Network {
      */
     public static onGetAllPlayers(fn: Function) {
         Network.socket.on(Network.ALL_PLAYERS, fn);
+    }
+
+    public static onPlayedUpdateXY(fn: Function) {
+        Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
     }
 }

@@ -6,10 +6,8 @@ import { States } from './States';
 
 import Network from '../network';
 
-/**
- * Deklaracja biblioteki Victor 
- */
 declare var Victor;
+declare var gameId;
 
 /**
  * Kontroler gry
@@ -95,6 +93,8 @@ export class GameController extends Phaser.State {
                 }
             }
         }
+
+        Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
     }
 
     shutdown() {

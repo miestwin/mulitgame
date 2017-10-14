@@ -8,20 +8,9 @@ import * as io from 'socket.io-client';
 export default class Network {
     private static socket;
 
-    /**
-     * Nazwy emiterów
-     * @static
-     * @memberof Network
-     */
     public static NEW_PLAYER = 'new-player';
     public static SET_PLAYER_CHARACTER = 'set-player-character';
     public static GET_CHARACTERS_IN_USE = 'get-characters-in-use';
-
-    /**
-     * Nazwy listenerów
-     * @static
-     * @memberof Network
-     */
     public static GAME_NOT_AVAILABLE = 'game-not-available';
     public static GAME_FULL = 'game-full';
     public static GAME_ALREADY_STARTED = 'game-already-started';
@@ -29,6 +18,7 @@ export default class Network {
     public static RECEIVE_CONFIRMATION = 'receive-confirmation';
     public static UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
     public static START_GAME = 'start-game';
+    public static UPDATE_PLAYER_XY = 'update-player-xy'
 
     static connect () {
         Network.socket = io();
@@ -78,6 +68,15 @@ export default class Network {
      */
     public static getAvatarsInUse() {
         Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
+    }
+
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @memberof Network
+     */
+    public static updatePlayerXY(gameId, update) {
+        Network.socket.emit(Network.UPDATE_PLAYER_XY, gameId, update);
     }
 
     /**

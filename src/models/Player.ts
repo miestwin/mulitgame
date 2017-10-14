@@ -2,6 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+declare var Victor;
+
 export class Player extends Phaser.Sprite {
 
     /**
@@ -42,7 +44,9 @@ export class Player extends Phaser.Sprite {
      * @type {number}
      * @memberof Player
      */
-    private score: number;
+    public score: number;
+
+    public vector;
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         super(game, x, y, avatar);
@@ -50,9 +54,12 @@ export class Player extends Phaser.Sprite {
         this._socketId = socketId;
         this.avatar = avatar;
         this.score = 0;
+        this.vector = new Victor(0, 0);
         this.anchor.setTo(0.5);
         this.scale.setTo(0.7);
         game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.body.collideWorldBounds = true;
     }
 
     /**
@@ -66,14 +73,8 @@ export class Player extends Phaser.Sprite {
         this.y = y;
     }
 
-    init(game: Phaser.Game, x: number, y: number) {
-        // game.physics.arcade.enable(this._sprite);
-        // this._sprite.body.bounce.y = 0.2;
-        // this._sprite.body.gravity.y = 300;
-        // this._sprite.body.collideWorldBounds = true;
-    }
-
-    update() {
-
+    public update() {
+        this.body.velocity.x = this.vector.x * 100;
+        this.body.velocity.y = this.vector.y * 100;
     }
 }

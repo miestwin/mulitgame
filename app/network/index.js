@@ -78,6 +78,11 @@ module.exports = (server) => {
         socket.on('all-players', () => {
             io.to(socket.id).emit('all-players', getAllPlayersForGame(socket.game.id));
         });
+
+        socket.on('update-player-xy', (gameId, update) => {
+            console.log(update);
+            socket.broadcast.to('game-' + gameId).emit('update-player-xy', socket.player.id, update);
+        });
     });
 
     /**

@@ -289,7 +289,7 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(50);
-var hasBinary = __webpack_require__(16);
+var hasBinary = __webpack_require__(17);
 var sliceBuffer = __webpack_require__(51);
 var after = __webpack_require__(52);
 var utf8 = __webpack_require__(53);
@@ -1533,9 +1533,9 @@ function localstorage() {
 
 var debug = __webpack_require__(39)('socket.io-parser');
 var Emitter = __webpack_require__(4);
-var hasBin = __webpack_require__(16);
+var hasBin = __webpack_require__(17);
 var binary = __webpack_require__(43);
-var isBuf = __webpack_require__(17);
+var isBuf = __webpack_require__(18);
 
 /**
  * Protocol version.
@@ -2160,6 +2160,150 @@ exports.States = States;
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const io = __webpack_require__(35);
+/**
+ * Połączenie z serwerem
+ * @export
+ * @class Network
+ */
+class Network {
+    static connect() {
+        Network.socket = io();
+        Network.initialize();
+    }
+    static initialize() {
+        Network.socket.on('disconnect', () => {
+            document.location.reload();
+        });
+    }
+    /**
+     * Usunięcie podanego listenere
+     * @static
+     * @param {string} listener
+     * @memberof Network
+     */
+    static removeListener(listener) {
+        Network.socket.off(listener);
+    }
+    /**
+     * Nadaje informację o nowym graczu
+     * @static
+     * @param {any} id
+     * @memberof Network
+     */
+    static newPlayer({ id, gameId }) {
+        Network.socket.emit(Network.NEW_PLAYER, { id: id, gameId: gameId });
+    }
+    /**
+     * Ustawia postać gracza
+     * @static
+     * @param {string} character
+     * @memberof Network
+     */
+    static setPlayerAvatar(character) {
+        Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
+    }
+    /**
+     * Pobiera postacie które są już używane
+     * @static
+     * @memberof Network
+     */
+    static getAvatarsInUse() {
+        Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
+    }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @memberof Network
+     */
+    static updatePlayerXY(gameId, update) {
+        Network.socket.emit(Network.UPDATE_PLAYER_XY, gameId, update);
+    }
+    /**
+     * Gra jest niedostępna
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGameNotAvailable(fn) {
+        Network.socket.on(Network.GAME_NOT_AVAILABLE, fn);
+    }
+    /**
+     * Gra ma zajęte wszystkie sloty
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGameFull(fn) {
+        Network.socket.on(Network.GAME_FULL, fn);
+    }
+    /**
+     * Gra już się rozpoczeła
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGameAlreadyStarted(fn) {
+        Network.socket.on(Network.GAME_ALREADY_STARTED, fn);
+    }
+    /**
+     * Gracz został utworzony pomyślnie
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayerAssignedSuccessful(fn) {
+        Network.socket.on(Network.PLAYER_ASSIGNED_SUCCESSFUL, fn);
+    }
+    /**
+     * Otrzymanie potwierdzenia
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onReceiveConfirmation(fn) {
+        Network.socket.on(Network.RECEIVE_CONFIRMATION, fn);
+    }
+    /**
+     * Aktualizacja wyboru postaci
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateAvatarSelector(fn) {
+        Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
+    }
+    /**
+     * Rozpoczęcie gry
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onStartGame(fn) {
+        Network.socket.on(Network.START_GAME, fn);
+    }
+}
+Network.NEW_PLAYER = 'new-player';
+Network.SET_PLAYER_CHARACTER = 'set-player-character';
+Network.GET_CHARACTERS_IN_USE = 'get-characters-in-use';
+Network.GAME_NOT_AVAILABLE = 'game-not-available';
+Network.GAME_FULL = 'game-full';
+Network.GAME_ALREADY_STARTED = 'game-already-started';
+Network.PLAYER_ASSIGNED_SUCCESSFUL = 'player-assigned-successful';
+Network.RECEIVE_CONFIRMATION = 'receive-confirmation';
+Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
+Network.START_GAME = 'start-game';
+Network.UPDATE_PLAYER_XY = 'update-player-xy';
+exports.default = Network;
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports) {
 
 /**
@@ -2204,7 +2348,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2273,7 +2417,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2293,7 +2437,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2302,13 +2446,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(45);
-var Socket = __webpack_require__(23);
+var Socket = __webpack_require__(24);
 var Emitter = __webpack_require__(4);
 var parser = __webpack_require__(11);
-var on = __webpack_require__(24);
-var bind = __webpack_require__(25);
+var on = __webpack_require__(25);
+var bind = __webpack_require__(26);
 var debug = __webpack_require__(7)('socket.io-client:manager');
-var indexOf = __webpack_require__(22);
+var indexOf = __webpack_require__(23);
 var Backoff = __webpack_require__(64);
 
 /**
@@ -2872,7 +3016,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -2932,7 +3076,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2943,7 +3087,7 @@ var Transport = __webpack_require__(13);
 var parseqs = __webpack_require__(8);
 var parser = __webpack_require__(5);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(21);
+var yeast = __webpack_require__(22);
 var debug = __webpack_require__(10)('engine.io-client:polling');
 
 /**
@@ -3183,7 +3327,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3258,7 +3402,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 
@@ -3273,7 +3417,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3284,8 +3428,8 @@ module.exports = function(arr, obj){
 var parser = __webpack_require__(11);
 var Emitter = __webpack_require__(4);
 var toArray = __webpack_require__(63);
-var on = __webpack_require__(24);
-var bind = __webpack_require__(25);
+var on = __webpack_require__(25);
+var bind = __webpack_require__(26);
 var debug = __webpack_require__(7)('socket.io-client:socket');
 var parseqs = __webpack_require__(8);
 
@@ -3697,7 +3841,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 
@@ -3727,7 +3871,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /**
@@ -3753,151 +3897,6 @@ module.exports = function(obj, fn){
     return fn.apply(obj, args.concat(slice.call(arguments)));
   }
 };
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const io = __webpack_require__(35);
-/**
- * Połączenie z serwerem
- * @export
- * @class Network
- */
-class Network {
-    static connect() {
-        Network.socket = io();
-        Network.initialize();
-    }
-    static initialize() {
-        Network.socket.on('disconnect', () => {
-            document.location.reload();
-        });
-    }
-    /**
-     * Usunięcie podanego listenere
-     * @static
-     * @param {string} listener
-     * @memberof Network
-     */
-    static removeListener(listener) {
-        Network.socket.off(listener);
-    }
-    /**
-     * Nadaje informację o nowym graczu
-     * @static
-     * @param {any} id
-     * @memberof Network
-     */
-    static newPlayer({ id, gameId }) {
-        Network.socket.emit(Network.NEW_PLAYER, { id: id, gameId: gameId });
-    }
-    /**
-     * Ustawia postać gracza
-     * @static
-     * @param {string} character
-     * @memberof Network
-     */
-    static setPlayerAvatar(character) {
-        Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
-    }
-    /**
-     * Pobiera postacie które są już używane
-     * @static
-     * @memberof Network
-     */
-    static getAvatarsInUse() {
-        Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
-    }
-    /**
-     * Gra jest niedostępna
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGameNotAvailable(fn) {
-        Network.socket.on(Network.GAME_NOT_AVAILABLE, fn);
-    }
-    /**
-     * Gra ma zajęte wszystkie sloty
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGameFull(fn) {
-        Network.socket.on(Network.GAME_FULL, fn);
-    }
-    /**
-     * Gra już się rozpoczeła
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGameAlreadyStarted(fn) {
-        Network.socket.on(Network.GAME_ALREADY_STARTED, fn);
-    }
-    /**
-     * Gracz został utworzony pomyślnie
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayerAssignedSuccessful(fn) {
-        Network.socket.on(Network.PLAYER_ASSIGNED_SUCCESSFUL, fn);
-    }
-    /**
-     * Otrzymanie potwierdzenia
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onReceiveConfirmation(fn) {
-        Network.socket.on(Network.RECEIVE_CONFIRMATION, fn);
-    }
-    /**
-     * Aktualizacja wyboru postaci
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onUpdateAvatarSelector(fn) {
-        Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
-    }
-    /**
-     * Rozpoczęcie gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onStartGame(fn) {
-        Network.socket.on(Network.START_GAME, fn);
-    }
-}
-/**
- * Nazwy emiterów
- * @static
- * @memberof Network
- */
-Network.NEW_PLAYER = 'new-player';
-Network.SET_PLAYER_CHARACTER = 'set-player-character';
-Network.GET_CHARACTERS_IN_USE = 'get-characters-in-use';
-/**
- * Nazwy listenerów
- * @static
- * @memberof Network
- */
-Network.GAME_NOT_AVAILABLE = 'game-not-available';
-Network.GAME_FULL = 'game-full';
-Network.GAME_ALREADY_STARTED = 'game-already-started';
-Network.PLAYER_ASSIGNED_SUCCESSFUL = 'player-assigned-successful';
-Network.RECEIVE_CONFIRMATION = 'receive-confirmation';
-Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
-Network.START_GAME = 'start-game';
-exports.default = Network;
 
 
 /***/ }),
@@ -107109,7 +107108,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 var url = __webpack_require__(36);
 var parser = __webpack_require__(11);
-var Manager = __webpack_require__(18);
+var Manager = __webpack_require__(19);
 var debug = __webpack_require__(7)('socket.io-client');
 
 /**
@@ -107194,8 +107193,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(18);
-exports.Socket = __webpack_require__(23);
+exports.Manager = __webpack_require__(19);
+exports.Socket = __webpack_require__(24);
 
 
 /***/ }),
@@ -107207,7 +107206,7 @@ exports.Socket = __webpack_require__(23);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(15);
+var parseuri = __webpack_require__(16);
 var debug = __webpack_require__(7)('socket.io-client:url');
 
 /**
@@ -108226,7 +108225,7 @@ module.exports = Array.isArray || function (arr) {
  */
 
 var isArray = __webpack_require__(44);
-var isBuf = __webpack_require__(17);
+var isBuf = __webpack_require__(18);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108406,12 +108405,12 @@ module.exports.parser = __webpack_require__(5);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(19);
+var transports = __webpack_require__(20);
 var Emitter = __webpack_require__(4);
 var debug = __webpack_require__(10)('engine.io-client:socket');
-var index = __webpack_require__(22);
+var index = __webpack_require__(23);
 var parser = __webpack_require__(5);
-var parseuri = __webpack_require__(15);
+var parseuri = __webpack_require__(16);
 var parsejson = __webpack_require__(62);
 var parseqs = __webpack_require__(8);
 
@@ -108547,7 +108546,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(13);
-Socket.transports = __webpack_require__(19);
+Socket.transports = __webpack_require__(20);
 Socket.parser = __webpack_require__(5);
 
 /**
@@ -109181,7 +109180,7 @@ try {
  */
 
 var XMLHttpRequest = __webpack_require__(12);
-var Polling = __webpack_require__(20);
+var Polling = __webpack_require__(21);
 var Emitter = __webpack_require__(4);
 var inherit = __webpack_require__(9);
 var debug = __webpack_require__(10)('engine.io-client:polling-xhr');
@@ -110526,7 +110525,7 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(20);
+var Polling = __webpack_require__(21);
 var inherit = __webpack_require__(9);
 
 /**
@@ -110767,7 +110766,7 @@ var Transport = __webpack_require__(13);
 var parser = __webpack_require__(5);
 var parseqs = __webpack_require__(8);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(21);
+var yeast = __webpack_require__(22);
 var debug = __webpack_require__(10)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -111261,7 +111260,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(69);
-const network_1 = __webpack_require__(26);
+const network_1 = __webpack_require__(15);
 const guid_1 = __webpack_require__(65);
 /**
  * Utworzenie kontrolera
@@ -111320,7 +111319,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(14);
 const shared_1 = __webpack_require__(32);
-const network_1 = __webpack_require__(26);
+const network_1 = __webpack_require__(15);
 /**
  * Uruchamianie systemu
  * @export
@@ -111488,7 +111487,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(14);
-const network_1 = __webpack_require__(26);
+const network_1 = __webpack_require__(15);
 /**
  * Wybór postaci
  * @export
@@ -111610,7 +111609,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(14);
-const network_1 = __webpack_require__(26);
+const network_1 = __webpack_require__(15);
 /**
  * Wyświetlanie wiadomości z błędami
  * @export
@@ -111647,6 +111646,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+const network_1 = __webpack_require__(15);
 /**
  * Kontroler gry
  * @export
@@ -111703,6 +111703,7 @@ class GameController extends Phaser.State {
                 }
             }
         }
+        network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
     }
     shutdown() {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));

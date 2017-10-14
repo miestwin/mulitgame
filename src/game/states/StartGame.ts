@@ -8,6 +8,8 @@ import Network from '../network';
 
 import { Player } from '../../models';
 
+declare var Victor;
+
 /**
  * Start rozgrywki
  * @export
@@ -38,6 +40,11 @@ export class StartGame extends Phaser.State {
             });
         });
 
+        Network.onPlayedUpdateXY((playerId, update) => {
+           const player = (<any>this.game.state).players[playerId];
+           player.vector = new Victor(update.x, update.y);
+        });
+
         Network.getAllPlayers();
     }
 
@@ -50,7 +57,7 @@ export class StartGame extends Phaser.State {
     }
 
     update() {  
-        
+        Object.keys((<any>this.game.state).players).forEach(playerId => (<any>this.game.state).players[playerId].update());
     }
 
     shutdown() {}

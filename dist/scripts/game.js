@@ -289,7 +289,7 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(50);
-var hasBinary = __webpack_require__(16);
+var hasBinary = __webpack_require__(17);
 var sliceBuffer = __webpack_require__(51);
 var after = __webpack_require__(52);
 var utf8 = __webpack_require__(53);
@@ -1533,9 +1533,9 @@ function localstorage() {
 
 var debug = __webpack_require__(39)('socket.io-parser');
 var Emitter = __webpack_require__(4);
-var hasBin = __webpack_require__(16);
+var hasBin = __webpack_require__(17);
 var binary = __webpack_require__(43);
-var isBuf = __webpack_require__(17);
+var isBuf = __webpack_require__(18);
 
 /**
  * Protocol version.
@@ -2137,7 +2137,8 @@ Transport.prototype.onClose = function () {
 
 /***/ }),
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports) {
 
 /**
@@ -2182,7 +2183,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2251,7 +2252,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2271,7 +2272,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2280,13 +2281,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(45);
-var Socket = __webpack_require__(23);
+var Socket = __webpack_require__(24);
 var Emitter = __webpack_require__(4);
 var parser = __webpack_require__(11);
-var on = __webpack_require__(24);
-var bind = __webpack_require__(25);
+var on = __webpack_require__(25);
+var bind = __webpack_require__(26);
 var debug = __webpack_require__(7)('socket.io-client:manager');
-var indexOf = __webpack_require__(22);
+var indexOf = __webpack_require__(23);
 var Backoff = __webpack_require__(64);
 
 /**
@@ -2850,7 +2851,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -2910,7 +2911,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2921,7 +2922,7 @@ var Transport = __webpack_require__(13);
 var parseqs = __webpack_require__(8);
 var parser = __webpack_require__(5);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(21);
+var yeast = __webpack_require__(22);
 var debug = __webpack_require__(10)('engine.io-client:polling');
 
 /**
@@ -3161,7 +3162,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3236,7 +3237,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 
@@ -3251,7 +3252,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3262,8 +3263,8 @@ module.exports = function(arr, obj){
 var parser = __webpack_require__(11);
 var Emitter = __webpack_require__(4);
 var toArray = __webpack_require__(63);
-var on = __webpack_require__(24);
-var bind = __webpack_require__(25);
+var on = __webpack_require__(25);
+var bind = __webpack_require__(26);
 var debug = __webpack_require__(7)('socket.io-client:socket');
 var parseqs = __webpack_require__(8);
 
@@ -3675,7 +3676,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 
@@ -3705,7 +3706,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /**
@@ -3734,7 +3735,6 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 26 */,
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3866,6 +3866,9 @@ class Network {
     static onGetAllPlayers(fn) {
         Network.socket.on(Network.ALL_PLAYERS, fn);
     }
+    static onPlayedUpdateXY(fn) {
+        Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
+    }
 }
 Network.NEW_GAME = 'new-game';
 Network.START_TIMER = 'start-timer';
@@ -3875,6 +3878,7 @@ Network.UPDATE_PLAYERS_STATE = 'update-players-state';
 Network.UPDATE_TIMER = 'update-timer';
 Network.START_GAME = 'start-game';
 Network.ALL_PLAYERS = 'all-players';
+Network.UPDATE_PLAYER_XY = 'update-player-xy';
 exports.default = Network;
 
 
@@ -107085,7 +107089,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 var url = __webpack_require__(36);
 var parser = __webpack_require__(11);
-var Manager = __webpack_require__(18);
+var Manager = __webpack_require__(19);
 var debug = __webpack_require__(7)('socket.io-client');
 
 /**
@@ -107170,8 +107174,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(18);
-exports.Socket = __webpack_require__(23);
+exports.Manager = __webpack_require__(19);
+exports.Socket = __webpack_require__(24);
 
 
 /***/ }),
@@ -107183,7 +107187,7 @@ exports.Socket = __webpack_require__(23);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(15);
+var parseuri = __webpack_require__(16);
 var debug = __webpack_require__(7)('socket.io-client:url');
 
 /**
@@ -108202,7 +108206,7 @@ module.exports = Array.isArray || function (arr) {
  */
 
 var isArray = __webpack_require__(44);
-var isBuf = __webpack_require__(17);
+var isBuf = __webpack_require__(18);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108382,12 +108386,12 @@ module.exports.parser = __webpack_require__(5);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(19);
+var transports = __webpack_require__(20);
 var Emitter = __webpack_require__(4);
 var debug = __webpack_require__(10)('engine.io-client:socket');
-var index = __webpack_require__(22);
+var index = __webpack_require__(23);
 var parser = __webpack_require__(5);
-var parseuri = __webpack_require__(15);
+var parseuri = __webpack_require__(16);
 var parsejson = __webpack_require__(62);
 var parseqs = __webpack_require__(8);
 
@@ -108523,7 +108527,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(13);
-Socket.transports = __webpack_require__(19);
+Socket.transports = __webpack_require__(20);
 Socket.parser = __webpack_require__(5);
 
 /**
@@ -109157,7 +109161,7 @@ try {
  */
 
 var XMLHttpRequest = __webpack_require__(12);
-var Polling = __webpack_require__(20);
+var Polling = __webpack_require__(21);
 var Emitter = __webpack_require__(4);
 var inherit = __webpack_require__(9);
 var debug = __webpack_require__(10)('engine.io-client:polling-xhr');
@@ -110502,7 +110506,7 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(20);
+var Polling = __webpack_require__(21);
 var inherit = __webpack_require__(9);
 
 /**
@@ -110743,7 +110747,7 @@ var Transport = __webpack_require__(13);
 var parser = __webpack_require__(5);
 var parseqs = __webpack_require__(8);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(21);
+var yeast = __webpack_require__(22);
 var debug = __webpack_require__(10)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -113886,8 +113890,6 @@ class MainMenu extends Phaser.State {
                     new models_1.Player(this.game, -100, 540, { id: player.id, socketId: player.socketID, avatar: player.character });
                 this.game.state.players[player.id].anchor.setTo(0.5, 1);
                 this.game.state.players[player.id].scale.setTo(0.5);
-                // (<any>this.game.state).players[player.id].setAnchor(0.5, 1);
-                // (<any>this.game.state).players[player.id].setScale(0.5);
             }
             this.showConnected();
         });
@@ -113992,9 +113994,12 @@ class Player extends Phaser.Sprite {
         this._socketId = socketId;
         this.avatar = avatar;
         this.score = 0;
+        this.vector = new Victor(0, 0);
         this.anchor.setTo(0.5);
-        this.scale.setTo(0.75);
+        this.scale.setTo(0.7);
         game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.body.collideWorldBounds = true;
     }
     /**
      * Ustawia X i Y gracza
@@ -114006,13 +114011,9 @@ class Player extends Phaser.Sprite {
         this.x = x;
         this.y = y;
     }
-    init(game, x, y) {
-        // game.physics.arcade.enable(this._sprite);
-        // this._sprite.body.bounce.y = 0.2;
-        // this._sprite.body.gravity.y = 300;
-        // this._sprite.body.collideWorldBounds = true;
-    }
     update() {
+        this.body.velocity.x = this.vector.x * 100;
+        this.body.velocity.y = this.vector.y * 100;
     }
 }
 exports.Player = Player;
@@ -114053,8 +114054,12 @@ class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1));
                 this.game.state.players[playerId] =
                     new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
-                this.game.state.players[playerId].angle += 45;
+                this.game.state.players[playerId].angle += 90;
             });
+        });
+        network_1.default.onPlayedUpdateXY((playerId, update) => {
+            const player = this.game.state.players[playerId];
+            player.vector = new Victor(update.x, update.y);
         });
         network_1.default.getAllPlayers();
     }
@@ -114065,6 +114070,7 @@ class StartGame extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
     }
     update() {
+        Object.keys(this.game.state.players).forEach(playerId => this.game.state.players[playerId].update());
     }
     shutdown() { }
 }
