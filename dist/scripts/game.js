@@ -114012,8 +114012,8 @@ class Player extends Phaser.Sprite {
         this.y = y;
     }
     update() {
-        this.body.velocity.x = this.vector.x * 100;
-        this.body.velocity.y = this.vector.y * 100;
+        this.body.velocity.x = this.vector.x * 6;
+        this.body.velocity.y = this.vector.y * 6;
     }
 }
 exports.Player = Player;
