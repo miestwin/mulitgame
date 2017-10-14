@@ -8,24 +8,14 @@ import * as io from 'socket.io-client';
 export default class Network {
     private static socket;
 
-    /**
-     * Nazwy emiterów
-     * @static
-     * @memberof Network
-     */
     public static NEW_GAME = 'new-game';
     public static START_TIMER = 'start-timer';
-
-    /**
-     * Nazwy listenerów
-     * @static
-     * @memberof Network
-     */
     public static PLAYER_DISCONNECTED = 'player-disconnected';
     public static GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
     public static UPDATE_PLAYERS_STATE = 'update-players-state';
     public static UPDATE_TIMER = 'update-timer';
     public static START_GAME = 'start-game';
+    public static ALL_PLAYERS = 'all-players';
 
     public static connect () {
         Network.socket = io();
@@ -65,6 +55,15 @@ export default class Network {
      */
     public static startTimer() {
         Network.socket.emit(Network.START_TIMER);
+    }
+
+    /**
+     * Pobierz wszystkich graczy
+     * @static
+     * @memberof Network
+     */
+    public static getAllPlayers() {
+        Network.socket.emit(Network.ALL_PLAYERS);
     }
 
     /**
@@ -115,5 +114,15 @@ export default class Network {
      */
     public static onStartGame(fn: Function) {
         Network.socket.on(Network.START_GAME, fn);
+    }
+
+    /**
+     * Odebranie informacji o graczach
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onGetAllPlayers(fn: Function) {
+        Network.socket.on(Network.ALL_PLAYERS, fn);
     }
 }

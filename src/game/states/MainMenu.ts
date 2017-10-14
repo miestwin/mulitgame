@@ -42,9 +42,12 @@ export class MainMenu extends Phaser.State {
         Network.onUpdatePlayersState((player) => {
             // update players state
             if (!(<any>this.game.state).players[player.id]) {
-                (<any>this.game.state).players[player.id] = new Player(player);
-                (<any>this.game.state).players[player.id].showCharacter(this.game, -100, 540);
-                (<any>this.game.state).players[player.id].idle();
+                (<any>this.game.state).players[player.id] = 
+                    new Player(this.game, -100, 540, { id: player.id, socketId: player.socketID, avatar: player.character });
+                (<any>this.game.state).players[player.id].anchor.setTo(0.5, 1);
+                (<any>this.game.state).players[player.id].scale.setTo(0.5);
+                // (<any>this.game.state).players[player.id].setAnchor(0.5, 1);
+                // (<any>this.game.state).players[player.id].setScale(0.5);
             } 
             this.showConnected();
         });
@@ -67,6 +70,7 @@ export class MainMenu extends Phaser.State {
         });
 
         Network.onStartGame(() => {
+            (<any>this.game.state).players = {};
             this.game.state.start(States.START_GAME);
         });
 
@@ -128,7 +132,7 @@ export class MainMenu extends Phaser.State {
             const step = this.game.world.centerX / count;
             const offset = step / 2;
             const x = step * (index + 1) + (offset * (count - 1));
-            (<any>this.game.state).players[playerId].setX(x);
+            (<any>this.game.state).players[playerId].x = x;
             const text = this.game.add.text(x, 555, 
                 `Player ${index + 1}\nconnected`, 
                 { 

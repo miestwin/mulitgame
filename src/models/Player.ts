@@ -1,6 +1,8 @@
+import 'p2';
+import 'pixi';
 import 'phaser';
 
-export class Player {
+export class Player extends Phaser.Sprite {
 
     /**
      * Identyfikator
@@ -27,12 +29,12 @@ export class Player {
     }
 
     /**
-     * Nazwa używanej postać
+     * Nazwa używanego avatara
      * @private
      * @type {string}
      * @memberof Player
      */
-    private character: string;
+    private avatar: string;
 
     /**
      * Wynik
@@ -42,105 +44,36 @@ export class Player {
      */
     private score: number;
 
-    /**
-     * Pozycja gracza na mapie gry
-     * @private
-     * @type {Object}
-     * @memberof Player
-     */
-    private position: Object;
-
-    /**
-     * Awatar
-     * @private
-     * @type {Phaser.Sprite}
-     * @memberof Player
-     */
-    private _sprite: Phaser.Sprite;
-
-    get sprite() {
-        return this._sprite;
-    }
-
-    constructor(player) {
-        this._id = player.id;
-        this._socketId = player.socketId;
-        this.character = player.character;
+    constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
+        super(game, x, y, avatar);
+        this._id = id;
+        this._socketId = socketId;
+        this.avatar = avatar;
         this.score = 0;
-        this.position = {};
+        this.anchor.setTo(0.5);
+        this.scale.setTo(0.7);
+        game.add.existing(this);
     }
 
-
     /**
-     * Inicjalizacja awatara gracza
-     * @param {Phaser.Game} game 
+     * Ustawia X i Y gracza
      * @param {number} x 
      * @param {number} y 
      * @memberof Player
      */
-    init(game: Phaser.Game, x: number, y: number) {
-        this._sprite = game.add.sprite(x, y, this.character + '-run');
-        this._sprite.anchor.set(0.5, 1);
-        this._sprite.scale.set(0.18);
-        //
-        game.physics.arcade.enable(this._sprite);
-        this._sprite.body.bounce.y = 0.2;
-        this._sprite.body.gravity.y = 300;
-        this._sprite.body.collideWorldBounds = true;
-        
-        this._sprite.animations.add('run');
+    public setXY(x: number, y: number) {
+        this.x = x;
+        this.y = y;
     }
 
-    showCharacter(game: Phaser.Game, x: number, y: number) {
-        this._sprite = game.add.sprite(x, y, this.character + '-idle');
-        this._sprite.anchor.set(0.5, 1);
-        this._sprite.scale.set(0.18);
-        this._sprite.animations.add('idle');
+    init(game: Phaser.Game, x: number, y: number) {
+        // game.physics.arcade.enable(this._sprite);
+        // this._sprite.body.bounce.y = 0.2;
+        // this._sprite.body.gravity.y = 300;
+        // this._sprite.body.collideWorldBounds = true;
     }
 
     update() {
 
-    }
-
-    /**
-     * Ustawia X
-     * @param {number} value 
-     * @memberof Player
-     */
-    setX(value: number) {
-        if (this._sprite != null) {
-            this._sprite.x = value;
-        }
-    }
-
-    /**
-     * Ustawia Y
-     * @param {number} value 
-     * @memberof Player
-     */
-    setY(value: number) {
-        if (this._sprite != null) {
-            this._sprite.y = value;
-        }
-    }
-
-    /**
-     * Uruchamia animację idle
-     * @memberof Player
-     */
-    idle() {
-        this._sprite.animations.play('idle', 15, true);
-    }
-
-    run() {
-        this._sprite.animations.play('run', 30, true);
-    }
-
-    /**
-     * Usunięcie sprite
-     * @memberof Player
-     */
-    destroy() {
-        this._sprite.destroy();
     }
 }

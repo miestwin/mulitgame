@@ -74,6 +74,10 @@ module.exports = (server) => {
                 }
             }, 1000);
         });
+
+        socket.on('all-players', () => {
+            io.to(socket.id).emit('all-players', getAllPlayersForGame(socket.game.id));
+        });
     });
 
     /**
@@ -132,11 +136,11 @@ module.exports = (server) => {
     const getAllPlayersForGame = (gameId) => {
         return Object.keys(io.sockets.connected).reduce((players, socketID) => {
             const player = io.sockets.connected[socketID].player;
-            if (player && player.gameId == gameId) {
-                players.push(player);
+            if (player && !players[player.id] && player.gameId == gameId) {
+                players[player.id] = player;
             }
             return players;
-        }, []);
+        }, {});
     };
 
     /**

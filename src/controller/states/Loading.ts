@@ -46,10 +46,9 @@ export class Loading extends Phaser.State {
     private loadStart() {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
-            this.game.world.centerY - 30,
+            this.game.world.centerY - 40,
             'explosion-3');
         this.loadingSprite.anchor.set(0.5);
-        //this.loadingSprite.scale.set(0.1);
         this.loadingSprite.animations.add('boom');
         this.loadingSprite.animations.play('boom', 20, true);
 
