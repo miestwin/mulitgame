@@ -82,11 +82,11 @@ export class GameController extends Phaser.State {
                 const touch = this.tpCache[i];
                 if (touch.identifier == this.leftTouchID) {
                     this.graphics.lineStyle(6, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60);
-                    this.graphics.lineStyle(2, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 80);
                     this.graphics.lineStyle(2, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 60);
+                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 100);
+                    this.graphics.lineStyle(2, 0x66ffff);
+                    this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 80);
                 } else {
                     this.graphics.lineStyle(2, 0xff0000);
                     this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
@@ -124,10 +124,10 @@ export class GameController extends Phaser.State {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchPos = new Victor(touch.clientX, touch.clientY);
-                if (Math.abs(this.leftTouchStartPos.distance(this.leftTouchPos)) > 70) {
+                if (Math.abs(this.leftTouchStartPos.distance(this.leftTouchPos)) > 90) {
                     this.leftTouchPos.subtract(this.leftTouchStartPos);
                     this.leftTouchPos.normalize();
-                    this.leftTouchPos.multiply(new Victor(70, 70));
+                    this.leftTouchPos.multiply(new Victor(90, 90));
                     this.leftTouchPos.add(this.leftTouchStartPos);
                 } 
                 this.leftVector.copy(this.leftTouchPos);

@@ -111462,7 +111462,7 @@ const States_1 = __webpack_require__(14);
 class MainMenu extends Phaser.State {
     preload() { }
     create() {
-        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 90, 'Hello player\nlets start', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 90, 'Back story\nand game rules', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
         var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 10, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 0);
@@ -111691,11 +111691,11 @@ class GameController extends Phaser.State {
                 const touch = this.tpCache[i];
                 if (touch.identifier == this.leftTouchID) {
                     this.graphics.lineStyle(6, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 60);
-                    this.graphics.lineStyle(2, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 80);
                     this.graphics.lineStyle(2, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 60);
+                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 100);
+                    this.graphics.lineStyle(2, 0x66ffff);
+                    this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 80);
                 }
                 else {
                     this.graphics.lineStyle(2, 0xff0000);
@@ -111730,10 +111730,10 @@ class GameController extends Phaser.State {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchPos = new Victor(touch.clientX, touch.clientY);
-                if (Math.abs(this.leftTouchStartPos.distance(this.leftTouchPos)) > 70) {
+                if (Math.abs(this.leftTouchStartPos.distance(this.leftTouchPos)) > 90) {
                     this.leftTouchPos.subtract(this.leftTouchStartPos);
                     this.leftTouchPos.normalize();
-                    this.leftTouchPos.multiply(new Victor(70, 70));
+                    this.leftTouchPos.multiply(new Victor(90, 90));
                     this.leftTouchPos.add(this.leftTouchStartPos);
                 }
                 this.leftVector.copy(this.leftTouchPos);

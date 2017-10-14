@@ -114002,7 +114002,7 @@ class Player extends Phaser.Sprite {
         this.body.collideWorldBounds = true;
     }
     /**
-     * Ustawia X i Y gracza
+     * Ustawia X i Y grafiki
      * @param {number} x
      * @param {number} y
      * @memberof Player

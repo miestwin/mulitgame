@@ -15,7 +15,7 @@ export class MainMenu extends Phaser.State {
     public preload() {}
 
     public create() {
-        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 90, 'Hello player\nlets start', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        var helloText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 90, 'Back story\nand game rules', { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
         var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 10, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 0);

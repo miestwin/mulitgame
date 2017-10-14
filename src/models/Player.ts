@@ -46,6 +46,10 @@ export class Player extends Phaser.Sprite {
      */
     public score: number;
 
+    /**
+     * Wektor przesunięcia
+     * @memberof Player
+     */
     public vector;
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
@@ -63,7 +67,7 @@ export class Player extends Phaser.Sprite {
     }
 
     /**
-     * Ustawia X i Y gracza
+     * Ustawia X i Y grafiki
      * @param {number} x 
      * @param {number} y 
      * @memberof Player
