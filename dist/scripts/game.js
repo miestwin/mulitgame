@@ -113859,6 +113859,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+// import * as screenfull from 'screenfull';
 const States_1 = __webpack_require__(27);
 const network_1 = __webpack_require__(28);
 const models_1 = __webpack_require__(66);
@@ -113917,6 +113918,9 @@ class MainMenu extends Phaser.State {
             else {
                 this.game.state.players = {};
                 this.game.state.started = true;
+                // if (screenfull.enabled) {
+                //     screenfull.request();
+                // }
                 this.game.state.start(States_1.States.START_GAME);
             }
         });

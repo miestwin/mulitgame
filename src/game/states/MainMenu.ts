@@ -1,6 +1,7 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
+// import * as screenfull from 'screenfull';
 
 import { States } from './States';
 import Network from '../network';
@@ -72,6 +73,9 @@ export class MainMenu extends Phaser.State {
             } else {
                 (<any>this.game.state).players = {};
                 (<any>this.game.state).started = true;
+                // if (screenfull.enabled) {
+                //     screenfull.request();
+                // }
                 this.game.state.start(States.START_GAME);
             }
         });
