@@ -22,22 +22,14 @@ export class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
-        this.game.load.spritesheet('cat-idle', '../assets/spritesheets/characters/cat/idle/sprite.png', 542, 473, 10);
-        this.game.load.spritesheet('dog-idle', '../assets/spritesheets/characters/dog/idle/sprite.png', 547, 481, 10);
-        this.game.load.spritesheet('temple-idle', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
-        this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
-        this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 516, 10);
+        this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
+        this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
+        this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
+        this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
 
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
-
-        this.game.load.image('left-flat', '../assets/spritesheets/controller/light/leftFlat.png');
-        this.game.load.image('left-shaded', '../assets/spritesheets/controller/light/leftShaded.png');
-        this.game.load.image('right-flat', '../assets/spritesheets/controller/light/rightFlat.png');
-        this.game.load.image('right-shaded', '../assets/spritesheets/controller/light/rightShaded.png');
-        this.game.load.image('x-flat', '../assets/spritesheets/controller/light/xFlat.png');
-        this.game.load.image('x-shaded', '../assets/spritesheets/controller/light/xShaded.png');
     }
 
     create() {
@@ -55,11 +47,11 @@ export class Loading extends Phaser.State {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
             this.game.world.centerY - 30,
-            'jack-run');
+            'explosion-3');
         this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(0.1);
-        this.loadingSprite.animations.add('run');
-        this.loadingSprite.animations.play('run', 30, true);
+        //this.loadingSprite.scale.set(0.1);
+        this.loadingSprite.animations.add('boom');
+        this.loadingSprite.animations.play('boom', 20, true);
 
         this.loadingText = this.game.add.text(
             this.game.world.centerX,

@@ -2152,7 +2152,7 @@ class States {
 States.BOOT = 'Boot';
 States.LOADING = 'Loading';
 States.MAIN_MENU = 'MainMenu';
-States.CHARACTERSELECTOR = 'CharacterSelector';
+States.AVATAR_SELECTOR = 'AvatarSelector';
 States.MESSAGE = 'Message';
 States.GAME_CONTROLLER = 'GameController';
 exports.States = States;
@@ -3802,7 +3802,7 @@ class Network {
      * @param {string} character
      * @memberof Network
      */
-    static setPlayerCharacter(character) {
+    static setPlayerAvatar(character) {
         Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
     }
     /**
@@ -3810,7 +3810,7 @@ class Network {
      * @static
      * @memberof Network
      */
-    static getCharactersInUse() {
+    static getAvatarsInUse() {
         Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
     }
     /**
@@ -3864,7 +3864,7 @@ class Network {
      * @param {Function} fn
      * @memberof Network
      */
-    static onUpdateCharacterSelector(fn) {
+    static onUpdateAvatarSelector(fn) {
         Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
     }
     /**
@@ -111279,7 +111279,7 @@ class Controller extends Phaser.Game {
         this.state.add(states_1.States.BOOT, states_1.Boot);
         this.state.add(states_1.States.LOADING, states_1.Loading);
         this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
-        this.state.add(states_1.States.CHARACTERSELECTOR, states_1.CharacterSelector);
+        this.state.add(states_1.States.AVATAR_SELECTOR, states_1.AvatarSelector);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
         this.state.add(states_1.States.GAME_CONTROLLER, states_1.GameController);
         this.state.start(states_1.States.BOOT);
@@ -111353,7 +111353,7 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont('kenvector', 'Kenvector Future');
         // load loading sprite
-        this.game.load.spritesheet('jack-run', '../assets/spritesheets/characters/jack/run/sprite.png', 579, 763, 8);
+        this.game.load.spritesheet('explosion-3', '../assets/spritesheets/explosion/explosion-3.png', 128, 80, 10);
     }
     create() {
         // assign new game
@@ -111386,19 +111386,12 @@ class Loading extends Phaser.State {
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
-        this.game.load.spritesheet('cat-idle', '../assets/spritesheets/characters/cat/idle/sprite.png', 542, 473, 10);
-        this.game.load.spritesheet('dog-idle', '../assets/spritesheets/characters/dog/idle/sprite.png', 547, 481, 10);
-        this.game.load.spritesheet('temple-idle', '../assets/spritesheets/characters/temple/idle/sprite.png', 319, 486, 9);
-        this.game.load.spritesheet('ninja-idle', '../assets/spritesheets/characters/ninja/idle/sprite.png', 232, 439, 9);
-        this.game.load.spritesheet('robot-idle', '../assets/spritesheets/characters/robot/idle/sprite.png', 567, 516, 10);
+        this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
+        this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
+        this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
+        this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
-        this.game.load.image('left-flat', '../assets/spritesheets/controller/light/leftFlat.png');
-        this.game.load.image('left-shaded', '../assets/spritesheets/controller/light/leftShaded.png');
-        this.game.load.image('right-flat', '../assets/spritesheets/controller/light/rightFlat.png');
-        this.game.load.image('right-shaded', '../assets/spritesheets/controller/light/rightShaded.png');
-        this.game.load.image('x-flat', '../assets/spritesheets/controller/light/xFlat.png');
-        this.game.load.image('x-shaded', '../assets/spritesheets/controller/light/xShaded.png');
     }
     create() {
         this.game.state.start(States_1.States.MAIN_MENU);
@@ -111411,11 +111404,11 @@ class Loading extends Phaser.State {
      * @memberof Loading
      */
     loadStart() {
-        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 30, 'jack-run');
+        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 30, 'explosion-3');
         this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(0.1);
-        this.loadingSprite.animations.add('run');
-        this.loadingSprite.animations.play('run', 30, true);
+        //this.loadingSprite.scale.set(0.1);
+        this.loadingSprite.animations.add('boom');
+        this.loadingSprite.animations.play('boom', 20, true);
         this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 25, 'Loading ...', {
             font: '20px Kenvector Future',
             fill: '#ffffff',
@@ -111478,7 +111471,7 @@ class MainMenu extends Phaser.State {
         buttonText.anchor.set(0.5, 0);
     }
     actionOnClick() {
-        this.game.state.start(States_1.States.CHARACTERSELECTOR);
+        this.game.state.start(States_1.States.AVATAR_SELECTOR);
     }
 }
 exports.MainMenu = MainMenu;
@@ -111499,30 +111492,29 @@ const network_1 = __webpack_require__(26);
 /**
  * Wybór postaci
  * @export
- * @class CharacterSelector
+ * @class AvatarSelector
  * @extends {Phaser.State}
  */
-class CharacterSelector extends Phaser.State {
+class AvatarSelector extends Phaser.State {
     constructor() {
         super(...arguments);
         /**
-         * Dostępne postacie
+         * Dostępne statki
          * @private
          * @type {Array<any>}
-         * @memberof CharacterSelector
+         * @memberof AvatarSelector
          */
-        this.characters = [
-            { name: 'cat', use: false },
-            { name: 'dog', use: false },
-            { name: 'temple', use: false },
-            { name: 'ninja', use: false },
-            { name: 'robot', use: false }
+        this.ships = [
+            { name: 'player-ship_blue', use: false },
+            { name: 'player-ship_green', use: false },
+            { name: 'player-ship_red', use: false },
+            { name: 'player-ship_yellow', use: false }
         ];
     }
     preload() {
-        network_1.default.onUpdateCharacterSelector((res) => {
+        network_1.default.onUpdateAvatarSelector((res) => {
             if (res instanceof Array) {
-                this.characters = this.characters.map(character => {
+                this.ships = this.ships.map(character => {
                     character.use = false;
                     if (~res.indexOf(character.name)) {
                         character.use = true;
@@ -111531,7 +111523,7 @@ class CharacterSelector extends Phaser.State {
                 });
             }
             else {
-                this.characters = this.characters.map(character => {
+                this.ships = this.ships.map(character => {
                     if (character.name == res) {
                         character.use = true;
                     }
@@ -111539,12 +111531,12 @@ class CharacterSelector extends Phaser.State {
                 });
             }
         });
-        network_1.default.getCharactersInUse();
+        network_1.default.getAvatarsInUse();
     }
     create() {
         var helloText = this.game.add.text(this.game.world.centerX, 50, 'Select your character', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
-        this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.characters.length * 130 + 70, this.game.height - 180, 'transparent');
+        this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.ships.length * 160 + 60, this.game.height - 180, 'transparent');
         this.scrolingMap.inputEnabled = true;
         this.scrolingMap.input.enableDrag(false);
         this.scrolingMap.savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
@@ -111552,13 +111544,11 @@ class CharacterSelector extends Phaser.State {
         this.scrolingMap.movingSpeed = 0;
         this.scrolingMap.input.allowVerticalDrag = false;
         this.scrolingMap.input.boundsRect = new Phaser.Rectangle(this.game.width - this.scrolingMap.width, 80, this.scrolingMap.width * 2 - this.game.width, this.game.height - 180);
-        for (var i = 0; i < this.characters.length; i++) {
-            const character = this.game.add.sprite(this.game.world.centerX + i * 100, this.game.world.centerY - 50, this.characters[i].name + '-idle');
-            character.anchor.set(0.5, 1);
-            character.scale.set(0.15);
-            character.animations.add('idle');
-            character.animations.play('idle', 15, true);
-            this.scrolingMap.addChild(character);
+        for (var i = 0; i < this.ships.length; i++) {
+            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 50, this.ships[i].name);
+            ship.anchor.set(0.5, 1);
+            ship.scale.set(0.7);
+            this.scrolingMap.addChild(ship);
         }
         this.scrolingMap.events.onDragStart.add(() => {
             this.scrolingMap.isBeingDraged = true;
@@ -111574,19 +111564,19 @@ class CharacterSelector extends Phaser.State {
     }
     update() {
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
-            if (this.characters[_i].use) {
+            if (this.ships[_i].use) {
                 this.scrolingMap.children[_i].alpha = 0.5;
             }
             else {
                 this.scrolingMap.children[_i].alpha = 1;
             }
-            if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
-                && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 50) {
-                this.scrolingMap.getChildAt(_i).scale.set(0.20, 0.20);
-                this.selectedCharacterIndex = _i;
+            if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 60
+                && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 60) {
+                this.scrolingMap.getChildAt(_i).scale.set(1, 1);
+                this.selectedShipIndex = _i;
             }
             else {
-                this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
+                this.scrolingMap.getChildAt(_i).scale.set(0.7, 0.7);
             }
         }
     }
@@ -111594,19 +111584,19 @@ class CharacterSelector extends Phaser.State {
         network_1.default.removeListener(network_1.default.UPDATE_CHARACTER_SELECTOR);
     }
     /**
-     * Akcja wyboru postaci
+     * Akcja wyboru avatara
      * @private
-     * @memberof CharacterSelector
+     * @memberof AvatarSelector
      */
     actionOnClick() {
-        if (!this.characters[this.selectedCharacterIndex].use) {
-            network_1.default.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);
+        if (!this.ships[this.selectedShipIndex].use) {
+            network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
             // this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
             this.game.state.start(States_1.States.GAME_CONTROLLER);
         }
     }
 }
-exports.CharacterSelector = CharacterSelector;
+exports.AvatarSelector = AvatarSelector;
 
 
 /***/ }),

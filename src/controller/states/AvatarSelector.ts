@@ -8,45 +8,44 @@ import Network from '../network';
 /**
  * Wybór postaci
  * @export
- * @class CharacterSelector
+ * @class AvatarSelector
  * @extends {Phaser.State}
  */
-export class CharacterSelector extends Phaser.State {
+export class AvatarSelector extends Phaser.State {
 
     /**
-     * Dostępne postacie
+     * Dostępne statki
      * @private
      * @type {Array<any>}
-     * @memberof CharacterSelector
+     * @memberof AvatarSelector
      */
-    private characters: Array<any> = [
-        { name: 'cat', use: false },
-        { name: 'dog', use: false },
-        { name: 'temple', use: false },
-        { name: 'ninja', use: false },
-        { name: 'robot', use: false }
+    private ships: Array<any> = [
+        { name: 'player-ship_blue', use: false },
+        { name: 'player-ship_green', use: false },
+        { name: 'player-ship_red', use: false },
+        { name: 'player-ship_yellow', use: false }
     ];
 
     /**
-     * Obszar wyboru postaci
+     * Obszar wyboru awatara
      * @private
      * @type {Phaser.TileSprite}
-     * @memberof CharacterSelector
+     * @memberof AvatarSelector
      */
     private scrolingMap: Phaser.TileSprite;
 
     /**
-     * Indeks w tablicy wybranej postaci
+     * Indeks w tablicy wybranego statku
      * @private
      * @type {number}
-     * @memberof CharacterSelector
+     * @memberof AvatarSelector
      */
-    private selectedCharacterIndex: number;
+    private selectedShipIndex: number;
 
     public preload() {
-        Network.onUpdateCharacterSelector((res: string | Array<string>) => {
+        Network.onUpdateAvatarSelector((res: string | Array<string>) => {
             if (res instanceof Array) {
-                this.characters = this.characters.map(character => {
+                this.ships = this.ships.map(character => {
                     character.use = false;
                     if (~res.indexOf(character.name)) {
                         character.use = true;
@@ -54,7 +53,7 @@ export class CharacterSelector extends Phaser.State {
                     return character;
                 });
             } else {
-                this.characters = this.characters.map(character => {
+                this.ships = this.ships.map(character => {
                     if (character.name == res) {
                         character.use = true;
                     }
@@ -63,7 +62,7 @@ export class CharacterSelector extends Phaser.State {
             }
         });
 
-        Network.getCharactersInUse();
+        Network.getAvatarsInUse();
     }
 
     public create() {
@@ -75,7 +74,7 @@ export class CharacterSelector extends Phaser.State {
         
         this.scrolingMap = this.game.add.tileSprite(
             0, 80,
-            this.game.width / 2 + this.characters.length * 130 + 70,
+            this.game.width / 2 + this.ships.length * 160 + 60,
             this.game.height - 180,
             'transparent');
         this.scrolingMap.inputEnabled = true;
@@ -89,16 +88,14 @@ export class CharacterSelector extends Phaser.State {
             this.scrolingMap.width * 2 - this.game.width,
             this.game.height - 180);
 
-        for (var i = 0; i < this.characters.length; i++) {
-            const character = this.game.add.sprite(
-                this.game.world.centerX + i * 100,
+        for (var i = 0; i < this.ships.length; i++) {
+            const ship = this.game.add.sprite(
+                this.game.world.centerX + i * 120,
                 this.game.world.centerY - 50,
-                this.characters[i].name + '-idle');
-            character.anchor.set(0.5, 1);
-            character.scale.set(0.15);
-            character.animations.add('idle');
-            character.animations.play('idle', 15, true);
-            this.scrolingMap.addChild(character);
+                this.ships[i].name);
+            ship.anchor.set(0.5, 1);
+            ship.scale.set(0.7);
+            this.scrolingMap.addChild(ship);
         }
 
         this.scrolingMap.events.onDragStart.add(() => {
@@ -118,17 +115,17 @@ export class CharacterSelector extends Phaser.State {
 
     update() {
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
-            if (this.characters[_i].use) {
+            if (this.ships[_i].use) {
                 this.scrolingMap.children[_i].alpha = 0.5;
             } else {
                 this.scrolingMap.children[_i].alpha = 1;
             }
-            if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 50
-                && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 50) {
-                this.scrolingMap.getChildAt(_i).scale.set(0.20, 0.20);
-                this.selectedCharacterIndex = _i;
+            if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 60
+                && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 60) {
+                this.scrolingMap.getChildAt(_i).scale.set(1, 1);
+                this.selectedShipIndex = _i;
             } else {
-                this.scrolingMap.getChildAt(_i).scale.set(0.15, 0.15);
+                this.scrolingMap.getChildAt(_i).scale.set(0.7, 0.7);
             }
         }
     }
@@ -138,13 +135,13 @@ export class CharacterSelector extends Phaser.State {
     }
 
     /**
-     * Akcja wyboru postaci
+     * Akcja wyboru avatara
      * @private
-     * @memberof CharacterSelector
+     * @memberof AvatarSelector
      */
     private actionOnClick() {
-        if (!this.characters[this.selectedCharacterIndex].use) {
-            Network.setPlayerCharacter(this.characters[this.selectedCharacterIndex].name);
+        if (!this.ships[this.selectedShipIndex].use) {
+            Network.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
             // this.game.state.start(States.MESSAGE, true, false, 'Wait for game');
             this.game.state.start(States.GAME_CONTROLLER);
         }

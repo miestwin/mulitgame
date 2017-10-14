@@ -67,7 +67,7 @@ export default class Network {
      * @param {string} character 
      * @memberof Network
      */
-    public static setPlayerCharacter(character: string) {
+    public static setPlayerAvatar(character: string) {
         Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
     }
 
@@ -76,7 +76,7 @@ export default class Network {
      * @static
      * @memberof Network
      */
-    public static getCharactersInUse() {
+    public static getAvatarsInUse() {
         Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
     }
 
@@ -136,7 +136,7 @@ export default class Network {
      * @param {Function} fn 
      * @memberof Network
      */
-    public static onUpdateCharacterSelector(fn: Function) {
+    public static onUpdateAvatarSelector(fn: Function) {
         Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
     }
 

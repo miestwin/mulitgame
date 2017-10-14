@@ -7,7 +7,7 @@ export class States {
     static BOOT: string = 'Boot';
     static LOADING: string = 'Loading';
     static MAIN_MENU: string = 'MainMenu';
-    static CHARACTERSELECTOR: string = 'CharacterSelector';
+    static AVATAR_SELECTOR: string = 'AvatarSelector';
     static MESSAGE: string = 'Message';
     static GAME_CONTROLLER: string = 'GameController';
 }
