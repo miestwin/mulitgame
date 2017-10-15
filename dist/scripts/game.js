@@ -111388,6 +111388,7 @@ class Loading extends Phaser.State {
         this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
         this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
+        this.game.load.image('background', '../assets/images/purple.png');
     }
     create() {
         // create qrcode and go to next state
@@ -114024,10 +114025,10 @@ class Player extends Phaser.Sprite {
         this.y = y;
     }
     update() {
-        const x = this.game.state.started ? 100 + (this.vector.x * 6) : 0;
-        const y = this.game.state.started ? this.vector.y * 6 : 0;
-        this.body.velocity.x = x;
-        this.body.velocity.y = y;
+        // const x = (<any>this.game.state).started ? 100 + (this.vector.x * 6) : 0;
+        // const y = (<any>this.game.state).started ? this.vector.y * 6 : 0;
+        this.body.velocity.x = this.vector.x * 7.5;
+        this.body.velocity.y = this.vector.y * 7.5;
     }
 }
 exports.Player = Player;
@@ -114082,8 +114083,10 @@ class StartGame extends Phaser.State {
         network_1.default.getAllPlayers();
     }
     create() {
-        this.game.world.setBounds(0, 0, 50000, this.game.height);
+        this.tile = this.game.add.tileSprite(0, 0, 50000, this.game.width, 'background');
+        this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.tile.autoScroll(-200, 0);
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => this.game.state.players[playerId].update());

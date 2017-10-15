@@ -18,6 +18,8 @@ declare var Victor;
  */
 export class StartGame extends Phaser.State {
 
+    private tile: Phaser.TileSprite;
+
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -52,8 +54,10 @@ export class StartGame extends Phaser.State {
     }
 
     create() {
-        this.game.world.setBounds(0, 0, 50000, this.game.height);
+        this.tile = this.game.add.tileSprite(0, 0, 50000,  this.game.width, 'background');
+        this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.tile.autoScroll(-200, 0);
     }
 
     update() {  

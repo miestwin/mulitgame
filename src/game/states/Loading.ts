@@ -30,6 +30,7 @@ export class Loading extends Phaser.State {
         this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
+        this.game.load.image('background', '../assets/images/purple.png');
     }
 
     create() {
