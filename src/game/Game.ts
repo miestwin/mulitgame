@@ -40,7 +40,7 @@ export default class Game extends Phaser.Game {
         this.state.add(States.MESSAGE, Message);
         this.state.add(States.TEST, Test);
 
-        // this.state.start(States.BOOT);
-        this.state.start(States.TEST);
+        this.state.start(States.BOOT);
+        // this.state.start(States.TEST);
     }
 }
