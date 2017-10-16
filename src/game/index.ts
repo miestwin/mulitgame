@@ -14,7 +14,8 @@ function startApp(): void {
         height: window.innerHeight,
         renderer: Phaser.AUTO,
         parent: document.getElementById('game'),
-        resolution: 1
+        resolution: 1,
+        enableDebug: false
     };
     // create game
     const game = new Game(gameConfig);
