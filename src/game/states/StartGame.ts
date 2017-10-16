@@ -19,6 +19,7 @@ declare var Victor;
 export class StartGame extends Phaser.State {
 
     private tile: Phaser.TileSprite;
+    private filter: Phaser.Filter;
 
     preload() {
         Network.onGetAllPlayers((players) => {
@@ -54,14 +55,17 @@ export class StartGame extends Phaser.State {
     }
 
     create() {
-        this.tile = this.game.add.tileSprite(0, 0, 50000,  this.game.width, 'background');
+        // this.tile = this.game.add.tileSprite(0, 0, 50000,  this.game.width, 'background');
         this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.tile.autoScroll(-200, 0);
+        // this.tile.autoScroll(-200, 0);
+        this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
+        this.filter.addToWorld(0, 0, this.game.width, this.game.height);
     }
 
     update() {  
         Object.keys((<any>this.game.state).players).forEach(playerId => (<any>this.game.state).players[playerId].update());
+        this.filter.update();
     }
 
     shutdown() {

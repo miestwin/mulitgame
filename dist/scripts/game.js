@@ -111393,6 +111393,7 @@ class Loading extends Phaser.State {
         this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
+        this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
     }
     create() {
         // create qrcode and go to next state
@@ -114087,13 +114088,16 @@ class StartGame extends Phaser.State {
         network_1.default.getAllPlayers();
     }
     create() {
-        this.tile = this.game.add.tileSprite(0, 0, 50000, this.game.width, 'background');
+        // this.tile = this.game.add.tileSprite(0, 0, 50000,  this.game.width, 'background');
         this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.tile.autoScroll(-200, 0);
+        // this.tile.autoScroll(-200, 0);
+        this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
+        this.filter.addToWorld(0, 0, this.game.width, this.game.height);
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => this.game.state.players[playerId].update());
+        this.filter.update();
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
@@ -114157,7 +114161,7 @@ class Test extends Phaser.State {
         this.count = 0;
     }
     preload() {
-        this.game.load.shader('bacteria', '../assets/shaders/starfield-02.frag');
+        // this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
     }
     create() {
         // var uniforms = new Uniforms();

@@ -18,7 +18,7 @@ export class Test extends Phaser.State {
     count = 0;
 
     preload() {
-        this.game.load.shader('bacteria', '../assets/shaders/starfield-02.frag');
+        // this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
     }
 
     create() {
