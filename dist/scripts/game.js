@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 77);
+/******/ 	return __webpack_require__(__webpack_require__.s = 80);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111213,13 +111213,54 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(85));
+__export(__webpack_require__(65));
+__export(__webpack_require__(68));
+__export(__webpack_require__(69));
+__export(__webpack_require__(90));
+__export(__webpack_require__(91));
 
 
 /***/ }),
-/* 67 */,
-/* 68 */,
-/* 69 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(88));
+__export(__webpack_require__(89));
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function randomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+exports.randomNumberInRange = randomNumberInRange;
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function cross(a, b, o) {
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+}
+exports.cross = cross;
+
+
+/***/ }),
 /* 70 */,
 /* 71 */,
 /* 72 */,
@@ -111227,13 +111268,16 @@ __export(__webpack_require__(85));
 /* 74 */,
 /* 75 */,
 /* 76 */,
-/* 77 */
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(78);
+const Game_1 = __webpack_require__(81);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111255,7 +111299,7 @@ function startApp() {
 
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111264,9 +111308,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(79);
+const states_1 = __webpack_require__(82);
 const network_1 = __webpack_require__(28);
-const guid_1 = __webpack_require__(65);
+const utils_1 = __webpack_require__(66);
 /**
  * Utworzenie gry
  * @export
@@ -111277,7 +111321,7 @@ class Game extends Phaser.Game {
     constructor(config) {
         super(config);
         // create game id
-        this.state.id = guid_1.guid();
+        this.state.id = utils_1.guid();
         this.state.started = false;
         // connect to server
         network_1.default.connect();
@@ -111296,7 +111340,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111306,16 +111350,16 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(27));
-__export(__webpack_require__(80));
-__export(__webpack_require__(81));
+__export(__webpack_require__(83));
 __export(__webpack_require__(84));
-__export(__webpack_require__(86));
 __export(__webpack_require__(87));
-__export(__webpack_require__(88));
+__export(__webpack_require__(92));
+__export(__webpack_require__(93));
+__export(__webpack_require__(94));
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111363,7 +111407,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111372,9 +111416,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(82);
+const QRious = __webpack_require__(85);
 const States_1 = __webpack_require__(27);
-const config_1 = __webpack_require__(83);
+const config_1 = __webpack_require__(86);
 /**
  * Ładowanie zasobów
  * @export
@@ -111387,10 +111431,10 @@ class Loading extends Phaser.State {
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
-        this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
-        this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
-        this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
-        this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+        // this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
+        // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
+        // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
+        // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
@@ -111476,7 +111520,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -113844,7 +113888,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113856,7 +113900,7 @@ exports.default = {
 
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113868,7 +113912,7 @@ __webpack_require__(3);
 // import * as screenfull from 'screenfull';
 const States_1 = __webpack_require__(27);
 const network_1 = __webpack_require__(28);
-const models_1 = __webpack_require__(66);
+const models_1 = __webpack_require__(67);
 /**
  * Menu główne
  * @export
@@ -113990,7 +114034,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114062,7 +114106,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114071,8 +114115,104 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+const utils_1 = __webpack_require__(66);
+class Shard extends Phaser.Sprite {
+    constructor(game, x, y) {
+        const points = utils_1.convexhull(utils_1.generatePoints(x, y));
+        points.push(points[0]);
+        var graphics = game.add.graphics(0, 0);
+        graphics.beginFill(0xffffff);
+        graphics.lineStyle(6, 0xffffcc, 1);
+        graphics.moveTo(points[0][0], points[0][1]);
+        for (let i = 1; i < points.length; i++) {
+            const point = points[i];
+            graphics.lineTo(point[0], point[1]);
+        }
+        graphics.endFill();
+        super(game, x, y, graphics.generateTexture());
+        graphics.destroy();
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.body.collideWorldBounds = true;
+    }
+    update() {
+    }
+}
+exports.Shard = Shard;
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const randomNumberInRange_1 = __webpack_require__(68);
+function generatePoints(x, y) {
+    const x1 = x - 10;
+    const x2 = x + 10;
+    const y1 = y - 10;
+    const y2 = y + 10;
+    const n = randomNumberInRange_1.randomNumberInRange(5, 20);
+    const points = [];
+    for (let i = 0; i < 20; i++) {
+        const _x = randomNumberInRange_1.randomNumberInRange(x1, x2);
+        const _y = randomNumberInRange_1.randomNumberInRange(y1, y2);
+        points.push([_x, _y]);
+    }
+    return points;
+}
+exports.generatePoints = generatePoints;
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const cross_1 = __webpack_require__(69);
+function convexhull(points) {
+    points.sort((a, b) => {
+        return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0];
+    });
+    const lower = [];
+    for (let i = 0; i < points.length; i++) {
+        while (lower.length >= 2 && cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
+            lower.pop();
+        }
+        lower.push(points[i]);
+    }
+    const upper = [];
+    for (let i = points.length - 1; i >= 0; i--) {
+        while (upper.length >= 2 && cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
+            upper.pop();
+        }
+        upper.push(points[i]);
+    }
+    upper.pop();
+    lower.pop();
+    return lower.concat(upper);
+}
+exports.convexhull = convexhull;
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(66);
 const network_1 = __webpack_require__(28);
-const models_1 = __webpack_require__(66);
+const models_1 = __webpack_require__(67);
 /**
  * Start rozgrywki
  * @export
@@ -114080,6 +114220,10 @@ const models_1 = __webpack_require__(66);
  * @extends {Phaser.State}
  */
 class StartGame extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        this.shards = [];
+    }
     preload() {
         network_1.default.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -114114,12 +114258,15 @@ class StartGame extends Phaser.State {
         this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         // this.tile.autoScroll(-200, 0);
-        this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
-        this.filter.addToWorld(0, 0, this.game.width, this.game.height);
+        //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
+        //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
+        for (let i = 0; i < 10; i++) {
+            this.shards.push(new models_1.Shard(this.game, utils_1.randomNumberInRange(50, this.game.world.width - 50), utils_1.randomNumberInRange(50, this.game.world.height - 50)));
+        }
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => this.game.state.players[playerId].update());
-        this.filter.update();
+        // this.filter.update();
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
@@ -114131,7 +114278,7 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 87 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114166,7 +114313,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 88 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

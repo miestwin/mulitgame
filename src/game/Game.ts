@@ -13,7 +13,7 @@ import {
 } from './states';
 
 import Network from './network';
-import { guid } from '../utils/guid';
+import { guid } from '../utils';
 
 /**
  * Utworzenie gry

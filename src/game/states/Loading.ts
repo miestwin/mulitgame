@@ -24,10 +24,10 @@ export class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
-        this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
-        this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
-        this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
-        this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+        // this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
+        // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
+        // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
+        // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
