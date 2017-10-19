@@ -91,13 +91,13 @@ export class AvatarSelector extends Phaser.State {
         for (var i = 0; i < this.ships.length; i++) {
 
             var graphics = this.game.add.graphics(0, 0);
-            graphics.beginFill(0x262673);
+            graphics.beginFill(0x1f1f60);
             graphics.lineStyle(6, this.ships[i].color, 1);
-            graphics.moveTo(50,50);
+            graphics.moveTo(40,50);
             graphics.lineTo(100, 75);
-            graphics.lineTo(50, 100);
+            graphics.lineTo(40, 100);
             graphics.lineTo(60, 75);
-            graphics.lineTo(50, 50);
+            graphics.lineTo(40, 50);
             graphics.endFill();
 
             const ship = this.game.add.sprite(

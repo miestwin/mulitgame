@@ -143,7 +143,7 @@ export class GameController extends Phaser.State {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
-                this.leftVector = new Victor(0, 0);
+                // this.leftVector = new Victor(0, 0);
                 break;
             }
         }

@@ -61,13 +61,13 @@ export class Player extends Phaser.Sprite {
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         var graphics = game.add.graphics(0, 0);
-        graphics.beginFill(0x262673);
+        graphics.beginFill(0x1f1f60);
         graphics.lineStyle(6, ships[avatar], 1);
-        graphics.moveTo(50,50);
+        graphics.moveTo(40,50);
         graphics.lineTo(100, 75);
-        graphics.lineTo(50, 100);
+        graphics.lineTo(40, 100);
         graphics.lineTo(60, 75);
-        graphics.lineTo(50, 50);
+        graphics.lineTo(40, 50);
         graphics.endFill();
         super(game, x, y, graphics.generateTexture());
         graphics.destroy();
