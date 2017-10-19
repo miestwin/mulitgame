@@ -4,6 +4,13 @@ import 'phaser';
 
 declare var Victor;
 
+var ships = {
+    'player-ship_green': 0x33cc33,
+    'player-ship_purple': 0x9933ff,
+    'player-ship_blue': 0x0066ff,
+    'player-ship_yellow': 0xffff00
+};
+
 export class Player extends Phaser.Sprite {
 
     /**
@@ -53,14 +60,24 @@ export class Player extends Phaser.Sprite {
     public vector;
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
-        super(game, x, y, avatar);
+        var graphics = game.add.graphics(0, 0);
+        graphics.beginFill(0x262673);
+        graphics.lineStyle(6, ships[avatar], 1);
+        graphics.moveTo(50,50);
+        graphics.lineTo(100, 75);
+        graphics.lineTo(50, 100);
+        graphics.lineTo(60, 75);
+        graphics.lineTo(50, 50);
+        graphics.endFill();
+        super(game, x, y, graphics.generateTexture());
+        graphics.destroy();
         this._id = id;
         this._socketId = socketId;
         this.avatar = avatar;
         this.score = 0;
         this.vector = new Victor(0, 0);
         this.anchor.setTo(0.5);
-        this.scale.setTo(0.7);
+        // this.scale.setTo(0.7);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;

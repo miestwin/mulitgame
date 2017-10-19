@@ -111399,10 +111399,10 @@ class Loading extends Phaser.State {
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
-        this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
-        this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
-        this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
-        this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+        // this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
+        // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
+        // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
+        // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
@@ -111517,10 +111517,10 @@ class AvatarSelector extends Phaser.State {
          * @memberof AvatarSelector
          */
         this.ships = [
-            { name: 'player-ship_blue', use: false },
-            { name: 'player-ship_green', use: false },
-            { name: 'player-ship_red', use: false },
-            { name: 'player-ship_yellow', use: false }
+            { name: 'player-ship_green', color: 0x33cc33, use: false },
+            { name: 'player-ship_purple', color: 0x9933ff, use: false },
+            { name: 'player-ship_blue', color: 0x0066ff, use: false },
+            { name: 'player-ship_yellow', color: 0xffff00, use: false }
         ];
     }
     preload() {
@@ -111557,10 +111557,24 @@ class AvatarSelector extends Phaser.State {
         this.scrolingMap.input.allowVerticalDrag = false;
         this.scrolingMap.input.boundsRect = new Phaser.Rectangle(this.game.width - this.scrolingMap.width, 80, this.scrolingMap.width * 2 - this.game.width, this.game.height - 180);
         for (var i = 0; i < this.ships.length; i++) {
-            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 50, this.ships[i].name);
+            var graphics = this.game.add.graphics(0, 0);
+            graphics.beginFill(0x262673);
+            graphics.lineStyle(6, this.ships[i].color, 1);
+            graphics.moveTo(50, 50);
+            graphics.lineTo(100, 75);
+            graphics.lineTo(50, 100);
+            graphics.lineTo(60, 75);
+            graphics.lineTo(50, 50);
+            graphics.endFill();
+            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 50, graphics.generateTexture());
+            // const ship = this.game.add.sprite(
+            //     this.game.world.centerX + i * 120,
+            //     this.game.world.centerY - 50,
+            //     this.ships[i].name);
             ship.anchor.set(0.5, 1);
-            ship.scale.set(0.7);
+            //ship.scale.set(0.7);
             this.scrolingMap.addChild(ship);
+            graphics.destroy();
         }
         this.scrolingMap.events.onDragStart.add(() => {
             this.scrolingMap.isBeingDraged = true;

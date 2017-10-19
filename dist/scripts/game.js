@@ -113895,7 +113895,7 @@ class MainMenu extends Phaser.State {
                 this.game.state.players[player.id] =
                     new models_1.Player(this.game, -100, 540, { id: player.id, socketId: player.socketID, avatar: player.character });
                 this.game.state.players[player.id].anchor.setTo(0.5, 1);
-                this.game.state.players[player.id].scale.setTo(0.5);
+                this.game.state.players[player.id].scale.setTo(0.7);
             }
             this.showConnected();
         });
@@ -113999,6 +113999,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+var ships = {
+    'player-ship_green': 0x33cc33,
+    'player-ship_purple': 0x9933ff,
+    'player-ship_blue': 0x0066ff,
+    'player-ship_yellow': 0xffff00
+};
 class Player extends Phaser.Sprite {
     get id() {
         return this._id;
@@ -114007,14 +114013,24 @@ class Player extends Phaser.Sprite {
         return this._socketId;
     }
     constructor(game, x, y, { id, socketId, avatar }) {
-        super(game, x, y, avatar);
+        var graphics = game.add.graphics(0, 0);
+        graphics.beginFill(0x262673);
+        graphics.lineStyle(6, ships[avatar], 1);
+        graphics.moveTo(50, 50);
+        graphics.lineTo(100, 75);
+        graphics.lineTo(50, 100);
+        graphics.lineTo(60, 75);
+        graphics.lineTo(50, 50);
+        graphics.endFill();
+        super(game, x, y, graphics.generateTexture());
+        graphics.destroy();
         this._id = id;
         this._socketId = socketId;
         this.avatar = avatar;
         this.score = 0;
         this.vector = new Victor(0, 0);
         this.anchor.setTo(0.5);
-        this.scale.setTo(0.7);
+        // this.scale.setTo(0.7);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;

@@ -42,7 +42,7 @@ export class MainMenu extends Phaser.State {
                 (<any>this.game.state).players[player.id] = 
                     new Player(this.game, -100, 540, { id: player.id, socketId: player.socketID, avatar: player.character });
                 (<any>this.game.state).players[player.id].anchor.setTo(0.5, 1);
-                (<any>this.game.state).players[player.id].scale.setTo(0.5);
+                (<any>this.game.state).players[player.id].scale.setTo(0.7);
             } 
             this.showConnected();
         });
