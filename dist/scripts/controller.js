@@ -111520,7 +111520,13 @@ class AvatarSelector extends Phaser.State {
             { name: 'player-ship_green', color: 0x33cc33, use: false },
             { name: 'player-ship_purple', color: 0x9933ff, use: false },
             { name: 'player-ship_blue', color: 0x0066ff, use: false },
-            { name: 'player-ship_yellow', color: 0xffff00, use: false }
+            { name: 'player-ship_yellow', color: 0xffff00, use: false },
+            { name: 'player-ship_pink', color: 0xff3399, use: false },
+            { name: 'player-ship_red', color: 0xff0000, use: false },
+            { name: 'player-ship_gb', color: 0x009999, use: false },
+            { name: 'player-ship_orange', color: 0xff6600, use: false },
+            { name: 'player-ship_grass', color: 0x88cc00, use: false },
+            { name: 'player-ship_darkpink', color: 0x993333, use: false }
         ];
     }
     preload() {
@@ -111548,7 +111554,7 @@ class AvatarSelector extends Phaser.State {
     create() {
         var helloText = this.game.add.text(this.game.world.centerX, 30, 'Choose your ship', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
-        this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.ships.length * 160 + 50, this.game.height - 180, 'transparent');
+        this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.ships.length * 140 + 30, this.game.height - 180, 'transparent');
         this.scrolingMap.inputEnabled = true;
         this.scrolingMap.input.enableDrag(false);
         this.scrolingMap.savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
@@ -111558,15 +111564,15 @@ class AvatarSelector extends Phaser.State {
         this.scrolingMap.input.boundsRect = new Phaser.Rectangle(this.game.width - this.scrolingMap.width, 80, this.scrolingMap.width * 2 - this.game.width, this.game.height - 180);
         for (var i = 0; i < this.ships.length; i++) {
             var graphics = this.game.add.graphics(0, 0);
-            graphics.beginFill(0x262673);
+            graphics.beginFill(0x1f1f60);
             graphics.lineStyle(6, this.ships[i].color, 1);
-            graphics.moveTo(50, 50);
+            graphics.moveTo(40, 50);
             graphics.lineTo(100, 75);
-            graphics.lineTo(50, 100);
+            graphics.lineTo(40, 100);
             graphics.lineTo(60, 75);
-            graphics.lineTo(50, 50);
+            graphics.lineTo(40, 50);
             graphics.endFill();
-            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 50, graphics.generateTexture());
+            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 60, graphics.generateTexture());
             // const ship = this.game.add.sprite(
             //     this.game.world.centerX + i * 120,
             //     this.game.world.centerY - 50,
@@ -111765,7 +111771,7 @@ class GameController extends Phaser.State {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
-                this.leftVector = new Victor(0, 0);
+                // this.leftVector = new Victor(0, 0);
                 break;
             }
         }

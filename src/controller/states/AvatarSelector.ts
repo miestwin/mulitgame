@@ -23,7 +23,13 @@ export class AvatarSelector extends Phaser.State {
         { name: 'player-ship_green', color: 0x33cc33, use: false },
         { name: 'player-ship_purple', color: 0x9933ff, use: false },
         { name: 'player-ship_blue', color: 0x0066ff, use: false },
-        { name: 'player-ship_yellow', color: 0xffff00, use: false }
+        { name: 'player-ship_yellow', color: 0xffff00, use: false },
+        { name: 'player-ship_pink', color: 0xff3399, use: false },
+        { name: 'player-ship_red', color: 0xff0000, use: false },
+        { name: 'player-ship_gb', color: 0x009999, use: false },
+        { name: 'player-ship_orange', color: 0xff6600, use: false },
+        { name: 'player-ship_grass', color: 0x88cc00, use: false },
+        { name: 'player-ship_darkpink', color: 0x993333, use: false }
     ];
 
     /**
@@ -74,7 +80,7 @@ export class AvatarSelector extends Phaser.State {
         
         this.scrolingMap = this.game.add.tileSprite(
             0, 80,
-            this.game.width / 2 + this.ships.length * 160 + 50,
+            this.game.width / 2 + this.ships.length * 140 + 30,
             this.game.height - 180,
             'transparent');
         this.scrolingMap.inputEnabled = true;
@@ -102,7 +108,7 @@ export class AvatarSelector extends Phaser.State {
 
             const ship = this.game.add.sprite(
                 this.game.world.centerX + i * 120,
-                this.game.world.centerY - 50,
+                this.game.world.centerY - 60,
                 graphics.generateTexture());
             // const ship = this.game.add.sprite(
             //     this.game.world.centerX + i * 120,

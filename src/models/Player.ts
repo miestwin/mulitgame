@@ -8,7 +8,13 @@ var ships = {
     'player-ship_green': 0x33cc33,
     'player-ship_purple': 0x9933ff,
     'player-ship_blue': 0x0066ff,
-    'player-ship_yellow': 0xffff00
+    'player-ship_yellow': 0xffff00,
+    'player-ship_pink': 0xff3399,
+    'player-ship_red': 0xff0000,
+    'player-ship_gb': 0x009999,
+    'player-ship_orange': 0xff6600,
+    'player-ship_grass': 0x88cc00,
+    'player-ship_darkpink': 0x993333
 };
 
 export class Player extends Phaser.Sprite {

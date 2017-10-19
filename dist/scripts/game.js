@@ -114003,7 +114003,13 @@ var ships = {
     'player-ship_green': 0x33cc33,
     'player-ship_purple': 0x9933ff,
     'player-ship_blue': 0x0066ff,
-    'player-ship_yellow': 0xffff00
+    'player-ship_yellow': 0xffff00,
+    'player-ship_pink': 0xff3399,
+    'player-ship_red': 0xff0000,
+    'player-ship_gb': 0x009999,
+    'player-ship_orange': 0xff6600,
+    'player-ship_grass': 0x88cc00,
+    'player-ship_darkpink': 0x993333
 };
 class Player extends Phaser.Sprite {
     get id() {
@@ -114014,13 +114020,13 @@ class Player extends Phaser.Sprite {
     }
     constructor(game, x, y, { id, socketId, avatar }) {
         var graphics = game.add.graphics(0, 0);
-        graphics.beginFill(0x262673);
+        graphics.beginFill(0x1f1f60);
         graphics.lineStyle(6, ships[avatar], 1);
-        graphics.moveTo(50, 50);
+        graphics.moveTo(40, 50);
         graphics.lineTo(100, 75);
-        graphics.lineTo(50, 100);
+        graphics.lineTo(40, 100);
         graphics.lineTo(60, 75);
-        graphics.lineTo(50, 50);
+        graphics.lineTo(40, 50);
         graphics.endFill();
         super(game, x, y, graphics.generateTexture());
         graphics.destroy();
@@ -114083,7 +114089,7 @@ class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1));
                 this.game.state.players[playerId] =
                     new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
-                this.game.state.players[playerId].angle += 90;
+                // (<any>this.game.state).players[playerId].angle += 90;
             });
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
