@@ -114116,13 +114116,14 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(66);
+const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
 class Shard extends Phaser.Sprite {
     constructor(game, x, y) {
         const points = utils_1.convexhull(utils_1.generatePoints(x, y));
         points.push(points[0]);
+        const color = colors[utils_1.randomNumberInRange(0, 6)];
         var graphics = game.add.graphics(0, 0);
-        graphics.beginFill(0xffffff);
-        graphics.lineStyle(6, 0xffffcc, 1);
+        graphics.beginFill(color);
         graphics.moveTo(points[0][0], points[0][1]);
         for (let i = 1; i < points.length; i++) {
             const point = points[i];
@@ -114131,12 +114132,27 @@ class Shard extends Phaser.Sprite {
         graphics.endFill();
         super(game, x, y, graphics.generateTexture());
         graphics.destroy();
+        this.points = points;
+        this.color = color;
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
+        this.timer = game.time.create(false);
+        this.timer.loop(100, this.updateGraphic, this);
+        this.timer.start();
     }
-    update() {
+    updateGraphic() {
+        var graphics = this.game.add.graphics(0, 0);
+        graphics.beginFill(this.color);
+        graphics.moveTo(this.points[0][0], this.points[0][1]);
+        for (let i = 1; i < this.points.length; i++) {
+            const point = this.points[i];
+            graphics.lineTo(point[0] + utils_1.randomNumberInRange(-1, 1), point[1] + utils_1.randomNumberInRange(-1, 1));
+        }
+        graphics.endFill();
+        this.loadTexture(graphics.generateTexture());
+        graphics.destroy();
     }
 }
 exports.Shard = Shard;
