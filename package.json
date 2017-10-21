@@ -5,6 +5,7 @@
   "dependencies": {
     "express": "4.15.3",
     "fontfaceobserver": "2.0.13",
+    "howler": "^2.0.5",
     "phaser": "2.6.2",
     "qrious": "4.0.2",
     "screenfull": "^3.3.1",

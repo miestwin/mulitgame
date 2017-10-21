@@ -7,7 +7,7 @@ void main() {
     vec4 sum = vec4(0);
     vec2 texcoord = vTextureCoord;
     for(int xx = -2; xx <= 2; xx++) {
-        for(int yy = -1; yy <= 1; yy++) {
+        for(int yy = -2; yy <= 2; yy++) {
             float dist = sqrt(float(xx*xx) + float(yy*yy));
             float factor = 0.0;
             if (dist == 0.0) {

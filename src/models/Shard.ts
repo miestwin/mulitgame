@@ -29,9 +29,9 @@ export class Shard extends Phaser.Sprite {
         this.points = points;
         this.color = color;
         this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.collideWorldBounds = true;
+        // game.add.existing(this);
+        // game.physics.arcade.enable(this);
+        // this.body.collideWorldBounds = true;
 
         // var filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         // this.filters = [filter];

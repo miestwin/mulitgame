@@ -114136,9 +114136,9 @@ class Shard extends Phaser.Sprite {
         this.points = points;
         this.color = color;
         this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.collideWorldBounds = true;
+        // game.add.existing(this);
+        // game.physics.arcade.enable(this);
+        // this.body.collideWorldBounds = true;
         // var filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         // this.filters = [filter];
     }
@@ -114228,7 +114228,6 @@ class StartGame extends Phaser.State {
     constructor() {
         super(...arguments);
         this.tiles = [];
-        this.shards = [];
     }
     preload() {
         network_1.default.onGetAllPlayers((players) => {
@@ -114261,10 +114260,8 @@ class StartGame extends Phaser.State {
     }
     create() {
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
-        // this.tile = this.game.add.tileSprite(0, 0, 50000,  this.game.width, 'background');
         this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        // this.tile.autoScroll(-200, 0);
         for (let i = 1; i <= 2; i++) {
             const texture = engine_1.generatePointStars(this.game, i * 0.00001, i);
             const tile = this.game.add.tileSprite(0, 0, 50000, this.game.height, texture);
@@ -114276,13 +114273,25 @@ class StartGame extends Phaser.State {
         }
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
         //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
-        for (let i = 0; i < 5; i++) {
-            this.shards.push(new models_1.Shard(this.game, utils_1.randomNumberInRange(50, this.game.world.width - 50), utils_1.randomNumberInRange(50, this.game.world.height - 50)));
+        this.shards = this.game.add.group();
+        this.shards.enableBody = true;
+        this.shards.physicsBodyType = Phaser.Physics.ARCADE;
+        for (let i = 0; i < 35; i++) {
+            const shard = new models_1.Shard(this.game, utils_1.randomNumberInRange(250, this.game.world.width - 50), utils_1.randomNumberInRange(50, this.game.world.height - 50));
+            this.shards.add(shard);
         }
     }
     update() {
-        Object.keys(this.game.state.players).forEach(playerId => this.game.state.players[playerId].update());
+        Object.keys(this.game.state.players).forEach(playerId => {
+            this.game.state.players[playerId].update();
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.shards, this.shardsCollisionHandler, null, this);
+        });
         // this.filter.update();
+    }
+    shardsCollisionHandler(player, shard) {
+        shard.kill();
+        player.score += 1;
+        console.log(player.score);
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
