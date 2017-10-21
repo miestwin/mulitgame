@@ -114271,7 +114271,7 @@ class StartGame extends Phaser.State {
             if (i === 1) {
                 tile.filters = [filter];
             }
-            tile.autoScroll(-150 * i, 0);
+            tile.autoScroll(-50 * i, 0);
             this.tiles.push(tile);
         }
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
