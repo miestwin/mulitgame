@@ -111437,7 +111437,8 @@ class Loading extends Phaser.State {
         // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
-        this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
+        // this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
+        this.game.load.shader('glow', '../assets/shaders/glow.frag');
     }
     create() {
         // create qrcode and go to next state
@@ -114130,6 +114131,7 @@ class Shard extends Phaser.Sprite {
             graphics.lineTo(point[0], point[1]);
         }
         graphics.endFill();
+        graphics.boundsPadding = 20;
         super(game, x, y, graphics.generateTexture());
         graphics.destroy();
         this.points = points;
@@ -114138,9 +114140,11 @@ class Shard extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
-        this.timer = game.time.create(false);
-        this.timer.loop(100, this.updateGraphic, this);
-        this.timer.start();
+        var filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
+        this.filters = [filter];
+        // this.timer = game.time.create(false);
+        // this.timer.loop(100, this.updateGraphic, this);
+        // this.timer.start();
     }
     updateGraphic() {
         var graphics = this.game.add.graphics(0, 0);
@@ -114167,10 +114171,10 @@ exports.Shard = Shard;
 Object.defineProperty(exports, "__esModule", { value: true });
 const randomNumberInRange_1 = __webpack_require__(68);
 function generatePoints(x, y) {
-    const x1 = x - 10;
-    const x2 = x + 10;
-    const y1 = y - 10;
-    const y2 = y + 10;
+    const x1 = x - 6;
+    const x2 = x + 6;
+    const y1 = y - 6;
+    const y2 = y + 6;
     const n = randomNumberInRange_1.randomNumberInRange(5, 20);
     const points = [];
     for (let i = 0; i < 20; i++) {

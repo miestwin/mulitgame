@@ -24,6 +24,7 @@ export class Shard extends Phaser.Sprite {
             graphics.lineTo(point[0], point[1]);
         }
         graphics.endFill();
+        graphics.boundsPadding = 20
         super(game, x, y, graphics.generateTexture());
         graphics.destroy();
         this.points = points;
@@ -33,9 +34,12 @@ export class Shard extends Phaser.Sprite {
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
 
-        this.timer = game.time.create(false);
-        this.timer.loop(100, this.updateGraphic, this);
-        this.timer.start();
+        var filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
+        this.filters = [filter];
+
+        // this.timer = game.time.create(false);
+        // this.timer.loop(100, this.updateGraphic, this);
+        // this.timer.start();
     }
 
     updateGraphic() {
