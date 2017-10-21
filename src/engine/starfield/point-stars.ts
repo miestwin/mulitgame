@@ -1,3 +1,9 @@
+import 'p2';
+import 'pixi';
+import 'phaser';
+
+import { randomNumberInRange } from '../../utils';
+
 /**
  * Generacja gwiazd na scenie
  * @export
@@ -8,19 +14,17 @@
  * @param {any} prng 
  * @returns 
  */
-export function generateTexture (
-width: number,
-height: number,
-density: number,
-brightness: number, prng) {
+export function generatePointStars (game:Phaser.Game, density: number, distance: number) {
+    const width = game.world.width;
+    const height = game.world.height;
     const count = Math.round(width * height * density);
-    let data = new Uint8Array(width * height * 3);
-    for (let i = 0; i < count; i++) {
-        const r = Math.floor(prng() * width * height);
-        const c = Math.round(255 * Math.log(1 - prng()) * -brightness);
-        data[r * 3 + 0] = c;
-        data[r * 3 + 1] = c;
-        data[r * 3 + 2] = c;
+    var graphics = game.add.graphics(0, 0);
+    graphics.beginFill(0xffffff);
+    for (let i = 1; i < count; i++) {
+        const x = randomNumberInRange(width, height);
+        const y = randomNumberInRange(width, height);
+        graphics.drawCircle(x, y, distance);
     }
-    return data;
+    graphics.endFill();
+    return graphics.generateTexture();
 }

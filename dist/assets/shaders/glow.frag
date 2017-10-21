@@ -6,8 +6,8 @@ uniform sampler2D uSampler;
 void main() {
     vec4 sum = vec4(0);
     vec2 texcoord = vTextureCoord;
-    for(int xx = -4; xx <= 4; xx++) {
-        for(int yy = -3; yy <= 3; yy++) {
+    for(int xx = -2; xx <= 2; xx++) {
+        for(int yy = -1; yy <= 1; yy++) {
             float dist = sqrt(float(xx*xx) + float(yy*yy));
             float factor = 0.0;
             if (dist == 0.0) {

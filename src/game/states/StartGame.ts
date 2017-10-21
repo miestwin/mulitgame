@@ -2,6 +2,7 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 import { randomNumberInRange } from '../../utils';
+import { generatePointStars } from '../../engine';
 import { States } from './States';
 
 import Network from '../network';
@@ -18,7 +19,7 @@ declare var Victor;
  */
 export class StartGame extends Phaser.State {
 
-    private tile: Phaser.TileSprite;
+    private tiles: Phaser.TileSprite[] = [];
     private filter: Phaser.Filter;
 
     private shards = [];
@@ -57,14 +58,26 @@ export class StartGame extends Phaser.State {
     }
 
     create() {
+        const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         // this.tile = this.game.add.tileSprite(0, 0, 50000,  this.game.width, 'background');
         this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         // this.tile.autoScroll(-200, 0);
+
+        for (let i = 1; i <= 3; i++) {
+            const texture = generatePointStars(this.game, i * 0.00001, i);
+            const tile = this.game.add.tileSprite(0, 0, 50000, this.game.height, texture);
+            if (i === 1) {
+                tile.filters = [filter];
+            }
+            tile.autoScroll(-100 * i, 0);
+            this.tiles.push(tile);
+        }
+
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
         //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 5; i++) {
             this.shards.push(new Shard(this.game, randomNumberInRange(50, this.game.world.width - 50), randomNumberInRange(50, this.game.world.height - 50)));
         }
     }
