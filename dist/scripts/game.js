@@ -114265,13 +114265,13 @@ class StartGame extends Phaser.State {
         this.game.world.setBounds(0, 0, this.game.width, this.game.height);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         // this.tile.autoScroll(-200, 0);
-        for (let i = 1; i <= 3; i++) {
+        for (let i = 1; i <= 2; i++) {
             const texture = engine_1.generatePointStars(this.game, i * 0.00001, i);
             const tile = this.game.add.tileSprite(0, 0, 50000, this.game.height, texture);
             if (i === 1) {
                 tile.filters = [filter];
             }
-            tile.autoScroll(-100 * i, 0);
+            tile.autoScroll(-150 * i, 0);
             this.tiles.push(tile);
         }
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));

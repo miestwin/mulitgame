@@ -64,13 +64,13 @@ export class StartGame extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         // this.tile.autoScroll(-200, 0);
 
-        for (let i = 1; i <= 3; i++) {
+        for (let i = 1; i <= 2; i++) {
             const texture = generatePointStars(this.game, i * 0.00001, i);
             const tile = this.game.add.tileSprite(0, 0, 50000, this.game.height, texture);
             if (i === 1) {
                 tile.filters = [filter];
             }
-            tile.autoScroll(-100 * i, 0);
+            tile.autoScroll(-150 * i, 0);
             this.tiles.push(tile);
         }
 
