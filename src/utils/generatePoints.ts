@@ -1,10 +1,10 @@
 import { randomNumberInRange } from './randomNumberInRange';
 
-export function generatePoints(x: number, y: number): number[] {
-    const x1 = x - 6;
-    const x2 = x + 6;
-    const y1 = y - 6;
-    const y2 = y + 6;
+export function generatePoints(x: number, y: number, offset: number): number[] {
+    const x1 = x - offset;
+    const x2 = x + offset;
+    const y1 = y - offset;
+    const y2 = y + offset;
     const n = randomNumberInRange(5, 20);
     const points = [];
     for (let i = 0; i < 20; i++) {

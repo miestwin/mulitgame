@@ -7,7 +7,7 @@ import { States } from './States';
 
 import Network from '../network';
 
-import { Player, Shard } from '../../models';
+import { Player, Asteroid, Shard } from '../../models';
 
 declare var Victor;
 
@@ -67,7 +67,7 @@ export class StartGame extends Phaser.State {
             if (i === 1) {
                 tile.filters = [filter];
             }
-            tile.autoScroll(-50 * i, 0);
+            tile.autoScroll(-100 * i, 0);
             this.tiles.push(tile);
         }
 
@@ -76,11 +76,12 @@ export class StartGame extends Phaser.State {
 
         this.shards = this.game.add.group();
         this.shards.enableBody = true;
-        this.shards.physicsBodyType =Phaser.Physics.ARCADE;
-        for (let i = 0; i < 35; i++) {
-            const shard = new Shard(this.game, randomNumberInRange(250, this.game.world.width - 50), randomNumberInRange(50, this.game.world.height - 50));
+        this.shards.physicsBodyType = Phaser.Physics.ARCADE;
+        for (let i = 0; i < 2000; i++) {
+            const shard = new Shard(this.game, randomNumberInRange(250, 50000), randomNumberInRange(30, this.game.world.height - 30));
             this.shards.add(shard);
         }
+        this.shards.addAll('body.velocity.x', -400, true, false);
     }
 
     update() {  

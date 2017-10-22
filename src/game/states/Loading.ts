@@ -31,7 +31,7 @@ export class Loading extends Phaser.State {
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
-
+        this.game.load.image('shard', '../assets/images/shard.png');
         // this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
         this.game.load.shader('glow', '../assets/shaders/glow.frag');
     }

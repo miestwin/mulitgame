@@ -3740,6 +3740,23 @@ module.exports = function(obj, fn){
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(66));
+__export(__webpack_require__(68));
+__export(__webpack_require__(69));
+__export(__webpack_require__(90));
+__export(__webpack_require__(91));
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Nazwy stanów gry
@@ -3758,7 +3775,7 @@ exports.States = States;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3882,23 +3899,6 @@ Network.START_GAME = 'start-game';
 Network.ALL_PLAYERS = 'all-players';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
 exports.default = Network;
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(66));
-__export(__webpack_require__(68));
-__export(__webpack_require__(69));
-__export(__webpack_require__(90));
-__export(__webpack_require__(91));
 
 
 /***/ }),
@@ -111232,6 +111232,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(88));
 __export(__webpack_require__(89));
+__export(__webpack_require__(92));
 
 
 /***/ }),
@@ -111309,8 +111310,8 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(82);
-const network_1 = __webpack_require__(28);
-const utils_1 = __webpack_require__(29);
+const network_1 = __webpack_require__(29);
+const utils_1 = __webpack_require__(27);
 /**
  * Utworzenie gry
  * @export
@@ -111349,13 +111350,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(27));
+__export(__webpack_require__(28));
 __export(__webpack_require__(83));
 __export(__webpack_require__(84));
 __export(__webpack_require__(87));
-__export(__webpack_require__(92));
-__export(__webpack_require__(96));
+__export(__webpack_require__(93));
 __export(__webpack_require__(97));
+__export(__webpack_require__(98));
 
 
 /***/ }),
@@ -111368,9 +111369,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(27);
+const States_1 = __webpack_require__(28);
 const shared_1 = __webpack_require__(33);
-const network_1 = __webpack_require__(28);
+const network_1 = __webpack_require__(29);
 /**
  * Uruchamianie systemu
  * @export
@@ -111417,7 +111418,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const QRious = __webpack_require__(85);
-const States_1 = __webpack_require__(27);
+const States_1 = __webpack_require__(28);
 const config_1 = __webpack_require__(86);
 /**
  * Ładowanie zasobów
@@ -111437,6 +111438,7 @@ class Loading extends Phaser.State {
         // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
+        this.game.load.image('shard', '../assets/images/shard.png');
         // this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
         this.game.load.shader('glow', '../assets/shaders/glow.frag');
     }
@@ -113911,8 +113913,8 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 // import * as screenfull from 'screenfull';
-const States_1 = __webpack_require__(27);
-const network_1 = __webpack_require__(28);
+const States_1 = __webpack_require__(28);
+const network_1 = __webpack_require__(29);
 const models_1 = __webpack_require__(67);
 /**
  * Menu główne
@@ -114116,11 +114118,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(29);
+const utils_1 = __webpack_require__(27);
 const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-class Shard extends Phaser.Sprite {
+class Asteroid extends Phaser.Sprite {
     constructor(game, x, y) {
-        const points = utils_1.convexhull(utils_1.generatePoints(x, y));
+        const points = utils_1.convexhull(utils_1.generatePoints(x, y, 20));
         points.push(points[0]);
         const color = colors[utils_1.randomNumberInRange(0, 6)];
         var graphics = game.add.graphics(0, 0);
@@ -114136,14 +114138,14 @@ class Shard extends Phaser.Sprite {
         this.points = points;
         this.color = color;
         this.anchor.setTo(0.5);
-        // game.add.existing(this);
-        // game.physics.arcade.enable(this);
+        //game.add.existing(this);
+        //game.physics.arcade.enable(this);
         // this.body.collideWorldBounds = true;
         // var filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         // this.filters = [filter];
     }
 }
-exports.Shard = Shard;
+exports.Asteroid = Asteroid;
 
 
 /***/ }),
@@ -114154,11 +114156,11 @@ exports.Shard = Shard;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const randomNumberInRange_1 = __webpack_require__(68);
-function generatePoints(x, y) {
-    const x1 = x - 6;
-    const x2 = x + 6;
-    const y1 = y - 6;
-    const y2 = y + 6;
+function generatePoints(x, y, offset) {
+    const x1 = x - offset;
+    const x2 = x + offset;
+    const y1 = y - offset;
+    const y2 = y + offset;
     const n = randomNumberInRange_1.randomNumberInRange(5, 20);
     const points = [];
     for (let i = 0; i < 20; i++) {
@@ -114214,9 +114216,34 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(29);
-const engine_1 = __webpack_require__(93);
-const network_1 = __webpack_require__(28);
+const utils_1 = __webpack_require__(27);
+class Shard extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, 'shard');
+        this.anchor.setTo(0.5);
+        this.scale.setTo(0.1);
+        this.angle += utils_1.randomNumberInRange(0, 360);
+        // game.add.existing(this);
+        // game.physics.arcade.enable(this);
+        // this.body.collideWorldBounds = true;
+    }
+}
+exports.Shard = Shard;
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(27);
+const engine_1 = __webpack_require__(94);
+const network_1 = __webpack_require__(29);
 const models_1 = __webpack_require__(67);
 /**
  * Start rozgrywki
@@ -114268,7 +114295,7 @@ class StartGame extends Phaser.State {
             if (i === 1) {
                 tile.filters = [filter];
             }
-            tile.autoScroll(-50 * i, 0);
+            tile.autoScroll(-100 * i, 0);
             this.tiles.push(tile);
         }
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
@@ -114276,10 +114303,11 @@ class StartGame extends Phaser.State {
         this.shards = this.game.add.group();
         this.shards.enableBody = true;
         this.shards.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 35; i++) {
-            const shard = new models_1.Shard(this.game, utils_1.randomNumberInRange(250, this.game.world.width - 50), utils_1.randomNumberInRange(50, this.game.world.height - 50));
+        for (let i = 0; i < 2000; i++) {
+            const shard = new models_1.Shard(this.game, utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30));
             this.shards.add(shard);
         }
+        this.shards.addAll('body.velocity.x', -400, true, false);
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => {
@@ -114303,19 +114331,6 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(94));
-
-
-/***/ }),
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -114334,11 +114349,24 @@ __export(__webpack_require__(95));
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(96));
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(29);
+const utils_1 = __webpack_require__(27);
 /**
  * Generacja gwiazd na scenie
  * @export
@@ -114367,7 +114395,7 @@ exports.generatePointStars = generatePointStars;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114402,7 +114430,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
