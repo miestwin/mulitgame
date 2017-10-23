@@ -114101,8 +114101,8 @@ class Player extends Phaser.Sprite {
     update() {
         // const x = (<any>this.game.state).started ? 100 + (this.vector.x * 6) : 0;
         // const y = (<any>this.game.state).started ? this.vector.y * 6 : 0;
-        this.body.velocity.x = this.vector.x * 7.5;
-        this.body.velocity.y = this.vector.y * 7.5;
+        this.body.velocity.x = this.vector.x * 11;
+        this.body.velocity.y = this.vector.y * 11;
     }
 }
 exports.Player = Player;
@@ -114307,7 +114307,7 @@ class StartGame extends Phaser.State {
             const shard = new models_1.Shard(this.game, utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30));
             this.shards.add(shard);
         }
-        this.shards.addAll('body.velocity.x', -400, true, false);
+        this.shards.addAll('body.velocity.x', -800, true, false);
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => {

@@ -81,7 +81,7 @@ export class StartGame extends Phaser.State {
             const shard = new Shard(this.game, randomNumberInRange(250, 50000), randomNumberInRange(30, this.game.world.height - 30));
             this.shards.add(shard);
         }
-        this.shards.addAll('body.velocity.x', -400, true, false);
+        this.shards.addAll('body.velocity.x', -800, true, false);
     }
 
     update() {  

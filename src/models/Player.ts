@@ -103,7 +103,7 @@ export class Player extends Phaser.Sprite {
     public update() {
         // const x = (<any>this.game.state).started ? 100 + (this.vector.x * 6) : 0;
         // const y = (<any>this.game.state).started ? this.vector.y * 6 : 0;
-        this.body.velocity.x = this.vector.x * 7.5;
-        this.body.velocity.y = this.vector.y * 7.5;
+        this.body.velocity.x = this.vector.x * 11;
+        this.body.velocity.y = this.vector.y * 11;
     }
 }
