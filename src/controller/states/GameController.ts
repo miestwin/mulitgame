@@ -134,10 +134,11 @@ export class GameController extends Phaser.State {
                 } else if (touch.identifier == this.rightTouchID) {
                     this.graphics.lineStyle(2, 0xff0000);
                     this.graphics.drawCircle(this.rightTouchPos.x, this.rightTouchPos.y, 50);
-                } else {
-                    this.graphics.lineStyle(2, 0xff0000);
-                    this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
                 }
+                // } else {
+                //     this.graphics.lineStyle(2, 0xff0000);
+                //     this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
+                // }
             }
         }
 
@@ -159,7 +160,6 @@ export class GameController extends Phaser.State {
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
-                continue;
             } else {
                 this.rightTouchID = touch.identifier;
                 // this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
@@ -167,7 +167,6 @@ export class GameController extends Phaser.State {
                 // this.rightVector = new Victor(0, 0);
                 this.rightVector.copy(this.rightTouchPos);
                 this.rightVector.subtract(this.rightTouchStartPos);
-                continue;
             }
         }
         this.tpCache = e.touches;
@@ -187,12 +186,10 @@ export class GameController extends Phaser.State {
                 } 
                 this.leftVector.copy(this.leftTouchPos);
                 this.leftVector.subtract(this.leftTouchStartPos);
-                break;
             } else if (touch.identifier == this.rightTouchID) {
                 this.rightTouchPos = new Victor(touch.clientX, touch.clientY);
                 this.rightVector.copy(this.rightTouchPos);
                 this.rightVector.subtract(this.rightTouchStartPos);
-                break;
             }
         }
     }
@@ -204,11 +201,9 @@ export class GameController extends Phaser.State {
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
                 // this.leftVector = new Victor(0, 0);
-                break;
             } else if (touch.identifier == this.rightTouchID) {
                 this.rightTouchID = -1;
                 this.rightVector = new Victor(0, 0);
-                break;
             }
         }
     }
