@@ -114203,10 +114203,18 @@ class Player extends Phaser.Sprite {
         this.body.velocity.x = this.vector.x * 11;
         this.body.velocity.y = this.vector.y * 11;
         if (this.zPos && this.scale.x < 3) {
-            this.game.add.tween(this.scale).to({ x: 3, y: 3 }, 1000, Phaser.Easing.Back.InOut, true, 0, 1, false);
+            if (this.downTween != null) {
+                this.game.tweens.remove(this.downTween);
+                this.downTween = null;
+            }
+            this.upTween = this.game.add.tween(this.scale).to({ x: 3, y: 3 }, 1000, Phaser.Easing.Back.InOut, true, 0, 1, false);
         }
         else if (!this.zPos && this.scale.x > 1) {
-            this.game.add.tween(this.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Back.InOut, true, 0, 1, false);
+            if (this.upTween != null) {
+                this.game.tweens.remove(this.upTween);
+                this.upTween = null;
+            }
+            this.downTween = this.game.add.tween(this.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Back.InOut, true, 0, 1, false);
         }
     }
 }
