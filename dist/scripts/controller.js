@@ -289,7 +289,7 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(51);
-var hasBinary = __webpack_require__(17);
+var hasBinary = __webpack_require__(18);
 var sliceBuffer = __webpack_require__(52);
 var after = __webpack_require__(53);
 var utf8 = __webpack_require__(54);
@@ -1533,9 +1533,9 @@ function localstorage() {
 
 var debug = __webpack_require__(40)('socket.io-parser');
 var Emitter = __webpack_require__(4);
-var hasBin = __webpack_require__(17);
+var hasBin = __webpack_require__(18);
 var binary = __webpack_require__(44);
-var isBuf = __webpack_require__(18);
+var isBuf = __webpack_require__(19);
 
 /**
  * Protocol version.
@@ -2160,7 +2160,8 @@ exports.States = States;
 
 
 /***/ }),
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2314,7 +2315,7 @@ exports.default = Network;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -2359,7 +2360,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2428,7 +2429,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2448,7 +2449,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2457,13 +2458,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(46);
-var Socket = __webpack_require__(24);
+var Socket = __webpack_require__(25);
 var Emitter = __webpack_require__(4);
 var parser = __webpack_require__(11);
-var on = __webpack_require__(25);
-var bind = __webpack_require__(26);
+var on = __webpack_require__(26);
+var bind = __webpack_require__(27);
 var debug = __webpack_require__(7)('socket.io-client:manager');
-var indexOf = __webpack_require__(23);
+var indexOf = __webpack_require__(24);
 var Backoff = __webpack_require__(65);
 
 /**
@@ -3027,7 +3028,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -3087,7 +3088,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -3098,7 +3099,7 @@ var Transport = __webpack_require__(13);
 var parseqs = __webpack_require__(8);
 var parser = __webpack_require__(5);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(22);
+var yeast = __webpack_require__(23);
 var debug = __webpack_require__(10)('engine.io-client:polling');
 
 /**
@@ -3338,7 +3339,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3413,7 +3414,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 
@@ -3428,7 +3429,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3439,8 +3440,8 @@ module.exports = function(arr, obj){
 var parser = __webpack_require__(11);
 var Emitter = __webpack_require__(4);
 var toArray = __webpack_require__(64);
-var on = __webpack_require__(25);
-var bind = __webpack_require__(26);
+var on = __webpack_require__(26);
+var bind = __webpack_require__(27);
 var debug = __webpack_require__(7)('socket.io-client:socket');
 var parseqs = __webpack_require__(8);
 
@@ -3852,7 +3853,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 
@@ -3882,7 +3883,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 /**
@@ -3911,7 +3912,6 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 27 */,
 /* 28 */,
 /* 29 */,
 /* 30 */
@@ -107120,7 +107120,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 var url = __webpack_require__(37);
 var parser = __webpack_require__(11);
-var Manager = __webpack_require__(19);
+var Manager = __webpack_require__(20);
 var debug = __webpack_require__(7)('socket.io-client');
 
 /**
@@ -107205,8 +107205,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(19);
-exports.Socket = __webpack_require__(24);
+exports.Manager = __webpack_require__(20);
+exports.Socket = __webpack_require__(25);
 
 
 /***/ }),
@@ -107218,7 +107218,7 @@ exports.Socket = __webpack_require__(24);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(16);
+var parseuri = __webpack_require__(17);
 var debug = __webpack_require__(7)('socket.io-client:url');
 
 /**
@@ -108237,7 +108237,7 @@ module.exports = Array.isArray || function (arr) {
  */
 
 var isArray = __webpack_require__(45);
-var isBuf = __webpack_require__(18);
+var isBuf = __webpack_require__(19);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108417,12 +108417,12 @@ module.exports.parser = __webpack_require__(5);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(20);
+var transports = __webpack_require__(21);
 var Emitter = __webpack_require__(4);
 var debug = __webpack_require__(10)('engine.io-client:socket');
-var index = __webpack_require__(23);
+var index = __webpack_require__(24);
 var parser = __webpack_require__(5);
-var parseuri = __webpack_require__(16);
+var parseuri = __webpack_require__(17);
 var parsejson = __webpack_require__(63);
 var parseqs = __webpack_require__(8);
 
@@ -108558,7 +108558,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(13);
-Socket.transports = __webpack_require__(20);
+Socket.transports = __webpack_require__(21);
 Socket.parser = __webpack_require__(5);
 
 /**
@@ -109192,7 +109192,7 @@ try {
  */
 
 var XMLHttpRequest = __webpack_require__(12);
-var Polling = __webpack_require__(21);
+var Polling = __webpack_require__(22);
 var Emitter = __webpack_require__(4);
 var inherit = __webpack_require__(9);
 var debug = __webpack_require__(10)('engine.io-client:polling-xhr');
@@ -110537,7 +110537,7 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(21);
+var Polling = __webpack_require__(22);
 var inherit = __webpack_require__(9);
 
 /**
@@ -110778,7 +110778,7 @@ var Transport = __webpack_require__(13);
 var parser = __webpack_require__(5);
 var parseqs = __webpack_require__(8);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(22);
+var yeast = __webpack_require__(23);
 var debug = __webpack_require__(10)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -111274,7 +111274,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(72);
-const network_1 = __webpack_require__(15);
+const network_1 = __webpack_require__(16);
 const guid_1 = __webpack_require__(66);
 /**
  * Utworzenie kontrolera
@@ -111335,7 +111335,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(14);
 const shared_1 = __webpack_require__(33);
-const network_1 = __webpack_require__(15);
+const network_1 = __webpack_require__(16);
 /**
  * Uruchamianie systemu
  * @export
@@ -111503,7 +111503,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(14);
-const network_1 = __webpack_require__(15);
+const network_1 = __webpack_require__(16);
 /**
  * Wybór postaci
  * @export
@@ -111672,7 +111672,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const network_1 = __webpack_require__(15);
+const network_1 = __webpack_require__(16);
 /**
  * Kontroler gry
  * @export
@@ -111725,19 +111725,19 @@ class GameController extends Phaser.State {
     }
     update() {
         this.graphics.clear();
-        const posX = this.game.world.centerX + (this.game.world.centerX / 2);
-        const posY = this.game.world.centerY;
-        this.graphics.lineStyle(2, 0x4d9900);
-        this.graphics.drawCircle(posX, posY, 20);
-        this.graphics.drawCircle(posX, posY, 40);
-        this.graphics.drawCircle(posX, posY, 60);
-        this.graphics.drawCircle(posX, posY, 80);
-        this.graphics.drawCircle(posX, posY, 100);
-        this.graphics.lineStyle(4, 0x4d9900);
-        this.graphics.moveTo(posX, posY - 60);
-        this.graphics.lineTo(posX, posY + 60);
-        this.graphics.moveTo(posX - 60, posY);
-        this.graphics.lineTo(posX + 60, posY);
+        // const posX = this.game.world.centerX + (this.game.world.centerX / 2);
+        // const posY = this.game.world.centerY;
+        // this.graphics.lineStyle(2, 0x4d9900);
+        // this.graphics.drawCircle(posX, posY, 20);
+        // this.graphics.drawCircle(posX, posY, 40);
+        // this.graphics.drawCircle(posX, posY, 60);
+        // this.graphics.drawCircle(posX, posY, 80);
+        // this.graphics.drawCircle(posX, posY, 100);
+        // this.graphics.lineStyle(4, 0x4d9900);
+        // this.graphics.moveTo(posX, posY - 60);
+        // this.graphics.lineTo(posX, posY + 60);
+        // this.graphics.moveTo(posX - 60, posY);
+        // this.graphics.lineTo(posX + 60, posY);
         if (this.tpCache) {
             for (let i = 0; i < this.tpCache.length; i++) {
                 const touch = this.tpCache[i];
@@ -111749,14 +111749,10 @@ class GameController extends Phaser.State {
                     this.graphics.lineStyle(2, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 80);
                 }
-                else if (touch.identifier == this.rightTouchID) {
+                else {
                     this.graphics.lineStyle(2, 0xff0000);
-                    this.graphics.drawCircle(this.rightTouchPos.x, this.rightTouchPos.y, 50);
+                    this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
                 }
-                // } else {
-                //     this.graphics.lineStyle(2, 0xff0000);
-                //     this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
-                // }
             }
         }
         network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
@@ -111776,14 +111772,14 @@ class GameController extends Phaser.State {
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
             }
-            else {
-                this.rightTouchID = touch.identifier;
-                // this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
-                this.rightTouchPos = new Victor(touch.clientX, touch.clientY);
-                // this.rightVector = new Victor(0, 0);
-                this.rightVector.copy(this.rightTouchPos);
-                this.rightVector.subtract(this.rightTouchStartPos);
-            }
+            // else {
+            //     this.rightTouchID = touch.identifier;
+            //     // this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
+            //     this.rightTouchPos = new Victor(touch.clientX, touch.clientY);
+            //     // this.rightVector = new Victor(0, 0);
+            //     this.rightVector.copy(this.rightTouchPos);
+            //     this.rightVector.subtract(this.rightTouchStartPos);
+            // }
         }
         this.tpCache = e.touches;
     }
@@ -111802,11 +111798,11 @@ class GameController extends Phaser.State {
                 this.leftVector.copy(this.leftTouchPos);
                 this.leftVector.subtract(this.leftTouchStartPos);
             }
-            else if (touch.identifier == this.rightTouchID) {
-                this.rightTouchPos = new Victor(touch.clientX, touch.clientY);
-                this.rightVector.copy(this.rightTouchPos);
-                this.rightVector.subtract(this.rightTouchStartPos);
-            }
+            // else if (touch.identifier == this.rightTouchID) {
+            //     this.rightTouchPos = new Victor(touch.clientX, touch.clientY);
+            //     this.rightVector.copy(this.rightTouchPos);
+            //     this.rightVector.subtract(this.rightTouchStartPos);
+            // }
         }
     }
     onTouchEnd(e) {
@@ -111817,10 +111813,10 @@ class GameController extends Phaser.State {
                 this.leftTouchID = -1;
                 // this.leftVector = new Victor(0, 0);
             }
-            else if (touch.identifier == this.rightTouchID) {
-                this.rightTouchID = -1;
-                this.rightVector = new Victor(0, 0);
-            }
+            // else if (touch.identifier == this.rightTouchID) {
+            //     this.rightTouchID = -1;
+            //     this.rightVector = new Victor(0, 0);
+            // }
         }
     }
 }
@@ -111838,7 +111834,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(14);
-const network_1 = __webpack_require__(15);
+const network_1 = __webpack_require__(16);
 /**
  * Czekanie na rozpoczęcie gry
  * @export

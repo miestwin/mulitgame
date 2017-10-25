@@ -2,7 +2,7 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 import * as QRious from 'qrious';
-
+import { generatePoints, convexhull, randomNumberInRange } from '../../utils';
 import { States } from './States';
 import config from '../../config';
 
@@ -28,6 +28,10 @@ export class Loading extends Phaser.State {
         // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
         // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
         // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+
+        for (let i = 0; i < 10; i++) {
+            this.createShard(i);
+        }
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
@@ -123,5 +127,28 @@ export class Loading extends Phaser.State {
             img.title = (<any>this.game.state).id;
             img.src = qr;
         });
+    }
+
+    /**
+     * Tworzenie tekstur dla obiektów do zbierania
+     * @private
+     * @param {number} i 
+     * @memberof Loading
+     */
+    private createShard(i: number) {
+        const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        const points = convexhull(generatePoints(20, 20, 10));
+        points.push(points[0]);
+        const color = colors[randomNumberInRange(0, 6)];
+        var graphics = this.game.add.graphics(0, 0);
+        graphics.beginFill(color);
+        graphics.moveTo(points[0][0], points[0][1]);
+        for (let i = 1; i < points.length; i++) {
+            const point = points[i];
+            graphics.lineTo(point[0], point[1]);
+        }
+        graphics.endFill();
+        this.game.cache.addImage('shard-' + i, null, graphics.generateTexture().baseTexture.source);
+        graphics.destroy();
     }
 }

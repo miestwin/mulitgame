@@ -77,7 +77,7 @@ export class StartGame extends Phaser.State {
         this.shards = this.game.add.group();
         this.shards.enableBody = true;
         this.shards.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 2000; i++) {
+        for (let i = 0; i < 1000; i++) {
             const shard = new Shard(this.game, randomNumberInRange(250, 50000), randomNumberInRange(30, this.game.world.height - 30));
             this.shards.add(shard);
         }
@@ -95,7 +95,6 @@ export class StartGame extends Phaser.State {
     shardsCollisionHandler(player: Player, shard: Shard) {
         shard.kill();
         player.score += 1;
-        console.log(player.score);
     }
 
     shutdown() {

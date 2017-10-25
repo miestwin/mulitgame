@@ -289,7 +289,7 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(51);
-var hasBinary = __webpack_require__(17);
+var hasBinary = __webpack_require__(18);
 var sliceBuffer = __webpack_require__(52);
 var after = __webpack_require__(53);
 var utf8 = __webpack_require__(54);
@@ -1533,9 +1533,9 @@ function localstorage() {
 
 var debug = __webpack_require__(40)('socket.io-parser');
 var Emitter = __webpack_require__(4);
-var hasBin = __webpack_require__(17);
+var hasBin = __webpack_require__(18);
 var binary = __webpack_require__(44);
-var isBuf = __webpack_require__(18);
+var isBuf = __webpack_require__(19);
 
 /**
  * Protocol version.
@@ -2137,8 +2137,25 @@ Transport.prototype.onClose = function () {
 
 /***/ }),
 /* 14 */,
-/* 15 */,
-/* 16 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(66));
+__export(__webpack_require__(67));
+__export(__webpack_require__(68));
+__export(__webpack_require__(86));
+__export(__webpack_require__(87));
+
+
+/***/ }),
+/* 16 */,
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -2183,7 +2200,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2252,7 +2269,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2272,7 +2289,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2281,13 +2298,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(46);
-var Socket = __webpack_require__(24);
+var Socket = __webpack_require__(25);
 var Emitter = __webpack_require__(4);
 var parser = __webpack_require__(11);
-var on = __webpack_require__(25);
-var bind = __webpack_require__(26);
+var on = __webpack_require__(26);
+var bind = __webpack_require__(27);
 var debug = __webpack_require__(7)('socket.io-client:manager');
-var indexOf = __webpack_require__(23);
+var indexOf = __webpack_require__(24);
 var Backoff = __webpack_require__(65);
 
 /**
@@ -2851,7 +2868,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -2911,7 +2928,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2922,7 +2939,7 @@ var Transport = __webpack_require__(13);
 var parseqs = __webpack_require__(8);
 var parser = __webpack_require__(5);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(22);
+var yeast = __webpack_require__(23);
 var debug = __webpack_require__(10)('engine.io-client:polling');
 
 /**
@@ -3162,7 +3179,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3237,7 +3254,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 
@@ -3252,7 +3269,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3263,8 +3280,8 @@ module.exports = function(arr, obj){
 var parser = __webpack_require__(11);
 var Emitter = __webpack_require__(4);
 var toArray = __webpack_require__(64);
-var on = __webpack_require__(25);
-var bind = __webpack_require__(26);
+var on = __webpack_require__(26);
+var bind = __webpack_require__(27);
 var debug = __webpack_require__(7)('socket.io-client:socket');
 var parseqs = __webpack_require__(8);
 
@@ -3676,7 +3693,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 
@@ -3706,7 +3723,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 /**
@@ -3732,23 +3749,6 @@ module.exports = function(obj, fn){
     return fn.apply(obj, args.concat(slice.call(arguments)));
   }
 };
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(66));
-__export(__webpack_require__(68));
-__export(__webpack_require__(69));
-__export(__webpack_require__(90));
-__export(__webpack_require__(91));
 
 
 /***/ }),
@@ -107108,7 +107108,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 var url = __webpack_require__(37);
 var parser = __webpack_require__(11);
-var Manager = __webpack_require__(19);
+var Manager = __webpack_require__(20);
 var debug = __webpack_require__(7)('socket.io-client');
 
 /**
@@ -107193,8 +107193,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(19);
-exports.Socket = __webpack_require__(24);
+exports.Manager = __webpack_require__(20);
+exports.Socket = __webpack_require__(25);
 
 
 /***/ }),
@@ -107206,7 +107206,7 @@ exports.Socket = __webpack_require__(24);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(16);
+var parseuri = __webpack_require__(17);
 var debug = __webpack_require__(7)('socket.io-client:url');
 
 /**
@@ -108225,7 +108225,7 @@ module.exports = Array.isArray || function (arr) {
  */
 
 var isArray = __webpack_require__(45);
-var isBuf = __webpack_require__(18);
+var isBuf = __webpack_require__(19);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108405,12 +108405,12 @@ module.exports.parser = __webpack_require__(5);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(20);
+var transports = __webpack_require__(21);
 var Emitter = __webpack_require__(4);
 var debug = __webpack_require__(10)('engine.io-client:socket');
-var index = __webpack_require__(23);
+var index = __webpack_require__(24);
 var parser = __webpack_require__(5);
-var parseuri = __webpack_require__(16);
+var parseuri = __webpack_require__(17);
 var parsejson = __webpack_require__(63);
 var parseqs = __webpack_require__(8);
 
@@ -108546,7 +108546,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(13);
-Socket.transports = __webpack_require__(20);
+Socket.transports = __webpack_require__(21);
 Socket.parser = __webpack_require__(5);
 
 /**
@@ -109180,7 +109180,7 @@ try {
  */
 
 var XMLHttpRequest = __webpack_require__(12);
-var Polling = __webpack_require__(21);
+var Polling = __webpack_require__(22);
 var Emitter = __webpack_require__(4);
 var inherit = __webpack_require__(9);
 var debug = __webpack_require__(10)('engine.io-client:polling-xhr');
@@ -110525,7 +110525,7 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(21);
+var Polling = __webpack_require__(22);
 var inherit = __webpack_require__(9);
 
 /**
@@ -110766,7 +110766,7 @@ var Transport = __webpack_require__(13);
 var parser = __webpack_require__(5);
 var parseqs = __webpack_require__(8);
 var inherit = __webpack_require__(9);
-var yeast = __webpack_require__(22);
+var yeast = __webpack_require__(23);
 var debug = __webpack_require__(10)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -111226,13 +111226,11 @@ exports.guid = guid;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(88));
-__export(__webpack_require__(89));
-__export(__webpack_require__(92));
+function randomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+exports.randomNumberInRange = randomNumberInRange;
 
 
 /***/ }),
@@ -111242,10 +111240,10 @@ __export(__webpack_require__(92));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function randomNumberInRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function cross(a, b, o) {
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
 }
-exports.randomNumberInRange = randomNumberInRange;
+exports.cross = cross;
 
 
 /***/ }),
@@ -111254,11 +111252,13 @@ exports.randomNumberInRange = randomNumberInRange;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-function cross(a, b, o) {
-    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-exports.cross = cross;
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(90));
+__export(__webpack_require__(91));
+__export(__webpack_require__(92));
 
 
 /***/ }),
@@ -111311,7 +111311,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(82);
 const network_1 = __webpack_require__(29);
-const utils_1 = __webpack_require__(27);
+const utils_1 = __webpack_require__(15);
 /**
  * Utworzenie gry
  * @export
@@ -111353,7 +111353,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(28));
 __export(__webpack_require__(83));
 __export(__webpack_require__(84));
-__export(__webpack_require__(87));
+__export(__webpack_require__(89));
 __export(__webpack_require__(93));
 __export(__webpack_require__(97));
 __export(__webpack_require__(98));
@@ -111418,8 +111418,9 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const QRious = __webpack_require__(85);
+const utils_1 = __webpack_require__(15);
 const States_1 = __webpack_require__(28);
-const config_1 = __webpack_require__(86);
+const config_1 = __webpack_require__(88);
 /**
  * Ładowanie zasobów
  * @export
@@ -111436,6 +111437,9 @@ class Loading extends Phaser.State {
         // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
         // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
         // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+        for (let i = 0; i < 10; i++) {
+            this.createShard(i);
+        }
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.image('shard', '../assets/images/shard.png');
@@ -111517,6 +111521,28 @@ class Loading extends Phaser.State {
             img.title = this.game.state.id;
             img.src = qr;
         });
+    }
+    /**
+     * Tworzenie tekstur dla obiektów do zbierania
+     * @private
+     * @param {number} i
+     * @memberof Loading
+     */
+    createShard(i) {
+        const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        const points = utils_1.convexhull(utils_1.generatePoints(20, 20, 10));
+        points.push(points[0]);
+        const color = colors[utils_1.randomNumberInRange(0, 6)];
+        var graphics = this.game.add.graphics(0, 0);
+        graphics.beginFill(color);
+        graphics.moveTo(points[0][0], points[0][1]);
+        for (let i = 1; i < points.length; i++) {
+            const point = points[i];
+            graphics.lineTo(point[0], point[1]);
+        }
+        graphics.endFill();
+        this.game.cache.addImage('shard-' + i, null, graphics.generateTexture().baseTexture.source);
+        graphics.destroy();
     }
 }
 exports.Loading = Loading;
@@ -113897,13 +113923,71 @@ exports.Loading = Loading;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+const randomNumberInRange_1 = __webpack_require__(67);
+function generatePoints(x, y, offset) {
+    const x1 = x - offset;
+    const x2 = x + offset;
+    const y1 = y - offset;
+    const y2 = y + offset;
+    const n = randomNumberInRange_1.randomNumberInRange(5, 20);
+    const points = [];
+    for (let i = 0; i < 20; i++) {
+        const _x = randomNumberInRange_1.randomNumberInRange(x1, x2);
+        const _y = randomNumberInRange_1.randomNumberInRange(y1, y2);
+        points.push([_x, _y]);
+    }
+    return points;
+}
+exports.generatePoints = generatePoints;
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const cross_1 = __webpack_require__(68);
+function convexhull(points) {
+    points.sort((a, b) => {
+        return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0];
+    });
+    const lower = [];
+    for (let i = 0; i < points.length; i++) {
+        while (lower.length >= 2 && cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
+            lower.pop();
+        }
+        lower.push(points[i]);
+    }
+    const upper = [];
+    for (let i = points.length - 1; i >= 0; i--) {
+        while (upper.length >= 2 && cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
+            upper.pop();
+        }
+        upper.push(points[i]);
+    }
+    upper.pop();
+    lower.pop();
+    return lower.concat(upper);
+}
+exports.convexhull = convexhull;
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     url: 'https://thawing-ravine-92822.herokuapp.com'
 };
 
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113915,7 +113999,7 @@ __webpack_require__(3);
 // import * as screenfull from 'screenfull';
 const States_1 = __webpack_require__(28);
 const network_1 = __webpack_require__(29);
-const models_1 = __webpack_require__(67);
+const models_1 = __webpack_require__(69);
 /**
  * Menu główne
  * @export
@@ -114037,7 +114121,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114109,7 +114193,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114118,7 +114202,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(27);
+const utils_1 = __webpack_require__(15);
 const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
 class Asteroid extends Phaser.Sprite {
     constructor(game, x, y) {
@@ -114149,64 +114233,6 @@ exports.Asteroid = Asteroid;
 
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const randomNumberInRange_1 = __webpack_require__(68);
-function generatePoints(x, y, offset) {
-    const x1 = x - offset;
-    const x2 = x + offset;
-    const y1 = y - offset;
-    const y2 = y + offset;
-    const n = randomNumberInRange_1.randomNumberInRange(5, 20);
-    const points = [];
-    for (let i = 0; i < 20; i++) {
-        const _x = randomNumberInRange_1.randomNumberInRange(x1, x2);
-        const _y = randomNumberInRange_1.randomNumberInRange(y1, y2);
-        points.push([_x, _y]);
-    }
-    return points;
-}
-exports.generatePoints = generatePoints;
-
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const cross_1 = __webpack_require__(69);
-function convexhull(points) {
-    points.sort((a, b) => {
-        return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0];
-    });
-    const lower = [];
-    for (let i = 0; i < points.length; i++) {
-        while (lower.length >= 2 && cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
-            lower.pop();
-        }
-        lower.push(points[i]);
-    }
-    const upper = [];
-    for (let i = points.length - 1; i >= 0; i--) {
-        while (upper.length >= 2 && cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
-            upper.pop();
-        }
-        upper.push(points[i]);
-    }
-    upper.pop();
-    lower.pop();
-    return lower.concat(upper);
-}
-exports.convexhull = convexhull;
-
-
-/***/ }),
 /* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -114216,16 +114242,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(27);
+const utils_1 = __webpack_require__(15);
 class Shard extends Phaser.Sprite {
     constructor(game, x, y) {
-        super(game, x, y, 'shard');
+        super(game, x, y, 'shard-' + utils_1.randomNumberInRange(0, 9));
         this.anchor.setTo(0.5);
-        this.scale.setTo(0.1);
-        this.angle += utils_1.randomNumberInRange(0, 360);
-        // game.add.existing(this);
-        // game.physics.arcade.enable(this);
-        // this.body.collideWorldBounds = true;
+        game.add.tween(this).to({ angle: utils_1.randomNumberInRange(0, 360) }, utils_1.randomNumberInRange(4000, 6000), Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
     }
 }
 exports.Shard = Shard;
@@ -114241,10 +114263,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(27);
+const utils_1 = __webpack_require__(15);
 const engine_1 = __webpack_require__(94);
 const network_1 = __webpack_require__(29);
-const models_1 = __webpack_require__(67);
+const models_1 = __webpack_require__(69);
 /**
  * Start rozgrywki
  * @export
@@ -114303,7 +114325,7 @@ class StartGame extends Phaser.State {
         this.shards = this.game.add.group();
         this.shards.enableBody = true;
         this.shards.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 2000; i++) {
+        for (let i = 0; i < 1000; i++) {
             const shard = new models_1.Shard(this.game, utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30));
             this.shards.add(shard);
         }
@@ -114319,7 +114341,6 @@ class StartGame extends Phaser.State {
     shardsCollisionHandler(player, shard) {
         shard.kill();
         player.score += 1;
-        console.log(player.score);
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
@@ -114366,7 +114387,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(27);
+const utils_1 = __webpack_require__(15);
 /**
  * Generacja gwiazd na scenie
  * @export
