@@ -18,6 +18,7 @@ export default class Network {
     public static ALL_PLAYERS = 'all-players';
     public static UPDATE_PLAYER_XY = 'update-player-xy';
     public static UPDATE_PLAYER_Z = 'update-player-z';
+    public static UPDATE_PLAYER_SCORE = 'update_player_score';
 
     public static connect () {
         Network.socket = io();
@@ -66,6 +67,10 @@ export default class Network {
      */
     public static getAllPlayers() {
         Network.socket.emit(Network.ALL_PLAYERS);
+    }
+
+    public static updatePlayerScore(playerId, socketId, score) {
+        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
     }
 
     /**

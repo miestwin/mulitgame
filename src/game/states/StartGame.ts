@@ -98,8 +98,13 @@ export class StartGame extends Phaser.State {
     }
 
     shardsCollisionHandler(player: Player, shard: Shard) {
-        shard.kill();
-        player.score += 1;
+        if (player.scale.x == 1) { 
+            shard.kill();
+            player.score += 1;
+            Network.updatePlayerScore(player.id, player.socket, player.score);
+        } else if (player.scale.x == 2) {
+
+        }
     }
 
     shutdown() {

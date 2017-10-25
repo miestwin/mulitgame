@@ -21,6 +21,7 @@ export default class Network {
     public static UPDATE_PLAYER_XY = 'update-player-xy';
     public static UPDATE_TIMER = 'update-timer';
     public static UPDATE_PLAYER_Z = 'update-player-z';
+    public static UPDATE_PLAYER_SCORE = 'update_player_score';
 
     static connect () {
         Network.socket = io();
@@ -170,5 +171,15 @@ export default class Network {
      */
     public static onUpdateTimer(fn: Function) {
         Network.socket.on(Network.UPDATE_TIMER, fn);
+    }
+
+    /**
+     * Aktualizacja wyniku gracza
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onUpdateScore(fn: Function) {
+        Network.socket.on(Network.UPDATE_PLAYER_SCORE, fn);
     }
 }

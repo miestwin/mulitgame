@@ -94,6 +94,14 @@ module.exports = (server) => {
         socket.on('update-player-z', (gameId, update) => {
             socket.broadcast.to('game-' + gameId).emit('update-player-z', socket.player.id, update);
         });
+
+        socket.on('update_player_score', (playerId, socketId, score) => {
+            const player = io.sockets.connected[socketId].player;
+            if (player && player.id == playerId) {
+                player.score = score;
+                io.to(socketId).emit('update_player_score', score);
+            }
+        });
     });
 
     /**

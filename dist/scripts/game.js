@@ -3831,6 +3831,9 @@ class Network {
     static getAllPlayers() {
         Network.socket.emit(Network.ALL_PLAYERS);
     }
+    static updatePlayerScore(playerId, socketId, score) {
+        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
+    }
     /**
      * Nasłuchiwanie czy gracz się rozłączył
      * @static
@@ -3914,6 +3917,7 @@ Network.START_GAME = 'start-game';
 Network.ALL_PLAYERS = 'all-players';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_PLAYER_Z = 'update-player-z';
+Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 exports.default = Network;
 
 
@@ -114162,7 +114166,7 @@ class Player extends Phaser.Sprite {
     get id() {
         return this._id;
     }
-    get sockket() {
+    get socket() {
         return this._socketId;
     }
     constructor(game, x, y, { id, socketId, avatar }) {
@@ -114202,11 +114206,11 @@ class Player extends Phaser.Sprite {
     update() {
         this.body.velocity.x = this.vector.x * 11;
         this.body.velocity.y = this.vector.y * 11;
-        if (this.zPos && this.scale.x < 2.3) {
-            this.scale.setTo(this.scale.x += 0.1);
+        if (this.zPos && this.scale.x < 2) {
+            this.scale.setTo(this.scale.x += 0.01);
         }
         else if (!this.zPos && this.scale.x > 1) {
-            this.scale.setTo(this.scale.x -= 0.1);
+            this.scale.setTo(this.scale.x -= 0.01);
         }
         // if (this.zPos && this.scale.x < 3) {
         //     if (this.downTween != null) {
@@ -114377,8 +114381,13 @@ class StartGame extends Phaser.State {
         // this.filter.update();
     }
     shardsCollisionHandler(player, shard) {
-        shard.kill();
-        player.score += 1;
+        if (player.scale.x == 1) {
+            shard.kill();
+            player.score += 1;
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+        }
+        else if (player.scale.x == 2) {
+        }
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);

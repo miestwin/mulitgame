@@ -2308,6 +2308,15 @@ class Network {
     static onUpdateTimer(fn) {
         Network.socket.on(Network.UPDATE_TIMER, fn);
     }
+    /**
+     * Aktualizacja wyniku gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateScore(fn) {
+        Network.socket.on(Network.UPDATE_PLAYER_SCORE, fn);
+    }
 }
 Network.NEW_PLAYER = 'new-player';
 Network.SET_PLAYER_CHARACTER = 'set-player-character';
@@ -2322,6 +2331,7 @@ Network.START_GAME = 'start-game';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_TIMER = 'update-timer';
 Network.UPDATE_PLAYER_Z = 'update-player-z';
+Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 exports.default = Network;
 
 
@@ -111713,13 +111723,17 @@ class GameController extends Phaser.State {
         this.leftVector = new Victor(0, 0);
     }
     preload() {
-        console.log("preloader");
+        network_1.default.onUpdateScore((score) => {
+            this.scoreText.setText('Score: ' + score);
+        });
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
     }
     create() {
         this.graphics = this.game.add.graphics(0, 0);
+        this.scoreText = this.game.add.text(this.game.world.centerX, 10, 'Score: ...', { font: '15px Kenvector Future', fill: '#ffffff', align: 'center' });
+        this.scoreText.anchor.setTo(0.5, 0);
     }
     update() {
         this.graphics.clear();

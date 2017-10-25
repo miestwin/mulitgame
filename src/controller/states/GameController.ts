@@ -71,11 +71,13 @@ export class GameController extends Phaser.State {
      */
     private rightTouchID: number;
 
-    
-
+    private scoreText: Phaser.Text;
 
     preload() {
-        console.log("preloader");
+        Network.onUpdateScore((score) => {
+            this.scoreText.setText('Score: ' + score);
+        });
+
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
@@ -83,6 +85,11 @@ export class GameController extends Phaser.State {
 
     create() {
         this.graphics = this.game.add.graphics(0 ,0);
+        this.scoreText = this.game.add.text(
+            this.game.world.centerX,
+            10, 'Score: ...',
+            { font: '15px Kenvector Future', fill: '#ffffff', align: 'center' });
+        this.scoreText.anchor.setTo(0.5, 0);
     }
 
     update() {

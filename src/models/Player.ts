@@ -39,7 +39,7 @@ export class Player extends Phaser.Sprite {
      */
     private _socketId: string;
 
-    get sockket() {
+    get socket() {
         return this._socketId;
     }
 
@@ -115,10 +115,10 @@ export class Player extends Phaser.Sprite {
         this.body.velocity.x = this.vector.x * 11;
         this.body.velocity.y = this.vector.y * 11;
 
-        if (this.zPos && this.scale.x < 2.3) {
-            this.scale.setTo(this.scale.x += 0.1);
+        if (this.zPos && this.scale.x < 2) {
+            this.scale.setTo(this.scale.x += 0.01);
         } else if (!this.zPos && this.scale.x > 1) {
-            this.scale.setTo(this.scale.x -= 0.1);
+            this.scale.setTo(this.scale.x -= 0.01);
         }
         // if (this.zPos && this.scale.x < 3) {
         //     if (this.downTween != null) {
