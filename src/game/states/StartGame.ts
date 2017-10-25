@@ -41,6 +41,11 @@ export class StartGame extends Phaser.State {
            player.vector = new Victor(update.x, update.y);
         });
 
+        Network.onPlayerUpdateZ((playerId, update) => {
+            const player = (<any>this.game.state).players[playerId];
+            player.zPos = update;
+        });
+
         Network.onPlayerDisconnected((player) => {
             // remove player
             (<any>this.game.state).players = Object.keys((<any>this.game.state).players).reduce((players, nextId) => {
@@ -100,6 +105,7 @@ export class StartGame extends Phaser.State {
     shutdown() {
         Network.removeListener(Network.ALL_PLAYERS);
         Network.removeListener(Network.UPDATE_PLAYER_XY);
+        Network.removeListener(Network.UPDATE_PLAYER_Z);
         Network.removeListener(Network.PLAYER_DISCONNECTED);
     }
 }

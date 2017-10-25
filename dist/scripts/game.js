@@ -3885,8 +3885,23 @@ class Network {
     static onGetAllPlayers(fn) {
         Network.socket.on(Network.ALL_PLAYERS, fn);
     }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
     static onPlayedUpdateXY(fn) {
         Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
+    }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayerUpdateZ(fn) {
+        Network.socket.on(Network.UPDATE_PLAYER_Z, fn);
     }
 }
 Network.NEW_GAME = 'new-game';
@@ -3898,6 +3913,7 @@ Network.UPDATE_TIMER = 'update-timer';
 Network.START_GAME = 'start-game';
 Network.ALL_PLAYERS = 'all-players';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
+Network.UPDATE_PLAYER_Z = 'update-player-z';
 exports.default = Network;
 
 
@@ -114165,9 +114181,10 @@ class Player extends Phaser.Sprite {
         this._socketId = socketId;
         this.avatar = avatar;
         this.score = 0;
+        this.zPos = false;
         this.vector = new Victor(0, 0);
         this.anchor.setTo(0.5);
-        // this.scale.setTo(0.7);
+        this.scale.setTo(1);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
@@ -114183,10 +114200,14 @@ class Player extends Phaser.Sprite {
         this.y = y;
     }
     update() {
-        // const x = (<any>this.game.state).started ? 100 + (this.vector.x * 6) : 0;
-        // const y = (<any>this.game.state).started ? this.vector.y * 6 : 0;
         this.body.velocity.x = this.vector.x * 11;
         this.body.velocity.y = this.vector.y * 11;
+        if (this.zPos && this.scale.x < 3) {
+            this.game.add.tween(this.scale).to({ x: 3, y: 3 }, 1000, Phaser.Easing.Back.InOut, true, 0, 1, false);
+        }
+        else if (!this.zPos && this.scale.x > 1) {
+            this.game.add.tween(this.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Back.InOut, true, 0, 1, false);
+        }
     }
 }
 exports.Player = Player;
@@ -114294,6 +114315,10 @@ class StartGame extends Phaser.State {
             const player = this.game.state.players[playerId];
             player.vector = new Victor(update.x, update.y);
         });
+        network_1.default.onPlayerUpdateZ((playerId, update) => {
+            const player = this.game.state.players[playerId];
+            player.zPos = update;
+        });
         network_1.default.onPlayerDisconnected((player) => {
             // remove player
             this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
@@ -114345,6 +114370,7 @@ class StartGame extends Phaser.State {
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_Z);
         network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
     }
 }

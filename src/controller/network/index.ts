@@ -20,6 +20,7 @@ export default class Network {
     public static START_GAME = 'start-game';
     public static UPDATE_PLAYER_XY = 'update-player-xy';
     public static UPDATE_TIMER = 'update-timer';
+    public static UPDATE_PLAYER_Z = 'update-player-z';
 
     static connect () {
         Network.socket = io();
@@ -78,6 +79,17 @@ export default class Network {
      */
     public static updatePlayerXY(gameId, update) {
         Network.socket.emit(Network.UPDATE_PLAYER_XY, gameId, update);
+    }
+
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {any} gameID 
+     * @param {any} update 
+     * @memberof Network
+     */
+    public static updatePlayerZ(gameID, update) {
+        Network.socket.emit(Network.UPDATE_PLAYER_Z, gameID, update);
     }
 
     /**

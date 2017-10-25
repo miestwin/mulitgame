@@ -17,6 +17,7 @@ export default class Network {
     public static START_GAME = 'start-game';
     public static ALL_PLAYERS = 'all-players';
     public static UPDATE_PLAYER_XY = 'update-player-xy';
+    public static UPDATE_PLAYER_Z = 'update-player-z';
 
     public static connect () {
         Network.socket = io();
@@ -127,7 +128,23 @@ export default class Network {
         Network.socket.on(Network.ALL_PLAYERS, fn);
     }
 
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
     public static onPlayedUpdateXY(fn: Function) {
         Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
+    }
+
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onPlayerUpdateZ(fn: Function) {
+        Network.socket.on(Network.UPDATE_PLAYER_Z, fn);
     }
 }

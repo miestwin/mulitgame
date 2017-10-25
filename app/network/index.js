@@ -90,6 +90,10 @@ module.exports = (server) => {
         socket.on('update-player-xy', (gameId, update) => {
             socket.broadcast.to('game-' + gameId).emit('update-player-xy', socket.player.id, update);
         });
+
+        socket.on('update-player-z', (gameId, update) => {
+            socket.broadcast.to('game-' + gameId).emit('update-player-z', socket.player.id, update);
+        });
     });
 
     /**
