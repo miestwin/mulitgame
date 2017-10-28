@@ -2330,7 +2330,7 @@ Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
 Network.START_GAME = 'start-game';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_TIMER = 'update-timer';
-Network.UPDATE_PLAYER_Z = 'update-player-up';
+Network.UPDATE_PLAYER_Z = 'update-player-z';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 exports.default = Network;
 
