@@ -111308,6 +111308,7 @@ class Controller extends Phaser.Game {
         super(config);
         // create controller id
         this.state.id = guid_1.guid();
+        this.state.color = null;
         // connect to server
         network_1.default.connect();
         // add states to controller
@@ -111427,6 +111428,11 @@ class Loading extends Phaser.State {
         // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
         // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
         // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+        // this.game.load.image('left-1', '../assets/images/controller/Sprites/shadedDark/shadedDark07.png');
+        this.game.load.image('left-1', '../assets/images/controller/Sprites/lineDark/lineDark46.png');
+        this.game.load.image('left-2', '../assets/images/controller/Sprites/shadedDark/shadedDark11.png');
+        this.game.load.image('up', '../assets/images/controller/Sprites/shadedDark/shadedDark26.png');
+        this.game.load.image('down', '../assets/images/controller/Sprites/shadedDark/shadedDark27.png');
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
@@ -111647,6 +111653,7 @@ class AvatarSelector extends Phaser.State {
     actionOnClick() {
         if (!this.ships[this.selectedShipIndex].use) {
             network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
+            this.game.state.color = this.ships[this.selectedShipIndex].color;
             this.game.state.start(States_1.States.WAIT_FOR_GAME);
         }
     }
@@ -111723,6 +111730,7 @@ class GameController extends Phaser.State {
         this.leftVector = new Victor(0, 0);
     }
     preload() {
+        this.game.stage.backgroundColor = this.game.state.color;
         network_1.default.onUpdateScore((score) => {
             this.scoreText.setText('Score: ' + score);
         });
@@ -111734,6 +111742,16 @@ class GameController extends Phaser.State {
         this.graphics = this.game.add.graphics(0, 0);
         this.scoreText = this.game.add.text(this.game.world.centerX, 10, 'Score: ...', { font: '15px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
+        this.upBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY / 2, 'up');
+        this.upBtn.anchor.setTo(0.5);
+        this.upBtn.onInputDown.add(() => {
+            network_1.default.updatePlayerZ(gameId, false);
+        }, this);
+        this.downBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + this.game.world.centerY / 2, 'down');
+        this.downBtn.anchor.setTo(0.5);
+        this.downBtn.onInputDown.add(() => {
+            network_1.default.updatePlayerZ(gameId, true);
+        }, this);
     }
     update() {
         this.graphics.clear();
@@ -111748,14 +111766,6 @@ class GameController extends Phaser.State {
                     this.graphics.lineStyle(2, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 80);
                 }
-                else if (touch.identifier == this.rightTouchID) {
-                    this.graphics.lineStyle(2, 0xff0000);
-                    this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
-                }
-                // else {
-                //     this.graphics.lineStyle(2, 0xff0000);
-                //     this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
-                // }
             }
         }
         network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
@@ -111774,10 +111784,6 @@ class GameController extends Phaser.State {
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
-            }
-            else {
-                this.rightTouchID = touch.identifier;
-                network_1.default.updatePlayerZ(gameId, true);
             }
         }
         this.tpCache = e.touches;
@@ -111806,10 +111812,6 @@ class GameController extends Phaser.State {
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
             }
-            else if (touch.identifier == this.rightTouchID) {
-                this.rightTouchID = -1;
-                network_1.default.updatePlayerZ(gameId, false);
-            }
         }
     }
 }
@@ -111836,6 +111838,7 @@ const network_1 = __webpack_require__(16);
  */
 class WaitForGame extends Phaser.State {
     preload() {
+        this.game.stage.backgroundColor = this.game.state.color;
         network_1.default.onUpdateTimer((sec) => {
             this.timer.setText('The game will start in\n' + sec);
         });

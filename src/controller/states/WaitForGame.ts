@@ -22,6 +22,8 @@ export class WaitForGame extends Phaser.State {
     private timer: Phaser.Text;
 
     preload() {
+        this.game.stage.backgroundColor = (<any>this.game.state).color;
+        
         Network.onUpdateTimer((sec) => {
             this.timer.setText('The game will start in\n' + sec);
         });

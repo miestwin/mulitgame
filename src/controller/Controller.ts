@@ -27,6 +27,7 @@ export default class Controller extends Phaser.Game {
         super(config);
         // create controller id
         (<any>this.state).id = guid();
+        (<any>this.state).color = null;
 
         // connect to server
         Network.connect();

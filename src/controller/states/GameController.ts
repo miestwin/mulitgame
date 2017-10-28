@@ -73,7 +73,12 @@ export class GameController extends Phaser.State {
 
     private scoreText: Phaser.Text;
 
+    private upBtn: Phaser.Button;
+    private downBtn: Phaser.Button;
+
     preload() {
+        this.game.stage.backgroundColor = (<any>this.game.state).color;
+
         Network.onUpdateScore((score) => {
             this.scoreText.setText('Score: ' + score);
         });
@@ -90,6 +95,24 @@ export class GameController extends Phaser.State {
             10, 'Score: ...',
             { font: '15px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
+
+        this.upBtn = this.game.add.button(
+            this.game.world.centerX + this.game.world.centerX / 2,
+            this.game.world.centerY / 2, 'up');
+        this.upBtn.anchor.setTo(0.5);
+
+        this.upBtn.onInputDown.add(() => {
+            Network.updatePlayerZ(gameId, false);
+        }, this);
+
+        this.downBtn = this.game.add.button(
+            this.game.world.centerX + this.game.world.centerX / 2,
+            this.game.world.centerY + this.game.world.centerY / 2, 'down');
+        this.downBtn.anchor.setTo(0.5);
+
+        this.downBtn.onInputDown.add(() => {
+            Network.updatePlayerZ(gameId, true);
+        }, this);
     }
 
     update() {
@@ -104,14 +127,7 @@ export class GameController extends Phaser.State {
                     this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 100);
                     this.graphics.lineStyle(2, 0x66ffff);
                     this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 80);
-                } else if (touch.identifier == this.rightTouchID) {
-                    this.graphics.lineStyle(2, 0xff0000);
-                    this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
                 }
-                // else {
-                //     this.graphics.lineStyle(2, 0xff0000);
-                //     this.graphics.drawCircle(touch.clientX, touch.clientY, 80);
-                // }
             }
         }
 
@@ -124,7 +140,7 @@ export class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
     }
 
-    onTouchStart(e: TouchEvent) {
+    private onTouchStart(e: TouchEvent) {
         e.preventDefault();
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
@@ -133,16 +149,12 @@ export class GameController extends Phaser.State {
                 this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
-            } 
-            else {
-                this.rightTouchID = touch.identifier;
-                Network.updatePlayerZ(gameId, true);
             }
         }
         this.tpCache = e.touches;
     }
 
-    onTouchMove(e: TouchEvent) {
+    private onTouchMove(e: TouchEvent) {
         e.preventDefault();
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
@@ -160,15 +172,12 @@ export class GameController extends Phaser.State {
         }
     }
 
-    onTouchEnd(e: TouchEvent) {
+    private onTouchEnd(e: TouchEvent) {
         this.tpCache = e.touches;
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
-            } else if (touch.identifier == this.rightTouchID) {
-                this.rightTouchID = -1;
-                Network.updatePlayerZ(gameId, false);
             }
         }
     }
