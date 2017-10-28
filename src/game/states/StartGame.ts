@@ -91,7 +91,7 @@ export class StartGame extends Phaser.State {
             field.animations.add('electrify');
             field.animations.play('electrify', 15, true);
         }
-        this.electricFields.addAll('body.velocity.x', -800, true, false);
+        this.electricFields.addAll('body.velocity.x', -600, true, false);
 
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
         //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
@@ -109,11 +109,11 @@ export class StartGame extends Phaser.State {
     update() {  
         Object.keys((<any>this.game.state).players).forEach(playerId => {
             (<any>this.game.state).players[playerId].update();
-            this.game.physics.arcade.overlap(
+            this.game.physics.arcade.collide(
                 (<any>this.game.state).players[playerId],
                 this.shards, this.shardsCollisionHandler, null, this);
 
-            this.game.physics.arcade.overlap(
+            this.game.physics.arcade.collide(
                 (<any>this.game.state).players[playerId],
                 this.electricFields, this.electricFieldCollisionHandler, null, this);
         });
@@ -132,7 +132,7 @@ export class StartGame extends Phaser.State {
 
     electricFieldCollisionHandler(player: Player, field: Phaser.Sprite) {
         if (player.scale.x < Player.MAX_SCALE && player.angle == 0) {
-            player.angle = randomNumberInRange(10, 350);
+            player.angle = 180;
         } else if (player.scale.x < Player.MAX_SCALE && player.angle != 0) {
             player.angle = 0;
         }
