@@ -26,7 +26,9 @@
   "scripts": {
     "start": "node server.js",
     "dist": "webpack",
-    "deploy": "git add --all && git commit -m 'test' && git push heroku master",
+    "local": "npm run dist && npm start",
+    "repo": "npm run dist && git add --all && git commit -m 'push all changes to repository' && git push",
+    "deploy": "git add --all && git commit -m 'deploy to server' && git push heroku master",
     "scale": "heroku ps:scale web=1",
     "open": "heroku open",
     "heroku": "npm run dist && npm run deploy && npm run scale && npm run open"

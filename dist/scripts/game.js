@@ -114381,12 +114381,14 @@ class StartGame extends Phaser.State {
         this.electricFields = this.game.add.group();
         this.electricFields.enableBody = true;
         this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 50; i++) {
-            const field = this.game.add.sprite(utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30), 'electric-field', 0, this.electricFields);
+        for (let i = 0; i < 60; i++) {
+            const x1 = this.game.world.width * (i + 2);
+            const x2 = this.game.world.width * (i + 3) < 45000 ? this.game.world.width * (i + 3) : 45000;
+            const field = this.game.add.sprite(utils_1.randomNumberInRange(x1, x2), utils_1.randomNumberInRange(50, this.game.world.height - 50), 'electric-field', 0, this.electricFields);
             field.anchor.setTo(0.5);
-            field.scale.setTo(0.6);
+            field.scale.setTo(1.4);
             field.animations.add('electrify');
-            field.animations.play('electrify', 20, true);
+            field.animations.play('electrify', 15, true);
         }
         this.electricFields.addAll('body.velocity.x', -800, true, false);
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
