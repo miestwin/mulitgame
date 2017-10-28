@@ -102,7 +102,11 @@ export class GameController extends Phaser.State {
         this.upBtn.anchor.setTo(0.5);
 
         this.upBtn.onInputDown.add(() => {
-            Network.updatePlayerZ(gameId, false);
+            Network.updatePlayerZ(gameId, 1);
+        }, this);
+
+        this.upBtn.onInputUp.add(() => {
+            Network.updatePlayerZ(gameId, 0);
         }, this);
 
         this.downBtn = this.game.add.button(
@@ -111,7 +115,11 @@ export class GameController extends Phaser.State {
         this.downBtn.anchor.setTo(0.5);
 
         this.downBtn.onInputDown.add(() => {
-            Network.updatePlayerZ(gameId, true);
+            Network.updatePlayerZ(gameId, -1);
+        }, this);
+
+        this.downBtn.onInputUp.add(() => {
+            Network.updatePlayerZ(gameId, 0);
         }, this);
     }
 
@@ -138,6 +146,7 @@ export class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
+        Network.removeListener(Network.UPDATE_PLAYER_SCORE);
     }
 
     private onTouchStart(e: TouchEvent) {

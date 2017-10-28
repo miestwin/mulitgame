@@ -20,7 +20,7 @@ export default class Network {
     public static START_GAME = 'start-game';
     public static UPDATE_PLAYER_XY = 'update-player-xy';
     public static UPDATE_TIMER = 'update-timer';
-    public static UPDATE_PLAYER_Z = 'update-player-z';
+    public static UPDATE_PLAYER_Z = 'update-player-up';
     public static UPDATE_PLAYER_SCORE = 'update_player_score';
 
     static connect () {

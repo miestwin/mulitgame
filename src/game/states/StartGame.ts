@@ -32,7 +32,6 @@ export class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1));
                 (<any>this.game.state).players[playerId] = 
                     new Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
-                // (<any>this.game.state).players[playerId].angle += 90;
             });
         });
 

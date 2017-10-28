@@ -2330,7 +2330,7 @@ Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
 Network.START_GAME = 'start-game';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_TIMER = 'update-timer';
-Network.UPDATE_PLAYER_Z = 'update-player-z';
+Network.UPDATE_PLAYER_Z = 'update-player-up';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 exports.default = Network;
 
@@ -111745,12 +111745,18 @@ class GameController extends Phaser.State {
         this.upBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY / 2, 'up');
         this.upBtn.anchor.setTo(0.5);
         this.upBtn.onInputDown.add(() => {
-            network_1.default.updatePlayerZ(gameId, false);
+            network_1.default.updatePlayerZ(gameId, 1);
+        }, this);
+        this.upBtn.onInputUp.add(() => {
+            network_1.default.updatePlayerZ(gameId, 0);
         }, this);
         this.downBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + this.game.world.centerY / 2, 'down');
         this.downBtn.anchor.setTo(0.5);
         this.downBtn.onInputDown.add(() => {
-            network_1.default.updatePlayerZ(gameId, true);
+            network_1.default.updatePlayerZ(gameId, -1);
+        }, this);
+        this.downBtn.onInputUp.add(() => {
+            network_1.default.updatePlayerZ(gameId, 0);
         }, this);
     }
     update() {
@@ -111774,6 +111780,7 @@ class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
     onTouchStart(e) {
         e.preventDefault();

@@ -69,6 +69,14 @@ export default class Network {
         Network.socket.emit(Network.ALL_PLAYERS);
     }
 
+    /**
+     * Aktualizacja wyniku gracza
+     * @static
+     * @param {any} playerId 
+     * @param {any} socketId 
+     * @param {any} score 
+     * @memberof Network
+     */
     public static updatePlayerScore(playerId, socketId, score) {
         Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
     }

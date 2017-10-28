@@ -3831,6 +3831,14 @@ class Network {
     static getAllPlayers() {
         Network.socket.emit(Network.ALL_PLAYERS);
     }
+    /**
+     * Aktualizacja wyniku gracza
+     * @static
+     * @param {any} playerId
+     * @param {any} socketId
+     * @param {any} score
+     * @memberof Network
+     */
     static updatePlayerScore(playerId, socketId, score) {
         Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
     }
@@ -114185,7 +114193,7 @@ class Player extends Phaser.Sprite {
         this._socketId = socketId;
         this.avatar = avatar;
         this.score = 0;
-        this.zPos = false;
+        this.zPos = 0;
         this.vector = new Victor(0, 0);
         this.anchor.setTo(0.5);
         this.scale.setTo(1);
@@ -114206,11 +114214,17 @@ class Player extends Phaser.Sprite {
     update() {
         this.body.velocity.x = this.vector.x * 11;
         this.body.velocity.y = this.vector.y * 11;
-        if (this.zPos && this.scale.x < 2) {
+        if ((this.zPos == 1) && (this.scale.x < 1.6)) {
             this.scale.setTo(this.scale.x += 0.03);
         }
-        else if (!this.zPos && this.scale.x > 1) {
+        else if ((this.zPos == -1) && (this.scale.x > 0.4)) {
             this.scale.setTo(this.scale.x -= 0.03);
+        }
+        else if ((this.zPos == 0) && (this.scale.x > 1)) {
+            this.scale.setTo(this.scale.x -= 0.03);
+        }
+        else if ((this.zPos == 0) && (this.scale.x < 1)) {
+            this.scale.setTo(this.scale.x += 0.03);
         }
     }
 }
@@ -114312,7 +114326,6 @@ class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1));
                 this.game.state.players[playerId] =
                     new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
-                // (<any>this.game.state).players[playerId].angle += 90;
             });
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
