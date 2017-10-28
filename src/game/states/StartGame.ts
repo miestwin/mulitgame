@@ -38,7 +38,7 @@ export class StartGame extends Phaser.State {
 
         Network.onPlayedUpdateXY((playerId, update) => {
            const player = (<any>this.game.state).players[playerId];
-           player.vector = new Victor(update.x, update.y);
+           player.vector = new Victor(update.x, update.y).rotateDeg(player.angle);
         });
 
         Network.onPlayerUpdateZ((playerId, update) => {
@@ -79,7 +79,7 @@ export class StartGame extends Phaser.State {
         this.electricFields = this.game.add.group();
         this.electricFields.enableBody = true;
         this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 50; i++) {
             const field = this.game.add.sprite(
                 randomNumberInRange(250, 50000),
                 randomNumberInRange(30, this.game.world.height - 30),
@@ -129,8 +129,10 @@ export class StartGame extends Phaser.State {
     }
 
     electricFieldCollisionHandler(player: Player, field: Phaser.Sprite) {
-        if (player.scale.x != Player.MAX_SCALE) {
-            player.angle += randomNumberInRange(10, 350);
+        if (player.scale.x < Player.MAX_SCALE && player.angle == 0) {
+            player.angle = randomNumberInRange(10, 350);
+        } else if (player.scale.x < Player.MAX_SCALE && player.angle != 0) {
+            player.angle = 0;
         }
     }
 

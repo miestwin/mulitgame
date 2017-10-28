@@ -114208,6 +114208,7 @@ class Player extends Phaser.Sprite {
         this.score = 0;
         this.zPos = 0;
         this.vector = new Victor(0, 0);
+        this.angle = 0;
         this.anchor.setTo(0.5);
         this.scale.setTo(1);
         game.add.existing(this);
@@ -114345,7 +114346,7 @@ class StartGame extends Phaser.State {
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
             const player = this.game.state.players[playerId];
-            player.vector = new Victor(update.x, update.y);
+            player.vector = new Victor(update.x, update.y).rotateDeg(player.angle);
         });
         network_1.default.onPlayerUpdateZ((playerId, update) => {
             const player = this.game.state.players[playerId];
@@ -114380,7 +114381,7 @@ class StartGame extends Phaser.State {
         this.electricFields = this.game.add.group();
         this.electricFields.enableBody = true;
         this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 50; i++) {
             const field = this.game.add.sprite(utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30), 'electric-field', 0, this.electricFields);
             field.anchor.setTo(0.5);
             field.scale.setTo(0.6);
@@ -114417,8 +114418,11 @@ class StartGame extends Phaser.State {
         }
     }
     electricFieldCollisionHandler(player, field) {
-        if (player.scale.x != models_1.Player.MAX_SCALE) {
-            player.angle += utils_1.randomNumberInRange(10, 350);
+        if (player.scale.x < models_1.Player.MAX_SCALE && player.angle == 0) {
+            player.angle = utils_1.randomNumberInRange(10, 350);
+        }
+        else if (player.scale.x < models_1.Player.MAX_SCALE && player.angle != 0) {
+            player.angle = 0;
         }
     }
     shutdown() {

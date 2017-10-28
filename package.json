@@ -25,7 +25,13 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dist": "webpack"
+    "dist": "webpack",
+    "add": "git add --all",
+    "testing": "npm run add && git commit -m 'test'",
+    "deploy": "git push heroku master",
+    "scale": "heroku ps:scale web=1",
+    "open": "heroku open",
+    "heroku": "npm run dist && npm run testing && npm run deploy && npm run scale && npm run heroku"
   },
   "engines": {
     "node": "7.6.0",

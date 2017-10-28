@@ -109,6 +109,7 @@ export class Player extends Phaser.Sprite {
         this.score = 0;
         this.zPos = 0;
         this.vector = new Victor(0, 0);
+        this.angle = 0;
         this.anchor.setTo(0.5);
         this.scale.setTo(1);
         game.add.existing(this);
