@@ -111739,11 +111739,11 @@ class GameController extends Phaser.State {
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
     }
     create() {
-        this.graphics = this.game.add.graphics(0, 0);
-        this.scoreText = this.game.add.text(this.game.world.centerX, 10, 'Score: ...', { font: '15px Kenvector Future', fill: '#ffffff', align: 'center' });
+        this.leftTouchStartPos = new Victor(this.game.world.centerX / 2, this.game.world.centerY);
+        this.leftTouchPos.copy(this.leftTouchStartPos);
+        this.scoreText = this.game.add.text(this.game.world.centerX, 20, 'Score: ...', { font: '30px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
         this.upBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY / 2, 'up');
-        this.upBtn.anchor.setTo(0.5);
         this.upBtn.onInputDown.add(() => {
             network_1.default.updatePlayerZ(gameId, 1);
         }, this);
@@ -111751,29 +111751,23 @@ class GameController extends Phaser.State {
             network_1.default.updatePlayerZ(gameId, 0);
         }, this);
         this.downBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + this.game.world.centerY / 2, 'down');
-        this.downBtn.anchor.setTo(0.5);
+        this.downBtn.anchor.setTo(1);
         this.downBtn.onInputDown.add(() => {
             network_1.default.updatePlayerZ(gameId, -1);
         }, this);
         this.downBtn.onInputUp.add(() => {
             network_1.default.updatePlayerZ(gameId, 0);
         }, this);
+        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
+        leftPadBack.anchor.setTo(0.5);
+        leftPadBack.scale.setTo(2);
+        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
+        this.leftPad.anchor.setTo(0.5);
+        this.leftPad.scale.setTo(0.5);
     }
     update() {
-        this.graphics.clear();
-        if (this.tpCache) {
-            for (let i = 0; i < this.tpCache.length; i++) {
-                const touch = this.tpCache[i];
-                if (touch.identifier == this.leftTouchID) {
-                    this.graphics.lineStyle(6, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 80);
-                    this.graphics.lineStyle(2, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 100);
-                    this.graphics.lineStyle(2, 0x66ffff);
-                    this.graphics.drawCircle(this.leftTouchPos.x, this.leftTouchPos.y, 80);
-                }
-            }
-        }
+        this.leftPad.x = this.leftTouchPos.x;
+        this.leftPad.y = this.leftTouchPos.y;
         network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
     }
     shutdown() {
@@ -111788,12 +111782,11 @@ class GameController extends Phaser.State {
             const touch = e.changedTouches[i];
             if (touch.clientX < this.game.world.centerX) {
                 this.leftTouchID = touch.identifier;
-                this.leftTouchStartPos = new Victor(touch.clientX, touch.clientY);
                 this.leftTouchPos.copy(this.leftTouchStartPos);
                 this.leftVector = new Victor(0, 0);
+                break;
             }
         }
-        this.tpCache = e.touches;
     }
     onTouchMove(e) {
         e.preventDefault();
@@ -111809,15 +111802,18 @@ class GameController extends Phaser.State {
                 }
                 this.leftVector.copy(this.leftTouchPos);
                 this.leftVector.subtract(this.leftTouchStartPos);
+                break;
             }
         }
     }
     onTouchEnd(e) {
-        this.tpCache = e.touches;
+        e.preventDefault();
         for (let i = 0; i < e.changedTouches.length; i++) {
             const touch = e.changedTouches[i];
             if (touch.identifier == this.leftTouchID) {
                 this.leftTouchID = -1;
+                this.leftTouchPos.copy(this.leftTouchStartPos);
+                break;
             }
         }
     }

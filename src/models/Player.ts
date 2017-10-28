@@ -116,13 +116,13 @@ export class Player extends Phaser.Sprite {
         this.body.velocity.y = this.vector.y * 11;
 
         if ((this.zPos == 1) && (this.scale.x < 1.6)) {
-            this.scale.setTo(this.scale.x += 0.03);
+            this.scale.setTo(this.scale.x += 0.02);
         } else if ((this.zPos == -1) && (this.scale.x > 0.4)) {
-            this.scale.setTo(this.scale.x -= 0.03);
+            this.scale.setTo(this.scale.x -= 0.02);
         } else if ((this.zPos == 0) && (this.scale.x > 1)) {
-            this.scale.setTo(this.scale.x -= 0.03);
+            this.scale.setTo(this.scale.x -= 0.02);
         } else if ((this.zPos == 0) && (this.scale.x < 1)) {
-            this.scale.setTo(this.scale.x += 0.03);
+            this.scale.setTo(this.scale.x += 0.02);
         }
     }
 }
