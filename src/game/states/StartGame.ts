@@ -23,6 +23,7 @@ export class StartGame extends Phaser.State {
     private shards: Phaser.Group;
     private electricFields: Phaser.Group;
     private filter: Phaser.Filter;
+    private collidedField = {};
 
     preload() {
         Network.onGetAllPlayers((players) => {
@@ -33,6 +34,7 @@ export class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1));
                 (<any>this.game.state).players[playerId] = 
                     new Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
+                this.collidedField[playerId] = null;
             });
         });
 
@@ -109,11 +111,11 @@ export class StartGame extends Phaser.State {
     update() {  
         Object.keys((<any>this.game.state).players).forEach(playerId => {
             (<any>this.game.state).players[playerId].update();
-            this.game.physics.arcade.collide(
+            this.game.physics.arcade.overlap(
                 (<any>this.game.state).players[playerId],
                 this.shards, this.shardsCollisionHandler, null, this);
 
-            this.game.physics.arcade.collide(
+            this.game.physics.arcade.overlap(
                 (<any>this.game.state).players[playerId],
                 this.electricFields, this.electricFieldCollisionHandler, null, this);
         });
@@ -131,8 +133,13 @@ export class StartGame extends Phaser.State {
     }
 
     electricFieldCollisionHandler(player: Player, field: Phaser.Sprite) {
+        if (this.collidedField[player.id] == field) {
+            return;
+        }
+        this.collidedField[player.id] = field;
         if (player.scale.x < Player.MAX_SCALE && player.angle == 0) {
             player.angle = 180;
+            player.vector = player.vector.divide(new Victor(11, 11));
         } else if (player.scale.x < Player.MAX_SCALE && player.angle != 0) {
             player.angle = 0;
         }

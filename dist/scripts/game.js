@@ -114332,6 +114332,7 @@ class StartGame extends Phaser.State {
     constructor() {
         super(...arguments);
         this.tiles = [];
+        this.collidedField = {};
     }
     preload() {
         network_1.default.onGetAllPlayers((players) => {
@@ -114342,6 +114343,7 @@ class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1));
                 this.game.state.players[playerId] =
                     new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
+                this.collidedField[playerId] = null;
             });
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
@@ -114405,8 +114407,8 @@ class StartGame extends Phaser.State {
     update() {
         Object.keys(this.game.state.players).forEach(playerId => {
             this.game.state.players[playerId].update();
-            this.game.physics.arcade.collide(this.game.state.players[playerId], this.shards, this.shardsCollisionHandler, null, this);
-            this.game.physics.arcade.collide(this.game.state.players[playerId], this.electricFields, this.electricFieldCollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.shards, this.shardsCollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.electricFields, this.electricFieldCollisionHandler, null, this);
         });
         // this.filter.update();
     }
@@ -114420,8 +114422,13 @@ class StartGame extends Phaser.State {
         }
     }
     electricFieldCollisionHandler(player, field) {
+        if (this.collidedField[player.id] == field) {
+            return;
+        }
+        this.collidedField[player.id] = field;
         if (player.scale.x < models_1.Player.MAX_SCALE && player.angle == 0) {
             player.angle = 180;
+            player.vector = player.vector.divide(new Victor(11, 11));
         }
         else if (player.scale.x < models_1.Player.MAX_SCALE && player.angle != 0) {
             player.angle = 0;
