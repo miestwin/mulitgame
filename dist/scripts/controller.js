@@ -111741,7 +111741,7 @@ class GameController extends Phaser.State {
     create() {
         this.leftTouchStartPos = new Victor(this.game.world.centerX / 2, this.game.world.centerY);
         this.leftTouchPos.copy(this.leftTouchStartPos);
-        this.scoreText = this.game.add.text(this.game.world.centerX, 20, 'Score: ...', { font: '30px Kenvector Future', fill: '#ffffff', align: 'center' });
+        this.scoreText = this.game.add.text(this.game.world.centerX, 18, 'Score: ...', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
         this.upBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY / 2, 'up');
         this.upBtn.onInputDown.add(() => {

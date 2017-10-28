@@ -33,6 +33,8 @@ export class Loading extends Phaser.State {
             this.createShard(i);
         }
 
+        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
+
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.image('shard', '../assets/images/shard.png');

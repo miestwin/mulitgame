@@ -21,6 +21,7 @@ export class StartGame extends Phaser.State {
 
     private tiles: Phaser.TileSprite[] = [];
     private shards: Phaser.Group;
+    private electricFields: Phaser.Group;
     private filter: Phaser.Filter;
 
     preload() {
@@ -75,6 +76,21 @@ export class StartGame extends Phaser.State {
             this.tiles.push(tile);
         }
 
+        this.electricFields = this.game.add.group();
+        this.electricFields.enableBody = true;
+        this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
+        for (let i = 0; i < 100; i++) {
+            const field = this.game.add.sprite(
+                randomNumberInRange(250, 50000),
+                randomNumberInRange(30, this.game.world.height - 30),
+                'electric-field', 0, this.electricFields);
+            field.anchor.setTo(0.5);
+            field.scale.setTo(0.6);
+            field.animations.add('electrify');
+            field.animations.play('electrify', 20, true);
+        }
+        this.electricFields.addAll('body.velocity.x', -800, true, false);
+
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
         //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
 
@@ -91,18 +107,30 @@ export class StartGame extends Phaser.State {
     update() {  
         Object.keys((<any>this.game.state).players).forEach(playerId => {
             (<any>this.game.state).players[playerId].update();
-            this.game.physics.arcade.overlap((<any>this.game.state).players[playerId], this.shards, this.shardsCollisionHandler, null, this);
+            this.game.physics.arcade.overlap(
+                (<any>this.game.state).players[playerId],
+                this.shards, this.shardsCollisionHandler, null, this);
+
+            this.game.physics.arcade.overlap(
+                (<any>this.game.state).players[playerId],
+                this.electricFields, this.electricFieldCollisionHandler, null, this);
         });
         // this.filter.update();
     }
 
     shardsCollisionHandler(player: Player, shard: Shard) {
-        if (player.scale.x == 1) { 
+        if (player.scale.x == Player.DEFAULT_SCALE) { 
             shard.kill();
             player.score += 1;
             Network.updatePlayerScore(player.id, player.socket, player.score);
-        } else if (player.scale.x == 2) {
+        } else if (player.scale.x == Player.MAX_SCALE) {
 
+        }
+    }
+
+    electricFieldCollisionHandler(player: Player, field: Phaser.Sprite) {
+        if (player.scale.x != Player.MAX_SCALE) {
+            player.angle += randomNumberInRange(10, 350);
         }
     }
 

@@ -19,6 +19,22 @@ var ships = {
 
 export class Player extends Phaser.Sprite {
 
+    public static get MAX_SCALE() {
+        return 1.6;
+    }
+
+    public static get MIN_SCALE() {
+        return 0.4;
+    }
+
+    public static get DEFAULT_SCALE() {
+        return 1;
+    }
+
+    public static get SCALE_STEP() {
+        return 0.02;
+    }
+
     /**
      * Identyfikator
      * @private
@@ -112,17 +128,19 @@ export class Player extends Phaser.Sprite {
     }
 
     public update() {
-        this.body.velocity.x = this.vector.x * 11;
-        this.body.velocity.y = this.vector.y * 11;
+        if ((<any>this.game.state).started) {
+            this.body.velocity.x = this.vector.x * 11;
+            this.body.velocity.y = this.vector.y * 11;
 
-        if ((this.zPos == 1) && (this.scale.x < 1.6)) {
-            this.scale.setTo(this.scale.x += 0.02);
-        } else if ((this.zPos == -1) && (this.scale.x > 0.4)) {
-            this.scale.setTo(this.scale.x -= 0.02);
-        } else if ((this.zPos == 0) && (this.scale.x > 1)) {
-            this.scale.setTo(this.scale.x -= 0.02);
-        } else if ((this.zPos == 0) && (this.scale.x < 1)) {
-            this.scale.setTo(this.scale.x += 0.02);
+            if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
+                this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            } else if ((this.zPos === -1) && (this.scale.x > Player.MIN_SCALE)) {
+                this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
+            } else if ((this.zPos === 0) && (this.scale.x > Player.DEFAULT_SCALE)) {
+                this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
+            } else if ((this.zPos === 0) && (this.scale.x < Player.DEFAULT_SCALE)) {
+                this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            }
         }
     }
 }

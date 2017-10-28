@@ -111468,6 +111468,7 @@ class Loading extends Phaser.State {
         for (let i = 0; i < 10; i++) {
             this.createShard(i);
         }
+        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.image('shard', '../assets/images/shard.png');
@@ -114171,6 +114172,18 @@ var ships = {
     'player-ship_darkpink': 0x993333
 };
 class Player extends Phaser.Sprite {
+    static get MAX_SCALE() {
+        return 1.6;
+    }
+    static get MIN_SCALE() {
+        return 0.4;
+    }
+    static get DEFAULT_SCALE() {
+        return 1;
+    }
+    static get SCALE_STEP() {
+        return 0.02;
+    }
     get id() {
         return this._id;
     }
@@ -114212,19 +114225,21 @@ class Player extends Phaser.Sprite {
         this.y = y;
     }
     update() {
-        this.body.velocity.x = this.vector.x * 11;
-        this.body.velocity.y = this.vector.y * 11;
-        if ((this.zPos == 1) && (this.scale.x < 1.6)) {
-            this.scale.setTo(this.scale.x += 0.02);
-        }
-        else if ((this.zPos == -1) && (this.scale.x > 0.4)) {
-            this.scale.setTo(this.scale.x -= 0.02);
-        }
-        else if ((this.zPos == 0) && (this.scale.x > 1)) {
-            this.scale.setTo(this.scale.x -= 0.02);
-        }
-        else if ((this.zPos == 0) && (this.scale.x < 1)) {
-            this.scale.setTo(this.scale.x += 0.02);
+        if (this.game.state.started) {
+            this.body.velocity.x = this.vector.x * 11;
+            this.body.velocity.y = this.vector.y * 11;
+            if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
+                this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            }
+            else if ((this.zPos === -1) && (this.scale.x > Player.MIN_SCALE)) {
+                this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
+            }
+            else if ((this.zPos === 0) && (this.scale.x > Player.DEFAULT_SCALE)) {
+                this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
+            }
+            else if ((this.zPos === 0) && (this.scale.x < Player.DEFAULT_SCALE)) {
+                this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            }
         }
     }
 }
@@ -114362,6 +114377,17 @@ class StartGame extends Phaser.State {
             tile.autoScroll(-100 * i, 0);
             this.tiles.push(tile);
         }
+        this.electricFields = this.game.add.group();
+        this.electricFields.enableBody = true;
+        this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
+        for (let i = 0; i < 100; i++) {
+            const field = this.game.add.sprite(utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30), 'electric-field', 0, this.electricFields);
+            field.anchor.setTo(0.5);
+            field.scale.setTo(0.6);
+            field.animations.add('electrify');
+            field.animations.play('electrify', 20, true);
+        }
+        this.electricFields.addAll('body.velocity.x', -800, true, false);
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
         //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
         this.shards = this.game.add.group();
@@ -114377,16 +114403,22 @@ class StartGame extends Phaser.State {
         Object.keys(this.game.state.players).forEach(playerId => {
             this.game.state.players[playerId].update();
             this.game.physics.arcade.overlap(this.game.state.players[playerId], this.shards, this.shardsCollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.electricFields, this.electricFieldCollisionHandler, null, this);
         });
         // this.filter.update();
     }
     shardsCollisionHandler(player, shard) {
-        if (player.scale.x == 1) {
+        if (player.scale.x == models_1.Player.DEFAULT_SCALE) {
             shard.kill();
             player.score += 1;
             network_1.default.updatePlayerScore(player.id, player.socket, player.score);
         }
-        else if (player.scale.x == 2) {
+        else if (player.scale.x == models_1.Player.MAX_SCALE) {
+        }
+    }
+    electricFieldCollisionHandler(player, field) {
+        if (player.scale.x != models_1.Player.MAX_SCALE) {
+            player.angle += utils_1.randomNumberInRange(10, 350);
         }
     }
     shutdown() {

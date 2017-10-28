@@ -114,8 +114,8 @@ export class GameController extends Phaser.State {
         
         this.scoreText = this.game.add.text(
             this.game.world.centerX,
-            20, 'Score: ...',
-            { font: '30px Kenvector Future', fill: '#ffffff', align: 'center' });
+            18, 'Score: ...',
+            { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
 
         this.upBtn = this.game.add.button(
