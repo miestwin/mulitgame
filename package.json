@@ -31,7 +31,7 @@
     "deploy": "git add --all && git commit -m 'deploy to server' && git push heroku master",
     "scale": "heroku ps:scale web=1",
     "open": "heroku open",
-    "heroku": "npm run dist && npm run deploy && npm run scale && npm run open"
+    "heroku": "git push heroku master && npm run scale && npm run open"
   },
   "engines": {
     "node": "7.6.0",

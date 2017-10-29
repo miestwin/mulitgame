@@ -20,7 +20,7 @@ var ships = {
 export class Player extends Phaser.Sprite {
 
     public static get MAX_SCALE() {
-        return 2;
+        return 1.6;
     }
 
     public static get MIN_SCALE() {
@@ -32,7 +32,7 @@ export class Player extends Phaser.Sprite {
     }
 
     public static get SCALE_STEP() {
-        return 0.05;
+        return 0.08;
     }
 
     /**
@@ -130,8 +130,8 @@ export class Player extends Phaser.Sprite {
 
     public update() {
         if ((<any>this.game.state).started) {
-            this.body.velocity.x = this.vector.x * 11;
-            this.body.velocity.y = this.vector.y * 11;
+            this.body.velocity.x = this.vector.x * 9;
+            this.body.velocity.y = this.vector.y * 9;
 
             if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
                 this.scale.setTo(this.scale.x += Player.SCALE_STEP);
