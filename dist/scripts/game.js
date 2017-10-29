@@ -111287,6 +111287,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(90));
 __export(__webpack_require__(91));
 __export(__webpack_require__(92));
+__export(__webpack_require__(93));
 
 
 /***/ }),
@@ -111382,9 +111383,9 @@ __export(__webpack_require__(28));
 __export(__webpack_require__(83));
 __export(__webpack_require__(84));
 __export(__webpack_require__(89));
-__export(__webpack_require__(93));
-__export(__webpack_require__(97));
+__export(__webpack_require__(94));
 __export(__webpack_require__(98));
+__export(__webpack_require__(99));
 
 
 /***/ }),
@@ -111461,14 +111462,16 @@ class Loading extends Phaser.State {
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
-        // this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
-        // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
-        // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
-        // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
+        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
         for (let i = 0; i < 10; i++) {
             this.createShard(i);
         }
-        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
+        this.game.load.image('meteor-1', '../assets/images/meteor_1.png');
+        this.game.load.image('meteor-2', '../assets/images/meteor_2.png');
+        this.game.load.image('meteor-3', '../assets/images/meteor_3.png');
+        this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
+        this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
+        this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.image('shard', '../assets/images/shard.png');
@@ -114163,17 +114166,17 @@ var ships = {
     'player-ship_green': 0x33cc33,
     'player-ship_purple': 0x9933ff,
     'player-ship_blue': 0x0066ff,
-    'player-ship_yellow': 0xffff00,
+    'player-ship_watery': 0x009999,
     'player-ship_pink': 0xff3399,
-    'player-ship_red': 0xff0000,
-    'player-ship_gb': 0x009999,
-    'player-ship_orange': 0xff6600,
-    'player-ship_grass': 0x88cc00,
+    'player-ship_red': 0xcc2900,
+    'player-ship_yellow': 0xd1d123,
+    'player-ship_orange': 0xcc5200,
+    'player-ship_grass': 0x739900,
     'player-ship_darkpink': 0x993333
 };
 class Player extends Phaser.Sprite {
     static get MAX_SCALE() {
-        return 1.6;
+        return 2;
     }
     static get MIN_SCALE() {
         return 0.4;
@@ -114182,7 +114185,7 @@ class Player extends Phaser.Sprite {
         return 1;
     }
     static get SCALE_STEP() {
-        return 0.02;
+        return 0.05;
     }
     get id() {
         return this._id;
@@ -114258,33 +114261,13 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(15);
-const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-class Asteroid extends Phaser.Sprite {
+class Meteor extends Phaser.Sprite {
     constructor(game, x, y) {
-        const points = utils_1.convexhull(utils_1.generatePoints(x, y, 20));
-        points.push(points[0]);
-        const color = colors[utils_1.randomNumberInRange(0, 6)];
-        var graphics = game.add.graphics(0, 0);
-        graphics.beginFill(color);
-        graphics.moveTo(points[0][0], points[0][1]);
-        for (let i = 1; i < points.length; i++) {
-            const point = points[i];
-            graphics.lineTo(point[0], point[1]);
-        }
-        graphics.endFill();
-        super(game, x, y, graphics.generateTexture());
-        graphics.destroy();
-        this.points = points;
-        this.color = color;
+        super(game, x, y, 'meteor-' + utils_1.randomNumberInRange(1, 6));
         this.anchor.setTo(0.5);
-        //game.add.existing(this);
-        //game.physics.arcade.enable(this);
-        // this.body.collideWorldBounds = true;
-        // var filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
-        // this.filters = [filter];
     }
 }
-exports.Asteroid = Asteroid;
+exports.Meteor = Meteor;
 
 
 /***/ }),
@@ -114318,8 +114301,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+class ElectricField extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, 'electric-field', 0);
+        this.anchor.setTo(0.5);
+        this.scale.setTo(1.4);
+        this.animations.add('electrify');
+        this.animations.play('electrify', 15, true);
+    }
+}
+exports.ElectricField = ElectricField;
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
 const utils_1 = __webpack_require__(15);
-const engine_1 = __webpack_require__(94);
+const engine_1 = __webpack_require__(95);
 const network_1 = __webpack_require__(29);
 const models_1 = __webpack_require__(69);
 /**
@@ -114383,36 +114388,50 @@ class StartGame extends Phaser.State {
         this.electricFields = this.game.add.group();
         this.electricFields.enableBody = true;
         this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 40; i++) {
             const x1 = this.game.world.width * (i + 2);
             const x2 = this.game.world.width * (i + 3) < 45000 ? this.game.world.width * (i + 3) : 45000;
-            const field = this.game.add.sprite(utils_1.randomNumberInRange(x1, x2), utils_1.randomNumberInRange(50, this.game.world.height - 50), 'electric-field', 0, this.electricFields);
-            field.anchor.setTo(0.5);
-            field.scale.setTo(1.4);
-            field.animations.add('electrify');
-            field.animations.play('electrify', 15, true);
+            const x = utils_1.randomNumberInRange(x1, x2);
+            const y = utils_1.randomNumberInRange(50, this.game.world.height - 50);
+            const field = new models_1.ElectricField(this.game, x, y);
+            this.electricFields.add(field);
         }
         this.electricFields.addAll('body.velocity.x', -600, true, false);
-        //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
-        //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
+        this.meteors = this.game.add.group();
+        this.meteors.enableBody = true;
+        this.meteors.physicsBodyType = Phaser.Physics.ARCADE;
+        for (let i = 0; i < 100; i++) {
+            const x1 = this.game.world.width * (i + 3);
+            const x2 = this.game.world.width * (i + 3.3);
+            const x = utils_1.randomNumberInRange(x1, x2);
+            const y = utils_1.randomNumberInRange(50, this.game.world.height - 50);
+            const meteor = new models_1.Meteor(this.game, x, y);
+            this.meteors.add(meteor);
+        }
+        this.meteors.addAll('body.velocity.x', -1000, true, false);
         this.shards = this.game.add.group();
         this.shards.enableBody = true;
         this.shards.physicsBodyType = Phaser.Physics.ARCADE;
         for (let i = 0; i < 1000; i++) {
-            const shard = new models_1.Shard(this.game, utils_1.randomNumberInRange(250, 50000), utils_1.randomNumberInRange(30, this.game.world.height - 30));
+            const x = utils_1.randomNumberInRange(250, 50000);
+            const y = utils_1.randomNumberInRange(30, this.game.world.height - 30);
+            const shard = new models_1.Shard(this.game, x, y);
             this.shards.add(shard);
         }
         this.shards.addAll('body.velocity.x', -800, true, false);
+        //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
+        //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
     }
     update() {
         Object.keys(this.game.state.players).forEach(playerId => {
             this.game.state.players[playerId].update();
-            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.shards, this.shardsCollisionHandler, null, this);
-            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.electricFields, this.electricFieldCollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.shards, this.shard_player_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.electricFields, this.electricField_player_CollisionHandler, null, this);
         });
+        this.game.physics.arcade.overlap(this.meteors, this.electricFields, this.meteor_field_CollisionHandler, null, this);
         // this.filter.update();
     }
-    shardsCollisionHandler(player, shard) {
+    shard_player_CollisionHandler(player, shard) {
         if (player.scale.x == models_1.Player.DEFAULT_SCALE) {
             shard.kill();
             player.score += 1;
@@ -114421,9 +114440,9 @@ class StartGame extends Phaser.State {
         else if (player.scale.x == models_1.Player.MAX_SCALE) {
         }
     }
-    electricFieldCollisionHandler(player, field) {
+    electricField_player_CollisionHandler(player, field) {
         if (this.collidedField[player.id] == field) {
-            return;
+            return false;
         }
         this.collidedField[player.id] = field;
         if (player.scale.x < models_1.Player.MAX_SCALE && player.angle == 0) {
@@ -114432,7 +114451,11 @@ class StartGame extends Phaser.State {
         }
         else if (player.scale.x < models_1.Player.MAX_SCALE && player.angle != 0) {
             player.angle = 0;
+            player.vector = player.vector.divide(new Victor(11, 11));
         }
+    }
+    meteor_field_CollisionHandler(meteor, field) {
+        meteor.body.velocity.y = utils_1.randomNumberInRange(-1000, 1000);
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
@@ -114442,19 +114465,6 @@ class StartGame extends Phaser.State {
     }
 }
 exports.StartGame = StartGame;
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(95));
 
 
 /***/ }),
@@ -114472,6 +114482,19 @@ __export(__webpack_require__(96));
 
 /***/ }),
 /* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(97));
+
+
+/***/ }),
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114509,7 +114532,7 @@ exports.generatePointStars = generatePointStars;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114544,7 +114567,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

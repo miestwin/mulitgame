@@ -96,6 +96,8 @@ export class GameController extends Phaser.State {
      */
     private downBtn: Phaser.Button;
 
+    private frameCounter: number = 0;
+
     preload() {
         this.game.stage.backgroundColor = (<any>this.game.state).color;
 
@@ -155,8 +157,10 @@ export class GameController extends Phaser.State {
     update() {
         this.leftPad.x = this.leftTouchPos.x;
         this.leftPad.y = this.leftTouchPos.y;
-
-        Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
+        this.frameCounter++;
+        if (this.frameCounter % 2 === 0) {
+            Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
+        }
     }
 
     shutdown() {

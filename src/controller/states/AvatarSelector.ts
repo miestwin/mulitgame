@@ -23,12 +23,12 @@ export class AvatarSelector extends Phaser.State {
         { name: 'player-ship_green', color: 0x33cc33, use: false },
         { name: 'player-ship_purple', color: 0x9933ff, use: false },
         { name: 'player-ship_blue', color: 0x0066ff, use: false },
-        { name: 'player-ship_yellow', color: 0xffff00, use: false },
+        { name: 'player-ship_watery', color: 0x009999, use: false },
         { name: 'player-ship_pink', color: 0xff3399, use: false },
-        { name: 'player-ship_red', color: 0xff0000, use: false },
-        { name: 'player-ship_gb', color: 0x009999, use: false },
-        { name: 'player-ship_orange', color: 0xff6600, use: false },
-        { name: 'player-ship_grass', color: 0x88cc00, use: false },
+        { name: 'player-ship_red', color: 0xcc2900, use: false },
+        { name: 'player-ship_yellow', color: 0xd1d123, use: false },
+        { name: 'player-ship_orange', color: 0xcc5200, use: false },
+        { name: 'player-ship_grass', color: 0x739900, use: false },
         { name: 'player-ship_darkpink', color: 0x993333, use: false }
     ];
 

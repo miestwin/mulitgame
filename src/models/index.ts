@@ -1,3 +1,4 @@
 export * from './Player';
-export * from './Asteroid';
+export * from './Meteor';
 export * from './Shard';
+export * from './ElectricField';

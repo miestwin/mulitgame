@@ -111424,11 +111424,6 @@ class Loading extends Phaser.State {
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
-        // this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
-        // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
-        // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
-        // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
-        // this.game.load.image('left-1', '../assets/images/controller/Sprites/shadedDark/shadedDark07.png');
         this.game.load.image('left-1', '../assets/images/controller/Sprites/lineDark/lineDark46.png');
         this.game.load.image('left-2', '../assets/images/controller/Sprites/shadedDark/shadedDark11.png');
         this.game.load.image('up', '../assets/images/controller/Sprites/shadedDark/shadedDark26.png');
@@ -111550,12 +111545,12 @@ class AvatarSelector extends Phaser.State {
             { name: 'player-ship_green', color: 0x33cc33, use: false },
             { name: 'player-ship_purple', color: 0x9933ff, use: false },
             { name: 'player-ship_blue', color: 0x0066ff, use: false },
-            { name: 'player-ship_yellow', color: 0xffff00, use: false },
+            { name: 'player-ship_watery', color: 0x009999, use: false },
             { name: 'player-ship_pink', color: 0xff3399, use: false },
-            { name: 'player-ship_red', color: 0xff0000, use: false },
-            { name: 'player-ship_gb', color: 0x009999, use: false },
-            { name: 'player-ship_orange', color: 0xff6600, use: false },
-            { name: 'player-ship_grass', color: 0x88cc00, use: false },
+            { name: 'player-ship_red', color: 0xcc2900, use: false },
+            { name: 'player-ship_yellow', color: 0xd1d123, use: false },
+            { name: 'player-ship_orange', color: 0xcc5200, use: false },
+            { name: 'player-ship_grass', color: 0x739900, use: false },
             { name: 'player-ship_darkpink', color: 0x993333, use: false }
         ];
     }
@@ -111728,6 +111723,7 @@ class GameController extends Phaser.State {
          * @memberof GameController
          */
         this.leftVector = new Victor(0, 0);
+        this.frameCounter = 0;
     }
     preload() {
         this.game.stage.backgroundColor = this.game.state.color;
@@ -111768,7 +111764,10 @@ class GameController extends Phaser.State {
     update() {
         this.leftPad.x = this.leftTouchPos.x;
         this.leftPad.y = this.leftTouchPos.y;
-        network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
+        this.frameCounter++;
+        if (this.frameCounter % 2 === 0) {
+            network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
+        }
     }
     shutdown() {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));

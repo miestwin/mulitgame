@@ -24,16 +24,18 @@ export class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
-        // this.game.load.image('player-ship_blue', '../assets/spritesheets/player/player-ship_blue.png');
-        // this.game.load.image('player-ship_green', '../assets/spritesheets/player/player-ship_green.png');
-        // this.game.load.image('player-ship_red', '../assets/spritesheets/player/player-ship_red.png');
-        // this.game.load.image('player-ship_yellow', '../assets/spritesheets/player/player-ship_yellow.png');
-
+        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
+        
         for (let i = 0; i < 10; i++) {
             this.createShard(i);
         }
 
-        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
+        this.game.load.image('meteor-1', '../assets/images/meteor_1.png');
+        this.game.load.image('meteor-2', '../assets/images/meteor_2.png');
+        this.game.load.image('meteor-3', '../assets/images/meteor_3.png');
+        this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
+        this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
+        this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
