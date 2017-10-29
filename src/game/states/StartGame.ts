@@ -66,13 +66,13 @@ export class StartGame extends Phaser.State {
 
     create() {
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
-        // this.game.world.setBounds(0, 0, this.game.width, this.game.height);
+        
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         for (let i = 1; i <= 2; i++) {
             const texture = generatePointStars(this.game, i * 0.00001, i);
-            const tile = this.game.add.tileSprite(0, 0, 50000, this.game.height, texture);
+            const tile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, texture);
             if (i === 1) {
                 tile.filters = [filter];
             }
