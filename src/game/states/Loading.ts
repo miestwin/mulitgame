@@ -25,6 +25,7 @@ export class Loading extends Phaser.State {
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
         this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
+        this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
         
         for (let i = 0; i < 10; i++) {
             this.createShard(i);
@@ -36,6 +37,8 @@ export class Loading extends Phaser.State {
         this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
         this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
         this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
+
+        this.game.load.image('shield', '../assets/images/shield.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');

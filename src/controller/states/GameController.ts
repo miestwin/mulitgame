@@ -116,33 +116,33 @@ export class GameController extends Phaser.State {
         
         this.scoreText = this.game.add.text(
             this.game.world.centerX,
-            18, 'Score: 500',
+            18, 'Score: 0',
             { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
 
-        this.upBtn = this.game.add.button(
-            this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY / 2, 'up');
+        // this.upBtn = this.game.add.button(
+        //     this.game.world.centerX + this.game.world.centerX / 2,
+        //     this.game.world.centerY / 2, 'up');
 
-        this.upBtn.onInputDown.add(() => {
-            Network.updatePlayerZ(gameId, 1);
-        }, this);
+        // this.upBtn.onInputDown.add(() => {
+        //     Network.updatePlayerZ(gameId, 1);
+        // }, this);
 
-        this.upBtn.onInputUp.add(() => {
-            Network.updatePlayerZ(gameId, 0);
-        }, this);
+        // this.upBtn.onInputUp.add(() => {
+        //     Network.updatePlayerZ(gameId, 0);
+        // }, this);
 
         this.downBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY + this.game.world.centerY / 2, 'down');
-        this.downBtn.anchor.setTo(1);
+            this.game.world.centerY, 'left-2');
+        this.downBtn.anchor.setTo(0.5);
 
         this.downBtn.onInputDown.add(() => {
-            Network.updatePlayerZ(gameId, -1);
+            Network.updatePlayerZ(gameId, true);
         }, this);
 
         this.downBtn.onInputUp.add(() => {
-            Network.updatePlayerZ(gameId, 0);
+            Network.updatePlayerZ(gameId, false);
         }, this);
 
         const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');

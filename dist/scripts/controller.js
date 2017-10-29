@@ -111737,22 +111737,24 @@ class GameController extends Phaser.State {
     create() {
         this.leftTouchStartPos = new Victor(this.game.world.centerX / 2, this.game.world.centerY);
         this.leftTouchPos.copy(this.leftTouchStartPos);
-        this.scoreText = this.game.add.text(this.game.world.centerX, 18, 'Score: 500', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
+        this.scoreText = this.game.add.text(this.game.world.centerX, 18, 'Score: 0', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
-        this.upBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY / 2, 'up');
-        this.upBtn.onInputDown.add(() => {
-            network_1.default.updatePlayerZ(gameId, 1);
-        }, this);
-        this.upBtn.onInputUp.add(() => {
-            network_1.default.updatePlayerZ(gameId, 0);
-        }, this);
-        this.downBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + this.game.world.centerY / 2, 'down');
-        this.downBtn.anchor.setTo(1);
+        // this.upBtn = this.game.add.button(
+        //     this.game.world.centerX + this.game.world.centerX / 2,
+        //     this.game.world.centerY / 2, 'up');
+        // this.upBtn.onInputDown.add(() => {
+        //     Network.updatePlayerZ(gameId, 1);
+        // }, this);
+        // this.upBtn.onInputUp.add(() => {
+        //     Network.updatePlayerZ(gameId, 0);
+        // }, this);
+        this.downBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, 'left-2');
+        this.downBtn.anchor.setTo(0.5);
         this.downBtn.onInputDown.add(() => {
-            network_1.default.updatePlayerZ(gameId, -1);
+            network_1.default.updatePlayerZ(gameId, true);
         }, this);
         this.downBtn.onInputUp.add(() => {
-            network_1.default.updatePlayerZ(gameId, 0);
+            network_1.default.updatePlayerZ(gameId, false);
         }, this);
         const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
         leftPadBack.anchor.setTo(0.5);

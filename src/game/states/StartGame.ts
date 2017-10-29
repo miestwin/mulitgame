@@ -24,6 +24,7 @@ export class StartGame extends Phaser.State {
     private meteors: Phaser.Group;
     private electricFields: Phaser.Group;
     private filter: Phaser.Filter;
+    private points: Phaser.Group;
     private collidedField = {};
 
     preload() {
@@ -80,32 +81,49 @@ export class StartGame extends Phaser.State {
             this.tiles.push(tile);
         }
 
-        this.electricFields = this.game.add.group();
-        this.electricFields.enableBody = true;
-        this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 3; i++) {
-            const y = randomNumberInRange(30, this.game.world.height - 30);
-            const field = this.electricFields.create(this.game.width, y, 'electric-field', 0);
-            field.anchor.setTo(0, 0.5);
-            field.checkWorldBounds = true;
-            field.events.onOutOfBounds.add(this.electricFieldOut, this);
-            field.body.velocity.x = randomNumberInRange(-450, -600);
-            field.animations.add('electrify');
-            field.animations.play('electrify', 15, true);
-            this.electricFields.add(field);
-        }
+        // this.electricFields = this.game.add.group();
+        // this.electricFields.enableBody = true;
+        // this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
+        // for (let i = 0; i < 3; i++) {
+        //     const y = randomNumberInRange(30, this.game.world.height - 30);
+        //     const field = this.electricFields.create(this.game.width, y, 'electric-field', 0);
+        //     field.anchor.setTo(0, 0.5);
+        //     field.checkWorldBounds = true;
+        //     field.events.onOutOfBounds.add(this.electricFieldOut, this);
+        //     field.body.velocity.x = randomNumberInRange(-450, -600);
+        //     field.animations.add('electrify');
+        //     field.animations.play('electrify', 15, true);
+        //     this.electricFields.add(field);
+        // }
 
-        this.meteors = this.game.add.group();
-        this.meteors.enableBody = true;
-        this.meteors.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 13; i++) {
+        // this.meteors = this.game.add.group();
+        // this.meteors.enableBody = true;
+        // this.meteors.physicsBodyType = Phaser.Physics.ARCADE;
+        // for (let i = 0; i < 13; i++) {
+        //     const y = randomNumberInRange(30, this.game.world.height - 30);
+        //     const meteor = this.meteors.create(this.game.width, y, 'meteor-' + randomNumberInRange(1, 6));
+        //     meteor.anchor.setTo(0, 0.5);
+        //     meteor.checkWorldBounds = true;
+        //     meteor.events.onOutOfBounds.add(this.meteorOut, this);
+        //     meteor.body.velocity.x = randomNumberInRange(-600, -700);
+        //     this.meteors.add(meteor);
+        // }
+
+        this.points = this.game.add.group();
+        this.points.enableBody = true;
+        this.points.physicsBodyType = Phaser.Physics.ARCADE;
+        for (let i = 0; i < 1300; i++) {
             const y = randomNumberInRange(30, this.game.world.height - 30);
-            const meteor = this.meteors.create(this.game.width, y, 'meteor-' + randomNumberInRange(1, 6));
-            meteor.anchor.setTo(0, 0.5);
-            meteor.checkWorldBounds = true;
-            meteor.events.onOutOfBounds.add(this.meteorOut, this);
-            meteor.body.velocity.x = randomNumberInRange(-600, -700);
-            this.meteors.add(meteor);
+            const x = randomNumberInRange(this.game.width, 50000);
+            const point = this.points.create(x, y, 'plasma');
+            point.anchor.setTo(0.5);
+            point.scale.setTo(0.3);
+            point.checkWorldBounds = true;
+            point.events.onOutOfBounds.add(this.pointOut, this);
+            point.body.velocity.x = randomNumberInRange(-600, -700);
+            point.animations.add('transform');
+            point.animations.play('transform', 13, true);
+            this.points.add(point);
         }
 
         // this.shards = this.game.add.group();
@@ -132,10 +150,14 @@ export class StartGame extends Phaser.State {
 
             this.game.physics.arcade.overlap(
                 (<any>this.game.state).players[playerId],
-                this.electricFields, this.electricField_player_CollisionHandler, null, this);
+                this.points, this.shard_player_CollisionHandler, null, this);
+
+            // this.game.physics.arcade.overlap(
+            //     (<any>this.game.state).players[playerId],
+            //     this.electricFields, this.electricField_player_CollisionHandler, null, this);
         });
 
-        this.game.physics.arcade.overlap(this.meteors, this.electricFields, this.meteor_field_CollisionHandler, null, this);
+        // this.game.physics.arcade.overlap(this.meteors, this.electricFields, this.meteor_field_CollisionHandler, null, this);
 
         // this.filter.update();
     }
@@ -150,6 +172,13 @@ export class StartGame extends Phaser.State {
         meteor.body.velocity.x = randomNumberInRange(-600, -700);
     }
 
+    private pointOut(point: Phaser.Sprite) {
+        if (point.x < 0) {
+            point.kill();
+            // point.destroy();
+        }
+    }
+
     private shard_player_CollisionHandler(player: Player, shard: Shard) {
         if (player.scale.x == Player.DEFAULT_SCALE) { 
             shard.kill();
@@ -158,6 +187,11 @@ export class StartGame extends Phaser.State {
         } else if (player.scale.x == Player.MAX_SCALE) {
 
         }
+    }
+
+    private point_player_CollisionHandler(player: Player, point: Phaser.Sprite) {
+        player.score += 1;
+        point.kill();
     }
 
     private electricField_player_CollisionHandler(player: Player, field: Phaser.Sprite) {

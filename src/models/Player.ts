@@ -86,10 +86,9 @@ export class Player extends Phaser.Sprite {
      * @type {boolean}
      * @memberof Player
      */
-    public zPos: number; 
+    public zPos: boolean; 
 
-    private upTween: Phaser.Tween;
-    private downTween: Phaser.Tween;
+    public shield: Phaser.Sprite;
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         var graphics = game.add.graphics(0, 0);
@@ -106,14 +105,17 @@ export class Player extends Phaser.Sprite {
         this._id = id;
         this._socketId = socketId;
         this.avatar = avatar;
-        this.score = 500;
-        this.zPos = 0;
+        this.score = 0;
+        this.zPos = false;
         this.vector = new Victor(0, 0);
         this.angle = 0;
         this.anchor.setTo(0.5);
         this.scale.setTo(1);
+        this.shield = game.add.sprite(x, y, 'shield');
+        this.shield.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        game.physics.arcade.enable(this.shield);
         this.body.collideWorldBounds = true;
     }
 
@@ -132,16 +134,24 @@ export class Player extends Phaser.Sprite {
         if ((<any>this.game.state).started) {
             this.body.velocity.x = this.vector.x * 9;
             this.body.velocity.y = this.vector.y * 11;
+            this.shield.body.velocity.x = this.vector.x * 9;
+            this.shield.body.velocity.y = this.vector.y * 11;
 
-            if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
-                this.scale.setTo(this.scale.x += Player.SCALE_STEP);
-            } else if ((this.zPos === -1) && (this.scale.x > Player.MIN_SCALE)) {
-                this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
-            } else if ((this.zPos === 0) && (this.scale.x > Player.DEFAULT_SCALE)) {
-                this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
-            } else if ((this.zPos === 0) && (this.scale.x < Player.DEFAULT_SCALE)) {
-                this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            if (this.zPos && this.shield.scale.x < 3) {
+                this.shield.scale.setTo(this.shield.scale.x + 0.03);
+            } else if (!this.zPos && this.shield.scale.x > 1) {
+                this.shield.scale.setTo(this.shield.scale.x - 0.03);
             }
+
+            // if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
+            //     this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            // } else if ((this.zPos === -1) && (this.scale.x > Player.MIN_SCALE)) {
+            //     this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
+            // } else if ((this.zPos === 0) && (this.scale.x > Player.DEFAULT_SCALE)) {
+            //     this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
+            // } else if ((this.zPos === 0) && (this.scale.x < Player.DEFAULT_SCALE)) {
+            //     this.scale.setTo(this.scale.x += Player.SCALE_STEP);
+            // }
         }
     }
 }
