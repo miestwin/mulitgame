@@ -162,7 +162,7 @@ export class StartGame extends Phaser.State {
     }
 
     meteor_field_CollisionHandler(meteor: Meteor, field: ElectricField) {
-        meteor.body.velocity.y = randomNumberInRange(-1000, 1000);
+        // meteor.body.velocity.y = randomNumberInRange(-1000, 1000);
     }
 
     shutdown() {

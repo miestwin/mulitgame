@@ -114455,7 +114455,7 @@ class StartGame extends Phaser.State {
         }
     }
     meteor_field_CollisionHandler(meteor, field) {
-        meteor.body.velocity.y = utils_1.randomNumberInRange(-1000, 1000);
+        // meteor.body.velocity.y = randomNumberInRange(-1000, 1000);
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
