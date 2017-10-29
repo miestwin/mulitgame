@@ -158,7 +158,7 @@ export class GameController extends Phaser.State {
         this.leftPad.x = this.leftTouchPos.x;
         this.leftPad.y = this.leftTouchPos.y;
         this.frameCounter++;
-        if (this.frameCounter % 2 === 0) {
+        if (this.frameCounter % 3 === 0) {
             Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
         }
     }

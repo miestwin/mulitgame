@@ -131,7 +131,7 @@ export class Player extends Phaser.Sprite {
     public update() {
         if ((<any>this.game.state).started) {
             this.body.velocity.x = this.vector.x * 9;
-            this.body.velocity.y = this.vector.y * 9;
+            this.body.velocity.y = this.vector.y * 11;
 
             if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
                 this.scale.setTo(this.scale.x += Player.SCALE_STEP);
