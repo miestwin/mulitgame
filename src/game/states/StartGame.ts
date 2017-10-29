@@ -75,7 +75,7 @@ export class StartGame extends Phaser.State {
             if (i === 1) {
                 tile.filters = [filter];
             }
-            tile.autoScroll(-100 * i, 0);
+            tile.autoScroll(-200 * i, 0);
             this.tiles.push(tile);
         }
 
@@ -84,37 +84,37 @@ export class StartGame extends Phaser.State {
         this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
         for (let i = 0; i < 40; i++) {
             const x1 = this.game.world.width * (i + 2);
-            const x2 = this.game.world.width * (i + 3) < 45000? this.game.world.width * (i + 3) : 45000;
+            const x2 = this.game.world.width * (i + 2.7) < 45000? this.game.world.width * (i + 3) : 45000;
             const x = randomNumberInRange(x1, x2);
             const y = randomNumberInRange(50, this.game.world.height - 50);
             const field = new ElectricField(this.game, x, y);
             this.electricFields.add(field);
         }
-        this.electricFields.addAll('body.velocity.x', -600, true, false);
+        this.electricFields.addAll('body.velocity.x', -400, true, false);
 
         this.meteors = this.game.add.group();
         this.meteors.enableBody = true;
         this.meteors.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 100; i++) {
-            const x1 = this.game.world.width * (i + 3);
-            const x2 = this.game.world.width * (i + 3.3);
+        for (let i = 0; i < 1000; i++) {
+            const x1 = this.game.world.width * (i + 2);
+            const x2 = this.game.world.width * (i + 2.01);
             const x = randomNumberInRange(x1, x2);
             const y = randomNumberInRange(50, this.game.world.height - 50);
             const meteor = new Meteor(this.game, x, y);
             this.meteors.add(meteor);
         }
-        this.meteors.addAll('body.velocity.x', -1000, true, false);
+        this.meteors.addAll('body.velocity.x', -700, true, false);
 
-        this.shards = this.game.add.group();
-        this.shards.enableBody = true;
-        this.shards.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 1000; i++) {
-            const x = randomNumberInRange(250, 50000);
-            const y = randomNumberInRange(30, this.game.world.height - 30);
-            const shard = new Shard(this.game, x, y);
-            this.shards.add(shard);
-        }
-        this.shards.addAll('body.velocity.x', -800, true, false);
+        // this.shards = this.game.add.group();
+        // this.shards.enableBody = true;
+        // this.shards.physicsBodyType = Phaser.Physics.ARCADE;
+        // for (let i = 0; i < 1000; i++) {
+        //     const x = randomNumberInRange(250, 50000);
+        //     const y = randomNumberInRange(30, this.game.world.height - 30);
+        //     const shard = new Shard(this.game, x, y);
+        //     this.shards.add(shard);
+        // }
+        // this.shards.addAll('body.velocity.x', -800, true, false);
         
         //this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
         //this.filter.addToWorld(0, 0, this.game.width, this.game.height);
@@ -123,9 +123,9 @@ export class StartGame extends Phaser.State {
     update() {  
         Object.keys((<any>this.game.state).players).forEach(playerId => {
             (<any>this.game.state).players[playerId].update();
-            this.game.physics.arcade.overlap(
-                (<any>this.game.state).players[playerId],
-                this.shards, this.shard_player_CollisionHandler, null, this);
+            // this.game.physics.arcade.overlap(
+            //     (<any>this.game.state).players[playerId],
+            //     this.shards, this.shard_player_CollisionHandler, null, this);
 
             this.game.physics.arcade.overlap(
                 (<any>this.game.state).players[playerId],

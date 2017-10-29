@@ -106,7 +106,7 @@ export class Player extends Phaser.Sprite {
         this._id = id;
         this._socketId = socketId;
         this.avatar = avatar;
-        this.score = 0;
+        this.score = 500;
         this.zPos = 0;
         this.vector = new Victor(0, 0);
         this.angle = 0;
