@@ -114178,16 +114178,16 @@ var ships = {
 };
 class Player extends Phaser.Sprite {
     static get MAX_SCALE() {
-        return 1.6;
+        return 2;
     }
     static get MIN_SCALE() {
-        return 0.4;
+        return 0;
     }
     static get DEFAULT_SCALE() {
-        return 1;
+        return 0;
     }
     static get SCALE_STEP() {
-        return 0.08;
+        return 0.02;
     }
     get id() {
         return this._id;
@@ -114218,6 +114218,7 @@ class Player extends Phaser.Sprite {
         this.scale.setTo(1);
         this.shield = game.add.sprite(x, y, 'shield');
         this.shield.anchor.setTo(0.5);
+        this.shield.scale.setTo(0);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         game.physics.arcade.enable(this.shield);
@@ -114237,13 +114238,13 @@ class Player extends Phaser.Sprite {
         if (this.game.state.started) {
             this.body.velocity.x = this.vector.x * 9;
             this.body.velocity.y = this.vector.y * 11;
-            this.shield.body.velocity.x = this.vector.x * 9;
-            this.shield.body.velocity.y = this.vector.y * 11;
-            if (this.zPos && this.shield.scale.x < 3) {
-                this.shield.scale.setTo(this.shield.scale.x + 0.03);
+            this.shield.x = this.x;
+            this.shield.y = this.y;
+            if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);
             }
-            else if (!this.zPos && this.shield.scale.x > 1) {
-                this.shield.scale.setTo(this.shield.scale.x - 0.03);
+            else if (!this.zPos && this.shield.scale.x > Player.DEFAULT_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x - Player.SCALE_STEP);
             }
             // if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
             //     this.scale.setTo(this.scale.x += Player.SCALE_STEP);
@@ -114456,7 +114457,8 @@ class StartGame extends Phaser.State {
             // this.game.physics.arcade.overlap(
             //     (<any>this.game.state).players[playerId],
             //     this.shards, this.shard_player_CollisionHandler, null, this);
-            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.points, this.shard_player_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId], this.points, this.point_player_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId].shield, this.points, this.shard_player_CollisionHandler, null, this);
             // this.game.physics.arcade.overlap(
             //     (<any>this.game.state).players[playerId],
             //     this.electricFields, this.electricField_player_CollisionHandler, null, this);

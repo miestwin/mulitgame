@@ -20,19 +20,19 @@ var ships = {
 export class Player extends Phaser.Sprite {
 
     public static get MAX_SCALE() {
-        return 1.6;
+        return 2;
     }
 
     public static get MIN_SCALE() {
-        return 0.4;
+        return 0;
     }
 
     public static get DEFAULT_SCALE() {
-        return 1;
+        return 0;
     }
 
     public static get SCALE_STEP() {
-        return 0.08;
+        return 0.02;
     }
 
     /**
@@ -113,6 +113,7 @@ export class Player extends Phaser.Sprite {
         this.scale.setTo(1);
         this.shield = game.add.sprite(x, y, 'shield');
         this.shield.anchor.setTo(0.5);
+        this.shield.scale.setTo(0);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         game.physics.arcade.enable(this.shield);
@@ -134,13 +135,13 @@ export class Player extends Phaser.Sprite {
         if ((<any>this.game.state).started) {
             this.body.velocity.x = this.vector.x * 9;
             this.body.velocity.y = this.vector.y * 11;
-            this.shield.body.velocity.x = this.vector.x * 9;
-            this.shield.body.velocity.y = this.vector.y * 11;
+            this.shield.x = this.x;
+            this.shield.y = this.y;
 
-            if (this.zPos && this.shield.scale.x < 3) {
-                this.shield.scale.setTo(this.shield.scale.x + 0.03);
-            } else if (!this.zPos && this.shield.scale.x > 1) {
-                this.shield.scale.setTo(this.shield.scale.x - 0.03);
+            if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);
+            } else if (!this.zPos && this.shield.scale.x > Player.DEFAULT_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x - Player.SCALE_STEP);
             }
 
             // if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {

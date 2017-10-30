@@ -150,6 +150,10 @@ export class StartGame extends Phaser.State {
 
             this.game.physics.arcade.overlap(
                 (<any>this.game.state).players[playerId],
+                this.points, this.point_player_CollisionHandler, null, this);
+
+            this.game.physics.arcade.overlap(
+                (<any>this.game.state).players[playerId].shield,
                 this.points, this.shard_player_CollisionHandler, null, this);
 
             // this.game.physics.arcade.overlap(
@@ -193,6 +197,8 @@ export class StartGame extends Phaser.State {
         player.score += 1;
         point.kill();
     }
+
+    
 
     private electricField_player_CollisionHandler(player: Player, field: Phaser.Sprite) {
         if (this.collidedField[player.id] == field) {
