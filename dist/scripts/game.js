@@ -114210,13 +114210,13 @@ var ships = {
 };
 class Player extends Phaser.Sprite {
     static get MAX_SCALE() {
-        return 2;
+        return 1.6;
     }
     static get MIN_SCALE() {
         return 0;
     }
     static get DEFAULT_SCALE() {
-        return 0;
+        return 1;
     }
     static get SCALE_STEP() {
         return 0.02;
@@ -114271,7 +114271,7 @@ class Player extends Phaser.Sprite {
             if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
                 this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);
             }
-            else if (!this.zPos && this.shield.scale.x > Player.DEFAULT_SCALE) {
+            else if (!this.zPos && this.shield.scale.x > Player.MIN_SCALE) {
                 this.shield.scale.setTo(this.shield.scale.x - Player.SCALE_STEP);
             }
             // if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {

@@ -3,7 +3,7 @@ import 'pixi';
 import 'phaser';
 
 import { States } from './States';
-
+import { Player } from '../../models';
 import Network from '../network';
 
 declare var Victor;
