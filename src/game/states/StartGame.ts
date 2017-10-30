@@ -7,7 +7,7 @@ import { States } from './States';
 
 import Network from '../network';
 
-import { Player, Shard } from '../../models';
+import { Player, Shard, Shield } from '../../models';
 
 declare var Victor;
 
@@ -196,9 +196,15 @@ export class StartGame extends Phaser.State {
     private point_player_CollisionHandler(player: Player, point: Phaser.Sprite) {
         player.score += 1;
         point.kill();
+        Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    
+    private shield_point_CollisionHandler(shield: Shield, point: Phaser.Sprite) {
+        const player = (<any>this.game.state).players[shield.playerId];
+        player.score += 1;
+        point.kill();
+        Network.updatePlayerScore(player.id, player.socket, player.score);
+    }
 
     private electricField_player_CollisionHandler(player: Player, field: Phaser.Sprite) {
         if (this.collidedField[player.id] == field) {

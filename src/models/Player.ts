@@ -2,6 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { Shield } from './Shield';
+
 declare var Victor;
 
 var ships = {
@@ -88,7 +90,7 @@ export class Player extends Phaser.Sprite {
      */
     public zPos: boolean; 
 
-    public shield: Phaser.Sprite;
+    public shield: Shield;
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         var graphics = game.add.graphics(0, 0);
@@ -111,13 +113,10 @@ export class Player extends Phaser.Sprite {
         this.angle = 0;
         this.anchor.setTo(0.5);
         this.scale.setTo(1);
-        this.shield = game.add.sprite(x, y, 'shield');
-        this.shield.anchor.setTo(0.5);
-        this.shield.scale.setTo(0);
         game.add.existing(this);
         game.physics.arcade.enable(this);
-        game.physics.arcade.enable(this.shield);
         this.body.collideWorldBounds = true;
+        this.shield = new Shield(game, x, y, this._id);
     }
 
     /**
@@ -134,9 +133,8 @@ export class Player extends Phaser.Sprite {
     public update() {
         if ((<any>this.game.state).started) {
             this.body.velocity.x = this.vector.x * 9;
-            this.body.velocity.y = this.vector.y * 11;
-            this.shield.x = this.x;
-            this.shield.y = this.y;
+            this.body.velocity.y = this.vector.y * 9;
+            this.shield.setXY(this.x, this.y);
 
             if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
                 this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);

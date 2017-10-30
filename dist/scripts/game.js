@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 80);
+/******/ 	return __webpack_require__(__webpack_require__.s = 81);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2149,8 +2149,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(66));
 __export(__webpack_require__(67));
 __export(__webpack_require__(68));
-__export(__webpack_require__(86));
 __export(__webpack_require__(87));
+__export(__webpack_require__(88));
 
 
 /***/ }),
@@ -111284,14 +111284,44 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(90));
+__export(__webpack_require__(70));
 __export(__webpack_require__(91));
 __export(__webpack_require__(92));
 __export(__webpack_require__(93));
+__export(__webpack_require__(94));
 
 
 /***/ }),
-/* 70 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+class Shield extends Phaser.Sprite {
+    get playerId() {
+        return this._playerId;
+    }
+    constructor(game, x, y, playerId) {
+        super(game, x, y, 'shield');
+        this._playerId = playerId;
+        this.anchor.setTo(0.5);
+        this.scale.setTo(0);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    setXY(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+exports.Shield = Shield;
+
+
+/***/ }),
 /* 71 */,
 /* 72 */,
 /* 73 */,
@@ -111301,13 +111331,14 @@ __export(__webpack_require__(93));
 /* 77 */,
 /* 78 */,
 /* 79 */,
-/* 80 */
+/* 80 */,
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(81);
+const Game_1 = __webpack_require__(82);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111329,7 +111360,7 @@ function startApp() {
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111338,7 +111369,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(82);
+const states_1 = __webpack_require__(83);
 const network_1 = __webpack_require__(29);
 const utils_1 = __webpack_require__(15);
 /**
@@ -111370,7 +111401,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111380,16 +111411,16 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(28));
-__export(__webpack_require__(83));
 __export(__webpack_require__(84));
-__export(__webpack_require__(89));
-__export(__webpack_require__(94));
-__export(__webpack_require__(98));
+__export(__webpack_require__(85));
+__export(__webpack_require__(90));
+__export(__webpack_require__(95));
 __export(__webpack_require__(99));
+__export(__webpack_require__(100));
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111437,7 +111468,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111446,10 +111477,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(85);
+const QRious = __webpack_require__(86);
 const utils_1 = __webpack_require__(15);
 const States_1 = __webpack_require__(28);
-const config_1 = __webpack_require__(88);
+const config_1 = __webpack_require__(89);
 /**
  * Ładowanie zasobów
  * @export
@@ -111583,7 +111614,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -113951,7 +113982,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113976,7 +114007,7 @@ exports.generatePoints = generatePoints;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114009,7 +114040,7 @@ exports.convexhull = convexhull;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114021,7 +114052,7 @@ exports.default = {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114155,7 +114186,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114164,6 +114195,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+const Shield_1 = __webpack_require__(70);
 var ships = {
     'player-ship_green': 0x33cc33,
     'player-ship_purple': 0x9933ff,
@@ -114216,13 +114248,10 @@ class Player extends Phaser.Sprite {
         this.angle = 0;
         this.anchor.setTo(0.5);
         this.scale.setTo(1);
-        this.shield = game.add.sprite(x, y, 'shield');
-        this.shield.anchor.setTo(0.5);
-        this.shield.scale.setTo(0);
         game.add.existing(this);
         game.physics.arcade.enable(this);
-        game.physics.arcade.enable(this.shield);
         this.body.collideWorldBounds = true;
+        this.shield = new Shield_1.Shield(game, x, y, this._id);
     }
     /**
      * Ustawia X i Y grafiki
@@ -114237,9 +114266,8 @@ class Player extends Phaser.Sprite {
     update() {
         if (this.game.state.started) {
             this.body.velocity.x = this.vector.x * 9;
-            this.body.velocity.y = this.vector.y * 11;
-            this.shield.x = this.x;
-            this.shield.y = this.y;
+            this.body.velocity.y = this.vector.y * 9;
+            this.shield.setXY(this.x, this.y);
             if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
                 this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);
             }
@@ -114262,7 +114290,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114282,7 +114310,7 @@ exports.Meteor = Meteor;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114303,7 +114331,7 @@ exports.Shard = Shard;
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114325,7 +114353,7 @@ exports.ElectricField = ElectricField;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114335,7 +114363,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(15);
-const engine_1 = __webpack_require__(95);
+const engine_1 = __webpack_require__(96);
 const network_1 = __webpack_require__(29);
 const models_1 = __webpack_require__(69);
 /**
@@ -114492,6 +114520,13 @@ class StartGame extends Phaser.State {
     point_player_CollisionHandler(player, point) {
         player.score += 1;
         point.kill();
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+    }
+    shield_point_CollisionHandler(shield, point) {
+        const player = this.game.state.players[shield.playerId];
+        player.score += 1;
+        point.kill();
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
     }
     electricField_player_CollisionHandler(player, field) {
         if (this.collidedField[player.id] == field) {
@@ -114521,19 +114556,6 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(96));
-
-
-/***/ }),
 /* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -114548,6 +114570,19 @@ __export(__webpack_require__(97));
 
 /***/ }),
 /* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(98));
+
+
+/***/ }),
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114585,7 +114620,7 @@ exports.generatePointStars = generatePointStars;
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114620,7 +114655,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
