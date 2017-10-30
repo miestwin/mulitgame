@@ -154,7 +154,7 @@ export class StartGame extends Phaser.State {
 
             this.game.physics.arcade.overlap(
                 (<any>this.game.state).players[playerId].shield,
-                this.points, this.shard_player_CollisionHandler, null, this);
+                this.points, this.shield_point_CollisionHandler, null, this);
 
             // this.game.physics.arcade.overlap(
             //     (<any>this.game.state).players[playerId],

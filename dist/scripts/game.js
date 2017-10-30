@@ -114486,7 +114486,7 @@ class StartGame extends Phaser.State {
             //     (<any>this.game.state).players[playerId],
             //     this.shards, this.shard_player_CollisionHandler, null, this);
             this.game.physics.arcade.overlap(this.game.state.players[playerId], this.points, this.point_player_CollisionHandler, null, this);
-            this.game.physics.arcade.overlap(this.game.state.players[playerId].shield, this.points, this.shard_player_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.game.state.players[playerId].shield, this.points, this.shield_point_CollisionHandler, null, this);
             // this.game.physics.arcade.overlap(
             //     (<any>this.game.state).players[playerId],
             //     this.electricFields, this.electricField_player_CollisionHandler, null, this);
