@@ -93,7 +93,7 @@ export class Player extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
-        this.shield = new Shield(game, x, y, this._id);
+        // this.shield = new Shield(game, x, y, this._id);
     }
 
     /**

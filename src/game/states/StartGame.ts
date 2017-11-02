@@ -22,6 +22,7 @@ export class StartGame extends Phaser.State {
     private tiles: Phaser.TileSprite[] = [];
     private points: Phaser.Group;
     private players: Phaser.Group;
+    private shields: Phaser.Group;
     private back: Phaser.TileSprite;
 
     preload() {
@@ -32,8 +33,11 @@ export class StartGame extends Phaser.State {
                 const offset = step / 2;
                 const y = step * (index + 1) + (offset * (count - 1)); 
                 const player = new Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
+                const shield = new Shield(this.game, 50, y, player.id);
+                player.shield = shield;
                 (<any>this.game.state).players[playerId] = player;
                 this.players.add(player);
+                this.shields.add(shield);
             });
         });
 
@@ -63,6 +67,7 @@ export class StartGame extends Phaser.State {
 
     create() {
         this.players = this.game.add.group();
+        this.shields = this.game.add.group();
         
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         
@@ -123,18 +128,22 @@ export class StartGame extends Phaser.State {
                 this.players,
                 this.points, this.point_player_CollisionHandler, null, this);
 
+        this.game.physics.arcade.overlap(
+                this.shields,
+                this.points, this.shield_point_CollisionHandler, null, this);
+
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
 
-    private electricFieldOut(field: Phaser.Sprite) {
-        field.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
-        field.body.velocity.x = randomNumberInRange(-450, -600);
-    }
+    // private electricFieldOut(field: Phaser.Sprite) {
+    //     field.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
+    //     field.body.velocity.x = randomNumberInRange(-450, -600);
+    // }
 
-    private meteorOut(meteor: Phaser.Sprite) {
-        meteor.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
-        meteor.body.velocity.x = randomNumberInRange(-600, -700);
-    }
+    // private meteorOut(meteor: Phaser.Sprite) {
+    //     meteor.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
+    //     meteor.body.velocity.x = randomNumberInRange(-600, -700);
+    // }
 
     private pointOut(point: Phaser.Sprite) {
         if (point.x < 0) {

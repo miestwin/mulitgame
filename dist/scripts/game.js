@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 94);
+/******/ 	return __webpack_require__(__webpack_require__.s = 93);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111973,7 +111973,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(83));
+__export(__webpack_require__(101));
 __export(__webpack_require__(102));
 __export(__webpack_require__(103));
 __export(__webpack_require__(104));
@@ -111981,36 +111981,7 @@ __export(__webpack_require__(105));
 
 
 /***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-class Shield extends Phaser.Sprite {
-    get playerId() {
-        return this._playerId;
-    }
-    constructor(game, x, y, playerId) {
-        super(game, x, y, 'shield');
-        this._playerId = playerId;
-        this.anchor.setTo(0.5);
-        this.scale.setTo(0);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-    }
-    setXY(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-exports.Shield = Shield;
-
-
-/***/ }),
+/* 83 */,
 /* 84 */,
 /* 85 */,
 /* 86 */,
@@ -112020,14 +111991,13 @@ exports.Shield = Shield;
 /* 90 */,
 /* 91 */,
 /* 92 */,
-/* 93 */,
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(95);
+const Game_1 = __webpack_require__(94);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -112049,7 +112019,7 @@ function startApp() {
 
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112058,7 +112028,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(96);
+const states_1 = __webpack_require__(95);
 const network_1 = __webpack_require__(35);
 const utils_1 = __webpack_require__(11);
 /**
@@ -112090,7 +112060,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112100,16 +112070,16 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(34));
+__export(__webpack_require__(96));
 __export(__webpack_require__(97));
-__export(__webpack_require__(98));
-__export(__webpack_require__(101));
+__export(__webpack_require__(100));
 __export(__webpack_require__(106));
 __export(__webpack_require__(107));
 __export(__webpack_require__(108));
 
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112157,7 +112127,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112166,9 +112136,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(99);
+const QRious = __webpack_require__(98);
 const States_1 = __webpack_require__(34);
-const config_1 = __webpack_require__(100);
+const config_1 = __webpack_require__(99);
 const engine_1 = __webpack_require__(32);
 /**
  * Ładowanie zasobów
@@ -112183,10 +112153,10 @@ class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
-        engine_1.pointStars_TEST(this.game, 0.002, 0.125);
+        this.game.load.image('shield', '../assets/images/shield.png');
+        engine_1.pointStars_TEST(this.game, 0.0009, 0.125);
         engine_1.generateShards(this.game, 10);
         engine_1.generateShips(this.game);
-        this.game.load.image('shield', '../assets/images/shield.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.image('shard', '../assets/images/shard.png');
@@ -112274,7 +112244,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -114642,7 +114612,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114654,7 +114624,7 @@ exports.default = {
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114788,6 +114758,36 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+class Shield extends Phaser.Sprite {
+    get playerId() {
+        return this._playerId;
+    }
+    constructor(game, x, y, playerId) {
+        super(game, x, y, 'shield');
+        this._playerId = playerId;
+        this.anchor.setTo(0.5);
+        this.scale.setTo(0);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    setXY(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+exports.Shield = Shield;
+
+
+/***/ }),
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -114797,7 +114797,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const Shield_1 = __webpack_require__(83);
 class Player extends Phaser.Sprite {
     static get MAX_SCALE() {
         return 1.6;
@@ -114831,7 +114830,7 @@ class Player extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
-        this.shield = new Shield_1.Shield(game, x, y, this._id);
+        // this.shield = new Shield(game, x, y, this._id);
     }
     /**
      * Ustawia X i Y grafiki
@@ -114955,8 +114954,11 @@ class StartGame extends Phaser.State {
                 const offset = step / 2;
                 const y = step * (index + 1) + (offset * (count - 1));
                 const player = new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
+                const shield = new models_1.Shield(this.game, 50, y, player.id);
+                player.shield = shield;
                 this.game.state.players[playerId] = player;
                 this.players.add(player);
+                this.shields.add(shield);
             });
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
@@ -114981,6 +114983,7 @@ class StartGame extends Phaser.State {
     }
     create() {
         this.players = this.game.add.group();
+        this.shields = this.game.add.group();
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -115027,16 +115030,17 @@ class StartGame extends Phaser.State {
         //         this.points, this.shield_point_CollisionHandler, null, this);
         // });
         this.game.physics.arcade.overlap(this.players, this.points, this.point_player_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
-    electricFieldOut(field) {
-        field.reset(this.game.width, utils_1.randomNumberInRange(30, this.game.world.height - 30));
-        field.body.velocity.x = utils_1.randomNumberInRange(-450, -600);
-    }
-    meteorOut(meteor) {
-        meteor.reset(this.game.width, utils_1.randomNumberInRange(30, this.game.world.height - 30));
-        meteor.body.velocity.x = utils_1.randomNumberInRange(-600, -700);
-    }
+    // private electricFieldOut(field: Phaser.Sprite) {
+    //     field.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
+    //     field.body.velocity.x = randomNumberInRange(-450, -600);
+    // }
+    // private meteorOut(meteor: Phaser.Sprite) {
+    //     meteor.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
+    //     meteor.body.velocity.x = randomNumberInRange(-600, -700);
+    // }
     pointOut(point) {
         if (point.x < 0) {
             point.kill();

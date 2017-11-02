@@ -26,11 +26,11 @@ export class Loading extends Phaser.State {
 
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
         
-        pointStars_TEST(this.game, 0.002, 0.125);
+        this.game.load.image('shield', '../assets/images/shield.png');
+
+        pointStars_TEST(this.game, 0.0009, 0.125);
         generateShards(this.game, 10);
         generateShips(this.game);
-
-        this.game.load.image('shield', '../assets/images/shield.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
