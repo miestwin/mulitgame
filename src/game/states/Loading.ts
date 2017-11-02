@@ -2,9 +2,9 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 import * as QRious from 'qrious';
-import { generatePoints, convexhull, randomNumberInRange } from '../../utils';
 import { States } from './States';
 import config from '../../config';
+import { generateShards, generateShips, pointStars } from '../../engine';
 
 /**
  * Ładowanie zasobów
@@ -24,19 +24,11 @@ export class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
-        this.game.load.spritesheet('electric-field', '../assets/spritesheets/electric_field.png', 192, 192, 25);
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
         
-        for (let i = 0; i < 10; i++) {
-            this.createShard(i);
-        }
-
-        this.game.load.image('meteor-1', '../assets/images/meteor_1.png');
-        this.game.load.image('meteor-2', '../assets/images/meteor_2.png');
-        this.game.load.image('meteor-3', '../assets/images/meteor_3.png');
-        this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
-        this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
-        this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
+        // pointStars(this.game, 0.25, 0.125);
+        generateShards(this.game, 10);
+        generateShips(this.game);
 
         this.game.load.image('shield', '../assets/images/shield.png');
 
@@ -134,28 +126,5 @@ export class Loading extends Phaser.State {
             img.title = (<any>this.game.state).id;
             img.src = qr;
         });
-    }
-
-    /**
-     * Tworzenie tekstur dla obiektów do zbierania
-     * @private
-     * @param {number} i 
-     * @memberof Loading
-     */
-    private createShard(i: number) {
-        const colors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-        const points = convexhull(generatePoints(20, 20, 10));
-        points.push(points[0]);
-        const color = colors[randomNumberInRange(0, 6)];
-        var graphics = this.game.add.graphics(0, 0);
-        graphics.beginFill(color);
-        graphics.moveTo(points[0][0], points[0][1]);
-        for (let i = 1; i < points.length; i++) {
-            const point = points[i];
-            graphics.lineTo(point[0], point[1]);
-        }
-        graphics.endFill();
-        this.game.cache.addImage('shard-' + i, null, graphics.generateTexture().baseTexture.source);
-        graphics.destroy();
     }
 }

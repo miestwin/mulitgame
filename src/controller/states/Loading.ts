@@ -3,6 +3,7 @@ import 'pixi';
 import 'phaser';
 
 import { States } from './States';
+import { generateShips } from '../../engine';
 
 /**
  * Ładowanie zasobów
@@ -26,6 +27,8 @@ export class Loading extends Phaser.State {
         this.game.load.image('left-2', '../assets/images/controller/Sprites/shadedDark/shadedDark11.png');
         this.game.load.image('up', '../assets/images/controller/Sprites/shadedDark/shadedDark26.png');
         this.game.load.image('down', '../assets/images/controller/Sprites/shadedDark/shadedDark27.png');
+
+        generateShips(this.game);
 
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
 

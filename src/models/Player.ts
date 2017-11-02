@@ -6,19 +6,6 @@ import { Shield } from './Shield';
 
 declare var Victor;
 
-var ships = {
-    'player-ship_green': 0x33cc33,
-    'player-ship_purple': 0x9933ff,
-    'player-ship_blue': 0x0066ff,
-    'player-ship_watery': 0x009999,
-    'player-ship_pink': 0xff3399,
-    'player-ship_red': 0xcc2900,
-    'player-ship_yellow': 0xd1d123,
-    'player-ship_orange': 0xcc5200,
-    'player-ship_grass': 0x739900,
-    'player-ship_darkpink': 0x993333
-};
-
 export class Player extends Phaser.Sprite {
 
     public static get MAX_SCALE() {
@@ -93,17 +80,7 @@ export class Player extends Phaser.Sprite {
     public shield: Shield;
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
-        var graphics = game.add.graphics(0, 0);
-        graphics.beginFill(0x1f1f60);
-        graphics.lineStyle(6, ships[avatar], 1);
-        graphics.moveTo(40,50);
-        graphics.lineTo(100, 75);
-        graphics.lineTo(40, 100);
-        graphics.lineTo(60, 75);
-        graphics.lineTo(40, 50);
-        graphics.endFill();
-        super(game, x, y, graphics.generateTexture());
-        graphics.destroy();
+        super(game, x, y, avatar);
         this._id = id;
         this._socketId = socketId;
         this.avatar = avatar;
@@ -141,16 +118,6 @@ export class Player extends Phaser.Sprite {
             } else if (!this.zPos && this.shield.scale.x > Player.MIN_SCALE) {
                 this.shield.scale.setTo(this.shield.scale.x - Player.SCALE_STEP);
             }
-
-            // if ((this.zPos === 1) && (this.scale.x < Player.MAX_SCALE)) {
-            //     this.scale.setTo(this.scale.x += Player.SCALE_STEP);
-            // } else if ((this.zPos === -1) && (this.scale.x > Player.MIN_SCALE)) {
-            //     this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
-            // } else if ((this.zPos === 0) && (this.scale.x > Player.DEFAULT_SCALE)) {
-            //     this.scale.setTo(this.scale.x -= Player.SCALE_STEP);
-            // } else if ((this.zPos === 0) && (this.scale.x < Player.DEFAULT_SCALE)) {
-            //     this.scale.setTo(this.scale.x += Player.SCALE_STEP);
-            // }
         }
     }
 }
