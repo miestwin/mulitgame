@@ -4,7 +4,7 @@ import 'phaser';
 import * as QRious from 'qrious';
 import { States } from './States';
 import config from '../../config';
-import { generateShards, generateShips, pointStars } from '../../engine';
+import { generateShards, generateShips, pointStars_TEST } from '../../engine';
 
 /**
  * Ładowanie zasobów
@@ -26,7 +26,7 @@ export class Loading extends Phaser.State {
 
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
         
-        // pointStars(this.game, 0.25, 0.125);
+        pointStars_TEST(this.game, 0.002, 0.125);
         generateShards(this.game, 10);
         generateShips(this.game);
 

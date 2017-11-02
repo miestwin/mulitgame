@@ -69,17 +69,19 @@ export class StartGame extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        // this.back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.back.filters = [filter];
+        this.back.autoScroll(-300, 0);
 
-        for (let i = 1; i <= 1; i++) {
-            const texture = pointStars(this.game, i * 0.00001, i);
-            const tile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, texture);
-            if (i === 1) {
-                tile.filters = [filter];
-            }
-            tile.autoScroll(-300 * i, 0);
-            this.tiles.push(tile);
-        }
+        // for (let i = 1; i <= 1; i++) {
+        //     const texture = pointStars(this.game, i * 0.00001, i);
+        //     const tile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, texture);
+        //     if (i === 1) {
+        //         tile.filters = [filter];
+        //     }
+        //     tile.autoScroll(-300 * i, 0);
+        //     this.tiles.push(tile);
+        // }
 
         Network.getAllPlayers();
 

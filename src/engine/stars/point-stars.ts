@@ -16,30 +16,28 @@ import * as starsData from './stars-data';
  * @returns 
  */
 export function pointStars_TEST (game:Phaser.Game, density: number, brightness: number) {
-//     const width = 100;
-//     const height = 100;
-//     const data = starsData.generateTexture(width, height, density, brightness, Math.random);
+    const width = game.width;
+    const height = game.height;
+    var canvas = <HTMLCanvasElement>document.getElementById('textureGenerator');
+    canvas.height = height;
+    canvas.width = width;
+    const ctx = canvas.getContext('2d');
+    const data = starsData.generateTexture(width, height, density, brightness, Math.random);
+    
+     for (let y = 0; y < height; y++) {
+         for (let x = 0; x < width; x++) {
+            const index = y * width + x;
+            ctx.fillStyle = `rgba(${data[index*4+0]},${data[index*4+1]},${data[index*4+2]},${data[index*4+1]/255})`;
+            ctx.fillRect(x, y, 1, 1);
+         }
+     }
 
-    // const c = document.createElement('canvas');
-    // c.width = width;
-    // c.height = height;
-    // const ctx = c.getContext('2d');
-    // ctx.putImageData(data, 0, 0);
-
-    // var base64Data = btoa(String.fromCharCode.apply(null, data));
-    // var image = document.createElement('img');
-    // image.onload = () => {
-    //     game.cache.addImage('starfield', image.src, image);
-    // };
-    // image.src = 'data:image/png;base64,' + base64Data;
-
-    // let img = new Image();
-    // img.onload = () => { 
-    //     console.log(dataURI);
-    //     game.cache.addImage('starfield', img.src, img);
-    // };
-    // img.src = dataURI;
-    // img.src = c.toDataURL('image/png');
+    let img = new Image();
+    img.onload = () => {
+        game.cache.addImage('starfield', img.src, img);
+        ctx.clearRect(0, 0, width, height);
+    };
+    img.src = canvas.toDataURL('image/png');
 }
 
 
