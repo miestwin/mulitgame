@@ -6,7 +6,7 @@ import { randomNumberInRange } from '../utils';
 
 export class Meteor extends Phaser.Sprite {
 
-    public health = 30;
+    public health = 10;
 
     constructor(game: Phaser.Game, x: number, y: number) {
         super(game, x, y, 'meteor-' + randomNumberInRange(1, 6));

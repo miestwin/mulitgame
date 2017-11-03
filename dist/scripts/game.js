@@ -114901,7 +114901,7 @@ const utils_1 = __webpack_require__(11);
 class Meteor extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, 'meteor-' + utils_1.randomNumberInRange(1, 6));
-        this.health = 30;
+        this.health = 10;
         this.anchor.setTo(0.5);
         this.checkWorldBounds = true;
         this.events.onOutOfBounds.add(this.out, this);
