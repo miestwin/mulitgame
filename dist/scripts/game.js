@@ -111988,6 +111988,7 @@ __export(__webpack_require__(102));
 __export(__webpack_require__(103));
 __export(__webpack_require__(104));
 __export(__webpack_require__(105));
+__export(__webpack_require__(106));
 
 
 /***/ }),
@@ -112083,9 +112084,9 @@ __export(__webpack_require__(34));
 __export(__webpack_require__(96));
 __export(__webpack_require__(97));
 __export(__webpack_require__(100));
-__export(__webpack_require__(106));
 __export(__webpack_require__(107));
 __export(__webpack_require__(108));
+__export(__webpack_require__(109));
 
 
 /***/ }),
@@ -114842,15 +114843,6 @@ class Player extends Phaser.Sprite {
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
     }
-    setWeapon() {
-        const weapon = this.game.add.weapon(40, 'bullet');
-        weapon.setBulletFrames(0, 80, true);
-        weapon.bulletKillType = Phaser.Weapon.KILL_WEAPON_BOUNDS;
-        weapon.bulletSpeed = 600;
-        weapon.fireRate = 50;
-        weapon.trackSprite(this, 0, 0, true);
-        this.weapon = weapon;
-    }
     /**
      * Ustawia X i Y grafiki
      * @param {number} x
@@ -114951,6 +114943,45 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+class Bullets extends Phaser.Group {
+    constructor(game) {
+        super(game);
+        this.nextFire = 0;
+        this.bulletSpeed = 500;
+        this.fireRate = 350;
+        this.enableBody = true;
+        this.physicsBodyType = Phaser.Physics.ARCADE;
+        this.createMultiple(100, 'bullet', 0);
+        this.setAll('anchor.x', 0.5);
+        this.setAll('anchor.y', 0.5);
+        this.setAll('checkWorldBounds', true);
+        this.setAll('outOfBoundsKill', true);
+    }
+    shoot(sx, sy) {
+        const bullet = this.getFirstDead();
+        if (!bullet) {
+            return;
+        }
+        if (this.game.time.now > this.nextFire) {
+            bullet.reset(sx, sy);
+            bullet.body.velocity.x = this.bulletSpeed;
+            this.nextFire = this.game.time.now + this.fireRate;
+        }
+    }
+}
+exports.Bullets = Bullets;
+
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
 const utils_1 = __webpack_require__(11);
 const network_1 = __webpack_require__(35);
 const models_1 = __webpack_require__(82);
@@ -114975,7 +115006,6 @@ class StartGame extends Phaser.State {
                 const player = new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
                 const shield = new models_1.Shield(this.game, 50, y, player.id);
                 player.shield = shield;
-                player.setWeapon();
                 this.game.state.players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
@@ -114991,10 +115021,7 @@ class StartGame extends Phaser.State {
         });
         network_1.default.onPlayerFire((playerId) => {
             const player = this.game.state.players[playerId];
-            console.log(player);
-            if (player && player.weapon) {
-                player.weapon.fire();
-            }
+            this.bullets.shoot(player.x, player.y);
         });
         network_1.default.onPlayerDisconnected((player) => {
             this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
@@ -115012,6 +115039,7 @@ class StartGame extends Phaser.State {
     create() {
         this.players = this.game.add.group();
         this.shields = this.game.add.group();
+        this.bullets = new models_1.Bullets(this.game);
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -115110,7 +115138,7 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115145,7 +115173,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

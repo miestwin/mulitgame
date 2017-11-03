@@ -7,7 +7,7 @@ import { States } from './States';
 
 import Network from '../network';
 
-import { Player, Shard, Shield } from '../../models';
+import { Player, Shard, Shield, Bullets } from '../../models';
 
 declare var Victor;
 
@@ -23,6 +23,7 @@ export class StartGame extends Phaser.State {
     private points: Phaser.Group;
     private players: Phaser.Group;
     private shields: Phaser.Group;
+    private bullets: Bullets;
     private back: Phaser.TileSprite;
 
     preload() {
@@ -35,7 +36,6 @@ export class StartGame extends Phaser.State {
                 const player = new Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
                 const shield = new Shield(this.game, 50, y, player.id);
                 player.shield = shield;
-                player.setWeapon();
                 (<any>this.game.state).players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
@@ -54,10 +54,7 @@ export class StartGame extends Phaser.State {
 
         Network.onPlayerFire((playerId) => {
             const player = (<any>this.game.state).players[playerId];
-            console.log(player);
-            if (player && player.weapon) {
-                player.weapon.fire();
-            }
+            this.bullets.shoot(player.x, player.y);
         });
 
         Network.onPlayerDisconnected((player) => {
@@ -78,7 +75,8 @@ export class StartGame extends Phaser.State {
     create() {
         this.players = this.game.add.group();
         this.shields = this.game.add.group();
-        
+        this.bullets = new Bullets(this.game);
+
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         
         this.game.physics.setBoundsToWorld();

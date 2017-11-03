@@ -97,16 +97,6 @@ export class Player extends Phaser.Sprite {
         this.body.collideWorldBounds = true;
     }
 
-    setWeapon() {
-        const weapon = this.game.add.weapon(40, 'bullet');
-        weapon.setBulletFrames(0, 80, true);
-        weapon.bulletKillType = Phaser.Weapon.KILL_WEAPON_BOUNDS;
-        weapon.bulletSpeed = 600;
-        weapon.fireRate = 50;
-        weapon.trackSprite(this, 0, 0, true);
-        this.weapon = weapon;
-    }
-
     /**
      * Ustawia X i Y grafiki
      * @param {number} x 
