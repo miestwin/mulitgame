@@ -115137,7 +115137,7 @@ class StartGame extends Phaser.State {
         this.generateMeteor();
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
-        this.game.physics.arcade.collide(this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
     generateMeteor() {
@@ -115151,11 +115151,6 @@ class StartGame extends Phaser.State {
     }
     generatePowerUp(sx, sy) {
         console.log('power up');
-    }
-    meteorOut(meteor) {
-        if (meteor.x < 0) {
-            meteor.kill();
-        }
     }
     pointOut(point) {
         if (point.x < 0) {

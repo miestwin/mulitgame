@@ -187,7 +187,7 @@ export class StartGame extends Phaser.State {
                 this.shields,
                 this.points, this.shield_point_CollisionHandler, null, this);
 
-        this.game.physics.arcade.collide(
+        this.game.physics.arcade.overlap(
             this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
@@ -205,12 +205,6 @@ export class StartGame extends Phaser.State {
 
     private generatePowerUp(sx: number, sy: number) {
         console.log('power up');
-    }
-
-    private meteorOut(meteor: Phaser.Sprite) {
-        if (meteor.x < 0) {
-            meteor.kill();
-        }
     }
 
     private pointOut(point: Phaser.Sprite) {
