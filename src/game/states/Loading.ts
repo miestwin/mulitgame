@@ -25,7 +25,8 @@ export class Loading extends Phaser.State {
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
-        
+        this.game.load.spritesheet('bullet', '../assets/spritesheets/rgblaser.png', 4, 4);
+
         this.game.load.image('shield', '../assets/images/shield.png');
 
         pointStars_TEST(this.game, 0.0009, 0.125);

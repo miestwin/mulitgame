@@ -112163,6 +112163,7 @@ class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
+        this.game.load.spritesheet('bullet', '../assets/spritesheets/rgblaser.png', 4, 4);
         this.game.load.image('shield', '../assets/images/shield.png');
         engine_1.pointStars_TEST(this.game, 0.0009, 0.125);
         engine_1.generateShards(this.game, 10);
@@ -114840,7 +114841,12 @@ class Player extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
-        // this.shield = new Shield(game, x, y, this._id);
+        this.weapon = game.add.weapon(40, 'bullet');
+        this.weapon.setBulletFrames(0, 80, true);
+        this.weapon.bulletKillType = Phaser.Weapon.KILL_WEAPON_BOUNDS;
+        this.weapon.bulletSpeed = 600;
+        this.weapon.fireRate = 50;
+        this.weapon.trackSprite(this, 0, 0, true);
     }
     /**
      * Ustawia X i Y grafiki
@@ -114980,7 +114986,7 @@ class StartGame extends Phaser.State {
             player.zPos = update;
         });
         network_1.default.onPlayerFire((playerId) => {
-            console.log(playerId, 'fire');
+            this.game.state.players[playerId].weapon.fire();
         });
         network_1.default.onPlayerDisconnected((player) => {
             this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {

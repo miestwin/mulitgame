@@ -142,7 +142,7 @@ export class GameController extends Phaser.State {
 
         this.shieldBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY - 20, 'btn-shield');
+            this.game.world.centerY - 10, 'btn-shield');
         this.shieldBtn.anchor.setTo(0.5, 1);
 
         this.shieldBtn.onInputDown.add(() => {
@@ -155,7 +155,7 @@ export class GameController extends Phaser.State {
 
         this.fireBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY + 20, 'btn-fire', () => {
+            this.game.world.centerY + 10, 'btn-fire', () => {
                 Network.playerFire(gameId);
             }, this);
     }

@@ -112497,7 +112497,7 @@ class GameController extends Phaser.State {
         // this.upBtn.onInputUp.add(() => {
         //     Network.updatePlayerZ(gameId, 0);
         // }, this);
-        this.shieldBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY - 20, 'btn-shield');
+        this.shieldBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY - 10, 'btn-shield');
         this.shieldBtn.anchor.setTo(0.5, 1);
         this.shieldBtn.onInputDown.add(() => {
             network_1.default.updatePlayerZ(gameId, true);
@@ -112505,7 +112505,7 @@ class GameController extends Phaser.State {
         this.shieldBtn.onInputUp.add(() => {
             network_1.default.updatePlayerZ(gameId, false);
         }, this);
-        this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 20, 'btn-fire', () => {
+        this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 10, 'btn-fire', () => {
             network_1.default.playerFire(gameId);
         }, this);
     }

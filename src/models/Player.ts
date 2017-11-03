@@ -79,6 +79,8 @@ export class Player extends Phaser.Sprite {
 
     public shield: Shield;
 
+    public weapon: Phaser.Weapon;
+
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         super(game, x, y, avatar);
         this._id = id;
@@ -93,7 +95,12 @@ export class Player extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
-        // this.shield = new Shield(game, x, y, this._id);
+        this.weapon = game.add.weapon(40, 'bullet');
+        this.weapon.setBulletFrames(0, 80, true);
+        this.weapon.bulletKillType = Phaser.Weapon.KILL_WEAPON_BOUNDS;
+        this.weapon.bulletSpeed = 600;
+        this.weapon.fireRate = 50;
+        this.weapon.trackSprite(this, 0, 0, true);
     }
 
     /**

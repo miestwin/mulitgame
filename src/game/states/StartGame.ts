@@ -52,7 +52,7 @@ export class StartGame extends Phaser.State {
         });
 
         Network.onPlayerFire((playerId) => {
-            console.log(playerId, 'fire');
+            (<any>this.game.state).players[playerId].weapon.fire();
         });
 
         Network.onPlayerDisconnected((player) => {
