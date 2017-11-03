@@ -115142,10 +115142,11 @@ class StartGame extends Phaser.State {
     }
     generateMeteor() {
         const meteorChance = this.game.rnd.integerInRange(1, 25);
-        if (meteorChance != 1) {
+        if (meteorChance > 8) {
             return;
         }
         const meteor = new models_1.Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
+        meteor.body.velocity.x = this.game.rnd.integerInRange(400, 600);
         this.meteors.add(meteor);
     }
     generatePowerUp(sx, sy) {
