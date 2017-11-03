@@ -114946,9 +114946,30 @@ __webpack_require__(3);
 class Bullets extends Phaser.Group {
     constructor(game) {
         super(game);
+        /**
+         * Czy możliwe jest oddanie następnego strału
+         * @private
+         * @memberof Bullets
+         */
         this.nextFire = 0;
-        this.bulletSpeed = 500;
-        this.fireRate = 350;
+        /**
+         * Prędkość pojeyńczego pocisku
+         * @private
+         * @memberof Bullets
+         */
+        this.bulletSpeed = 800;
+        /**
+         * Częstotliwość strzałów
+         * @private
+         * @memberof Bullets
+         */
+        this.fireRate = 50;
+        /**
+         * Aktualna ramka bullet
+         * @private
+         * @memberof Bullets
+         */
+        this.currentFrame = 0;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, 'bullet', 0);
@@ -114963,7 +114984,9 @@ class Bullets extends Phaser.Group {
             return;
         }
         if (this.game.time.now > this.nextFire) {
-            bullet.reset(sx, sy);
+            this.currentFrame = (this.currentFrame + 1) % 80;
+            bullet.reset(sx + 20, sy);
+            bullet.frame = this.currentFrame;
             bullet.body.velocity.x = this.bulletSpeed;
             this.nextFire = this.game.time.now + this.fireRate;
         }
