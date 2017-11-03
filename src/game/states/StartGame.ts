@@ -58,6 +58,7 @@ export class StartGame extends Phaser.State {
         Network.onPlayerDisconnected((player) => {
             (<any>this.game.state).players = Object.keys((<any>this.game.state).players).reduce((players, nextId) => {
                 if ((<any>this.game.state).players[nextId].id == player.id) {
+                    (<any>this.game.state).players[nextId].shield.destroy();
                     (<any>this.game.state).players[nextId].destroy();
                     return players;
                 }
