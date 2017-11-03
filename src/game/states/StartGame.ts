@@ -177,7 +177,7 @@ export class StartGame extends Phaser.State {
         // Object.keys((<any>this.game.state).players).forEach(playerId => {
         // 
         // });
-        
+        this.generateMeteor();
 
         this.game.physics.arcade.overlap(
                 this.players,
@@ -194,12 +194,12 @@ export class StartGame extends Phaser.State {
     }
 
     private generateMeteor() {
-        const meteorChance = this.game.rnd.integerInRange(1, 25)
-        if (meteorChance > 8) {
+        const meteorChance = this.game.rnd.integerInRange(1, 100)
+        if (meteorChance != 1) {
             return;
         }
         const meteor = new Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = this.game.rnd.integerInRange(400, 600);
+        meteor.body.velocity.x = this.game.rnd.integerInRange(-400, -600);
         this.meteors.add(meteor);
     }
 

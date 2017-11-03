@@ -15,7 +15,6 @@ export class Meteor extends Phaser.Sprite {
         this.events.onOutOfBounds.add(this.out, this);
         game.add.existing(this);
         game.physics.arcade.enable(this);
-        this.body.collideWorldBounds = true;
     }
 
     private out() {

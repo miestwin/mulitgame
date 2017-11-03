@@ -114907,7 +114907,6 @@ class Meteor extends Phaser.Sprite {
         this.events.onOutOfBounds.add(this.out, this);
         game.add.existing(this);
         game.physics.arcade.enable(this);
-        this.body.collideWorldBounds = true;
     }
     out() {
         this.kill();
@@ -115135,18 +115134,19 @@ class StartGame extends Phaser.State {
         // Object.keys((<any>this.game.state).players).forEach(playerId => {
         // 
         // });
+        this.generateMeteor();
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
         this.game.physics.arcade.collide(this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
     generateMeteor() {
-        const meteorChance = this.game.rnd.integerInRange(1, 25);
-        if (meteorChance > 8) {
+        const meteorChance = this.game.rnd.integerInRange(1, 100);
+        if (meteorChance != 1) {
             return;
         }
         const meteor = new models_1.Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = this.game.rnd.integerInRange(400, 600);
+        meteor.body.velocity.x = this.game.rnd.integerInRange(-400, -600);
         this.meteors.add(meteor);
     }
     generatePowerUp(sx, sy) {
