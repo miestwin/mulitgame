@@ -2426,6 +2426,15 @@ class Network {
         Network.socket.emit(Network.UPDATE_PLAYER_Z, gameID, update);
     }
     /**
+     * Poinformowanie o oddaniu strzału przez gracza
+     * @static
+     * @param {any} gameID
+     * @memberof Network
+     */
+    static playerFire(gameID) {
+        Network.socket.emit(Network.PLAYER_FIRE, gameID);
+    }
+    /**
      * Gra jest niedostępna
      * @static
      * @param {Function} fn
@@ -2521,6 +2530,7 @@ Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_TIMER = 'update-timer';
 Network.UPDATE_PLAYER_Z = 'update-player-z';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
+Network.PLAYER_FIRE = 'player_fire';
 exports.default = Network;
 
 
@@ -112158,6 +112168,8 @@ class Loading extends Phaser.State {
         this.game.load.image('left-2', '../assets/images/controller/Sprites/shadedDark/shadedDark11.png');
         this.game.load.image('up', '../assets/images/controller/Sprites/shadedDark/shadedDark26.png');
         this.game.load.image('down', '../assets/images/controller/Sprites/shadedDark/shadedDark27.png');
+        this.game.load.image('btn-shield', '../assets/images/controller/Sprites/shadedDark/shadedDark48.png');
+        this.game.load.image('btn-fire', '../assets/images/controller/Sprites/shadedDark/shadedDark49.png');
         engine_1.generateShips(this.game);
         this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
@@ -112470,6 +112482,12 @@ class GameController extends Phaser.State {
         this.leftTouchPos.copy(this.leftTouchStartPos);
         this.scoreText = this.game.add.text(this.game.world.centerX, 18, 'Score: 0', { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
+        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
+        leftPadBack.anchor.setTo(0.5);
+        leftPadBack.scale.setTo(2);
+        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
+        this.leftPad.anchor.setTo(0.5);
+        this.leftPad.scale.setTo(0.5);
         // this.upBtn = this.game.add.button(
         //     this.game.world.centerX + this.game.world.centerX / 2,
         //     this.game.world.centerY / 2, 'up');
@@ -112479,20 +112497,17 @@ class GameController extends Phaser.State {
         // this.upBtn.onInputUp.add(() => {
         //     Network.updatePlayerZ(gameId, 0);
         // }, this);
-        this.downBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, 'left-2');
-        this.downBtn.anchor.setTo(0.5);
-        this.downBtn.onInputDown.add(() => {
+        this.shieldBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY - 20, 'btn-shield');
+        this.shieldBtn.anchor.setTo(0.5, 1);
+        this.shieldBtn.onInputDown.add(() => {
             network_1.default.updatePlayerZ(gameId, true);
         }, this);
-        this.downBtn.onInputUp.add(() => {
+        this.shieldBtn.onInputUp.add(() => {
             network_1.default.updatePlayerZ(gameId, false);
         }, this);
-        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
-        leftPadBack.anchor.setTo(0.5);
-        leftPadBack.scale.setTo(2);
-        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
-        this.leftPad.anchor.setTo(0.5);
-        this.leftPad.scale.setTo(0.5);
+        this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 20, 'btn-fire', () => {
+            network_1.default.playerFire(gameId);
+        }, this);
     }
     update() {
         this.leftPad.x = this.leftTouchPos.x;

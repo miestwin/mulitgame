@@ -81,20 +81,20 @@ export class GameController extends Phaser.State {
     private scoreText: Phaser.Text;
 
     /**
-     * Przycisk do wznoszenia statku
+     * Włączenie tarczy
      * @private
      * @type {Phaser.Button}
      * @memberof GameController
      */
-    private upBtn: Phaser.Button;
+    private shieldBtn: Phaser.Button;
 
     /**
-     * Przycisk do opadania statku
+     * Oddanie strzału
      * @private
      * @type {Phaser.Button}
      * @memberof GameController
      */
-    private downBtn: Phaser.Button;
+    private fireBtn: Phaser.Button;
 
     private frameCounter: number = 0;
 
@@ -120,6 +120,14 @@ export class GameController extends Phaser.State {
             { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
 
+        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
+        leftPadBack.anchor.setTo(0.5);
+        leftPadBack.scale.setTo(2);
+
+        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
+        this.leftPad.anchor.setTo(0.5);
+        this.leftPad.scale.setTo(0.5);
+
         // this.upBtn = this.game.add.button(
         //     this.game.world.centerX + this.game.world.centerX / 2,
         //     this.game.world.centerY / 2, 'up');
@@ -132,26 +140,24 @@ export class GameController extends Phaser.State {
         //     Network.updatePlayerZ(gameId, 0);
         // }, this);
 
-        this.downBtn = this.game.add.button(
+        this.shieldBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY, 'left-2');
-        this.downBtn.anchor.setTo(0.5);
+            this.game.world.centerY - 20, 'btn-shield');
+        this.shieldBtn.anchor.setTo(0.5, 1);
 
-        this.downBtn.onInputDown.add(() => {
+        this.shieldBtn.onInputDown.add(() => {
             Network.updatePlayerZ(gameId, true);
         }, this);
 
-        this.downBtn.onInputUp.add(() => {
+        this.shieldBtn.onInputUp.add(() => {
             Network.updatePlayerZ(gameId, false);
         }, this);
 
-        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
-        leftPadBack.anchor.setTo(0.5);
-        leftPadBack.scale.setTo(2);
-
-        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
-        this.leftPad.anchor.setTo(0.5);
-        this.leftPad.scale.setTo(0.5);
+        this.fireBtn = this.game.add.button(
+            this.game.world.centerX + this.game.world.centerX / 2,
+            this.game.world.centerY + 20, 'btn-fire', () => {
+                Network.playerFire(gameId);
+            }, this);
     }
 
     update() {

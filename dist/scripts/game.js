@@ -4196,6 +4196,15 @@ class Network {
     static onPlayerUpdateZ(fn) {
         Network.socket.on(Network.UPDATE_PLAYER_Z, fn);
     }
+    /**
+     * Oddanie strzału przez gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayerFire(fn) {
+        Network.socket.on(Network.PLAYER_FIRE, fn);
+    }
 }
 Network.NEW_GAME = 'new-game';
 Network.START_TIMER = 'start-timer';
@@ -4208,6 +4217,7 @@ Network.ALL_PLAYERS = 'all-players';
 Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_PLAYER_Z = 'update-player-z';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
+Network.PLAYER_FIRE = 'player_fire';
 exports.default = Network;
 
 
@@ -114969,6 +114979,9 @@ class StartGame extends Phaser.State {
             const player = this.game.state.players[playerId];
             player.zPos = update;
         });
+        network_1.default.onPlayerFire((playerId) => {
+            console.log(playerId, 'fire');
+        });
         network_1.default.onPlayerDisconnected((player) => {
             this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
                 if (this.game.state.players[nextId].id == player.id) {
@@ -114988,7 +115001,7 @@ class StartGame extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
-        this.back.filters = [filter];
+        // this.back.filters = [filter];
         this.back.autoScroll(-300, 0);
         // for (let i = 1; i <= 1; i++) {
         //     const texture = pointStars(this.game, i * 0.00001, i);

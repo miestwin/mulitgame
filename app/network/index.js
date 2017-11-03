@@ -1,7 +1,7 @@
 const socketio = require('socket.io');
 const { Game, Player } = require('../models');
 const MAX_PLAYERS = 4;
-const TIME = 60;
+const TIME = 20;
 
 module.exports = (server) => {
     var io = socketio.listen(server);
@@ -101,6 +101,10 @@ module.exports = (server) => {
                 player.score = score;
                 io.to(socketId).emit('update_player_score', score);
             }
+        });
+
+        socket.on('player_fire', (gameId) => {
+            socket.broadcast.to('game-' + gameId).emit('player_fire', socket.player.id);
         });
     });
 

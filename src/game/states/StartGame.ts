@@ -51,6 +51,10 @@ export class StartGame extends Phaser.State {
             player.zPos = update;
         });
 
+        Network.onPlayerFire((playerId) => {
+            console.log(playerId, 'fire');
+        });
+
         Network.onPlayerDisconnected((player) => {
             (<any>this.game.state).players = Object.keys((<any>this.game.state).players).reduce((players, nextId) => {
                 if ((<any>this.game.state).players[nextId].id == player.id) {
@@ -75,7 +79,7 @@ export class StartGame extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
-        this.back.filters = [filter];
+        // this.back.filters = [filter];
         this.back.autoScroll(-300, 0);
 
         // for (let i = 1; i <= 1; i++) {
