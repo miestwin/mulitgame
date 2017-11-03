@@ -35,6 +35,7 @@ export class StartGame extends Phaser.State {
                 const player = new Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
                 const shield = new Shield(this.game, 50, y, player.id);
                 player.shield = shield;
+                player.setWeapon();
                 (<any>this.game.state).players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
@@ -52,7 +53,11 @@ export class StartGame extends Phaser.State {
         });
 
         Network.onPlayerFire((playerId) => {
-            (<any>this.game.state).players[playerId].weapon.fire();
+            const player = (<any>this.game.state).players[playerId];
+            console.log(player);
+            if (player && player.weapon) {
+                player.weapon.fire();
+            }
         });
 
         Network.onPlayerDisconnected((player) => {

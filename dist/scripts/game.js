@@ -114828,11 +114828,6 @@ class Player extends Phaser.Sprite {
         return this._socketId;
     }
     constructor(game, x, y, { id, socketId, avatar }) {
-        const weapon = game.add.weapon(40, 'bullet');
-        weapon.setBulletFrames(0, 80, true);
-        weapon.bulletKillType = Phaser.Weapon.KILL_WEAPON_BOUNDS;
-        weapon.bulletSpeed = 600;
-        weapon.fireRate = 50;
         super(game, x, y, avatar);
         this._id = id;
         this._socketId = socketId;
@@ -114846,6 +114841,13 @@ class Player extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
+    }
+    setWeapon() {
+        const weapon = this.game.add.weapon(40, 'bullet');
+        weapon.setBulletFrames(0, 80, true);
+        weapon.bulletKillType = Phaser.Weapon.KILL_WEAPON_BOUNDS;
+        weapon.bulletSpeed = 600;
+        weapon.fireRate = 50;
         weapon.trackSprite(this, 0, 0, true);
         this.weapon = weapon;
     }
@@ -114973,6 +114975,7 @@ class StartGame extends Phaser.State {
                 const player = new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
                 const shield = new models_1.Shield(this.game, 50, y, player.id);
                 player.shield = shield;
+                player.setWeapon();
                 this.game.state.players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
@@ -114987,7 +114990,11 @@ class StartGame extends Phaser.State {
             player.zPos = update;
         });
         network_1.default.onPlayerFire((playerId) => {
-            this.game.state.players[playerId].weapon.fire();
+            const player = this.game.state.players[playerId];
+            console.log(player);
+            if (player && player.weapon) {
+                player.weapon.fire();
+            }
         });
         network_1.default.onPlayerDisconnected((player) => {
             this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
