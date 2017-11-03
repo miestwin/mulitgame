@@ -4,7 +4,7 @@ import 'phaser';
 import * as QRious from 'qrious';
 import { States } from './States';
 import config from '../../config';
-import { generateShards, generateShips, pointStars_TEST } from '../../engine';
+import { generatePowerUps, generateShips, pointStars_TEST } from '../../engine';
 
 /**
  * Ładowanie zasobów
@@ -28,10 +28,12 @@ export class Loading extends Phaser.State {
         this.game.load.spritesheet('bullet', '../assets/spritesheets/rgblaser.png', 4, 4);
 
         this.game.load.image('shield', '../assets/images/shield.png');
-
-        pointStars_TEST(this.game, 0.0009, 0.125);
-        generateShards(this.game, 10);
-        generateShips(this.game);
+        this.game.load.image('meteor-1', '../assets/images/meteor_1.png');
+        this.game.load.image('meteor-2', '../assets/images/meteor_2.png');
+        this.game.load.image('meteor-3', '../assets/images/meteor_3.png');
+        this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
+        this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
+        this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
 
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
@@ -42,11 +44,17 @@ export class Loading extends Phaser.State {
 
     create() {
         // create qrcode and go to next state
-        this.loadingText.setText('Create QRCode ...');
-        this.createQRCode().then(() => {
+        this.loadingText.setText('Create Textures ...');
+        Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States.MAIN_MENU);
+        }).catch(() => {
+            this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
         });
+        // this.createQRCode().then(() => {
+        //     this.loadingText.setText('Create QRCode Complete');
+        //     this.game.state.start(States.MAIN_MENU);
+        // });
     }
 
     /**
@@ -126,6 +134,15 @@ export class Loading extends Phaser.State {
             };
             img.title = (<any>this.game.state).id;
             img.src = qr;
+        });
+    }
+
+    private createTextures(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            pointStars_TEST(this.game, 0.0009, 0.125);
+            generatePowerUps(this.game);
+            generateShips(this.game);
+            resolve();
         });
     }
 }

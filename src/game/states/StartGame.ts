@@ -7,7 +7,7 @@ import { States } from './States';
 
 import Network from '../network';
 
-import { Player, Shard, Shield, Bullets } from '../../models';
+import { Player, Shield, Bullets, Meteor } from '../../models';
 
 declare var Victor;
 
@@ -19,12 +19,64 @@ declare var Victor;
  */
 export class StartGame extends Phaser.State {
 
+    /**
+     * Kolekcja teł gry
+     * @private
+     * @type {Phaser.TileSprite[]}
+     * @memberof StartGame
+     */
     private tiles: Phaser.TileSprite[] = [];
+
+    /**
+     * Kolekcja obiektów do zbierania przez graczy
+     * @private
+     * @type {Phaser.Group}
+     * @memberof StartGame
+     */
     private points: Phaser.Group;
+
+    /**
+     * Kolekcja graczy do sprawdzania kolizji
+     * @private
+     * @type {Phaser.Group}
+     * @memberof StartGame
+     */
     private players: Phaser.Group;
+
+    /**
+     * Kolekcja tarcz graczy do sprawdania kolizji
+     * 
+     * @private
+     * @type {Phaser.Group}
+     * @memberof StartGame
+     */
     private shields: Phaser.Group;
+
+    /**
+     * Kolekcja poczisków którymi strzelają gracze
+     * Sprawdzanie kolizji
+     * @private
+     * @type {Bullets}
+     * @memberof StartGame
+     */
     private bullets: Bullets;
-    private back: Phaser.TileSprite;
+
+    /**
+     * Kolekcja obiektów z któych wypadają ulepszenia
+     * po ich zniszczeniu
+     * @private
+     * @type {Phaser.Group}
+     * @memberof StartGame
+     */
+    private meteors: Phaser.Group;
+
+    /**
+     * Tło gry
+     * @private
+     * @type {Phaser.TileSprite}
+     * @memberof StartGame
+     */
+    private backTile: Phaser.TileSprite;
 
     preload() {
         Network.onGetAllPlayers((players) => {
@@ -75,16 +127,15 @@ export class StartGame extends Phaser.State {
     create() {
         this.players = this.game.add.group();
         this.shields = this.game.add.group();
-        this.bullets = new Bullets(this.game);
 
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        this.back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.backTile.autoScroll(-300, 0);
         // this.back.filters = [filter];
-        this.back.autoScroll(-300, 0);
 
         // for (let i = 1; i <= 1; i++) {
         //     const texture = pointStars(this.game, i * 0.00001, i);
@@ -115,43 +166,51 @@ export class StartGame extends Phaser.State {
             this.points.add(point);
         }
 
+        this.meteors = this.game.add.group();
+        this.bullets = new Bullets(this.game);
+
         // debug
         this.game.time.advancedTiming = true;
     }
 
     update() {  
         // Object.keys((<any>this.game.state).players).forEach(playerId => {
-        //     (<any>this.game.state).players[playerId].update();
-
-        //     this.game.physics.arcade.overlap(
-        //         (<any>this.game.state).players[playerId],
-        //         this.points, this.point_player_CollisionHandler, null, this);
-
-        //     this.game.physics.arcade.overlap(
-        //         (<any>this.game.state).players[playerId].shield,
-        //         this.points, this.shield_point_CollisionHandler, null, this);
+        // 
         // });
+        
 
         this.game.physics.arcade.overlap(
                 this.players,
-                this.points, this.point_player_CollisionHandler, null, this);
+                this.points, this.player_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
                 this.shields,
                 this.points, this.shield_point_CollisionHandler, null, this);
 
+        this.game.physics.arcade.collide(
+            this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
+
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
 
-    // private electricFieldOut(field: Phaser.Sprite) {
-    //     field.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
-    //     field.body.velocity.x = randomNumberInRange(-450, -600);
-    // }
+    private generateMeteor() {
+        const meteorChance = this.game.rnd.integerInRange(1, 25)
+        if (meteorChance != 1) {
+            return;
+        }
+        const meteor = new Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
+        this.meteors.add(meteor);
+    }
 
-    // private meteorOut(meteor: Phaser.Sprite) {
-    //     meteor.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
-    //     meteor.body.velocity.x = randomNumberInRange(-600, -700);
-    // }
+    private generatePowerUp(sx: number, sy: number) {
+        console.log('power up');
+    }
+
+    private meteorOut(meteor: Phaser.Sprite) {
+        if (meteor.x < 0) {
+            meteor.kill();
+        }
+    }
 
     private pointOut(point: Phaser.Sprite) {
         if (point.x < 0) {
@@ -159,7 +218,7 @@ export class StartGame extends Phaser.State {
         }
     }
 
-    private point_player_CollisionHandler(player: Player, point: Phaser.Sprite) {
+    private player_point_CollisionHandler(player: Player, point: Phaser.Sprite) {
         player.score += 1;
         point.kill();
         Network.updatePlayerScore(player.id, player.socket, player.score);
@@ -170,6 +229,15 @@ export class StartGame extends Phaser.State {
         player.score += 1;
         point.kill();
         Network.updatePlayerScore(player.id, player.socket, player.score);
+    }
+
+    private bullet_meteor_CollisionHandler(bullet: Phaser.Sprite, meteor: Meteor) {
+        bullet.kill();
+        meteor.health -= 1;
+        if (meteor.health <= 0) {
+            this.generatePowerUp(meteor.x, meteor.y);
+            meteor.kill();
+        }
     }
 
     shutdown() {

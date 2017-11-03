@@ -111973,12 +111973,12 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(11);
-exports.shardColors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-function generateShards(game, count) {
-    for (let i = 0; i < count; i++) {
+exports.powerUpsColors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+function generatePowerUps(game) {
+    for (let i = 0; i < 3; i++) {
         const points = utils_1.convexhull(utils_1.generatePoints(20, 20, 10));
         points.push(points[0]);
-        const color = exports.shardColors[utils_1.randomNumberInRange(0, 6)];
+        const color = exports.powerUpsColors[i];
         const graphics = game.add.graphics(0, 0);
         graphics.beginFill(color);
         graphics.moveTo(points[0][0], points[0][1]);
@@ -111987,11 +111987,11 @@ function generateShards(game, count) {
             graphics.lineTo(point[0], point[1]);
         }
         graphics.endFill();
-        game.cache.addImage('shard-' + i, null, graphics.generateTexture().baseTexture.source);
+        game.cache.addImage('powerup-' + i, null, graphics.generateTexture().baseTexture.source);
         graphics.destroy();
     }
 }
-exports.generateShards = generateShards;
+exports.generatePowerUps = generatePowerUps;
 
 
 /***/ }),

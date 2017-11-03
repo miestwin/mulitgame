@@ -111952,12 +111952,12 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(11);
-exports.shardColors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-function generateShards(game, count) {
-    for (let i = 0; i < count; i++) {
+exports.powerUpsColors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+function generatePowerUps(game) {
+    for (let i = 0; i < 3; i++) {
         const points = utils_1.convexhull(utils_1.generatePoints(20, 20, 10));
         points.push(points[0]);
-        const color = exports.shardColors[utils_1.randomNumberInRange(0, 6)];
+        const color = exports.powerUpsColors[i];
         const graphics = game.add.graphics(0, 0);
         graphics.beginFill(color);
         graphics.moveTo(points[0][0], points[0][1]);
@@ -111966,11 +111966,11 @@ function generateShards(game, count) {
             graphics.lineTo(point[0], point[1]);
         }
         graphics.endFill();
-        game.cache.addImage('shard-' + i, null, graphics.generateTexture().baseTexture.source);
+        game.cache.addImage('powerup-' + i, null, graphics.generateTexture().baseTexture.source);
         graphics.destroy();
     }
 }
-exports.generateShards = generateShards;
+exports.generatePowerUps = generatePowerUps;
 
 
 /***/ }),
@@ -112166,9 +112166,12 @@ class Loading extends Phaser.State {
         this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
         this.game.load.spritesheet('bullet', '../assets/spritesheets/rgblaser.png', 4, 4);
         this.game.load.image('shield', '../assets/images/shield.png');
-        engine_1.pointStars_TEST(this.game, 0.0009, 0.125);
-        engine_1.generateShards(this.game, 10);
-        engine_1.generateShips(this.game);
+        this.game.load.image('meteor-1', '../assets/images/meteor_1.png');
+        this.game.load.image('meteor-2', '../assets/images/meteor_2.png');
+        this.game.load.image('meteor-3', '../assets/images/meteor_3.png');
+        this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
+        this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
+        this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
         this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
         this.game.load.image('background', '../assets/images/purple.png');
         this.game.load.image('shard', '../assets/images/shard.png');
@@ -112177,11 +112180,17 @@ class Loading extends Phaser.State {
     }
     create() {
         // create qrcode and go to next state
-        this.loadingText.setText('Create QRCode ...');
-        this.createQRCode().then(() => {
+        this.loadingText.setText('Create Textures ...');
+        Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States_1.States.MAIN_MENU);
+        }).catch(() => {
+            this.game.state.start(States_1.States.MESSAGE, true, false, 'Problem with generating texture');
         });
+        // this.createQRCode().then(() => {
+        //     this.loadingText.setText('Create QRCode Complete');
+        //     this.game.state.start(States.MAIN_MENU);
+        // });
     }
     /**
      * Funkcja stanu ładowania
@@ -112249,6 +112258,14 @@ class Loading extends Phaser.State {
             };
             img.title = this.game.state.id;
             img.src = qr;
+        });
+    }
+    createTextures() {
+        return new Promise((resolve, reject) => {
+            engine_1.pointStars_TEST(this.game, 0.0009, 0.125);
+            engine_1.generatePowerUps(this.game);
+            engine_1.generateShips(this.game);
+            resolve();
         });
     }
 }
@@ -114884,7 +114901,16 @@ const utils_1 = __webpack_require__(11);
 class Meteor extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, 'meteor-' + utils_1.randomNumberInRange(1, 6));
-        this.anchor.setTo(0, 0.5);
+        this.health = 30;
+        this.anchor.setTo(0.5);
+        this.checkWorldBounds = true;
+        this.events.onOutOfBounds.add(this.out, this);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.body.collideWorldBounds = true;
+    }
+    out() {
+        this.kill();
     }
 }
 exports.Meteor = Meteor;
@@ -114903,7 +114929,7 @@ __webpack_require__(3);
 const utils_1 = __webpack_require__(11);
 class Shard extends Phaser.Sprite {
     constructor(game, x, y) {
-        super(game, x, y, 'shard-' + utils_1.randomNumberInRange(0, 9));
+        super(game, x, y, 'powerup-' + utils_1.randomNumberInRange(0, 2));
         this.anchor.setTo(0.5);
         game.add.tween(this).to({ angle: utils_1.randomNumberInRange(0, 360) }, utils_1.randomNumberInRange(4000, 6000), Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
     }
@@ -115017,6 +115043,12 @@ const models_1 = __webpack_require__(82);
 class StartGame extends Phaser.State {
     constructor() {
         super(...arguments);
+        /**
+         * Kolekcja teł gry
+         * @private
+         * @type {Phaser.TileSprite[]}
+         * @memberof StartGame
+         */
         this.tiles = [];
     }
     preload() {
@@ -115062,13 +115094,12 @@ class StartGame extends Phaser.State {
     create() {
         this.players = this.game.add.group();
         this.shields = this.game.add.group();
-        this.bullets = new models_1.Bullets(this.game);
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.backTile.autoScroll(-300, 0);
         // this.back.filters = [filter];
-        this.back.autoScroll(-300, 0);
         // for (let i = 1; i <= 1; i++) {
         //     const texture = pointStars(this.game, i * 0.00001, i);
         //     const tile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, texture);
@@ -115095,37 +115126,42 @@ class StartGame extends Phaser.State {
             // point.animations.play('transform', 13, true);
             this.points.add(point);
         }
+        this.meteors = this.game.add.group();
+        this.bullets = new models_1.Bullets(this.game);
         // debug
         this.game.time.advancedTiming = true;
     }
     update() {
         // Object.keys((<any>this.game.state).players).forEach(playerId => {
-        //     (<any>this.game.state).players[playerId].update();
-        //     this.game.physics.arcade.overlap(
-        //         (<any>this.game.state).players[playerId],
-        //         this.points, this.point_player_CollisionHandler, null, this);
-        //     this.game.physics.arcade.overlap(
-        //         (<any>this.game.state).players[playerId].shield,
-        //         this.points, this.shield_point_CollisionHandler, null, this);
+        // 
         // });
-        this.game.physics.arcade.overlap(this.players, this.points, this.point_player_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
+        this.game.physics.arcade.collide(this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
-    // private electricFieldOut(field: Phaser.Sprite) {
-    //     field.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
-    //     field.body.velocity.x = randomNumberInRange(-450, -600);
-    // }
-    // private meteorOut(meteor: Phaser.Sprite) {
-    //     meteor.reset(this.game.width, randomNumberInRange(30, this.game.world.height - 30));
-    //     meteor.body.velocity.x = randomNumberInRange(-600, -700);
-    // }
+    generateMeteor() {
+        const meteorChance = this.game.rnd.integerInRange(1, 25);
+        if (meteorChance != 1) {
+            return;
+        }
+        const meteor = new models_1.Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
+        this.meteors.add(meteor);
+    }
+    generatePowerUp(sx, sy) {
+        console.log('power up');
+    }
+    meteorOut(meteor) {
+        if (meteor.x < 0) {
+            meteor.kill();
+        }
+    }
     pointOut(point) {
         if (point.x < 0) {
             point.kill();
         }
     }
-    point_player_CollisionHandler(player, point) {
+    player_point_CollisionHandler(player, point) {
         player.score += 1;
         point.kill();
         network_1.default.updatePlayerScore(player.id, player.socket, player.score);
@@ -115135,6 +115171,14 @@ class StartGame extends Phaser.State {
         player.score += 1;
         point.kill();
         network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+    }
+    bullet_meteor_CollisionHandler(bullet, meteor) {
+        bullet.kill();
+        meteor.health -= 1;
+        if (meteor.health <= 0) {
+            this.generatePowerUp(meteor.x, meteor.y);
+            meteor.kill();
+        }
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
@@ -115179,17 +115223,19 @@ __webpack_require__(3);
 class Message extends Phaser.State {
     init(message, text, action) {
         this.message = message;
-        this.text = text;
-        this.action = action.bind(this);
+        this.text = text ? text : null;
+        this.action = action ? action.bind(this) : null;
     }
     preload() { }
     create() {
         var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
         message.anchor.set(0.5);
-        var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, 'grey-button-04', this.action, this, 2, 1, 0);
-        button.anchor.set(0.5);
-        var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
-        buttonText.anchor.set(0.5);
+        if (this.text && this.action) {
+            var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, 'grey-button-04', this.action, this, 2, 1, 0);
+            button.anchor.set(0.5);
+            var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
+            buttonText.anchor.set(0.5);
+        }
     }
 }
 exports.Message = Message;
