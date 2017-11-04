@@ -96,6 +96,15 @@ export class GameController extends Phaser.State {
      */
     private fireBtn: Phaser.Button;
 
+    /**
+     * Interwał wibracji
+     * @private
+     * @memberof GameController
+     */
+    private vibrateInterval;
+
+    private shieldState = { canUse: true, duration: 0, intensity: 0 };
+
     private frameCounter: number = 0;
 
     preload() {
@@ -128,29 +137,25 @@ export class GameController extends Phaser.State {
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
 
-        // this.upBtn = this.game.add.button(
-        //     this.game.world.centerX + this.game.world.centerX / 2,
-        //     this.game.world.centerY / 2, 'up');
-
-        // this.upBtn.onInputDown.add(() => {
-        //     Network.updatePlayerZ(gameId, 1);
-        // }, this);
-
-        // this.upBtn.onInputUp.add(() => {
-        //     Network.updatePlayerZ(gameId, 0);
-        // }, this);
-
         this.shieldBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
             this.game.world.centerY - 10, 'btn-shield');
         this.shieldBtn.anchor.setTo(0.5, 1);
 
         this.shieldBtn.onInputDown.add(() => {
-            Network.updatePlayerZ(gameId, true);
+            if (this.shieldState.canUse) {
+                Network.updatePlayerZ(gameId, true);
+                this.vibrateInterval = setInterval(() => {
+                    this.signalShieldUp(100, 0);
+                }, 500);
+            }
         }, this);
 
         this.shieldBtn.onInputUp.add(() => {
-            Network.updatePlayerZ(gameId, false);
+            if (this.shieldState.canUse) {
+                Network.updatePlayerZ(gameId, false);
+                this.stopSignalShield();
+            }
         }, this);
 
         this.fireBtn = this.game.add.button(
@@ -174,6 +179,21 @@ export class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
         Network.removeListener(Network.UPDATE_PLAYER_SCORE);
+    }
+
+    private signalShieldUp(duration: number, intensity: number) {
+        window.navigator.vibrate(duration);
+        this.game.camera.shake(intensity, duration);
+    }
+
+    private stopSignalShield() {
+        if (this.vibrateInterval) {
+            clearInterval(this.vibrateInterval);
+            this.vibrateInterval = null;
+        }
+        window.navigator.vibrate(0);
+        this.shieldState.duration = 0;
+        this.shieldState.intensity = 0;
     }
 
     private onTouchStart(e: TouchEvent) {

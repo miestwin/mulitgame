@@ -112470,6 +112470,7 @@ class GameController extends Phaser.State {
          * @memberof GameController
          */
         this.leftVector = new Victor(0, 0);
+        this.shieldState = { canUse: true, duration: 0, intensity: 0 };
         this.frameCounter = 0;
     }
     preload() {
@@ -112492,22 +112493,21 @@ class GameController extends Phaser.State {
         this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
-        // this.upBtn = this.game.add.button(
-        //     this.game.world.centerX + this.game.world.centerX / 2,
-        //     this.game.world.centerY / 2, 'up');
-        // this.upBtn.onInputDown.add(() => {
-        //     Network.updatePlayerZ(gameId, 1);
-        // }, this);
-        // this.upBtn.onInputUp.add(() => {
-        //     Network.updatePlayerZ(gameId, 0);
-        // }, this);
         this.shieldBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY - 10, 'btn-shield');
         this.shieldBtn.anchor.setTo(0.5, 1);
         this.shieldBtn.onInputDown.add(() => {
-            network_1.default.updatePlayerZ(gameId, true);
+            if (this.shieldState.canUse) {
+                network_1.default.updatePlayerZ(gameId, true);
+                this.vibrateInterval = setInterval(() => {
+                    this.signalShieldUp(100, 0);
+                }, 500);
+            }
         }, this);
         this.shieldBtn.onInputUp.add(() => {
-            network_1.default.updatePlayerZ(gameId, false);
+            if (this.shieldState.canUse) {
+                network_1.default.updatePlayerZ(gameId, false);
+                this.stopSignalShield();
+            }
         }, this);
         this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 10, 'btn-fire', () => {
             network_1.default.playerFire(gameId);
@@ -112526,6 +112526,19 @@ class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
+    }
+    signalShieldUp(duration, intensity) {
+        window.navigator.vibrate(duration);
+        this.game.camera.shake(intensity, duration);
+    }
+    stopSignalShield() {
+        if (this.vibrateInterval) {
+            clearInterval(this.vibrateInterval);
+            this.vibrateInterval = null;
+        }
+        window.navigator.vibrate(0);
+        this.shieldState.duration = 0;
+        this.shieldState.intensity = 0;
     }
     onTouchStart(e) {
         e.preventDefault();

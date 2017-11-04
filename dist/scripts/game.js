@@ -115147,9 +115147,9 @@ class StartGame extends Phaser.State {
         this.game.time.advancedTiming = true;
     }
     update() {
-        // Object.keys((<any>this.game.state).players).forEach(playerId => {
-        // 
-        // });
+        Object.keys(this.game.state.players).forEach(playerId => {
+            const player = this.game.state.players[playerId];
+        });
         this.generateMeteor();
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
@@ -115162,7 +115162,7 @@ class StartGame extends Phaser.State {
             return;
         }
         const meteor = new models_1.Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = this.game.rnd.integerInRange(-400, -600);
+        meteor.body.velocity.x = this.game.rnd.integerInRange(-300, -400);
         this.meteors.add(meteor);
     }
     generatePowerUp(sx, sy) {
