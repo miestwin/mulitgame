@@ -112499,7 +112499,14 @@ class GameController extends Phaser.State {
             if (this.shieldState.canUse) {
                 network_1.default.updatePlayerZ(gameId, true);
                 this.vibrateInterval = setInterval(() => {
-                    this.signalShieldUp(100, 0);
+                    this.shieldState.intensity += 0.005;
+                    this.shieldState.duration += 1;
+                    let duration = [];
+                    for (let i = 0; i < this.shieldState.duration; i++) {
+                        duration.push(200 / i);
+                        duration.push(50 / i);
+                    }
+                    this.signalShieldUp(duration, this.shieldState.intensity);
                 }, 500);
             }
         }, this);
@@ -112529,7 +112536,7 @@ class GameController extends Phaser.State {
     }
     signalShieldUp(duration, intensity) {
         window.navigator.vibrate(duration);
-        this.game.camera.shake(intensity, duration);
+        this.game.camera.shake(intensity, duration.reduce((p, n) => n + p, 0));
     }
     stopSignalShield() {
         if (this.vibrateInterval) {
