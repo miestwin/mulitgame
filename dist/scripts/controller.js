@@ -1526,24 +1526,6 @@ function localstorage() {
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(33));
-__export(__webpack_require__(30));
-__export(__webpack_require__(31));
-__export(__webpack_require__(74));
-__export(__webpack_require__(75));
-__export(__webpack_require__(76));
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
 function Random() {
   this._normal = null
 }
@@ -1710,6 +1692,24 @@ if( true ) {
   }
   
 }
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(33));
+__export(__webpack_require__(30));
+__export(__webpack_require__(31));
+__export(__webpack_require__(74));
+__export(__webpack_require__(75));
+__export(__webpack_require__(76));
 
 
 /***/ }),
@@ -111566,7 +111566,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(11);
+const utils_1 = __webpack_require__(12);
 const starsData = __webpack_require__(29);
 /**
  * Generacja gwiazd na scenie
@@ -111683,7 +111683,7 @@ exports.convexhull = convexhull;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rng = __webpack_require__(12);
+const rng = __webpack_require__(11);
 function generateRandomSeed() {
     return (Math.random() * 1000000000000000000).toString(36);
 }
@@ -111714,7 +111714,7 @@ exports.rand = rand;
   if( true ) {
     module.exports = MersenneTwister
     if( true ) {
-      var Random = __webpack_require__( 12 )
+      var Random = __webpack_require__( 11 )
     }
   } else {
     Random = this.Random
@@ -111811,7 +111811,7 @@ exports.rand = rand;
   if( true ) {
     module.exports = ParkMiller
     if( true ) {
-      var Random = __webpack_require__( 12 )
+      var Random = __webpack_require__( 11 )
     }
   } else {
     Random = this.Random
@@ -111867,7 +111867,7 @@ exports.rand = rand;
   if( true ) {
     module.exports = XOR
     if( true ) {
-      var Random = __webpack_require__( 12 )
+      var Random = __webpack_require__( 11 )
     }
   } else {
     Random = this.Random
@@ -111972,13 +111972,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(11);
-exports.powerUpsColors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+const utils_1 = __webpack_require__(12);
+exports.powerUps = {
+    'power-up_cooldown': 0xffffff,
+    'power-up_pull': 0xccccff,
+    'power-up_big': 0xccffff,
+};
 function generatePowerUps(game) {
-    for (let i = 0; i < 3; i++) {
+    Object.keys(exports.powerUps).forEach((powerup => {
         const points = utils_1.convexhull(utils_1.generatePoints(20, 20, 10));
         points.push(points[0]);
-        const color = exports.powerUpsColors[i];
+        const color = exports.powerUps[powerup];
         const graphics = game.add.graphics(0, 0);
         graphics.beginFill(color);
         graphics.moveTo(points[0][0], points[0][1]);
@@ -111987,9 +111991,9 @@ function generatePowerUps(game) {
             graphics.lineTo(point[0], point[1]);
         }
         graphics.endFill();
-        game.cache.addImage('powerup-' + i, null, graphics.generateTexture().baseTexture.source);
+        game.cache.addImage(powerup, null, graphics.generateTexture().baseTexture.source);
         graphics.destroy();
-    }
+    }));
 }
 exports.generatePowerUps = generatePowerUps;
 

@@ -71,6 +71,14 @@ export class StartGame extends Phaser.State {
     private meteors: Phaser.Group;
 
     /**
+     * Kolekcja bonusów możliwych do zebrania
+     * @private
+     * @type {Phaser.Group}
+     * @memberof StartGame
+     */
+    private powerUps: Phaser.Group;
+
+    /**
      * Tło gry
      * @private
      * @type {Phaser.TileSprite}
@@ -167,6 +175,7 @@ export class StartGame extends Phaser.State {
         }
 
         this.meteors = this.game.add.group();
+        this.powerUps = this.game.add.group();
         this.bullets = new Bullets(this.game);
 
         // debug
@@ -204,7 +213,11 @@ export class StartGame extends Phaser.State {
     }
 
     private generatePowerUp(sx: number, sy: number) {
-        console.log('power up');
+        const powerUpChance = this.game.rnd.integerInRange(1, 15);
+        if (powerUpChance != 1) {
+            return;
+        }
+        console.log('create power up');
     }
 
     private pointOut(point: Phaser.Sprite) {
@@ -242,33 +255,3 @@ export class StartGame extends Phaser.State {
         Network.removeListener(Network.PLAYER_DISCONNECTED);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// this.electricFields = this.game.add.group();
-// this.electricFields.enableBody = true;
-// this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-// for (let i = 0; i < 3; i++) {
-//     const y = randomNumberInRange(30, this.game.world.height - 30);
-//     const field = this.electricFields.create(this.game.width, y, 'electric-field', 0);
-//     field.anchor.setTo(0, 0.5);
-//     field.checkWorldBounds = true;
-//     field.events.onOutOfBounds.add(this.electricFieldOut, this);
-//     field.body.velocity.x = randomNumberInRange(-450, -600);
-//     field.animations.add('electrify');
-//     field.animations.play('electrify', 15, true);
-//     this.electricFields.add(field);
-// }

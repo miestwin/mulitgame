@@ -1526,24 +1526,6 @@ function localstorage() {
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(33));
-__export(__webpack_require__(30));
-__export(__webpack_require__(31));
-__export(__webpack_require__(74));
-__export(__webpack_require__(75));
-__export(__webpack_require__(76));
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
 function Random() {
   this._normal = null
 }
@@ -1710,6 +1692,24 @@ if( true ) {
   }
   
 }
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(33));
+__export(__webpack_require__(30));
+__export(__webpack_require__(31));
+__export(__webpack_require__(74));
+__export(__webpack_require__(75));
+__export(__webpack_require__(76));
 
 
 /***/ }),
@@ -111545,7 +111545,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(11);
+const utils_1 = __webpack_require__(12);
 const starsData = __webpack_require__(29);
 /**
  * Generacja gwiazd na scenie
@@ -111662,7 +111662,7 @@ exports.convexhull = convexhull;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rng = __webpack_require__(12);
+const rng = __webpack_require__(11);
 function generateRandomSeed() {
     return (Math.random() * 1000000000000000000).toString(36);
 }
@@ -111693,7 +111693,7 @@ exports.rand = rand;
   if( true ) {
     module.exports = MersenneTwister
     if( true ) {
-      var Random = __webpack_require__( 12 )
+      var Random = __webpack_require__( 11 )
     }
   } else {
     Random = this.Random
@@ -111790,7 +111790,7 @@ exports.rand = rand;
   if( true ) {
     module.exports = ParkMiller
     if( true ) {
-      var Random = __webpack_require__( 12 )
+      var Random = __webpack_require__( 11 )
     }
   } else {
     Random = this.Random
@@ -111846,7 +111846,7 @@ exports.rand = rand;
   if( true ) {
     module.exports = XOR
     if( true ) {
-      var Random = __webpack_require__( 12 )
+      var Random = __webpack_require__( 11 )
     }
   } else {
     Random = this.Random
@@ -111951,13 +111951,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(11);
-exports.powerUpsColors = [0xffffff, 0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+const utils_1 = __webpack_require__(12);
+exports.powerUps = {
+    'power-up_cooldown': 0xffffff,
+    'power-up_pull': 0xccccff,
+    'power-up_big': 0xccffff,
+};
 function generatePowerUps(game) {
-    for (let i = 0; i < 3; i++) {
+    Object.keys(exports.powerUps).forEach((powerup => {
         const points = utils_1.convexhull(utils_1.generatePoints(20, 20, 10));
         points.push(points[0]);
-        const color = exports.powerUpsColors[i];
+        const color = exports.powerUps[powerup];
         const graphics = game.add.graphics(0, 0);
         graphics.beginFill(color);
         graphics.moveTo(points[0][0], points[0][1]);
@@ -111966,9 +111970,9 @@ function generatePowerUps(game) {
             graphics.lineTo(point[0], point[1]);
         }
         graphics.endFill();
-        game.cache.addImage('powerup-' + i, null, graphics.generateTexture().baseTexture.source);
+        game.cache.addImage(powerup, null, graphics.generateTexture().baseTexture.source);
         graphics.destroy();
-    }
+    }));
 }
 exports.generatePowerUps = generatePowerUps;
 
@@ -111988,7 +111992,7 @@ __export(__webpack_require__(102));
 __export(__webpack_require__(103));
 __export(__webpack_require__(104));
 __export(__webpack_require__(105));
-__export(__webpack_require__(106));
+__export(__webpack_require__(107));
 
 
 /***/ }),
@@ -112041,7 +112045,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(95);
 const network_1 = __webpack_require__(35);
-const utils_1 = __webpack_require__(11);
+const utils_1 = __webpack_require__(12);
 /**
  * Utworzenie gry
  * @export
@@ -112084,9 +112088,9 @@ __export(__webpack_require__(34));
 __export(__webpack_require__(96));
 __export(__webpack_require__(97));
 __export(__webpack_require__(100));
-__export(__webpack_require__(107));
 __export(__webpack_require__(108));
 __export(__webpack_require__(109));
+__export(__webpack_require__(110));
 
 
 /***/ }),
@@ -114849,7 +114853,6 @@ class Player extends Phaser.Sprite {
         super(game, x, y, avatar);
         this._id = id;
         this._socketId = socketId;
-        this.avatar = avatar;
         this.score = 0;
         this.zPos = false;
         this.vector = new Victor(0, 0);
@@ -114889,77 +114892,6 @@ exports.Player = Player;
 
 /***/ }),
 /* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const utils_1 = __webpack_require__(11);
-class Meteor extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, 'meteor-' + utils_1.randomNumberInRange(1, 6));
-        this.health = 10;
-        this.anchor.setTo(0.5);
-        this.checkWorldBounds = true;
-        this.events.onOutOfBounds.add(this.out, this);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-    }
-    out() {
-        this.kill();
-    }
-}
-exports.Meteor = Meteor;
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const utils_1 = __webpack_require__(11);
-class Shard extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, 'powerup-' + utils_1.randomNumberInRange(0, 2));
-        this.anchor.setTo(0.5);
-        game.add.tween(this).to({ angle: utils_1.randomNumberInRange(0, 360) }, utils_1.randomNumberInRange(4000, 6000), Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
-    }
-}
-exports.Shard = Shard;
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-class ElectricField extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, 'electric-field', 0);
-        this.anchor.setTo(0, 0.5);
-        // this.scale.setTo(1.4);
-        this.animations.add('electrify');
-        this.animations.play('electrify', 15, true);
-    }
-}
-exports.ElectricField = ElectricField;
-
-
-/***/ }),
-/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115021,6 +114953,67 @@ exports.Bullets = Bullets;
 
 
 /***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
+class Meteor extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, 'meteor-' + utils_1.randomNumberInRange(1, 6));
+        this.health = 10;
+        this.anchor.setTo(0.5);
+        this.checkWorldBounds = true;
+        this.events.onOutOfBounds.add(this.out, this);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    out() {
+        this.kill();
+    }
+}
+exports.Meteor = Meteor;
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(106));
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+class Shard extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, 'powerup-');
+        this.anchor.setTo(0.5);
+        game.add.tween(this).to({ angle: game.rnd.integerInRange(0, 360) }, game.rnd.integerInRange(4000, 6000), Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
+    }
+}
+exports.Shard = Shard;
+
+
+/***/ }),
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -115030,7 +115023,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(11);
+class ElectricField extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, 'electric-field', 0);
+        this.anchor.setTo(0, 0.5);
+        // this.scale.setTo(1.4);
+        this.animations.add('electrify');
+        this.animations.play('electrify', 15, true);
+    }
+}
+exports.ElectricField = ElectricField;
+
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
 const network_1 = __webpack_require__(35);
 const models_1 = __webpack_require__(82);
 /**
@@ -115126,6 +115141,7 @@ class StartGame extends Phaser.State {
             this.points.add(point);
         }
         this.meteors = this.game.add.group();
+        this.powerUps = this.game.add.group();
         this.bullets = new models_1.Bullets(this.game);
         // debug
         this.game.time.advancedTiming = true;
@@ -115150,7 +115166,11 @@ class StartGame extends Phaser.State {
         this.meteors.add(meteor);
     }
     generatePowerUp(sx, sy) {
-        console.log('power up');
+        const powerUpChance = this.game.rnd.integerInRange(1, 15);
+        if (powerUpChance != 1) {
+            return;
+        }
+        console.log('create power up');
     }
     pointOut(point) {
         if (point.x < 0) {
@@ -115184,24 +115204,10 @@ class StartGame extends Phaser.State {
     }
 }
 exports.StartGame = StartGame;
-// this.electricFields = this.game.add.group();
-// this.electricFields.enableBody = true;
-// this.electricFields.physicsBodyType = Phaser.Physics.ARCADE;
-// for (let i = 0; i < 3; i++) {
-//     const y = randomNumberInRange(30, this.game.world.height - 30);
-//     const field = this.electricFields.create(this.game.width, y, 'electric-field', 0);
-//     field.anchor.setTo(0, 0.5);
-//     field.checkWorldBounds = true;
-//     field.events.onOutOfBounds.add(this.electricFieldOut, this);
-//     field.body.velocity.x = randomNumberInRange(-450, -600);
-//     field.animations.add('electrify');
-//     field.animations.play('electrify', 15, true);
-//     this.electricFields.add(field);
-// } 
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115238,7 +115244,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

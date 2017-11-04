@@ -49,14 +49,6 @@ export class Player extends Phaser.Sprite {
     }
 
     /**
-     * Nazwa używanego avatara
-     * @private
-     * @type {string}
-     * @memberof Player
-     */
-    private avatar: string;
-
-    /**
      * Wynik
      * @private
      * @type {number}
@@ -85,7 +77,6 @@ export class Player extends Phaser.Sprite {
         super(game, x, y, avatar);
         this._id = id;
         this._socketId = socketId;
-        this.avatar = avatar;
         this.score = 0;
         this.zPos = false;
         this.vector = new Victor(0, 0);
