@@ -112503,7 +112503,7 @@ class GameController extends Phaser.State {
                     this.shieldState.duration += 1;
                     let duration = [];
                     for (let i = 0; i < this.shieldState.duration; i++) {
-                        duration.push(200 / i);
+                        duration.push(450 / i);
                         duration.push(50 / i);
                     }
                     this.signalShieldUp(duration, this.shieldState.intensity);
@@ -112536,7 +112536,7 @@ class GameController extends Phaser.State {
     }
     signalShieldUp(duration, intensity) {
         window.navigator.vibrate(duration);
-        this.game.camera.shake(intensity, duration.reduce((p, n) => n + p, 0));
+        this.game.camera.shake(intensity, 490);
     }
     stopSignalShield() {
         if (this.vibrateInterval) {
