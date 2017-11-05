@@ -112498,22 +112498,27 @@ class GameController extends Phaser.State {
         this.shieldBtn.onInputDown.add(() => {
             if (this.shieldState.canUse) {
                 network_1.default.updatePlayerZ(gameId, true);
-                this.vibrateInterval = setInterval(() => {
-                    this.shieldState.intensity += 0.005;
-                    this.shieldState.duration += 1;
-                    let duration = [];
-                    for (let i = 0; i < this.shieldState.duration; i++) {
-                        duration.push(450 / i);
-                        duration.push(50 / i);
-                    }
-                    this.signalShieldUp(duration, this.shieldState.intensity);
-                }, 500);
+                this.shieldUPTimer = this.game.time.create(true);
+                this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
+                this.shieldUPTimer.start();
             }
         }, this);
         this.shieldBtn.onInputUp.add(() => {
             if (this.shieldState.canUse) {
                 network_1.default.updatePlayerZ(gameId, false);
-                this.stopSignalShield();
+                if (this.shieldUPTimer) {
+                    this.shieldUPTimer.destroy();
+                    this.shieldUPTimer = null;
+                }
+                if (this.shieldOverpoweredTimer) {
+                    this.shieldOverpoweredTimer.destroy();
+                    this.shieldOverpoweredTimer = null;
+                }
+                this.shieldState.canUse = false;
+                this.stopShieldUP();
+                setTimeout(() => {
+                    this.shieldState.canUse = true;
+                }, 5000);
             }
         }, this);
         this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 10, 'btn-fire', () => {
@@ -112534,11 +112539,33 @@ class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
-    signalShieldUp(duration, intensity) {
+    shieldUpTimerHandler() {
+        this.vibrateInterval = setInterval(() => {
+            this.shieldState.intensity += 0.005;
+            this.shieldState.duration += 1;
+            let duration = [];
+            for (let i = 0; i < this.shieldState.duration; i++) {
+                duration.push(450 / i);
+                duration.push(50 / i);
+            }
+            this.signalShieldOverpowered(duration, this.shieldState.intensity);
+        }, 500);
+        this.shieldOverpoweredTimer = this.game.time.create(true);
+        this.shieldOverpoweredTimer.loop(2000, () => {
+            network_1.default.updatePlayerZ(gameId, false);
+            this.shieldState.canUse = false;
+            this.stopShieldUP();
+            setTimeout(() => {
+                this.shieldState.canUse = true;
+            }, 15000);
+        }, this);
+        this.shieldOverpoweredTimer.start();
+    }
+    signalShieldOverpowered(duration, intensity) {
         window.navigator.vibrate(duration);
         this.game.camera.shake(intensity, 490);
     }
-    stopSignalShield() {
+    stopShieldUP() {
         if (this.vibrateInterval) {
             clearInterval(this.vibrateInterval);
             this.vibrateInterval = null;

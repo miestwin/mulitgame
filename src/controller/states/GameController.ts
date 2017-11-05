@@ -105,6 +105,9 @@ export class GameController extends Phaser.State {
 
     private shieldState = { canUse: true, duration: 0, intensity: 0 };
 
+    private shieldUPTimer: Phaser.Timer;
+    private shieldOverpoweredTimer: Phaser.Timer;
+
     private frameCounter: number = 0;
 
     preload() {
@@ -145,23 +148,28 @@ export class GameController extends Phaser.State {
         this.shieldBtn.onInputDown.add(() => {
             if (this.shieldState.canUse) {
                 Network.updatePlayerZ(gameId, true);
-                this.vibrateInterval = setInterval(() => {
-                    this.shieldState.intensity += 0.005;
-                    this.shieldState.duration += 1;
-                    let duration = [];
-                    for (let i = 0; i < this.shieldState.duration; i++) {
-                        duration.push(450 / i);
-                        duration.push(50 / i);
-                    }
-                    this.signalShieldUp(duration, this.shieldState.intensity);
-                }, 500);
+                this.shieldUPTimer = this.game.time.create(true);
+                this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
+                this.shieldUPTimer.start();
             }
         }, this);
 
         this.shieldBtn.onInputUp.add(() => {
             if (this.shieldState.canUse) {
                 Network.updatePlayerZ(gameId, false);
-                this.stopSignalShield();
+                if (this.shieldUPTimer) {
+                    this.shieldUPTimer.destroy();
+                    this.shieldUPTimer = null;
+                }
+                if (this.shieldOverpoweredTimer) {
+                    this.shieldOverpoweredTimer.destroy();
+                    this.shieldOverpoweredTimer = null;
+                }
+                this.shieldState.canUse = false;
+                this.stopShieldUP();
+                setTimeout(() => {
+                    this.shieldState.canUse = true;
+                }, 5000);
             }
         }, this);
 
@@ -188,12 +196,35 @@ export class GameController extends Phaser.State {
         Network.removeListener(Network.UPDATE_PLAYER_SCORE);
     }
 
-    private signalShieldUp(duration: Array<number>, intensity: number) {
+    private shieldUpTimerHandler() {
+        this.vibrateInterval = setInterval(() => {
+            this.shieldState.intensity += 0.005;
+            this.shieldState.duration += 1;
+            let duration = [];
+            for (let i = 0; i < this.shieldState.duration; i++) {
+                duration.push(450 / i);
+                duration.push(50 / i);
+            }
+            this.signalShieldOverpowered(duration, this.shieldState.intensity);
+        }, 500);
+        this.shieldOverpoweredTimer = this.game.time.create(true);
+        this.shieldOverpoweredTimer.loop(2000, () => {
+            Network.updatePlayerZ(gameId, false);
+            this.shieldState.canUse = false;
+            this.stopShieldUP();
+            setTimeout(() => {
+                this.shieldState.canUse = true;
+            }, 15000);
+        }, this);
+        this.shieldOverpoweredTimer.start();
+    }
+
+    private signalShieldOverpowered(duration: Array<number>, intensity: number) {
         window.navigator.vibrate(duration);
         this.game.camera.shake(intensity, 490);
     }
 
-    private stopSignalShield() {
+    private stopShieldUP() {
         if (this.vibrateInterval) {
             clearInterval(this.vibrateInterval);
             this.vibrateInterval = null;
