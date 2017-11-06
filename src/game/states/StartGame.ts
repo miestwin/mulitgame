@@ -145,16 +145,6 @@ export class StartGame extends Phaser.State {
         this.backTile.autoScroll(-300, 0);
         // this.back.filters = [filter];
 
-        // for (let i = 1; i <= 1; i++) {
-        //     const texture = pointStars(this.game, i * 0.00001, i);
-        //     const tile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, texture);
-        //     if (i === 1) {
-        //         tile.filters = [filter];
-        //     }
-        //     tile.autoScroll(-300 * i, 0);
-        //     this.tiles.push(tile);
-        // }
-
         Network.getAllPlayers();
 
         this.points = this.game.add.group();
@@ -228,7 +218,7 @@ export class StartGame extends Phaser.State {
             return;
         }
         const meteor = new Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = this.game.rnd.integerInRange(-300, -400);
+        meteor.body.velocity.x = this.game.rnd.integerInRange(-500, -600);
         this.meteors.add(meteor);
     }
 

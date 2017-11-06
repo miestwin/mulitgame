@@ -9,7 +9,7 @@ export class Meteor extends Phaser.Sprite {
     public health = 10;
 
     constructor(game: Phaser.Game, x: number, y: number) {
-        super(game, x, y, 'meteor-' + randomNumberInRange(1, 6));
+        super(game, x, y, 'comet-'+ randomNumberInRange(1, 3));
         this.anchor.setTo(0, 0.5);
         this.checkWorldBounds = true;
         this.events.onOutOfBounds.add(this.out, this);

@@ -4,7 +4,7 @@ import 'phaser';
 import * as QRious from 'qrious';
 import { States } from './States';
 import config from '../../config';
-import { generatePowerUps, generateShips, pointStars_TEST } from '../../engine';
+import { generatePowerUps, generateShips, pointStars, generateComet } from '../../engine';
 
 /**
  * Ładowanie zasobów
@@ -139,7 +139,10 @@ export class Loading extends Phaser.State {
 
     private createTextures(): Promise<any> {
         return new Promise((resolve, reject) => {
-            pointStars_TEST(this.game, 0.0009, 0.125);
+            pointStars(this.game, 0.02, 0.125);
+            generateComet(this.game, 200, 80, 20, 'comet-1');
+            generateComet(this.game, 150, 40, 10, 'comet-2');
+            generateComet(this.game, 200, 60, 15, 'comet-3');
             generatePowerUps(this.game);
             generateShips(this.game);
             resolve();
