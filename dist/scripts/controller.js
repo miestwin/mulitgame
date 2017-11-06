@@ -111579,8 +111579,8 @@ const starsData = __webpack_require__(29);
  * @returns
  */
 function pointStars_TEST(game, density, brightness) {
-    const width = game.width;
-    const height = game.height;
+    const width = game.width / 2;
+    const height = game.height / 2;
     var canvas = document.getElementById('textureGenerator');
     canvas.height = height;
     canvas.width = width;

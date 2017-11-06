@@ -160,19 +160,19 @@ export class StartGame extends Phaser.State {
         this.points = this.game.add.group();
         this.points.enableBody = true;
         this.points.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 1300; i++) {
-            const y = randomNumberInRange(30, this.game.world.height - 30);
-            const x = randomNumberInRange(this.game.width, 50000);
-            const point = this.points.create(x, y, 'plasma', randomNumberInRange(15, 27));
-            point.anchor.setTo(0.5);
-            point.scale.setTo(0.3);
-            point.checkWorldBounds = true;
-            point.events.onOutOfBounds.add(this.pointOut, this);
-            point.body.velocity.x = randomNumberInRange(-600, -700);
-            // point.animations.add('transform');
-            // point.animations.play('transform', 13, true);
-            this.points.add(point);
-        }
+        // for (let i = 0; i < 1300; i++) {
+        //     const y = randomNumberInRange(30, this.game.world.height - 30);
+        //     const x = randomNumberInRange(this.game.width, 50000);
+        //     const point = this.points.create(x, y, 'plasma', randomNumberInRange(15, 27));
+        //     point.anchor.setTo(0.5);
+        //     point.scale.setTo(0.3);
+        //     point.checkWorldBounds = true;
+        //     point.events.onOutOfBounds.add(this.pointOut, this);
+        //     point.body.velocity.x = randomNumberInRange(-600, -700);
+        //     // point.animations.add('transform');
+        //     // point.animations.play('transform', 13, true);
+        //     this.points.add(point);
+        // }
 
         this.meteors = this.game.add.group();
         this.powerUps = this.game.add.group();
@@ -188,6 +188,7 @@ export class StartGame extends Phaser.State {
             
         });
 
+        this.generatePoint();
         this.generateMeteor();
 
         this.game.physics.arcade.overlap(
@@ -202,6 +203,23 @@ export class StartGame extends Phaser.State {
             this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
+    }
+
+    private generatePoint() {
+        const pointChance = this.game.rnd.integerInRange(1, 10)
+        if (pointChance != 1) {
+            return;
+        }
+        const y = randomNumberInRange(30, this.game.world.height - 30);
+        const point = this.points.create(this.game.world.width, y, 'plasma', randomNumberInRange(15, 27));
+        point.anchor.setTo(0.5);
+        point.scale.setTo(0.3);
+        point.checkWorldBounds = true;
+        point.events.onOutOfBounds.add(this.pointOut, this);
+        point.body.velocity.x = randomNumberInRange(-600, -700);
+        // point.animations.add('transform');
+        // point.animations.play('transform', 13, true);
+        this.points.add(point);
     }
 
     private generateMeteor() {
@@ -224,7 +242,7 @@ export class StartGame extends Phaser.State {
 
     private pointOut(point: Phaser.Sprite) {
         if (point.x < 0) {
-            point.kill();
+            point.destroy();
         }
     }
 

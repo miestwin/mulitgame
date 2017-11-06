@@ -84,6 +84,8 @@ export class MainMenu extends Phaser.State {
     }
 
     public create() {
+        this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+
         // show game title
         const title = this.game.add.text(
             this.game.world.centerX, 40,

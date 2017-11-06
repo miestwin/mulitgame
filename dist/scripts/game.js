@@ -111558,8 +111558,8 @@ const starsData = __webpack_require__(29);
  * @returns
  */
 function pointStars_TEST(game, density, brightness) {
-    const width = game.width;
-    const height = game.height;
+    const width = game.width / 2;
+    const height = game.height / 2;
     var canvas = document.getElementById('textureGenerator');
     canvas.height = height;
     canvas.width = width;
@@ -114734,6 +114734,7 @@ class MainMenu extends Phaser.State {
         network_1.default.startTimer();
     }
     create() {
+        this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
         // show game title
         const title = this.game.add.text(this.game.world.centerX, 40, 'SUPER GAME TITLE', {
             font: '35px Kenvector Future',
@@ -114967,14 +114968,14 @@ class Meteor extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, 'meteor-' + utils_1.randomNumberInRange(1, 6));
         this.health = 10;
-        this.anchor.setTo(0.5);
+        this.anchor.setTo(0, 0.5);
         this.checkWorldBounds = true;
         this.events.onOutOfBounds.add(this.out, this);
         game.add.existing(this);
         game.physics.arcade.enable(this);
     }
     out() {
-        this.kill();
+        this.destroy();
     }
 }
 exports.Meteor = Meteor;
@@ -115127,19 +115128,19 @@ class StartGame extends Phaser.State {
         this.points = this.game.add.group();
         this.points.enableBody = true;
         this.points.physicsBodyType = Phaser.Physics.ARCADE;
-        for (let i = 0; i < 1300; i++) {
-            const y = utils_1.randomNumberInRange(30, this.game.world.height - 30);
-            const x = utils_1.randomNumberInRange(this.game.width, 50000);
-            const point = this.points.create(x, y, 'plasma', utils_1.randomNumberInRange(15, 27));
-            point.anchor.setTo(0.5);
-            point.scale.setTo(0.3);
-            point.checkWorldBounds = true;
-            point.events.onOutOfBounds.add(this.pointOut, this);
-            point.body.velocity.x = utils_1.randomNumberInRange(-600, -700);
-            // point.animations.add('transform');
-            // point.animations.play('transform', 13, true);
-            this.points.add(point);
-        }
+        // for (let i = 0; i < 1300; i++) {
+        //     const y = randomNumberInRange(30, this.game.world.height - 30);
+        //     const x = randomNumberInRange(this.game.width, 50000);
+        //     const point = this.points.create(x, y, 'plasma', randomNumberInRange(15, 27));
+        //     point.anchor.setTo(0.5);
+        //     point.scale.setTo(0.3);
+        //     point.checkWorldBounds = true;
+        //     point.events.onOutOfBounds.add(this.pointOut, this);
+        //     point.body.velocity.x = randomNumberInRange(-600, -700);
+        //     // point.animations.add('transform');
+        //     // point.animations.play('transform', 13, true);
+        //     this.points.add(point);
+        // }
         this.meteors = this.game.add.group();
         this.powerUps = this.game.add.group();
         this.bullets = new models_1.Bullets(this.game);
@@ -115150,11 +115151,28 @@ class StartGame extends Phaser.State {
         Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
         });
+        this.generatePoint();
         this.generateMeteor();
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
+    }
+    generatePoint() {
+        const pointChance = this.game.rnd.integerInRange(1, 10);
+        if (pointChance != 1) {
+            return;
+        }
+        const y = utils_1.randomNumberInRange(30, this.game.world.height - 30);
+        const point = this.points.create(this.game.world.width, y, 'plasma', utils_1.randomNumberInRange(15, 27));
+        point.anchor.setTo(0.5);
+        point.scale.setTo(0.3);
+        point.checkWorldBounds = true;
+        point.events.onOutOfBounds.add(this.pointOut, this);
+        point.body.velocity.x = utils_1.randomNumberInRange(-600, -700);
+        // point.animations.add('transform');
+        // point.animations.play('transform', 13, true);
+        this.points.add(point);
     }
     generateMeteor() {
         const meteorChance = this.game.rnd.integerInRange(1, 100);
@@ -115174,7 +115192,7 @@ class StartGame extends Phaser.State {
     }
     pointOut(point) {
         if (point.x < 0) {
-            point.kill();
+            point.destroy();
         }
     }
     player_point_CollisionHandler(player, point) {

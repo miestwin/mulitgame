@@ -16,8 +16,8 @@ import * as starsData from './stars-data';
  * @returns 
  */
 export function pointStars_TEST (game:Phaser.Game, density: number, brightness: number) {
-    const width = game.width;
-    const height = game.height;
+    const width = game.width / 2;
+    const height = game.height / 2;
     var canvas = <HTMLCanvasElement>document.getElementById('textureGenerator');
     canvas.height = height;
     canvas.width = width;
