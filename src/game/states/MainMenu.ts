@@ -84,7 +84,8 @@ export class MainMenu extends Phaser.State {
     }
 
     public create() {
-        this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        const back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        back.autoScroll(-200, 0);
 
         // show game title
         const title = this.game.add.text(

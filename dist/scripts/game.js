@@ -114734,7 +114734,8 @@ class MainMenu extends Phaser.State {
         network_1.default.startTimer();
     }
     create() {
-        this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        const back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        back.autoScroll(-200, 0);
         // show game title
         const title = this.game.add.text(this.game.world.centerX, 40, 'SUPER GAME TITLE', {
             font: '35px Kenvector Future',
