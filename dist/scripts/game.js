@@ -112125,6 +112125,11 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(12);
+const colors = [
+    { r: 179, g: 0, b: 179 },
+    { r: 225, g: 51, b: 0 },
+    { r: 0, g: 153, b: 51 }
+];
 function generateNebula(game, name) {
     const width = game.width;
     const height = game.height;
@@ -112144,19 +112149,17 @@ function generateNebula(game, name) {
 }
 exports.generateNebula = generateNebula;
 function generateTexture(width, height, imageData) {
-    var pn = new Perlin(utils_1.generateRandomSeed());
+    const color = colors[utils_1.randomNumberInRange(0, 3)];
     let yoff = 0.0;
     for (let y = 0; y < height; y++) {
         let xoff = 0.0;
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
-            // const n = pn.noise(xoff, yoff, 0);
-            // const bright = map_range(n, 0, 1, 0, 255);
             let bright = utils_1.map(utils_1.noise(yoff, xoff), 0, 1, 0, 255);
-            bright = bright / 3;
-            imageData.data[index * 4 + 0] = 179;
-            imageData.data[index * 4 + 1] = 0;
-            imageData.data[index * 4 + 2] = 179;
+            bright = bright / 5;
+            imageData.data[index * 4 + 0] = color.r;
+            imageData.data[index * 4 + 1] = color.g;
+            imageData.data[index * 4 + 2] = color.b;
             imageData.data[index * 4 + 3] = bright;
             // imageData.data[index * 4 + 0] = bright;
             // imageData.data[index * 4 + 1] = bright;

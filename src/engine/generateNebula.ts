@@ -1,8 +1,13 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-import { generateRandomSeed, noise, map } from '../utils';
-declare var Perlin;
+import { generateRandomSeed, noise, map, randomNumberInRange } from '../utils';
+
+const colors = [
+    { r: 179, g: 0, b: 179 },
+    { r: 225, g: 51, b: 0 },
+    { r: 0, g: 153, b: 51 }
+];
 
 export function generateNebula(game: Phaser.Game, name: string) {
     const width = game.width;
@@ -27,19 +32,17 @@ function generateTexture(
     width: number, 
     height: number,
     imageData: ImageData): ImageData {
-    var pn = new Perlin(generateRandomSeed());
+    const color = colors[randomNumberInRange(0, 3)];
     let yoff = 0.0;
     for (let y = 0; y < height; y++) {
         let xoff = 0.0;
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
-            // const n = pn.noise(xoff, yoff, 0);
-            // const bright = map_range(n, 0, 1, 0, 255);
             let bright = map(noise(yoff, xoff), 0, 1, 0, 255);
-            bright = bright / 3;
-            imageData.data[index * 4 + 0] = 179;
-            imageData.data[index * 4 + 1] = 0;
-            imageData.data[index * 4 + 2] = 179;
+            bright = bright / 5;
+            imageData.data[index * 4 + 0] = color.r;
+            imageData.data[index * 4 + 1] = color.g;
+            imageData.data[index * 4 + 2] = color.b;
             imageData.data[index * 4 + 3] = bright;
             // imageData.data[index * 4 + 0] = bright;
             // imageData.data[index * 4 + 1] = bright;
