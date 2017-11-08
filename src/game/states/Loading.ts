@@ -4,7 +4,7 @@ import 'phaser';
 import * as QRious from 'qrious';
 import { States } from './States';
 import config from '../../config';
-import { generatePowerUps, generateShips, pointStars, generateComet } from '../../engine';
+import { generatePowerUps, generateShips, pointStars, generateComet, generateNebula } from '../../engine';
 
 /**
  * Ładowanie zasobów
@@ -48,9 +48,10 @@ export class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States.MAIN_MENU);
-        }).catch(() => {
-            this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
         });
+        // .catch(() => {
+        //     this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
+        // });
         // this.createQRCode().then(() => {
         //     this.loadingText.setText('Create QRCode Complete');
         //     this.game.state.start(States.MAIN_MENU);
@@ -140,6 +141,7 @@ export class Loading extends Phaser.State {
     private createTextures(): Promise<any> {
         return new Promise((resolve, reject) => {
             pointStars(this.game, 0.02, 0.125);
+            generateNebula(this.game, 'nebula');
             generateComet(this.game, 200, 80, 20, 'comet-1');
             generateComet(this.game, 150, 40, 10, 'comet-2');
             generateComet(this.game, 200, 60, 15, 'comet-3');

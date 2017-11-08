@@ -86,6 +86,8 @@ export class StartGame extends Phaser.State {
      */
     private backTile: Phaser.TileSprite;
 
+    private nebula: Phaser.TileSprite;
+
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -143,6 +145,8 @@ export class StartGame extends Phaser.State {
 
         this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
         this.backTile.autoScroll(-300, 0);
+        this.nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula');
+        this.nebula.autoScroll(-200, 0);
         // this.back.filters = [filter];
 
         Network.getAllPlayers();

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 83);
+/******/ 	return __webpack_require__(__webpack_require__.s = 86);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1698,6 +1698,26 @@ if( true ) {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(32));
+__export(__webpack_require__(29));
+__export(__webpack_require__(30));
+__export(__webpack_require__(75));
+__export(__webpack_require__(76));
+__export(__webpack_require__(77));
+__export(__webpack_require__(81));
+__export(__webpack_require__(82));
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /**
  * Module dependencies.
@@ -2101,7 +2121,7 @@ function error() {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -2145,7 +2165,7 @@ module.exports = function (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2308,7 +2328,7 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2329,24 +2349,6 @@ States.MESSAGE = 'Message';
 States.GAME_CONTROLLER = 'GameController';
 States.WAIT_FOR_GAME = 'WaitForGame';
 exports.States = States;
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(32));
-__export(__webpack_require__(29));
-__export(__webpack_require__(30));
-__export(__webpack_require__(75));
-__export(__webpack_require__(76));
-__export(__webpack_require__(77));
 
 
 /***/ }),
@@ -2680,7 +2682,7 @@ function isBuf(obj) {
 var eio = __webpack_require__(51);
 var Socket = __webpack_require__(26);
 var Emitter = __webpack_require__(4);
-var parser = __webpack_require__(12);
+var parser = __webpack_require__(13);
 var on = __webpack_require__(27);
 var bind = __webpack_require__(28);
 var debug = __webpack_require__(7)('socket.io-client:manager');
@@ -3255,7 +3257,7 @@ Manager.prototype.onreconnect = function () {
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(13);
+var XMLHttpRequest = __webpack_require__(14);
 var XHR = __webpack_require__(55);
 var JSONP = __webpack_require__(65);
 var websocket = __webpack_require__(66);
@@ -3315,7 +3317,7 @@ function polling (opts) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(14);
+var Transport = __webpack_require__(15);
 var parseqs = __webpack_require__(8);
 var parser = __webpack_require__(5);
 var inherit = __webpack_require__(9);
@@ -3333,7 +3335,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(13);
+  var XMLHttpRequest = __webpack_require__(14);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -3657,7 +3659,7 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(12);
+var parser = __webpack_require__(13);
 var Emitter = __webpack_require__(4);
 var toArray = __webpack_require__(69);
 var on = __webpack_require__(27);
@@ -4170,7 +4172,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(71));
 __export(__webpack_require__(73));
 __export(__webpack_require__(74));
-__export(__webpack_require__(81));
+__export(__webpack_require__(83));
+__export(__webpack_require__(84));
 
 
 /***/ }),
@@ -107400,7 +107403,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
  */
 
 var url = __webpack_require__(42);
-var parser = __webpack_require__(12);
+var parser = __webpack_require__(13);
 var Manager = __webpack_require__(21);
 var debug = __webpack_require__(7)('socket.io-client');
 
@@ -108838,7 +108841,7 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(14);
+Socket.Transport = __webpack_require__(15);
 Socket.transports = __webpack_require__(22);
 Socket.parser = __webpack_require__(5);
 
@@ -109472,7 +109475,7 @@ try {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(13);
+var XMLHttpRequest = __webpack_require__(14);
 var Polling = __webpack_require__(23);
 var Emitter = __webpack_require__(4);
 var inherit = __webpack_require__(9);
@@ -111055,7 +111058,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(14);
+var Transport = __webpack_require__(15);
 var parser = __webpack_require__(5);
 var parseqs = __webpack_require__(8);
 var inherit = __webpack_require__(9);
@@ -111622,7 +111625,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(16);
+const utils_1 = __webpack_require__(12);
 exports.powerUps = {
     'power-up_cooldown': 0xffffff,
     'power-up_pull': 0xccccff,
@@ -111959,6 +111962,145 @@ exports.rand = rand;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
+function noise(x, y, z) {
+    if (noiseProfile.generator === null) {
+        noiseProfile.generator = new PerlinNoise(noiseProfile.seed);
+    }
+    var generator = noiseProfile.generator;
+    var effect = 1, k = 1, sum = 0;
+    for (let i = 0; i < noiseProfile.octaves; ++i) {
+        effect *= noiseProfile.fallout;
+        switch (arguments.length) {
+            case 1:
+                sum += effect * (1 + generator.noise1d(k * x)) / 2;
+                break;
+            case 2:
+                sum += effect * (1 + generator.noise2d(k * x, k * y)) / 2;
+                break;
+            case 3:
+                sum += effect * (1 + generator.noise3d(k * x, k * y, k * z)) / 2;
+                break;
+        }
+        k *= 2;
+    }
+    return sum;
+}
+exports.noise = noise;
+function noiseDetail(octaves, fallout) {
+    noiseProfile.octaves = octaves;
+    if (fallout !== null) {
+        noiseProfile.fallout = fallout;
+    }
+}
+exports.noiseDetail = noiseDetail;
+;
+function noiseSeed(seed) {
+    noiseProfile.seed = seed;
+    noiseProfile.generator = null;
+}
+exports.noiseSeed = noiseSeed;
+;
+class PerlinNoise {
+    constructor(seed) {
+        this.rnd = seed !== null ? new Marsaglia(seed, (seed << 16) + (seed >> 16)) : Marsaglia.createRandomized();
+        this.perm = new Uint8Array(512);
+        let j;
+        for (let i = 0; i < 256; ++i) {
+            this.perm[i] = i;
+        }
+        for (let i = 0; i < 256; ++i) {
+            const t = this.perm[j = this.rnd.intGenerator() & 0xFF];
+            this.perm[j] = this.perm[i];
+            this.perm[i] = t;
+        }
+        for (let i = 0; i < 256; ++i) {
+            this.perm[i + 256] = this.perm[i];
+        }
+    }
+    noise3d(x, y, z) {
+        let X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+        x -= Math.floor(x);
+        y -= Math.floor(y);
+        z -= Math.floor(z);
+        let fx = (3 - 2 * x) * x * x, fy = (3 - 2 * y) * y * y, fz = (3 - 2 * z) * z * z;
+        var p0 = this.perm[X] + Y, p00 = this.perm[p0] + Z, p01 = this.perm[p0 + 1] + Z, p1 = this.perm[X + 1] + Y, p10 = this.perm[p1] + Z, p11 = this.perm[p1 + 1] + Z;
+        return lerp(fz, lerp(fy, lerp(fx, grad3d(this.perm[p00], x, y, z), grad3d(this.perm[p10], x - 1, y, z)), lerp(fx, grad3d(this.perm[p01], x, y - 1, z), grad3d(this.perm[p11], x - 1, y - 1, z))), lerp(fy, lerp(fx, grad3d(this.perm[p00 + 1], x, y, z - 1), grad3d(this.perm[p10 + 1], x - 1, y, z - 1)), lerp(fx, grad3d(this.perm[p01 + 1], x, y - 1, z - 1), grad3d(this.perm[p11 + 1], x - 1, y - 1, z - 1))));
+    }
+    noise2d(x, y) {
+        var X = Math.floor(x) & 255, Y = Math.floor(y) & 255;
+        x -= Math.floor(x);
+        y -= Math.floor(y);
+        var fx = (3 - 2 * x) * x * x, fy = (3 - 2 * y) * y * y;
+        var p0 = this.perm[X] + Y, p1 = this.perm[X + 1] + Y;
+        return lerp(fy, lerp(fx, grad2d(this.perm[p0], x, y), grad2d(this.perm[p1], x - 1, y)), lerp(fx, grad2d(this.perm[p0 + 1], x, y - 1), grad2d(this.perm[p1 + 1], x - 1, y - 1)));
+    }
+    noise1d(x) {
+        var X = Math.floor(x) & 255;
+        x -= Math.floor(x);
+        var fx = (3 - 2 * x) * x * x;
+        return lerp(fx, grad1d(this.perm[X], x), grad1d(this.perm[X + 1], x - 1));
+    }
+}
+exports.PerlinNoise = PerlinNoise;
+class Marsaglia {
+    constructor(i1, i2) {
+        this.z = i1 || 362436069;
+        this.w = i2 || 521288629;
+    }
+    intGenerator() {
+        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xFFFFFFFF;
+        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xFFFFFFFF;
+        return (((this.z & 0xFFFF) << 16) | (this.w & 0xFFFF)) & 0xFFFFFFFF;
+    }
+    doubleGenerator() {
+        const i = this.intGenerator() / 4294967296;
+        return i < 0 ? 1 + i : i;
+    }
+    static createRandomized() {
+        let now = new Date();
+        return new Marsaglia((now.getDate() / 60000) & 0xFFFFFFFF, now.getDate() & 0xFFFFFFFF);
+    }
+}
+exports.Marsaglia = Marsaglia;
+function grad3d(i, x, y, z) {
+    let h = i & 15;
+    let u = h < 8 ? x : y, v = h < 4 ? y : h === 12 || h === 14 ? x : z;
+    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+}
+function grad2d(i, x, y) {
+    let v = (i & 1) === 0 ? x : y;
+    return (i & 2) === 0 ? -v : v;
+}
+function grad1d(i, x) {
+    return (i & 1) === 0 ? -x : x;
+}
+function lerp(t, a, b) {
+    return a + t * (b - a);
+}
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function map(value, istart, istop, ostart, ostop) {
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+}
+exports.map = map;
+;
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
@@ -111994,14 +112136,70 @@ exports.generateComet = generateComet;
 
 
 /***/ }),
-/* 82 */,
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Controller_1 = __webpack_require__(84);
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
+function generateNebula(game, name) {
+    const width = game.width;
+    const height = game.height;
+    const canvas = document.createElement('canvas');
+    canvas.height = height;
+    canvas.width = width;
+    canvas.style.backgroundColor = 'transparent';
+    const ctx = canvas.getContext('2d');
+    let imageData = ctx.createImageData(canvas.width, canvas.height);
+    let data = generateTexture(canvas.width, canvas.height, imageData);
+    ctx.putImageData(data, 0, 0);
+    let img = new Image();
+    img.onload = () => {
+        game.cache.addImage(name, img.src, img);
+    };
+    img.src = canvas.toDataURL('image/png');
+}
+exports.generateNebula = generateNebula;
+function generateTexture(width, height, imageData) {
+    var pn = new Perlin(utils_1.generateRandomSeed());
+    let yoff = 0.0;
+    for (let y = 0; y < height; y++) {
+        let xoff = 0.0;
+        for (let x = 0; x < width; x++) {
+            const index = y * width + x;
+            // const n = pn.noise(xoff, yoff, 0);
+            // const bright = map_range(n, 0, 1, 0, 255);
+            let bright = utils_1.map(utils_1.noise(yoff, xoff), 0, 1, 0, 255);
+            bright = bright / 3;
+            imageData.data[index * 4 + 0] = 179;
+            imageData.data[index * 4 + 1] = 0;
+            imageData.data[index * 4 + 2] = 179;
+            imageData.data[index * 4 + 3] = bright;
+            // imageData.data[index * 4 + 0] = bright;
+            // imageData.data[index * 4 + 1] = bright;
+            // imageData.data[index * 4 + 2] = bright;
+            // imageData.data[index * 4 + 3] = 255;
+            xoff += 0.01;
+        }
+        yoff += 0.01;
+    }
+    return imageData;
+}
+
+
+/***/ }),
+/* 85 */,
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const Controller_1 = __webpack_require__(87);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -112023,7 +112221,7 @@ function startApp() {
 
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112032,7 +112230,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(85);
+const states_1 = __webpack_require__(88);
 const network_1 = __webpack_require__(17);
 const guid_1 = __webpack_require__(32);
 /**
@@ -112064,7 +112262,7 @@ exports.default = Controller;
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112073,18 +112271,18 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(15));
-__export(__webpack_require__(86));
-__export(__webpack_require__(87));
-__export(__webpack_require__(88));
+__export(__webpack_require__(16));
 __export(__webpack_require__(89));
 __export(__webpack_require__(90));
 __export(__webpack_require__(91));
 __export(__webpack_require__(92));
+__export(__webpack_require__(93));
+__export(__webpack_require__(94));
+__export(__webpack_require__(95));
 
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112093,7 +112291,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(15);
+const States_1 = __webpack_require__(16);
 const shared_1 = __webpack_require__(38);
 const network_1 = __webpack_require__(17);
 /**
@@ -112140,7 +112338,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112149,7 +112347,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(15);
+const States_1 = __webpack_require__(16);
 const engine_1 = __webpack_require__(31);
 /**
  * Ładowanie zasobów
@@ -112223,7 +112421,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112232,7 +112430,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(15);
+const States_1 = __webpack_require__(16);
 /**
  * Informacje wstępne
  * @export
@@ -112257,7 +112455,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112266,7 +112464,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(15);
+const States_1 = __webpack_require__(16);
 const network_1 = __webpack_require__(17);
 /**
  * Wybór postaci
@@ -112399,7 +112597,7 @@ exports.AvatarSelector = AvatarSelector;
 
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112428,7 +112626,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112615,7 +112813,7 @@ exports.GameController = GameController;
 
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112624,7 +112822,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(15);
+const States_1 = __webpack_require__(16);
 const network_1 = __webpack_require__(17);
 /**
  * Czekanie na rozpoczęcie gry
