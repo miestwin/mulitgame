@@ -145,7 +145,7 @@ export class StartGame extends Phaser.State {
 
         this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
         this.backTile.autoScroll(-300, 0);
-        this.nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula');
+        this.nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-1');
         this.nebula.autoScroll(-200, 0);
         // this.back.filters = [filter];
 

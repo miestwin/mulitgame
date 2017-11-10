@@ -6,3 +6,5 @@ export * from './convexhull';
 export * from './random';
 export * from './perlin';
 export * from './map';
+export * from './colorLuminance';
+export * from './rbgToHex';

@@ -1,7 +1,8 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-import { generateRandomSeed, noise, map, randomNumberInRange } from '../utils';
+import { generateRandomSeed, noise, map, randomNumberInRange, colorLuminance, toHex, rgbLum } from '../utils';
+import { Color } from '../models';
 
 const colors = [
     { r: 179, g: 0, b: 179 },
@@ -9,7 +10,7 @@ const colors = [
     { r: 0, g: 153, b: 51 }
 ];
 
-export function generateNebula(game: Phaser.Game, name: string) {
+export function generateNebula(game: Phaser.Game, name: string, offset: number, color: Color) {
     const width = game.width;
     const height = game.height;
     const canvas = document.createElement('canvas');
@@ -18,7 +19,7 @@ export function generateNebula(game: Phaser.Game, name: string) {
     canvas.style.backgroundColor = 'transparent';
     const ctx = canvas.getContext('2d');
     let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = generateTexture(canvas.width, canvas.height, imageData);
+    let data = generateTexture(canvas.width, canvas.height, offset, color, imageData);
     ctx.putImageData(data, 0, 0);
 
     let img = new Image();
@@ -31,18 +32,22 @@ export function generateNebula(game: Phaser.Game, name: string) {
 function generateTexture(
     width: number, 
     height: number,
+    offset: number,
+    color: Color,
     imageData: ImageData): ImageData {
-    const color = colors[randomNumberInRange(0, 3)];
-    let yoff = 0.0;
+    let yoff = offset;
     for (let y = 0; y < height; y++) {
-        let xoff = 0.0;
+        let xoff = offset;
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
-            let bright = map(noise(yoff, xoff), 0, 1, 0, 255);
+            const n = noise(yoff, xoff);
+            //const c = colorLuminance('#' + toHex(color.R) + toHex(color.G) + toHex(color.B), n);
+            const c = rgbLum(color, n);
+            let bright = map(n, 0, 1, 0, 255);
             bright = bright / 5;
-            imageData.data[index * 4 + 0] = color.r;
-            imageData.data[index * 4 + 1] = color.g;
-            imageData.data[index * 4 + 2] = color.b;
+            imageData.data[index * 4 + 0] = c.R;
+            imageData.data[index * 4 + 1] = c.G;
+            imageData.data[index * 4 + 2] = c.B;
             imageData.data[index * 4 + 3] = bright;
             // imageData.data[index * 4 + 0] = bright;
             // imageData.data[index * 4 + 1] = bright;

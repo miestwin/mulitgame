@@ -87,8 +87,10 @@ export class MainMenu extends Phaser.State {
         // const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
         const starsback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
         starsback.autoScroll(-100, 0);
-        const back = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula');
-        back.autoScroll(-200, 0);
+        const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-1');
+        nebulaback.autoScroll(-200, 0);
+        // const nebulaback2 = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-2');
+        // nebulaback2.autoScroll(-200, 0);
         // back.filters = [filter];
 
         // show game title

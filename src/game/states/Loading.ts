@@ -4,7 +4,11 @@ import 'phaser';
 import * as QRious from 'qrious';
 import { States } from './States';
 import config from '../../config';
+import { Color } from '../../models'
 import { generatePowerUps, generateShips, pointStars, generateComet, generateNebula } from '../../engine';
+import { randomNumberInRange } from '../../utils';
+
+const colors = [ new Color(179, 0, 179), new Color(225, 51, 0), new Color(0, 153, 51) ];
 
 /**
  * Ładowanie zasobów
@@ -141,7 +145,9 @@ export class Loading extends Phaser.State {
     private createTextures(): Promise<any> {
         return new Promise((resolve, reject) => {
             pointStars(this.game, 0.02, 0.125);
-            generateNebula(this.game, 'nebula');
+            const color = colors[randomNumberInRange(0, 2)];
+            generateNebula(this.game, 'nebula-1', 0, color);
+            // generateNebula(this.game, 'nebula-2', 1000, color);
             generateComet(this.game, 200, 80, 20, 'comet-1');
             generateComet(this.game, 150, 40, 10, 'comet-2');
             generateComet(this.game, 200, 60, 15, 'comet-3');
