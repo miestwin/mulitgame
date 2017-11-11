@@ -4,8 +4,9 @@ import 'phaser';
 
 import { States } from './States';
 import {
-    CustomLoader
-} from '../../shared';
+    AppAssetsLoader
+} from '../../core';
+import { Assets } from '../../assets';
 
 import Network from '../network';
 
@@ -27,7 +28,7 @@ export class Boot extends Phaser.State {
         this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 
         // set custom loader
-        this.game.load = new CustomLoader(this.game);
+        this.game.load = new AppAssetsLoader(this.game);
     }
 
     preload() {
@@ -52,9 +53,14 @@ export class Boot extends Phaser.State {
         });
 
         // load font
-        (<any>this.game.load).webfont('kenvector', 'Kenvector Future');
+        (<any>this.game.load).webfont(Assets.Fonts.Kenvector.getName(), Assets.Fonts.Kenvector.getFamily());
         // load loading sprite
-        this.game.load.spritesheet('explosion-3', '../assets/spritesheets/explosion/explosion-3.png', 128, 80, 10);
+        this.game.load.spritesheet(
+            Assets.Spritesheets.Explosions.Three.getName(), 
+            Assets.Spritesheets.Explosions.Three.getPNG(),
+            Assets.Spritesheets.Explosions.Three.getFrameWidth(),
+            Assets.Spritesheets.Explosions.Three.getFrameHeight(),
+            Assets.Spritesheets.Explosions.Three.getFrameMax());
     }
 
     create() {

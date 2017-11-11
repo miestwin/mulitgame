@@ -5,7 +5,7 @@ import 'phaser';
 
 import { States } from './States';
 import Network from '../network';
-
+import { Assets } from '../../assets';
 import { Player } from '../../models';
 
 /**
@@ -98,7 +98,7 @@ export class MainMenu extends Phaser.State {
             this.game.world.centerX, 40,
             'SUPER GAME TITLE',
             { 
-                font: '35px Kenvector Future',
+                font: `35px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });
@@ -111,7 +111,7 @@ export class MainMenu extends Phaser.State {
         var gameIdText = this.game.add.text(this.game.world.centerX, 405,
             (<any>this.game.state).id,
             { 
-                font: '15px Kenvector Future',
+                font: `15px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });
@@ -120,7 +120,7 @@ export class MainMenu extends Phaser.State {
         this.timer = this.game.add.text(
             this.game.world.centerX, 440, 'The game will start in ...',
             {
-                font: '30px Kenvector Future',
+                font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });
@@ -151,7 +151,7 @@ export class MainMenu extends Phaser.State {
             const text = this.game.add.text(x, 555, 
                 `Player ${index + 1}\nconnected`, 
                 { 
-                    font: '11px Kenvector Future',
+                    font: `11px ${Assets.Fonts.Kenvector.getFamily()}`,
                     fill: '#ffffff',
                     align: 'center'
                 });

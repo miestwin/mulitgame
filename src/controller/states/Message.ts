@@ -4,6 +4,7 @@ import 'phaser';
 
 import { States } from './States';
 import Network from '../network';
+import { Assets } from '../../assets';
 
 /**
  * Wyświetlanie wiadomości z błędami
@@ -28,7 +29,11 @@ export class Message extends Phaser.State {
     preload() {}
 
     create() {
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, this.message, { font: '35px Kenvector Future', fill: '#ffffff', align: 'center' });
+        var message = this.game.add.text(
+            this.game.world.centerX, 
+            this.game.world.centerY, 
+            this.message, 
+            { font: `35px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         message.anchor.set(0.5);
     }
 }

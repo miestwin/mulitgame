@@ -4,6 +4,7 @@ import 'phaser';
 
 import { States } from './States';
 import Network from '../network';
+import { Assets } from '../../assets';
 
 /**
  * Czekanie na rozpoczęcie gry
@@ -37,7 +38,7 @@ export class WaitForGame extends Phaser.State {
         this.timer = this.game.add.text(
             this.game.world.centerX, this.game.world.centerY, 'The game will start in\n...',
             {
-                font: '35px Kenvector Future',
+                font: `35px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });

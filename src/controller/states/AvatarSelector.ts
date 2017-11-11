@@ -4,6 +4,7 @@ import 'phaser';
 
 import { States } from './States';
 import Network from '../network';
+import { Assets } from '../../assets';
 
 /**
  * Wybór postaci
@@ -75,14 +76,14 @@ export class AvatarSelector extends Phaser.State {
         var helloText = this.game.add.text(
             this.game.world.centerX, 30,
             'Choose your ship',
-            { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
+            { font: `25px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
         
         this.scrolingMap = this.game.add.tileSprite(
             0, 80,
             this.game.width / 2 + this.ships.length * 140 + 30,
             this.game.height - 180,
-            'transparent');
+            Assets.Images.Transparent.getName());
         this.scrolingMap.inputEnabled = true;
         this.scrolingMap.input.enableDrag(false);
         (<any>this.scrolingMap).savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
@@ -129,9 +130,17 @@ export class AvatarSelector extends Phaser.State {
             (<any>this.scrolingMap).isBeingDraged = false;
         }, this);
         
-        var button = this.game.add.button(this.game.world.centerX, this.game.height - 30, 'grey-button-04', this.actionOnClick, this, 2, 1, 0);
+        var button = this.game.add.button(
+            this.game.world.centerX,
+            this.game.height - 30,
+            Assets.UI.Buttons.Menu.Grey.getName(),
+            this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 1);
-        var buttonText = this.game.add.text(this.game.world.centerX, this.game.height - 35, 'Continue', { font: '20px Kenvector Future', fill: '#000000', align: 'center' });
+        var buttonText = this.game.add.text(
+            this.game.world.centerX,
+            this.game.height - 35,
+            'Continue',
+            { font: `20px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#000000', align: 'center' });
         buttonText.anchor.set(0.5, 1);
     }
 

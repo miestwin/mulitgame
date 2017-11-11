@@ -5,6 +5,7 @@ import 'phaser';
 import { States } from './States';
 import { Player } from '../../models';
 import Network from '../network';
+import { Assets } from '../../assets';
 
 declare var Victor;
 declare var gameId;
@@ -129,20 +130,27 @@ export class GameController extends Phaser.State {
         this.scoreText = this.game.add.text(
             this.game.world.centerX,
             18, 'Score: 0',
-            { font: '25px Kenvector Future', fill: '#ffffff', align: 'center' });
+            { font: `25px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
 
-        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-1');
+        const leftPadBack = this.game.add.image(
+            this.leftTouchStartPos.x, 
+            this.leftTouchStartPos.y, 
+            Assets.UI.Buttons.Joystick.WheelExternal.getName());
         leftPadBack.anchor.setTo(0.5);
         leftPadBack.scale.setTo(2);
 
-        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, 'left-2');
+        this.leftPad = this.game.add.image(
+            this.leftTouchStartPos.x, 
+            this.leftTouchStartPos.y, 
+            Assets.UI.Buttons.Joystick.WheelInternal.getName());
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
 
         this.shieldBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY - 10, 'btn-shield');
+            this.game.world.centerY - 10, 
+            Assets.UI.Buttons.Shield.getName());
         this.shieldBtn.anchor.setTo(0.5, 1);
 
         this.shieldBtn.onInputDown.add(() => {
@@ -175,7 +183,8 @@ export class GameController extends Phaser.State {
 
         this.fireBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY + 10, 'btn-fire', () => {
+            this.game.world.centerY + 10, Assets.UI.Buttons.Fire.getName(),
+            () => {
                 Network.playerFire(gameId);
             }, this);
     }

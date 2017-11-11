@@ -7,6 +7,7 @@ import config from '../../config';
 import { Color } from '../../models'
 import { generatePowerUps, generateShips, pointStars, generateComet, generateNebula } from '../../engine';
 import { randomNumberInRange } from '../../utils';
+import { Assets } from '../../assets';
 
 const colors = [ new Color(179, 0, 179), new Color(225, 51, 0), new Color(0, 153, 51) ];
 
@@ -28,22 +29,40 @@ export class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
-        this.game.load.spritesheet('plasma', '../assets/spritesheets/plasma.png', 192, 192, 30);
-        this.game.load.spritesheet('bullet', '../assets/spritesheets/rgblaser.png', 4, 4);
+        /* spritesheets */
+        this.game.load.spritesheet(
+            Assets.Spritesheets.Plasma.getName(), 
+            Assets.Spritesheets.Plasma.getPNG(),
+            Assets.Spritesheets.Plasma.getFrameWidth(),
+            Assets.Spritesheets.Plasma.getFrameHeight(),
+            Assets.Spritesheets.Plasma.getFrameMax());
 
-        this.game.load.image('shield', '../assets/images/shield.png');
-        this.game.load.image('meteor-1', '../assets/images/meteor_1.png');
-        this.game.load.image('meteor-2', '../assets/images/meteor_2.png');
-        this.game.load.image('meteor-3', '../assets/images/meteor_3.png');
-        this.game.load.image('meteor-4', '../assets/images/meteor_4.png');
-        this.game.load.image('meteor-5', '../assets/images/meteor_5.png');
-        this.game.load.image('meteor-6', '../assets/images/meteor_6.png');
+        this.game.load.spritesheet(
+            Assets.Spritesheets.Bullets.RGBLaser.getName(),
+            Assets.Spritesheets.Bullets.RGBLaser.getPNG(),
+            Assets.Spritesheets.Bullets.RGBLaser.getFrameWidth(),
+            Assets.Spritesheets.Bullets.RGBLaser.getFrameHeight());
+        
+        /* game images */
+        this.game.load.image(
+            Assets.Images.Shield.getName(),
+            Assets.Images.Shield.getPNG());
 
-        this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
-        this.game.load.image('background', '../assets/images/purple.png');
-        this.game.load.image('shard', '../assets/images/shard.png');
-        // this.game.load.shader('bacteria', '../assets/shaders/bacteria.frag');
-        this.game.load.shader('glow', '../assets/shaders/glow.frag');
+        /* ui */
+        this.game.load.image(
+            Assets.UI.Buttons.Menu.Grey.getName(),
+            Assets.UI.Buttons.Menu.Grey.getPNG());
+        
+        /* shaders */
+        this.game.load.shader(
+            Assets.Shaders.Glow.getName(),
+            Assets.Shaders.Glow.getFRAG()
+        );
+
+        this.game.load.shader(
+            Assets.Shaders.Pixelate.getName(),
+            Assets.Shaders.Pixelate.getFRAG()
+        );
     }
 
     create() {
@@ -73,7 +92,7 @@ export class Loading extends Phaser.State {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
             this.game.world.centerY - 40,
-            'explosion-3');
+            Assets.Spritesheets.Explosions.Three.getName());
         this.loadingSprite.anchor.set(0.5);
         this.loadingSprite.scale.set(1.1);
         this.loadingSprite.animations.add('boom');
@@ -84,7 +103,7 @@ export class Loading extends Phaser.State {
             this.game.world.centerY + 50,
             'Loading ...',
             { 
-                font: '25px Kenvector Future',
+                font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });

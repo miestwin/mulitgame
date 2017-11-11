@@ -6,7 +6,7 @@ import { pointStars } from '../../engine';
 import { States } from './States';
 
 import Network from '../network';
-
+import { Assets } from '../../assets';
 import { Player, Shield, Bullets, Meteor } from '../../models';
 
 declare var Victor;
@@ -138,7 +138,7 @@ export class StartGame extends Phaser.State {
         this.players = this.game.add.group();
         this.shields = this.game.add.group();
 
-        const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
+        const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader(Assets.Shaders.Glow.getName()));
         
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -205,7 +205,7 @@ export class StartGame extends Phaser.State {
             return;
         }
         const y = randomNumberInRange(30, this.game.world.height - 30);
-        const point = this.points.create(this.game.world.width, y, 'plasma', randomNumberInRange(15, 27));
+        const point = this.points.create(this.game.world.width, y, Assets.Spritesheets.Plasma.getName(), randomNumberInRange(15, 27));
         point.anchor.setTo(0.5);
         point.scale.setTo(0.3);
         point.checkWorldBounds = true;

@@ -2,6 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { Assets } from '../assets';
+
 export class Bullets extends Phaser.Group {
     
     /**
@@ -36,7 +38,7 @@ export class Bullets extends Phaser.Group {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(100, 'bullet', 0);
+        this.createMultiple(100, Assets.Spritesheets.Bullets.RGBLaser.getName(), 0);
         this.setAll('anchor.x', 0.5);
         this.setAll('anchor.y', 0.5);
         this.setAll('checkWorldBounds', true);

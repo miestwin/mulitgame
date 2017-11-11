@@ -4,6 +4,7 @@ import 'phaser';
 
 import { States } from './States';
 import { generateShips } from '../../engine';
+import { Assets } from '../../assets';
 
 /**
  * Ładowanie zasobów
@@ -23,18 +24,33 @@ export class Loading extends Phaser.State {
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
 
-        this.game.load.image('left-1', '../assets/images/controller/Sprites/lineDark/lineDark46.png');
-        this.game.load.image('left-2', '../assets/images/controller/Sprites/shadedDark/shadedDark11.png');
-        this.game.load.image('up', '../assets/images/controller/Sprites/shadedDark/shadedDark26.png');
-        this.game.load.image('down', '../assets/images/controller/Sprites/shadedDark/shadedDark27.png');
-        this.game.load.image('btn-shield', '../assets/images/controller/Sprites/shadedDark/shadedDark48.png');
-        this.game.load.image('btn-fire', '../assets/images/controller/Sprites/shadedDark/shadedDark49.png');
+        /* ui */
+        this.game.load.image(
+            Assets.UI.Buttons.Joystick.WheelExternal.getName(),
+            Assets.UI.Buttons.Joystick.WheelExternal.getPNG()
+        );
+
+        this.game.load.image(
+            Assets.UI.Buttons.Joystick.WheelInternal.getName(), 
+            Assets.UI.Buttons.Joystick.WheelInternal.getPNG());
+
+        this.game.load.image(
+            Assets.UI.Buttons.Shield.getName(), 
+            Assets.UI.Buttons.Shield.getPNG());
+
+        this.game.load.image(
+            Assets.UI.Buttons.Fire.getName(), 
+            Assets.UI.Buttons.Fire.getPNG());
+
+        this.game.load.image(
+            Assets.UI.Buttons.Menu.Grey.getName(), 
+            Assets.UI.Buttons.Menu.Grey.getPNG());
+        
+        this.game.load.image(
+            Assets.Images.Transparent.getName(), 
+            Assets.Images.Transparent.getPNG());
 
         generateShips(this.game);
-
-        this.game.load.image('transparent', '../assets/spritesheets/gui/transparent.png');
-
-        this.game.load.image('grey-button-04', '../assets/spritesheets/gui/ui/PNG/grey_button04.png');
     }
 
     create() {
@@ -62,7 +78,7 @@ export class Loading extends Phaser.State {
             this.game.world.centerY + 25,
             'Loading ...',
             { 
-                font: '20px Kenvector Future',
+                font: `20px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });
