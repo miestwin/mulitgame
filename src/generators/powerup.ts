@@ -2,23 +2,15 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
-import { generatePoints, convexhull, randomNumberInRange } from '../utils';
+import { generateRandomPoints, convexhull, Point } from '../utils';
 
-export const powerUps = {
-    'power-up_cooldown': 0xffffff, 
-    'power-up_pull': 0xccccff,
-    'power-up_big': 0xccffff,
-    // 'power-up_': 0xb3ffb3,
-    // 'power-up_': 0xffff99,
-    // 'power-up_': 0xffb3ff,
-    // 'power-up_': 0x99ccff
-};
+import { Const } from '../const';
 
 export function generatePowerUps(game: Phaser.Game) {
-    Object.keys(powerUps).forEach((powerup => {
-        const points = convexhull(generatePoints(20, 20, 10));
+    Object.keys(Const.PowerUps).forEach((powerup => {
+        const points = convexhull(generateRandomPoints(new Point(20, 20), 10));
         points.push(points[0]);
-        const color = powerUps[powerup];
+        const color = Const.PowerUps[powerup];
         const graphics = game.add.graphics(0, 0);
         graphics.beginFill(color);
         graphics.moveTo(points[0][0], points[0][1]);

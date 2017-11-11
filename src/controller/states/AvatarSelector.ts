@@ -111,12 +111,7 @@ export class AvatarSelector extends Phaser.State {
                 this.game.world.centerX + i * 120,
                 this.game.world.centerY - 60,
                 graphics.generateTexture());
-            // const ship = this.game.add.sprite(
-            //     this.game.world.centerX + i * 120,
-            //     this.game.world.centerY - 50,
-            //     this.ships[i].name);
             ship.anchor.set(0.5, 1);
-            //ship.scale.set(0.7);
             this.scrolingMap.addChild(ship);
             graphics.destroy();
         }

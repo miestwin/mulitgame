@@ -2,12 +2,7 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
-export function generateComet(
-    game: Phaser.Game, 
-    width: number, 
-    height: number,
-    rc: number,
-    name: string) {
+export function comet(game: Phaser.Game, width: number, height: number, rc: number, key: string) {
     const x = height / 2;
     const y = height / 2;
     const rt = height / 2;
@@ -33,7 +28,7 @@ export function generateComet(
 
     let img = new Image();
     img.onload = () => {
-        game.cache.addImage(name, img.src, img);
+        game.cache.addImage(key, img.src, img);
     };
     img.src = canvas.toDataURL('image/png');
 }

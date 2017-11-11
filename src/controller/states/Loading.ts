@@ -3,8 +3,9 @@ import 'pixi';
 import 'phaser';
 
 import { States } from './States';
-import { generateShips } from '../../engine';
+import * as generators from '../../generators';
 import { Assets } from '../../assets';
+import { Const } from '../../const';
 
 /**
  * Ładowanie zasobów
@@ -50,7 +51,16 @@ export class Loading extends Phaser.State {
             Assets.Images.Transparent.getName(), 
             Assets.Images.Transparent.getPNG());
 
-        generateShips(this.game);
+        generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
+        generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
+        generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
+        generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
+        generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
+        generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
+        generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
+        generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
+        generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
+        generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
     }
 
     create() {
@@ -68,7 +78,7 @@ export class Loading extends Phaser.State {
         this.loadingSprite = this.game.add.sprite(
             this.game.world.centerX,
             this.game.world.centerY - 40,
-            'explosion-3');
+            Assets.Spritesheets.Explosions.Three.getName());
         this.loadingSprite.anchor.set(0.5);
         this.loadingSprite.animations.add('boom');
         this.loadingSprite.animations.play('boom', 20, true);

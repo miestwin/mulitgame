@@ -1,11 +1,11 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-// import * as screenfull from 'screenfull';
 
 import { States } from './States';
 import Network from '../network';
 import { Assets } from '../../assets';
+import { Const } from '../../const';
 import { Player } from '../../models';
 
 /**
@@ -73,9 +73,6 @@ export class MainMenu extends Phaser.State {
             } else {
                 (<any>this.game.state).players = {};
                 (<any>this.game.state).started = true;
-                // if (screenfull.enabled) {
-                //     screenfull.request();
-                // }
                 this.game.state.start(States.START_GAME);
             }
         });
@@ -85,13 +82,10 @@ export class MainMenu extends Phaser.State {
 
     public create() {
         // const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
-        const starsback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        const starsback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Stars.getName());
         starsback.autoScroll(-100, 0);
         const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-1');
         nebulaback.autoScroll(-200, 0);
-        // const nebulaback2 = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-2');
-        // nebulaback2.autoScroll(-200, 0);
-        // back.filters = [filter];
 
         // show game title
         const title = this.game.add.text(

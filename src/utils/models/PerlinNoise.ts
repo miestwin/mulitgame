@@ -1,6 +1,10 @@
+import { lerp } from '../lerp';
+import { grad1d, grad2d, grad3d } from '../grad';
+import { Marsaglia } from './Marsaglia';
+
 const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
 
-export function noise(x:number, y?:number, z?:number) {
+export function noise(x: number, y?: number, z?: number) {
     if(noiseProfile.generator === null) {
         noiseProfile.generator = new PerlinNoise(noiseProfile.seed);
     }
@@ -87,49 +91,4 @@ export class PerlinNoise {
       var fx = (3 - 2 * x) * x * x;
       return lerp(fx, grad1d(this.perm[X], x), grad1d(this.perm[X+1], x-1));
     }
-}
-
-export class Marsaglia {
-    private z;
-    private w;
-
-    constructor(i1, i2) {
-        this.z = i1 || 362436069;
-        this.w = i2 || 521288629;
-    }
-
-    public intGenerator() {
-        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xFFFFFFFF;
-        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xFFFFFFFF;
-        return (((this.z & 0xFFFF) << 16) | (this.w & 0xFFFF)) & 0xFFFFFFFF;
-    }
-
-    public doubleGenerator() {
-        const i = this.intGenerator() / 4294967296;
-        return i < 0 ? 1 + i : i;
-    }
-
-    public static createRandomized() {
-        let now = new Date();
-        return new Marsaglia((now.getDate() / 60000) & 0xFFFFFFFF, now.getDate() & 0xFFFFFFFF);
-    }
-}
-
-function grad3d(i, x, y, z) {
-    let h = i & 15;
-    let u = h < 8 ? x : y, v = h < 4 ? y : h === 12 || h === 14 ? x : z;
-    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
-}
-
-function grad2d(i, x, y) {
-    let v = (i & 1) === 0 ? x : y;
-    return (i & 2) === 0 ? -v : v;
-}
-
-function grad1d(i, x) {
-    return (i & 1) === 0 ? -x : x;
-}
-
-function lerp(t, a, b) { 
-    return a + t * (b - a); 
 }

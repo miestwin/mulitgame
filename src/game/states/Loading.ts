@@ -4,12 +4,10 @@ import 'phaser';
 import * as QRious from 'qrious';
 import { States } from './States';
 import config from '../../config';
-import { Color } from '../../models'
-import { generatePowerUps, generateShips, pointStars, generateComet, generateNebula } from '../../engine';
-import { randomNumberInRange } from '../../utils';
+import * as generators from '../../generators';
 import { Assets } from '../../assets';
-
-const colors = [ new Color(179, 0, 179), new Color(225, 51, 0), new Color(0, 153, 51) ];
+import { Const } from '../../const';
+import { rnd } from '../../utils';
 
 /**
  * Ładowanie zasobów
@@ -163,15 +161,21 @@ export class Loading extends Phaser.State {
 
     private createTextures(): Promise<any> {
         return new Promise((resolve, reject) => {
-            pointStars(this.game, 0.02, 0.125);
-            const color = colors[randomNumberInRange(0, 2)];
-            generateNebula(this.game, 'nebula-1', 0, color);
-            // generateNebula(this.game, 'nebula-2', 1000, color);
-            generateComet(this.game, 200, 80, 20, 'comet-1');
-            generateComet(this.game, 150, 40, 10, 'comet-2');
-            generateComet(this.game, 200, 60, 15, 'comet-3');
-            generatePowerUps(this.game);
-            generateShips(this.game);
+            generators.stars(this.game, 0.02, 0.125, Const.Stars.getName());
+            generators.nebula(this.game, 'nebula-1', 0, Const.Nebulas.Colors[rnd.integerInRange(0, 2)]);
+            generators.comet(this.game, 200, 80, 20, 'comet-1');
+            generators.comet(this.game, 150, 40, 10, 'comet-2');
+            generators.comet(this.game, 200, 60, 15, 'comet-3');
+            generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
+            generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
+            generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
+            generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
+            generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
+            generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
+            generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
+            generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
+            generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
+            generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
             resolve();
         });
     }

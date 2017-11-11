@@ -1,13 +1,12 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-import { randomNumberInRange } from '../../utils';
-import { pointStars } from '../../engine';
+import { rnd } from '../../utils';
 import { States } from './States';
-
+import { Const } from '../../const';
 import Network from '../network';
 import { Assets } from '../../assets';
-import { Player, Shield, Bullets, Meteor } from '../../models';
+import { Player, Shield, Bullets, Comet } from '../../models';
 
 declare var Victor;
 
@@ -143,11 +142,10 @@ export class StartGame extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'starfield');
+        this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Stars.getName());
         this.backTile.autoScroll(-300, 0);
         this.nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-1');
         this.nebula.autoScroll(-200, 0);
-        // this.back.filters = [filter];
 
         Network.getAllPlayers();
 
@@ -204,13 +202,13 @@ export class StartGame extends Phaser.State {
         if (pointChance != 1) {
             return;
         }
-        const y = randomNumberInRange(30, this.game.world.height - 30);
-        const point = this.points.create(this.game.world.width, y, Assets.Spritesheets.Plasma.getName(), randomNumberInRange(15, 27));
+        const y = rnd.integerInRange(30, this.game.world.height - 30);
+        const point = this.points.create(this.game.world.width, y, Assets.Spritesheets.Plasma.getName(), rnd.integerInRange(15, 27));
         point.anchor.setTo(0.5);
         point.scale.setTo(0.3);
         point.checkWorldBounds = true;
         point.events.onOutOfBounds.add(this.pointOut, this);
-        point.body.velocity.x = randomNumberInRange(-600, -700);
+        point.body.velocity.x = rnd.integerInRange(-600, -700);
         // point.animations.add('transform');
         // point.animations.play('transform', 13, true);
         this.points.add(point);
@@ -221,13 +219,13 @@ export class StartGame extends Phaser.State {
         if (meteorChance != 1) {
             return;
         }
-        const meteor = new Meteor(this.game, this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = this.game.rnd.integerInRange(-500, -600);
+        const meteor = new Comet(this.game, this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        meteor.body.velocity.x = rnd.integerInRange(-500, -600);
         this.meteors.add(meteor);
     }
 
     private generatePowerUp(sx: number, sy: number) {
-        const powerUpChance = this.game.rnd.integerInRange(1, 15);
+        const powerUpChance = rnd.integerInRange(1, 15);
         if (powerUpChance != 1) {
             return;
         }
@@ -253,7 +251,7 @@ export class StartGame extends Phaser.State {
         Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    private bullet_meteor_CollisionHandler(bullet: Phaser.Sprite, meteor: Meteor) {
+    private bullet_meteor_CollisionHandler(bullet: Phaser.Sprite, meteor: Comet) {
         bullet.kill();
         meteor.health -= 1;
         if (meteor.health <= 0) {

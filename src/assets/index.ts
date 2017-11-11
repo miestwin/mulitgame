@@ -99,7 +99,7 @@ export namespace Assets {
                 static getPNG(): string { return '../assets/images/controller/shadedDark/shadedDark49.png'; }
             }
             export class Shield {
-                static getName(): string { return 'btn-fire'; }
+                static getName(): string { return 'btn-shield'; }
                 static getPNG(): string { return '../assets/images/controller/shadedDark/shadedDark48.png'; }
             }
         }

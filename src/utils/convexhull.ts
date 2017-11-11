@@ -1,8 +1,16 @@
+import { Point } from './models';
 import { cross } from './cross';
 
-export function convexhull(points) {
+/**
+ * Conveh hull
+ * Monotone chain
+ * @export
+ * @param {Array<Point>} points 
+ * @returns {Array<Point>} 
+ */
+export function convexhull(points: Array<Point>): Array<Point> {
     points.sort((a, b) => {
-        return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0];
+        return a.X == b.X ? a.Y - b.Y : a.X - b.X;
     });
 
     const lower = [];

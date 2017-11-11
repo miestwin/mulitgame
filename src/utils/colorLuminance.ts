@@ -1,5 +1,3 @@
-import { Color } from '../models';
-
 export function colorLuminance(hex: string, lum: number = 0) {
     // validate hex string
     hex = String(hex).replace(/[^0-9a-f]/gi, '');
@@ -15,15 +13,4 @@ export function colorLuminance(hex: string, lum: number = 0) {
         rgb += ('00' + c).substr(c.length);
     }
     return rgb;
-}
-
-export function rgbLum(color: Color, lum: number) {
-    const rgb = [color.R, color.G, color.B];
-    for (let i = 0; i < 3; i++) {
-        rgb[i] = Math.round(Math.min(Math.max(0, rgb[i] + (rgb[i] * lum)), 255)); // rgb lum
-    }
-    color.R = rgb[0];
-    color.G = rgb[1];
-    color.B = rgb[2]
-    return color;
 }

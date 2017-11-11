@@ -2,8 +2,6 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
-import { randomNumberInRange } from '../../utils';
-
 /**
  * Generacja gwiazd na scenie
  * @export
@@ -12,7 +10,7 @@ import { randomNumberInRange } from '../../utils';
  * @param {number} brightness 
  * @returns 
  */
-export function pointStars(game:Phaser.Game, density: number, brightness: number) {
+export function stars(game:Phaser.Game, density: number, brightness: number, key: string) {
     const width = game.width;
     const height = game.height;
     const canvas = document.createElement('canvas');
@@ -20,12 +18,12 @@ export function pointStars(game:Phaser.Game, density: number, brightness: number
     canvas.width = width;
     const ctx = canvas.getContext('2d');
     let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = generateTexture(canvas.width, canvas.height, density, brightness, Math.random, imageData);
+    let data = createData(canvas.width, canvas.height, density, brightness, Math.random, imageData);
     ctx.putImageData(data, 0, 0);
 
     let img = new Image();
     img.onload = () => {
-        game.cache.addImage('starfield', img.src, img);
+        game.cache.addImage(key, img.src, img);
     };
     img.src = canvas.toDataURL('image/png');
 }
@@ -39,17 +37,9 @@ export function pointStars(game:Phaser.Game, density: number, brightness: number
  * @param {number} brightness // wartość na bazie której wybierana będzie jasność każdej gwiazdy 
  * @param {Function} prng // generator liczb pseudolosowych
  */
-export function generateTexture(
-    width: number, 
-    height: number, 
-    density: number, 
-    brightness: number, 
-    prng: Function, 
-    imageData: ImageData): ImageData {
+function createData(width: number, height: number, density: number, brightness: number, prng: Function, imageData: ImageData): ImageData {
     // liczba gwiazd do wygenerowania
     const count = Math.round(width * height * density);
-    // tablica bajtów przechowująca texturę szerokość x wysokość x ilość skłodowych na kolor czyli RGBA
-    // let data = new Uint8Array(width * height * 4);
 
     for (let i = 0; i < count; i++) {
         // wybór piksela z jednolitym rozkładem
