@@ -176,7 +176,7 @@ var Assets;
             static getFrameWidth() { return 192; }
             static getFrameHeight() { return 192; }
             static getMargin() { return 0; }
-            static getSpacing() { return 0; }
+            static getSpacing() { return 50; }
             static getFrameMax() { return 30; }
         }
         Spritesheets.Plasma = Plasma;
@@ -1031,32 +1031,6 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(36));
-__export(__webpack_require__(79));
-__export(__webpack_require__(80));
-__export(__webpack_require__(30));
-__export(__webpack_require__(31));
-__export(__webpack_require__(81));
-__export(__webpack_require__(32));
-__export(__webpack_require__(34));
-__export(__webpack_require__(85));
-__export(__webpack_require__(86));
-__export(__webpack_require__(87));
-__export(__webpack_require__(35));
-__export(__webpack_require__(88));
-__export(__webpack_require__(89));
-
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1246,7 +1220,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1435,10 +1409,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /**
@@ -1481,7 +1455,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 
@@ -1493,7 +1467,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1682,7 +1656,33 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(36));
+__export(__webpack_require__(79));
+__export(__webpack_require__(80));
+__export(__webpack_require__(30));
+__export(__webpack_require__(31));
+__export(__webpack_require__(81));
+__export(__webpack_require__(32));
+__export(__webpack_require__(34));
+__export(__webpack_require__(85));
+__export(__webpack_require__(86));
+__export(__webpack_require__(87));
+__export(__webpack_require__(35));
+__export(__webpack_require__(88));
+__export(__webpack_require__(89));
+
 
 /***/ }),
 /* 13 */
@@ -2304,7 +2304,7 @@ Transport.prototype.onClose = function () {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(7);
+const utils_1 = __webpack_require__(12);
 var Const;
 (function (Const) {
     let Ships;
@@ -2360,35 +2360,41 @@ var Const;
         }
         Ships.DARKPINK = DARKPINK;
     })(Ships = Const.Ships || (Const.Ships = {}));
-    let Nebulas;
-    (function (Nebulas) {
+    let Nebula;
+    (function (Nebula) {
         class PURPLE {
             static getName() { return 'nebula_purple'; }
             static getValue() { return new utils_1.Color(179, 0, 179); }
         }
-        Nebulas.PURPLE = PURPLE;
+        Nebula.PURPLE = PURPLE;
         class ORANE {
             static getName() { return 'nebula_orange'; }
             static getValue() { return new utils_1.Color(225, 51, 0); }
         }
-        Nebulas.ORANE = ORANE;
+        Nebula.ORANE = ORANE;
         class GREEN {
             static getName() { return 'nebula_green'; }
             static getValue() { return new utils_1.Color(0, 153, 51); }
         }
-        Nebulas.GREEN = GREEN;
-        Nebulas.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(225, 51, 0), new utils_1.Color(0, 153, 51)];
-    })(Nebulas = Const.Nebulas || (Const.Nebulas = {}));
+        Nebula.GREEN = GREEN;
+        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(225, 51, 0), new utils_1.Color(0, 153, 51)];
+        Nebula.Names = [];
+    })(Nebula = Const.Nebula || (Const.Nebula = {}));
+    let Comet;
+    (function (Comet) {
+        Comet.Names = [];
+    })(Comet = Const.Comet || (Const.Comet = {}));
     class Stars {
         static getName() { return 'starsfield'; }
     }
     Const.Stars = Stars;
-    Const.PowerUps = {
-        'power-up_cooldown': 0xffffff,
-        'power-up_pull': 0xccccff,
-        'power-up_big': 0xccffff,
-    };
+    let Element;
+    (function (Element) {
+        Element.Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        Element.Names = [];
+    })(Element = Const.Element || (Const.Element = {}));
 })(Const = exports.Const || (exports.Const = {}));
+// 'power-up_cooldown', 'power-up_pull', 'power-up_big' 
 
 
 /***/ }),
@@ -2749,7 +2755,7 @@ var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(13);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
-var debug = __webpack_require__(9)('socket.io-client:manager');
+var debug = __webpack_require__(8)('socket.io-client:manager');
 var indexOf = __webpack_require__(26);
 var Backoff = __webpack_require__(74);
 
@@ -3382,11 +3388,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(15);
-var parseqs = __webpack_require__(10);
+var parseqs = __webpack_require__(9);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(11);
+var inherit = __webpack_require__(10);
 var yeast = __webpack_require__(25);
-var debug = __webpack_require__(12)('engine.io-client:polling');
+var debug = __webpack_require__(11)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3728,8 +3734,8 @@ var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(73);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
-var debug = __webpack_require__(9)('socket.io-client:socket');
-var parseqs = __webpack_require__(10);
+var debug = __webpack_require__(8)('socket.io-client:socket');
+var parseqs = __webpack_require__(9);
 
 /**
  * Module exports.
@@ -107452,7 +107458,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
 /* 42 */
@@ -107551,7 +107557,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 var url = __webpack_require__(46);
 var parser = __webpack_require__(13);
 var Manager = __webpack_require__(22);
-var debug = __webpack_require__(9)('socket.io-client');
+var debug = __webpack_require__(8)('socket.io-client');
 
 /**
  * Module exports.
@@ -107649,7 +107655,7 @@ exports.Socket = __webpack_require__(27);
  */
 
 var parseuri = __webpack_require__(19);
-var debug = __webpack_require__(9)('socket.io-client:url');
+var debug = __webpack_require__(8)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -108277,7 +108283,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
 /* 50 */
@@ -108849,12 +108855,12 @@ module.exports.parser = __webpack_require__(6);
 
 var transports = __webpack_require__(23);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(12)('engine.io-client:socket');
+var debug = __webpack_require__(11)('engine.io-client:socket');
 var index = __webpack_require__(26);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(19);
 var parsejson = __webpack_require__(72);
-var parseqs = __webpack_require__(10);
+var parseqs = __webpack_require__(9);
 
 /**
  * Module exports.
@@ -109624,8 +109630,8 @@ try {
 var XMLHttpRequest = __webpack_require__(14);
 var Polling = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(11);
-var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(10);
+var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110968,7 +110974,7 @@ function plural(ms, n, name) {
  */
 
 var Polling = __webpack_require__(24);
-var inherit = __webpack_require__(11);
+var inherit = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -111206,10 +111212,10 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(15);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(10);
-var inherit = __webpack_require__(11);
+var parseqs = __webpack_require__(9);
+var inherit = __webpack_require__(10);
 var yeast = __webpack_require__(25);
-var debug = __webpack_require__(12)('engine.io-client:websocket');
+var debug = __webpack_require__(11)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -111758,26 +111764,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(7);
-const const_1 = __webpack_require__(16);
-function generatePowerUps(game) {
-    Object.keys(const_1.Const.PowerUps).forEach((powerup => {
-        const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(20, 20), 10));
-        points.push(points[0]);
-        const color = const_1.Const.PowerUps[powerup];
-        const graphics = game.add.graphics(0, 0);
-        graphics.beginFill(color);
-        graphics.moveTo(points[0][0], points[0][1]);
-        for (let j = 1; j < points.length; j++) {
-            const point = points[j];
-            graphics.lineTo(point[0], point[1]);
-        }
-        graphics.endFill();
-        game.cache.addImage(powerup, null, graphics.generateTexture().baseTexture.source);
-        graphics.destroy();
-    }));
+const utils_1 = __webpack_require__(12);
+function element(game, key, color) {
+    const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(10, 10), 5, 20));
+    points.push(points[0]);
+    const graphics = game.add.graphics(0, 0);
+    graphics.beginFill(color);
+    graphics.moveTo(points[0].X, points[0].Y);
+    for (let j = 1; j < points.length; j++) {
+        const point = points[j];
+        graphics.lineTo(point.X, point.Y);
+    }
+    graphics.endFill();
+    game.cache.addImage(key, null, graphics.generateTexture().baseTexture.source);
+    graphics.destroy();
 }
-exports.generatePowerUps = generatePowerUps;
+exports.element = element;
 
 
 /***/ }),
@@ -112103,14 +112105,13 @@ const models_1 = __webpack_require__(32);
  * @param {number} offset
  * @returns {Array<Point>}
  */
-function generateRandomPoints(point, offset) {
+function generateRandomPoints(point, offset, count) {
     const x1 = point.X - offset;
     const x2 = point.X + offset;
     const y1 = point.Y - offset;
     const y2 = point.Y + offset;
-    const n = rnd_1.rnd.integerInRange(5, 20);
     const points = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < count; i++) {
         const _x = rnd_1.rnd.integerInRange(x1, x2);
         const _y = rnd_1.rnd.integerInRange(y1, y2);
         points.push(new models_1.Point(_x, _y));
@@ -112207,7 +112208,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(7);
+const utils_1 = __webpack_require__(12);
 function nebula(game, name, offset, color) {
     const width = game.width;
     const height = game.height;
@@ -112597,19 +112598,9 @@ class AvatarSelector extends Phaser.State {
         this.scrolingMap.input.allowVerticalDrag = false;
         this.scrolingMap.input.boundsRect = new Phaser.Rectangle(this.game.width - this.scrolingMap.width, 80, this.scrolingMap.width * 2 - this.game.width, this.game.height - 180);
         for (var i = 0; i < this.ships.length; i++) {
-            var graphics = this.game.add.graphics(0, 0);
-            graphics.beginFill(0x1f1f60);
-            graphics.lineStyle(6, this.ships[i].color, 1);
-            graphics.moveTo(40, 50);
-            graphics.lineTo(100, 75);
-            graphics.lineTo(40, 100);
-            graphics.lineTo(60, 75);
-            graphics.lineTo(40, 50);
-            graphics.endFill();
-            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 60, graphics.generateTexture());
+            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 60, this.ships[i].name);
             ship.anchor.set(0.5, 1);
             this.scrolingMap.addChild(ship);
-            graphics.destroy();
         }
         this.scrolingMap.events.onDragStart.add(() => {
             this.scrolingMap.isBeingDraged = true;

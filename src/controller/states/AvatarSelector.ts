@@ -96,24 +96,12 @@ export class AvatarSelector extends Phaser.State {
             this.game.height - 180);
 
         for (var i = 0; i < this.ships.length; i++) {
-
-            var graphics = this.game.add.graphics(0, 0);
-            graphics.beginFill(0x1f1f60);
-            graphics.lineStyle(6, this.ships[i].color, 1);
-            graphics.moveTo(40,50);
-            graphics.lineTo(100, 75);
-            graphics.lineTo(40, 100);
-            graphics.lineTo(60, 75);
-            graphics.lineTo(40, 50);
-            graphics.endFill();
-
             const ship = this.game.add.sprite(
                 this.game.world.centerX + i * 120,
                 this.game.world.centerY - 60,
-                graphics.generateTexture());
+                this.ships[i].name);
             ship.anchor.set(0.5, 1);
             this.scrolingMap.addChild(ship);
-            graphics.destroy();
         }
 
         this.scrolingMap.events.onDragStart.add(() => {

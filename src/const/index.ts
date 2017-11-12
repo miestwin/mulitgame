@@ -44,7 +44,7 @@ export namespace Const {
         }
     }
 
-    export namespace Nebulas {
+    export namespace Nebula {
         export class PURPLE {
             public static getName() { return 'nebula_purple'; }
             public static getValue() { return new Color(179, 0, 179); }
@@ -58,19 +58,21 @@ export namespace Const {
             public static getValue() { return new Color(0, 153, 51); }
         }
         export const Colors = [new Color(179, 0, 179), new Color(225, 51, 0), new Color(0, 153, 51)];
+        export const Names = [];
+    }
+
+    export namespace Comet {
+        export const Names = [];
     }
 
     export class Stars {
         public static getName() { return 'starsfield'; }
     }
 
-    export const PowerUps = {
-        'power-up_cooldown': 0xffffff, 
-        'power-up_pull': 0xccccff,
-        'power-up_big': 0xccffff,
-        // 'power-up_': 0xb3ffb3,
-        // 'power-up_': 0xffff99,
-        // 'power-up_': 0xffb3ff,
-        // 'power-up_': 0x99ccff
-    };
+    export namespace Element {
+        export const Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        export const Names = [];
+    }
 }
+
+// 'power-up_cooldown', 'power-up_pull', 'power-up_big'

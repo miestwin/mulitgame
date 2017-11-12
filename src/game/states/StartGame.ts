@@ -6,7 +6,7 @@ import { States } from './States';
 import { Const } from '../../const';
 import Network from '../network';
 import { Assets } from '../../assets';
-import { Player, Shield, Bullets, Comet, Comets } from '../../models';
+import { Player, Shield, Bullets, Comets, Elements } from '../../models';
 
 declare var Victor;
 
@@ -32,7 +32,7 @@ export class StartGame extends Phaser.State {
      * @type {Phaser.Group}
      * @memberof StartGame
      */
-    private points: Phaser.Group;
+    private points: Elements;
 
     /**
      * Kolekcja graczy do sprawdzania kolizji
@@ -77,16 +77,6 @@ export class StartGame extends Phaser.State {
      */
     private powerUps: Phaser.Group;
 
-    /**
-     * Tło gry
-     * @private
-     * @type {Phaser.TileSprite}
-     * @memberof StartGame
-     */
-    private backTile: Phaser.TileSprite;
-
-    private nebula: Phaser.TileSprite;
-
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -129,8 +119,6 @@ export class StartGame extends Phaser.State {
                 return players;
             }, {});
         });
-
-        // Network.getAllPlayers();
     }
 
     create() {
@@ -142,96 +130,43 @@ export class StartGame extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        this.backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Stars.getName());
-        this.backTile.autoScroll(-300, 0);
-        this.nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'nebula-1');
-        this.nebula.autoScroll(-200, 0);
+        const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Stars.getName());
+        backTile.autoScroll(-300, 0);
+        this.tiles.push(backTile);
+        for (let i = 0; i < Const.Nebula.Names.length; i++) {
+            const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Nebula.Names[i]);
+            nebulaback.autoScroll(-200, 0);
+            this.tiles.push(nebulaback);
+        }
 
         Network.getAllPlayers();
 
-        this.points = this.game.add.group();
-        this.points.enableBody = true;
-        this.points.physicsBodyType = Phaser.Physics.ARCADE;
-        // for (let i = 0; i < 1300; i++) {
-        //     const y = randomNumberInRange(30, this.game.world.height - 30);
-        //     const x = randomNumberInRange(this.game.width, 50000);
-        //     const point = this.points.create(x, y, 'plasma', randomNumberInRange(15, 27));
-        //     point.anchor.setTo(0.5);
-        //     point.scale.setTo(0.3);
-        //     point.checkWorldBounds = true;
-        //     point.events.onOutOfBounds.add(this.pointOut, this);
-        //     point.body.velocity.x = randomNumberInRange(-600, -700);
-        //     // point.animations.add('transform');
-        //     // point.animations.play('transform', 13, true);
-        //     this.points.add(point);
-        // }
-
-        // this.comets = this.game.add.group();
-        // for (let i = 0; i < 5; i++) {
-        //     const meteor = new Comet(this.game, this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
-        //     this.comets.add(meteor);
-        // }
-
-        this.powerUps = this.game.add.group();
+        this.points = new Elements(this.game);
         this.comets = new Comets(this.game);
         this.bullets = new Bullets(this.game);
+        this.powerUps = this.game.add.group();
 
         // debug
         this.game.time.advancedTiming = true;
     }
 
-    update() {  
-        Object.keys((<any>this.game.state).players).forEach(playerId => {
-            const player = (<any>this.game.state).players[playerId];
-            
-        });
-
-        this.generatePoint();
+    update() {
+        this.points.generate();
         this.comets.generate();
 
         this.game.physics.arcade.overlap(
-                this.players,
-                this.points, this.player_point_CollisionHandler, null, this);
+            this.players,
+            this.points, this.player_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
-                this.shields,
-                this.points, this.shield_point_CollisionHandler, null, this);
+            this.shields,
+            this.points, this.shield_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
-            this.bullets, this.comets, this.bullet_meteor_CollisionHandler, null, this);
+            this.bullets,
+            this.comets, this.bullet_comet_CollisionHandler, null, this);
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
-    }
-
-    private generatePoint() {
-        const pointChance = this.game.rnd.integerInRange(1, 10)
-        if (pointChance != 1) {
-            return;
-        }
-        const y = rnd.integerInRange(30, this.game.world.height - 30);
-        const point = this.points.create(this.game.world.width, y, Assets.Spritesheets.Plasma.getName(), rnd.integerInRange(15, 27));
-        point.anchor.setTo(0.5);
-        point.scale.setTo(0.3);
-        point.checkWorldBounds = true;
-        point.events.onOutOfBounds.add(this.pointOut, this);
-        point.body.velocity.x = rnd.integerInRange(-600, -700);
-        // point.animations.add('transform');
-        // point.animations.play('transform', 13, true);
-        this.points.add(point);
-    }
-
-    private generatePowerUp(sx: number, sy: number) {
-        const powerUpChance = rnd.integerInRange(1, 15);
-        if (powerUpChance != 1) {
-            return;
-        }
-        console.log('create power up');
-    }
-
-    private pointOut(point: Phaser.Sprite) {
-        if (point.x < 0) {
-            point.destroy();
-        }
     }
 
     private player_point_CollisionHandler(player: Player, point: Phaser.Sprite) {
@@ -247,12 +182,12 @@ export class StartGame extends Phaser.State {
         Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    private bullet_meteor_CollisionHandler(bullet: Phaser.Sprite, meteor: Comet) {
+    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Phaser.Sprite) {
         bullet.kill();
-        meteor.health -= 1;
-        if (meteor.health <= 0) {
-            this.generatePowerUp(meteor.x, meteor.y);
-            meteor.kill();
+        comet.health -= 1;
+        if (comet.health <= 0) {
+            // this.generatePowerUp(comet.x, comet.y);
+            comet.kill();
         }
     }
 

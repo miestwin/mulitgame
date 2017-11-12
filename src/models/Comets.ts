@@ -2,13 +2,15 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { Const } from '../const';
+
 export class Comets extends Phaser.Group {
     
     constructor(game: Phaser.Game) {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(5, 'comet-'+ this.game.rnd.integerInRange(1, 3), 0);
+        this.createMultiple(5, Const.Comet.Names);
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
         this.setAll('health', 10);

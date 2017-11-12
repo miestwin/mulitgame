@@ -162,10 +162,23 @@ export class Loading extends Phaser.State {
     private createTextures(): Promise<any> {
         return new Promise((resolve, reject) => {
             generators.stars(this.game, 0.02, 0.125, Const.Stars.getName());
-            generators.nebula(this.game, 'nebula-1', 0, Const.Nebulas.Colors[rnd.integerInRange(0, 2)]);
+            Const.Nebula.Names.push('nebula-1');
+            const nebulaColor = Const.Nebula.Colors[rnd.integerInRange(0, 2)];
+            for (let i = 0; i < Const.Nebula.Names.length; i++) {
+                generators.nebula(this.game, 'nebula-1', 0, nebulaColor);
+            }
+            Const.Comet.Names.push('comet-1');
+            Const.Comet.Names.push('comet-2');
+            Const.Comet.Names.push('comet-3');
             generators.comet(this.game, 200, 80, 20, 'comet-1');
             generators.comet(this.game, 150, 40, 10, 'comet-2');
             generators.comet(this.game, 200, 60, 15, 'comet-3');
+            for( let i = 0; i < 5; i++) {
+                const name = 'element-' + i;
+                const color = Const.Element.Colors[rnd.integerInRange(0, 5)];
+                Const.Element.Names.push(name);
+                generators.element(this.game, name, color);
+            }
             generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
             generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
             generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());

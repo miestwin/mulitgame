@@ -50,7 +50,7 @@ export namespace Assets {
             static getFrameWidth(): number { return 192; }
             static getFrameHeight(): number { return 192; }
             static getMargin(): number { return 0; }
-            static getSpacing(): number { return 0; }
+            static getSpacing(): number { return 50; }
             static getFrameMax(): number { return 30; }
         }
     }
