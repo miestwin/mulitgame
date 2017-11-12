@@ -15,9 +15,25 @@ export class Comet extends Phaser.Sprite {
         this.events.onOutOfBounds.add(this.out, this);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.alive = false;
+    }
+
+    updated() {
+        console.log('jestem tu');
+        if (!this.alive) this.generate();
     }
 
     private out() {
-        this.destroy();
+        this.kill();
+    }
+
+    private generate() {
+        console.log('losowanie', this.key);
+        const chance = this.game.rnd.integerInRange(1, 100)
+        if (chance != 1) {
+            return;
+        }
+        this.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        this.body.velocity.x = rnd.integerInRange(-500, -600);
     }
 }

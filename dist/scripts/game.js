@@ -112239,6 +112239,7 @@ __export(__webpack_require__(111));
 __export(__webpack_require__(112));
 __export(__webpack_require__(113));
 __export(__webpack_require__(114));
+__export(__webpack_require__(115));
 
 
 /***/ }),
@@ -112332,8 +112333,8 @@ __export(__webpack_require__(37));
 __export(__webpack_require__(106));
 __export(__webpack_require__(107));
 __export(__webpack_require__(110));
-__export(__webpack_require__(115));
 __export(__webpack_require__(116));
+__export(__webpack_require__(117));
 
 
 /***/ }),
@@ -115232,9 +115233,24 @@ class Comet extends Phaser.Sprite {
         this.events.onOutOfBounds.add(this.out, this);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.alive = false;
+    }
+    updated() {
+        console.log('jestem tu');
+        if (!this.alive)
+            this.generate();
     }
     out() {
-        this.destroy();
+        this.kill();
+    }
+    generate() {
+        console.log('losowanie', this.key);
+        const chance = this.game.rnd.integerInRange(1, 100);
+        if (chance != 1) {
+            return;
+        }
+        this.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20));
+        this.body.velocity.x = utils_1.rnd.integerInRange(-500, -600);
     }
 }
 exports.Comet = Comet;
@@ -115242,6 +115258,41 @@ exports.Comet = Comet;
 
 /***/ }),
 /* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+class Comets extends Phaser.Group {
+    constructor(game) {
+        super(game);
+        this.enableBody = true;
+        this.physicsBodyType = Phaser.Physics.ARCADE;
+        this.createMultiple(5, 'comet-' + this.game.rnd.integerInRange(1, 3), 0);
+        this.setAll('anchor.x', 0);
+        this.setAll('anchor.y', 0.5);
+        this.setAll('health', 10);
+        this.setAll('checkWorldBounds', true);
+        this.setAll('outOfBoundsKill', true);
+    }
+    generate() {
+        const comet = this.getFirstDead();
+        const chance = this.game.rnd.integerInRange(1, 100);
+        if (chance != 1 || !comet) {
+            return;
+        }
+        comet.reset(this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
+        comet.body.velocity.x = this.game.rnd.integerInRange(-500, -600);
+    }
+}
+exports.Comets = Comets;
+
+
+/***/ }),
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115339,8 +115390,13 @@ class StartGame extends Phaser.State {
         //     // point.animations.play('transform', 13, true);
         //     this.points.add(point);
         // }
-        this.meteors = this.game.add.group();
+        // this.comets = this.game.add.group();
+        // for (let i = 0; i < 5; i++) {
+        //     const meteor = new Comet(this.game, this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        //     this.comets.add(meteor);
+        // }
         this.powerUps = this.game.add.group();
+        this.comets = new models_1.Comets(this.game);
         this.bullets = new models_1.Bullets(this.game);
         // debug
         this.game.time.advancedTiming = true;
@@ -115350,10 +115406,10 @@ class StartGame extends Phaser.State {
             const player = this.game.state.players[playerId];
         });
         this.generatePoint();
-        this.generateMeteor();
+        this.comets.generate();
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_meteor_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
     generatePoint() {
@@ -115371,15 +115427,6 @@ class StartGame extends Phaser.State {
         // point.animations.add('transform');
         // point.animations.play('transform', 13, true);
         this.points.add(point);
-    }
-    generateMeteor() {
-        const meteorChance = this.game.rnd.integerInRange(1, 100);
-        if (meteorChance != 1) {
-            return;
-        }
-        const meteor = new models_1.Comet(this.game, this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = utils_1.rnd.integerInRange(-500, -600);
-        this.meteors.add(meteor);
     }
     generatePowerUp(sx, sy) {
         const powerUpChance = utils_1.rnd.integerInRange(1, 15);
@@ -115423,7 +115470,7 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

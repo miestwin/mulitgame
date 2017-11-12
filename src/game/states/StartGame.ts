@@ -6,7 +6,7 @@ import { States } from './States';
 import { Const } from '../../const';
 import Network from '../network';
 import { Assets } from '../../assets';
-import { Player, Shield, Bullets, Comet } from '../../models';
+import { Player, Shield, Bullets, Comet, Comets } from '../../models';
 
 declare var Victor;
 
@@ -67,7 +67,7 @@ export class StartGame extends Phaser.State {
      * @type {Phaser.Group}
      * @memberof StartGame
      */
-    private meteors: Phaser.Group;
+    private comets: Comets;
 
     /**
      * Kolekcja bonusów możliwych do zebrania
@@ -166,8 +166,14 @@ export class StartGame extends Phaser.State {
         //     this.points.add(point);
         // }
 
-        this.meteors = this.game.add.group();
+        // this.comets = this.game.add.group();
+        // for (let i = 0; i < 5; i++) {
+        //     const meteor = new Comet(this.game, this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        //     this.comets.add(meteor);
+        // }
+
         this.powerUps = this.game.add.group();
+        this.comets = new Comets(this.game);
         this.bullets = new Bullets(this.game);
 
         // debug
@@ -181,7 +187,7 @@ export class StartGame extends Phaser.State {
         });
 
         this.generatePoint();
-        this.generateMeteor();
+        this.comets.generate();
 
         this.game.physics.arcade.overlap(
                 this.players,
@@ -192,7 +198,7 @@ export class StartGame extends Phaser.State {
                 this.points, this.shield_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
-            this.bullets, this.meteors, this.bullet_meteor_CollisionHandler, null, this);
+            this.bullets, this.comets, this.bullet_meteor_CollisionHandler, null, this);
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
@@ -212,16 +218,6 @@ export class StartGame extends Phaser.State {
         // point.animations.add('transform');
         // point.animations.play('transform', 13, true);
         this.points.add(point);
-    }
-
-    private generateMeteor() {
-        const meteorChance = this.game.rnd.integerInRange(1, 100)
-        if (meteorChance != 1) {
-            return;
-        }
-        const meteor = new Comet(this.game, this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
-        meteor.body.velocity.x = rnd.integerInRange(-500, -600);
-        this.meteors.add(meteor);
     }
 
     private generatePowerUp(sx: number, sy: number) {
