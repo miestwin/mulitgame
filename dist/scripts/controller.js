@@ -112802,9 +112802,9 @@ class GameController extends Phaser.State {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
     shieldUpTimerHandler() {
-        this.shieldUPTimer.stop();
         this.setVibrationInterval();
         this.shieldOverpoweredTimer.start();
+        this.shieldUPTimer.stop();
     }
     setVibrationInterval() {
         this.vibrateInterval = setInterval(() => {

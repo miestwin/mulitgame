@@ -218,9 +218,9 @@ export class GameController extends Phaser.State {
     }
 
     private shieldUpTimerHandler() {
-        this.shieldUPTimer.stop();
         this.setVibrationInterval();
         this.shieldOverpoweredTimer.start();
+        this.shieldUPTimer.stop();
     }
 
     private setVibrationInterval() {

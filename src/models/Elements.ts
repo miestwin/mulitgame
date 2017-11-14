@@ -10,7 +10,8 @@ export class Elements extends Phaser.Group {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(20, Const.Element.Names);
+        console.log(Const.Element.Names);
+        this.createMultiple(4, Const.Element.Names);
         this.setAll('anchor.x', 0.5);
         this.setAll('anchor.y', 0.5);
         this.setAll('scale.x', 1.5);

@@ -10,7 +10,7 @@ export class Comets extends Phaser.Group {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(5, Const.Comet.Names);
+        this.createMultiple(3, Const.Comet.Names);
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
         this.setAll('health', 10);
