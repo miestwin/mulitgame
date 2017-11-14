@@ -112770,12 +112770,8 @@ class GameController extends Phaser.State {
         this.shieldBtn.onInputUp.add(() => {
             if (this.shieldState.canUse) {
                 network_1.default.updatePlayerZ(gameId, false);
-                if (this.shieldUPTimer) {
-                    this.shieldUPTimer.stop();
-                }
-                if (this.shieldOverpoweredTimer) {
-                    this.shieldOverpoweredTimer.stop();
-                }
+                this.shieldUPTimer.stop();
+                this.shieldOverpoweredTimer.stop();
                 this.shieldState.canUse = false;
                 this.stopShieldUP();
                 setTimeout(() => {
