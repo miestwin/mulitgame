@@ -1,7 +1,7 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
-import { noise, map, Color } from '../utils';
+import { noise, map, Color, toHex } from '../utils';
 
 export function nebula(game: Phaser.Game, name: string, offset: number, color: Color) {
     const width = game.width;
@@ -24,20 +24,22 @@ export function nebula(game: Phaser.Game, name: string, offset: number, color: C
 
 function createData(width: number, height: number, offset: number, color: Color, imageData: ImageData): ImageData {
     let yoff = offset;
+    let toff = 0;
     for (let y = 0; y < height; y++) {
         let xoff = offset;
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
             const n = noise(yoff, xoff);
-            let bright = map(n, 0, 1, 0, 255);
-            bright = bright / 5;
-            imageData.data[index * 4 + 0] = color.R;
-            imageData.data[index * 4 + 1] = color.G;
-            imageData.data[index * 4 + 2] = color.B;
+            const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
+            let bright = map(n, 0, 1, 0, 150);
+            // bright = bright / 3;
+            imageData.data[index * 4 + 0] = c.R;
+            imageData.data[index * 4 + 1] = c.G;
+            imageData.data[index * 4 + 2] = c.B;
             imageData.data[index * 4 + 3] = bright;
-            xoff += 0.01;
+            xoff = (x < width / 2) ? xoff + 0.007 : xoff - 0.007;
         }
-        yoff += 0.01;
+        yoff += 0.007;
     }
 
     return imageData;

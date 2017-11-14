@@ -2377,7 +2377,7 @@ var Const;
             static getValue() { return new utils_1.Color(0, 153, 51); }
         }
         Nebula.GREEN = GREEN;
-        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(225, 51, 0), new utils_1.Color(0, 153, 51)];
+        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
         Nebula.Names = [];
     })(Nebula = Const.Nebula || (Const.Nebula = {}));
     let Comet;
@@ -112207,20 +112207,22 @@ function nebula(game, name, offset, color) {
 exports.nebula = nebula;
 function createData(width, height, offset, color, imageData) {
     let yoff = offset;
+    let toff = 0;
     for (let y = 0; y < height; y++) {
         let xoff = offset;
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
             const n = utils_1.noise(yoff, xoff);
-            let bright = utils_1.map(n, 0, 1, 0, 255);
-            bright = bright / 5;
-            imageData.data[index * 4 + 0] = color.R;
-            imageData.data[index * 4 + 1] = color.G;
-            imageData.data[index * 4 + 2] = color.B;
+            const c = utils_1.Color.rgbLum(color, utils_1.map(n, 0, 1, 0, 0.5));
+            let bright = utils_1.map(n, 0, 1, 0, 150);
+            // bright = bright / 3;
+            imageData.data[index * 4 + 0] = c.R;
+            imageData.data[index * 4 + 1] = c.G;
+            imageData.data[index * 4 + 2] = c.B;
             imageData.data[index * 4 + 3] = bright;
-            xoff += 0.01;
+            xoff = (x < width / 2) ? xoff + 0.007 : xoff - 0.007;
         }
-        yoff += 0.01;
+        yoff += 0.007;
     }
     return imageData;
 }
@@ -112514,9 +112516,9 @@ class Loading extends Phaser.State {
         return new Promise((resolve, reject) => {
             generators.stars(this.game, 0.02, 0.125, const_1.Const.Stars.getName());
             const_1.Const.Nebula.Names.push('nebula-1');
-            const nebulaColor = const_1.Const.Nebula.Colors[utils_1.rnd.integerInRange(0, 2)];
+            const nebulaColor = const_1.Const.Nebula.Colors[utils_1.rnd.integerInRange(0, 1)];
             for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-                generators.nebula(this.game, 'nebula-1', 0, nebulaColor);
+                generators.nebula(this.game, 'nebula-1', utils_1.rnd.integerInRange(0, 1000), nebulaColor);
             }
             const_1.Const.Comet.Names.push('comet-1');
             const_1.Const.Comet.Names.push('comet-2');
@@ -115008,7 +115010,7 @@ class MainMenu extends Phaser.State {
         starsback.autoScroll(-100, 0);
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
             const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-200, 0);
+            nebulaback.autoScroll(-100, 0);
         }
         // show game title
         const title = this.game.add.text(this.game.world.centerX, 40, 'SUPER GAME TITLE', {
@@ -115379,11 +115381,11 @@ class StartGame extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        backTile.autoScroll(-300, 0);
+        backTile.autoScroll(-100, 0);
         this.tiles.push(backTile);
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
             const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-200, 0);
+            nebulaback.autoScroll(-100, 0);
             this.tiles.push(nebulaback);
         }
         network_1.default.getAllPlayers();

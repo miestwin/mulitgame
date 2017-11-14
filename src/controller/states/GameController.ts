@@ -118,6 +118,22 @@ export class GameController extends Phaser.State {
             this.scoreText.setText('Score: ' + score);
         });
 
+        // odliczanie czasu użycia tarczy
+        this.shieldUPTimer = this.game.time.create(true);
+        this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
+
+        // odliczanie przeciążenia tarczy
+        this.shieldOverpoweredTimer = this.game.time.create(true);
+        this.shieldOverpoweredTimer.loop(2000, () => {
+            Network.updatePlayerZ(gameId, false);
+            this.shieldState.canUse = false;
+            this.stopShieldUP();
+            setTimeout(() => {
+                this.shieldState.canUse = true;
+            }, 1000);
+            this.shieldOverpoweredTimer.stop();
+        }, this);
+
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
@@ -156,8 +172,6 @@ export class GameController extends Phaser.State {
         this.shieldBtn.onInputDown.add(() => {
             if (this.shieldState.canUse) {
                 Network.updatePlayerZ(gameId, true);
-                this.shieldUPTimer = this.game.time.create(true);
-                this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
                 this.shieldUPTimer.start();
             }
         }, this);
@@ -166,12 +180,10 @@ export class GameController extends Phaser.State {
             if (this.shieldState.canUse) {
                 Network.updatePlayerZ(gameId, false);
                 if (this.shieldUPTimer) {
-                    this.shieldUPTimer.destroy();
-                    this.shieldUPTimer = null;
+                    this.shieldUPTimer.stop();
                 }
                 if (this.shieldOverpoweredTimer) {
-                    this.shieldOverpoweredTimer.destroy();
-                    this.shieldOverpoweredTimer = null;
+                    this.shieldOverpoweredTimer.stop();
                 }
                 this.shieldState.canUse = false;
                 this.stopShieldUP();
@@ -206,6 +218,12 @@ export class GameController extends Phaser.State {
     }
 
     private shieldUpTimerHandler() {
+        this.shieldUPTimer.stop();
+        this.setVibrationInterval();
+        this.shieldOverpoweredTimer.start();
+    }
+
+    private setVibrationInterval() {
         this.vibrateInterval = setInterval(() => {
             this.shieldState.intensity += 0.005;
             this.shieldState.duration += 1;
@@ -216,16 +234,6 @@ export class GameController extends Phaser.State {
             }
             this.signalShieldOverpowered(duration, this.shieldState.intensity);
         }, 500);
-        this.shieldOverpoweredTimer = this.game.time.create(true);
-        this.shieldOverpoweredTimer.loop(2000, () => {
-            Network.updatePlayerZ(gameId, false);
-            this.shieldState.canUse = false;
-            this.stopShieldUP();
-            setTimeout(() => {
-                this.shieldState.canUse = true;
-            }, 15000);
-        }, this);
-        this.shieldOverpoweredTimer.start();
     }
 
     private signalShieldOverpowered(duration: Array<number>, intensity: number) {

@@ -163,9 +163,9 @@ export class Loading extends Phaser.State {
         return new Promise((resolve, reject) => {
             generators.stars(this.game, 0.02, 0.125, Const.Stars.getName());
             Const.Nebula.Names.push('nebula-1');
-            const nebulaColor = Const.Nebula.Colors[rnd.integerInRange(0, 2)];
+            const nebulaColor = Const.Nebula.Colors[rnd.integerInRange(0, 1)];
             for (let i = 0; i < Const.Nebula.Names.length; i++) {
-                generators.nebula(this.game, 'nebula-1', 0, nebulaColor);
+                generators.nebula(this.game, 'nebula-1', rnd.integerInRange(0, 1000), nebulaColor);
             }
             Const.Comet.Names.push('comet-1');
             Const.Comet.Names.push('comet-2');

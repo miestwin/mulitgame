@@ -131,11 +131,11 @@ export class StartGame extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Stars.getName());
-        backTile.autoScroll(-300, 0);
+        backTile.autoScroll(-100, 0);
         this.tiles.push(backTile);
         for (let i = 0; i < Const.Nebula.Names.length; i++) {
             const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-200, 0);
+            nebulaback.autoScroll(-100, 0);
             this.tiles.push(nebulaback);
         }
 

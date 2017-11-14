@@ -2377,7 +2377,7 @@ var Const;
             static getValue() { return new utils_1.Color(0, 153, 51); }
         }
         Nebula.GREEN = GREEN;
-        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(225, 51, 0), new utils_1.Color(0, 153, 51)];
+        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
         Nebula.Names = [];
     })(Nebula = Const.Nebula || (Const.Nebula = {}));
     let Comet;
@@ -112229,20 +112229,22 @@ function nebula(game, name, offset, color) {
 exports.nebula = nebula;
 function createData(width, height, offset, color, imageData) {
     let yoff = offset;
+    let toff = 0;
     for (let y = 0; y < height; y++) {
         let xoff = offset;
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
             const n = utils_1.noise(yoff, xoff);
-            let bright = utils_1.map(n, 0, 1, 0, 255);
-            bright = bright / 5;
-            imageData.data[index * 4 + 0] = color.R;
-            imageData.data[index * 4 + 1] = color.G;
-            imageData.data[index * 4 + 2] = color.B;
+            const c = utils_1.Color.rgbLum(color, utils_1.map(n, 0, 1, 0, 0.5));
+            let bright = utils_1.map(n, 0, 1, 0, 150);
+            // bright = bright / 3;
+            imageData.data[index * 4 + 0] = c.R;
+            imageData.data[index * 4 + 1] = c.G;
+            imageData.data[index * 4 + 2] = c.B;
             imageData.data[index * 4 + 3] = bright;
-            xoff += 0.01;
+            xoff = (x < width / 2) ? xoff + 0.007 : xoff - 0.007;
         }
-        yoff += 0.01;
+        yoff += 0.007;
     }
     return imageData;
 }
@@ -112728,6 +112730,20 @@ class GameController extends Phaser.State {
         network_1.default.onUpdateScore((score) => {
             this.scoreText.setText('Score: ' + score);
         });
+        // odliczanie czasu użycia tarczy
+        this.shieldUPTimer = this.game.time.create(true);
+        this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
+        // odliczanie przeciążenia tarczy
+        this.shieldOverpoweredTimer = this.game.time.create(true);
+        this.shieldOverpoweredTimer.loop(2000, () => {
+            network_1.default.updatePlayerZ(gameId, false);
+            this.shieldState.canUse = false;
+            this.stopShieldUP();
+            setTimeout(() => {
+                this.shieldState.canUse = true;
+            }, 1000);
+            this.shieldOverpoweredTimer.stop();
+        }, this);
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));
@@ -112748,8 +112764,6 @@ class GameController extends Phaser.State {
         this.shieldBtn.onInputDown.add(() => {
             if (this.shieldState.canUse) {
                 network_1.default.updatePlayerZ(gameId, true);
-                this.shieldUPTimer = this.game.time.create(true);
-                this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
                 this.shieldUPTimer.start();
             }
         }, this);
@@ -112757,12 +112771,10 @@ class GameController extends Phaser.State {
             if (this.shieldState.canUse) {
                 network_1.default.updatePlayerZ(gameId, false);
                 if (this.shieldUPTimer) {
-                    this.shieldUPTimer.destroy();
-                    this.shieldUPTimer = null;
+                    this.shieldUPTimer.stop();
                 }
                 if (this.shieldOverpoweredTimer) {
-                    this.shieldOverpoweredTimer.destroy();
-                    this.shieldOverpoweredTimer = null;
+                    this.shieldOverpoweredTimer.stop();
                 }
                 this.shieldState.canUse = false;
                 this.stopShieldUP();
@@ -112790,6 +112802,11 @@ class GameController extends Phaser.State {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
     shieldUpTimerHandler() {
+        this.shieldUPTimer.stop();
+        this.setVibrationInterval();
+        this.shieldOverpoweredTimer.start();
+    }
+    setVibrationInterval() {
         this.vibrateInterval = setInterval(() => {
             this.shieldState.intensity += 0.005;
             this.shieldState.duration += 1;
@@ -112800,16 +112817,6 @@ class GameController extends Phaser.State {
             }
             this.signalShieldOverpowered(duration, this.shieldState.intensity);
         }, 500);
-        this.shieldOverpoweredTimer = this.game.time.create(true);
-        this.shieldOverpoweredTimer.loop(2000, () => {
-            network_1.default.updatePlayerZ(gameId, false);
-            this.shieldState.canUse = false;
-            this.stopShieldUP();
-            setTimeout(() => {
-                this.shieldState.canUse = true;
-            }, 15000);
-        }, this);
-        this.shieldOverpoweredTimer.start();
     }
     signalShieldOverpowered(duration, intensity) {
         window.navigator.vibrate(duration);

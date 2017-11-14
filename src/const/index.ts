@@ -57,7 +57,7 @@ export namespace Const {
             public static getName() { return 'nebula_green'; }
             public static getValue() { return new Color(0, 153, 51); }
         }
-        export const Colors = [new Color(179, 0, 179), new Color(225, 51, 0), new Color(0, 153, 51)];
+        export const Colors = [new Color(179, 0, 179), new Color(0, 153, 51)];
         export const Names = [];
     }
 

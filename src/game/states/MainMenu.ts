@@ -86,7 +86,7 @@ export class MainMenu extends Phaser.State {
         starsback.autoScroll(-100, 0);
         for (let i = 0; i < Const.Nebula.Names.length; i++) {
             const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-200, 0);
+            nebulaback.autoScroll(-100, 0);
         }
 
         // show game title
