@@ -105,7 +105,7 @@ export class GameController extends Phaser.State {
      */
     private vibrateInterval;
 
-    private shieldState = { canUse: true, duration: 0, intensity: 0 };
+    private shieldState = { canUse: true, inUse: false, duration: 0, intensity: 0 };
 
     private shieldUPTimer: Phaser.Timer;
     private shieldOverpoweredTimer: Phaser.Timer;
@@ -146,8 +146,7 @@ export class GameController extends Phaser.State {
         this.leftTouchPos.copy(this.leftTouchStartPos);
         
         this.scoreText = this.game.add.text(
-            this.game.world.centerX,
-            18, 'Score: 0',
+            this.game.world.centerX / 2, 10, 'Score: 0',
             { font: `25px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
 
@@ -198,7 +197,11 @@ export class GameController extends Phaser.State {
                 Network.playerFire(gameId);
             }, this);
 
-        this.shieldBar = new HealthBar(this.game, 10, 10);
+        this.shieldBar = new HealthBar(this.game, {
+            x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
+            bg: { color: '#808080' }, bar: { color: '#ffffff' },
+            animationDuration: 200, flipped: false
+        });
     }
 
     update() {

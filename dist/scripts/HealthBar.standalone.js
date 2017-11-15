@@ -76,7 +76,7 @@ HealthBar.prototype.drawBackground = function() {
     bmd.update();
 
     this.bgSprite = this.game.add.sprite(this.x, this.y, bmd);
-    this.bgSprite.anchor.set(0.5);
+    this.bgSprite.anchor.set(0.5, 0);
 };
 
 HealthBar.prototype.drawHealthBar = function() {
@@ -88,7 +88,7 @@ HealthBar.prototype.drawHealthBar = function() {
     bmd.update();
 
     this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width/2, this.y, bmd);
-    this.barSprite.anchor.y = 0.5;
+    this.barSprite.anchor.y = 0;
     if (this.flipped){
       this.barSprite.anchor.x = 1;
       this.barSprite.position.x = this.bgSprite.position.x + this.config.width * this.bgSprite.anchor.x;

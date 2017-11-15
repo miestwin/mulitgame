@@ -112731,7 +112731,7 @@ class GameController extends Phaser.State {
          * @memberof GameController
          */
         this.leftVector = new Victor(0, 0);
-        this.shieldState = { canUse: true, duration: 0, intensity: 0 };
+        this.shieldState = { canUse: true, inUse: false, duration: 0, intensity: 0 };
         this.frameCounter = 0;
     }
     preload() {
@@ -112760,7 +112760,7 @@ class GameController extends Phaser.State {
     create() {
         this.leftTouchStartPos = new Victor(this.game.world.centerX / 2, this.game.world.centerY);
         this.leftTouchPos.copy(this.leftTouchStartPos);
-        this.scoreText = this.game.add.text(this.game.world.centerX, 18, 'Score: 0', { font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+        this.scoreText = this.game.add.text(this.game.world.centerX / 2, 10, 'Score: 0', { font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5, 0);
         const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, assets_1.Assets.UI.Buttons.Joystick.WheelExternal.getName());
         leftPadBack.anchor.setTo(0.5);
@@ -112791,7 +112791,11 @@ class GameController extends Phaser.State {
         this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 10, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
             network_1.default.playerFire(gameId);
         }, this);
-        this.shieldBar = new HealthBar(this.game, 10, 10);
+        this.shieldBar = new HealthBar(this.game, {
+            x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
+            bg: { color: '#808080' }, bar: { color: '#ffffff' },
+            animationDuration: 200, flipped: false
+        });
     }
     update() {
         this.leftPad.x = this.leftTouchPos.x;
