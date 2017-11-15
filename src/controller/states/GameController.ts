@@ -105,10 +105,11 @@ export class GameController extends Phaser.State {
      */
     private vibrateInterval;
 
-    private shieldState = { canUse: true, inUse: false, duration: 0, intensity: 0 };
+    private shieldInterval;
+    private rechargeInterval;
 
-    private shieldUPTimer: Phaser.Timer;
-    private shieldOverpoweredTimer: Phaser.Timer;
+    private shieldState = { canUse: true, inUse: false, prc: 100 };
+
     private shieldBar;
 
     private frameCounter: number = 0;
@@ -119,22 +120,6 @@ export class GameController extends Phaser.State {
         Network.onUpdateScore((score) => {
             this.scoreText.setText('Score: ' + score);
         });
-
-        // odliczanie czasu użycia tarczy
-        this.shieldUPTimer = this.game.time.create(true);
-        this.shieldUPTimer.loop(4000, this.shieldUpTimerHandler, this);
-
-        // odliczanie przeciążenia tarczy
-        this.shieldOverpoweredTimer = this.game.time.create(true);
-        this.shieldOverpoweredTimer.loop(2000, () => {
-            Network.updatePlayerZ(gameId, false);
-            this.shieldState.canUse = false;
-            this.stopShieldUP();
-            setTimeout(() => {
-                this.shieldState.canUse = true;
-            }, 1000);
-            this.shieldOverpoweredTimer.stop();
-        }, this);
 
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
@@ -172,21 +157,24 @@ export class GameController extends Phaser.State {
 
         this.shieldBtn.onInputDown.add(() => {
             if (this.shieldState.canUse) {
+                this.shieldState.inUse = true;
                 Network.updatePlayerZ(gameId, true);
-                this.shieldUPTimer.start();
+                this.shieldInterval = setInterval(() => {
+                    this.shieldState.prc -= 10;
+                }, 500);
             }
         }, this);
 
         this.shieldBtn.onInputUp.add(() => {
+            this.shieldState.inUse = false;
             if (this.shieldState.canUse) {
                 Network.updatePlayerZ(gameId, false);
-                this.shieldUPTimer.stop();
-                this.shieldOverpoweredTimer.stop();
-                this.shieldState.canUse = false;
+                this.rechargeInterval = setInterval(() => {
+                    this.shieldState.prc += 10;
+                }, 1000);
+            }
+            if (this.vibrateInterval) {
                 this.stopShieldUP();
-                setTimeout(() => {
-                    this.shieldState.canUse = true;
-                }, 5000);
             }
         }, this);
 
@@ -211,6 +199,24 @@ export class GameController extends Phaser.State {
         if (this.frameCounter % 3 === 0) {
             Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
         }
+
+        if (this.shieldState.inUse) {
+            this.shieldBar.setPercent(this.shieldState.prc);
+            if (this.shieldState.prc <= 0) {
+                Network.updatePlayerZ(gameId, false);
+                this.shieldState.canUse = false;
+                this.stopShieldUP();
+                setTimeout(() => {
+                    this.shieldState.canUse = true;
+                }, 3000);
+            }
+            else if (this.shieldState.prc <= 30) {
+                this.signalShieldOverpowered();
+            }
+        }
+        if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100) {
+            clearInterval(this.rechargeInterval);
+        }
     }
 
     shutdown() {
@@ -220,39 +226,15 @@ export class GameController extends Phaser.State {
         Network.removeListener(Network.UPDATE_PLAYER_SCORE);
     }
 
-    private shieldUpTimerHandler() {
-        this.shieldBar.setPercent(70);
-        this.setVibrationInterval();
-        this.shieldOverpoweredTimer.start();
-        this.shieldUPTimer.stop();
-    }
-
-    private setVibrationInterval() {
-        this.vibrateInterval = setInterval(() => {
-            this.shieldState.intensity += 0.005;
-            this.shieldState.duration += 1;
-            let duration = [];
-            for (let i = 0; i < this.shieldState.duration; i++) {
-                duration.push(450 / i);
-                duration.push(50 / i);
-            }
-            this.signalShieldOverpowered(duration, this.shieldState.intensity);
-        }, 500);
-    }
-
-    private signalShieldOverpowered(duration: Array<number>, intensity: number) {
-        window.navigator.vibrate(duration);
-        this.game.camera.shake(intensity, 490);
+    private signalShieldOverpowered() {
+        window.navigator.vibrate(500);
     }
 
     private stopShieldUP() {
         if (this.vibrateInterval) {
             clearInterval(this.vibrateInterval);
-            this.vibrateInterval = null;
         }
         window.navigator.vibrate(0);
-        this.shieldState.duration = 0;
-        this.shieldState.intensity = 0;
     }
 
     private onTouchStart(e: TouchEvent) {
