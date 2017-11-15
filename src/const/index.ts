@@ -71,6 +71,7 @@ export namespace Const {
 
     export namespace Element {
         export const Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        export const ColorsString = ['#ccccff', '#ccffff', '#b3ffb3', '#ffff99', '#ffb3ff', '#99ccff'];
         export const Names = [];
     }
 }

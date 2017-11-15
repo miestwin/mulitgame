@@ -2391,6 +2391,7 @@ var Const;
     let Element;
     (function (Element) {
         Element.Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        Element.ColorsString = ['#ccccff', '#ccffff', '#b3ffb3', '#ffff99', '#ffb3ff', '#99ccff'];
         Element.Names = [];
     })(Element = Const.Element || (Const.Element = {}));
 })(Const = exports.Const || (exports.Const = {}));
@@ -111746,6 +111747,14 @@ const utils_1 = __webpack_require__(12);
 function element(game, key, color) {
     const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(10, 10), 5, 20));
     points.push(points[0]);
+    // const bmd = game.add.bitmapData(10, 10, key, true);
+    // bmd.ctx.fillStyle = color;
+    // bmd.ctx.moveTo(points[0].X, points[0].Y);
+    // for (let i = 1; i < points.length; i++) {
+    //     bmd.ctx.lineTo(points[i].X, points[i].Y);
+    // }
+    // bmd.ctx.fill();
+    // bmd.generateTexture(key);
     const graphics = game.add.graphics(0, 0);
     graphics.beginFill(color);
     graphics.moveTo(points[0].X, points[0].Y);

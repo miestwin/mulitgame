@@ -8,6 +8,7 @@ import Network from '../network';
 import { Assets } from '../../assets';
 
 declare var Victor;
+declare var HealthBar;
 declare var gameId;
 
 /**
@@ -108,6 +109,7 @@ export class GameController extends Phaser.State {
 
     private shieldUPTimer: Phaser.Timer;
     private shieldOverpoweredTimer: Phaser.Timer;
+    private shieldBar;
 
     private frameCounter: number = 0;
 
@@ -195,6 +197,8 @@ export class GameController extends Phaser.State {
             () => {
                 Network.playerFire(gameId);
             }, this);
+
+        this.shieldBar = new HealthBar(this.game, 10, 10);
     }
 
     update() {
@@ -214,6 +218,7 @@ export class GameController extends Phaser.State {
     }
 
     private shieldUpTimerHandler() {
+        this.shieldBar.setPercent(70);
         this.setVibrationInterval();
         this.shieldOverpoweredTimer.start();
         this.shieldUPTimer.stop();
