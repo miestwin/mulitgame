@@ -199,11 +199,12 @@ export class GameController extends Phaser.State {
             Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
         }
 
-        if (this.shieldState.inUse) {
-            this.shieldBar.setPercent(this.shieldState.prc);
+        this.shieldBar.setPercent(this.shieldState.prc);
+        if (this.shieldState.inUse && this.shieldState.canUse) {
             if (this.shieldState.prc <= 0) {
                 Network.updatePlayerZ(gameId, false);
                 this.shieldState.canUse = false;
+                this.shieldState.inUse = false;
                 this.stopShieldUP();
                 this.setRechargeInterval();
                 var that = this;
@@ -215,8 +216,9 @@ export class GameController extends Phaser.State {
                 this.signalShieldOverpowered();
             }
         }
-        if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100) {
+        if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100 && this.rechargeInterval) {
             clearInterval(this.rechargeInterval);
+            this.rechargeInterval = null;
         }
     }
 
