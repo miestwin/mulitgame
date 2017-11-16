@@ -112766,8 +112766,8 @@ class GameController extends Phaser.State {
             }
         }, this);
         this.shieldBtn.onInputUp.add(() => {
-            this.shieldState.inUse = false;
             if (this.shieldState.canUse) {
+                this.shieldState.inUse = false;
                 network_1.default.updatePlayerZ(gameId, false);
                 this.setRechargeInterval();
             }
@@ -112798,8 +112798,9 @@ class GameController extends Phaser.State {
                 this.shieldState.canUse = false;
                 this.stopShieldUP();
                 this.setRechargeInterval();
-                setTimeout(() => {
-                    this.shieldState.canUse = true;
+                var that = this;
+                this.canUseTimeout = setTimeout(() => {
+                    that.shieldState.canUse = true;
                 }, 3000);
             }
             else if (this.shieldState.prc <= 30) {

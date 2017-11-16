@@ -107,6 +107,7 @@ export class GameController extends Phaser.State {
 
     private shieldInterval;
     private rechargeInterval;
+    private canUseTimeout;
 
     private shieldState = { canUse: true, inUse: false, prc: 100 };
 
@@ -166,8 +167,8 @@ export class GameController extends Phaser.State {
         }, this);
 
         this.shieldBtn.onInputUp.add(() => {
-            this.shieldState.inUse = false;
             if (this.shieldState.canUse) {
+                this.shieldState.inUse = false;
                 Network.updatePlayerZ(gameId, false);
                 this.setRechargeInterval();
             }
@@ -205,8 +206,9 @@ export class GameController extends Phaser.State {
                 this.shieldState.canUse = false;
                 this.stopShieldUP();
                 this.setRechargeInterval();
-                setTimeout(() => {
-                    this.shieldState.canUse = true;
+                var that = this;
+                this.canUseTimeout = setTimeout(() => {
+                    that.shieldState.canUse = true;
                 }, 3000);
             }
             else if (this.shieldState.prc <= 30) {
