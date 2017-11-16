@@ -112790,6 +112790,7 @@ class GameController extends Phaser.State {
         this.frameCounter++;
         if (this.frameCounter % 3 === 0) {
             network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
+            console.log(this.shieldState);
         }
         this.shieldBar.setPercent(this.shieldState.prc);
         if (this.shieldState.inUse && this.shieldState.canUse) {
@@ -112820,9 +112821,10 @@ class GameController extends Phaser.State {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
     setRechargeInterval() {
+        var that = this;
         this.rechargeInterval = setInterval(() => {
-            if (this.shieldState.canUse) {
-                this.shieldState.prc += 10;
+            if (that.shieldState.canUse) {
+                that.shieldState.prc += 10;
             }
         }, 1000);
     }
