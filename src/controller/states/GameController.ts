@@ -170,6 +170,7 @@ export class GameController extends Phaser.State {
             if (this.shieldState.canUse) {
                 this.shieldState.inUse = false;
                 Network.updatePlayerZ(gameId, false);
+                clearInterval(this.shieldInterval);
                 this.setRechargeInterval();
             }
             if (this.vibrateInterval) {
@@ -207,6 +208,7 @@ export class GameController extends Phaser.State {
                 this.shieldState.canUse = false;
                 this.shieldState.inUse = false;
                 this.stopShieldUP();
+                clearInterval(this.shieldInterval);
                 this.setRechargeInterval();
                 var that = this;
                 this.canUseTimeout = setTimeout(() => {
