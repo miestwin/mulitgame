@@ -115524,6 +115524,7 @@ class StartGame extends Phaser.State {
         this.points.generate();
         this.comets.generate();
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
