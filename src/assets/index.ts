@@ -64,6 +64,20 @@ export namespace Assets {
             static getName(): string { return 'transparent'; }
             static getPNG(): string { return '../assets/images/transparent.png'; }
         }
+        export namespace PowerUps {
+            export class Shield {
+                static getName(): string { return 'power-up_shield'; }
+                static getPNG(): string { return '../assets/images/power-ups/powerupYellow_shield.png'; }
+            }
+            export class Cooldown {
+                static getName(): string { return 'power-up_cooldown'; }
+                static getPNG(): string { return '../assets/images/power-ups/powerupYellow_bolt.png'; }
+            }
+            export class Pull {
+                static getName(): string { return 'power-up_pull'; }
+                static getPNG(): string { return '../assets/images/power-ups/powerupYellow_star.png'; }
+            }
+        }
     }
 
     export namespace UI {

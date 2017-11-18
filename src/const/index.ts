@@ -75,5 +75,3 @@ export namespace Const {
         export const Names = [];
     }
 }
-
-// 'power-up_cooldown', 'power-up_pull', 'power-up_big'

@@ -8,22 +8,6 @@ declare var Victor;
 
 export class Player extends Phaser.Sprite {
 
-    public static get MAX_SCALE() {
-        return 1.6;
-    }
-
-    public static get MIN_SCALE() {
-        return 0;
-    }
-
-    public static get DEFAULT_SCALE() {
-        return 1;
-    }
-
-    public static get SCALE_STEP() {
-        return 0.02;
-    }
-
     /**
      * Identyfikator
      * @private
@@ -73,6 +57,14 @@ export class Player extends Phaser.Sprite {
 
     public weapon: Phaser.Weapon;
 
+    public MAX_SCALE = 1.6;
+
+    public MIN_SCALE = 0;
+
+    public DEFAULT_SCALE = 1;
+
+    public SCALE_STEP = 0.02;
+
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         super(game, x, y, avatar);
         this._id = id;
@@ -105,10 +97,10 @@ export class Player extends Phaser.Sprite {
             this.body.velocity.y = this.vector.y * 9;
             this.shield.setXY(this.x, this.y);
 
-            if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);
-            } else if (!this.zPos && this.shield.scale.x > Player.MIN_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x - Player.SCALE_STEP);
+            if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
+            } else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
             }
         }
     }

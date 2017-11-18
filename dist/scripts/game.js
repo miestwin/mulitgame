@@ -65,6 +65,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(39);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 var g;
@@ -91,25 +98,18 @@ module.exports = g;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(39);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(40);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(41);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 4 */
@@ -193,6 +193,24 @@ var Assets;
             static getPNG() { return '../assets/images/transparent.png'; }
         }
         Images.Transparent = Transparent;
+        let PowerUps;
+        (function (PowerUps) {
+            class Shield {
+                static getName() { return 'power-up_shield'; }
+                static getPNG() { return '../assets/images/power-ups/powerupYellow_shield.png'; }
+            }
+            PowerUps.Shield = Shield;
+            class Cooldown {
+                static getName() { return 'power-up_cooldown'; }
+                static getPNG() { return '../assets/images/power-ups/powerupYellow_bolt.png'; }
+            }
+            PowerUps.Cooldown = Cooldown;
+            class Pull {
+                static getName() { return 'power-up_pull'; }
+                static getPNG() { return '../assets/images/power-ups/powerupYellow_star.png'; }
+            }
+            PowerUps.Pull = Pull;
+        })(PowerUps = Images.PowerUps || (Images.PowerUps = {}));
     })(Images = Assets.Images || (Assets.Images = {}));
     let UI;
     (function (UI) {
@@ -1027,10 +1045,36 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(36));
+__export(__webpack_require__(79));
+__export(__webpack_require__(80));
+__export(__webpack_require__(30));
+__export(__webpack_require__(31));
+__export(__webpack_require__(81));
+__export(__webpack_require__(32));
+__export(__webpack_require__(34));
+__export(__webpack_require__(85));
+__export(__webpack_require__(86));
+__export(__webpack_require__(87));
+__export(__webpack_require__(35));
+__export(__webpack_require__(88));
+__export(__webpack_require__(89));
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1220,7 +1264,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1409,10 +1453,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -1455,7 +1499,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -1467,7 +1511,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1656,33 +1700,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(36));
-__export(__webpack_require__(79));
-__export(__webpack_require__(80));
-__export(__webpack_require__(30));
-__export(__webpack_require__(31));
-__export(__webpack_require__(81));
-__export(__webpack_require__(32));
-__export(__webpack_require__(34));
-__export(__webpack_require__(85));
-__export(__webpack_require__(86));
-__export(__webpack_require__(87));
-__export(__webpack_require__(35));
-__export(__webpack_require__(88));
-__export(__webpack_require__(89));
-
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 13 */
@@ -2132,7 +2150,7 @@ module.exports = function (opts) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 15 */
@@ -2304,7 +2322,7 @@ Transport.prototype.onClose = function () {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 var Const;
 (function (Const) {
     let Ships;
@@ -2395,7 +2413,6 @@ var Const;
         Element.Names = [];
     })(Element = Const.Element || (Const.Element = {}));
 })(Const = exports.Const || (exports.Const = {}));
-// 'power-up_cooldown', 'power-up_pull', 'power-up_big' 
 
 
 /***/ }),
@@ -2512,7 +2529,7 @@ function hasBinary (obj) {
   return false;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 21 */
@@ -2532,7 +2549,7 @@ function isBuf(obj) {
          (global.ArrayBuffer && obj instanceof ArrayBuffer);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 22 */
@@ -2549,7 +2566,7 @@ var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(13);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
-var debug = __webpack_require__(8)('socket.io-client:manager');
+var debug = __webpack_require__(9)('socket.io-client:manager');
 var indexOf = __webpack_require__(26);
 var Backoff = __webpack_require__(74);
 
@@ -3171,7 +3188,7 @@ function polling (opts) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 24 */
@@ -3182,11 +3199,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(15);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(25);
-var debug = __webpack_require__(11)('engine.io-client:polling');
+var debug = __webpack_require__(12)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3528,8 +3545,8 @@ var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(73);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
-var debug = __webpack_require__(8)('socket.io-client:socket');
-var parseqs = __webpack_require__(9);
+var debug = __webpack_require__(9)('socket.io-client:socket');
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -107437,7 +107454,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 42 */
@@ -107459,7 +107476,7 @@ __export(__webpack_require__(43));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const FontFaceObserver = __webpack_require__(44);
@@ -107536,7 +107553,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 var url = __webpack_require__(46);
 var parser = __webpack_require__(13);
 var Manager = __webpack_require__(22);
-var debug = __webpack_require__(8)('socket.io-client');
+var debug = __webpack_require__(9)('socket.io-client');
 
 /**
  * Module exports.
@@ -107634,7 +107651,7 @@ exports.Socket = __webpack_require__(27);
  */
 
 var parseuri = __webpack_require__(19);
-var debug = __webpack_require__(8)('socket.io-client:url');
+var debug = __webpack_require__(9)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -107704,7 +107721,7 @@ function url (uri, loc) {
   return obj;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 47 */
@@ -108262,7 +108279,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 50 */
@@ -108787,7 +108804,7 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 54 */
@@ -108834,12 +108851,12 @@ module.exports.parser = __webpack_require__(6);
 
 var transports = __webpack_require__(23);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(11)('engine.io-client:socket');
+var debug = __webpack_require__(12)('engine.io-client:socket');
 var index = __webpack_require__(26);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(19);
 var parsejson = __webpack_require__(72);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -109573,7 +109590,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 58 */
@@ -109609,8 +109626,8 @@ try {
 var XMLHttpRequest = __webpack_require__(14);
 var Polling = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(10);
-var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(11);
+var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110016,7 +110033,7 @@ function unloadHandler () {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 60 */
@@ -110371,7 +110388,7 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module), __webpack_require__(1)))
 
 /***/ }),
 /* 64 */
@@ -110575,7 +110592,7 @@ module.exports = (function() {
   }
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 67 */
@@ -110953,7 +110970,7 @@ function plural(ms, n, name) {
  */
 
 var Polling = __webpack_require__(24);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 
 /**
  * Module exports.
@@ -111179,7 +111196,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 70 */
@@ -111191,10 +111208,10 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(15);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(9);
-var inherit = __webpack_require__(10);
+var parseqs = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(25);
-var debug = __webpack_require__(11)('engine.io-client:websocket');
+var debug = __webpack_require__(12)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -111472,7 +111489,7 @@ WS.prototype.check = function () {
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 71 */
@@ -111516,7 +111533,7 @@ module.exports = function parsejson(data) {
     return (new Function('return ' + data))();
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 73 */
@@ -111652,7 +111669,7 @@ __export(__webpack_require__(91));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 /**
@@ -111714,7 +111731,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 function ship(game, key, color) {
@@ -111740,10 +111757,10 @@ exports.ship = ship;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 function element(game, key, color) {
     const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(10, 10), 5, 20));
     points.push(points[0]);
@@ -112151,7 +112168,7 @@ exports.pingPong = pingPong;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 function comet(game, width, height, rc, key) {
@@ -112192,10 +112209,10 @@ exports.comet = comet;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 function nebula(game, name, offset, color) {
     const width = game.width;
     const height = game.height;
@@ -112252,6 +112269,7 @@ __export(__webpack_require__(112));
 __export(__webpack_require__(113));
 __export(__webpack_require__(114));
 __export(__webpack_require__(115));
+__export(__webpack_require__(116));
 
 
 /***/ }),
@@ -112299,12 +112317,12 @@ function startApp() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(105);
 const network_1 = __webpack_require__(38);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 /**
  * Utworzenie gry
  * @export
@@ -112345,8 +112363,8 @@ __export(__webpack_require__(37));
 __export(__webpack_require__(106));
 __export(__webpack_require__(107));
 __export(__webpack_require__(110));
-__export(__webpack_require__(116));
-__export(__webpack_require__(117));
+__export(__webpack_require__(120));
+__export(__webpack_require__(121));
 
 
 /***/ }),
@@ -112356,7 +112374,7 @@ __export(__webpack_require__(117));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(37);
@@ -112405,7 +112423,7 @@ exports.Boot = Boot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const QRious = __webpack_require__(108);
@@ -112414,7 +112432,7 @@ const config_1 = __webpack_require__(109);
 const generators = __webpack_require__(75);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(16);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 /**
  * Ładowanie zasobów
  * @export
@@ -112432,6 +112450,9 @@ class Loading extends Phaser.State {
         this.game.load.spritesheet(assets_1.Assets.Spritesheets.Bullets.RGBLaser.getName(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getPNG(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getFrameWidth(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getFrameHeight());
         /* game images */
         this.game.load.image(assets_1.Assets.Images.Shield.getName(), assets_1.Assets.Images.Shield.getPNG());
+        this.game.load.image(assets_1.Assets.Images.PowerUps.Shield.getName(), assets_1.Assets.Images.PowerUps.Shield.getPNG());
+        this.game.load.image(assets_1.Assets.Images.PowerUps.Cooldown.getName(), assets_1.Assets.Images.PowerUps.Cooldown.getPNG());
+        this.game.load.image(assets_1.Assets.Images.PowerUps.Pull.getName(), assets_1.Assets.Images.PowerUps.Pull.getPNG());
         /* ui */
         this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Grey.getName(), assets_1.Assets.UI.Buttons.Menu.Grey.getPNG());
         /* shaders */
@@ -114945,7 +114966,7 @@ exports.default = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(37);
@@ -115084,7 +115105,7 @@ exports.MainMenu = MainMenu;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 class Shield extends Phaser.Sprite {
@@ -115114,30 +115135,16 @@ exports.Shield = Shield;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 class Player extends Phaser.Sprite {
-    static get MAX_SCALE() {
-        return 1.6;
-    }
-    static get MIN_SCALE() {
-        return 0;
-    }
-    static get DEFAULT_SCALE() {
-        return 1;
-    }
-    static get SCALE_STEP() {
-        return 0.02;
-    }
-    get id() {
-        return this._id;
-    }
-    get socket() {
-        return this._socketId;
-    }
     constructor(game, x, y, { id, socketId, avatar }) {
         super(game, x, y, avatar);
+        this.MAX_SCALE = 1.6;
+        this.MIN_SCALE = 0;
+        this.DEFAULT_SCALE = 1;
+        this.SCALE_STEP = 0.02;
         this._id = id;
         this._socketId = socketId;
         this.score = 0;
@@ -115149,6 +115156,12 @@ class Player extends Phaser.Sprite {
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
+    }
+    get id() {
+        return this._id;
+    }
+    get socket() {
+        return this._socketId;
     }
     /**
      * Ustawia X i Y grafiki
@@ -115165,11 +115178,11 @@ class Player extends Phaser.Sprite {
             this.body.velocity.x = this.vector.x * 9;
             this.body.velocity.y = this.vector.y * 9;
             this.shield.setXY(this.x, this.y);
-            if (this.zPos && this.shield.scale.x < Player.MAX_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x + Player.SCALE_STEP);
+            if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
             }
-            else if (!this.zPos && this.shield.scale.x > Player.MIN_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x - Player.SCALE_STEP);
+            else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
+                this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
             }
         }
     }
@@ -115184,7 +115197,7 @@ exports.Player = Player;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const assets_1 = __webpack_require__(4);
@@ -115247,7 +115260,7 @@ exports.Bullets = Bullets;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(16);
@@ -115283,7 +115296,7 @@ exports.Comets = Comets;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(16);
@@ -115319,10 +115332,112 @@ exports.Elements = Elements;
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__export(__webpack_require__(117));
+__export(__webpack_require__(118));
+__export(__webpack_require__(119));
+
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class PowerUpShield extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.Shield.getName());
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    powerup(player, options) {
+        player.MAX_SCALE = 3;
+        player.SCALE_STEP = 0.2;
+        setTimeout(() => {
+            player.MAX_SCALE = 1.6;
+            player.SCALE_STEP = 0.02;
+        }, 4000);
+    }
+}
+exports.PowerUpShield = PowerUpShield;
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class PowerUpCooldown extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.Cooldown.getName());
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    powerup(player, options) {
+    }
+}
+exports.PowerUpCooldown = PowerUpCooldown;
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class PowerUpPull extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.Pull.getName());
+        this.anchor.setTo(0.5);
+        this.checkWorldBounds = true;
+        this.outOfBoundsKill = true;
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    powerup(player, options) {
+        const elements = options.points;
+        const points = elements.countLiving();
+        player.score += points;
+        const fn = options.fn;
+        fn(player);
+        elements.setAll('alive', false, true, true);
+    }
+}
+exports.PowerUpPull = PowerUpPull;
+
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(7);
 const const_1 = __webpack_require__(16);
 const network_1 = __webpack_require__(38);
 const assets_1 = __webpack_require__(4);
@@ -115428,9 +115543,20 @@ class StartGame extends Phaser.State {
         bullet.kill();
         comet.health -= 1;
         if (comet.health <= 0) {
-            // this.generatePowerUp(comet.x, comet.y);
+            this.generatePowerUp(comet.x, comet.y);
             comet.kill();
         }
+    }
+    player_powerup_CollisionHandler(player, pu) {
+        pu.powerup(player);
+    }
+    generatePowerUp(x, y) {
+        const chance = utils_1.rnd.integerInRange(1, 25);
+        if (chance != 1)
+            return;
+        const pu = new models_1.PowerUpShield(this.game, x, y);
+        pu.body.velocity.x = -400;
+        this.powerUps.add(pu);
     }
     shutdown() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
@@ -115443,13 +115569,13 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 117 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const assets_1 = __webpack_require__(4);

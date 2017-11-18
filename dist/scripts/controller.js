@@ -65,6 +65,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(39);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 var g;
@@ -91,25 +98,18 @@ module.exports = g;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(39);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(40);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(41);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 4 */
@@ -193,6 +193,24 @@ var Assets;
             static getPNG() { return '../assets/images/transparent.png'; }
         }
         Images.Transparent = Transparent;
+        let PowerUps;
+        (function (PowerUps) {
+            class Shield {
+                static getName() { return 'power-up_shield'; }
+                static getPNG() { return '../assets/images/power-ups/powerupYellow_shield.png'; }
+            }
+            PowerUps.Shield = Shield;
+            class Cooldown {
+                static getName() { return 'power-up_cooldown'; }
+                static getPNG() { return '../assets/images/power-ups/powerupYellow_bolt.png'; }
+            }
+            PowerUps.Cooldown = Cooldown;
+            class Pull {
+                static getName() { return 'power-up_pull'; }
+                static getPNG() { return '../assets/images/power-ups/powerupYellow_star.png'; }
+            }
+            PowerUps.Pull = Pull;
+        })(PowerUps = Images.PowerUps || (Images.PowerUps = {}));
     })(Images = Assets.Images || (Assets.Images = {}));
     let UI;
     (function (UI) {
@@ -1027,10 +1045,36 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(36));
+__export(__webpack_require__(79));
+__export(__webpack_require__(80));
+__export(__webpack_require__(30));
+__export(__webpack_require__(31));
+__export(__webpack_require__(81));
+__export(__webpack_require__(32));
+__export(__webpack_require__(34));
+__export(__webpack_require__(85));
+__export(__webpack_require__(86));
+__export(__webpack_require__(87));
+__export(__webpack_require__(35));
+__export(__webpack_require__(88));
+__export(__webpack_require__(89));
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1220,7 +1264,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1409,10 +1453,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -1455,7 +1499,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -1467,7 +1511,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1656,33 +1700,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(36));
-__export(__webpack_require__(79));
-__export(__webpack_require__(80));
-__export(__webpack_require__(30));
-__export(__webpack_require__(31));
-__export(__webpack_require__(81));
-__export(__webpack_require__(32));
-__export(__webpack_require__(34));
-__export(__webpack_require__(85));
-__export(__webpack_require__(86));
-__export(__webpack_require__(87));
-__export(__webpack_require__(35));
-__export(__webpack_require__(88));
-__export(__webpack_require__(89));
-
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 13 */
@@ -2132,7 +2150,7 @@ module.exports = function (opts) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 15 */
@@ -2304,7 +2322,7 @@ Transport.prototype.onClose = function () {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 var Const;
 (function (Const) {
     let Ships;
@@ -2395,7 +2413,6 @@ var Const;
         Element.Names = [];
     })(Element = Const.Element || (Const.Element = {}));
 })(Const = exports.Const || (exports.Const = {}));
-// 'power-up_cooldown', 'power-up_pull', 'power-up_big' 
 
 
 /***/ }),
@@ -2719,7 +2736,7 @@ function hasBinary (obj) {
   return false;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 21 */
@@ -2739,7 +2756,7 @@ function isBuf(obj) {
          (global.ArrayBuffer && obj instanceof ArrayBuffer);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 22 */
@@ -2756,7 +2773,7 @@ var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(13);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
-var debug = __webpack_require__(8)('socket.io-client:manager');
+var debug = __webpack_require__(9)('socket.io-client:manager');
 var indexOf = __webpack_require__(26);
 var Backoff = __webpack_require__(74);
 
@@ -3378,7 +3395,7 @@ function polling (opts) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 24 */
@@ -3389,11 +3406,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(15);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(25);
-var debug = __webpack_require__(11)('engine.io-client:polling');
+var debug = __webpack_require__(12)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3735,8 +3752,8 @@ var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(73);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
-var debug = __webpack_require__(8)('socket.io-client:socket');
-var parseqs = __webpack_require__(9);
+var debug = __webpack_require__(9)('socket.io-client:socket');
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -107459,7 +107476,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 42 */
@@ -107481,7 +107498,7 @@ __export(__webpack_require__(43));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const FontFaceObserver = __webpack_require__(44);
@@ -107558,7 +107575,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 var url = __webpack_require__(46);
 var parser = __webpack_require__(13);
 var Manager = __webpack_require__(22);
-var debug = __webpack_require__(8)('socket.io-client');
+var debug = __webpack_require__(9)('socket.io-client');
 
 /**
  * Module exports.
@@ -107656,7 +107673,7 @@ exports.Socket = __webpack_require__(27);
  */
 
 var parseuri = __webpack_require__(19);
-var debug = __webpack_require__(8)('socket.io-client:url');
+var debug = __webpack_require__(9)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -107726,7 +107743,7 @@ function url (uri, loc) {
   return obj;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 47 */
@@ -108284,7 +108301,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 50 */
@@ -108809,7 +108826,7 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 54 */
@@ -108856,12 +108873,12 @@ module.exports.parser = __webpack_require__(6);
 
 var transports = __webpack_require__(23);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(11)('engine.io-client:socket');
+var debug = __webpack_require__(12)('engine.io-client:socket');
 var index = __webpack_require__(26);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(19);
 var parsejson = __webpack_require__(72);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -109595,7 +109612,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 58 */
@@ -109631,8 +109648,8 @@ try {
 var XMLHttpRequest = __webpack_require__(14);
 var Polling = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(10);
-var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(11);
+var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110038,7 +110055,7 @@ function unloadHandler () {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 60 */
@@ -110393,7 +110410,7 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module), __webpack_require__(1)))
 
 /***/ }),
 /* 64 */
@@ -110597,7 +110614,7 @@ module.exports = (function() {
   }
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 67 */
@@ -110975,7 +110992,7 @@ function plural(ms, n, name) {
  */
 
 var Polling = __webpack_require__(24);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 
 /**
  * Module exports.
@@ -111201,7 +111218,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 70 */
@@ -111213,10 +111230,10 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(15);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(9);
-var inherit = __webpack_require__(10);
+var parseqs = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(25);
-var debug = __webpack_require__(11)('engine.io-client:websocket');
+var debug = __webpack_require__(12)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -111494,7 +111511,7 @@ WS.prototype.check = function () {
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 71 */
@@ -111538,7 +111555,7 @@ module.exports = function parsejson(data) {
     return (new Function('return ' + data))();
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 73 */
@@ -111674,7 +111691,7 @@ __export(__webpack_require__(91));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 /**
@@ -111736,7 +111753,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 function ship(game, key, color) {
@@ -111762,10 +111779,10 @@ exports.ship = ship;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 function element(game, key, color) {
     const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(10, 10), 5, 20));
     points.push(points[0]);
@@ -112173,7 +112190,7 @@ exports.pingPong = pingPong;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 function comet(game, width, height, rc, key) {
@@ -112214,10 +112231,10 @@ exports.comet = comet;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 function nebula(game, name, offset, color) {
     const width = game.width;
     const height = game.height;
@@ -112295,7 +112312,7 @@ function startApp() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(95);
@@ -112356,7 +112373,7 @@ __export(__webpack_require__(102));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);
@@ -112413,7 +112430,7 @@ exports.Boot = Boot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);
@@ -112506,7 +112523,7 @@ exports.Loading = Loading;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);
@@ -112541,7 +112558,7 @@ exports.MainMenu = MainMenu;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);
@@ -112669,7 +112686,7 @@ exports.AvatarSelector = AvatarSelector;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const assets_1 = __webpack_require__(4);
@@ -112699,7 +112716,7 @@ exports.Message = Message;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const network_1 = __webpack_require__(18);
@@ -112891,7 +112908,7 @@ exports.GameController = GameController;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);

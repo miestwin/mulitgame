@@ -6,7 +6,16 @@ import { States } from './States';
 import { Const } from '../../const';
 import Network from '../network';
 import { Assets } from '../../assets';
-import { Player, Shield, Bullets, Comets, Elements } from '../../models';
+import {
+    Player,
+    Shield,
+    Bullets,
+    Comets,
+    Elements,
+    IPowerUp,
+    PowerUpPull,
+    PowerUpShield
+} from '../../models';
 
 declare var Victor;
 
@@ -186,9 +195,21 @@ export class StartGame extends Phaser.State {
         bullet.kill();
         comet.health -= 1;
         if (comet.health <= 0) {
-            // this.generatePowerUp(comet.x, comet.y);
+            this.generatePowerUp(comet.x, comet.y);
             comet.kill();
         }
+    }
+
+    private player_powerup_CollisionHandler(player: Player, pu) {
+        pu.powerup(player);
+    }
+
+    private generatePowerUp(x: number, y: number) {
+        const chance = rnd.integerInRange(1, 25);
+        if (chance != 1) return;
+        const pu = new PowerUpShield(this.game, x, y);
+        pu.body.velocity.x = -400;
+        this.powerUps.add(pu);
     }
 
     shutdown() {
