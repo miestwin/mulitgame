@@ -21,7 +21,7 @@ export class Elements extends Phaser.Group {
 
     public generate() {
         const element = this.getFirstDead();
-        const chance = this.game.rnd.integerInRange(1, 10);
+        const chance = this.game.rnd.integerInRange(1, 5);
         if (chance != 1 || !element) {
             return;
         }

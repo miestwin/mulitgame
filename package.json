@@ -35,9 +35,8 @@
     "local": "npm run dist && npm start",
     "repo": "npm run dist && git add --all && git commit -m 'deploy all changes to repository' && git push",
     "deploy": "git add --all && git commit -m 'deploy to server' && git push heroku master && heroku ps:scale web=1",
-    "scale": "heroku ps:scale web=1",
-    "open": "heroku open",
-    "heroku": "git push heroku master && npm run scale && npm run open"
+    "server": "npm run dist && npm run deploy",
+    "test": "npm run server && heroku open"
   },
   "engines": {
     "node": "7.6.0",
