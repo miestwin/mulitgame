@@ -206,10 +206,11 @@ export class StartGame extends Phaser.State {
 
     private player_powerup_CollisionHandler(player: Player, pu) {
         pu.powerup(player);
+        pu.destroy();
     }
 
     private generatePowerUp(x: number, y: number) {
-        const chance = rnd.integerInRange(1, 25);
+        const chance = rnd.integerInRange(1, 20);
         if (chance != 1) return;
         const pu = new PowerUpShield(this.game, x, y);
         pu.body.velocity.x = -400;

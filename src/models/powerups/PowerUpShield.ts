@@ -14,7 +14,7 @@ export class PowerUpShield extends Phaser.Sprite {
     }
 
     powerup(player?: Player, options?: any) {
-        player.MAX_SCALE = 3;
+        player.MAX_SCALE = 2.3;
         player.SCALE_STEP = 0.2;
         setTimeout(() => {
             player.MAX_SCALE = 1.6;

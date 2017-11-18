@@ -115305,7 +115305,7 @@ class Elements extends Phaser.Group {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(4, const_1.Const.Element.Names);
+        this.createMultiple(10, const_1.Const.Element.Names);
         this.setAll('anchor.x', 0.5);
         this.setAll('anchor.y', 0.5);
         this.setAll('scale.x', 1.5);
@@ -115360,7 +115360,7 @@ class PowerUpShield extends Phaser.Sprite {
         game.physics.arcade.enable(this);
     }
     powerup(player, options) {
-        player.MAX_SCALE = 3;
+        player.MAX_SCALE = 2.3;
         player.SCALE_STEP = 0.2;
         setTimeout(() => {
             player.MAX_SCALE = 1.6;
@@ -115550,9 +115550,10 @@ class StartGame extends Phaser.State {
     }
     player_powerup_CollisionHandler(player, pu) {
         pu.powerup(player);
+        pu.destroy();
     }
     generatePowerUp(x, y) {
-        const chance = utils_1.rnd.integerInRange(1, 25);
+        const chance = utils_1.rnd.integerInRange(1, 20);
         if (chance != 1)
             return;
         const pu = new models_1.PowerUpShield(this.game, x, y);
