@@ -46,6 +46,10 @@ module.exports = (server) => {
                     const characters = getCharactersInUse(socket.player.gameId);
                     socket.broadcast.to('game-' + socket.player.gameId).emit('update-character-selector', characters);
                     socket.broadcast.to('game-' + socket.player.gameId).emit('player-disconnected', socket.player);
+                    const numberOfPlayers = numberOfPlayersInGame(socket.player.gameId);
+                    if (numberOfPlayers === 0) {
+                        socket.broadcast.to('game-' + socket.player.gameId).emit('no_connected_players');
+                    }
                 }
             });
         });

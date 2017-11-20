@@ -81,10 +81,9 @@ export class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States.MAIN_MENU);
+        }).catch(() => {
+            this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
         });
-        // .catch(() => {
-        //     this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
-        // });
         // this.createQRCode().then(() => {
         //     this.loadingText.setText('Create QRCode Complete');
         //     this.game.state.start(States.MAIN_MENU);

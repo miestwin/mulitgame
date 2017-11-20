@@ -86,6 +86,8 @@ export class StartGame extends Phaser.State {
      */
     private powerUps: Phaser.Group;
 
+    private gameEndInterval;
+
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -128,6 +130,10 @@ export class StartGame extends Phaser.State {
                 return players;
             }, {});
         });
+
+        Network.onNoConnectedPlayers(() => {
+            this.game.state.start(States.MESSAGE, true, false, 'No connected players');
+        });
     }
 
     create() {
@@ -140,6 +146,7 @@ export class StartGame extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, Const.Stars.getName());
+        backTile.filters = [filter];
         backTile.autoScroll(-100, 0);
         this.tiles.push(backTile);
         for (let i = 0; i < Const.Nebula.Names.length; i++) {
@@ -157,6 +164,32 @@ export class StartGame extends Phaser.State {
 
         // debug
         this.game.time.advancedTiming = true;
+
+        this.gameEndInterval = setInterval(() => {
+            this.comets.destroy();
+            this.points.destroy();
+            this.powerUps.destroy();
+            this.bullets.destroy();
+            const players = [];
+            let bestScore = 0;
+            let winner;
+            Object.keys((<any>this.game.state).players).forEach((playerId) => {
+                players.push((<any>this.game.state).players[playerId]);
+            });
+            players.sort((a: Player, b: Player) => a.score - b.score);
+            players.forEach((player: Player, index: number, arr: Player[]) => {
+                const count = arr.length;
+                const stepY = this.game.world.centerY / count;
+                const offsetY = stepY / 2;
+                const y = stepY * (index + 1) + (offsetY * (count - 1));
+                const stepX = 200 / count;
+                const offsetX = stepX / 2;
+                const x = stepX * (index + 1) + (offsetX * (count - 1));
+                player.x = x + 50;
+                player.y = y;
+                player.vector = new Victor(0, 0);
+            });
+        }, 30000);
     }
 
     update() {
@@ -222,5 +255,7 @@ export class StartGame extends Phaser.State {
         Network.removeListener(Network.UPDATE_PLAYER_XY);
         Network.removeListener(Network.UPDATE_PLAYER_Z);
         Network.removeListener(Network.PLAYER_DISCONNECTED);
+        Network.removeListener(Network.NO_CONNECTED_PLAYERS);
+        clearInterval(this.gameEndInterval);
     }
 }

@@ -3,6 +3,7 @@ import 'pixi';
 import 'phaser';
 
 import { Const } from '../const';
+import { rnd } from '../utils';
 
 export class Comets extends Phaser.Group {
     
@@ -20,11 +21,11 @@ export class Comets extends Phaser.Group {
 
     public generate() {
         const comet = this.getFirstDead();
-        const chance = this.game.rnd.integerInRange(1, 100)
+        const chance = rnd.integerInRange(1, 100)
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        comet.body.velocity.x = this.game.rnd.integerInRange(-500, -600);
+        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        comet.body.velocity.x = rnd.integerInRange(-500, -600);
     }
 }

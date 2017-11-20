@@ -20,6 +20,7 @@ export default class Network {
     public static UPDATE_PLAYER_Z = 'update-player-z';
     public static UPDATE_PLAYER_SCORE = 'update_player_score';
     public static PLAYER_FIRE = 'player_fire';
+    public static NO_CONNECTED_PLAYERS = 'no_connected_players';
 
     public static connect () {
         Network.socket = io();
@@ -170,5 +171,15 @@ export default class Network {
      */
     public static onPlayerFire(fn: Function) {
         Network.socket.on(Network.PLAYER_FIRE, fn);
+    }
+
+    /**
+     * Wszyscy gracze rozłączyli się
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onNoConnectedPlayers(fn: Function) {
+        Network.socket.on(Network.NO_CONNECTED_PLAYERS, fn);
     }
 }

@@ -3,6 +3,7 @@ import 'pixi';
 import 'phaser';
 
 import { Const } from '../const';
+import { rnd } from '../utils';
 
 export class Elements extends Phaser.Group {
     
@@ -21,11 +22,11 @@ export class Elements extends Phaser.Group {
 
     public generate() {
         const element = this.getFirstDead();
-        const chance = this.game.rnd.integerInRange(1, 5);
+        const chance = rnd.integerInRange(1, 5);
         if (chance != 1 || !element) {
             return;
         }
-        element.reset(this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        element.body.velocity.x = this.game.rnd.integerInRange(-600, -700);
+        element.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        element.body.velocity.x = rnd.integerInRange(-600, -700);
     }
 }

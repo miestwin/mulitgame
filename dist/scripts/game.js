@@ -1057,7 +1057,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(36));
+__export(__webpack_require__(37));
 __export(__webpack_require__(79));
 __export(__webpack_require__(80));
 __export(__webpack_require__(30));
@@ -4147,25 +4147,6 @@ var rnd;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Tworzy identyfikator globalnie unikatowy
- * @export
- * @returns
- */
-function guid() {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-exports.guid = guid;
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
  * Nazwy stanów gry
  * @export
  * @class States
@@ -4178,6 +4159,25 @@ States.MAIN_MENU = 'MainMenu';
 States.START_GAME = 'StartGame';
 States.MESSAGE = 'Message';
 exports.States = States;
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Tworzy identyfikator globalnie unikatowy
+ * @export
+ * @returns
+ */
+function guid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+exports.guid = guid;
 
 
 /***/ }),
@@ -4329,6 +4329,15 @@ class Network {
     static onPlayerFire(fn) {
         Network.socket.on(Network.PLAYER_FIRE, fn);
     }
+    /**
+     * Wszyscy gracze rozłączyli się
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onNoConnectedPlayers(fn) {
+        Network.socket.on(Network.NO_CONNECTED_PLAYERS, fn);
+    }
 }
 Network.NEW_GAME = 'new-game';
 Network.START_TIMER = 'start-timer';
@@ -4342,6 +4351,7 @@ Network.UPDATE_PLAYER_XY = 'update-player-xy';
 Network.UPDATE_PLAYER_Z = 'update-player-z';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 Network.PLAYER_FIRE = 'player_fire';
+Network.NO_CONNECTED_PLAYERS = 'no_connected_players';
 exports.default = Network;
 
 
@@ -112359,7 +112369,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(37));
+__export(__webpack_require__(36));
 __export(__webpack_require__(106));
 __export(__webpack_require__(107));
 __export(__webpack_require__(110));
@@ -112377,7 +112387,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(37);
+const States_1 = __webpack_require__(36);
 const core_1 = __webpack_require__(42);
 const network_1 = __webpack_require__(38);
 const assets_1 = __webpack_require__(4);
@@ -112427,7 +112437,7 @@ __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const QRious = __webpack_require__(108);
-const States_1 = __webpack_require__(37);
+const States_1 = __webpack_require__(36);
 const config_1 = __webpack_require__(109);
 const generators = __webpack_require__(75);
 const assets_1 = __webpack_require__(4);
@@ -112465,10 +112475,9 @@ class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States_1.States.MAIN_MENU);
+        }).catch(() => {
+            this.game.state.start(States_1.States.MESSAGE, true, false, 'Problem with generating texture');
         });
-        // .catch(() => {
-        //     this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
-        // });
         // this.createQRCode().then(() => {
         //     this.loadingText.setText('Create QRCode Complete');
         //     this.game.state.start(States.MAIN_MENU);
@@ -114969,7 +114978,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(37);
+const States_1 = __webpack_require__(36);
 const network_1 = __webpack_require__(38);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(16);
@@ -115035,8 +115044,9 @@ class MainMenu extends Phaser.State {
         network_1.default.startTimer();
     }
     create() {
-        // const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('glow'));
+        const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader(assets_1.Assets.Shaders.Glow.getName()));
         const starsback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
+        starsback.filters = [filter];
         starsback.autoScroll(-100, 0);
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
             const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
@@ -115264,6 +115274,7 @@ __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(16);
+const utils_1 = __webpack_require__(7);
 class Comets extends Phaser.Group {
     constructor(game) {
         super(game);
@@ -115278,12 +115289,12 @@ class Comets extends Phaser.Group {
     }
     generate() {
         const comet = this.getFirstDead();
-        const chance = this.game.rnd.integerInRange(1, 100);
+        const chance = utils_1.rnd.integerInRange(1, 100);
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        comet.body.velocity.x = this.game.rnd.integerInRange(-500, -600);
+        comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20));
+        comet.body.velocity.x = utils_1.rnd.integerInRange(-500, -600);
     }
 }
 exports.Comets = Comets;
@@ -115300,6 +115311,7 @@ __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(16);
+const utils_1 = __webpack_require__(7);
 class Elements extends Phaser.Group {
     constructor(game) {
         super(game);
@@ -115315,12 +115327,12 @@ class Elements extends Phaser.Group {
     }
     generate() {
         const element = this.getFirstDead();
-        const chance = this.game.rnd.integerInRange(1, 5);
+        const chance = utils_1.rnd.integerInRange(1, 5);
         if (chance != 1 || !element) {
             return;
         }
-        element.reset(this.game.world.width, this.game.rnd.integerInRange(20, this.game.world.height - 20));
-        element.body.velocity.x = this.game.rnd.integerInRange(-600, -700);
+        element.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20));
+        element.body.velocity.x = utils_1.rnd.integerInRange(-600, -700);
     }
 }
 exports.Elements = Elements;
@@ -115438,6 +115450,7 @@ __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(7);
+const States_1 = __webpack_require__(36);
 const const_1 = __webpack_require__(16);
 const network_1 = __webpack_require__(38);
 const assets_1 = __webpack_require__(4);
@@ -115497,6 +115510,9 @@ class StartGame extends Phaser.State {
                 return players;
             }, {});
         });
+        network_1.default.onNoConnectedPlayers(() => {
+            this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
+        });
     }
     create() {
         this.players = this.game.add.group();
@@ -115505,6 +115521,7 @@ class StartGame extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
+        backTile.filters = [filter];
         backTile.autoScroll(-100, 0);
         this.tiles.push(backTile);
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
@@ -115519,6 +115536,31 @@ class StartGame extends Phaser.State {
         this.powerUps = this.game.add.group();
         // debug
         this.game.time.advancedTiming = true;
+        this.gameEndInterval = setInterval(() => {
+            this.comets.destroy();
+            this.points.destroy();
+            this.powerUps.destroy();
+            this.bullets.destroy();
+            const players = [];
+            let bestScore = 0;
+            let winner;
+            Object.keys(this.game.state.players).forEach((playerId) => {
+                players.push(this.game.state.players[playerId]);
+            });
+            players.sort((a, b) => a.score - b.score);
+            players.forEach((player, index, arr) => {
+                const count = arr.length;
+                const stepY = this.game.world.centerY / count;
+                const offsetY = stepY / 2;
+                const y = stepY * (index + 1) + (offsetY * (count - 1));
+                const stepX = 200 / count;
+                const offsetX = stepX / 2;
+                const x = stepX * (index + 1) + (offsetX * (count - 1));
+                player.x = x + 50;
+                player.y = y;
+                player.vector = new Victor(0, 0);
+            });
+        }, 30000);
     }
     update() {
         this.points.generate();
@@ -115565,6 +115607,8 @@ class StartGame extends Phaser.State {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_Z);
         network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
+        network_1.default.removeListener(network_1.default.NO_CONNECTED_PLAYERS);
+        clearInterval(this.gameEndInterval);
     }
 }
 exports.StartGame = StartGame;
