@@ -88,6 +88,8 @@ export class StartGame extends Phaser.State {
 
     private gameEndInterval;
 
+    private gameEndFlag: boolean = false;
+
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -134,6 +136,8 @@ export class StartGame extends Phaser.State {
         Network.onNoConnectedPlayers(() => {
             this.game.state.start(States.MESSAGE, true, false, 'No connected players');
         });
+
+        Network.getAllPlayers();
     }
 
     create() {
@@ -155,7 +159,6 @@ export class StartGame extends Phaser.State {
             this.tiles.push(nebulaback);
         }
 
-        Network.getAllPlayers();
 
         this.points = new Elements(this.game);
         this.comets = new Comets(this.game);
@@ -166,51 +169,60 @@ export class StartGame extends Phaser.State {
         this.game.time.advancedTiming = true;
 
         this.gameEndInterval = setInterval(() => {
-            this.comets.destroy();
-            this.points.destroy();
-            this.powerUps.destroy();
-            this.bullets.destroy();
-            const players = [];
-            let bestScore = 0;
-            let winner;
-            Object.keys((<any>this.game.state).players).forEach((playerId) => {
-                players.push((<any>this.game.state).players[playerId]);
-            });
-            players.sort((a: Player, b: Player) => a.score - b.score);
-            players.forEach((player: Player, index: number, arr: Player[]) => {
-                const count = arr.length;
-                const stepY = this.game.world.centerY / count;
-                const offsetY = stepY / 2;
-                const y = stepY * (index + 1) + (offsetY * (count - 1));
-                const stepX = 200 / count;
-                const offsetX = stepX / 2;
-                const x = stepX * (index + 1) + (offsetX * (count - 1));
-                player.x = x + 50;
-                player.y = y;
-                player.vector = new Victor(0, 0);
-            });
-        }, 30000);
+            this.gameEndFlag = true;
+            clearInterval(this.gameEndInterval);
+            // this.comets.destroy();
+            // this.points.destroy();
+            // this.powerUps.destroy();
+            // this.bullets.destroy();
+            // const players = [];
+            // let bestScore = 0;
+            // let winner;
+            // Object.keys((<any>this.game.state).players).forEach((playerId) => {
+            //     players.push((<any>this.game.state).players[playerId]);
+            // });
+            // players.sort((a: Player, b: Player) => a.score - b.score);
+            // players.forEach((player: Player, index: number, arr: Player[]) => {
+            //     const count = arr.length;
+            //     const stepY = this.game.world.centerY / count;
+            //     const offsetY = stepY / 2;
+            //     const y = stepY * (index + 1) + (offsetY * (count - 1));
+            //     const stepX = 200 / count;
+            //     const offsetX = stepX / 2;
+            //     const x = stepX * (index + 1) + (offsetX * (count - 1));
+            //     player.x = x + 50;
+            //     player.y = y;
+            //     player.vector = new Victor(0, 0);
+            // });
+        }, 10000);
     }
 
     update() {
-        this.points.generate();
-        this.comets.generate();
+        if (!this.gameEndFlag) {
+            this.points.generate();
+            this.comets.generate();
+            
+            this.game.physics.arcade.overlap(
+                this.players,
+                this.points, this.player_point_CollisionHandler, null, this);
 
-        this.game.physics.arcade.overlap(
-            this.players,
-            this.points, this.player_point_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(
+                this.players,
+                this.powerUps, this.player_powerup_CollisionHandler, null, this);
 
-        this.game.physics.arcade.overlap(
-            this.players,
-            this.powerUps, this.player_powerup_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(
+                this.shields,
+                this.points, this.shield_point_CollisionHandler, null, this);
 
-        this.game.physics.arcade.overlap(
-            this.shields,
-            this.points, this.shield_point_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(
+                this.bullets,
+                this.comets, this.bullet_comet_CollisionHandler, null, this);
+        }
 
-        this.game.physics.arcade.overlap(
-            this.bullets,
-            this.comets, this.bullet_comet_CollisionHandler, null, this);
+        if (this.gameEndFlag && this.points.countLiving() === 0 && this.comets.countLiving() === 0) {
+            Network.gameEnd((<any>this.game.state).id);
+            this.removeListeners();
+        }
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
@@ -250,12 +262,15 @@ export class StartGame extends Phaser.State {
         this.powerUps.add(pu);
     }
 
-    shutdown() {
+    private removeListeners() {
         Network.removeListener(Network.ALL_PLAYERS);
         Network.removeListener(Network.UPDATE_PLAYER_XY);
         Network.removeListener(Network.UPDATE_PLAYER_Z);
         Network.removeListener(Network.PLAYER_DISCONNECTED);
         Network.removeListener(Network.NO_CONNECTED_PLAYERS);
-        clearInterval(this.gameEndInterval);
+    }
+
+    shutdown() {
+        this.removeListeners();
     }
 }

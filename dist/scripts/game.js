@@ -1703,7 +1703,8 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 13 */
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2109,7 +2110,7 @@ function error() {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -2153,7 +2154,7 @@ module.exports = function (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2316,7 +2317,7 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2416,7 +2417,6 @@ var Const;
 
 
 /***/ }),
-/* 17 */,
 /* 18 */,
 /* 19 */
 /***/ (function(module, exports) {
@@ -2563,7 +2563,7 @@ function isBuf(obj) {
 var eio = __webpack_require__(55);
 var Socket = __webpack_require__(27);
 var Emitter = __webpack_require__(5);
-var parser = __webpack_require__(13);
+var parser = __webpack_require__(14);
 var on = __webpack_require__(28);
 var bind = __webpack_require__(29);
 var debug = __webpack_require__(9)('socket.io-client:manager');
@@ -3138,7 +3138,7 @@ Manager.prototype.onreconnect = function () {
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(14);
+var XMLHttpRequest = __webpack_require__(15);
 var XHR = __webpack_require__(59);
 var JSONP = __webpack_require__(69);
 var websocket = __webpack_require__(70);
@@ -3198,7 +3198,7 @@ function polling (opts) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(15);
+var Transport = __webpack_require__(16);
 var parseqs = __webpack_require__(10);
 var parser = __webpack_require__(6);
 var inherit = __webpack_require__(11);
@@ -3216,7 +3216,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(14);
+  var XMLHttpRequest = __webpack_require__(15);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -3540,7 +3540,7 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(13);
+var parser = __webpack_require__(14);
 var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(73);
 var on = __webpack_require__(28);
@@ -4248,6 +4248,9 @@ class Network {
     static updatePlayerScore(playerId, socketId, score) {
         Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
     }
+    static gameEnd(gameId) {
+        Network.socket.emit(Network.END_GAME, gameId);
+    }
     /**
      * Nasłuchiwanie czy gracz się rozłączył
      * @static
@@ -4338,6 +4341,15 @@ class Network {
     static onNoConnectedPlayers(fn) {
         Network.socket.on(Network.NO_CONNECTED_PLAYERS, fn);
     }
+    /**
+     * Koniec gry
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onEndGame(fn) {
+        Network.socket.on(Network.END_GAME, fn);
+    }
 }
 Network.NEW_GAME = 'new-game';
 Network.START_TIMER = 'start-timer';
@@ -4352,6 +4364,7 @@ Network.UPDATE_PLAYER_Z = 'update-player-z';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 Network.PLAYER_FIRE = 'player_fire';
 Network.NO_CONNECTED_PLAYERS = 'no_connected_players';
+Network.END_GAME = 'end-game';
 exports.default = Network;
 
 
@@ -107561,7 +107574,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
  */
 
 var url = __webpack_require__(46);
-var parser = __webpack_require__(13);
+var parser = __webpack_require__(14);
 var Manager = __webpack_require__(22);
 var debug = __webpack_require__(9)('socket.io-client');
 
@@ -108999,7 +109012,7 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(15);
+Socket.Transport = __webpack_require__(16);
 Socket.transports = __webpack_require__(23);
 Socket.parser = __webpack_require__(6);
 
@@ -109633,7 +109646,7 @@ try {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(14);
+var XMLHttpRequest = __webpack_require__(15);
 var Polling = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
 var inherit = __webpack_require__(11);
@@ -111216,7 +111229,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(15);
+var Transport = __webpack_require__(16);
 var parser = __webpack_require__(6);
 var parseqs = __webpack_require__(10);
 var inherit = __webpack_require__(11);
@@ -112441,7 +112454,7 @@ const States_1 = __webpack_require__(36);
 const config_1 = __webpack_require__(109);
 const generators = __webpack_require__(75);
 const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(16);
+const const_1 = __webpack_require__(17);
 const utils_1 = __webpack_require__(7);
 /**
  * Ładowanie zasobów
@@ -114981,7 +114994,7 @@ __webpack_require__(3);
 const States_1 = __webpack_require__(36);
 const network_1 = __webpack_require__(38);
 const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(16);
+const const_1 = __webpack_require__(17);
 const models_1 = __webpack_require__(92);
 /**
  * Menu główne
@@ -115273,7 +115286,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const const_1 = __webpack_require__(16);
+const const_1 = __webpack_require__(17);
 const utils_1 = __webpack_require__(7);
 class Comets extends Phaser.Group {
     constructor(game) {
@@ -115310,7 +115323,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(2);
 __webpack_require__(3);
-const const_1 = __webpack_require__(16);
+const const_1 = __webpack_require__(17);
 const utils_1 = __webpack_require__(7);
 class Elements extends Phaser.Group {
     constructor(game) {
@@ -115451,7 +115464,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(7);
 const States_1 = __webpack_require__(36);
-const const_1 = __webpack_require__(16);
+const const_1 = __webpack_require__(17);
 const network_1 = __webpack_require__(38);
 const assets_1 = __webpack_require__(4);
 const models_1 = __webpack_require__(92);
@@ -115471,6 +115484,7 @@ class StartGame extends Phaser.State {
          * @memberof StartGame
          */
         this.tiles = [];
+        this.gameEndFlag = false;
     }
     preload() {
         network_1.default.onGetAllPlayers((players) => {
@@ -115513,6 +115527,7 @@ class StartGame extends Phaser.State {
         network_1.default.onNoConnectedPlayers(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
         });
+        network_1.default.getAllPlayers();
     }
     create() {
         this.players = this.game.add.group();
@@ -115529,7 +115544,6 @@ class StartGame extends Phaser.State {
             nebulaback.autoScroll(-100, 0);
             this.tiles.push(nebulaback);
         }
-        network_1.default.getAllPlayers();
         this.points = new models_1.Elements(this.game);
         this.comets = new models_1.Comets(this.game);
         this.bullets = new models_1.Bullets(this.game);
@@ -115537,38 +115551,46 @@ class StartGame extends Phaser.State {
         // debug
         this.game.time.advancedTiming = true;
         this.gameEndInterval = setInterval(() => {
-            this.comets.destroy();
-            this.points.destroy();
-            this.powerUps.destroy();
-            this.bullets.destroy();
-            const players = [];
-            let bestScore = 0;
-            let winner;
-            Object.keys(this.game.state.players).forEach((playerId) => {
-                players.push(this.game.state.players[playerId]);
-            });
-            players.sort((a, b) => a.score - b.score);
-            players.forEach((player, index, arr) => {
-                const count = arr.length;
-                const stepY = this.game.world.centerY / count;
-                const offsetY = stepY / 2;
-                const y = stepY * (index + 1) + (offsetY * (count - 1));
-                const stepX = 200 / count;
-                const offsetX = stepX / 2;
-                const x = stepX * (index + 1) + (offsetX * (count - 1));
-                player.x = x + 50;
-                player.y = y;
-                player.vector = new Victor(0, 0);
-            });
-        }, 30000);
+            this.gameEndFlag = true;
+            clearInterval(this.gameEndInterval);
+            // this.comets.destroy();
+            // this.points.destroy();
+            // this.powerUps.destroy();
+            // this.bullets.destroy();
+            // const players = [];
+            // let bestScore = 0;
+            // let winner;
+            // Object.keys((<any>this.game.state).players).forEach((playerId) => {
+            //     players.push((<any>this.game.state).players[playerId]);
+            // });
+            // players.sort((a: Player, b: Player) => a.score - b.score);
+            // players.forEach((player: Player, index: number, arr: Player[]) => {
+            //     const count = arr.length;
+            //     const stepY = this.game.world.centerY / count;
+            //     const offsetY = stepY / 2;
+            //     const y = stepY * (index + 1) + (offsetY * (count - 1));
+            //     const stepX = 200 / count;
+            //     const offsetX = stepX / 2;
+            //     const x = stepX * (index + 1) + (offsetX * (count - 1));
+            //     player.x = x + 50;
+            //     player.y = y;
+            //     player.vector = new Victor(0, 0);
+            // });
+        }, 10000);
     }
     update() {
-        this.points.generate();
-        this.comets.generate();
-        this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
+        if (!this.gameEndFlag) {
+            this.points.generate();
+            this.comets.generate();
+            this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
+            this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
+        }
+        if (this.gameEndFlag && this.points.countLiving() === 0 && this.comets.countLiving() === 0) {
+            network_1.default.gameEnd(this.game.state.id);
+            this.removeListeners();
+        }
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
     player_point_CollisionHandler(player, point) {
@@ -115602,13 +115624,15 @@ class StartGame extends Phaser.State {
         pu.body.velocity.x = -400;
         this.powerUps.add(pu);
     }
-    shutdown() {
+    removeListeners() {
         network_1.default.removeListener(network_1.default.ALL_PLAYERS);
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_Z);
         network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
         network_1.default.removeListener(network_1.default.NO_CONNECTED_PLAYERS);
-        clearInterval(this.gameEndInterval);
+    }
+    shutdown() {
+        this.removeListeners();
     }
 }
 exports.StartGame = StartGame;

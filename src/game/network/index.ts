@@ -84,6 +84,10 @@ export default class Network {
         Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
     }
 
+    public static gameEnd(gameId) {
+        Network.socket.emit(Network.END_GAME, gameId);
+    }
+
     /**
      * Nasłuchiwanie czy gracz się rozłączył
      * @static

@@ -202,7 +202,6 @@ export class GameController extends Phaser.State {
         this.frameCounter++;
         if (this.frameCounter % 3 === 0) {
             Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
-            console.log(this.shieldState);
         }
 
         this.shieldBar.setPercent(this.shieldState.prc);
