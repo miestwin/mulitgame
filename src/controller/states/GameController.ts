@@ -122,6 +122,10 @@ export class GameController extends Phaser.State {
             this.scoreText.setText('Score: ' + score);
         });
 
+        Network.onEndGame(() => {
+            this.game.state.start(States.MESSAGE, true, false, 'Game end');
+        });
+
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
         document.getElementById('controller').addEventListener('touchend', this.onTouchEnd.bind(this));

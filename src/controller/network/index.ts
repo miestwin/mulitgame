@@ -23,6 +23,7 @@ export default class Network {
     public static UPDATE_PLAYER_Z = 'update-player-z';
     public static UPDATE_PLAYER_SCORE = 'update_player_score';
     public static PLAYER_FIRE = 'player_fire';
+    public static END_GAME = 'end-game';
 
     static connect () {
         Network.socket = io();
@@ -192,5 +193,15 @@ export default class Network {
      */
     public static onUpdateScore(fn: Function) {
         Network.socket.on(Network.UPDATE_PLAYER_SCORE, fn);
+    }
+
+    /**
+     * Koniec gry
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onEndGame(fn: Function) {
+        Network.socket.on(Network.END_GAME, fn);
     }
 }
