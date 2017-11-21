@@ -171,57 +171,55 @@ export class StartGame extends Phaser.State {
         this.gameEndInterval = setInterval(() => {
             this.gameEndFlag = true;
             clearInterval(this.gameEndInterval);
-            // this.comets.destroy();
-            // this.points.destroy();
-            // this.powerUps.destroy();
-            // this.bullets.destroy();
-            // const players = [];
-            // let bestScore = 0;
-            // let winner;
-            // Object.keys((<any>this.game.state).players).forEach((playerId) => {
-            //     players.push((<any>this.game.state).players[playerId]);
-            // });
-            // players.sort((a: Player, b: Player) => a.score - b.score);
-            // players.forEach((player: Player, index: number, arr: Player[]) => {
-            //     const count = arr.length;
-            //     const stepY = this.game.world.centerY / count;
-            //     const offsetY = stepY / 2;
-            //     const y = stepY * (index + 1) + (offsetY * (count - 1));
-            //     const stepX = 200 / count;
-            //     const offsetX = stepX / 2;
-            //     const x = stepX * (index + 1) + (offsetX * (count - 1));
-            //     player.x = x + 50;
-            //     player.y = y;
-            //     player.vector = new Victor(0, 0);
-            // });
-        }, 10000);
+        }, 30000);
     }
 
     update() {
         if (!this.gameEndFlag) {
             this.points.generate();
             this.comets.generate();
-            
-            this.game.physics.arcade.overlap(
-                this.players,
-                this.points, this.player_point_CollisionHandler, null, this);
-
-            this.game.physics.arcade.overlap(
-                this.players,
-                this.powerUps, this.player_powerup_CollisionHandler, null, this);
-
-            this.game.physics.arcade.overlap(
-                this.shields,
-                this.points, this.shield_point_CollisionHandler, null, this);
-
-            this.game.physics.arcade.overlap(
-                this.bullets,
-                this.comets, this.bullet_comet_CollisionHandler, null, this);
         }
+            
+        this.game.physics.arcade.overlap(
+            this.players,
+            this.points, this.player_point_CollisionHandler, null, this);
+
+        this.game.physics.arcade.overlap(
+            this.players,
+            this.powerUps, this.player_powerup_CollisionHandler, null, this);
+
+        this.game.physics.arcade.overlap(
+            this.shields,
+            this.points, this.shield_point_CollisionHandler, null, this);
+
+        this.game.physics.arcade.overlap(
+            this.bullets,
+            this.comets, this.bullet_comet_CollisionHandler, null, this);
 
         if (this.gameEndFlag && this.points.countLiving() === 0 && this.comets.countLiving() === 0) {
-            Network.gameEnd((<any>this.game.state).id);
             this.removeListeners();
+
+            const players = [];
+            let bestScore = 0;
+            let winner;
+            Object.keys((<any>this.game.state).players).forEach((playerId) => {
+                players.push((<any>this.game.state).players[playerId]);
+            });
+            players.sort((a: Player, b: Player) => a.score - b.score);
+            players.forEach((player: Player, index: number, arr: Player[]) => {
+                const count = arr.length;
+                const stepY = this.game.world.centerY / count;
+                const offsetY = stepY / 2;
+                const y = stepY * (index + 1) + (offsetY * (count - 1));
+                const stepX = (50 * arr.length) / count;
+                const offsetX = stepX / 2;
+                const x = stepX * (index + 1) + (offsetX * (count - 1));
+                player.x = x + 30;
+                player.y = y;
+                player.vector = new Victor(0, 0);
+            });
+
+            Network.gameEnd((<any>this.game.state).id, players[players.length - 1].id);
         }
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");

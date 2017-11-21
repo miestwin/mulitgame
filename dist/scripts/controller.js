@@ -112775,8 +112775,9 @@ class GameController extends Phaser.State {
         network_1.default.onUpdateScore((score) => {
             this.scoreText.setText('Score: ' + score);
         });
-        network_1.default.onEndGame(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, 'Game end');
+        network_1.default.onEndGame((playerId) => {
+            const message = playerId == this.game.state.id ? 'Win' : 'Lose';
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
         });
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));

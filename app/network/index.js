@@ -111,8 +111,8 @@ module.exports = (server) => {
             socket.broadcast.to('game-' + gameId).emit('player_fire', socket.player.id);
         });
 
-        socket.on('end-game', (gameId) => {
-            socket.broadcast.to('game-' + gameId).emit('end-game');
+        socket.on('end-game', (gameId, playerId) => {
+            socket.broadcast.to('game-' + gameId).emit('end-game', playerId);
         });
     });
 
