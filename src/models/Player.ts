@@ -74,7 +74,7 @@ export class Player extends Phaser.Sprite {
         this.vector = new Victor(0, 0);
         this.angle = 0;
         this.anchor.setTo(0.5);
-        this.scale.setTo(1);
+        this.scale.setTo(0.6);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;

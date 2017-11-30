@@ -78,6 +78,68 @@ export namespace Assets {
                 static getPNG(): string { return '../assets/images/power-ups/powerupYellow_star.png'; }
             }
         }
+        export namespace ScoreText {
+            export class Plus {
+                public static getName() { return 'plus-one'; }
+                public static getPNG() { return '../assets/images/plusone.png'; }
+            }
+            export class Minus {
+                public static getName() { return 'minus-one'; }
+                public static getPNG() { return '../assets/images/minusone.png'; }
+            }
+        }
+        export namespace Ships {
+            export class GREEN {
+                public static getName() { return 'player-ship_green'; }
+                public static getValue() { return 0x33cc33; }
+                public static getPNG() { return '../assets/images/ships/ship_green.png'; }
+            }
+            export class PURPLE {
+                public static getName() { return 'player-ship_purple'; }
+                public static getValue() { return 0x9933ff; }
+                public static getPNG() { return '../assets/images/ships/ship_purple.png'; }
+            }
+            export class BLUE {
+                public static getName() { return 'player-ship_blue'; }
+                public static getValue() { return 0x0066ff; }
+                public static getPNG() { return '../assets/images/ships/ship_blue.png'; }
+            }
+            export class WATERY {
+                public static getName() { return 'player-ship_watery'; }
+                public static getValue() { return 0x009999; }
+                public static getPNG() { return '../assets/images/ships/ship_watery.png'; }
+            }
+            export class PINK {
+                public static getName() { return 'player-ship_pink'; }
+                public static getValue() { return 0xff3399; }
+                public static getPNG() { return '../assets/images/ships/ship_pink.png'; }
+            }
+            export class RED {
+                public static getName() { return 'player-ship_red'; }
+                public static getValue() { return 0xcc2900; }
+                public static getPNG() { return '../assets/images/ships/ship_red.png'; }
+            }
+            export class YELLOW {
+                public static getName() { return 'player-ship_yellow'; }
+                public static getValue() { return 0xd1d123; }
+                public static getPNG() { return '../assets/images/ships/ship_yellow.png'; }
+            }
+            export class ORANGE {
+                public static getName() { return 'player-ship_orange'; }
+                public static getValue() { return 0xcc5200; }
+                public static getPNG() { return '../assets/images/ships/ship_orange.png'; }
+            }
+            export class GRASS {
+                public static getName() { return 'player-ship_grass'; }
+                public static getValue() { return 0x739900; }
+                public static getPNG() { return '../assets/images/ships/ship_grass.png'; }
+            }
+            export class DARKPINK {
+                public static getName() { return 'player-ship_darkpink'; }
+                public static getValue() { return 0x993333; }
+                public static getPNG() { return '../assets/images/ships/ship_darkpink.png'; }
+            }
+        }
     }
 
     export namespace UI {

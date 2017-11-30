@@ -101,6 +101,7 @@ export class AvatarSelector extends Phaser.State {
                 this.game.world.centerY - 60,
                 this.ships[i].name);
             ship.anchor.set(0.5, 1);
+            ship.scale.setTo(0.3);
             this.scrolingMap.addChild(ship);
         }
 
@@ -136,10 +137,10 @@ export class AvatarSelector extends Phaser.State {
             }
             if (this.scrolingMap.children[_i].worldPosition.x < this.game.world.centerX + 60
                 && this.scrolingMap.children[_i].worldPosition.x > this.game.world.centerX - 60) {
-                this.scrolingMap.getChildAt(_i).scale.set(1, 1);
+                this.scrolingMap.getChildAt(_i).scale.set(0.6, 0.6);
                 this.selectedShipIndex = _i;
             } else {
-                this.scrolingMap.getChildAt(_i).scale.set(0.7, 0.7);
+                this.scrolingMap.getChildAt(_i).scale.set(0.4, 0.4);
             }
         }
     }

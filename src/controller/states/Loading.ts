@@ -51,16 +51,57 @@ export class Loading extends Phaser.State {
             Assets.Images.Transparent.getName(), 
             Assets.Images.Transparent.getPNG());
 
-        generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
-        generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
-        generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
-        generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
-        generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
-        generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
-        generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
-        generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
-        generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
-        generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
+        /* ships */
+        this.game.load.image(
+            Assets.Images.Ships.GREEN.getName(),
+            Assets.Images.Ships.GREEN.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.PURPLE.getName(),
+            Assets.Images.Ships.PURPLE.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.BLUE.getName(),
+            Assets.Images.Ships.BLUE.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.WATERY.getName(),
+            Assets.Images.Ships.WATERY.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.PINK.getName(),
+            Assets.Images.Ships.PINK.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.RED.getName(),
+            Assets.Images.Ships.RED.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.YELLOW.getName(),
+            Assets.Images.Ships.YELLOW.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.ORANGE.getName(),
+            Assets.Images.Ships.ORANGE.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.GRASS.getName(),
+            Assets.Images.Ships.GRASS.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Ships.DARKPINK.getName(),
+            Assets.Images.Ships.DARKPINK.getPNG());
+            
+        // generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
+        // generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
+        // generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
+        // generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
+        // generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
+        // generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
+        // generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
+        // generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
+        // generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
+        // generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
     }
 
     create() {
