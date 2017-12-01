@@ -87,6 +87,11 @@ export namespace Assets {
                 public static getName() { return 'minus-one'; }
                 public static getPNG() { return '../assets/images/minusone.png'; }
             }
+
+            export class Minus10 {
+                public static getName() { return 'minus-ten'; }
+                public static getPNG() { return '../assets/images/minusten.png'; }
+            }
         }
         export namespace Ships {
             export class GREEN {

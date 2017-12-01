@@ -14,7 +14,8 @@ import {
     Elements,
     IPowerUp,
     PowerUpPull,
-    PowerUpShield
+    PowerUpShield,
+    ScoreText
 } from '../../models';
 
 declare var Victor;
@@ -90,6 +91,8 @@ export class StartGame extends Phaser.State {
 
     private gameEndFlag: boolean = false;
 
+    private collidedComets: { playerId: Set<Phaser.Sprite> };
+
     preload() {
         Network.onGetAllPlayers((players) => {
             Object.keys(players).forEach((playerId, index, playersId) => {
@@ -103,6 +106,8 @@ export class StartGame extends Phaser.State {
                 (<any>this.game.state).players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
+
+                // this.collidedComets[playerId] = new Set();
             });
         });
 
@@ -186,6 +191,10 @@ export class StartGame extends Phaser.State {
 
         this.game.physics.arcade.overlap(
             this.players,
+            this.comets, this.player_comet_CollisionHandler, null, this);
+
+        this.game.physics.arcade.overlap(
+            this.players,
             this.powerUps, this.player_powerup_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
@@ -228,7 +237,16 @@ export class StartGame extends Phaser.State {
     private player_point_CollisionHandler(player: Player, point: Phaser.Sprite) {
         player.score += 1;
         point.kill();
+        new ScoreText(this.game, player.x, player.y - (player.height / 2), Assets.Images.ScoreText.Plus.getName());
         Network.updatePlayerScore(player.id, player.socket, player.score);
+    }
+
+    private player_comet_CollisionHandler(player: Player, comet: Phaser.Sprite) {
+        if (player.shield.scale.x < 0.3) {
+            player.score -= 10;
+            new ScoreText(this.game, player.x, player.y - (player.height / 2), Assets.Images.ScoreText.Minus10.getName());
+            Network.updatePlayerScore(player.id, player.socket, player.score);
+        }
     }
 
     private shield_point_CollisionHandler(shield: Shield, point: Phaser.Sprite) {

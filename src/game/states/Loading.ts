@@ -66,6 +66,10 @@ export class Loading extends Phaser.State {
             Assets.Images.ScoreText.Minus.getName(),
             Assets.Images.ScoreText.Minus.getPNG());
 
+        this.game.load.image(
+            Assets.Images.ScoreText.Minus10.getName(),
+            Assets.Images.ScoreText.Minus10.getPNG());
+
         /* ships */
         this.game.load.image(
             Assets.Images.Ships.GREEN.getName(),

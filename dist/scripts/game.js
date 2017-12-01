@@ -223,6 +223,11 @@ var Assets;
                 static getPNG() { return '../assets/images/minusone.png'; }
             }
             ScoreText.Minus = Minus;
+            class Minus10 {
+                static getName() { return 'minus-ten'; }
+                static getPNG() { return '../assets/images/minusten.png'; }
+            }
+            ScoreText.Minus10 = Minus10;
         })(ScoreText = Images.ScoreText || (Images.ScoreText = {}));
         let Ships;
         (function (Ships) {
@@ -111760,6 +111765,7 @@ __export(__webpack_require__(113));
 __export(__webpack_require__(114));
 __export(__webpack_require__(115));
 __export(__webpack_require__(116));
+__export(__webpack_require__(120));
 
 
 /***/ }),
@@ -111853,8 +111859,8 @@ __export(__webpack_require__(29));
 __export(__webpack_require__(89));
 __export(__webpack_require__(90));
 __export(__webpack_require__(110));
-__export(__webpack_require__(120));
 __export(__webpack_require__(121));
+__export(__webpack_require__(122));
 
 
 /***/ }),
@@ -111945,6 +111951,7 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.PowerUps.Pull.getName(), assets_1.Assets.Images.PowerUps.Pull.getPNG());
         this.game.load.image(assets_1.Assets.Images.ScoreText.Plus.getName(), assets_1.Assets.Images.ScoreText.Plus.getPNG());
         this.game.load.image(assets_1.Assets.Images.ScoreText.Minus.getName(), assets_1.Assets.Images.ScoreText.Minus.getPNG());
+        this.game.load.image(assets_1.Assets.Images.ScoreText.Minus10.getName(), assets_1.Assets.Images.ScoreText.Minus10.getPNG());
         /* ships */
         this.game.load.image(assets_1.Assets.Images.Ships.GREEN.getName(), assets_1.Assets.Images.Ships.GREEN.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.PURPLE.getName(), assets_1.Assets.Images.Ships.PURPLE.getPNG());
@@ -115551,6 +115558,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+class ScoreText extends Phaser.Image {
+    constructor(game, x, y, key) {
+        super(game, x, y, key);
+        this.anchor.set(0.5);
+        game.add.existing(this);
+        this.moveUpTween = game.add.tween(this).to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween = game.add.tween(this).to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween.onComplete.add(() => {
+            this.game.tweens.remove(this.moveUpTween);
+            this.game.tweens.remove(this.fadeOutTween);
+            this.destroy();
+        }, this);
+    }
+}
+exports.ScoreText = ScoreText;
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
 const utils_1 = __webpack_require__(12);
 const States_1 = __webpack_require__(29);
 const const_1 = __webpack_require__(30);
@@ -115588,6 +115622,7 @@ class StartGame extends Phaser.State {
                 this.game.state.players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
+                // this.collidedComets[playerId] = new Set();
             });
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
@@ -115650,6 +115685,7 @@ class StartGame extends Phaser.State {
             this.comets.generate();
         }
         this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
@@ -115681,7 +115717,15 @@ class StartGame extends Phaser.State {
     player_point_CollisionHandler(player, point) {
         player.score += 1;
         point.kill();
+        new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), assets_1.Assets.Images.ScoreText.Plus.getName());
         network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+    }
+    player_comet_CollisionHandler(player, comet) {
+        if (player.shield.scale.x < 0.3) {
+            player.score -= 10;
+            new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), assets_1.Assets.Images.ScoreText.Minus10.getName());
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+        }
     }
     shield_point_CollisionHandler(shield, point) {
         const player = this.game.state.players[shield.playerId];
@@ -115724,7 +115768,7 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

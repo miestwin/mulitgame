@@ -223,6 +223,11 @@ var Assets;
                 static getPNG() { return '../assets/images/minusone.png'; }
             }
             ScoreText.Minus = Minus;
+            class Minus10 {
+                static getName() { return 'minus-ten'; }
+                static getPNG() { return '../assets/images/minusten.png'; }
+            }
+            ScoreText.Minus10 = Minus10;
         })(ScoreText = Images.ScoreText || (Images.ScoreText = {}));
         let Ships;
         (function (Ships) {
