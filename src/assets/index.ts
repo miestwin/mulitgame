@@ -31,6 +31,15 @@ export namespace Assets {
                 static getSpacing(): number { return 0; }
                 static getFrameMax(): number { return 10; }
             }
+            export class Comet {
+                static getName(): string { return 'comet-explosion'; }
+                static getPNG(): string { return '../assets/spritesheets/comet-explosion.png'; }
+                static getFrameWidth(): number { return 128; }
+                static getFrameHeight(): number { return 150; }
+                static getMargin(): number { return 0; }
+                static getSpacing(): number { return 0; }
+                static getFrameMax(): number { return 5; }
+            }
         }
 
         export namespace Bullets {

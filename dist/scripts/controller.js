@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 76);
+/******/ 	return __webpack_require__(__webpack_require__.s = 77);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -157,6 +157,16 @@ var Assets;
                 static getFrameMax() { return 10; }
             }
             Explosions.Three = Three;
+            class Comet {
+                static getName() { return 'comet-explosion'; }
+                static getPNG() { return '../assets/spritesheets/comet-explosion.png'; }
+                static getFrameWidth() { return 128; }
+                static getFrameHeight() { return 150; }
+                static getMargin() { return 0; }
+                static getSpacing() { return 0; }
+                static getFrameMax() { return 5; }
+            }
+            Explosions.Comet = Comet;
         })(Explosions = Spritesheets.Explosions || (Spritesheets.Explosions = {}));
         let Bullets;
         (function (Bullets) {
@@ -111517,13 +111527,14 @@ exports.guid = guid;
 /* 73 */,
 /* 74 */,
 /* 75 */,
-/* 76 */
+/* 76 */,
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Controller_1 = __webpack_require__(77);
+const Controller_1 = __webpack_require__(78);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111545,7 +111556,7 @@ function startApp() {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111554,7 +111565,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(78);
+const states_1 = __webpack_require__(79);
 const network_1 = __webpack_require__(17);
 const guid_1 = __webpack_require__(68);
 /**
@@ -111586,7 +111597,7 @@ exports.default = Controller;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111596,17 +111607,17 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(13));
-__export(__webpack_require__(79));
 __export(__webpack_require__(80));
 __export(__webpack_require__(81));
 __export(__webpack_require__(82));
 __export(__webpack_require__(83));
 __export(__webpack_require__(84));
 __export(__webpack_require__(85));
+__export(__webpack_require__(86));
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111663,7 +111674,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111765,7 +111776,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111800,7 +111811,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111929,7 +111940,7 @@ exports.AvatarSelector = AvatarSelector;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111967,7 +111978,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112163,7 +112174,7 @@ exports.GameController = GameController;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

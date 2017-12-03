@@ -5,6 +5,8 @@ import 'phaser';
 import { Const } from '../const';
 import { rnd } from '../utils';
 
+import { Comet } from './Comet';
+
 export class Comets extends Phaser.Group {
     
     constructor(game: Phaser.Game) {
@@ -12,9 +14,11 @@ export class Comets extends Phaser.Group {
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(3, Const.Comet.Names);
+        Const.Comet.Names.forEach(name => {
+            this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
+        });
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
-        this.setAll('health', 10);
         this.setAll('checkWorldBounds', true);
         this.setAll('outOfBoundsKill', true);
     }

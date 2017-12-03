@@ -29,11 +29,11 @@ export class Loading extends Phaser.State {
 
         /* spritesheets */
         this.game.load.spritesheet(
-            Assets.Spritesheets.Plasma.getName(), 
-            Assets.Spritesheets.Plasma.getPNG(),
-            Assets.Spritesheets.Plasma.getFrameWidth(),
-            Assets.Spritesheets.Plasma.getFrameHeight(),
-            Assets.Spritesheets.Plasma.getFrameMax());
+            Assets.Spritesheets.Explosions.Comet.getName(), 
+            Assets.Spritesheets.Explosions.Comet.getPNG(),
+            Assets.Spritesheets.Explosions.Comet.getFrameWidth(),
+            Assets.Spritesheets.Explosions.Comet.getFrameHeight(),
+            Assets.Spritesheets.Explosions.Comet.getFrameMax());
 
         this.game.load.spritesheet(
             Assets.Spritesheets.Bullets.RGBLaser.getName(),

@@ -15,7 +15,8 @@ import {
     IPowerUp,
     PowerUpPull,
     PowerUpShield,
-    ScoreText
+    ScoreText,
+    Comet
 } from '../../models';
 
 declare var Victor;
@@ -237,14 +238,15 @@ export class StartGame extends Phaser.State {
     private player_point_CollisionHandler(player: Player, point: Phaser.Sprite) {
         player.score += 1;
         point.kill();
-        new ScoreText(this.game, player.x, player.y - (player.height / 2), Assets.Images.ScoreText.Plus.getName());
+        new ScoreText(this.game, player.x, player.y - (player.height / 2), '+1', '#00FF00');
         Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    private player_comet_CollisionHandler(player: Player, comet: Phaser.Sprite) {
-        if (player.shield.scale.x < 0.3) {
+    private player_comet_CollisionHandler(player: Player, comet: Comet) {
+        if (player.shield.scale.x < 0.3 && !comet.checkLastCollision(player)) {
             player.score -= 10;
-            new ScoreText(this.game, player.x, player.y - (player.height / 2), Assets.Images.ScoreText.Minus10.getName());
+            new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
+            comet.kill();
             Network.updatePlayerScore(player.id, player.socket, player.score);
         }
     }
@@ -256,11 +258,12 @@ export class StartGame extends Phaser.State {
         Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Phaser.Sprite) {
+    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Comet) {
         bullet.kill();
         comet.health -= 1;
         if (comet.health <= 0) {
             this.generatePowerUp(comet.x, comet.y);
+            comet.playExplosion();
             comet.kill();
         }
     }
