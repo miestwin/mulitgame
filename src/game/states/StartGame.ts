@@ -1,11 +1,15 @@
 import 'p2';
 import 'pixi';
 import 'phaser';
+
 import { rnd } from '../../utils';
-import { States } from './States';
+
 import { Const } from '../../const';
-import Network from '../network';
 import { Assets } from '../../assets';
+
+import Network from '../network';
+import { States } from './States';
+
 import {
     Player,
     Shield,
@@ -258,12 +262,12 @@ export class StartGame extends Phaser.State {
         Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Comet) {
+    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Phaser.Sprite) {
         bullet.kill();
         comet.health -= 1;
         if (comet.health <= 0) {
             this.generatePowerUp(comet.x, comet.y);
-            comet.playExplosion();
+            // comet.playExplosion();
             comet.kill();
         }
     }

@@ -9,4 +9,5 @@ export class States {
     static MAIN_MENU: string = 'MainMenu';
     static START_GAME: string = 'StartGame';
     static MESSAGE: string = 'Message';
+    static MAIN: string = 'Main';
 }

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 87);
+/******/ 	return __webpack_require__(__webpack_require__.s = 86);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -534,7 +534,7 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(53);
-var hasBinary = __webpack_require__(19);
+var hasBinary = __webpack_require__(21);
 var sliceBuffer = __webpack_require__(54);
 var after = __webpack_require__(55);
 var utf8 = __webpack_require__(56);
@@ -1778,19 +1778,19 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(68));
+__export(__webpack_require__(97));
 __export(__webpack_require__(98));
-__export(__webpack_require__(99));
-__export(__webpack_require__(69));
 __export(__webpack_require__(70));
-__export(__webpack_require__(100));
 __export(__webpack_require__(71));
-__export(__webpack_require__(73));
+__export(__webpack_require__(99));
+__export(__webpack_require__(72));
+__export(__webpack_require__(74));
+__export(__webpack_require__(103));
 __export(__webpack_require__(104));
 __export(__webpack_require__(105));
+__export(__webpack_require__(75));
 __export(__webpack_require__(106));
-__export(__webpack_require__(74));
 __export(__webpack_require__(107));
-__export(__webpack_require__(108));
 
 
 /***/ }),
@@ -1805,9 +1805,9 @@ __export(__webpack_require__(108));
 
 var debug = __webpack_require__(42)('socket.io-parser');
 var Emitter = __webpack_require__(5);
-var hasBin = __webpack_require__(19);
+var hasBin = __webpack_require__(21);
 var binary = __webpack_require__(46);
-var isBuf = __webpack_require__(20);
+var isBuf = __webpack_require__(22);
 
 /**
  * Protocol version.
@@ -2408,8 +2408,131 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 17 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Nazwy stanów gry
+ * @export
+ * @class States
+ */
+class States {
+}
+States.BOOT = 'Boot';
+States.LOADING = 'Loading';
+States.MAIN_MENU = 'MainMenu';
+States.START_GAME = 'StartGame';
+States.MESSAGE = 'Message';
+States.MAIN = 'Main';
+exports.States = States;
+
+
+/***/ }),
 /* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = __webpack_require__(12);
+var Const;
+(function (Const) {
+    let Ships;
+    (function (Ships) {
+        class GREEN {
+            static getName() { return 'player-ship_green'; }
+            static getValue() { return 0x33cc33; }
+        }
+        Ships.GREEN = GREEN;
+        class PURPLE {
+            static getName() { return 'player-ship_purple'; }
+            static getValue() { return 0x9933ff; }
+        }
+        Ships.PURPLE = PURPLE;
+        class BLUE {
+            static getName() { return 'player-ship_blue'; }
+            static getValue() { return 0x0066ff; }
+        }
+        Ships.BLUE = BLUE;
+        class WATERY {
+            static getName() { return 'player-ship_watery'; }
+            static getValue() { return 0x009999; }
+        }
+        Ships.WATERY = WATERY;
+        class PINK {
+            static getName() { return 'player-ship_pink'; }
+            static getValue() { return 0xff3399; }
+        }
+        Ships.PINK = PINK;
+        class RED {
+            static getName() { return 'player-ship_red'; }
+            static getValue() { return 0xcc2900; }
+        }
+        Ships.RED = RED;
+        class YELLOW {
+            static getName() { return 'player-ship_yellow'; }
+            static getValue() { return 0xd1d123; }
+        }
+        Ships.YELLOW = YELLOW;
+        class ORANGE {
+            static getName() { return 'player-ship_orange'; }
+            static getValue() { return 0xcc5200; }
+        }
+        Ships.ORANGE = ORANGE;
+        class GRASS {
+            static getName() { return 'player-ship_grass'; }
+            static getValue() { return 0x739900; }
+        }
+        Ships.GRASS = GRASS;
+        class DARKPINK {
+            static getName() { return 'player-ship_darkpink'; }
+            static getValue() { return 0x993333; }
+        }
+        Ships.DARKPINK = DARKPINK;
+    })(Ships = Const.Ships || (Const.Ships = {}));
+    let Nebula;
+    (function (Nebula) {
+        class PURPLE {
+            static getName() { return 'nebula_purple'; }
+            static getValue() { return new utils_1.Color(179, 0, 179); }
+        }
+        Nebula.PURPLE = PURPLE;
+        class ORANE {
+            static getName() { return 'nebula_orange'; }
+            static getValue() { return new utils_1.Color(225, 51, 0); }
+        }
+        Nebula.ORANE = ORANE;
+        class GREEN {
+            static getName() { return 'nebula_green'; }
+            static getValue() { return new utils_1.Color(0, 153, 51); }
+        }
+        Nebula.GREEN = GREEN;
+        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
+        Nebula.Names = [];
+    })(Nebula = Const.Nebula || (Const.Nebula = {}));
+    let Comet;
+    (function (Comet) {
+        Comet.Names = [];
+    })(Comet = Const.Comet || (Const.Comet = {}));
+    class Stars {
+        static getName() { return 'starsfield'; }
+    }
+    Const.Stars = Stars;
+    let Element;
+    (function (Element) {
+        Element.Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
+        Element.ColorsString = ['#ccccff', '#ccffff', '#b3ffb3', '#ffff99', '#ffb3ff', '#99ccff'];
+        Element.Names = [];
+    })(Element = Const.Element || (Const.Element = {}));
+})(Const = exports.Const || (exports.Const = {}));
+
+
+/***/ }),
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports) {
 
 /**
@@ -2454,7 +2577,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2523,7 +2646,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2543,7 +2666,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2552,13 +2675,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(48);
-var Socket = __webpack_require__(26);
+var Socket = __webpack_require__(28);
 var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(14);
-var on = __webpack_require__(27);
-var bind = __webpack_require__(28);
+var on = __webpack_require__(29);
+var bind = __webpack_require__(30);
 var debug = __webpack_require__(8)('socket.io-client:manager');
-var indexOf = __webpack_require__(25);
+var indexOf = __webpack_require__(27);
 var Backoff = __webpack_require__(67);
 
 /**
@@ -3122,7 +3245,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -3182,7 +3305,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -3193,7 +3316,7 @@ var Transport = __webpack_require__(16);
 var parseqs = __webpack_require__(9);
 var parser = __webpack_require__(6);
 var inherit = __webpack_require__(10);
-var yeast = __webpack_require__(24);
+var yeast = __webpack_require__(26);
 var debug = __webpack_require__(11)('engine.io-client:polling');
 
 /**
@@ -3433,7 +3556,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3508,7 +3631,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports) {
 
 
@@ -3523,7 +3646,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3534,8 +3657,8 @@ module.exports = function(arr, obj){
 var parser = __webpack_require__(14);
 var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(66);
-var on = __webpack_require__(27);
-var bind = __webpack_require__(28);
+var on = __webpack_require__(29);
+var bind = __webpack_require__(30);
 var debug = __webpack_require__(8)('socket.io-client:socket');
 var parseqs = __webpack_require__(9);
 
@@ -3947,7 +4070,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports) {
 
 
@@ -3977,7 +4100,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports) {
 
 /**
@@ -4003,128 +4126,6 @@ module.exports = function(obj, fn){
     return fn.apply(obj, args.concat(slice.call(arguments)));
   }
 };
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Nazwy stanów gry
- * @export
- * @class States
- */
-class States {
-}
-States.BOOT = 'Boot';
-States.LOADING = 'Loading';
-States.MAIN_MENU = 'MainMenu';
-States.START_GAME = 'StartGame';
-States.MESSAGE = 'Message';
-exports.States = States;
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(12);
-var Const;
-(function (Const) {
-    let Ships;
-    (function (Ships) {
-        class GREEN {
-            static getName() { return 'player-ship_green'; }
-            static getValue() { return 0x33cc33; }
-        }
-        Ships.GREEN = GREEN;
-        class PURPLE {
-            static getName() { return 'player-ship_purple'; }
-            static getValue() { return 0x9933ff; }
-        }
-        Ships.PURPLE = PURPLE;
-        class BLUE {
-            static getName() { return 'player-ship_blue'; }
-            static getValue() { return 0x0066ff; }
-        }
-        Ships.BLUE = BLUE;
-        class WATERY {
-            static getName() { return 'player-ship_watery'; }
-            static getValue() { return 0x009999; }
-        }
-        Ships.WATERY = WATERY;
-        class PINK {
-            static getName() { return 'player-ship_pink'; }
-            static getValue() { return 0xff3399; }
-        }
-        Ships.PINK = PINK;
-        class RED {
-            static getName() { return 'player-ship_red'; }
-            static getValue() { return 0xcc2900; }
-        }
-        Ships.RED = RED;
-        class YELLOW {
-            static getName() { return 'player-ship_yellow'; }
-            static getValue() { return 0xd1d123; }
-        }
-        Ships.YELLOW = YELLOW;
-        class ORANGE {
-            static getName() { return 'player-ship_orange'; }
-            static getValue() { return 0xcc5200; }
-        }
-        Ships.ORANGE = ORANGE;
-        class GRASS {
-            static getName() { return 'player-ship_grass'; }
-            static getValue() { return 0x739900; }
-        }
-        Ships.GRASS = GRASS;
-        class DARKPINK {
-            static getName() { return 'player-ship_darkpink'; }
-            static getValue() { return 0x993333; }
-        }
-        Ships.DARKPINK = DARKPINK;
-    })(Ships = Const.Ships || (Const.Ships = {}));
-    let Nebula;
-    (function (Nebula) {
-        class PURPLE {
-            static getName() { return 'nebula_purple'; }
-            static getValue() { return new utils_1.Color(179, 0, 179); }
-        }
-        Nebula.PURPLE = PURPLE;
-        class ORANE {
-            static getName() { return 'nebula_orange'; }
-            static getValue() { return new utils_1.Color(225, 51, 0); }
-        }
-        Nebula.ORANE = ORANE;
-        class GREEN {
-            static getName() { return 'nebula_green'; }
-            static getValue() { return new utils_1.Color(0, 153, 51); }
-        }
-        Nebula.GREEN = GREEN;
-        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
-        Nebula.Names = [];
-    })(Nebula = Const.Nebula || (Const.Nebula = {}));
-    let Comet;
-    (function (Comet) {
-        Comet.Names = [];
-    })(Comet = Const.Comet || (Const.Comet = {}));
-    class Stars {
-        static getName() { return 'starsfield'; }
-    }
-    Const.Stars = Stars;
-    let Element;
-    (function (Element) {
-        Element.Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-        Element.ColorsString = ['#ccccff', '#ccffff', '#b3ffb3', '#ffff99', '#ffb3ff', '#99ccff'];
-        Element.Names = [];
-    })(Element = Const.Element || (Const.Element = {}));
-})(Const = exports.Const || (exports.Const = {}));
 
 
 /***/ }),
@@ -107522,7 +107523,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 var url = __webpack_require__(39);
 var parser = __webpack_require__(14);
-var Manager = __webpack_require__(21);
+var Manager = __webpack_require__(23);
 var debug = __webpack_require__(8)('socket.io-client');
 
 /**
@@ -107607,8 +107608,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(21);
-exports.Socket = __webpack_require__(26);
+exports.Manager = __webpack_require__(23);
+exports.Socket = __webpack_require__(28);
 
 
 /***/ }),
@@ -107620,7 +107621,7 @@ exports.Socket = __webpack_require__(26);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(18);
+var parseuri = __webpack_require__(20);
 var debug = __webpack_require__(8)('socket.io-client:url');
 
 /**
@@ -108639,7 +108640,7 @@ module.exports = Array.isArray || function (arr) {
  */
 
 var isArray = __webpack_require__(47);
-var isBuf = __webpack_require__(20);
+var isBuf = __webpack_require__(22);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108819,12 +108820,12 @@ module.exports.parser = __webpack_require__(6);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(22);
+var transports = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
 var debug = __webpack_require__(11)('engine.io-client:socket');
-var index = __webpack_require__(25);
+var index = __webpack_require__(27);
 var parser = __webpack_require__(6);
-var parseuri = __webpack_require__(18);
+var parseuri = __webpack_require__(20);
 var parsejson = __webpack_require__(65);
 var parseqs = __webpack_require__(9);
 
@@ -108960,7 +108961,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(16);
-Socket.transports = __webpack_require__(22);
+Socket.transports = __webpack_require__(24);
 Socket.parser = __webpack_require__(6);
 
 /**
@@ -109594,7 +109595,7 @@ try {
  */
 
 var XMLHttpRequest = __webpack_require__(15);
-var Polling = __webpack_require__(23);
+var Polling = __webpack_require__(25);
 var Emitter = __webpack_require__(5);
 var inherit = __webpack_require__(10);
 var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
@@ -110939,7 +110940,7 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(23);
+var Polling = __webpack_require__(25);
 var inherit = __webpack_require__(10);
 
 /**
@@ -111180,7 +111181,7 @@ var Transport = __webpack_require__(16);
 var parser = __webpack_require__(6);
 var parseqs = __webpack_require__(9);
 var inherit = __webpack_require__(10);
-var yeast = __webpack_require__(24);
+var yeast = __webpack_require__(26);
 var debug = __webpack_require__(11)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -111640,6 +111641,26 @@ exports.guid = guid;
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(111));
+__export(__webpack_require__(112));
+__export(__webpack_require__(113));
+__export(__webpack_require__(114));
+__export(__webpack_require__(115));
+__export(__webpack_require__(116));
+__export(__webpack_require__(117));
+__export(__webpack_require__(121));
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 function grad3d(i, x, y, z) {
     let h = i & 15;
@@ -111659,7 +111680,7 @@ exports.grad1d = grad1d;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111672,7 +111693,7 @@ exports.lerp = lerp;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111681,14 +111702,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(100));
 __export(__webpack_require__(101));
+__export(__webpack_require__(73));
 __export(__webpack_require__(102));
-__export(__webpack_require__(72));
-__export(__webpack_require__(103));
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111717,7 +111738,7 @@ exports.Marsaglia = Marsaglia;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111738,7 +111759,7 @@ exports.cross = cross;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111760,76 +111781,7 @@ var rnd;
 
 
 /***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(112));
-__export(__webpack_require__(113));
-__export(__webpack_require__(114));
-__export(__webpack_require__(76));
-__export(__webpack_require__(115));
-__export(__webpack_require__(116));
-__export(__webpack_require__(117));
-__export(__webpack_require__(121));
-
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-class Comet extends Phaser.Sprite {
-    constructor(game, x, y, key) {
-        super(game, x, y, key);
-        /**
-         * Wytrzymałość komety
-         *
-         * @type {number}
-         * @memberof Comet
-         */
-        this.health = 10;
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.events.onKilled.add(() => {
-            this.lastPlayerCollision = null;
-            this.health = 10;
-        }, this);
-        this.explosion = this.game.add.sprite(this.x, this.y, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
-        this.explosion.animations.add('explosion');
-        this.explosion.alive = false;
-        this.explosion.visible = false;
-        this.explosion.exists = false;
-        game.add.existing(this.explosion);
-    }
-    playExplosion() {
-        this.explosion.reset(this.x, this.y);
-        this.explosion.animations.play('explosion', 30, false, true);
-        this.explosion.body.velocity.x = this.body.velocity.x;
-    }
-    checkLastCollision(player) {
-        if (this.lastPlayerCollision === player) {
-            return true;
-        }
-        this.lastPlayerCollision = player;
-        return false;
-    }
-}
-exports.Comet = Comet;
-
-
-/***/ }),
+/* 76 */,
 /* 77 */,
 /* 78 */,
 /* 79 */,
@@ -111839,14 +111791,13 @@ exports.Comet = Comet;
 /* 83 */,
 /* 84 */,
 /* 85 */,
-/* 86 */,
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(88);
+const Game_1 = __webpack_require__(87);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111868,7 +111819,7 @@ function startApp() {
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111877,7 +111828,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(89);
+const states_1 = __webpack_require__(88);
 const network_1 = __webpack_require__(31);
 const utils_1 = __webpack_require__(12);
 /**
@@ -111900,6 +111851,7 @@ class Game extends Phaser.Game {
         this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
         this.state.add(states_1.States.START_GAME, states_1.StartGame);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
+        this.state.add(states_1.States.MAIN, states_1.Main);
         this.state.start(states_1.States.BOOT);
     }
 }
@@ -111907,7 +111859,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111916,16 +111868,17 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(29));
+__export(__webpack_require__(17));
+__export(__webpack_require__(89));
 __export(__webpack_require__(90));
-__export(__webpack_require__(91));
-__export(__webpack_require__(111));
+__export(__webpack_require__(110));
 __export(__webpack_require__(122));
 __export(__webpack_require__(123));
+__export(__webpack_require__(124));
 
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111934,7 +111887,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(29);
+const States_1 = __webpack_require__(17);
 const core_1 = __webpack_require__(35);
 const network_1 = __webpack_require__(31);
 const assets_1 = __webpack_require__(4);
@@ -111974,7 +111927,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111983,12 +111936,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(92);
-const States_1 = __webpack_require__(29);
-const config_1 = __webpack_require__(93);
-const generators = __webpack_require__(94);
+const QRious = __webpack_require__(91);
+const States_1 = __webpack_require__(17);
+const config_1 = __webpack_require__(92);
+const generators = __webpack_require__(93);
 const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(30);
+const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(12);
 /**
  * Ładowanie zasobów
@@ -112035,7 +111988,7 @@ class Loading extends Phaser.State {
         this.loadingText.setText('Create Textures ...');
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
-            this.game.state.start(States_1.States.MAIN_MENU);
+            this.game.state.start(States_1.States.MAIN);
         }).catch(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, 'Problem with generating texture');
         });
@@ -112132,16 +112085,6 @@ class Loading extends Phaser.State {
                 const_1.Const.Element.Names.push(name);
                 generators.element(this.game, name, color);
             }
-            // generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
-            // generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
-            // generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
-            // generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
-            // generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
-            // generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
-            // generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
-            // generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
-            // generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
-            // generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
             resolve();
         });
     }
@@ -112150,7 +112093,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -114518,7 +114461,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114530,7 +114473,7 @@ exports.default = {
 
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114539,15 +114482,15 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(94));
 __export(__webpack_require__(95));
 __export(__webpack_require__(96));
-__export(__webpack_require__(97));
+__export(__webpack_require__(108));
 __export(__webpack_require__(109));
-__export(__webpack_require__(110));
 
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114609,7 +114552,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114635,7 +114578,7 @@ exports.ship = ship;
 
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114671,7 +114614,7 @@ exports.element = element;
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114695,7 +114638,7 @@ exports.map = map;
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114718,7 +114661,7 @@ exports.toHex = toHex;
 
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114744,7 +114687,7 @@ exports.colorLuminance = colorLuminance;
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114767,7 +114710,7 @@ exports.Point = Point;
 
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114814,15 +114757,15 @@ exports.Color = Color;
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const lerp_1 = __webpack_require__(70);
-const grad_1 = __webpack_require__(69);
-const Marsaglia_1 = __webpack_require__(72);
+const lerp_1 = __webpack_require__(71);
+const grad_1 = __webpack_require__(70);
+const Marsaglia_1 = __webpack_require__(73);
 const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
 function noise(x, y, z) {
     if (noiseProfile.generator === null) {
@@ -114907,7 +114850,7 @@ exports.PerlinNoise = PerlinNoise;
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114925,7 +114868,7 @@ exports.hashcode = hashcode;
 
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114938,13 +114881,13 @@ exports.seed = seed;
 
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const cross_1 = __webpack_require__(73);
+const cross_1 = __webpack_require__(74);
 /**
  * Conveh hull
  * Monotone chain
@@ -114978,14 +114921,14 @@ exports.convexhull = convexhull;
 
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rnd_1 = __webpack_require__(74);
-const models_1 = __webpack_require__(71);
+const rnd_1 = __webpack_require__(75);
+const models_1 = __webpack_require__(72);
 /**
  * Tworzy tablicę losowych punktów
  * @export
@@ -115010,7 +114953,7 @@ exports.generateRandomPoints = generateRandomPoints;
 
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115046,7 +114989,7 @@ exports.pingPong = pingPong;
 
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115087,7 +115030,7 @@ exports.comet = comet;
 
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115139,7 +115082,7 @@ function createData(width, height, offset, color, imageData) {
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115148,11 +115091,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(29);
+const States_1 = __webpack_require__(17);
 const network_1 = __webpack_require__(31);
 const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(30);
-const models_1 = __webpack_require__(75);
+const const_1 = __webpack_require__(18);
+const models_1 = __webpack_require__(69);
 /**
  * Menu główne
  * @export
@@ -115216,7 +115159,7 @@ class MainMenu extends Phaser.State {
     create() {
         const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader(assets_1.Assets.Shaders.Glow.getName()));
         const starsback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        starsback.filters = [filter];
+        // starsback.filters = [filter];
         starsback.autoScroll(-100, 0);
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
             const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
@@ -115279,7 +115222,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115309,7 +115252,7 @@ exports.Shield = Shield;
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115371,7 +115314,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115434,6 +115377,56 @@ exports.Bullets = Bullets;
 
 
 /***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class Comet extends Phaser.Sprite {
+    constructor(game, x, y, key) {
+        super(game, x, y, key);
+        /**
+         * Wytrzymałość komety
+         *
+         * @type {number}
+         * @memberof Comet
+         */
+        this.health = 10;
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.events.onKilled.add(() => {
+            this.lastPlayerCollision = null;
+            this.health = 10;
+        }, this);
+        this.explosion = this.game.add.sprite(this.x, this.y, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
+        this.explosion.animations.add('explosion');
+        this.explosion.alive = false;
+        this.explosion.visible = false;
+        this.explosion.exists = false;
+        game.add.existing(this.explosion);
+    }
+    playExplosion() {
+        this.explosion.reset(this.x, this.y);
+        this.explosion.animations.play('explosion', 30, false, true);
+        this.explosion.body.velocity.x = this.body.velocity.x;
+    }
+    checkLastCollision(player) {
+        if (this.lastPlayerCollision === player) {
+            return true;
+        }
+        this.lastPlayerCollision = player;
+        return false;
+    }
+}
+exports.Comet = Comet;
+
+
+/***/ }),
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -115443,18 +115436,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const const_1 = __webpack_require__(30);
+const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(12);
-const Comet_1 = __webpack_require__(76);
 class Comets extends Phaser.Group {
     constructor(game) {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(3, const_1.Const.Comet.Names);
-        const_1.Const.Comet.Names.forEach(name => {
-            this.add(new Comet_1.Comet(game, game.width, utils_1.rnd.integerInRange(20, game.height - 20), name));
-        });
+        // Const.Comet.Names.forEach(name => {
+        //     for (let i = 0; i < 3; i++) {
+        //         this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
+        //     }
+        // });
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
         this.setAll('checkWorldBounds', true);
@@ -115466,7 +115460,7 @@ class Comets extends Phaser.Group {
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20));
+        comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20), 10);
         comet.body.velocity.x = utils_1.rnd.integerInRange(-500, -600);
     }
 }
@@ -115483,7 +115477,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const const_1 = __webpack_require__(30);
+const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(12);
 class Elements extends Phaser.Group {
     constructor(game) {
@@ -115655,11 +115649,11 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(12);
-const States_1 = __webpack_require__(29);
-const const_1 = __webpack_require__(30);
-const network_1 = __webpack_require__(31);
+const const_1 = __webpack_require__(18);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(75);
+const network_1 = __webpack_require__(31);
+const States_1 = __webpack_require__(17);
+const models_1 = __webpack_require__(69);
 /**
  * Start rozgrywki
  * @export
@@ -115808,7 +115802,7 @@ class StartGame extends Phaser.State {
         comet.health -= 1;
         if (comet.health <= 0) {
             this.generatePowerUp(comet.x, comet.y);
-            comet.playExplosion();
+            // comet.playExplosion();
             comet.kill();
         }
     }
@@ -115874,6 +115868,290 @@ class Message extends Phaser.State {
     }
 }
 exports.Message = Message;
+
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
+const States_1 = __webpack_require__(17);
+const const_1 = __webpack_require__(18);
+const network_1 = __webpack_require__(31);
+const assets_1 = __webpack_require__(4);
+const models_1 = __webpack_require__(69);
+/**
+ * Widok główny
+ * @export
+ * @class Main
+ * @extends {Phaser.State}
+ */
+class Main extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        /**
+         * Kolekcja teł gry
+         * @private
+         * @type {Phaser.TileSprite[]}
+         * @memberof Main
+         */
+        this.tiles = [];
+        /**
+         * Flaga informująca o rozpoczęciu gry
+         * @private
+         * @type {boolean}
+         * @memberof Main
+         */
+        this.gameStartedFlag = false;
+        /**
+         * Flaga informująca o zakończeniu gry
+         * @private
+         * @type {boolean}
+         * @memberof Main
+         */
+        this.gameEndedFlag = false;
+    }
+    preload() {
+        // utworzenie słownika graczy
+        this.game.state.players = {};
+        this.players = this.game.add.group();
+        this.shields = this.game.add.group();
+        // aktualizacja połączonych graczy
+        network_1.default.onUpdatePlayersState((player) => {
+            if (!this.game.state.players[player.id]) {
+                const count = Object.keys(this.game.state.players).length;
+                const step = this.game.world.centerY / count;
+                const offset = step / 2;
+                const y = step * count + (offset * (count - 1));
+                const newPlayer = new models_1.Player(this.game, 50, y, { id: player.id, socketId: player.socketID, avatar: player.character });
+                const newShield = new models_1.Shield(this.game, 50, y, player.id);
+                newPlayer.shield = newShield;
+                this.game.state.players[player.id] = newPlayer;
+                this.players.add(newPlayer);
+                this.shields.add(newShield);
+            }
+        });
+        // usuń gracza z gry
+        network_1.default.onPlayerDisconnected((player) => {
+            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
+                if (this.game.state.players[nextId].id == player.id) {
+                    this.game.state.players[nextId].shield.destroy();
+                    this.game.state.players[nextId].destroy();
+                    return players;
+                }
+                players[nextId] = this.game.state.players[nextId];
+                return players;
+            }, {});
+        });
+        network_1.default.onUpdateTimer((sec) => {
+            this.timerText.setText('The game will start in ' + sec);
+        });
+        network_1.default.onStartGame(() => {
+            if (Object.keys(this.game.state.players).length < 1) {
+                const message = 'No connected players';
+                const text = 'Try again';
+                const action = () => this.game.state.start(States_1.States.MAIN_MENU);
+                this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
+            }
+            else {
+                this.hideMenu();
+                setTimeout(() => {
+                    this.gameStartedFlag = true;
+                }, 3000);
+                this.gameEndInterval = setInterval(() => {
+                    this.gameEndedFlag = true;
+                    clearInterval(this.gameEndInterval);
+                }, 30000);
+            }
+        });
+        network_1.default.onPlayedUpdateXY((playerId, update) => {
+            const player = this.game.state.players[playerId];
+            player.vector = new Victor(update.x, update.y).rotateDeg(player.angle);
+        });
+        network_1.default.onPlayerUpdateZ((playerId, update) => {
+            const player = this.game.state.players[playerId];
+            player.zPos = update;
+        });
+        network_1.default.onPlayerFire((playerId) => {
+            const player = this.game.state.players[playerId];
+            this.bullets.shoot(player.x, player.y);
+        });
+        network_1.default.onNoConnectedPlayers(() => {
+            this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
+        });
+        network_1.default.startTimer();
+    }
+    create() {
+        this.game.physics.setBoundsToWorld();
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.points = new models_1.Elements(this.game);
+        this.comets = new models_1.Comets(this.game);
+        this.bullets = new models_1.Bullets(this.game);
+        this.powerUps = this.game.add.group();
+        this.createBackground();
+        this.createMenu();
+        // debug
+        this.game.time.advancedTiming = true;
+    }
+    update() {
+        if (this.gameStartedFlag && !this.gameEndedFlag) {
+            this.points.generate();
+            this.comets.generate();
+        }
+        this.endGame();
+        this.checkCollisions();
+        this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
+    }
+    shutdown() {
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_Z);
+        network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
+        network_1.default.removeListener(network_1.default.NO_CONNECTED_PLAYERS);
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
+        network_1.default.removeListener(network_1.default.UPDATE_TIMER);
+        network_1.default.removeListener(network_1.default.START_GAME);
+    }
+    /**
+     * Utworzenie teł gry
+     * @private
+     * @memberof Main
+     */
+    createBackground() {
+        const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
+        backTile.autoScroll(-100, 0);
+        this.tiles.push(backTile);
+        for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
+            const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
+            nebulaback.autoScroll(-100, 0);
+            this.tiles.push(nebulaback);
+        }
+    }
+    /**
+     * Utworzenie menu
+     * @private
+     * @memberof Main
+     */
+    createMenu() {
+        this.menuGroup = this.game.add.group();
+        // tytuł gry
+        const instruction = this.game.add.text(this.game.world.centerX, 60, 'Scan QRCode and join to the game', {
+            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: '#ffffff',
+            align: 'center'
+        });
+        instruction.anchor.set(0.5);
+        // kod qr
+        const qr = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'qrcode');
+        qr.anchor.set(0.5);
+        this.timerText = this.game.add.text(this.game.world.centerX, this.game.height - 60, 'The game will start in ...', {
+            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: '#ffffff',
+            align: 'center'
+        });
+        this.timerText.anchor.set(0.5);
+        this.menuGroup.add(instruction);
+        this.menuGroup.add(qr);
+        this.menuGroup.add(this.timerText);
+    }
+    /**
+     * Usunięcie menu przed rozpoczęciem rozgrywki
+     * @private
+     * @memberof Main
+     */
+    hideMenu() {
+        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 2000, Phaser.Easing.Linear.None, true);
+        moveUpTween.onComplete.add(() => {
+            this.game.tweens.remove(moveUpTween);
+            this.menuGroup.destroy();
+        }, this);
+    }
+    /**
+     * Koniec gry
+     * @private
+     * @memberof Main
+     */
+    endGame() {
+        if (this.gameEndedFlag && this.points.countLiving() === 0 && this.comets.countLiving() === 0) {
+            this.shutdown();
+            const players = [];
+            let bestScore = 0;
+            let winner;
+            Object.keys(this.game.state.players).forEach((playerId) => {
+                players.push(this.game.state.players[playerId]);
+            });
+            players.sort((a, b) => a.score - b.score);
+            players.forEach((player, index, arr) => {
+                const count = arr.length;
+                const stepY = this.game.world.centerY / count;
+                const offsetY = stepY / 2;
+                const y = stepY * (index + 1) + (offsetY * (count - 1));
+                const stepX = (50 * arr.length) / count;
+                const offsetX = stepX / 2;
+                const x = stepX * (index + 1) + (offsetX * (count - 1));
+                player.x = x + 30;
+                player.y = y;
+                player.vector = new Victor(0, 0);
+            });
+            network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
+        }
+    }
+    checkCollisions() {
+        this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
+    }
+    player_point_CollisionHandler(player, point) {
+        player.score += 1;
+        point.kill();
+        new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '+1', '#00FF00');
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+    }
+    player_comet_CollisionHandler(player, comet) {
+        // && !comet.checkLastCollision(player)
+        if (player.shield.scale.x < 0.3) {
+            player.score -= 10;
+            new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
+            comet.kill();
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+        }
+    }
+    shield_point_CollisionHandler(shield, point) {
+        const player = this.game.state.players[shield.playerId];
+        player.score += 1;
+        point.kill();
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+    }
+    bullet_comet_CollisionHandler(bullet, comet) {
+        bullet.kill();
+        comet.health -= 1;
+        if (comet.health <= 0) {
+            this.generatePowerUp(comet.x, comet.y);
+            comet.playExplosion();
+            comet.kill();
+        }
+    }
+    player_powerup_CollisionHandler(player, pu) {
+        pu.powerup(player);
+        pu.destroy();
+    }
+    generatePowerUp(x, y) {
+        const chance = utils_1.rnd.integerInRange(1, 20);
+        if (chance != 1)
+            return;
+        const pu = new models_1.PowerUpShield(this.game, x, y);
+        pu.body.velocity.x = -400;
+        this.powerUps.add(pu);
+    }
+}
+exports.Main = Main;
 
 
 /***/ })

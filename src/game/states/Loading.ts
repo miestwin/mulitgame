@@ -133,7 +133,7 @@ export class Loading extends Phaser.State {
         this.loadingText.setText('Create Textures ...');
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
-            this.game.state.start(States.MAIN_MENU);
+            this.game.state.start(States.MAIN);
         }).catch(() => {
             this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
         });
@@ -243,17 +243,6 @@ export class Loading extends Phaser.State {
                 Const.Element.Names.push(name);
                 generators.element(this.game, name, color);
             }
-
-            // generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
-            // generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
-            // generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
-            // generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
-            // generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
-            // generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
-            // generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
-            // generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
-            // generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
-            // generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
             
             resolve();
         });

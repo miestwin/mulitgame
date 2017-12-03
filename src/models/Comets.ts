@@ -14,9 +14,11 @@ export class Comets extends Phaser.Group {
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(3, Const.Comet.Names);
-        Const.Comet.Names.forEach(name => {
-            this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
-        });
+        // Const.Comet.Names.forEach(name => {
+        //     for (let i = 0; i < 3; i++) {
+        //         this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
+        //     }
+        // });
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
         this.setAll('checkWorldBounds', true);
@@ -24,12 +26,12 @@ export class Comets extends Phaser.Group {
     }
 
     public generate() {
-        const comet = this.getFirstDead();
+        const comet: Phaser.Sprite = this.getFirstDead();
         const chance = rnd.integerInRange(1, 100)
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20));
+        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), 10);
         comet.body.velocity.x = rnd.integerInRange(-500, -600);
     }
 }
