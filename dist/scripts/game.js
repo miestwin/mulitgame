@@ -115926,9 +115926,9 @@ class Main extends Phaser.State {
         network_1.default.onUpdatePlayersState((player) => {
             if (!this.game.state.players[player.id]) {
                 const count = Object.keys(this.game.state.players).length;
-                const step = this.game.world.centerY / count;
-                const offset = step / 2;
-                const y = step * count + (offset * (count - 1));
+                const start = (this.game.world.centerY / 2) + 100;
+                const offset = (this.game.world.centerY / 4) * (count - 1);
+                const y = start + offset;
                 const newPlayer = new models_1.Player(this.game, 50, y, { id: player.id, socketId: player.socketID, avatar: player.character });
                 const newShield = new models_1.Shield(this.game, 50, y, player.id);
                 newPlayer.shield = newShield;

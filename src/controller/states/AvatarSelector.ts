@@ -158,7 +158,7 @@ export class AvatarSelector extends Phaser.State {
         if (!this.ships[this.selectedShipIndex].use) {
             Network.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
             (<any>this.game.state).color = this.ships[this.selectedShipIndex].color;
-            this.game.state.start(States.WAIT_FOR_GAME);
+            this.game.state.start(States.GAME_CONTROLLER);
         }
     }
 }
