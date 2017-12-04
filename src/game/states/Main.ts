@@ -183,9 +183,9 @@ export class Main extends Phaser.State {
         });
 
         Network.onPlayedUpdateXY((playerId, update) => {
-            console.log(playerId);
-           const player = (<any>this.game.state).players[playerId];
-           player.vector = new Victor(update.x, update.y); // .rotateDeg(player.angle);
+            const player = (<any>this.game.state).players[playerId];
+            console.log(player);
+            player.vector = new Victor(update.x, update.y); // .rotateDeg(player.angle);
         });
 
         Network.onPlayerUpdateZ((playerId, update) => {

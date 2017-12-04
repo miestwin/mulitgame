@@ -92,7 +92,6 @@ module.exports = (server) => {
         });
 
         socket.on('update-player-xy', (gameId, update) => {
-            console.log(update);
             socket.broadcast.to('game-' + gameId).emit('update-player-xy', socket.player.id, update);
         });
 

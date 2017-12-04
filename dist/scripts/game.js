@@ -115971,8 +115971,8 @@ class Main extends Phaser.State {
             }
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
-            console.log(playerId);
             const player = this.game.state.players[playerId];
+            console.log(player);
             player.vector = new Victor(update.x, update.y); // .rotateDeg(player.angle);
         });
         network_1.default.onPlayerUpdateZ((playerId, update) => {
