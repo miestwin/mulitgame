@@ -115971,8 +115971,9 @@ class Main extends Phaser.State {
             }
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
+            console.log(playerId);
             const player = this.game.state.players[playerId];
-            player.vector = new Victor(update.x, update.y).rotateDeg(player.angle);
+            player.vector = new Victor(update.x, update.y); // .rotateDeg(player.angle);
         });
         network_1.default.onPlayerUpdateZ((playerId, update) => {
             const player = this.game.state.players[playerId];
@@ -116119,7 +116120,7 @@ class Main extends Phaser.State {
         if (player.shield.scale.x < 0.3) {
             player.score -= 10;
             new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-            comet.kill();
+            // comet.kill();
             network_1.default.updatePlayerScore(player.id, player.socket, player.score);
         }
     }
@@ -116134,7 +116135,7 @@ class Main extends Phaser.State {
         comet.health -= 1;
         if (comet.health <= 0) {
             this.generatePowerUp(comet.x, comet.y);
-            comet.playExplosion();
+            // comet.playExplosion();
             comet.kill();
         }
     }
