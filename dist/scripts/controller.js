@@ -243,61 +243,61 @@ var Assets;
         (function (Ships) {
             class GREEN {
                 static getName() { return 'player-ship_green'; }
-                static getValue() { return 0x33cc33; }
+                static getValue() { return '#33cc33'; }
                 static getPNG() { return '../assets/images/ships/ship_green.png'; }
             }
             Ships.GREEN = GREEN;
             class PURPLE {
                 static getName() { return 'player-ship_purple'; }
-                static getValue() { return 0x9933ff; }
+                static getValue() { return '#9933ff'; }
                 static getPNG() { return '../assets/images/ships/ship_purple.png'; }
             }
             Ships.PURPLE = PURPLE;
             class BLUE {
                 static getName() { return 'player-ship_blue'; }
-                static getValue() { return 0x0066ff; }
+                static getValue() { return '#0066ff'; }
                 static getPNG() { return '../assets/images/ships/ship_blue.png'; }
             }
             Ships.BLUE = BLUE;
             class WATERY {
                 static getName() { return 'player-ship_watery'; }
-                static getValue() { return 0x009999; }
+                static getValue() { return '#009999'; }
                 static getPNG() { return '../assets/images/ships/ship_watery.png'; }
             }
             Ships.WATERY = WATERY;
             class PINK {
                 static getName() { return 'player-ship_pink'; }
-                static getValue() { return 0xff3399; }
+                static getValue() { return '#ff3399'; }
                 static getPNG() { return '../assets/images/ships/ship_pink.png'; }
             }
             Ships.PINK = PINK;
             class RED {
                 static getName() { return 'player-ship_red'; }
-                static getValue() { return 0xcc2900; }
+                static getValue() { return '#cc2900'; }
                 static getPNG() { return '../assets/images/ships/ship_red.png'; }
             }
             Ships.RED = RED;
             class YELLOW {
                 static getName() { return 'player-ship_yellow'; }
-                static getValue() { return 0xd1d123; }
+                static getValue() { return '#d1d123'; }
                 static getPNG() { return '../assets/images/ships/ship_yellow.png'; }
             }
             Ships.YELLOW = YELLOW;
             class ORANGE {
                 static getName() { return 'player-ship_orange'; }
-                static getValue() { return 0xcc5200; }
+                static getValue() { return '#cc5200'; }
                 static getPNG() { return '../assets/images/ships/ship_orange.png'; }
             }
             Ships.ORANGE = ORANGE;
             class GRASS {
                 static getName() { return 'player-ship_grass'; }
-                static getValue() { return 0x739900; }
+                static getValue() { return '#739900'; }
                 static getPNG() { return '../assets/images/ships/ship_grass.png'; }
             }
             Ships.GRASS = GRASS;
             class DARKPINK {
                 static getName() { return 'player-ship_darkpink'; }
-                static getValue() { return 0x993333; }
+                static getValue() { return '#993333'; }
                 static getPNG() { return '../assets/images/ships/ship_darkpink.png'; }
             }
             Ships.DARKPINK = DARKPINK;
@@ -329,7 +329,7 @@ var Assets;
                 Joystick.WheelExternal = WheelExternal;
                 class WheelInternal {
                     static getName() { return 'joystick-internal-wheel'; }
-                    static getPNG() { return '../assets/images/controller/shadedDark/shadedDark11.png'; }
+                    static getPNG() { return '../assets/images/controller/flatDark/flatDark10.png'; }
                 }
                 Joystick.WheelInternal = WheelInternal;
             })(Joystick = Buttons.Joystick || (Buttons.Joystick = {}));
@@ -343,7 +343,7 @@ var Assets;
             })(Menu = Buttons.Menu || (Buttons.Menu = {}));
             class Fire {
                 static getName() { return 'btn-fire'; }
-                static getPNG() { return '../assets/images/controller/shadedDark/shadedDark49.png'; }
+                static getPNG() { return '../assets/images/controller/flatDark/flatDark48.png'; }
             }
             Buttons.Fire = Fire;
             class Shield {
@@ -111828,16 +111828,16 @@ class AvatarSelector extends Phaser.State {
          * @memberof AvatarSelector
          */
         this.ships = [
-            { name: 'player-ship_green', color: 0x33cc33, use: false },
-            { name: 'player-ship_purple', color: 0x9933ff, use: false },
-            { name: 'player-ship_blue', color: 0x0066ff, use: false },
-            { name: 'player-ship_watery', color: 0x009999, use: false },
-            { name: 'player-ship_pink', color: 0xff3399, use: false },
-            { name: 'player-ship_red', color: 0xcc2900, use: false },
-            { name: 'player-ship_yellow', color: 0xd1d123, use: false },
-            { name: 'player-ship_orange', color: 0xcc5200, use: false },
-            { name: 'player-ship_grass', color: 0x739900, use: false },
-            { name: 'player-ship_darkpink', color: 0x993333, use: false }
+            { class: assets_1.Assets.Images.Ships.GREEN, use: false },
+            { class: assets_1.Assets.Images.Ships.PURPLE, use: false },
+            { class: assets_1.Assets.Images.Ships.BLUE, use: false },
+            { class: assets_1.Assets.Images.Ships.WATERY, use: false },
+            { class: assets_1.Assets.Images.Ships.PINK, use: false },
+            { class: assets_1.Assets.Images.Ships.RED, use: false },
+            { class: assets_1.Assets.Images.Ships.YELLOW, use: false },
+            { class: assets_1.Assets.Images.Ships.ORANGE, use: false },
+            { class: assets_1.Assets.Images.Ships.GRASS, use: false },
+            { class: assets_1.Assets.Images.Ships.DARKPINK, use: false }
         ];
     }
     preload() {
@@ -111874,7 +111874,7 @@ class AvatarSelector extends Phaser.State {
         this.scrolingMap.input.allowVerticalDrag = false;
         this.scrolingMap.input.boundsRect = new Phaser.Rectangle(this.game.width - this.scrolingMap.width, 80, this.scrolingMap.width * 2 - this.game.width, this.game.height - 180);
         for (var i = 0; i < this.ships.length; i++) {
-            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 60, this.ships[i].name);
+            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 60, this.ships[i].class.getName());
             ship.anchor.set(0.5, 1);
             ship.scale.setTo(0.3);
             this.scrolingMap.addChild(ship);
@@ -111919,8 +111919,9 @@ class AvatarSelector extends Phaser.State {
      */
     actionOnClick() {
         if (!this.ships[this.selectedShipIndex].use) {
-            network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
-            this.game.state.color = this.ships[this.selectedShipIndex].color;
+            network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].class.getName());
+            this.game.state.shipClass = this.ships[this.selectedShipIndex].class;
+            this.game.state.color = this.ships[this.selectedShipIndex].class.getValue();
             this.game.state.start(States_1.States.GAME_CONTROLLER);
         }
     }
@@ -112025,11 +112026,11 @@ class GameController extends Phaser.State {
     create() {
         this.leftTouchStartPos = new Victor(this.game.world.centerX / 2, this.game.world.centerY);
         this.leftTouchPos.copy(this.leftTouchStartPos);
-        this.scoreText = this.game.add.text(this.game.world.centerX / 2, 10, 'Score: 0', { font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
-        this.scoreText.anchor.setTo(0.5, 0);
+        this.scoreText = this.game.add.text(this.game.world.centerX + (this.game.world.centerX / 2), 40, 'Score: 0', { font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+        this.scoreText.anchor.setTo(0.5);
         const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, assets_1.Assets.UI.Buttons.Joystick.WheelExternal.getName());
         leftPadBack.anchor.setTo(0.5);
-        leftPadBack.scale.setTo(2);
+        leftPadBack.scale.setTo(1.8);
         this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getName());
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
@@ -112058,9 +112059,11 @@ class GameController extends Phaser.State {
         //         this.stopShieldUP();
         //     }
         // }, this);
-        this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 10, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
+        this.fireBtn = this.game.add.button(this.game.world.centerX + (this.game.world.centerX / 2), this.game.world.centerY, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
             network_1.default.playerFire(gameId);
         }, this);
+        this.fireBtn.scale.setTo(2);
+        this.fireBtn.anchor.setTo(0.5);
         // this.shieldBar = new HealthBar(this.game, {
         //     x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
         //     bg: { color: '#808080' }, bar: { color: '#ffffff' },

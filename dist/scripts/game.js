@@ -243,61 +243,61 @@ var Assets;
         (function (Ships) {
             class GREEN {
                 static getName() { return 'player-ship_green'; }
-                static getValue() { return 0x33cc33; }
+                static getValue() { return '#33cc33'; }
                 static getPNG() { return '../assets/images/ships/ship_green.png'; }
             }
             Ships.GREEN = GREEN;
             class PURPLE {
                 static getName() { return 'player-ship_purple'; }
-                static getValue() { return 0x9933ff; }
+                static getValue() { return '#9933ff'; }
                 static getPNG() { return '../assets/images/ships/ship_purple.png'; }
             }
             Ships.PURPLE = PURPLE;
             class BLUE {
                 static getName() { return 'player-ship_blue'; }
-                static getValue() { return 0x0066ff; }
+                static getValue() { return '#0066ff'; }
                 static getPNG() { return '../assets/images/ships/ship_blue.png'; }
             }
             Ships.BLUE = BLUE;
             class WATERY {
                 static getName() { return 'player-ship_watery'; }
-                static getValue() { return 0x009999; }
+                static getValue() { return '#009999'; }
                 static getPNG() { return '../assets/images/ships/ship_watery.png'; }
             }
             Ships.WATERY = WATERY;
             class PINK {
                 static getName() { return 'player-ship_pink'; }
-                static getValue() { return 0xff3399; }
+                static getValue() { return '#ff3399'; }
                 static getPNG() { return '../assets/images/ships/ship_pink.png'; }
             }
             Ships.PINK = PINK;
             class RED {
                 static getName() { return 'player-ship_red'; }
-                static getValue() { return 0xcc2900; }
+                static getValue() { return '#cc2900'; }
                 static getPNG() { return '../assets/images/ships/ship_red.png'; }
             }
             Ships.RED = RED;
             class YELLOW {
                 static getName() { return 'player-ship_yellow'; }
-                static getValue() { return 0xd1d123; }
+                static getValue() { return '#d1d123'; }
                 static getPNG() { return '../assets/images/ships/ship_yellow.png'; }
             }
             Ships.YELLOW = YELLOW;
             class ORANGE {
                 static getName() { return 'player-ship_orange'; }
-                static getValue() { return 0xcc5200; }
+                static getValue() { return '#cc5200'; }
                 static getPNG() { return '../assets/images/ships/ship_orange.png'; }
             }
             Ships.ORANGE = ORANGE;
             class GRASS {
                 static getName() { return 'player-ship_grass'; }
-                static getValue() { return 0x739900; }
+                static getValue() { return '#739900'; }
                 static getPNG() { return '../assets/images/ships/ship_grass.png'; }
             }
             Ships.GRASS = GRASS;
             class DARKPINK {
                 static getName() { return 'player-ship_darkpink'; }
-                static getValue() { return 0x993333; }
+                static getValue() { return '#993333'; }
                 static getPNG() { return '../assets/images/ships/ship_darkpink.png'; }
             }
             Ships.DARKPINK = DARKPINK;
@@ -329,7 +329,7 @@ var Assets;
                 Joystick.WheelExternal = WheelExternal;
                 class WheelInternal {
                     static getName() { return 'joystick-internal-wheel'; }
-                    static getPNG() { return '../assets/images/controller/shadedDark/shadedDark11.png'; }
+                    static getPNG() { return '../assets/images/controller/flatDark/flatDark10.png'; }
                 }
                 Joystick.WheelInternal = WheelInternal;
             })(Joystick = Buttons.Joystick || (Buttons.Joystick = {}));
@@ -343,7 +343,7 @@ var Assets;
             })(Menu = Buttons.Menu || (Buttons.Menu = {}));
             class Fire {
                 static getName() { return 'btn-fire'; }
-                static getPNG() { return '../assets/images/controller/shadedDark/shadedDark49.png'; }
+                static getPNG() { return '../assets/images/controller/flatDark/flatDark48.png'; }
             }
             Buttons.Fire = Fire;
             class Shield {
@@ -111652,7 +111652,8 @@ __export(__webpack_require__(114));
 __export(__webpack_require__(115));
 __export(__webpack_require__(116));
 __export(__webpack_require__(117));
-__export(__webpack_require__(121));
+__export(__webpack_require__(118));
+__export(__webpack_require__(122));
 
 
 /***/ }),
@@ -111872,9 +111873,9 @@ __export(__webpack_require__(17));
 __export(__webpack_require__(89));
 __export(__webpack_require__(90));
 __export(__webpack_require__(110));
-__export(__webpack_require__(122));
 __export(__webpack_require__(123));
 __export(__webpack_require__(124));
+__export(__webpack_require__(125));
 
 
 /***/ }),
@@ -115015,8 +115016,8 @@ function comet(game, width, height, rc, key) {
     canvas.width = width;
     const ctx = canvas.getContext('2d');
     var grd = ctx.createLinearGradient(0, 0, width, 0);
-    grd.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
-    grd.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    grd.addColorStop(0, 'rgba(255, 255, 255, 1)');
+    grd.addColorStop(1, 'rgba(255, 255, 255, 0.2)');
     ctx.fillStyle = grd;
     ctx.arc(x, y, rt, 90, Math.PI, true);
     ctx.moveTo(x, height);
@@ -115450,6 +115451,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class CometExplosion extends Phaser.Group {
+    constructor(game) {
+        super(game);
+        this.createMultiple(15, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
+        this.forEach((explosion) => {
+            explosion.anchor.setTo(0.5);
+            explosion.scale.setTo(0.8);
+            explosion.animations.add('explosion');
+        }, this);
+    }
+    generate(x, y) {
+        const explosion = this.getFirstDead();
+        if (!explosion) {
+            return;
+        }
+        explosion.reset(x, y);
+        explosion.play('explosion', 15, false, true);
+    }
+}
+exports.CometExplosion = CometExplosion;
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
 const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(7);
 class Comets extends Phaser.Group {
@@ -115457,7 +115491,7 @@ class Comets extends Phaser.Group {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(5, const_1.Const.Comet.Names);
+        this.createMultiple(3, const_1.Const.Comet.Names);
         // Const.Comet.Names.forEach(name => {
         //     for (let i = 0; i < 3; i++) {
         //         this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
@@ -115470,7 +115504,7 @@ class Comets extends Phaser.Group {
     }
     generate() {
         const comet = this.getFirstDead();
-        const chance = utils_1.rnd.integerInRange(1, 25);
+        const chance = utils_1.rnd.integerInRange(1, 10);
         if (chance != 1 || !comet) {
             return;
         }
@@ -115482,7 +115516,7 @@ exports.Comets = Comets;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115520,7 +115554,7 @@ exports.Elements = Elements;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115529,13 +115563,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(118));
 __export(__webpack_require__(119));
 __export(__webpack_require__(120));
+__export(__webpack_require__(121));
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115565,7 +115599,7 @@ exports.PowerUpShield = PowerUpShield;
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115589,7 +115623,7 @@ exports.PowerUpCooldown = PowerUpCooldown;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115621,7 +115655,7 @@ exports.PowerUpPull = PowerUpPull;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115653,7 +115687,7 @@ exports.ScoreText = ScoreText;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115847,7 +115881,7 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115885,7 +115919,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116007,6 +116041,7 @@ class Main extends Phaser.State {
         this.points = new models_1.Elements(this.game);
         this.comets = new models_1.Comets(this.game);
         this.bullets = new models_1.Bullets(this.game);
+        this.explosions = new models_1.CometExplosion(this.game);
         this.powerUps = this.game.add.group();
         this.createBackground();
         this.createMenu();
@@ -116054,7 +116089,7 @@ class Main extends Phaser.State {
     createMenu() {
         this.menuGroup = this.game.add.group();
         // tytuł gry
-        const instruction = this.game.add.text(this.game.world.centerX, 60, 'Scan QRCode and join to the game', {
+        const instruction = this.game.add.text(this.game.world.centerX, 100, 'Scan QRCode and join to the game', {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
@@ -116063,7 +116098,7 @@ class Main extends Phaser.State {
         // kod qr
         const qr = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'qrcode');
         qr.anchor.set(0.5);
-        this.timerText = this.game.add.text(this.game.world.centerX, this.game.height - 60, 'The game will start in ...', {
+        this.timerText = this.game.add.text(this.game.world.centerX, this.game.height - 100, 'The game will start in ...', {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
@@ -116116,10 +116151,14 @@ class Main extends Phaser.State {
         }
     }
     checkCollisions() {
-        this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
+        // this.game.physics.arcade.overlap(
+        //     this.players,
+        //     this.points, this.player_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
+        // this.game.physics.arcade.overlap(
+        //     this.shields,
+        //     this.points, this.shield_point_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
     }
     player_point_CollisionHandler(player, point) {
@@ -116129,13 +116168,11 @@ class Main extends Phaser.State {
         network_1.default.updatePlayerScore(player.id, player.socket, player.score);
     }
     player_comet_CollisionHandler(player, comet) {
-        // && !comet.checkLastCollision(player)
-        if (player.shield.scale.x < 0.3) {
-            player.score -= 10;
-            new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-            // comet.kill();
-            network_1.default.updatePlayerScore(player.id, player.socket, player.score);
-        }
+        player.score -= 10;
+        new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
+        this.explosions.generate(comet.x, comet.y);
+        comet.kill();
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
     }
     shield_point_CollisionHandler(shield, point) {
         const player = this.game.state.players[shield.playerId];
@@ -116145,10 +116182,10 @@ class Main extends Phaser.State {
     }
     bullet_comet_CollisionHandler(bullet, comet) {
         bullet.kill();
-        comet.health -= 1;
+        comet.health -= 2;
         if (comet.health <= 0) {
             this.generatePowerUp(comet.x, comet.y);
-            // comet.playExplosion();
+            this.explosions.generate(comet.x, comet.y);
             comet.kill();
         }
     }

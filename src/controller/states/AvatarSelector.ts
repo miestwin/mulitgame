@@ -21,16 +21,16 @@ export class AvatarSelector extends Phaser.State {
      * @memberof AvatarSelector
      */
     private ships: Array<any> = [
-        { name: 'player-ship_green', color: 0x33cc33, use: false },
-        { name: 'player-ship_purple', color: 0x9933ff, use: false },
-        { name: 'player-ship_blue', color: 0x0066ff, use: false },
-        { name: 'player-ship_watery', color: 0x009999, use: false },
-        { name: 'player-ship_pink', color: 0xff3399, use: false },
-        { name: 'player-ship_red', color: 0xcc2900, use: false },
-        { name: 'player-ship_yellow', color: 0xd1d123, use: false },
-        { name: 'player-ship_orange', color: 0xcc5200, use: false },
-        { name: 'player-ship_grass', color: 0x739900, use: false },
-        { name: 'player-ship_darkpink', color: 0x993333, use: false }
+        { class: Assets.Images.Ships.GREEN, use: false },
+        { class: Assets.Images.Ships.PURPLE, use: false },
+        { class: Assets.Images.Ships.BLUE, use: false },
+        { class: Assets.Images.Ships.WATERY, use: false },
+        { class: Assets.Images.Ships.PINK, use: false },
+        { class: Assets.Images.Ships.RED, use: false },
+        { class: Assets.Images.Ships.YELLOW, use: false },
+        { class: Assets.Images.Ships.ORANGE, use: false },
+        { class: Assets.Images.Ships.GRASS, use: false },
+        { class: Assets.Images.Ships.DARKPINK, use: false }
     ];
 
     /**
@@ -99,7 +99,7 @@ export class AvatarSelector extends Phaser.State {
             const ship = this.game.add.sprite(
                 this.game.world.centerX + i * 120,
                 this.game.world.centerY - 60,
-                this.ships[i].name);
+                this.ships[i].class.getName());
             ship.anchor.set(0.5, 1);
             ship.scale.setTo(0.3);
             this.scrolingMap.addChild(ship);
@@ -156,8 +156,9 @@ export class AvatarSelector extends Phaser.State {
      */
     private actionOnClick() {
         if (!this.ships[this.selectedShipIndex].use) {
-            Network.setPlayerAvatar(this.ships[this.selectedShipIndex].name);
-            (<any>this.game.state).color = this.ships[this.selectedShipIndex].color;
+            Network.setPlayerAvatar(this.ships[this.selectedShipIndex].class.getName());
+            (<any>this.game.state).shipClass = this.ships[this.selectedShipIndex].class;
+            (<any>this.game.state).color = this.ships[this.selectedShipIndex].class.getValue();
             this.game.state.start(States.GAME_CONTROLLER);
         }
     }

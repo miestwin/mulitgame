@@ -17,7 +17,8 @@ import {
     PowerUpPull,
     PowerUpShield,
     ScoreText,
-    Comet
+    Comet,
+    CometExplosion
 } from '../../models';
 
 declare var Victor;
@@ -80,6 +81,14 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private comets: Comets;
+
+    /**
+     * Kolekcja eksplozji komet
+     * @private
+     * @type {CometExplosion}
+     * @memberof Main
+     */
+    private explosions: CometExplosion;
 
     /**
      * Kolekcja bonusów możliwych do zebrania
@@ -211,6 +220,7 @@ export class Main extends Phaser.State {
         this.points = new Elements(this.game);
         this.comets = new Comets(this.game);
         this.bullets = new Bullets(this.game);
+        this.explosions = new CometExplosion(this.game);
         this.powerUps = this.game.add.group();
 
         this.createBackground();
@@ -268,7 +278,7 @@ export class Main extends Phaser.State {
 
         // tytuł gry
         const instruction = this.game.add.text(
-            this.game.world.centerX, 60,
+            this.game.world.centerX, 100,
             'Scan QRCode and join to the game',
             { 
                 font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
@@ -282,7 +292,7 @@ export class Main extends Phaser.State {
         qr.anchor.set(0.5);
 
         this.timerText = this.game.add.text(
-            this.game.world.centerX, this.game.height - 60, 'The game will start in ...',
+            this.game.world.centerX, this.game.height - 100, 'The game will start in ...',
             {
                 font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
@@ -342,9 +352,9 @@ export class Main extends Phaser.State {
     }
 
     private checkCollisions() {
-        this.game.physics.arcade.overlap(
-            this.players,
-            this.points, this.player_point_CollisionHandler, null, this);
+        // this.game.physics.arcade.overlap(
+        //     this.players,
+        //     this.points, this.player_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
             this.players,
@@ -354,9 +364,9 @@ export class Main extends Phaser.State {
             this.players,
             this.powerUps, this.player_powerup_CollisionHandler, null, this);
 
-        this.game.physics.arcade.overlap(
-            this.shields,
-            this.points, this.shield_point_CollisionHandler, null, this);
+        // this.game.physics.arcade.overlap(
+        //     this.shields,
+        //     this.points, this.shield_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
             this.bullets,
@@ -371,13 +381,11 @@ export class Main extends Phaser.State {
     }
 
     private player_comet_CollisionHandler(player: Player, comet: Comet) {
-        // && !comet.checkLastCollision(player)
-        if (player.shield.scale.x < 0.3) {
-            player.score -= 10;
-            new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-            // comet.kill();
-            Network.updatePlayerScore(player.id, player.socket, player.score);
-        }
+        player.score -= 10;
+        new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
+        this.explosions.generate(comet.x, comet.y);
+        comet.kill();
+        Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
     private shield_point_CollisionHandler(shield: Shield, point: Phaser.Sprite) {
@@ -389,10 +397,10 @@ export class Main extends Phaser.State {
 
     private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Comet) {
         bullet.kill();
-        comet.health -= 1;
+        comet.health -= 2;
         if (comet.health <= 0) {
             this.generatePowerUp(comet.x, comet.y);
-             // comet.playExplosion();
+            this.explosions.generate(comet.x, comet.y);
             comet.kill();
         }
     }

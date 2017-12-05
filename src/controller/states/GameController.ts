@@ -6,6 +6,7 @@ import { States } from './States';
 import { Player } from '../../models';
 import Network from '../network';
 import { Assets } from '../../assets';
+import { colorLuminance } from '../../utils';
 
 declare var Victor;
 declare var HealthBar;
@@ -137,16 +138,16 @@ export class GameController extends Phaser.State {
         this.leftTouchPos.copy(this.leftTouchStartPos);
         
         this.scoreText = this.game.add.text(
-            this.game.world.centerX / 2, 10, 'Score: 0',
-            { font: `25px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
-        this.scoreText.anchor.setTo(0.5, 0);
+            this.game.world.centerX + (this.game.world.centerX / 2), 40, 'Score: 0',
+            { font: `30px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+        this.scoreText.anchor.setTo(0.5);
 
         const leftPadBack = this.game.add.image(
             this.leftTouchStartPos.x, 
             this.leftTouchStartPos.y, 
             Assets.UI.Buttons.Joystick.WheelExternal.getName());
         leftPadBack.anchor.setTo(0.5);
-        leftPadBack.scale.setTo(2);
+        leftPadBack.scale.setTo(1.8);
 
         this.leftPad = this.game.add.image(
             this.leftTouchStartPos.x, 
@@ -184,11 +185,13 @@ export class GameController extends Phaser.State {
         // }, this);
 
         this.fireBtn = this.game.add.button(
-            this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY + 10, Assets.UI.Buttons.Fire.getName(),
+            this.game.world.centerX + (this.game.world.centerX / 2),
+            this.game.world.centerY, Assets.UI.Buttons.Fire.getName(),
             () => {
                 Network.playerFire(gameId);
             }, this);
+        this.fireBtn.scale.setTo(2);
+        this.fireBtn.anchor.setTo(0.5);
 
         // this.shieldBar = new HealthBar(this.game, {
         //     x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,

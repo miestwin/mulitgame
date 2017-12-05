@@ -14,8 +14,8 @@ export function comet(game: Phaser.Game, width: number, height: number, rc: numb
     const ctx = canvas.getContext('2d');
     
     var grd = ctx.createLinearGradient(0,0,width,0);
-    grd.addColorStop(0,'rgba(255, 255, 255, 0.85)');
-    grd.addColorStop(1,'rgba(255, 255, 255, 0)');
+    grd.addColorStop(0,'rgba(255, 255, 255, 1)');
+    grd.addColorStop(1,'rgba(255, 255, 255, 0.2)');
     ctx.fillStyle = grd;
     ctx.arc(x, y, rt, 90, Math.PI, true);
     ctx.moveTo(x, height);
