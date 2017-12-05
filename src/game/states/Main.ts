@@ -184,8 +184,7 @@ export class Main extends Phaser.State {
 
         Network.onPlayedUpdateXY((playerId, update) => {
             const player = (<any>this.game.state).players[playerId];
-            console.log(player);
-            player.vector = new Victor(update.x, update.y); // .rotateDeg(player.angle);
+            player.vector = new Victor(update.x, update.y);
         });
 
         Network.onPlayerUpdateZ((playerId, update) => {
@@ -223,7 +222,7 @@ export class Main extends Phaser.State {
 
     update() {
         if (this.gameStartedFlag && !this.gameEndedFlag) {
-            this.points.generate();
+            // this.points.generate();
             this.comets.generate();
         }
 

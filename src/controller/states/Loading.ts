@@ -91,21 +91,10 @@ export class Loading extends Phaser.State {
         this.game.load.image(
             Assets.Images.Ships.DARKPINK.getName(),
             Assets.Images.Ships.DARKPINK.getPNG());
-            
-        // generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
-        // generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
-        // generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
-        // generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
-        // generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
-        // generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
-        // generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
-        // generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
-        // generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
-        // generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
     }
 
     create() {
-        this.game.state.start(States.MAIN_MENU);
+        this.game.state.start(States.AVATAR_SELECTOR);
     }
 
     /**

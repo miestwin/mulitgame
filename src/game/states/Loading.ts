@@ -134,9 +134,10 @@ export class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States.MAIN);
-        }).catch(() => {
-            this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
         });
+        // .catch(() => {
+        //     this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
+        // });
         // this.createQRCode().then(() => {
         //     this.loadingText.setText('Create QRCode Complete');
         //     this.game.state.start(States.MAIN_MENU);
@@ -234,9 +235,16 @@ export class Loading extends Phaser.State {
             Const.Comet.Names.push('comet-1');
             Const.Comet.Names.push('comet-2');
             Const.Comet.Names.push('comet-3');
+            Const.Comet.Names.push('comet-4');
+            Const.Comet.Names.push('comet-5');
+            Const.Comet.Names.push('comet-6');
             generators.comet(this.game, 200, 80, 20, 'comet-1');
             generators.comet(this.game, 150, 40, 10, 'comet-2');
             generators.comet(this.game, 200, 60, 15, 'comet-3');
+            generators.comet(this.game, 160, 50, 12, 'comet-4');
+            generators.comet(this.game, 170, 55, 13, 'comet-5');
+            generators.comet(this.game, 100, 20, 5, 'comet-6');
+            
             for( let i = 0; i < 5; i++) {
                 const name = 'element-' + i;
                 const color = Const.Element.Colors[rnd.integerInRange(0, 5)];

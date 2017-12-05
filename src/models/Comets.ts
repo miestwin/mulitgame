@@ -13,7 +13,7 @@ export class Comets extends Phaser.Group {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(3, Const.Comet.Names);
+        this.createMultiple(5, Const.Comet.Names);
         // Const.Comet.Names.forEach(name => {
         //     for (let i = 0; i < 3; i++) {
         //         this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
@@ -27,7 +27,7 @@ export class Comets extends Phaser.Group {
 
     public generate() {
         const comet: Phaser.Sprite = this.getFirstDead();
-        const chance = rnd.integerInRange(1, 100)
+        const chance = rnd.integerInRange(1, 25)
         if (chance != 1 || !comet) {
             return;
         }

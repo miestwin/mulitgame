@@ -2,6 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
+import { generateRandomPoints, convexhull, Point } from '../utils';
+
 export function comet(game: Phaser.Game, width: number, height: number, rc: number, key: string) {
     const x = height / 2;
     const y = height / 2;
@@ -23,7 +25,16 @@ export function comet(game: Phaser.Game, width: number, height: number, rc: numb
     ctx.fill();
     ctx.beginPath();
     ctx.fillStyle = '#332200';
-    ctx.arc(x, y, rc, 0, Math.PI * 2, true);
+    // ctx.arc(x, y, rc, 0, Math.PI * 2, true);
+    // ctx.fill();
+
+    const points = convexhull(generateRandomPoints(new Point(x, y), rc, 50));
+    points.push(points[0]);
+    ctx.moveTo(points[0].X, points[0].Y);
+    for (let j = 1; j < points.length; j++) {
+        const point = points[j];
+        ctx.lineTo(point.X, point.Y);
+    }
     ctx.fill();
 
     let img = new Image();

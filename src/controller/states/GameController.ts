@@ -155,33 +155,33 @@ export class GameController extends Phaser.State {
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
 
-        this.shieldBtn = this.game.add.button(
-            this.game.world.centerX + this.game.world.centerX / 2,
-            this.game.world.centerY - 10, 
-            Assets.UI.Buttons.Shield.getName());
-        this.shieldBtn.anchor.setTo(0.5, 1);
+        // this.shieldBtn = this.game.add.button(
+        //     this.game.world.centerX + this.game.world.centerX / 2,
+        //     this.game.world.centerY - 10, 
+        //     Assets.UI.Buttons.Shield.getName());
+        // this.shieldBtn.anchor.setTo(0.5, 1);
 
-        this.shieldBtn.onInputDown.add(() => {
-            if (this.shieldState.canUse) {
-                this.shieldState.inUse = true;
-                Network.updatePlayerZ(gameId, true);
-                this.shieldInterval = setInterval(() => {
-                    this.shieldState.prc -= 10;
-                }, 500);
-            }
-        }, this);
+        // this.shieldBtn.onInputDown.add(() => {
+        //     if (this.shieldState.canUse) {
+        //         this.shieldState.inUse = true;
+        //         Network.updatePlayerZ(gameId, true);
+        //         this.shieldInterval = setInterval(() => {
+        //             this.shieldState.prc -= 10;
+        //         }, 500);
+        //     }
+        // }, this);
 
-        this.shieldBtn.onInputUp.add(() => {
-            if (this.shieldState.canUse) {
-                this.shieldState.inUse = false;
-                Network.updatePlayerZ(gameId, false);
-                clearInterval(this.shieldInterval);
-                this.setRechargeInterval();
-            }
-            if (this.vibrateInterval) {
-                this.stopShieldUP();
-            }
-        }, this);
+        // this.shieldBtn.onInputUp.add(() => {
+        //     if (this.shieldState.canUse) {
+        //         this.shieldState.inUse = false;
+        //         Network.updatePlayerZ(gameId, false);
+        //         clearInterval(this.shieldInterval);
+        //         this.setRechargeInterval();
+        //     }
+        //     if (this.vibrateInterval) {
+        //         this.stopShieldUP();
+        //     }
+        // }, this);
 
         this.fireBtn = this.game.add.button(
             this.game.world.centerX + this.game.world.centerX / 2,
@@ -190,11 +190,11 @@ export class GameController extends Phaser.State {
                 Network.playerFire(gameId);
             }, this);
 
-        this.shieldBar = new HealthBar(this.game, {
-            x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
-            bg: { color: '#808080' }, bar: { color: '#ffffff' },
-            animationDuration: 200, flipped: false
-        });
+        // this.shieldBar = new HealthBar(this.game, {
+        //     x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
+        //     bg: { color: '#808080' }, bar: { color: '#ffffff' },
+        //     animationDuration: 200, flipped: false
+        // });
     }
 
     update() {
@@ -205,28 +205,28 @@ export class GameController extends Phaser.State {
             Network.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
         }
 
-        this.shieldBar.setPercent(this.shieldState.prc);
-        if (this.shieldState.inUse && this.shieldState.canUse) {
-            if (this.shieldState.prc <= 0) {
-                Network.updatePlayerZ(gameId, false);
-                this.shieldState.canUse = false;
-                this.shieldState.inUse = false;
-                this.stopShieldUP();
-                clearInterval(this.shieldInterval);
-                this.setRechargeInterval();
-                var that = this;
-                this.canUseTimeout = setTimeout(() => {
-                    that.shieldState.canUse = true;
-                }, 3000);
-            }
-            else if (this.shieldState.prc <= 30) {
-                this.signalShieldOverpowered();
-            }
-        }
-        if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100 && this.rechargeInterval) {
-            clearInterval(this.rechargeInterval);
-            this.rechargeInterval = null;
-        }
+        // this.shieldBar.setPercent(this.shieldState.prc);
+        // if (this.shieldState.inUse && this.shieldState.canUse) {
+        //     if (this.shieldState.prc <= 0) {
+        //         Network.updatePlayerZ(gameId, false);
+        //         this.shieldState.canUse = false;
+        //         this.shieldState.inUse = false;
+        //         this.stopShieldUP();
+        //         clearInterval(this.shieldInterval);
+        //         this.setRechargeInterval();
+        //         var that = this;
+        //         this.canUseTimeout = setTimeout(() => {
+        //             that.shieldState.canUse = true;
+        //         }, 3000);
+        //     }
+        //     else if (this.shieldState.prc <= 30) {
+        //         this.signalShieldOverpowered();
+        //     }
+        // }
+        // if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100 && this.rechargeInterval) {
+        //     clearInterval(this.rechargeInterval);
+        //     this.rechargeInterval = null;
+        // }
     }
 
     shutdown() {

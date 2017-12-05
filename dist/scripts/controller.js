@@ -1139,7 +1139,8 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1329,7 +1330,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1518,10 +1519,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -1564,7 +1565,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -1576,7 +1577,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1765,10 +1766,9 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 12 */,
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2751,7 +2751,7 @@ var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(14);
 var on = __webpack_require__(29);
 var bind = __webpack_require__(30);
-var debug = __webpack_require__(8)('socket.io-client:manager');
+var debug = __webpack_require__(9)('socket.io-client:manager');
 var indexOf = __webpack_require__(27);
 var Backoff = __webpack_require__(67);
 
@@ -3384,11 +3384,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(16);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(26);
-var debug = __webpack_require__(11)('engine.io-client:polling');
+var debug = __webpack_require__(12)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3730,8 +3730,8 @@ var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(66);
 var on = __webpack_require__(29);
 var bind = __webpack_require__(30);
-var debug = __webpack_require__(8)('socket.io-client:socket');
-var parseqs = __webpack_require__(9);
+var debug = __webpack_require__(9)('socket.io-client:socket');
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -107309,7 +107309,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 35 */
@@ -107408,7 +107408,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 var url = __webpack_require__(39);
 var parser = __webpack_require__(14);
 var Manager = __webpack_require__(23);
-var debug = __webpack_require__(8)('socket.io-client');
+var debug = __webpack_require__(9)('socket.io-client');
 
 /**
  * Module exports.
@@ -107506,7 +107506,7 @@ exports.Socket = __webpack_require__(28);
  */
 
 var parseuri = __webpack_require__(20);
-var debug = __webpack_require__(8)('socket.io-client:url');
+var debug = __webpack_require__(9)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -108134,7 +108134,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 43 */
@@ -108706,12 +108706,12 @@ module.exports.parser = __webpack_require__(6);
 
 var transports = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(11)('engine.io-client:socket');
+var debug = __webpack_require__(12)('engine.io-client:socket');
 var index = __webpack_require__(27);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(20);
 var parsejson = __webpack_require__(65);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -109481,8 +109481,8 @@ try {
 var XMLHttpRequest = __webpack_require__(15);
 var Polling = __webpack_require__(25);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(10);
-var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(11);
+var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110825,7 +110825,7 @@ function plural(ms, n, name) {
  */
 
 var Polling = __webpack_require__(25);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 
 /**
  * Module exports.
@@ -111063,10 +111063,10 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(16);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(9);
-var inherit = __webpack_require__(10);
+var parseqs = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(26);
-var debug = __webpack_require__(11)('engine.io-client:websocket');
+var debug = __webpack_require__(12)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -111714,19 +111714,9 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.Ships.ORANGE.getName(), assets_1.Assets.Images.Ships.ORANGE.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.GRASS.getName(), assets_1.Assets.Images.Ships.GRASS.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.DARKPINK.getName(), assets_1.Assets.Images.Ships.DARKPINK.getPNG());
-        // generators.ship(this.game, Const.Ships.GREEN.getName(), Const.Ships.GREEN.getValue());
-        // generators.ship(this.game, Const.Ships.PURPLE.getName(), Const.Ships.PURPLE.getValue());
-        // generators.ship(this.game, Const.Ships.BLUE.getName(), Const.Ships.BLUE.getValue());
-        // generators.ship(this.game, Const.Ships.WATERY.getName(), Const.Ships.WATERY.getValue());
-        // generators.ship(this.game, Const.Ships.PINK.getName(), Const.Ships.PINK.getValue());
-        // generators.ship(this.game, Const.Ships.RED.getName(), Const.Ships.RED.getValue());
-        // generators.ship(this.game, Const.Ships.YELLOW.getName(), Const.Ships.YELLOW.getValue());
-        // generators.ship(this.game, Const.Ships.ORANGE.getName(), Const.Ships.ORANGE.getValue());
-        // generators.ship(this.game, Const.Ships.GRASS.getName(), Const.Ships.GRASS.getValue());
-        // generators.ship(this.game, Const.Ships.DARKPINK.getName(), Const.Ships.DARKPINK.getValue());
     }
     create() {
-        this.game.state.start(States_1.States.MAIN_MENU);
+        this.game.state.start(States_1.States.AVATAR_SELECTOR);
     }
     /**
      * Funkcja stanu ładowania
@@ -112043,36 +112033,39 @@ class GameController extends Phaser.State {
         this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getName());
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
-        this.shieldBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY - 10, assets_1.Assets.UI.Buttons.Shield.getName());
-        this.shieldBtn.anchor.setTo(0.5, 1);
-        this.shieldBtn.onInputDown.add(() => {
-            if (this.shieldState.canUse) {
-                this.shieldState.inUse = true;
-                network_1.default.updatePlayerZ(gameId, true);
-                this.shieldInterval = setInterval(() => {
-                    this.shieldState.prc -= 10;
-                }, 500);
-            }
-        }, this);
-        this.shieldBtn.onInputUp.add(() => {
-            if (this.shieldState.canUse) {
-                this.shieldState.inUse = false;
-                network_1.default.updatePlayerZ(gameId, false);
-                clearInterval(this.shieldInterval);
-                this.setRechargeInterval();
-            }
-            if (this.vibrateInterval) {
-                this.stopShieldUP();
-            }
-        }, this);
+        // this.shieldBtn = this.game.add.button(
+        //     this.game.world.centerX + this.game.world.centerX / 2,
+        //     this.game.world.centerY - 10, 
+        //     Assets.UI.Buttons.Shield.getName());
+        // this.shieldBtn.anchor.setTo(0.5, 1);
+        // this.shieldBtn.onInputDown.add(() => {
+        //     if (this.shieldState.canUse) {
+        //         this.shieldState.inUse = true;
+        //         Network.updatePlayerZ(gameId, true);
+        //         this.shieldInterval = setInterval(() => {
+        //             this.shieldState.prc -= 10;
+        //         }, 500);
+        //     }
+        // }, this);
+        // this.shieldBtn.onInputUp.add(() => {
+        //     if (this.shieldState.canUse) {
+        //         this.shieldState.inUse = false;
+        //         Network.updatePlayerZ(gameId, false);
+        //         clearInterval(this.shieldInterval);
+        //         this.setRechargeInterval();
+        //     }
+        //     if (this.vibrateInterval) {
+        //         this.stopShieldUP();
+        //     }
+        // }, this);
         this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY + 10, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
             network_1.default.playerFire(gameId);
         }, this);
-        this.shieldBar = new HealthBar(this.game, {
-            x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
-            bg: { color: '#808080' }, bar: { color: '#ffffff' },
-            animationDuration: 200, flipped: false
-        });
+        // this.shieldBar = new HealthBar(this.game, {
+        //     x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
+        //     bg: { color: '#808080' }, bar: { color: '#ffffff' },
+        //     animationDuration: 200, flipped: false
+        // });
     }
     update() {
         this.leftPad.x = this.leftTouchPos.x;
@@ -112081,28 +112074,28 @@ class GameController extends Phaser.State {
         if (this.frameCounter % 3 === 0) {
             network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
         }
-        this.shieldBar.setPercent(this.shieldState.prc);
-        if (this.shieldState.inUse && this.shieldState.canUse) {
-            if (this.shieldState.prc <= 0) {
-                network_1.default.updatePlayerZ(gameId, false);
-                this.shieldState.canUse = false;
-                this.shieldState.inUse = false;
-                this.stopShieldUP();
-                clearInterval(this.shieldInterval);
-                this.setRechargeInterval();
-                var that = this;
-                this.canUseTimeout = setTimeout(() => {
-                    that.shieldState.canUse = true;
-                }, 3000);
-            }
-            else if (this.shieldState.prc <= 30) {
-                this.signalShieldOverpowered();
-            }
-        }
-        if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100 && this.rechargeInterval) {
-            clearInterval(this.rechargeInterval);
-            this.rechargeInterval = null;
-        }
+        // this.shieldBar.setPercent(this.shieldState.prc);
+        // if (this.shieldState.inUse && this.shieldState.canUse) {
+        //     if (this.shieldState.prc <= 0) {
+        //         Network.updatePlayerZ(gameId, false);
+        //         this.shieldState.canUse = false;
+        //         this.shieldState.inUse = false;
+        //         this.stopShieldUP();
+        //         clearInterval(this.shieldInterval);
+        //         this.setRechargeInterval();
+        //         var that = this;
+        //         this.canUseTimeout = setTimeout(() => {
+        //             that.shieldState.canUse = true;
+        //         }, 3000);
+        //     }
+        //     else if (this.shieldState.prc <= 30) {
+        //         this.signalShieldOverpowered();
+        //     }
+        // }
+        // if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100 && this.rechargeInterval) {
+        //     clearInterval(this.rechargeInterval);
+        //     this.rechargeInterval = null;
+        // }
     }
     shutdown() {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));

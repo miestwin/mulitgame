@@ -1140,6 +1140,32 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(68));
+__export(__webpack_require__(97));
+__export(__webpack_require__(98));
+__export(__webpack_require__(70));
+__export(__webpack_require__(71));
+__export(__webpack_require__(99));
+__export(__webpack_require__(72));
+__export(__webpack_require__(74));
+__export(__webpack_require__(103));
+__export(__webpack_require__(104));
+__export(__webpack_require__(105));
+__export(__webpack_require__(75));
+__export(__webpack_require__(106));
+__export(__webpack_require__(107));
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1329,7 +1355,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1518,10 +1544,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -1564,7 +1590,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -1576,7 +1602,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1765,33 +1791,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(68));
-__export(__webpack_require__(97));
-__export(__webpack_require__(98));
-__export(__webpack_require__(70));
-__export(__webpack_require__(71));
-__export(__webpack_require__(99));
-__export(__webpack_require__(72));
-__export(__webpack_require__(74));
-__export(__webpack_require__(103));
-__export(__webpack_require__(104));
-__export(__webpack_require__(105));
-__export(__webpack_require__(75));
-__export(__webpack_require__(106));
-__export(__webpack_require__(107));
-
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 13 */,
@@ -2437,7 +2437,7 @@ exports.States = States;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 var Const;
 (function (Const) {
     let Ships;
@@ -2680,7 +2680,7 @@ var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(14);
 var on = __webpack_require__(29);
 var bind = __webpack_require__(30);
-var debug = __webpack_require__(8)('socket.io-client:manager');
+var debug = __webpack_require__(9)('socket.io-client:manager');
 var indexOf = __webpack_require__(27);
 var Backoff = __webpack_require__(67);
 
@@ -3313,11 +3313,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(16);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(26);
-var debug = __webpack_require__(11)('engine.io-client:polling');
+var debug = __webpack_require__(12)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3659,8 +3659,8 @@ var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(66);
 var on = __webpack_require__(29);
 var bind = __webpack_require__(30);
-var debug = __webpack_require__(8)('socket.io-client:socket');
-var parseqs = __webpack_require__(9);
+var debug = __webpack_require__(9)('socket.io-client:socket');
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -107425,7 +107425,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 35 */
@@ -107524,7 +107524,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 var url = __webpack_require__(39);
 var parser = __webpack_require__(14);
 var Manager = __webpack_require__(23);
-var debug = __webpack_require__(8)('socket.io-client');
+var debug = __webpack_require__(9)('socket.io-client');
 
 /**
  * Module exports.
@@ -107622,7 +107622,7 @@ exports.Socket = __webpack_require__(28);
  */
 
 var parseuri = __webpack_require__(20);
-var debug = __webpack_require__(8)('socket.io-client:url');
+var debug = __webpack_require__(9)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -108250,7 +108250,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 43 */
@@ -108822,12 +108822,12 @@ module.exports.parser = __webpack_require__(6);
 
 var transports = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(11)('engine.io-client:socket');
+var debug = __webpack_require__(12)('engine.io-client:socket');
 var index = __webpack_require__(27);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(20);
 var parsejson = __webpack_require__(65);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -109597,8 +109597,8 @@ try {
 var XMLHttpRequest = __webpack_require__(15);
 var Polling = __webpack_require__(25);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(10);
-var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(11);
+var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110941,7 +110941,7 @@ function plural(ms, n, name) {
  */
 
 var Polling = __webpack_require__(25);
-var inherit = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 
 /**
  * Module exports.
@@ -111179,10 +111179,10 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(16);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(9);
-var inherit = __webpack_require__(10);
+var parseqs = __webpack_require__(10);
+var inherit = __webpack_require__(11);
 var yeast = __webpack_require__(26);
-var debug = __webpack_require__(11)('engine.io-client:websocket');
+var debug = __webpack_require__(12)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -111830,7 +111830,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(88);
 const network_1 = __webpack_require__(31);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 /**
  * Utworzenie gry
  * @export
@@ -111942,7 +111942,7 @@ const config_1 = __webpack_require__(92);
 const generators = __webpack_require__(93);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(18);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 /**
  * Ładowanie zasobów
  * @export
@@ -111989,9 +111989,10 @@ class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
             this.loadingText.setText('Create QRCode Complete');
             this.game.state.start(States_1.States.MAIN);
-        }).catch(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, 'Problem with generating texture');
         });
+        // .catch(() => {
+        //     this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
+        // });
         // this.createQRCode().then(() => {
         //     this.loadingText.setText('Create QRCode Complete');
         //     this.game.state.start(States.MAIN_MENU);
@@ -112076,9 +112077,15 @@ class Loading extends Phaser.State {
             const_1.Const.Comet.Names.push('comet-1');
             const_1.Const.Comet.Names.push('comet-2');
             const_1.Const.Comet.Names.push('comet-3');
+            const_1.Const.Comet.Names.push('comet-4');
+            const_1.Const.Comet.Names.push('comet-5');
+            const_1.Const.Comet.Names.push('comet-6');
             generators.comet(this.game, 200, 80, 20, 'comet-1');
             generators.comet(this.game, 150, 40, 10, 'comet-2');
             generators.comet(this.game, 200, 60, 15, 'comet-3');
+            generators.comet(this.game, 160, 50, 12, 'comet-4');
+            generators.comet(this.game, 170, 55, 13, 'comet-5');
+            generators.comet(this.game, 100, 20, 5, 'comet-6');
             for (let i = 0; i < 5; i++) {
                 const name = 'element-' + i;
                 const color = const_1.Const.Element.Colors[utils_1.rnd.integerInRange(0, 5)];
@@ -114587,7 +114594,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 function element(game, key, color) {
     const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(10, 10), 5, 20));
     points.push(points[0]);
@@ -114998,6 +115005,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+const utils_1 = __webpack_require__(7);
 function comet(game, width, height, rc, key) {
     const x = height / 2;
     const y = height / 2;
@@ -115018,7 +115026,15 @@ function comet(game, width, height, rc, key) {
     ctx.fill();
     ctx.beginPath();
     ctx.fillStyle = '#332200';
-    ctx.arc(x, y, rc, 0, Math.PI * 2, true);
+    // ctx.arc(x, y, rc, 0, Math.PI * 2, true);
+    // ctx.fill();
+    const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(x, y), rc, 50));
+    points.push(points[0]);
+    ctx.moveTo(points[0].X, points[0].Y);
+    for (let j = 1; j < points.length; j++) {
+        const point = points[j];
+        ctx.lineTo(point.X, point.Y);
+    }
     ctx.fill();
     let img = new Image();
     img.onload = () => {
@@ -115039,7 +115055,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 function nebula(game, name, offset, color) {
     const width = game.width;
     const height = game.height;
@@ -115297,16 +115313,14 @@ class Player extends Phaser.Sprite {
         this.y = y;
     }
     update() {
-        if (this.game.state.started) {
-            this.body.velocity.x = this.vector.x * 9;
-            this.body.velocity.y = this.vector.y * 9;
-            this.shield.setXY(this.x, this.y);
-            if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
-            }
-            else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
-            }
+        this.body.velocity.x = this.vector.x * 9;
+        this.body.velocity.y = this.vector.y * 9;
+        this.shield.setXY(this.x, this.y);
+        if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
+            this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
+        }
+        else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
+            this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
         }
     }
 }
@@ -115437,13 +115451,13 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(18);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 class Comets extends Phaser.Group {
     constructor(game) {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(3, const_1.Const.Comet.Names);
+        this.createMultiple(5, const_1.Const.Comet.Names);
         // Const.Comet.Names.forEach(name => {
         //     for (let i = 0; i < 3; i++) {
         //         this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
@@ -115456,7 +115470,7 @@ class Comets extends Phaser.Group {
     }
     generate() {
         const comet = this.getFirstDead();
-        const chance = utils_1.rnd.integerInRange(1, 100);
+        const chance = utils_1.rnd.integerInRange(1, 25);
         if (chance != 1 || !comet) {
             return;
         }
@@ -115478,7 +115492,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(18);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 class Elements extends Phaser.Group {
     constructor(game) {
         super(game);
@@ -115648,7 +115662,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 const const_1 = __webpack_require__(18);
 const assets_1 = __webpack_require__(4);
 const network_1 = __webpack_require__(31);
@@ -115880,7 +115894,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 const States_1 = __webpack_require__(17);
 const const_1 = __webpack_require__(18);
 const network_1 = __webpack_require__(31);
@@ -115972,8 +115986,7 @@ class Main extends Phaser.State {
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
             const player = this.game.state.players[playerId];
-            console.log(player);
-            player.vector = new Victor(update.x, update.y); // .rotateDeg(player.angle);
+            player.vector = new Victor(update.x, update.y);
         });
         network_1.default.onPlayerUpdateZ((playerId, update) => {
             const player = this.game.state.players[playerId];
@@ -116002,7 +116015,7 @@ class Main extends Phaser.State {
     }
     update() {
         if (this.gameStartedFlag && !this.gameEndedFlag) {
-            this.points.generate();
+            // this.points.generate();
             this.comets.generate();
         }
         this.endGame();

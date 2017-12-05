@@ -92,16 +92,14 @@ export class Player extends Phaser.Sprite {
     }
 
     public update() {
-        if ((<any>this.game.state).started) {
-            this.body.velocity.x = this.vector.x * 9;
-            this.body.velocity.y = this.vector.y * 9;
-            this.shield.setXY(this.x, this.y);
+        this.body.velocity.x = this.vector.x * 9;
+        this.body.velocity.y = this.vector.y * 9;
+        this.shield.setXY(this.x, this.y);
 
-            if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
-            } else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
-                this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
-            }
+        if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
+            this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
+        } else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
+            this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
         }
     }
 }
