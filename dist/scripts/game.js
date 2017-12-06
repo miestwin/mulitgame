@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 86);
+/******/ 	return __webpack_require__(__webpack_require__.s = 97);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -94,21 +94,21 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(32);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(39);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(33);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(40);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(34);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(41);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -533,15 +533,15 @@ Emitter.prototype.hasListeners = function(event){
  * Module dependencies.
  */
 
-var keys = __webpack_require__(53);
+var keys = __webpack_require__(60);
 var hasBinary = __webpack_require__(21);
-var sliceBuffer = __webpack_require__(54);
-var after = __webpack_require__(55);
-var utf8 = __webpack_require__(56);
+var sliceBuffer = __webpack_require__(61);
+var after = __webpack_require__(62);
+var utf8 = __webpack_require__(63);
 
 var base64encoder;
 if (global && global.ArrayBuffer) {
-  base64encoder = __webpack_require__(58);
+  base64encoder = __webpack_require__(65);
 }
 
 /**
@@ -599,7 +599,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(59);
+var Blob = __webpack_require__(66);
 
 /**
  * Encodes a packet.
@@ -1148,20 +1148,20 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(68));
-__export(__webpack_require__(97));
-__export(__webpack_require__(98));
-__export(__webpack_require__(70));
-__export(__webpack_require__(71));
-__export(__webpack_require__(99));
-__export(__webpack_require__(72));
-__export(__webpack_require__(74));
-__export(__webpack_require__(103));
-__export(__webpack_require__(104));
-__export(__webpack_require__(105));
+__export(__webpack_require__(38));
 __export(__webpack_require__(75));
-__export(__webpack_require__(106));
-__export(__webpack_require__(107));
+__export(__webpack_require__(76));
+__export(__webpack_require__(31));
+__export(__webpack_require__(32));
+__export(__webpack_require__(77));
+__export(__webpack_require__(33));
+__export(__webpack_require__(35));
+__export(__webpack_require__(81));
+__export(__webpack_require__(82));
+__export(__webpack_require__(83));
+__export(__webpack_require__(36));
+__export(__webpack_require__(84));
+__export(__webpack_require__(85));
 
 
 /***/ }),
@@ -1364,7 +1364,7 @@ process.umask = function() { return 0; };
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(40);
+exports = module.exports = __webpack_require__(47);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -1611,7 +1611,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(60);
+exports = module.exports = __webpack_require__(67);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -1803,10 +1803,10 @@ function localstorage() {
  * Module dependencies.
  */
 
-var debug = __webpack_require__(42)('socket.io-parser');
+var debug = __webpack_require__(49)('socket.io-parser');
 var Emitter = __webpack_require__(5);
 var hasBin = __webpack_require__(21);
-var binary = __webpack_require__(46);
+var binary = __webpack_require__(53);
 var isBuf = __webpack_require__(22);
 
 /**
@@ -2206,7 +2206,7 @@ function error() {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(51);
+var hasCORS = __webpack_require__(58);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -2586,7 +2586,7 @@ module.exports = function parseuri(str) {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(45);
+var isArray = __webpack_require__(52);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
@@ -2674,7 +2674,7 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(48);
+var eio = __webpack_require__(55);
 var Socket = __webpack_require__(28);
 var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(14);
@@ -2682,7 +2682,7 @@ var on = __webpack_require__(29);
 var bind = __webpack_require__(30);
 var debug = __webpack_require__(9)('socket.io-client:manager');
 var indexOf = __webpack_require__(27);
-var Backoff = __webpack_require__(67);
+var Backoff = __webpack_require__(74);
 
 /**
  * IE6+ hasOwnProperty
@@ -3253,9 +3253,9 @@ Manager.prototype.onreconnect = function () {
  */
 
 var XMLHttpRequest = __webpack_require__(15);
-var XHR = __webpack_require__(52);
-var JSONP = __webpack_require__(62);
-var websocket = __webpack_require__(63);
+var XHR = __webpack_require__(59);
+var JSONP = __webpack_require__(69);
+var websocket = __webpack_require__(70);
 
 /**
  * Export transports.
@@ -3656,7 +3656,7 @@ module.exports = function(arr, obj){
 
 var parser = __webpack_require__(14);
 var Emitter = __webpack_require__(5);
-var toArray = __webpack_require__(66);
+var toArray = __webpack_require__(73);
 var on = __webpack_require__(29);
 var bind = __webpack_require__(30);
 var debug = __webpack_require__(9)('socket.io-client:socket');
@@ -4135,7 +4135,132 @@ module.exports = function(obj, fn){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const io = __webpack_require__(38);
+function grad3d(i, x, y, z) {
+    let h = i & 15;
+    let u = h < 8 ? x : y, v = h < 4 ? y : h === 12 || h === 14 ? x : z;
+    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+}
+exports.grad3d = grad3d;
+function grad2d(i, x, y) {
+    let v = (i & 1) === 0 ? x : y;
+    return (i & 2) === 0 ? -v : v;
+}
+exports.grad2d = grad2d;
+function grad1d(i, x) {
+    return (i & 1) === 0 ? -x : x;
+}
+exports.grad1d = grad1d;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function lerp(t, a, b) {
+    return a + t * (b - a);
+}
+exports.lerp = lerp;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(78));
+__export(__webpack_require__(79));
+__export(__webpack_require__(34));
+__export(__webpack_require__(80));
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+class Marsaglia {
+    constructor(i1, i2) {
+        this.z = i1 || 362436069;
+        this.w = i2 || 521288629;
+    }
+    intGenerator() {
+        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xFFFFFFFF;
+        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xFFFFFFFF;
+        return (((this.z & 0xFFFF) << 16) | (this.w & 0xFFFF)) & 0xFFFFFFFF;
+    }
+    doubleGenerator() {
+        const i = this.intGenerator() / 4294967296;
+        return i < 0 ? 1 + i : i;
+    }
+    static createRandomized() {
+        let now = new Date();
+        return new Marsaglia((now.getDate() / 60000) & 0xFFFFFFFF, now.getDate() & 0xFFFFFFFF);
+    }
+}
+exports.Marsaglia = Marsaglia;
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Wskazówki zegara
+ * @export
+ * @param {number} a
+ * @param {number} b
+ * @param {number} o
+ * @returns {number}
+ */
+function cross(a, b, o) {
+    return (a.X - o.X) * (b.Y - o.Y) - (a.Y - o.Y) * (b.X - o.X);
+}
+exports.cross = cross;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var rnd;
+(function (rnd) {
+    function integerInRange(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    rnd.integerInRange = integerInRange;
+})(rnd = exports.rnd || (exports.rnd = {}));
+// export function rand(seed, offset) {
+//     return new rng.MT(hashcode(seed) + offset);
+// }
+// export function generateRandomSeed() {
+//     return (Math.random() * 1000000000000000000).toString(36);
+// }
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const io = __webpack_require__(45);
 /**
  * Połączenie z serwerem
  * @export
@@ -4317,7 +4442,26 @@ exports.default = Network;
 
 
 /***/ }),
-/* 32 */
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Tworzy identyfikator globalnie unikatowy
+ * @export
+ * @returns
+ */
+function guid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+exports.guid = guid;
+
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;/**
@@ -17935,7 +18079,7 @@ World.prototype.raycast = function(result, ray){
 });
 
 /***/ }),
-/* 33 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -27061,7 +27205,7 @@ Object.defineProperty(PIXI.TilingSprite.prototype, 'height', {
 }).call(this);
 
 /***/ }),
-/* 34 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -107428,7 +107572,7 @@ PIXI.TextureSilentFail = true;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 35 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107437,11 +107581,11 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(36));
+__export(__webpack_require__(43));
 
 
 /***/ }),
-/* 36 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107450,7 +107594,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const FontFaceObserver = __webpack_require__(37);
+const FontFaceObserver = __webpack_require__(44);
 /**
  * Własna impementacja Loadera zasobów
  * @export
@@ -107499,7 +107643,7 @@ exports.AppAssetsLoader = AppAssetsLoader;
 
 
 /***/ }),
-/* 37 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
@@ -107513,7 +107657,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 
 /***/ }),
-/* 38 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107521,7 +107665,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
  * Module dependencies.
  */
 
-var url = __webpack_require__(39);
+var url = __webpack_require__(46);
 var parser = __webpack_require__(14);
 var Manager = __webpack_require__(23);
 var debug = __webpack_require__(9)('socket.io-client');
@@ -107613,7 +107757,7 @@ exports.Socket = __webpack_require__(28);
 
 
 /***/ }),
-/* 39 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -107695,7 +107839,7 @@ function url (uri, loc) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 40 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107711,7 +107855,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(41);
+exports.humanize = __webpack_require__(48);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -107903,7 +108047,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 41 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -108061,7 +108205,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 42 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -108070,7 +108214,7 @@ function plural(ms, n, name) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(43);
+exports = module.exports = __webpack_require__(50);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -108253,7 +108397,7 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 43 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -108269,7 +108413,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(44);
+exports.humanize = __webpack_require__(51);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -108461,7 +108605,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 44 */
+/* 51 */
 /***/ (function(module, exports) {
 
 /**
@@ -108619,7 +108763,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 45 */
+/* 52 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -108630,7 +108774,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 46 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -108639,7 +108783,7 @@ module.exports = Array.isArray || function (arr) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(47);
+var isArray = __webpack_require__(54);
 var isBuf = __webpack_require__(22);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
@@ -108778,7 +108922,7 @@ exports.removeBlobs = function(data, callback) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 47 */
+/* 54 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -108789,19 +108933,19 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 48 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(56);
 
 
 /***/ }),
-/* 49 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(50);
+module.exports = __webpack_require__(57);
 
 /**
  * Exports parser
@@ -108813,7 +108957,7 @@ module.exports.parser = __webpack_require__(6);
 
 
 /***/ }),
-/* 50 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -108826,7 +108970,7 @@ var debug = __webpack_require__(12)('engine.io-client:socket');
 var index = __webpack_require__(27);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(20);
-var parsejson = __webpack_require__(65);
+var parsejson = __webpack_require__(72);
 var parseqs = __webpack_require__(10);
 
 /**
@@ -109564,7 +109708,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 51 */
+/* 58 */
 /***/ (function(module, exports) {
 
 
@@ -109587,7 +109731,7 @@ try {
 
 
 /***/ }),
-/* 52 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -110007,7 +110151,7 @@ function unloadHandler () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 53 */
+/* 60 */
 /***/ (function(module, exports) {
 
 
@@ -110032,7 +110176,7 @@ module.exports = Object.keys || function keys (obj){
 
 
 /***/ }),
-/* 54 */
+/* 61 */
 /***/ (function(module, exports) {
 
 /**
@@ -110067,7 +110211,7 @@ module.exports = function(arraybuffer, start, end) {
 
 
 /***/ }),
-/* 55 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -110101,7 +110245,7 @@ function noop() {}
 
 
 /***/ }),
-/* 56 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -110359,10 +110503,10 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(57)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module), __webpack_require__(0)))
 
 /***/ }),
-/* 57 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -110390,7 +110534,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 58 */
+/* 65 */
 /***/ (function(module, exports) {
 
 /*
@@ -110463,7 +110607,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 59 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -110566,7 +110710,7 @@ module.exports = (function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 60 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -110582,7 +110726,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(61);
+exports.humanize = __webpack_require__(68);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -110774,7 +110918,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 61 */
+/* 68 */
 /***/ (function(module, exports) {
 
 /**
@@ -110932,7 +111076,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 62 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -111170,7 +111314,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 63 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -111187,7 +111331,7 @@ var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(64);
+    NodeWebSocket = __webpack_require__(71);
   } catch (e) { }
 }
 
@@ -111463,13 +111607,13 @@ WS.prototype.check = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 64 */
+/* 71 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 65 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -111507,7 +111651,7 @@ module.exports = function parsejson(data) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 66 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -111526,7 +111670,7 @@ function toArray(list, index) {
 
 
 /***/ }),
-/* 67 */
+/* 74 */
 /***/ (function(module, exports) {
 
 
@@ -111617,26 +111761,382 @@ Backoff.prototype.setJitter = function(jitter){
 
 
 /***/ }),
-/* 68 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Tworzy identyfikator globalnie unikatowy
+ * Re-maps a number from one range to another.
  * @export
+ * @param {number} value
+ * @param {number} istart
+ * @param {number} istop
+ * @param {number} ostart
+ * @param {number} ostop
  * @returns
  */
-function guid() {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+function map(value, istart, istop, ostart, ostop) {
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
 }
-exports.guid = guid;
+exports.map = map;
+;
 
 
 /***/ }),
-/* 69 */
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Zmiana wartości całkowitej na heksadecymalną
+ * @export
+ * @param {any} n
+ * @returns
+ */
+function toHex(n) {
+    let hex = n.toString(16);
+    while (hex.length < 2) {
+        hex = "0" + hex;
+    }
+    return hex;
+}
+exports.toHex = toHex;
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function colorLuminance(hex, lum = 0) {
+    // validate hex string
+    hex = String(hex).replace(/[^0-9a-f]/gi, '');
+    if (hex.length < 6) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    // convert to decimal and change luminosity
+    let rgb = '#';
+    let c;
+    for (let i = 0; i < 3; i++) {
+        c = parseInt(hex.substr(i * 2, 2), 16);
+        c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+        rgb += ('00' + c).substr(c.length);
+    }
+    return rgb;
+}
+exports.colorLuminance = colorLuminance;
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Klasa reprezentująca punkt
+ * @export
+ * @class Point
+ */
+class Point {
+    constructor(x, y) {
+        if (x)
+            this.X = x;
+        if (y)
+            this.Y = y;
+    }
+}
+exports.Point = Point;
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Klasa reprezentująca kolor
+ * @export
+ * @class Color
+ */
+class Color {
+    constructor(r, g, b, a) {
+        this.R = r;
+        this.G = g;
+        this.B = b;
+        this.A = a ? a : 255;
+    }
+    /**
+     * Utwożenie nowego koloru
+     * @static
+     * @param {number} r
+     * @param {number} g
+     * @param {number} b
+     * @param {number} [a]
+     * @returns
+     * @memberof Color
+     */
+    static fromRGBA(r, g, b, a) {
+        return new Color(r, g, b, a != null ? a : 255);
+    }
+    /**
+     * Zmiana rozjaśnienia koloru
+     * @static
+     * @param {Color} color
+     * @param {number} lum
+     * @returns
+     * @memberof Color
+     */
+    static rgbLum(color, lum) {
+        return new Color(Math.round(Math.min(Math.max(0, color.R + (color.R * lum)), 255)), Math.round(Math.min(Math.max(0, color.G + (color.G * lum)), 255)), Math.round(Math.min(Math.max(0, color.B + (color.B * lum)), 255)));
+    }
+}
+exports.Color = Color;
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const lerp_1 = __webpack_require__(32);
+const grad_1 = __webpack_require__(31);
+const Marsaglia_1 = __webpack_require__(34);
+const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
+function noise(x, y, z) {
+    if (noiseProfile.generator === null) {
+        noiseProfile.generator = new PerlinNoise(noiseProfile.seed);
+    }
+    var generator = noiseProfile.generator;
+    var effect = 1, k = 1, sum = 0;
+    for (let i = 0; i < noiseProfile.octaves; ++i) {
+        effect *= noiseProfile.fallout;
+        switch (arguments.length) {
+            case 1:
+                sum += effect * (1 + generator.noise1d(k * x)) / 2;
+                break;
+            case 2:
+                sum += effect * (1 + generator.noise2d(k * x, k * y)) / 2;
+                break;
+            case 3:
+                sum += effect * (1 + generator.noise3d(k * x, k * y, k * z)) / 2;
+                break;
+        }
+        k *= 2;
+    }
+    return sum;
+}
+exports.noise = noise;
+function noiseDetail(octaves, fallout) {
+    noiseProfile.octaves = octaves;
+    if (fallout !== null) {
+        noiseProfile.fallout = fallout;
+    }
+}
+exports.noiseDetail = noiseDetail;
+;
+function noiseSeed(seed) {
+    noiseProfile.seed = seed;
+    noiseProfile.generator = null;
+}
+exports.noiseSeed = noiseSeed;
+;
+class PerlinNoise {
+    constructor(seed) {
+        this.rnd = seed !== null ? new Marsaglia_1.Marsaglia(seed, (seed << 16) + (seed >> 16)) : Marsaglia_1.Marsaglia.createRandomized();
+        this.perm = new Uint8Array(512);
+        let j;
+        for (let i = 0; i < 256; ++i) {
+            this.perm[i] = i;
+        }
+        for (let i = 0; i < 256; ++i) {
+            const t = this.perm[j = this.rnd.intGenerator() & 0xFF];
+            this.perm[j] = this.perm[i];
+            this.perm[i] = t;
+        }
+        for (let i = 0; i < 256; ++i) {
+            this.perm[i + 256] = this.perm[i];
+        }
+    }
+    noise3d(x, y, z) {
+        let X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+        x -= Math.floor(x);
+        y -= Math.floor(y);
+        z -= Math.floor(z);
+        let fx = (3 - 2 * x) * x * x, fy = (3 - 2 * y) * y * y, fz = (3 - 2 * z) * z * z;
+        var p0 = this.perm[X] + Y, p00 = this.perm[p0] + Z, p01 = this.perm[p0 + 1] + Z, p1 = this.perm[X + 1] + Y, p10 = this.perm[p1] + Z, p11 = this.perm[p1 + 1] + Z;
+        return lerp_1.lerp(fz, lerp_1.lerp(fy, lerp_1.lerp(fx, grad_1.grad3d(this.perm[p00], x, y, z), grad_1.grad3d(this.perm[p10], x - 1, y, z)), lerp_1.lerp(fx, grad_1.grad3d(this.perm[p01], x, y - 1, z), grad_1.grad3d(this.perm[p11], x - 1, y - 1, z))), lerp_1.lerp(fy, lerp_1.lerp(fx, grad_1.grad3d(this.perm[p00 + 1], x, y, z - 1), grad_1.grad3d(this.perm[p10 + 1], x - 1, y, z - 1)), lerp_1.lerp(fx, grad_1.grad3d(this.perm[p01 + 1], x, y - 1, z - 1), grad_1.grad3d(this.perm[p11 + 1], x - 1, y - 1, z - 1))));
+    }
+    noise2d(x, y) {
+        var X = Math.floor(x) & 255, Y = Math.floor(y) & 255;
+        x -= Math.floor(x);
+        y -= Math.floor(y);
+        var fx = (3 - 2 * x) * x * x, fy = (3 - 2 * y) * y * y;
+        var p0 = this.perm[X] + Y, p1 = this.perm[X + 1] + Y;
+        return lerp_1.lerp(fy, lerp_1.lerp(fx, grad_1.grad2d(this.perm[p0], x, y), grad_1.grad2d(this.perm[p1], x - 1, y)), lerp_1.lerp(fx, grad_1.grad2d(this.perm[p0 + 1], x, y - 1), grad_1.grad2d(this.perm[p1 + 1], x - 1, y - 1)));
+    }
+    noise1d(x) {
+        var X = Math.floor(x) & 255;
+        x -= Math.floor(x);
+        var fx = (3 - 2 * x) * x * x;
+        return lerp_1.lerp(fx, grad_1.grad1d(this.perm[X], x), grad_1.grad1d(this.perm[X + 1], x - 1));
+    }
+}
+exports.PerlinNoise = PerlinNoise;
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function hashcode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash += (i + 1) * char;
+    }
+    return hash;
+}
+exports.hashcode = hashcode;
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function seed() {
+    return (Math.random() * 1000000000000000000).toString(36);
+}
+exports.seed = seed;
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const cross_1 = __webpack_require__(35);
+/**
+ * Conveh hull
+ * Monotone chain
+ * @export
+ * @param {Array<Point>} points
+ * @returns {Array<Point>}
+ */
+function convexhull(points) {
+    points.sort((a, b) => {
+        return a.X == b.X ? a.Y - b.Y : a.X - b.X;
+    });
+    const lower = [];
+    for (let i = 0; i < points.length; i++) {
+        while (lower.length >= 2 && cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
+            lower.pop();
+        }
+        lower.push(points[i]);
+    }
+    const upper = [];
+    for (let i = points.length - 1; i >= 0; i--) {
+        while (upper.length >= 2 && cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
+            upper.pop();
+        }
+        upper.push(points[i]);
+    }
+    upper.pop();
+    lower.pop();
+    return lower.concat(upper);
+}
+exports.convexhull = convexhull;
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const rnd_1 = __webpack_require__(36);
+const models_1 = __webpack_require__(33);
+/**
+ * Tworzy tablicę losowych punktów
+ * @export
+ * @param {Point} point
+ * @param {number} offset
+ * @returns {Array<Point>}
+ */
+function generateRandomPoints(point, offset, count) {
+    const x1 = point.X - offset;
+    const x2 = point.X + offset;
+    const y1 = point.Y - offset;
+    const y2 = point.Y + offset;
+    const points = [];
+    for (let i = 0; i < count; i++) {
+        const _x = rnd_1.rnd.integerInRange(x1, x2);
+        const _y = rnd_1.rnd.integerInRange(y1, y2);
+        points.push(new models_1.Point(_x, _y));
+    }
+    return points;
+}
+exports.generateRandomPoints = generateRandomPoints;
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function pingPong(initial, alpha, beta, count, func) {
+    if (count === 0) {
+        return initial;
+    }
+    if (initial === alpha) {
+        alpha = beta;
+        beta = initial;
+    }
+    func(initial, alpha);
+    let i = 1;
+    if (i === count) {
+        return alpha;
+    }
+    while (true) {
+        func(alpha, beta);
+        i++;
+        if (i === count) {
+            return beta;
+        }
+        func(beta, alpha);
+        i++;
+        if (i === count) {
+            return alpha;
+        }
+    }
+}
+exports.pingPong = pingPong;
+
+
+/***/ }),
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111657,148 +112157,23 @@ __export(__webpack_require__(122));
 
 
 /***/ }),
-/* 70 */
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function grad3d(i, x, y, z) {
-    let h = i & 15;
-    let u = h < 8 ? x : y, v = h < 4 ? y : h === 12 || h === 14 ? x : z;
-    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
-}
-exports.grad3d = grad3d;
-function grad2d(i, x, y) {
-    let v = (i & 1) === 0 ? x : y;
-    return (i & 2) === 0 ? -v : v;
-}
-exports.grad2d = grad2d;
-function grad1d(i, x) {
-    return (i & 1) === 0 ? -x : x;
-}
-exports.grad1d = grad1d;
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function lerp(t, a, b) {
-    return a + t * (b - a);
-}
-exports.lerp = lerp;
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(100));
-__export(__webpack_require__(101));
-__export(__webpack_require__(73));
-__export(__webpack_require__(102));
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-class Marsaglia {
-    constructor(i1, i2) {
-        this.z = i1 || 362436069;
-        this.w = i2 || 521288629;
-    }
-    intGenerator() {
-        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xFFFFFFFF;
-        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xFFFFFFFF;
-        return (((this.z & 0xFFFF) << 16) | (this.w & 0xFFFF)) & 0xFFFFFFFF;
-    }
-    doubleGenerator() {
-        const i = this.intGenerator() / 4294967296;
-        return i < 0 ? 1 + i : i;
-    }
-    static createRandomized() {
-        let now = new Date();
-        return new Marsaglia((now.getDate() / 60000) & 0xFFFFFFFF, now.getDate() & 0xFFFFFFFF);
-    }
-}
-exports.Marsaglia = Marsaglia;
-
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Wskazówki zegara
- * @export
- * @param {number} a
- * @param {number} b
- * @param {number} o
- * @returns {number}
- */
-function cross(a, b, o) {
-    return (a.X - o.X) * (b.Y - o.Y) - (a.Y - o.Y) * (b.X - o.X);
-}
-exports.cross = cross;
-
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var rnd;
-(function (rnd) {
-    function integerInRange(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    rnd.integerInRange = integerInRange;
-})(rnd = exports.rnd || (exports.rnd = {}));
-// export function rand(seed, offset) {
-//     return new rng.MT(hashcode(seed) + offset);
-// }
-// export function generateRandomSeed() {
-//     return (Math.random() * 1000000000000000000).toString(36);
-// }
-
-
-/***/ }),
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(87);
+const Game_1 = __webpack_require__(98);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -111820,7 +112195,7 @@ function startApp() {
 
 
 /***/ }),
-/* 87 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111829,8 +112204,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(88);
-const network_1 = __webpack_require__(31);
+const states_1 = __webpack_require__(99);
+const network_1 = __webpack_require__(37);
 const utils_1 = __webpack_require__(7);
 /**
  * Utworzenie gry
@@ -111860,7 +112235,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 88 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111870,8 +112245,8 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(17));
-__export(__webpack_require__(89));
-__export(__webpack_require__(90));
+__export(__webpack_require__(100));
+__export(__webpack_require__(101));
 __export(__webpack_require__(110));
 __export(__webpack_require__(123));
 __export(__webpack_require__(124));
@@ -111879,7 +112254,7 @@ __export(__webpack_require__(125));
 
 
 /***/ }),
-/* 89 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111889,8 +112264,8 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);
-const core_1 = __webpack_require__(35);
-const network_1 = __webpack_require__(31);
+const core_1 = __webpack_require__(42);
+const network_1 = __webpack_require__(37);
 const assets_1 = __webpack_require__(4);
 /**
  * Uruchamianie systemu
@@ -111928,7 +112303,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 90 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111937,10 +112312,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(91);
+const QRious = __webpack_require__(102);
 const States_1 = __webpack_require__(17);
-const config_1 = __webpack_require__(92);
-const generators = __webpack_require__(93);
+const config_1 = __webpack_require__(103);
+const generators = __webpack_require__(104);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(7);
@@ -112101,7 +112476,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 91 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -114469,7 +114844,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 92 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114481,7 +114856,7 @@ exports.default = {
 
 
 /***/ }),
-/* 93 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114490,15 +114865,15 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(94));
-__export(__webpack_require__(95));
-__export(__webpack_require__(96));
+__export(__webpack_require__(105));
+__export(__webpack_require__(106));
+__export(__webpack_require__(107));
 __export(__webpack_require__(108));
 __export(__webpack_require__(109));
 
 
 /***/ }),
-/* 94 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114560,7 +114935,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 95 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114586,7 +114961,7 @@ exports.ship = ship;
 
 
 /***/ }),
-/* 96 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114619,381 +114994,6 @@ function element(game, key, color) {
     graphics.destroy();
 }
 exports.element = element;
-
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Re-maps a number from one range to another.
- * @export
- * @param {number} value
- * @param {number} istart
- * @param {number} istop
- * @param {number} ostart
- * @param {number} ostop
- * @returns
- */
-function map(value, istart, istop, ostart, ostop) {
-    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
-}
-exports.map = map;
-;
-
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Zmiana wartości całkowitej na heksadecymalną
- * @export
- * @param {any} n
- * @returns
- */
-function toHex(n) {
-    let hex = n.toString(16);
-    while (hex.length < 2) {
-        hex = "0" + hex;
-    }
-    return hex;
-}
-exports.toHex = toHex;
-
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function colorLuminance(hex, lum = 0) {
-    // validate hex string
-    hex = String(hex).replace(/[^0-9a-f]/gi, '');
-    if (hex.length < 6) {
-        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-    }
-    // convert to decimal and change luminosity
-    let rgb = '#';
-    let c;
-    for (let i = 0; i < 3; i++) {
-        c = parseInt(hex.substr(i * 2, 2), 16);
-        c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-        rgb += ('00' + c).substr(c.length);
-    }
-    return rgb;
-}
-exports.colorLuminance = colorLuminance;
-
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Klasa reprezentująca punkt
- * @export
- * @class Point
- */
-class Point {
-    constructor(x, y) {
-        if (x)
-            this.X = x;
-        if (y)
-            this.Y = y;
-    }
-}
-exports.Point = Point;
-
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Klasa reprezentująca kolor
- * @export
- * @class Color
- */
-class Color {
-    constructor(r, g, b, a) {
-        this.R = r;
-        this.G = g;
-        this.B = b;
-        this.A = a ? a : 255;
-    }
-    /**
-     * Utwożenie nowego koloru
-     * @static
-     * @param {number} r
-     * @param {number} g
-     * @param {number} b
-     * @param {number} [a]
-     * @returns
-     * @memberof Color
-     */
-    static fromRGBA(r, g, b, a) {
-        return new Color(r, g, b, a != null ? a : 255);
-    }
-    /**
-     * Zmiana rozjaśnienia koloru
-     * @static
-     * @param {Color} color
-     * @param {number} lum
-     * @returns
-     * @memberof Color
-     */
-    static rgbLum(color, lum) {
-        return new Color(Math.round(Math.min(Math.max(0, color.R + (color.R * lum)), 255)), Math.round(Math.min(Math.max(0, color.G + (color.G * lum)), 255)), Math.round(Math.min(Math.max(0, color.B + (color.B * lum)), 255)));
-    }
-}
-exports.Color = Color;
-
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const lerp_1 = __webpack_require__(71);
-const grad_1 = __webpack_require__(70);
-const Marsaglia_1 = __webpack_require__(73);
-const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
-function noise(x, y, z) {
-    if (noiseProfile.generator === null) {
-        noiseProfile.generator = new PerlinNoise(noiseProfile.seed);
-    }
-    var generator = noiseProfile.generator;
-    var effect = 1, k = 1, sum = 0;
-    for (let i = 0; i < noiseProfile.octaves; ++i) {
-        effect *= noiseProfile.fallout;
-        switch (arguments.length) {
-            case 1:
-                sum += effect * (1 + generator.noise1d(k * x)) / 2;
-                break;
-            case 2:
-                sum += effect * (1 + generator.noise2d(k * x, k * y)) / 2;
-                break;
-            case 3:
-                sum += effect * (1 + generator.noise3d(k * x, k * y, k * z)) / 2;
-                break;
-        }
-        k *= 2;
-    }
-    return sum;
-}
-exports.noise = noise;
-function noiseDetail(octaves, fallout) {
-    noiseProfile.octaves = octaves;
-    if (fallout !== null) {
-        noiseProfile.fallout = fallout;
-    }
-}
-exports.noiseDetail = noiseDetail;
-;
-function noiseSeed(seed) {
-    noiseProfile.seed = seed;
-    noiseProfile.generator = null;
-}
-exports.noiseSeed = noiseSeed;
-;
-class PerlinNoise {
-    constructor(seed) {
-        this.rnd = seed !== null ? new Marsaglia_1.Marsaglia(seed, (seed << 16) + (seed >> 16)) : Marsaglia_1.Marsaglia.createRandomized();
-        this.perm = new Uint8Array(512);
-        let j;
-        for (let i = 0; i < 256; ++i) {
-            this.perm[i] = i;
-        }
-        for (let i = 0; i < 256; ++i) {
-            const t = this.perm[j = this.rnd.intGenerator() & 0xFF];
-            this.perm[j] = this.perm[i];
-            this.perm[i] = t;
-        }
-        for (let i = 0; i < 256; ++i) {
-            this.perm[i + 256] = this.perm[i];
-        }
-    }
-    noise3d(x, y, z) {
-        let X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
-        x -= Math.floor(x);
-        y -= Math.floor(y);
-        z -= Math.floor(z);
-        let fx = (3 - 2 * x) * x * x, fy = (3 - 2 * y) * y * y, fz = (3 - 2 * z) * z * z;
-        var p0 = this.perm[X] + Y, p00 = this.perm[p0] + Z, p01 = this.perm[p0 + 1] + Z, p1 = this.perm[X + 1] + Y, p10 = this.perm[p1] + Z, p11 = this.perm[p1 + 1] + Z;
-        return lerp_1.lerp(fz, lerp_1.lerp(fy, lerp_1.lerp(fx, grad_1.grad3d(this.perm[p00], x, y, z), grad_1.grad3d(this.perm[p10], x - 1, y, z)), lerp_1.lerp(fx, grad_1.grad3d(this.perm[p01], x, y - 1, z), grad_1.grad3d(this.perm[p11], x - 1, y - 1, z))), lerp_1.lerp(fy, lerp_1.lerp(fx, grad_1.grad3d(this.perm[p00 + 1], x, y, z - 1), grad_1.grad3d(this.perm[p10 + 1], x - 1, y, z - 1)), lerp_1.lerp(fx, grad_1.grad3d(this.perm[p01 + 1], x, y - 1, z - 1), grad_1.grad3d(this.perm[p11 + 1], x - 1, y - 1, z - 1))));
-    }
-    noise2d(x, y) {
-        var X = Math.floor(x) & 255, Y = Math.floor(y) & 255;
-        x -= Math.floor(x);
-        y -= Math.floor(y);
-        var fx = (3 - 2 * x) * x * x, fy = (3 - 2 * y) * y * y;
-        var p0 = this.perm[X] + Y, p1 = this.perm[X + 1] + Y;
-        return lerp_1.lerp(fy, lerp_1.lerp(fx, grad_1.grad2d(this.perm[p0], x, y), grad_1.grad2d(this.perm[p1], x - 1, y)), lerp_1.lerp(fx, grad_1.grad2d(this.perm[p0 + 1], x, y - 1), grad_1.grad2d(this.perm[p1 + 1], x - 1, y - 1)));
-    }
-    noise1d(x) {
-        var X = Math.floor(x) & 255;
-        x -= Math.floor(x);
-        var fx = (3 - 2 * x) * x * x;
-        return lerp_1.lerp(fx, grad_1.grad1d(this.perm[X], x), grad_1.grad1d(this.perm[X + 1], x - 1));
-    }
-}
-exports.PerlinNoise = PerlinNoise;
-
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function hashcode(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash += (i + 1) * char;
-    }
-    return hash;
-}
-exports.hashcode = hashcode;
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function seed() {
-    return (Math.random() * 1000000000000000000).toString(36);
-}
-exports.seed = seed;
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const cross_1 = __webpack_require__(74);
-/**
- * Conveh hull
- * Monotone chain
- * @export
- * @param {Array<Point>} points
- * @returns {Array<Point>}
- */
-function convexhull(points) {
-    points.sort((a, b) => {
-        return a.X == b.X ? a.Y - b.Y : a.X - b.X;
-    });
-    const lower = [];
-    for (let i = 0; i < points.length; i++) {
-        while (lower.length >= 2 && cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
-            lower.pop();
-        }
-        lower.push(points[i]);
-    }
-    const upper = [];
-    for (let i = points.length - 1; i >= 0; i--) {
-        while (upper.length >= 2 && cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
-            upper.pop();
-        }
-        upper.push(points[i]);
-    }
-    upper.pop();
-    lower.pop();
-    return lower.concat(upper);
-}
-exports.convexhull = convexhull;
-
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const rnd_1 = __webpack_require__(75);
-const models_1 = __webpack_require__(72);
-/**
- * Tworzy tablicę losowych punktów
- * @export
- * @param {Point} point
- * @param {number} offset
- * @returns {Array<Point>}
- */
-function generateRandomPoints(point, offset, count) {
-    const x1 = point.X - offset;
-    const x2 = point.X + offset;
-    const y1 = point.Y - offset;
-    const y2 = point.Y + offset;
-    const points = [];
-    for (let i = 0; i < count; i++) {
-        const _x = rnd_1.rnd.integerInRange(x1, x2);
-        const _y = rnd_1.rnd.integerInRange(y1, y2);
-        points.push(new models_1.Point(_x, _y));
-    }
-    return points;
-}
-exports.generateRandomPoints = generateRandomPoints;
-
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function pingPong(initial, alpha, beta, count, func) {
-    if (count === 0) {
-        return initial;
-    }
-    if (initial === alpha) {
-        alpha = beta;
-        beta = initial;
-    }
-    func(initial, alpha);
-    let i = 1;
-    if (i === count) {
-        return alpha;
-    }
-    while (true) {
-        func(alpha, beta);
-        i++;
-        if (i === count) {
-            return beta;
-        }
-        func(beta, alpha);
-        i++;
-        if (i === count) {
-            return alpha;
-        }
-    }
-}
-exports.pingPong = pingPong;
 
 
 /***/ }),
@@ -115109,10 +115109,10 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const States_1 = __webpack_require__(17);
-const network_1 = __webpack_require__(31);
+const network_1 = __webpack_require__(37);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(18);
-const models_1 = __webpack_require__(69);
+const models_1 = __webpack_require__(86);
 /**
  * Menu główne
  * @export
@@ -115699,9 +115699,9 @@ __webpack_require__(3);
 const utils_1 = __webpack_require__(7);
 const const_1 = __webpack_require__(18);
 const assets_1 = __webpack_require__(4);
-const network_1 = __webpack_require__(31);
+const network_1 = __webpack_require__(37);
 const States_1 = __webpack_require__(17);
-const models_1 = __webpack_require__(69);
+const models_1 = __webpack_require__(86);
 /**
  * Start rozgrywki
  * @export
@@ -115931,9 +115931,9 @@ __webpack_require__(3);
 const utils_1 = __webpack_require__(7);
 const States_1 = __webpack_require__(17);
 const const_1 = __webpack_require__(18);
-const network_1 = __webpack_require__(31);
+const network_1 = __webpack_require__(37);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(69);
+const models_1 = __webpack_require__(86);
 /**
  * Widok główny
  * @export

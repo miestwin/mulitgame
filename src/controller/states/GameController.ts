@@ -138,17 +138,30 @@ export class GameController extends Phaser.State {
         this.leftTouchPos.copy(this.leftTouchStartPos);
         
         this.scoreText = this.game.add.text(
-            this.game.world.centerX + (this.game.world.centerX / 2), 40, 'Score: 0',
-            { font: `30px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+            this.game.world.centerX + (this.game.world.centerX / 2), 50, 'Sync',
+            { font: `35px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         this.scoreText.anchor.setTo(0.5);
+
+        const color = parseInt(colorLuminance((<any>this.game.state).color, -0.2).replace('#', ''), 16);
+        const graphics = this.game.add.graphics(0, 0);
+        graphics.beginFill(color);
+        graphics.drawCircle(100, 100, 200);
+        graphics.endFill();
+        graphics.beginFill(0xffffff);
+        graphics.drawCircle(100, 30, 10);
+        graphics.drawCircle(170, 100, 10);
+        graphics.drawCircle(100, 170, 10);
+        graphics.drawCircle(30, 100, 10);
+        graphics.endFill();
 
         const leftPadBack = this.game.add.image(
             this.leftTouchStartPos.x, 
             this.leftTouchStartPos.y, 
-            Assets.UI.Buttons.Joystick.WheelExternal.getName());
+            graphics.generateTexture());
         leftPadBack.anchor.setTo(0.5);
-        leftPadBack.scale.setTo(1.8);
-
+        // leftPadBack.scale.setTo(1.8);
+        graphics.destroy();
+        // Assets.UI.Buttons.Joystick.WheelExternal.getName()
         this.leftPad = this.game.add.image(
             this.leftTouchStartPos.x, 
             this.leftTouchStartPos.y, 
@@ -190,7 +203,7 @@ export class GameController extends Phaser.State {
             () => {
                 Network.playerFire(gameId);
             }, this);
-        this.fireBtn.scale.setTo(2);
+        this.fireBtn.scale.setTo(1.5);
         this.fireBtn.anchor.setTo(0.5);
 
         // this.shieldBar = new HealthBar(this.game, {
