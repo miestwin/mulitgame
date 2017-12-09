@@ -1,5 +1,7 @@
 import { Player } from '../Player';
 
 export interface IPowerUp {
-    powerup(player?: Player, options?: any);
+    player: Player;
+    powerup(player: Player, options?: any): void;
+    remove(): void;
 }
