@@ -115366,7 +115366,7 @@ class Bullets extends Phaser.Group {
         return this._nextFire;
     }
     shoot(sx, sy) {
-        const bullet = this.getFirstDead();
+        const bullet = this.getFirstExists(false);
         if (!bullet) {
             return;
         }
@@ -115417,7 +115417,7 @@ class MultipleBullets extends Phaser.Group {
          * @type {number}
          * @memberof MultipleBullets
          */
-        this.damage = 5;
+        this.damage = 2;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, assets_1.Assets.Images.Bulelts.Bullet.getName());
@@ -115430,13 +115430,19 @@ class MultipleBullets extends Phaser.Group {
         return this._nextFire;
     }
     shoot(sx, sy) {
-        const bullet = this.getFirstDead();
-        if (!bullet) {
-            return;
-        }
         if (this.game.time.now > this._nextFire) {
-            bullet.reset(sx + 20, sy);
-            bullet.body.velocity.x = this.bulletSpeed;
+            const bullet_1 = this.getFirstExists(false);
+            bullet_1.reset(sx + 25, sy);
+            bullet_1.body.velocity.x = this.bulletSpeed;
+            bullet_1.body.gravity.y = -200;
+            const bullet_2 = this.getFirstExists(false);
+            bullet_2.reset(sx + 25, sy);
+            bullet_2.body.velocity.x = this.bulletSpeed;
+            bullet_2.body.gravity.y = 0;
+            const bullet_3 = this.getFirstExists(false);
+            bullet_3.reset(sx + 25, sy);
+            bullet_3.body.velocity.x = this.bulletSpeed;
+            bullet_3.body.gravity.y = 200;
             this._nextFire = this.game.time.now + this.fireRate;
         }
     }
@@ -115469,24 +115475,26 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof Bullets
          */
-        this.bulletSpeed = 600;
+        this.bulletSpeed = 1500;
         /**
          * Częstotliwość strzałów
          * @type {number}
          * @memberof Bullets
          */
-        this.fireRate = 50;
+        this.fireRate = 5000;
         /**
          * Obrażenia zadawane przez pocisk
          * @type {number}
          * @memberof Bullets
          */
-        this.damage = 100;
+        this.damage = 1000;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, key);
-        this.setAll('anchor.x', 0.5);
+        this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
+        this.setAll('scale.x', 0.1);
+        this.setAll('scale.y', 0.5);
         this.setAll('checkWorldBounds', true);
         this.setAll('outOfBoundsKill', true);
     }
@@ -115500,7 +115508,7 @@ class LittleDoctor extends Phaser.Group {
         return this._nextFire;
     }
     shoot(sx, sy) {
-        const bullet = this.getFirstDead();
+        const bullet = this.getFirstExists(false);
         if (!bullet) {
             return;
         }
@@ -115556,14 +115564,14 @@ __webpack_require__(1);
 __webpack_require__(2);
 const bullets_1 = __webpack_require__(39);
 class Player extends Phaser.Sprite {
-    get id() {
-        return this._id;
-    }
-    get socket() {
-        return this._socketId;
-    }
     constructor(game, x, y, { id, socketId, avatar }) {
         super(game, x, y, avatar);
+        /**
+         * Wzmocnienia gracza
+         * @type {IPowerUp[]}
+         * @memberof Player
+         */
+        this.powerups = [];
         this._id = id;
         this._socketId = socketId;
         this.score = 0;
@@ -115577,6 +115585,12 @@ class Player extends Phaser.Sprite {
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
         this.bullets = new bullets_1.Bullets(game);
+    }
+    get id() {
+        return this._id;
+    }
+    get socket() {
+        return this._socketId;
     }
     /**
      * Ustawia X i Y grafiki
@@ -115605,6 +115619,16 @@ class Player extends Phaser.Sprite {
      */
     shoot() {
         this.bullets.shoot(this.x, this.y);
+    }
+    /**
+     * Usunięcie wzmocnień
+     * @memberof Player
+     */
+    removePowerups() {
+        this.powerups.forEach((powerup) => {
+            powerup.remove();
+        });
+        this.powerups = [];
     }
 }
 exports.Player = Player;
@@ -115717,12 +115741,12 @@ class Comets extends Phaser.Group {
         this.setAll('outOfBoundsKill', true);
     }
     generate() {
-        const comet = this.getFirstDead();
+        const comet = this.getFirstExists(false);
         const chance = utils_1.rnd.integerInRange(1, 20);
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20), comet.height / 3);
+        comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20), 10);
         comet.body.velocity.x = utils_1.rnd.integerInRange(-250, -350);
     }
 }
@@ -116231,6 +116255,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
+const utils_1 = __webpack_require__(7);
 const States_1 = __webpack_require__(17);
 const const_1 = __webpack_require__(18);
 const network_1 = __webpack_require__(37);
@@ -116338,7 +116363,6 @@ class Main extends Phaser.State {
         network_1.default.onPlayerFire((playerId) => {
             const player = this.game.state.players[playerId];
             player.shoot();
-            // this.bullets.shoot(player.x, player.y);
         });
         network_1.default.onNoConnectedPlayers(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
@@ -116349,22 +116373,20 @@ class Main extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.comets = new models_1.Comets(this.game);
-        // this.bullets = new Bullets(this.game);
         this.explosions = new models_1.CometExplosion(this.game);
-        this.powerUps = this.game.add.group();
-        // this.createBackground();
+        this.createBackground();
         this.createMenu();
         // debug
         this.game.time.advancedTiming = true;
     }
     update() {
         if (this.gameStartedFlag && !this.gameEndedFlag) {
-            // this.points.generate();
             this.comets.generate();
         }
         if (this.startNextStage && (this.comets.countLiving() === 0) && !this.gameEndedFlag) {
             this.startNextStage = false;
             this.createStageInfo();
+            this.generatePowerUps();
             this.nextStage();
         }
         if (this.gameEndedFlag && (this.comets.countLiving() === 0)) {
@@ -116445,6 +116467,9 @@ class Main extends Phaser.State {
     }
     nextStage() {
         this.nextStageTimeout = setTimeout(() => {
+            this.players.forEach((player) => {
+                player.removePowerups();
+            }, this);
             this.gameStartedFlag = false;
             this.currentStage++;
             this.startNextStage = true;
@@ -116467,10 +116492,11 @@ class Main extends Phaser.State {
         instruction.anchor.set(0.5);
         this.menuGroup.add(stage);
         this.menuGroup.add(instruction);
-        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
+        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 8000);
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
+            this.destroyPowerUps();
             this.gameStartedFlag = true;
         }, this);
     }
@@ -116489,6 +116515,7 @@ class Main extends Phaser.State {
         });
         players.sort((a, b) => a.score - b.score);
         players.forEach((player, index, arr) => {
+            player.vector = new Victor(0, 0);
             const count = arr.length;
             const stepY = this.game.world.centerY / count;
             const offsetY = stepY / 2;
@@ -116496,14 +116523,18 @@ class Main extends Phaser.State {
             const stepX = (50 * arr.length) / count;
             const offsetX = stepX / 2;
             const x = stepX * (index + 1) + (offsetX * (count - 1));
-            player.x = x + 30;
-            player.y = y;
-            player.vector = new Victor(0, 0);
+            this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
+            this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
         });
         network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
     }
     createEndMenu() {
     }
+    /**
+     * Sprawdzanie kolizji
+     * @private
+     * @memberof Main
+     */
     checkCollisions() {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
@@ -116521,36 +116552,54 @@ class Main extends Phaser.State {
             };
             this.game.physics.arcade.overlap(player.bullets, this.comets, collisionHandler, null, this);
         });
-        // this.game.physics.arcade.overlap(
-        //     this.bullets,
-        //     this.comets, this.bullet_comet_CollisionHandler, null, this);
     }
+    /**
+     * Kolizja gracza z kometą
+     * @private
+     * @param {Player} player
+     * @param {Phaser.Sprite} comet
+     * @memberof Main
+     */
     player_comet_CollisionHandler(player, comet) {
-        player.score -= 10;
-        new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-        this.explosions.generate(comet.x, comet.y);
-        comet.kill();
-        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
-    }
-    // do pozbycia się
-    bullet_comet_CollisionHandler(bullet, comet) {
-        bullet.kill();
-        comet.health -= 2;
-        if (comet.health <= 0) {
+        if (player.untouchtable) {
+            player.score -= 10;
+            new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
             this.explosions.generate(comet.x, comet.y);
             comet.kill();
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score);
         }
     }
-    player_powerup_CollisionHandler(player, pu) {
-        // pu.powerup(player);
-        pu.destroy();
+    /**
+     * Kolizja gracza ze wzmocnieniem
+     * @private
+     * @param {Player} player
+     * @param {IPowerUp} powerup
+     * @memberof Main
+     */
+    player_powerup_CollisionHandler(player, powerup) {
+        powerup.powerup(player);
+        player.powerups.push(powerup);
     }
-    generatePowerUp(x, y) {
-        // const chance = rnd.integerInRange(1, 20);
-        // if (chance != 1) return;
-        // const pu = new PowerUpShield(this.game, x, y);
-        // pu.body.velocity.x = -400;
-        // this.powerUps.add(pu);
+    /**
+     * Generowanie wzmocnień
+     * @private
+     * @memberof Main
+     */
+    generatePowerUps() {
+        if (this.powerUps) {
+            this.powerUps.destroy();
+        }
+        this.powerUps = this.game.add.group();
+        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+    }
+    destroyPowerUps() {
+        this.powerUps.forEachAlive((powerup) => {
+            powerup.destroy();
+        }, this);
     }
 }
 exports.Main = Main;

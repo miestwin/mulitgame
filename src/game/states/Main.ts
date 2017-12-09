@@ -12,7 +12,12 @@ import {
     Bullets,
     Comets,
     ScoreText,
-    CometExplosion
+    CometExplosion,
+    IPowerUp,
+    ResetPointsPowerUp,
+    UntouchtablePowerUp,
+    LittleDoctorPowerUp,
+    MultiWeaponPowerUp
 } from '../../models';
 
 declare var Victor;
@@ -48,15 +53,6 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private players: Phaser.Group;
-
-    /**
-     * Kolekcja poczisków którymi strzelają gracze
-     * Sprawdzanie kolizji
-     * @private
-     * @type {Bullets}
-     * @memberof Main
-     */
-    private bullets: Bullets;
 
     /**
      * Kolekcja obiektów z któych wypadają ulepszenia
@@ -204,7 +200,6 @@ export class Main extends Phaser.State {
         Network.onPlayerFire((playerId) => {
             const player = (<any>this.game.state).players[playerId];
             player.shoot();
-            // this.bullets.shoot(player.x, player.y);
         });
 
         Network.onNoConnectedPlayers(() => {
@@ -219,11 +214,9 @@ export class Main extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.comets = new Comets(this.game);
-        // this.bullets = new Bullets(this.game);
         this.explosions = new CometExplosion(this.game);
-        this.powerUps = this.game.add.group();
 
-        // this.createBackground();
+        this.createBackground();
         this.createMenu();
 
         // debug
@@ -232,13 +225,13 @@ export class Main extends Phaser.State {
 
     update() {
         if (this.gameStartedFlag && !this.gameEndedFlag) {
-            // this.points.generate();
             this.comets.generate();
         }
 
         if (this.startNextStage && (this.comets.countLiving() === 0) && !this.gameEndedFlag) {
             this.startNextStage = false;
             this.createStageInfo();
+            this.generatePowerUps();
             this.nextStage();
         }
 
@@ -337,6 +330,9 @@ export class Main extends Phaser.State {
 
     private nextStage() {
         this.nextStageTimeout = setTimeout(() => {
+            this.players.forEach((player: Player) => {
+                player.removePowerups();
+            }, this);
             this.gameStartedFlag = false;
             this.currentStage++;
             this.startNextStage = true;
@@ -370,10 +366,11 @@ export class Main extends Phaser.State {
         this.menuGroup.add(stage);
         this.menuGroup.add(instruction);
 
-        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
+        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 8000);
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
+            this.destroyPowerUps();
             this.gameStartedFlag = true;
         }, this); 
     }
@@ -394,6 +391,7 @@ export class Main extends Phaser.State {
         });
         players.sort((a: Player, b: Player) => a.score - b.score);
         players.forEach((player: Player, index: number, arr: Player[]) => {
+            player.vector = new Victor(0, 0);
             const count = arr.length;
             const stepY = this.game.world.centerY / count;
             const offsetY = stepY / 2;
@@ -401,9 +399,8 @@ export class Main extends Phaser.State {
             const stepX = (50 * arr.length) / count;
             const offsetX = stepX / 2;
             const x = stepX * (index + 1) + (offsetX * (count - 1));
-            player.x = x + 30;
-            player.y = y;
-            player.vector = new Victor(0, 0);
+            this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
+            this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
         });
 
         Network.gameEnd((<any>this.game.state).id, players[players.length - 1].id);
@@ -413,6 +410,11 @@ export class Main extends Phaser.State {
 
     }
 
+    /**
+     * Sprawdzanie kolizji
+     * @private
+     * @memberof Main
+     */
     private checkCollisions() {
 
         this.game.physics.arcade.overlap(
@@ -441,40 +443,72 @@ export class Main extends Phaser.State {
                 player.bullets,
                 this.comets, collisionHandler, null, this);
         });
-
-        // this.game.physics.arcade.overlap(
-        //     this.bullets,
-        //     this.comets, this.bullet_comet_CollisionHandler, null, this);
     }
 
+    /**
+     * Kolizja gracza z kometą
+     * @private
+     * @param {Player} player 
+     * @param {Phaser.Sprite} comet 
+     * @memberof Main
+     */
     private player_comet_CollisionHandler(player: Player, comet: Phaser.Sprite) {
-        player.score -= 10;
-        new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-        this.explosions.generate(comet.x, comet.y);
-        comet.kill();
-        Network.updatePlayerScore(player.id, player.socket, player.score);
-    }
-
-    // do pozbycia się
-    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Phaser.Sprite) {
-        bullet.kill();
-        comet.health -= 2;
-        if (comet.health <= 0) {
+        if (player.untouchtable) {
+            player.score -= 10;
+            new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
             this.explosions.generate(comet.x, comet.y);
             comet.kill();
+            Network.updatePlayerScore(player.id, player.socket, player.score);
         }
     }
 
-    private player_powerup_CollisionHandler(player: Player, pu) {
-        // pu.powerup(player);
-        pu.destroy();
+    /**
+     * Kolizja gracza ze wzmocnieniem
+     * @private
+     * @param {Player} player 
+     * @param {IPowerUp} powerup 
+     * @memberof Main
+     */
+    private player_powerup_CollisionHandler(player: Player, powerup: IPowerUp) {
+        powerup.powerup(player);
+        player.powerups.push(powerup);
     }
 
-    private generatePowerUp(x: number, y: number) {
-        // const chance = rnd.integerInRange(1, 20);
-        // if (chance != 1) return;
-        // const pu = new PowerUpShield(this.game, x, y);
-        // pu.body.velocity.x = -400;
-        // this.powerUps.add(pu);
+    /**
+     * Generowanie wzmocnień
+     * @private
+     * @memberof Main
+     */
+    private generatePowerUps() {
+        if (this.powerUps) {
+            this.powerUps.destroy();
+        }
+        this.powerUps = this.game.add.group();
+
+        this.powerUps.add(new LittleDoctorPowerUp(this.game,
+            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+
+        this.powerUps.add(new MultiWeaponPowerUp(this.game,
+            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+
+        this.powerUps.add(new MultiWeaponPowerUp(this.game,
+            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+
+        this.powerUps.add(new ResetPointsPowerUp(this.game,
+            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+
+        this.powerUps.add(new UntouchtablePowerUp(this.game,
+            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+    }
+
+    private destroyPowerUps() {
+        this.powerUps.forEachAlive((powerup) => {
+            powerup.destroy();
+        }, this);
     }
 }

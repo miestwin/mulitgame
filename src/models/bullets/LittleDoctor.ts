@@ -30,35 +30,37 @@ export class LittleDoctor extends Phaser.Group implements IBullets {
      * @type {number}
      * @memberof Bullets
      */
-    public readonly bulletSpeed: number = 600;
+    public readonly bulletSpeed: number = 1500;
 
     /**
      * Częstotliwość strzałów
      * @type {number}
      * @memberof Bullets
      */
-    public readonly fireRate: number = 50;
+    public readonly fireRate: number = 5000;
 
     /**
      * Obrażenia zadawane przez pocisk
      * @type {number}
      * @memberof Bullets
      */
-    public readonly damage: number = 100;
+    public readonly damage: number = 1000;
     
     constructor(game: Phaser.Game, key: string) {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, key);
-        this.setAll('anchor.x', 0.5);
+        this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
+        this.setAll('scale.x', 0.1);
+        this.setAll('scale.y', 0.5);
         this.setAll('checkWorldBounds', true);
         this.setAll('outOfBoundsKill', true);
     }
 
     public shoot(sx: number, sy: number) {
-        const bullet: Phaser.Sprite = this.getFirstDead();
+        const bullet: Phaser.Sprite = this.getFirstExists(false);
         if (!bullet) {
             return;
         }

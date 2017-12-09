@@ -19,12 +19,12 @@ export class Comets extends Phaser.Group {
     }
 
     public generate() {
-        const comet: Phaser.Sprite = this.getFirstDead();
+        const comet: Phaser.Sprite = this.getFirstExists(false);
         const chance = rnd.integerInRange(1, 20);
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), comet.height / 3);
+        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), 10);
         comet.body.velocity.x = rnd.integerInRange(-250, -350);
     }
 }

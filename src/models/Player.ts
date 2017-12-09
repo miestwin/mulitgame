@@ -3,6 +3,7 @@ import 'pixi';
 import 'phaser';
 
 import { IBullets, Bullets } from './bullets';
+import { IPowerUp } from './powerups';
 import { Assets } from '../assets';
 
 declare var Victor;
@@ -68,7 +69,12 @@ export class Player extends Phaser.Sprite {
      */
     public bullets: IBullets;
 
-    public powerups: any[];
+    /**
+     * Wzmocnienia gracza
+     * @type {IPowerUp[]}
+     * @memberof Player
+     */
+    public powerups: IPowerUp[] = [];
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         super(game, x, y, avatar);
@@ -117,5 +123,16 @@ export class Player extends Phaser.Sprite {
      */
     public shoot() {
         this.bullets.shoot(this.x, this.y);
+    }
+
+    /**
+     * Usunięcie wzmocnień
+     * @memberof Player
+     */
+    public removePowerups() {
+        this.powerups.forEach((powerup: IPowerUp) => {
+            powerup.remove();
+        });
+        this.powerups = [];
     }
 }

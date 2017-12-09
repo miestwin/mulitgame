@@ -58,7 +58,7 @@ export class Bullets extends Phaser.Group implements IBullets {
     }
 
     public shoot(sx: number, sy: number) {
-        const bullet: Phaser.Sprite = this.getFirstDead();
+        const bullet: Phaser.Sprite = this.getFirstExists(false);
         if (!bullet) {
             return;
         }

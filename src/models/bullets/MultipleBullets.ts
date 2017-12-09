@@ -37,7 +37,7 @@ export class MultipleBullets extends Phaser.Group implements IBullets {
      * @type {number}
      * @memberof MultipleBullets
      */
-    public readonly damage: number = 5;
+    public readonly damage: number = 2;
     
     constructor(game: Phaser.Game) {
         super(game);
@@ -51,14 +51,20 @@ export class MultipleBullets extends Phaser.Group implements IBullets {
     }
 
     public shoot(sx: number, sy: number) {
-        const bullet: Phaser.Sprite = this.getFirstDead();
-        if (!bullet) {
-            return;
-        }
         if (this.game.time.now > this._nextFire) {
-            bullet.reset(sx + 20, sy);
-            bullet.body.velocity.x = this.bulletSpeed;
-            this._nextFire = this.game.time.now + this.fireRate;
+            const bullet_1: Phaser.Sprite = this.getFirstExists(false);
+            bullet_1.reset(sx + 25, sy);
+            bullet_1.body.velocity.x = this.bulletSpeed;
+            bullet_1.body.gravity.y = -200;
+            const bullet_2: Phaser.Sprite = this.getFirstExists(false);
+            bullet_2.reset(sx + 25, sy);
+            bullet_2.body.velocity.x = this.bulletSpeed;
+            bullet_2.body.gravity.y = 0;
+            const bullet_3: Phaser.Sprite = this.getFirstExists(false);
+            bullet_3.reset(sx + 25, sy);
+            bullet_3.body.velocity.x = this.bulletSpeed;
+            bullet_3.body.gravity.y = 200;
+            this._nextFire = this.game.time.now + this.fireRate;    
         }
     }
 }
