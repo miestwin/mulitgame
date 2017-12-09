@@ -22,6 +22,6 @@ export class CometExplosion extends Phaser.Group {
             return;
         }
         explosion.reset(x, y);
-        explosion.play('explosion', 15, false, true);
+        explosion.play('explosion', 20, false, true);
     }
 }

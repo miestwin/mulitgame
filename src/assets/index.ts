@@ -73,18 +73,53 @@ export namespace Assets {
             static getName(): string { return 'transparent'; }
             static getPNG(): string { return '../assets/images/transparent.png'; }
         }
+        export namespace Bulelts {
+            export class Bullet {
+                static getName(): string { return 'bullet'; }
+                static getPNG(): string { return '../assets/images/bullet.png'; }
+            }
+            export class ShmupBullet {
+                static getName(): string { return 'shmup-bullet'; }
+                static getPNG(): string { return '../assets/images/shmup-bullet.png'; }
+            }
+            export namespace Lasers {
+                export class Laser {
+                    static getLaser(key: string) {
+                        if (key === 'test1') {
+                            return LaserGREEN;
+                        } else if (key === 'test2') {
+                            return LaserPURPLE;
+                        } else {
+                            return LaserGREEN;
+                        }
+                    }
+                }
+                export class LaserGREEN {
+                    static getName(): string { return 'laser-test'; }
+                    static getPNG(): string { return '../assets/images/laser1_test.png'; }
+                }
+                export class LaserPURPLE {
+                    static getName(): string { return 'laser-test-2'; }
+                    static getPNG(): string { return '../assets/images/laser2_test.png'; }
+                }
+            }
+        }
         export namespace PowerUps {
-            export class Shield {
-                static getName(): string { return 'power-up_shield'; }
-                static getPNG(): string { return '../assets/images/power-ups/powerupYellow_shield.png'; }
+            export class MultiWeapon {
+                static getName(): string { return 'multi-weapon_powerup'; }
+                static getPNG(): string { return '../assets/images/power-ups/bold_silver.png'; }
             }
-            export class Cooldown {
-                static getName(): string { return 'power-up_cooldown'; }
-                static getPNG(): string { return '../assets/images/power-ups/powerupYellow_bolt.png'; }
+            export class ResetPoints {
+                static getName(): string { return 'reset-points_powerup'; }
+                static getPNG(): string { return '../assets/images/power-ups/pill_green.png'; }
             }
-            export class Pull {
-                static getName(): string { return 'power-up_pull'; }
-                static getPNG(): string { return '../assets/images/power-ups/powerupYellow_star.png'; }
+            export class Untouchtable {
+                static getName(): string { return 'untouchtable_powerup'; }
+                static getPNG(): string { return '../assets/images/power-ups/shield_bronze.png'; }
+            }
+            export class LittleDoctor {
+                static getName(): string { return 'little-doctor_powerup'; }
+                static getPNG(): string { return '../assets/images/power-ups/bolt_gold.png'; }
             }
         }
         export namespace ScoreText {

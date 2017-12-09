@@ -16,9 +16,6 @@ import {
     Bullets,
     Comets,
     Elements,
-    IPowerUp,
-    PowerUpPull,
-    PowerUpShield,
     ScoreText,
     Comet
 } from '../../models';
@@ -107,7 +104,7 @@ export class StartGame extends Phaser.State {
                 const y = step * (index + 1) + (offset * (count - 1)); 
                 const player = new Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
                 const shield = new Shield(this.game, 50, y, player.id);
-                player.shield = shield;
+                // player.shield = shield;
                 (<any>this.game.state).players[playerId] = player;
                 this.players.add(player);
                 this.shields.add(shield);
@@ -247,12 +244,12 @@ export class StartGame extends Phaser.State {
     }
 
     private player_comet_CollisionHandler(player: Player, comet: Comet) {
-        if (player.shield.scale.x < 0.3 && !comet.checkLastCollision(player)) {
-            player.score -= 10;
-            new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-            comet.kill();
-            Network.updatePlayerScore(player.id, player.socket, player.score);
-        }
+        // if (player.shield.scale.x < 0.3 && !comet.checkLastCollision(player)) {
+        //     player.score -= 10;
+        //     new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
+        //     comet.kill();
+        //     Network.updatePlayerScore(player.id, player.socket, player.score);
+        // }
     }
 
     private shield_point_CollisionHandler(shield: Shield, point: Phaser.Sprite) {
@@ -278,11 +275,11 @@ export class StartGame extends Phaser.State {
     }
 
     private generatePowerUp(x: number, y: number) {
-        const chance = rnd.integerInRange(1, 20);
-        if (chance != 1) return;
-        const pu = new PowerUpShield(this.game, x, y);
-        pu.body.velocity.x = -400;
-        this.powerUps.add(pu);
+        // const chance = rnd.integerInRange(1, 20);
+        // if (chance != 1) return;
+        // const pu = new PowerUpShield(this.game, x, y);
+        // pu.body.velocity.x = -400;
+        // this.powerUps.add(pu);
     }
 
     private removeListeners() {

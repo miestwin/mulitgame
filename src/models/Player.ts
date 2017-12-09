@@ -2,7 +2,8 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
-import { Shield } from './Shield';
+import { IBullets, Bullets } from './bullets';
+import { Assets } from '../assets';
 
 declare var Victor;
 
@@ -51,19 +52,23 @@ export class Player extends Phaser.Sprite {
      * @type {boolean}
      * @memberof Player
      */
-    public zPos: boolean; 
+    public zPos: boolean;
 
-    public shield: Shield;
+    /**
+     * Czy gracz jest nie tykalny
+     * @type {boolean}
+     * @memberof Player
+     */
+    public untouchtable: boolean;
 
-    public weapon: Phaser.Weapon;
+    /**
+     * Aktualna broń gracza
+     * @type {IBullets}
+     * @memberof Player
+     */
+    public bullets: IBullets;
 
-    public MAX_SCALE = 1.6;
-
-    public MIN_SCALE = 0;
-
-    public DEFAULT_SCALE = 1;
-
-    public SCALE_STEP = 0.02;
+    public powerups: any[];
 
     constructor(game: Phaser.Game, x: number, y: number, { id, socketId, avatar }) {
         super(game, x, y, avatar);
@@ -71,13 +76,15 @@ export class Player extends Phaser.Sprite {
         this._socketId = socketId;
         this.score = 0;
         this.zPos = false;
+        this.untouchtable = false;
         this.vector = new Victor(0, 0);
         this.angle = 0;
         this.anchor.setTo(0.5);
-        this.scale.setTo(0.6);
+        this.scale.setTo(0.4);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.body.collideWorldBounds = true;
+        this.bullets = new Bullets(game);
     }
 
     /**
@@ -91,15 +98,24 @@ export class Player extends Phaser.Sprite {
         this.y = y;
     }
 
+    /**
+     * Aktualizacja gracza
+     * @memberof Player
+     */
     public update() {
         this.body.velocity.x = this.vector.x * 9;
         this.body.velocity.y = this.vector.y * 9;
-        this.shield.setXY(this.x, this.y);
 
-        if (this.zPos && this.shield.scale.x < this.MAX_SCALE) {
-            this.shield.scale.setTo(this.shield.scale.x + this.SCALE_STEP);
-        } else if (!this.zPos && this.shield.scale.x > this.MIN_SCALE) {
-            this.shield.scale.setTo(this.shield.scale.x - this.SCALE_STEP);
+        if (this.untouchtable) {
+            this.alpha = 0.6;
         }
+    }
+
+    /**
+     * Oddanie strzału
+     * @memberof Player
+     */
+    public shoot() {
+        this.bullets.shoot(this.x, this.y);
     }
 }

@@ -9,15 +9,9 @@ import Network from '../network';
 import { Assets } from '../../assets';
 import {
     Player,
-    Shield,
     Bullets,
     Comets,
-    Elements,
-    IPowerUp,
-    PowerUpPull,
-    PowerUpShield,
     ScoreText,
-    Comet,
     CometExplosion
 } from '../../models';
 
@@ -56,15 +50,6 @@ export class Main extends Phaser.State {
     private players: Phaser.Group;
 
     /**
-     * Kolekcja tarcz graczy do sprawdania kolizji
-     * 
-     * @private
-     * @type {Phaser.Group}
-     * @memberof Main
-     */
-    private shields: Phaser.Group;
-
-    /**
      * Kolekcja poczisków którymi strzelają gracze
      * Sprawdzanie kolizji
      * @private
@@ -99,20 +84,36 @@ export class Main extends Phaser.State {
     private powerUps: Phaser.Group;
 
     /**
-     * Kolekcja obiektów do zbierania przez graczy
-     * @private
-     * @type {Phaser.Group}
-     * @memberof Main
-     */
-    private points: Elements;
-
-    /**
      * Wiadomość informująca kiedy zacznie się gra
      * @private
      * @type {Phaser.Text}
      * @memberof Main
      */
     private timerText: Phaser.Text;
+
+    /**
+     * Flaga do wystartowania następnego poziomu
+     * @private
+     * @type {boolean}
+     * @memberof Main
+     */
+    private startNextStage: boolean = false;
+
+    /**
+     * Czas do następnego poziomu
+     * @private
+     * @type {*}
+     * @memberof Main
+     */
+    private nextStageTimeout: any;
+
+    /**
+     * Aktualny poziom
+     * @private
+     * @type {number}
+     * @memberof Main
+     */
+    private currentStage: number = 1;
 
     /**
      * Flaga informująca o rozpoczęciu gry
@@ -130,14 +131,19 @@ export class Main extends Phaser.State {
      */
     private gameEndedFlag: boolean = false;
 
-    private gameEndInterval;
+    /**
+     * Czas do końca gry
+     * @private
+     * @type {*}
+     * @memberof Main
+     */
+    private gameEndTimmeout: any;
 
     preload() {
         // utworzenie słownika graczy
         (<any>this.game.state).players = {};
 
         this.players = this.game.add.group();
-        this.shields = this.game.add.group();
 
         // aktualizacja połączonych graczy
         Network.onUpdatePlayersState((player) => {
@@ -148,11 +154,8 @@ export class Main extends Phaser.State {
                 const y = start + offset; 
                 const newPlayer = new Player(this.game, 50, y,
                     { id: player.id, socketId: player.socketID, avatar: player.character });
-                const newShield = new Shield(this.game, 50, y, player.id);
-                newPlayer.shield = newShield;
                 (<any>this.game.state).players[player.id] = newPlayer;
                 this.players.add(newPlayer);
-                this.shields.add(newShield);
             }
         });
 
@@ -181,13 +184,10 @@ export class Main extends Phaser.State {
                 this.game.state.start(States.MESSAGE, true, false, message, text, action);
             } else {
                 this.hideMenu();
-                setTimeout(() => {
-                    this.gameStartedFlag = true;
-                }, 3000);
-                this.gameEndInterval = setInterval(() => {
+                this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
-                    clearInterval(this.gameEndInterval);
-                }, 30000);
+                    this.gameEndTimmeout = null;
+                }, 90000);
             }
         });
 
@@ -203,7 +203,8 @@ export class Main extends Phaser.State {
 
         Network.onPlayerFire((playerId) => {
             const player = (<any>this.game.state).players[playerId];
-            this.bullets.shoot(player.x, player.y);
+            player.shoot();
+            // this.bullets.shoot(player.x, player.y);
         });
 
         Network.onNoConnectedPlayers(() => {
@@ -217,13 +218,12 @@ export class Main extends Phaser.State {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        this.points = new Elements(this.game);
         this.comets = new Comets(this.game);
-        this.bullets = new Bullets(this.game);
+        // this.bullets = new Bullets(this.game);
         this.explosions = new CometExplosion(this.game);
         this.powerUps = this.game.add.group();
 
-        this.createBackground();
+        // this.createBackground();
         this.createMenu();
 
         // debug
@@ -236,7 +236,16 @@ export class Main extends Phaser.State {
             this.comets.generate();
         }
 
-        this.endGame();
+        if (this.startNextStage && (this.comets.countLiving() === 0) && !this.gameEndedFlag) {
+            this.startNextStage = false;
+            this.createStageInfo();
+            this.nextStage();
+        }
+
+        if (this.gameEndedFlag && (this.comets.countLiving() === 0)) {
+            this.endGame();
+        }
+
         this.checkCollisions();
 
         this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
@@ -250,6 +259,13 @@ export class Main extends Phaser.State {
         Network.removeListener(Network.UPDATE_PLAYERS_STATE);
         Network.removeListener(Network.UPDATE_TIMER);
         Network.removeListener(Network.START_GAME);
+
+        if (this.nextStageTimeout) {
+            clearTimeout(this.nextStageTimeout);
+        }
+        if (this.gameEndTimmeout) {
+            clearTimeout(this.gameEndTimmeout);
+        }
     }
 
     /**
@@ -315,7 +331,51 @@ export class Main extends Phaser.State {
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
+            this.startNextStage = true;
         }, this);
+    }
+
+    private nextStage() {
+        this.nextStageTimeout = setTimeout(() => {
+            this.gameStartedFlag = false;
+            this.currentStage++;
+            this.startNextStage = true;
+            this.nextStageTimeout = null;
+        }, 30000);
+    }
+
+    private createStageInfo() {
+        this.menuGroup = this.game.add.group();
+
+        const stage = this.game.add.text(
+            this.game.world.centerX, 50,
+            'Stage ' + this.currentStage,
+            { 
+                font: `40px ${Assets.Fonts.Kenvector.getFamily()}`,
+                fill: '#ffffff',
+                align: 'center'
+            });
+        stage.anchor.set(0.5);
+
+        const instruction = this.game.add.text(
+            this.game.world.centerX, 100, 
+            'Pick up power up',
+            {
+                font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+                fill: '#ffffff',
+                align: 'center'
+            });
+        instruction.anchor.set(0.5);
+
+        this.menuGroup.add(stage);
+        this.menuGroup.add(instruction);
+
+        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
+        moveUpTween.onComplete.add(() => {
+            this.game.tweens.remove(moveUpTween);
+            this.menuGroup.destroy();
+            this.gameStartedFlag = true;
+        }, this); 
     }
 
     /**
@@ -324,37 +384,36 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private endGame() {
-        if (this.gameEndedFlag && this.points.countLiving() === 0 && this.comets.countLiving() === 0) {
-            this.shutdown();
+        this.shutdown();
 
-            const players = [];
-            let bestScore = 0;
-            let winner;
-            Object.keys((<any>this.game.state).players).forEach((playerId) => {
-                players.push((<any>this.game.state).players[playerId]);
-            });
-            players.sort((a: Player, b: Player) => a.score - b.score);
-            players.forEach((player: Player, index: number, arr: Player[]) => {
-                const count = arr.length;
-                const stepY = this.game.world.centerY / count;
-                const offsetY = stepY / 2;
-                const y = stepY * (index + 1) + (offsetY * (count - 1));
-                const stepX = (50 * arr.length) / count;
-                const offsetX = stepX / 2;
-                const x = stepX * (index + 1) + (offsetX * (count - 1));
-                player.x = x + 30;
-                player.y = y;
-                player.vector = new Victor(0, 0);
-            });
+        const players = [];
+        let bestScore = 0;
+        let winner;
+        Object.keys((<any>this.game.state).players).forEach((playerId) => {
+            players.push((<any>this.game.state).players[playerId]);
+        });
+        players.sort((a: Player, b: Player) => a.score - b.score);
+        players.forEach((player: Player, index: number, arr: Player[]) => {
+            const count = arr.length;
+            const stepY = this.game.world.centerY / count;
+            const offsetY = stepY / 2;
+            const y = stepY * (index + 1) + (offsetY * (count - 1));
+            const stepX = (50 * arr.length) / count;
+            const offsetX = stepX / 2;
+            const x = stepX * (index + 1) + (offsetX * (count - 1));
+            player.x = x + 30;
+            player.y = y;
+            player.vector = new Victor(0, 0);
+        });
 
-            Network.gameEnd((<any>this.game.state).id, players[players.length - 1].id);
-        }
+        Network.gameEnd((<any>this.game.state).id, players[players.length - 1].id);
+    }
+
+    private createEndMenu() {
+
     }
 
     private checkCollisions() {
-        // this.game.physics.arcade.overlap(
-        //     this.players,
-        //     this.points, this.player_point_CollisionHandler, null, this);
 
         this.game.physics.arcade.overlap(
             this.players,
@@ -364,23 +423,31 @@ export class Main extends Phaser.State {
             this.players,
             this.powerUps, this.player_powerup_CollisionHandler, null, this);
 
+        Object.keys((<any>this.game.state).players).forEach((playerId) => {
+            const player: Player = (<any>this.game.state).players[playerId];
+
+            const collisionHandler = (bullet: Phaser.Sprite, comet: Phaser.Sprite) => {
+                bullet.kill();
+                comet.health -= player.bullets.damage;
+                if (comet.health <= 0) {
+                    this.explosions.generate(comet.x, comet.y);
+                    player.score += comet.height;
+                    Network.updatePlayerScore(player.id, player.socket, player.score);
+                    comet.kill();
+                }
+            };
+
+            this.game.physics.arcade.overlap(
+                player.bullets,
+                this.comets, collisionHandler, null, this);
+        });
+
         // this.game.physics.arcade.overlap(
-        //     this.shields,
-        //     this.points, this.shield_point_CollisionHandler, null, this);
-
-        this.game.physics.arcade.overlap(
-            this.bullets,
-            this.comets, this.bullet_comet_CollisionHandler, null, this);
+        //     this.bullets,
+        //     this.comets, this.bullet_comet_CollisionHandler, null, this);
     }
 
-    private player_point_CollisionHandler(player: Player, point: Phaser.Sprite) {
-        player.score += 1;
-        point.kill();
-        new ScoreText(this.game, player.x, player.y - (player.height / 2), '+1', '#00FF00');
-        Network.updatePlayerScore(player.id, player.socket, player.score);
-    }
-
-    private player_comet_CollisionHandler(player: Player, comet: Comet) {
+    private player_comet_CollisionHandler(player: Player, comet: Phaser.Sprite) {
         player.score -= 10;
         new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
         this.explosions.generate(comet.x, comet.y);
@@ -388,33 +455,26 @@ export class Main extends Phaser.State {
         Network.updatePlayerScore(player.id, player.socket, player.score);
     }
 
-    private shield_point_CollisionHandler(shield: Shield, point: Phaser.Sprite) {
-        const player = (<any>this.game.state).players[shield.playerId];
-        player.score += 1;
-        point.kill();
-        Network.updatePlayerScore(player.id, player.socket, player.score);
-    }
-
-    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Comet) {
+    // do pozbycia się
+    private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Phaser.Sprite) {
         bullet.kill();
         comet.health -= 2;
         if (comet.health <= 0) {
-            this.generatePowerUp(comet.x, comet.y);
             this.explosions.generate(comet.x, comet.y);
             comet.kill();
         }
     }
 
     private player_powerup_CollisionHandler(player: Player, pu) {
-        pu.powerup(player);
+        // pu.powerup(player);
         pu.destroy();
     }
 
     private generatePowerUp(x: number, y: number) {
-        const chance = rnd.integerInRange(1, 20);
-        if (chance != 1) return;
-        const pu = new PowerUpShield(this.game, x, y);
-        pu.body.velocity.x = -400;
-        this.powerUps.add(pu);
+        // const chance = rnd.integerInRange(1, 20);
+        // if (chance != 1) return;
+        // const pu = new PowerUpShield(this.game, x, y);
+        // pu.body.velocity.x = -400;
+        // this.powerUps.add(pu);
     }
 }

@@ -47,16 +47,20 @@ export class Loading extends Phaser.State {
             Assets.Images.Shield.getPNG());
 
         this.game.load.image(
-            Assets.Images.PowerUps.Shield.getName(),
-            Assets.Images.PowerUps.Shield.getPNG());
+            Assets.Images.PowerUps.MultiWeapon.getName(),
+            Assets.Images.PowerUps.MultiWeapon.getPNG());
 
         this.game.load.image(
-            Assets.Images.PowerUps.Cooldown.getName(),
-            Assets.Images.PowerUps.Cooldown.getPNG());
+            Assets.Images.PowerUps.LittleDoctor.getName(),
+            Assets.Images.PowerUps.LittleDoctor.getPNG());
 
         this.game.load.image(
-            Assets.Images.PowerUps.Pull.getName(),
-            Assets.Images.PowerUps.Pull.getPNG());
+            Assets.Images.PowerUps.ResetPoints.getName(),
+            Assets.Images.PowerUps.ResetPoints.getPNG());
+
+        this.game.load.image(
+            Assets.Images.PowerUps.Untouchtable.getName(),
+            Assets.Images.PowerUps.Untouchtable.getPNG());
 
         this.game.load.image(
             Assets.Images.ScoreText.Plus.getName(),
@@ -111,21 +115,37 @@ export class Loading extends Phaser.State {
             Assets.Images.Ships.DARKPINK.getName(),
             Assets.Images.Ships.DARKPINK.getPNG());
 
+        this.game.load.image(
+            Assets.Images.Bulelts.ShmupBullet.getName(),
+            Assets.Images.Bulelts.ShmupBullet.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Bulelts.Bullet.getName(),
+            Assets.Images.Bulelts.Bullet.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Bulelts.Lasers.LaserGREEN.getName(),
+            Assets.Images.Bulelts.Lasers.LaserGREEN.getPNG());
+
+        this.game.load.image(
+            Assets.Images.Bulelts.Lasers.LaserPURPLE.getName(),
+            Assets.Images.Bulelts.Lasers.LaserPURPLE.getPNG());
+
         /* ui */
         this.game.load.image(
             Assets.UI.Buttons.Menu.Grey.getName(),
             Assets.UI.Buttons.Menu.Grey.getPNG());
         
         /* shaders */
-        this.game.load.shader(
-            Assets.Shaders.Glow.getName(),
-            Assets.Shaders.Glow.getFRAG()
-        );
+        // this.game.load.shader(
+        //     Assets.Shaders.Glow.getName(),
+        //     Assets.Shaders.Glow.getFRAG()
+        // );
 
-        this.game.load.shader(
-            Assets.Shaders.Pixelate.getName(),
-            Assets.Shaders.Pixelate.getFRAG()
-        );
+        // this.game.load.shader(
+        //     Assets.Shaders.Pixelate.getName(),
+        //     Assets.Shaders.Pixelate.getFRAG()
+        // );
     }
 
     create() {

@@ -5,20 +5,13 @@ import 'phaser';
 import { Const } from '../const';
 import { rnd } from '../utils';
 
-import { Comet } from './Comet';
-
 export class Comets extends Phaser.Group {
     
     constructor(game: Phaser.Game) {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(3, Const.Comet.Names);
-        // Const.Comet.Names.forEach(name => {
-        //     for (let i = 0; i < 3; i++) {
-        //         this.add(new Comet(game, game.width, rnd.integerInRange(20, game.height - 20), name));
-        //     }
-        // });
+        this.createMultiple(2, Const.Comet.Names);
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
         this.setAll('checkWorldBounds', true);
@@ -27,11 +20,11 @@ export class Comets extends Phaser.Group {
 
     public generate() {
         const comet: Phaser.Sprite = this.getFirstDead();
-        const chance = rnd.integerInRange(1, 10);
+        const chance = rnd.integerInRange(1, 20);
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), 10);
-        comet.body.velocity.x = rnd.integerInRange(-500, -600);
+        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), comet.height / 3);
+        comet.body.velocity.x = rnd.integerInRange(-250, -350);
     }
 }

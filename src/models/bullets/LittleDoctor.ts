@@ -2,43 +2,55 @@ import 'p2';
 import 'pixi';
 import 'phaser';
 
-import { Assets } from '../assets';
+import { Assets } from '../../assets'; 
+import { IBullets } from './IBullets';
 
-export class Bullets extends Phaser.Group {
+export class LittleDoctor extends Phaser.Group implements IBullets {
     
     /**
      * Czy możliwe jest oddanie następnego strału
      * @private
+     * @type {number}
      * @memberof Bullets
      */
-    private nextFire = 0;
+    private _nextFire: number = 0;
+
+    /**
+     * Czy możliwe jest oddanie następnego strału
+     * @readonly
+     * @type {number}
+     * @memberof Bullets
+     */
+    public get nextFire(): number {
+        return this._nextFire;
+    }
 
     /**
      * Prędkość pojeyńczego pocisku
-     * @private
+     * @type {number}
      * @memberof Bullets
      */
-    private bulletSpeed = 800;
+    public readonly bulletSpeed: number = 600;
 
     /**
      * Częstotliwość strzałów
-     * @private
+     * @type {number}
      * @memberof Bullets
      */
-    private fireRate = 50;
+    public readonly fireRate: number = 50;
 
     /**
-     * Aktualna ramka bullet
-     * @private
+     * Obrażenia zadawane przez pocisk
+     * @type {number}
      * @memberof Bullets
      */
-    private currentFrame = 0;
+    public readonly damage: number = 100;
     
-    constructor(game: Phaser.Game) {
+    constructor(game: Phaser.Game, key: string) {
         super(game);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(100, Assets.Spritesheets.Bullets.RGBLaser.getName(), 0);
+        this.createMultiple(100, key);
         this.setAll('anchor.x', 0.5);
         this.setAll('anchor.y', 0.5);
         this.setAll('checkWorldBounds', true);
@@ -50,12 +62,10 @@ export class Bullets extends Phaser.Group {
         if (!bullet) {
             return;
         }
-        if (this.game.time.now > this.nextFire) {
-            this.currentFrame = (this.currentFrame + 1) % 80;
+        if (this.game.time.now > this._nextFire) {
             bullet.reset(sx + 20, sy);
-            bullet.frame = this.currentFrame;
             bullet.body.velocity.x = this.bulletSpeed;
-            this.nextFire = this.game.time.now + this.fireRate;
+            this._nextFire = this.game.time.now + this.fireRate;
         }
     }
 }
