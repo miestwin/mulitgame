@@ -240,7 +240,7 @@ export class StartGame extends Phaser.State {
         player.score += 1;
         point.kill();
         new ScoreText(this.game, player.x, player.y - (player.height / 2), '+1', '#00FF00');
-        Network.updatePlayerScore(player.id, player.socket, player.score);
+        Network.updatePlayerScore(player.id, player.socket, player.score, false);
     }
 
     private player_comet_CollisionHandler(player: Player, comet: Comet) {
@@ -256,7 +256,7 @@ export class StartGame extends Phaser.State {
         const player = (<any>this.game.state).players[shield.playerId];
         player.score += 1;
         point.kill();
-        Network.updatePlayerScore(player.id, player.socket, player.score);
+        Network.updatePlayerScore(player.id, player.socket, player.score, false);
     }
 
     private bullet_comet_CollisionHandler(bullet: Phaser.Sprite, comet: Phaser.Sprite) {

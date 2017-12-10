@@ -25,6 +25,6 @@ export class Comets extends Phaser.Group {
             return;
         }
         comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), 10);
-        comet.body.velocity.x = rnd.integerInRange(-250, -350);
+        comet.body.velocity.x = rnd.integerInRange(-300, -450);
     }
 }

@@ -20,11 +20,20 @@ export class ResetPointsPowerUp extends Phaser.Sprite implements IPowerUp {
         return this._player;
     }
 
-    constructor(game: Phaser.Game, x: number, y: number) {
+    /**
+     * Akcja do wykonania podczas otrzymania wzmocnienia
+     * @private
+     * @type {Function}
+     * @memberof ResetPointsPowerUp
+     */
+    private callback: Function;
+
+    constructor(game: Phaser.Game, x: number, y: number, callback: Function) {
         super(game, x, y, Assets.Images.PowerUps.ResetPoints.getName());
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.callback = callback;
     }
 
     /**
@@ -37,6 +46,7 @@ export class ResetPointsPowerUp extends Phaser.Sprite implements IPowerUp {
         this._player = player;
         this._player.score = 0;
         this.kill();
+        this.callback(this._player);
     }
 
     /**

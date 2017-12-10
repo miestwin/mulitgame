@@ -4363,8 +4363,8 @@ class Network {
      * @param {any} score
      * @memberof Network
      */
-    static updatePlayerScore(playerId, socketId, score) {
-        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
+    static updatePlayerScore(playerId, socketId, score, vibration) {
+        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score, vibration);
     }
     static gameEnd(gameId, playerId) {
         Network.socket.emit(Network.END_GAME, gameId, playerId);
@@ -115757,7 +115757,7 @@ class Comets extends Phaser.Group {
             return;
         }
         comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20), 10);
-        comet.body.velocity.x = utils_1.rnd.integerInRange(-250, -350);
+        comet.body.velocity.x = utils_1.rnd.integerInRange(-300, -450);
     }
 }
 exports.Comets = Comets;
@@ -115877,11 +115877,12 @@ class ResetPointsPowerUp extends Phaser.Sprite {
     get player() {
         return this._player;
     }
-    constructor(game, x, y) {
+    constructor(game, x, y, callback) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.ResetPoints.getName());
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.callback = callback;
     }
     /**
      * Przydzielenie wzmocnienia
@@ -115893,6 +115894,7 @@ class ResetPointsPowerUp extends Phaser.Sprite {
         this._player = player;
         this._player.score = 0;
         this.kill();
+        this.callback(this._player);
     }
     /**
      * Usunięcie wzmocnienia
@@ -116168,7 +116170,7 @@ class StartGame extends Phaser.State {
         player.score += 1;
         point.kill();
         new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '+1', '#00FF00');
-        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
     }
     player_comet_CollisionHandler(player, comet) {
         // if (player.shield.scale.x < 0.3 && !comet.checkLastCollision(player)) {
@@ -116182,7 +116184,7 @@ class StartGame extends Phaser.State {
         const player = this.game.state.players[shield.playerId];
         player.score += 1;
         point.kill();
-        network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
     }
     bullet_comet_CollisionHandler(bullet, comet) {
         bullet.kill();
@@ -116316,6 +116318,7 @@ class Main extends Phaser.State {
          * @memberof Main
          */
         this.gameEndedFlag = false;
+        this.gameEndingFlag = false;
     }
     preload() {
         // utworzenie słownika graczy
@@ -116404,7 +116407,8 @@ class Main extends Phaser.State {
             this.generatePowerUps();
             this.nextStage();
         }
-        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameStartedFlag) {
+        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameEndingFlag) {
+            this.gameEndingFlag = true;
             this.endGame();
         }
         this.checkCollisions();
@@ -116533,11 +116537,11 @@ class Main extends Phaser.State {
             const stepX = (50 * arr.length) / count;
             const offsetX = stepX / 2;
             const x = stepX * (index + 1) + (offsetX * (count - 1));
-            const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
-            const moveToY = this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
+            const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 1000, Phaser.Easing.Linear.None, true);
+            const moveToY = this.game.add.tween(player).to({ y: y }, 1000, Phaser.Easing.Linear.None, true);
             moveToX.onComplete.add(() => {
-                const text = this.game.add.text(x + player.width + 10, y, player.score.toString(), {
-                    font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+                const text = this.game.add.text(x + player.width + 20, y, player.score.toString(), {
+                    font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
                     fill: '#ffffff',
                     align: 'center'
                 });
@@ -116570,8 +116574,8 @@ class Main extends Phaser.State {
                 comet.health -= player.bullets.damage;
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
-                    player.score += comet.height;
-                    network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+                    player.score += (comet.height / 3);
+                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
                     comet.kill();
                 }
             };
@@ -116591,7 +116595,7 @@ class Main extends Phaser.State {
             new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
             this.explosions.generate(comet.x, comet.y);
             comet.kill();
-            network_1.default.updatePlayerScore(player.id, player.socket, player.score);
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
         }
     }
     /**
@@ -116622,7 +116626,7 @@ class Main extends Phaser.State {
         this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), (player) => { network_1.default.updatePlayerScore(player.id, player.socket, player.score, false); }));
     }
     /**
      * Usunięcie wzmocnień z planszy
@@ -116630,8 +116634,10 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     destroyPowerUps() {
-        this.powerUps.forEachAlive((powerup) => {
-            powerup.destroy();
+        this.powerUps.forEach((powerup) => {
+            if (powerup.player == null) {
+                powerup.destroy();
+            }
         }, this);
     }
 }

@@ -112438,7 +112438,7 @@ class AvatarSelector extends Phaser.State {
         network_1.default.getAvatarsInUse();
     }
     create() {
-        this.game.stage.backgroundColor = '#000000';
+        this.game.stage.backgroundColor = '#333333';
         var helloText = this.game.add.text(this.game.world.centerX, 30, 'Choose your ship', { font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
         this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.ships.length * 140 + 30, this.game.height - 180, assets_1.Assets.Images.Transparent.getName());
@@ -112530,14 +112530,12 @@ class Message extends Phaser.State {
     }
     preload() { }
     create() {
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, this.message, { font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, { font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         message.anchor.set(0.5);
-        console.log(this.text, this.action);
         if (this.text && this.action) {
-            console.log('true');
-            var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.action, this, 2, 1, 0);
+            var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 30, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.action, this, 2, 1, 0);
             button.anchor.set(0.5);
-            var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, { font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#000000', align: 'center' });
+            var buttonText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 30, this.text, { font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#000000', align: 'center' });
             buttonText.anchor.set(0.5);
         }
     }
@@ -112591,8 +112589,11 @@ class GameController extends Phaser.State {
     }
     preload() {
         this.game.stage.backgroundColor = this.game.state.color;
-        network_1.default.onUpdateScore((score) => {
+        network_1.default.onUpdateScore((score, vibration) => {
             this.scoreText.setText(score.toString());
+            if (vibration) {
+                this.signalPointsLost();
+            }
         });
         network_1.default.onEndGame((playerId) => {
             const message = playerId == this.game.state.id ? 'Win' : 'Lose';
@@ -112623,47 +112624,15 @@ class GameController extends Phaser.State {
         graphics.endFill();
         const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, graphics.generateTexture());
         leftPadBack.anchor.setTo(0.5);
-        // leftPadBack.scale.setTo(1.8);
         graphics.destroy();
-        // Assets.UI.Buttons.Joystick.WheelExternal.getName()
         this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getName());
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
-        // this.shieldBtn = this.game.add.button(
-        //     this.game.world.centerX + this.game.world.centerX / 2,
-        //     this.game.world.centerY - 10, 
-        //     Assets.UI.Buttons.Shield.getName());
-        // this.shieldBtn.anchor.setTo(0.5, 1);
-        // this.shieldBtn.onInputDown.add(() => {
-        //     if (this.shieldState.canUse) {
-        //         this.shieldState.inUse = true;
-        //         Network.updatePlayerZ(gameId, true);
-        //         this.shieldInterval = setInterval(() => {
-        //             this.shieldState.prc -= 10;
-        //         }, 500);
-        //     }
-        // }, this);
-        // this.shieldBtn.onInputUp.add(() => {
-        //     if (this.shieldState.canUse) {
-        //         this.shieldState.inUse = false;
-        //         Network.updatePlayerZ(gameId, false);
-        //         clearInterval(this.shieldInterval);
-        //         this.setRechargeInterval();
-        //     }
-        //     if (this.vibrateInterval) {
-        //         this.stopShieldUP();
-        //     }
-        // }, this);
         this.fireBtn = this.game.add.button(this.game.world.centerX + (this.game.world.centerX / 2), this.game.world.centerY, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
             network_1.default.playerFire(gameId);
         }, this);
         this.fireBtn.scale.setTo(1.3);
         this.fireBtn.anchor.setTo(0.5);
-        // this.shieldBar = new HealthBar(this.game, {
-        //     x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,
-        //     bg: { color: '#808080' }, bar: { color: '#ffffff' },
-        //     animationDuration: 200, flipped: false
-        // });
     }
     update() {
         this.leftPad.x = this.leftTouchPos.x;
@@ -112672,28 +112641,6 @@ class GameController extends Phaser.State {
         if (this.frameCounter % 3 === 0) {
             network_1.default.updatePlayerXY(gameId, { x: this.leftVector.x, y: this.leftVector.y });
         }
-        // this.shieldBar.setPercent(this.shieldState.prc);
-        // if (this.shieldState.inUse && this.shieldState.canUse) {
-        //     if (this.shieldState.prc <= 0) {
-        //         Network.updatePlayerZ(gameId, false);
-        //         this.shieldState.canUse = false;
-        //         this.shieldState.inUse = false;
-        //         this.stopShieldUP();
-        //         clearInterval(this.shieldInterval);
-        //         this.setRechargeInterval();
-        //         var that = this;
-        //         this.canUseTimeout = setTimeout(() => {
-        //             that.shieldState.canUse = true;
-        //         }, 3000);
-        //     }
-        //     else if (this.shieldState.prc <= 30) {
-        //         this.signalShieldOverpowered();
-        //     }
-        // }
-        // if (!this.shieldState.inUse && this.shieldState.canUse && this.shieldState.prc >= 100 && this.rechargeInterval) {
-        //     clearInterval(this.rechargeInterval);
-        //     this.rechargeInterval = null;
-        // }
     }
     shutdown() {
         document.getElementById('controller').removeEventListener('touchstart', this.onTouchStart.bind(this));
@@ -112701,22 +112648,8 @@ class GameController extends Phaser.State {
         document.getElementById('controller').removeEventListener('touchend', this.onTouchEnd.bind(this));
         network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
-    setRechargeInterval() {
-        var that = this;
-        this.rechargeInterval = setInterval(() => {
-            if (that.shieldState.canUse) {
-                that.shieldState.prc += 10;
-            }
-        }, 1000);
-    }
-    signalShieldOverpowered() {
+    signalPointsLost() {
         window.navigator.vibrate(500);
-    }
-    stopShieldUP() {
-        if (this.vibrateInterval) {
-            clearInterval(this.vibrateInterval);
-        }
-        window.navigator.vibrate(0);
     }
     onTouchStart(e) {
         e.preventDefault();

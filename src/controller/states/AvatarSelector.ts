@@ -73,7 +73,7 @@ export class AvatarSelector extends Phaser.State {
     }
 
     public create() {
-        this.game.stage.backgroundColor = '#000000';
+        this.game.stage.backgroundColor = '#333333';
 
         var helloText = this.game.add.text(
             this.game.world.centerX, 30,

@@ -81,8 +81,8 @@ export default class Network {
      * @param {any} score 
      * @memberof Network
      */
-    public static updatePlayerScore(playerId, socketId, score) {
-        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score);
+    public static updatePlayerScore(playerId, socketId, score, vibration) {
+        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score, vibration);
     }
 
     public static gameEnd(gameId, playerId) {

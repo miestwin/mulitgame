@@ -126,6 +126,7 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private gameEndedFlag: boolean = false;
+    private gameEndingFlag: boolean = false;
 
     /**
      * Czas do końca gry
@@ -240,7 +241,8 @@ export class Main extends Phaser.State {
             this.nextStage();
         }
 
-        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameStartedFlag) {
+        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameEndingFlag) {
+            this.gameEndingFlag = true;
             this.endGame();
         }
 
@@ -399,11 +401,11 @@ export class Main extends Phaser.State {
             const stepX = (50 * arr.length) / count;
             const offsetX = stepX / 2;
             const x = stepX * (index + 1) + (offsetX * (count - 1));
-            const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
-            const moveToY = this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
+            const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 1000, Phaser.Easing.Linear.None, true);
+            const moveToY = this.game.add.tween(player).to({ y: y }, 1000, Phaser.Easing.Linear.None, true);
             moveToX.onComplete.add(() => {
-                const text = this.game.add.text(x + player.width + 10, y, player.score.toString(), {
-                    font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
+                const text = this.game.add.text(x + player.width + 20, y, player.score.toString(), {
+                    font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
                     fill: '#ffffff',
                     align: 'center'
                 });
@@ -450,8 +452,8 @@ export class Main extends Phaser.State {
                 comet.health -= player.bullets.damage;
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
-                    player.score += comet.height;
-                    Network.updatePlayerScore(player.id, player.socket, player.score);
+                    player.score += (comet.height / 3);
+                    Network.updatePlayerScore(player.id, player.socket, player.score, false);
                     comet.kill();
                 }
             };
@@ -475,7 +477,7 @@ export class Main extends Phaser.State {
             new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
             this.explosions.generate(comet.x, comet.y);
             comet.kill();
-            Network.updatePlayerScore(player.id, player.socket, player.score);
+            Network.updatePlayerScore(player.id, player.socket, player.score, true);
         }
     }
 
@@ -524,7 +526,8 @@ export class Main extends Phaser.State {
 
         this.powerUps.add(new ResetPointsPowerUp(this.game,
             rnd.integerInRange(400, this.game.width - 100),
-            rnd.integerInRange(100, this.game.height - 100)));
+            rnd.integerInRange(100, this.game.height - 100),
+            (player) => { Network.updatePlayerScore(player.id, player.socket, player.score, false); }));
     }
 
     /**
@@ -533,8 +536,10 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private destroyPowerUps() {
-        this.powerUps.forEachAlive((powerup) => {
-            powerup.destroy();
+        this.powerUps.forEach((powerup) => {
+            if (powerup.player == null) {
+                powerup.destroy();
+            }
         }, this);
     }
 }
