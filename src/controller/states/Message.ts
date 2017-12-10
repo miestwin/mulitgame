@@ -6,6 +6,8 @@ import { States } from './States';
 import Network from '../network';
 import { Assets } from '../../assets';
 
+declare var gameId;
+
 /**
  * Wyświetlanie wiadomości z błędami
  * @export

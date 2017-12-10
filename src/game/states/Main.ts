@@ -206,6 +206,10 @@ export class Main extends Phaser.State {
             this.game.state.start(States.MESSAGE, true, false, 'No connected players');
         });
 
+        Network.onPlayAgain(() => {
+            this.game.state.start(States.MAIN);
+        });
+
         Network.startTimer();
     }
 
@@ -366,7 +370,7 @@ export class Main extends Phaser.State {
         this.menuGroup.add(stage);
         this.menuGroup.add(instruction);
 
-        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 8000);
+        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
@@ -414,13 +418,14 @@ export class Main extends Phaser.State {
     }
 
     private createEndMenu() {
-        this.game.add.text(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY,
-        'If you want play again\npress "PLAY AGAIN"\nin your controller',
+        const text = this.game.add.text(this.game.world.centerX, 100,
+        'If you want play again press "PLAY AGAIN" in your controller',
         {
-            font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+            font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
         });
+        text.anchor.setTo(0.5);
     }
 
     /**
@@ -498,25 +503,26 @@ export class Main extends Phaser.State {
         }
         this.powerUps = this.game.add.group();
 
+        this.powerUps.add(new MultiWeaponPowerUp(this.game,
+            rnd.integerInRange(400, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+       
         this.powerUps.add(new LittleDoctorPowerUp(this.game,
-            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(400, this.game.width - 100),
             rnd.integerInRange(100, this.game.height - 100)));
 
         this.powerUps.add(new MultiWeaponPowerUp(this.game,
-            rnd.integerInRange(500, this.game.width - 100),
-            rnd.integerInRange(100, this.game.height - 100)));
-
-        this.powerUps.add(new MultiWeaponPowerUp(this.game,
-            rnd.integerInRange(500, this.game.width - 100),
-            rnd.integerInRange(100, this.game.height - 100)));
-
-        this.powerUps.add(new ResetPointsPowerUp(this.game,
-            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(400, this.game.width - 100),
             rnd.integerInRange(100, this.game.height - 100)));
 
         this.powerUps.add(new UntouchtablePowerUp(this.game,
-            rnd.integerInRange(500, this.game.width - 100),
+            rnd.integerInRange(400, this.game.width - 100),
             rnd.integerInRange(100, this.game.height - 100)));
+
+        this.powerUps.add(new ResetPointsPowerUp(this.game,
+            rnd.integerInRange(400, this.game.width - 100),
+            rnd.integerInRange(100, this.game.height - 100)));
+
     }
 
     /**

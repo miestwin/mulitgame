@@ -2563,6 +2563,15 @@ class Network {
         Network.socket.emit(Network.PLAYER_FIRE, gameID);
     }
     /**
+     * Ponowne uruchomienie gry
+     * @static
+     * @param {any} gameID
+     * @memberof Network
+     */
+    static playAgain(gameID) {
+        Network.socket.emit(Network.PLAY_AGAIN, gameID);
+    }
+    /**
      * Gra jest niedostępna
      * @static
      * @param {Function} fn
@@ -2669,6 +2678,7 @@ Network.UPDATE_PLAYER_Z = 'update-player-z';
 Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 Network.PLAYER_FIRE = 'player_fire';
 Network.END_GAME = 'end-game';
+Network.PLAY_AGAIN = 'play-again';
 exports.default = Network;
 
 
@@ -112428,6 +112438,7 @@ class AvatarSelector extends Phaser.State {
         network_1.default.getAvatarsInUse();
     }
     create() {
+        this.game.stage.backgroundColor = '#000000';
         var helloText = this.game.add.text(this.game.world.centerX, 30, 'Choose your ship', { font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         helloText.anchor.set(0.5, 0);
         this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.ships.length * 140 + 30, this.game.height - 180, assets_1.Assets.Images.Transparent.getName());
@@ -112584,7 +112595,8 @@ class GameController extends Phaser.State {
         network_1.default.onEndGame((playerId) => {
             const message = playerId == this.game.state.id ? 'Win' : 'Lose';
             this.game.state.start(States_1.States.MESSAGE, true, false, message, 'Play again', () => {
-                console.log('play again');
+                network_1.default.playAgain(gameId);
+                this.game.state.start(States_1.States.AVATAR_SELECTOR);
             });
         });
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));

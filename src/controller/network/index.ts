@@ -24,6 +24,7 @@ export default class Network {
     public static UPDATE_PLAYER_SCORE = 'update_player_score';
     public static PLAYER_FIRE = 'player_fire';
     public static END_GAME = 'end-game';
+    public static PLAY_AGAIN = 'play-again';
 
     static connect () {
         Network.socket = io();
@@ -103,6 +104,16 @@ export default class Network {
      */
     public static playerFire(gameID) {
         Network.socket.emit(Network.PLAYER_FIRE, gameID);
+    }
+
+    /**
+     * Ponowne uruchomienie gry
+     * @static
+     * @param {any} gameID 
+     * @memberof Network
+     */
+    public static playAgain(gameID) {
+        Network.socket.emit(Network.PLAY_AGAIN, gameID);
     }
 
     /**

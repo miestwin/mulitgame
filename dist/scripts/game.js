@@ -4468,6 +4468,15 @@ class Network {
     static onEndGame(fn) {
         Network.socket.on(Network.END_GAME, fn);
     }
+    /**
+     * Ponowne uruchomienie rozgrywki
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayAgain(fn) {
+        Network.socket.on(Network.PLAY_AGAIN, fn);
+    }
 }
 Network.NEW_GAME = 'new-game';
 Network.START_TIMER = 'start-timer';
@@ -4483,6 +4492,7 @@ Network.UPDATE_PLAYER_SCORE = 'update_player_score';
 Network.PLAYER_FIRE = 'player_fire';
 Network.NO_CONNECTED_PLAYERS = 'no_connected_players';
 Network.END_GAME = 'end-game';
+Network.PLAY_AGAIN = 'play-again';
 exports.default = Network;
 
 
@@ -116368,6 +116378,9 @@ class Main extends Phaser.State {
         network_1.default.onNoConnectedPlayers(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
         });
+        network_1.default.onPlayAgain(() => {
+            this.game.state.start(States_1.States.MAIN);
+        });
         network_1.default.startTimer();
     }
     create() {
@@ -116493,7 +116506,7 @@ class Main extends Phaser.State {
         instruction.anchor.set(0.5);
         this.menuGroup.add(stage);
         this.menuGroup.add(instruction);
-        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 8000);
+        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
@@ -116536,11 +116549,12 @@ class Main extends Phaser.State {
         this.createEndMenu();
     }
     createEndMenu() {
-        this.game.add.text(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, 'If you want play again\npress "PLAY AGAIN"\nin your controller', {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+        const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again press "PLAY AGAIN" in your controller', {
+            font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
         });
+        text.anchor.setTo(0.5);
     }
     /**
      * Sprawdzanie kolizji
@@ -116602,11 +116616,11 @@ class Main extends Phaser.State {
             this.powerUps.destroy();
         }
         this.powerUps = this.game.add.group();
-        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
     }
     /**
      * Usunięcie wzmocnień z planszy

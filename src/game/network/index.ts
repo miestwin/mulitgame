@@ -22,6 +22,7 @@ export default class Network {
     public static PLAYER_FIRE = 'player_fire';
     public static NO_CONNECTED_PLAYERS = 'no_connected_players';
     public static END_GAME = 'end-game';
+    public static PLAY_AGAIN = 'play-again';
 
     public static connect () {
         Network.socket = io();
@@ -196,5 +197,15 @@ export default class Network {
      */
     public static onEndGame(fn: Function) {
         Network.socket.on(Network.END_GAME, fn);
+    }
+
+    /**
+     * Ponowne uruchomienie rozgrywki
+     * @static
+     * @param {Function} fn 
+     * @memberof Network
+     */
+    public static onPlayAgain(fn: Function) {
+        Network.socket.on(Network.PLAY_AGAIN, fn);
     }
 }
