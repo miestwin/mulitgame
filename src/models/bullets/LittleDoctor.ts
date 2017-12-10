@@ -44,7 +44,7 @@ export class LittleDoctor extends Phaser.Group implements IBullets {
      * @type {number}
      * @memberof Bullets
      */
-    public readonly damage: number = 1000;
+    public readonly damage: number = 500;
     
     constructor(game: Phaser.Game, key: string) {
         super(game);

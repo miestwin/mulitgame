@@ -115421,7 +115421,7 @@ class MultipleBullets extends Phaser.Group {
          * @private
          * @memberof MultipleBullets
          */
-        this.fireRate = 50;
+        this.fireRate = 150;
         /**
          * Obrażenia zadawane przez pocisk
          * @type {number}
@@ -115497,7 +115497,7 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof Bullets
          */
-        this.damage = 1000;
+        this.damage = 500;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, key);
@@ -115617,8 +115617,8 @@ class Player extends Phaser.Sprite {
      * @memberof Player
      */
     update() {
-        this.body.velocity.x = this.vector.x * 9;
-        this.body.velocity.y = this.vector.y * 9;
+        this.body.velocity.x = this.vector.x * 8;
+        this.body.velocity.y = this.vector.y * 8;
         if (this.untouchtable) {
             this.alpha = 0.6;
         }
@@ -116574,7 +116574,7 @@ class Main extends Phaser.State {
                 comet.health -= player.bullets.damage;
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
-                    player.score += (comet.height / 3);
+                    player.score += 10;
                     network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
                     comet.kill();
                 }

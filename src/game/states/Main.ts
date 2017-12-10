@@ -452,7 +452,7 @@ export class Main extends Phaser.State {
                 comet.health -= player.bullets.damage;
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
-                    player.score += (comet.height / 3);
+                    player.score += 10;
                     Network.updatePlayerScore(player.id, player.socket, player.score, false);
                     comet.kill();
                 }

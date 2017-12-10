@@ -30,7 +30,7 @@ export class MultipleBullets extends Phaser.Group implements IBullets {
      * @private
      * @memberof MultipleBullets
      */
-    public readonly fireRate = 50;
+    public readonly fireRate = 150;
 
     /**
      * Obrażenia zadawane przez pocisk
