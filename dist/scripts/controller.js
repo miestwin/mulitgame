@@ -112579,11 +112579,13 @@ class GameController extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = this.game.state.color;
         network_1.default.onUpdateScore((score) => {
-            this.scoreText.setText('Score: ' + score);
+            this.scoreText.setText(score.toString());
         });
         network_1.default.onEndGame((playerId) => {
             const message = playerId == this.game.state.id ? 'Win' : 'Lose';
-            this.game.state.start(States_1.States.MESSAGE, true, false, message);
+            this.game.state.start(States_1.States.MESSAGE, true, false, message, 'Play again', () => {
+                console.log('play again');
+            });
         });
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
         document.getElementById('controller').addEventListener('touchmove', this.onTouchMove.bind(this));
@@ -112641,7 +112643,7 @@ class GameController extends Phaser.State {
         this.fireBtn = this.game.add.button(this.game.world.centerX + (this.game.world.centerX / 2), this.game.world.centerY, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
             network_1.default.playerFire(gameId);
         }, this);
-        this.fireBtn.scale.setTo(1.5);
+        this.fireBtn.scale.setTo(1.3);
         this.fireBtn.anchor.setTo(0.5);
         // this.shieldBar = new HealthBar(this.game, {
         //     x: this.game.world.centerX + (this.game.world.centerX / 2), y: 10, width: 200, height: 25,

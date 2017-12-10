@@ -115882,6 +115882,7 @@ class ResetPointsPowerUp extends Phaser.Sprite {
     powerup(player, options) {
         this._player = player;
         this._player.score = 0;
+        this.kill();
     }
     /**
      * Usunięcie wzmocnienia
@@ -116508,8 +116509,6 @@ class Main extends Phaser.State {
     endGame() {
         this.shutdown();
         const players = [];
-        let bestScore = 0;
-        let winner;
         Object.keys(this.game.state.players).forEach((playerId) => {
             players.push(this.game.state.players[playerId]);
         });
@@ -116523,12 +116522,25 @@ class Main extends Phaser.State {
             const stepX = (50 * arr.length) / count;
             const offsetX = stepX / 2;
             const x = stepX * (index + 1) + (offsetX * (count - 1));
-            this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
-            this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
+            const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
+            const moveToY = this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
+            moveToX.onComplete.add(() => {
+                this.game.add.text(x + player.width, y, player.score.toString(), {
+                    font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+                    fill: '#ffffff',
+                    align: 'center'
+                });
+            }, this);
         });
         network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
+        this.createEndMenu();
     }
     createEndMenu() {
+        this.game.add.text(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, 'If you want play again\npress "PLAY AGAIN"\nin your controller', {
+            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: '#ffffff',
+            align: 'center'
+        });
     }
     /**
      * Sprawdzanie kolizji
@@ -116596,6 +116608,11 @@ class Main extends Phaser.State {
         this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(500, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
     }
+    /**
+     * Usunięcie wzmocnień z planszy
+     * @private
+     * @memberof Main
+     */
     destroyPowerUps() {
         this.powerUps.forEachAlive((powerup) => {
             powerup.destroy();

@@ -119,13 +119,15 @@ export class GameController extends Phaser.State {
     preload() {
         this.game.stage.backgroundColor = (<any>this.game.state).color;
 
-        Network.onUpdateScore((score) => {
-            this.scoreText.setText('Score: ' + score);
+        Network.onUpdateScore((score: number) => {
+            this.scoreText.setText(score.toString());
         });
 
-        Network.onEndGame((playerId) => {
+        Network.onEndGame((playerId: string) => {
             const message = playerId == (<any>this.game.state).id ? 'Win' : 'Lose';
-            this.game.state.start(States.MESSAGE, true, false, message);
+            this.game.state.start(States.MESSAGE, true, false, message, 'Play again', () => { 
+                console.log('play again');
+            });
         });
 
         document.getElementById('controller').addEventListener('touchstart', this.onTouchStart.bind(this));
@@ -203,7 +205,7 @@ export class GameController extends Phaser.State {
             () => {
                 Network.playerFire(gameId);
             }, this);
-        this.fireBtn.scale.setTo(1.5);
+        this.fireBtn.scale.setTo(1.3);
         this.fireBtn.anchor.setTo(0.5);
 
         // this.shieldBar = new HealthBar(this.game, {

@@ -36,6 +36,7 @@ export class ResetPointsPowerUp extends Phaser.Sprite implements IPowerUp {
     public powerup(player: Player, options?: any) {
         this._player = player;
         this._player.score = 0;
+        this.kill();
     }
 
     /**
