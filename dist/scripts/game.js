@@ -115357,7 +115357,7 @@ class Bullets extends Phaser.Group {
          * @type {number}
          * @memberof Bullets
          */
-        this.damage = 2;
+        this.damage = 3.5;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, assets_1.Assets.Images.Bulelts.ShmupBullet.getName());
@@ -115491,7 +115491,7 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof Bullets
          */
-        this.fireRate = 5000;
+        this.fireRate = 2000;
         /**
          * Obrażenia zadawane przez pocisk
          * @type {number}
@@ -116359,6 +116359,7 @@ class Main extends Phaser.State {
                 this.hideMenu();
                 this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
+                    this.gameStartedFlag = false;
                     this.gameEndTimmeout = null;
                 }, 90000);
             }
@@ -116403,7 +116404,7 @@ class Main extends Phaser.State {
             this.generatePowerUps();
             this.nextStage();
         }
-        if (this.gameEndedFlag && (this.comets.countLiving() === 0)) {
+        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameStartedFlag) {
             this.endGame();
         }
         this.checkCollisions();
@@ -116481,9 +116482,6 @@ class Main extends Phaser.State {
     }
     nextStage() {
         this.nextStageTimeout = setTimeout(() => {
-            this.players.forEach((player) => {
-                player.removePowerups();
-            }, this);
             this.gameStartedFlag = false;
             this.currentStage++;
             this.startNextStage = true;
@@ -116538,19 +116536,20 @@ class Main extends Phaser.State {
             const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
             const moveToY = this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
             moveToX.onComplete.add(() => {
-                this.game.add.text(x + player.width, y, player.score.toString(), {
-                    font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+                const text = this.game.add.text(x + player.width + 10, y, player.score.toString(), {
+                    font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
                     fill: '#ffffff',
                     align: 'center'
                 });
+                text.anchor.setTo(0, 0.5);
             }, this);
         });
         network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
         this.createEndMenu();
     }
     createEndMenu() {
-        const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again press "PLAY AGAIN" in your controller', {
-            font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+        const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again\npress "PLAY AGAIN" in your controller', {
+            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
         });
@@ -116587,7 +116586,7 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     player_comet_CollisionHandler(player, comet) {
-        if (player.untouchtable) {
+        if (player.untouchtable === false) {
             player.score -= 10;
             new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
             this.explosions.generate(comet.x, comet.y);
@@ -116612,6 +116611,9 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     generatePowerUps() {
+        this.players.forEach((player) => {
+            player.removePowerups();
+        }, this);
         if (this.powerUps) {
             this.powerUps.destroy();
         }

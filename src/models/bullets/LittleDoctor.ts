@@ -37,7 +37,7 @@ export class LittleDoctor extends Phaser.Group implements IBullets {
      * @type {number}
      * @memberof Bullets
      */
-    public readonly fireRate: number = 5000;
+    public readonly fireRate: number = 2000;
 
     /**
      * Obrażenia zadawane przez pocisk

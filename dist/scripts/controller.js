@@ -112532,7 +112532,9 @@ class Message extends Phaser.State {
     create() {
         var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, this.message, { font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         message.anchor.set(0.5);
+        console.log(this.text, this.action);
         if (this.text && this.action) {
+            console.log('true');
             var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.action, this, 2, 1, 0);
             button.anchor.set(0.5);
             var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, { font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#000000', align: 'center' });

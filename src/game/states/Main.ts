@@ -182,6 +182,7 @@ export class Main extends Phaser.State {
                 this.hideMenu();
                 this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
+                    this.gameStartedFlag = false;
                     this.gameEndTimmeout = null;
                 }, 90000);
             }
@@ -239,7 +240,7 @@ export class Main extends Phaser.State {
             this.nextStage();
         }
 
-        if (this.gameEndedFlag && (this.comets.countLiving() === 0)) {
+        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameStartedFlag) {
             this.endGame();
         }
 
@@ -334,9 +335,6 @@ export class Main extends Phaser.State {
 
     private nextStage() {
         this.nextStageTimeout = setTimeout(() => {
-            this.players.forEach((player: Player) => {
-                player.removePowerups();
-            }, this);
             this.gameStartedFlag = false;
             this.currentStage++;
             this.startNextStage = true;
@@ -404,11 +402,12 @@ export class Main extends Phaser.State {
             const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 3000, Phaser.Easing.Linear.None, true);
             const moveToY = this.game.add.tween(player).to({ y: y }, 3000, Phaser.Easing.Linear.None, true);
             moveToX.onComplete.add(() => {
-                this.game.add.text(x + player.width, y, player.score.toString(), {
-                    font: `20px ${Assets.Fonts.Kenvector.getFamily()}`,
+                const text = this.game.add.text(x + player.width + 10, y, player.score.toString(), {
+                    font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
                     fill: '#ffffff',
                     align: 'center'
                 });
+                text.anchor.setTo(0, 0.5);
             }, this);
         });
 
@@ -419,9 +418,9 @@ export class Main extends Phaser.State {
 
     private createEndMenu() {
         const text = this.game.add.text(this.game.world.centerX, 100,
-        'If you want play again press "PLAY AGAIN" in your controller',
+        'If you want play again\npress "PLAY AGAIN" in your controller',
         {
-            font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
+            font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
         });
@@ -471,7 +470,7 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private player_comet_CollisionHandler(player: Player, comet: Phaser.Sprite) {
-        if (player.untouchtable) {
+        if (player.untouchtable === false) {
             player.score -= 10;
             new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
             this.explosions.generate(comet.x, comet.y);
@@ -498,6 +497,10 @@ export class Main extends Phaser.State {
      * @memberof Main
      */
     private generatePowerUps() {
+        this.players.forEach((player: Player) => {
+            player.removePowerups();
+        }, this);
+
         if (this.powerUps) {
             this.powerUps.destroy();
         }
@@ -522,7 +525,6 @@ export class Main extends Phaser.State {
         this.powerUps.add(new ResetPointsPowerUp(this.game,
             rnd.integerInRange(400, this.game.width - 100),
             rnd.integerInRange(100, this.game.height - 100)));
-
     }
 
     /**

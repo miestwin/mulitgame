@@ -55,7 +55,9 @@ export class Message extends Phaser.State {
             this.message, 
             { font: `35px ${Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
         message.anchor.set(0.5);
+        console.log(this.text, this.action);
         if (this.text && this.action) {
+            console.log('true');
             var button = this.game.add.button(
                 this.game.world.centerX,
                 this.game.height + 30,

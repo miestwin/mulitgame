@@ -44,7 +44,7 @@ export class Bullets extends Phaser.Group implements IBullets {
      * @type {number}
      * @memberof Bullets
      */
-    public readonly damage: number = 2;
+    public readonly damage: number = 3.5;
     
     constructor(game: Phaser.Game) {
         super(game);
