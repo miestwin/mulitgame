@@ -96,7 +96,7 @@ export namespace Assets {
                 }
                 export class LaserGREEN {
                     static getName(): string { return 'laser-test'; }
-                    static getPNG(): string { return '../assets/images/laser1_test.png'; }
+                    static getPNG(): string { return '../assets/images/laser3_test.png'; }
                 }
                 export class LaserPURPLE {
                     static getName(): string { return 'laser-test-2'; }

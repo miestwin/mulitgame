@@ -7,3 +7,4 @@ export * from './Comets';
 export * from './Elements';
 export * from './powerups';
 export * from './ScoreText';
+export * from './PowerUpText';

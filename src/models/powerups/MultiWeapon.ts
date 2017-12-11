@@ -9,6 +9,8 @@ import { IPowerUp } from './IPowerUp';
 
 export class MultiWeaponPowerUp extends Phaser.Sprite implements IPowerUp {
 
+    public readonly name: string = 'Multi Bullets';
+
     /**
      * Referencja na gracza
      * @private

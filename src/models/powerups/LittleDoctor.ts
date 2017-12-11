@@ -9,6 +9,8 @@ import { IPowerUp } from './IPowerUp';
 
 export class LittleDoctorPowerUp extends Phaser.Sprite implements IPowerUp {
 
+    public readonly name: string = 'Little Doctor';
+
     /**
      * Referencja na gracza
      * @private

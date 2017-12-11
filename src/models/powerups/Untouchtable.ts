@@ -8,6 +8,8 @@ import { IPowerUp } from './IPowerUp';
 
 export class UntouchtablePowerUp extends Phaser.Sprite implements IPowerUp {
 
+    public readonly name: string = 'Untouchtable';
+
     /**
      * Referencja na gracza
      * @private

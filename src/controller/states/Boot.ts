@@ -55,12 +55,12 @@ export class Boot extends Phaser.State {
         // load font
         (<any>this.game.load).webfont(Assets.Fonts.Kenvector.getName(), Assets.Fonts.Kenvector.getFamily());
         // load loading sprite
-        this.game.load.spritesheet(
-            Assets.Spritesheets.Explosions.Three.getName(), 
-            Assets.Spritesheets.Explosions.Three.getPNG(),
-            Assets.Spritesheets.Explosions.Three.getFrameWidth(),
-            Assets.Spritesheets.Explosions.Three.getFrameHeight(),
-            Assets.Spritesheets.Explosions.Three.getFrameMax());
+        // this.game.load.spritesheet(
+        //     Assets.Spritesheets.Explosions.Three.getName(), 
+        //     Assets.Spritesheets.Explosions.Three.getPNG(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameWidth(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameHeight(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameMax());
     }
 
     create() {

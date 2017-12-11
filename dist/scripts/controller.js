@@ -233,7 +233,7 @@ var Assets;
                 Lasers.Laser = Laser;
                 class LaserGREEN {
                     static getName() { return 'laser-test'; }
-                    static getPNG() { return '../assets/images/laser1_test.png'; }
+                    static getPNG() { return '../assets/images/laser3_test.png'; }
                 }
                 Lasers.LaserGREEN = LaserGREEN;
                 class LaserPURPLE {
@@ -112237,7 +112237,12 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont(assets_1.Assets.Fonts.Kenvector.getName(), assets_1.Assets.Fonts.Kenvector.getFamily());
         // load loading sprite
-        this.game.load.spritesheet(assets_1.Assets.Spritesheets.Explosions.Three.getName(), assets_1.Assets.Spritesheets.Explosions.Three.getPNG(), assets_1.Assets.Spritesheets.Explosions.Three.getFrameWidth(), assets_1.Assets.Spritesheets.Explosions.Three.getFrameHeight(), assets_1.Assets.Spritesheets.Explosions.Three.getFrameMax());
+        // this.game.load.spritesheet(
+        //     Assets.Spritesheets.Explosions.Three.getName(), 
+        //     Assets.Spritesheets.Explosions.Three.getPNG(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameWidth(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameHeight(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameMax());
     }
     create() {
         // assign new game
@@ -112301,11 +112306,14 @@ class Loading extends Phaser.State {
      * @memberof Loading
      */
     loadStart() {
-        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 40, assets_1.Assets.Spritesheets.Explosions.Three.getName());
-        this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.animations.add('boom');
-        this.loadingSprite.animations.play('boom', 20, true);
-        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 25, 'Loading ...', {
+        // this.loadingSprite = this.game.add.sprite(
+        //     this.game.world.centerX,
+        //     this.game.world.centerY - 40,
+        //     Assets.Spritesheets.Explosions.Three.getName());
+        // this.loadingSprite.anchor.set(0.5);
+        // this.loadingSprite.animations.add('boom');
+        // this.loadingSprite.animations.play('boom', 20, true);
+        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'Loading ...', {
             font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'

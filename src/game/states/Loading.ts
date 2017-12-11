@@ -172,21 +172,21 @@ export class Loading extends Phaser.State {
      * @memberof Loading
      */
     private loadStart() {
-        this.loadingSprite = this.game.add.sprite(
-            this.game.world.centerX,
-            this.game.world.centerY - 40,
-            Assets.Spritesheets.Explosions.Three.getName());
-        this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(1.1);
-        this.loadingSprite.animations.add('boom');
-        this.loadingSprite.animations.play('boom', 20, true);
+        // this.loadingSprite = this.game.add.sprite(
+        //     this.game.world.centerX,
+        //     this.game.world.centerY - 40,
+        //     Assets.Spritesheets.Explosions.Three.getName());
+        // this.loadingSprite.anchor.set(0.5);
+        // this.loadingSprite.scale.set(1.1);
+        // this.loadingSprite.animations.add('boom');
+        // this.loadingSprite.animations.play('boom', 20, true);
 
         this.loadingText = this.game.add.text(
             this.game.world.centerX,
-            this.game.world.centerY + 50,
+            this.game.world.centerY,
             'Loading ...',
             { 
-                font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
+                font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
                 fill: '#ffffff',
                 align: 'center'
             });

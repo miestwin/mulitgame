@@ -8,6 +8,8 @@ import { IPowerUp } from './IPowerUp';
 
 export class ResetPointsPowerUp extends Phaser.Sprite implements IPowerUp {
 
+    public readonly name: string = 'Reset Points';
+
     /**
      * Referencja na gracza
      * @private

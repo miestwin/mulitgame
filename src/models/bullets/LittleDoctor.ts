@@ -53,8 +53,6 @@ export class LittleDoctor extends Phaser.Group implements IBullets {
         this.createMultiple(100, key);
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
-        this.setAll('scale.x', 0.1);
-        this.setAll('scale.y', 0.5);
         this.setAll('checkWorldBounds', true);
         this.setAll('outOfBoundsKill', true);
     }

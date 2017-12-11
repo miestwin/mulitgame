@@ -17,7 +17,8 @@ import {
     ResetPointsPowerUp,
     UntouchtablePowerUp,
     LittleDoctorPowerUp,
-    MultiWeaponPowerUp
+    MultiWeaponPowerUp,
+    PowerUpText
 } from '../../models';
 
 declare var Victor;
@@ -136,6 +137,14 @@ export class Main extends Phaser.State {
      */
     private gameEndTimmeout: any;
 
+    private gameRestarted: boolean = false;
+
+    init(restart?: boolean) {
+        if (restart) {
+            this.gameRestarted = true;
+        }
+    }
+
     preload() {
         // utworzenie słownika graczy
         (<any>this.game.state).players = {};
@@ -184,6 +193,7 @@ export class Main extends Phaser.State {
                 this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
                     this.gameStartedFlag = false;
+                    this.gameRestarted = false;
                     this.gameEndTimmeout = null;
                 }, 90000);
             }
@@ -209,7 +219,9 @@ export class Main extends Phaser.State {
         });
 
         Network.onPlayAgain(() => {
-            this.game.state.start(States.MAIN);
+            if (!this.gameRestarted) {
+                this.game.state.start(States.MAIN, true, false, true);
+            }
         });
 
         Network.startTimer();
@@ -490,6 +502,7 @@ export class Main extends Phaser.State {
      */
     private player_powerup_CollisionHandler(player: Player, powerup: IPowerUp) {
         powerup.powerup(player);
+        new PowerUpText(this.game, player.x, player.y - (player.height / 2), powerup.name, '#FFFFFF');
         player.powerups.push(powerup);
     }
 

@@ -233,7 +233,7 @@ var Assets;
                 Lasers.Laser = Laser;
                 class LaserGREEN {
                     static getName() { return 'laser-test'; }
-                    static getPNG() { return '../assets/images/laser1_test.png'; }
+                    static getPNG() { return '../assets/images/laser3_test.png'; }
                 }
                 Lasers.LaserGREEN = LaserGREEN;
                 class LaserPURPLE {
@@ -112224,6 +112224,7 @@ __export(__webpack_require__(119));
 __export(__webpack_require__(120));
 __export(__webpack_require__(121));
 __export(__webpack_require__(126));
+__export(__webpack_require__(127));
 
 
 /***/ }),
@@ -112318,9 +112319,9 @@ __export(__webpack_require__(17));
 __export(__webpack_require__(101));
 __export(__webpack_require__(102));
 __export(__webpack_require__(111));
-__export(__webpack_require__(127));
 __export(__webpack_require__(128));
 __export(__webpack_require__(129));
+__export(__webpack_require__(130));
 
 
 /***/ }),
@@ -112358,7 +112359,12 @@ class Boot extends Phaser.State {
         // load font
         this.game.load.webfont(assets_1.Assets.Fonts.Kenvector.getName(), assets_1.Assets.Fonts.Kenvector.getFamily());
         // load loading sprite
-        this.game.load.spritesheet(assets_1.Assets.Spritesheets.Explosions.Three.getName(), assets_1.Assets.Spritesheets.Explosions.Three.getPNG(), assets_1.Assets.Spritesheets.Explosions.Three.getFrameWidth(), assets_1.Assets.Spritesheets.Explosions.Three.getFrameHeight(), assets_1.Assets.Spritesheets.Explosions.Three.getFrameMax());
+        // this.game.load.spritesheet(
+        //     Assets.Spritesheets.Explosions.Three.getName(), 
+        //     Assets.Spritesheets.Explosions.Three.getPNG(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameWidth(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameHeight(),
+        //     Assets.Spritesheets.Explosions.Three.getFrameMax());
     }
     create() {
         // assign new game
@@ -112463,13 +112469,16 @@ class Loading extends Phaser.State {
      * @memberof Loading
      */
     loadStart() {
-        this.loadingSprite = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 40, assets_1.Assets.Spritesheets.Explosions.Three.getName());
-        this.loadingSprite.anchor.set(0.5);
-        this.loadingSprite.scale.set(1.1);
-        this.loadingSprite.animations.add('boom');
-        this.loadingSprite.animations.play('boom', 20, true);
-        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 50, 'Loading ...', {
-            font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+        // this.loadingSprite = this.game.add.sprite(
+        //     this.game.world.centerX,
+        //     this.game.world.centerY - 40,
+        //     Assets.Spritesheets.Explosions.Three.getName());
+        // this.loadingSprite.anchor.set(0.5);
+        // this.loadingSprite.scale.set(1.1);
+        // this.loadingSprite.animations.add('boom');
+        // this.loadingSprite.animations.play('boom', 20, true);
+        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'Loading ...', {
+            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: '#ffffff',
             align: 'center'
         });
@@ -115503,8 +115512,6 @@ class LittleDoctor extends Phaser.Group {
         this.createMultiple(100, key);
         this.setAll('anchor.x', 0);
         this.setAll('anchor.y', 0.5);
-        this.setAll('scale.x', 0.1);
-        this.setAll('scale.y', 0.5);
         this.setAll('checkWorldBounds', true);
         this.setAll('outOfBoundsKill', true);
     }
@@ -115830,14 +115837,15 @@ __webpack_require__(2);
 const assets_1 = __webpack_require__(4);
 const bullets_1 = __webpack_require__(39);
 class MultiWeaponPowerUp extends Phaser.Sprite {
-    get player() {
-        return this._player;
-    }
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.MultiWeapon.getName());
+        this.name = 'Multi Bullets';
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+    }
+    get player() {
+        return this._player;
     }
     /**
      * Przydzielenie wzmocnienia
@@ -115874,15 +115882,16 @@ __webpack_require__(1);
 __webpack_require__(2);
 const assets_1 = __webpack_require__(4);
 class ResetPointsPowerUp extends Phaser.Sprite {
-    get player() {
-        return this._player;
-    }
     constructor(game, x, y, callback) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.ResetPoints.getName());
+        this.name = 'Reset Points';
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.callback = callback;
+    }
+    get player() {
+        return this._player;
     }
     /**
      * Przydzielenie wzmocnienia
@@ -115919,14 +115928,15 @@ __webpack_require__(1);
 __webpack_require__(2);
 const assets_1 = __webpack_require__(4);
 class UntouchtablePowerUp extends Phaser.Sprite {
-    get player() {
-        return this._player;
-    }
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.Untouchtable.getName());
+        this.name = 'Untouchtable';
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+    }
+    get player() {
+        return this._player;
     }
     /**
      * Przydzielenie wzmocnienia
@@ -115964,14 +115974,15 @@ __webpack_require__(2);
 const assets_1 = __webpack_require__(4);
 const bullets_1 = __webpack_require__(39);
 class LittleDoctorPowerUp extends Phaser.Sprite {
-    get player() {
-        return this._player;
-    }
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.LittleDoctor.getName());
+        this.name = 'Little Doctor';
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+    }
+    get player() {
+        return this._player;
     }
     /**
      * Przydzielenie wzmocnienia
@@ -116030,6 +116041,39 @@ exports.ScoreText = ScoreText;
 
 /***/ }),
 /* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(1);
+__webpack_require__(2);
+const assets_1 = __webpack_require__(4);
+class PowerUpText extends Phaser.Text {
+    constructor(game, x, y, key, color) {
+        const suffix = ' power up';
+        super(game, x, y, key + suffix, {
+            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: color,
+            align: 'center'
+        });
+        this.anchor.set(0.5);
+        game.add.existing(this);
+        this.moveUpTween = game.add.tween(this).to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween = game.add.tween(this).to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween.onComplete.add(() => {
+            this.game.tweens.remove(this.moveUpTween);
+            this.game.tweens.remove(this.fadeOutTween);
+            this.destroy();
+        }, this);
+    }
+}
+exports.PowerUpText = PowerUpText;
+
+
+/***/ }),
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116221,7 +116265,7 @@ exports.StartGame = StartGame;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116259,7 +116303,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116319,6 +116363,12 @@ class Main extends Phaser.State {
          */
         this.gameEndedFlag = false;
         this.gameEndingFlag = false;
+        this.gameRestarted = false;
+    }
+    init(restart) {
+        if (restart) {
+            this.gameRestarted = true;
+        }
     }
     preload() {
         // utworzenie słownika graczy
@@ -116363,6 +116413,7 @@ class Main extends Phaser.State {
                 this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
                     this.gameStartedFlag = false;
+                    this.gameRestarted = false;
                     this.gameEndTimmeout = null;
                 }, 90000);
             }
@@ -116383,7 +116434,9 @@ class Main extends Phaser.State {
             this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
         });
         network_1.default.onPlayAgain(() => {
-            this.game.state.start(States_1.States.MAIN);
+            if (!this.gameRestarted) {
+                this.game.state.start(States_1.States.MAIN, true, false, true);
+            }
         });
         network_1.default.startTimer();
     }
@@ -116607,6 +116660,7 @@ class Main extends Phaser.State {
      */
     player_powerup_CollisionHandler(player, powerup) {
         powerup.powerup(player);
+        new models_1.PowerUpText(this.game, player.x, player.y - (player.height / 2), powerup.name, '#FFFFFF');
         player.powerups.push(powerup);
     }
     /**
