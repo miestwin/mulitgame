@@ -115366,7 +115366,7 @@ class Bullets extends Phaser.Group {
          * @type {number}
          * @memberof Bullets
          */
-        this.damage = 3.5;
+        this.damage = 2.5;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, assets_1.Assets.Images.Bulelts.ShmupBullet.getName());
@@ -115436,7 +115436,7 @@ class MultipleBullets extends Phaser.Group {
          * @type {number}
          * @memberof MultipleBullets
          */
-        this.damage = 2;
+        this.damage = 1;
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(100, assets_1.Assets.Images.Bulelts.Bullet.getName());
@@ -115500,7 +115500,7 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof Bullets
          */
-        this.fireRate = 2000;
+        this.fireRate = 700;
         /**
          * Obrażenia zadawane przez pocisk
          * @type {number}
@@ -116435,7 +116435,7 @@ class Main extends Phaser.State {
         });
         network_1.default.onPlayAgain(() => {
             if (!this.gameRestarted) {
-                this.game.state.start(States_1.States.MAIN, true, false, true);
+                this.game.state.start(States_1.States.LOADING, true, true);
             }
         });
         network_1.default.startTimer();

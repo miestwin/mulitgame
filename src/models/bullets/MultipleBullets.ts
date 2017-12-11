@@ -37,7 +37,7 @@ export class MultipleBullets extends Phaser.Group implements IBullets {
      * @type {number}
      * @memberof MultipleBullets
      */
-    public readonly damage: number = 2;
+    public readonly damage: number = 1;
     
     constructor(game: Phaser.Game) {
         super(game);

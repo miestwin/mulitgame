@@ -220,7 +220,7 @@ export class Main extends Phaser.State {
 
         Network.onPlayAgain(() => {
             if (!this.gameRestarted) {
-                this.game.state.start(States.MAIN, true, false, true);
+                this.game.state.start(States.LOADING, true, true);
             }
         });
 
