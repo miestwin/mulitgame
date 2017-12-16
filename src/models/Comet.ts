@@ -1,53 +1,52 @@
-import 'p2';
-import 'pixi';
-import 'phaser';
+import "p2";
+import "pixi";
+import "phaser";
 
-import { Player } from './Player';
-import { Assets } from '../assets';
+import { Player } from "./Player";
+import { Assets } from "../assets";
 
 export class Comet extends Phaser.Sprite {
+  /**
+   * Stała wytrzymałość
+   * @private
+   * @type {number}
+   * @memberof Comet
+   */
+  private readonly _health: number;
 
-    /**
-     * Wytrzymałość komety
-     * 
-     * @type {number}
-     * @memberof Comet
-     */
-    public health: number = 10;
+  /**
+   * Wytrzymałość komety
+   * @type {number}
+   * @memberof Comet
+   */
+  public health: number = 10;
 
-    private lastPlayerCollision: Player;
+  private explosion: Phaser.Sprite;
 
-    private explosion: Phaser.Sprite;
-    
-    constructor(game: Phaser.Game, x: number, y: number, key: string) {
-        super(game, x, y, key);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
+  constructor(game: Phaser.Game, x: number, y: number, key: string) {
+    super(game, x, y, key);
+    this.checkWorldBounds = true;
+    this.outOfBoundsKill = true;
+    this.exists = false;
+    this.alive = false;
+    this.anchor.setTo(0, 0.5);
 
-        this.events.onKilled.add(() => {
-            this.lastPlayerCollision = null;
-            this.health = 10;
-        }, this);
+    this.events.onKilled.add(() => {
+      this.health = 10;
+    }, this);
+  }
 
-        this.explosion = this.game.add.sprite(this.x, this.y, Assets.Spritesheets.Explosions.Comet.getName());
-        this.explosion.animations.add('explosion');
-        this.explosion.alive = false;
-        this.explosion.visible = false;
-        this.explosion.exists = false;
-        game.add.existing(this.explosion);
-    }
-
-    public playExplosion() {
-        this.explosion.reset(this.x, this.y);
-        this.explosion.animations.play('explosion', 30, false, true);
-        this.explosion.body.velocity.x = this.body.velocity.x;
-    }
-
-    public checkLastCollision(player: Player) {
-        if (this.lastPlayerCollision === player) {
-            return true;
-        }
-        this.lastPlayerCollision = player;
-        return false;
-    }
+  /**
+   * Generacja komety
+   * @param {number} x 
+   * @param {number} y 
+   * @param {number} sx 
+   * @param {number} sy 
+   * @memberof Comet
+   */
+  public generate(x: number, y: number, sx: number, sy: number) {
+    this.reset(x, y, this._health);
+    this.body.velocity.x = sx;
+    this.body.velocity.y = sy;
+  }
 }

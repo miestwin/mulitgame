@@ -1,30 +1,31 @@
-import 'p2';
-import 'pixi';
-import 'phaser';
+import "p2";
+import "pixi";
+import "phaser";
 
-import { Const } from '../const';
-import { rnd } from '../utils';
+import { Const } from "../const";
+import { rnd } from "../utils";
+import { Comet } from "./Comet";
 
 export class Comets extends Phaser.Group {
-    
-    constructor(game: Phaser.Game) {
-        super(game);
-        this.enableBody = true;
-        this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(2, Const.Comet.Names);
-        this.setAll('anchor.x', 0);
-        this.setAll('anchor.y', 0.5);
-        this.setAll('checkWorldBounds', true);
-        this.setAll('outOfBoundsKill', true);
-    }
+  constructor(game: Phaser.Game) {
+    super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
+    Const.Comet.Names.forEach(name => {
+      for (let i = 0; i < 3; i++) {
+        this.add(new Comet(game, 0, 0, name));
+      }
+    });
+  }
 
-    public generate() {
-        const comet: Phaser.Sprite = this.getFirstExists(false);
-        const chance = rnd.integerInRange(1, 20);
-        if (chance != 1 || !comet) {
-            return;
-        }
-        comet.reset(this.game.world.width, rnd.integerInRange(20, this.game.world.height - 20), 10);
-        comet.body.velocity.x = rnd.integerInRange(-300, -450);
+  public generate() {
+    const comet: Comet = this.getFirstExists(false);
+    const chance = rnd.integerInRange(1, 20);
+    if (chance != 1 || !comet) {
+      return;
     }
+    const x = this.game.world.width;
+    const y = rnd.integerInRange(20, this.game.world.height - 20);
+    const sx = rnd.integerInRange(-300, -450);
+    const sy = 0;
+    comet.generate(x, y, sx, sy);
+  }
 }

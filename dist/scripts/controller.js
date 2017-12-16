@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 88);
+/******/ 	return __webpack_require__(__webpack_require__.s = 89);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -123,23 +123,39 @@ var Assets;
     let Shaders;
     (function (Shaders) {
         class Glow {
-            static getName() { return 'glow'; }
-            static getFRAG() { return '../assets/shaders/glow.frag'; }
+            static getName() {
+                return "glow";
+            }
+            static getFRAG() {
+                return "../assets/shaders/glow.frag";
+            }
         }
         Shaders.Glow = Glow;
         class Pixelate {
-            static getName() { return 'pixelate'; }
-            static getFRAG() { return '../assets/shaders/pixelate.frag'; }
+            static getName() {
+                return "pixelate";
+            }
+            static getFRAG() {
+                return "../assets/shaders/pixelate.frag";
+            }
         }
         Shaders.Pixelate = Pixelate;
     })(Shaders = Assets.Shaders || (Assets.Shaders = {}));
     let Fonts;
     (function (Fonts) {
         class Kenvector {
-            static getName() { return 'kenvector'; }
-            static getFamily() { return 'Kenvector Future'; }
-            static getWOFF() { return '../assets/fonts/kenvector/kenvector_future-webfont.woff'; }
-            static getWOFF2() { return '../assets/fonts/kenvector/kenvector_future-webfont.woff2'; }
+            static getName() {
+                return "kenvector";
+            }
+            static getFamily() {
+                return "Kenvector Future";
+            }
+            static getWOFF() {
+                return "../assets/fonts/kenvector/kenvector_future-webfont.woff";
+            }
+            static getWOFF2() {
+                return "../assets/fonts/kenvector/kenvector_future-webfont.woff2";
+            }
         }
         Fonts.Kenvector = Kenvector;
     })(Fonts = Assets.Fonts || (Assets.Fonts = {}));
@@ -148,81 +164,151 @@ var Assets;
         let Explosions;
         (function (Explosions) {
             class Three {
-                static getName() { return 'explosion-3'; }
-                static getPNG() { return '../assets/spritesheets/explosion-3.png'; }
-                static getFrameWidth() { return 128; }
-                static getFrameHeight() { return 80; }
-                static getMargin() { return 0; }
-                static getSpacing() { return 0; }
-                static getFrameMax() { return 10; }
+                static getName() {
+                    return "explosion-3";
+                }
+                static getPNG() {
+                    return "../assets/spritesheets/explosion-3.png";
+                }
+                static getFrameWidth() {
+                    return 128;
+                }
+                static getFrameHeight() {
+                    return 80;
+                }
+                static getMargin() {
+                    return 0;
+                }
+                static getSpacing() {
+                    return 0;
+                }
+                static getFrameMax() {
+                    return 10;
+                }
             }
             Explosions.Three = Three;
             class Comet {
-                static getName() { return 'comet-explosion'; }
-                static getPNG() { return '../assets/spritesheets/comet-explosion.png'; }
-                static getFrameWidth() { return 128; }
-                static getFrameHeight() { return 150; }
-                static getMargin() { return 0; }
-                static getSpacing() { return 0; }
-                static getFrameMax() { return 5; }
+                static getName() {
+                    return "comet-explosion";
+                }
+                static getPNG() {
+                    return "../assets/spritesheets/comet-explosion.png";
+                }
+                static getFrameWidth() {
+                    return 128;
+                }
+                static getFrameHeight() {
+                    return 150;
+                }
+                static getMargin() {
+                    return 0;
+                }
+                static getSpacing() {
+                    return 0;
+                }
+                static getFrameMax() {
+                    return 5;
+                }
             }
             Explosions.Comet = Comet;
         })(Explosions = Spritesheets.Explosions || (Spritesheets.Explosions = {}));
         let Bullets;
         (function (Bullets) {
             class RGBLaser {
-                static getName() { return 'rgb-laser'; }
-                static getPNG() { return '../assets/spritesheets/rgblaser.png'; }
-                static getFrameWidth() { return 4; }
-                static getFrameHeight() { return 4; }
-                static getMargin() { return 0; }
-                static getSpacing() { return 0; }
+                static getName() {
+                    return "rgb-laser";
+                }
+                static getPNG() {
+                    return "../assets/spritesheets/rgblaser.png";
+                }
+                static getFrameWidth() {
+                    return 4;
+                }
+                static getFrameHeight() {
+                    return 4;
+                }
+                static getMargin() {
+                    return 0;
+                }
+                static getSpacing() {
+                    return 0;
+                }
             }
             Bullets.RGBLaser = RGBLaser;
         })(Bullets = Spritesheets.Bullets || (Spritesheets.Bullets = {}));
         class Plasma {
-            static getName() { return 'plasma'; }
-            static getPNG() { return '../assets/spritesheets/plasma.png'; }
-            static getFrameWidth() { return 192; }
-            static getFrameHeight() { return 192; }
-            static getMargin() { return 0; }
-            static getSpacing() { return 50; }
-            static getFrameMax() { return 30; }
+            static getName() {
+                return "plasma";
+            }
+            static getPNG() {
+                return "../assets/spritesheets/plasma.png";
+            }
+            static getFrameWidth() {
+                return 192;
+            }
+            static getFrameHeight() {
+                return 192;
+            }
+            static getMargin() {
+                return 0;
+            }
+            static getSpacing() {
+                return 50;
+            }
+            static getFrameMax() {
+                return 30;
+            }
         }
         Spritesheets.Plasma = Plasma;
     })(Spritesheets = Assets.Spritesheets || (Assets.Spritesheets = {}));
     let Images;
     (function (Images) {
         class Shield {
-            static getName() { return 'shield'; }
-            static getPNG() { return '../assets/images/shield.png'; }
+            static getName() {
+                return "shield";
+            }
+            static getPNG() {
+                return "../assets/images/shield.png";
+            }
         }
         Images.Shield = Shield;
         class Transparent {
-            static getName() { return 'transparent'; }
-            static getPNG() { return '../assets/images/transparent.png'; }
+            static getName() {
+                return "transparent";
+            }
+            static getPNG() {
+                return "../assets/images/transparent.png";
+            }
         }
         Images.Transparent = Transparent;
         let Bulelts;
         (function (Bulelts) {
             class Bullet {
-                static getName() { return 'bullet'; }
-                static getPNG() { return '../assets/images/bullet.png'; }
+                static getName() {
+                    return "bullet";
+                }
+                static getPNG() {
+                    return "../assets/images/bullet.png";
+                }
             }
             Bulelts.Bullet = Bullet;
             class ShmupBullet {
-                static getName() { return 'shmup-bullet'; }
-                static getPNG() { return '../assets/images/shmup-bullet.png'; }
+                static getName() {
+                    return "shmup-bullet";
+                }
+                static getPNG() {
+                    return "../assets/images/shmup-bullet.png";
+                }
             }
             Bulelts.ShmupBullet = ShmupBullet;
             let Lasers;
             (function (Lasers) {
                 class Laser {
                     static getLaser(key) {
-                        if (key === 'test1') {
+                        if (key === "test1") {
                             return LaserGREEN;
                         }
-                        else if (key === 'test2') {
+                        else if (key === "test2") {
                             return LaserPURPLE;
                         }
                         else {
@@ -232,13 +318,21 @@ var Assets;
                 }
                 Lasers.Laser = Laser;
                 class LaserGREEN {
-                    static getName() { return 'laser-test'; }
-                    static getPNG() { return '../assets/images/laser3_test.png'; }
+                    static getName() {
+                        return "laser-test";
+                    }
+                    static getPNG() {
+                        return "../assets/images/laser3_test.png";
+                    }
                 }
                 Lasers.LaserGREEN = LaserGREEN;
                 class LaserPURPLE {
-                    static getName() { return 'laser-test-2'; }
-                    static getPNG() { return '../assets/images/laser2_test.png'; }
+                    static getName() {
+                        return "laser-test-2";
+                    }
+                    static getPNG() {
+                        return "../assets/images/laser2_test.png";
+                    }
                 }
                 Lasers.LaserPURPLE = LaserPURPLE;
             })(Lasers = Bulelts.Lasers || (Bulelts.Lasers = {}));
@@ -246,104 +340,192 @@ var Assets;
         let PowerUps;
         (function (PowerUps) {
             class MultiWeapon {
-                static getName() { return 'multi-weapon_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/bold_silver.png'; }
+                static getName() {
+                    return "multi-weapon_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/bold_silver.png";
+                }
             }
             PowerUps.MultiWeapon = MultiWeapon;
             class ResetPoints {
-                static getName() { return 'reset-points_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/pill_green.png'; }
+                static getName() {
+                    return "reset-points_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/pill_green.png";
+                }
             }
             PowerUps.ResetPoints = ResetPoints;
             class Untouchtable {
-                static getName() { return 'untouchtable_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/shield_bronze.png'; }
+                static getName() {
+                    return "untouchtable_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/shield_bronze.png";
+                }
             }
             PowerUps.Untouchtable = Untouchtable;
             class LittleDoctor {
-                static getName() { return 'little-doctor_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/bolt_gold.png'; }
+                static getName() {
+                    return "little-doctor_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/bolt_gold.png";
+                }
             }
             PowerUps.LittleDoctor = LittleDoctor;
         })(PowerUps = Images.PowerUps || (Images.PowerUps = {}));
         let ScoreText;
         (function (ScoreText) {
             class Plus {
-                static getName() { return 'plus-one'; }
-                static getPNG() { return '../assets/images/plusone.png'; }
+                static getName() {
+                    return "plus-one";
+                }
+                static getPNG() {
+                    return "../assets/images/plusone.png";
+                }
             }
             ScoreText.Plus = Plus;
             class Minus {
-                static getName() { return 'minus-one'; }
-                static getPNG() { return '../assets/images/minusone.png'; }
+                static getName() {
+                    return "minus-one";
+                }
+                static getPNG() {
+                    return "../assets/images/minusone.png";
+                }
             }
             ScoreText.Minus = Minus;
             class Minus10 {
-                static getName() { return 'minus-ten'; }
-                static getPNG() { return '../assets/images/minusten.png'; }
+                static getName() {
+                    return "minus-ten";
+                }
+                static getPNG() {
+                    return "../assets/images/minusten.png";
+                }
             }
             ScoreText.Minus10 = Minus10;
         })(ScoreText = Images.ScoreText || (Images.ScoreText = {}));
         let Ships;
         (function (Ships) {
             class GREEN {
-                static getName() { return 'player-ship_green'; }
-                static getValue() { return '#33cc33'; }
-                static getPNG() { return '../assets/images/ships/ship_green.png'; }
+                static getName() {
+                    return "player-ship_green";
+                }
+                static getValue() {
+                    return "#33cc33";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_green.png";
+                }
             }
             Ships.GREEN = GREEN;
             class PURPLE {
-                static getName() { return 'player-ship_purple'; }
-                static getValue() { return '#9933ff'; }
-                static getPNG() { return '../assets/images/ships/ship_purple.png'; }
+                static getName() {
+                    return "player-ship_purple";
+                }
+                static getValue() {
+                    return "#9933ff";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_purple.png";
+                }
             }
             Ships.PURPLE = PURPLE;
             class BLUE {
-                static getName() { return 'player-ship_blue'; }
-                static getValue() { return '#0066ff'; }
-                static getPNG() { return '../assets/images/ships/ship_blue.png'; }
+                static getName() {
+                    return "player-ship_blue";
+                }
+                static getValue() {
+                    return "#0066ff";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_blue.png";
+                }
             }
             Ships.BLUE = BLUE;
             class WATERY {
-                static getName() { return 'player-ship_watery'; }
-                static getValue() { return '#009999'; }
-                static getPNG() { return '../assets/images/ships/ship_watery.png'; }
+                static getName() {
+                    return "player-ship_watery";
+                }
+                static getValue() {
+                    return "#009999";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_watery.png";
+                }
             }
             Ships.WATERY = WATERY;
             class PINK {
-                static getName() { return 'player-ship_pink'; }
-                static getValue() { return '#ff3399'; }
-                static getPNG() { return '../assets/images/ships/ship_pink.png'; }
+                static getName() {
+                    return "player-ship_pink";
+                }
+                static getValue() {
+                    return "#ff3399";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_pink.png";
+                }
             }
             Ships.PINK = PINK;
             class RED {
-                static getName() { return 'player-ship_red'; }
-                static getValue() { return '#cc2900'; }
-                static getPNG() { return '../assets/images/ships/ship_red.png'; }
+                static getName() {
+                    return "player-ship_red";
+                }
+                static getValue() {
+                    return "#cc2900";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_red.png";
+                }
             }
             Ships.RED = RED;
             class YELLOW {
-                static getName() { return 'player-ship_yellow'; }
-                static getValue() { return '#d1d123'; }
-                static getPNG() { return '../assets/images/ships/ship_yellow.png'; }
+                static getName() {
+                    return "player-ship_yellow";
+                }
+                static getValue() {
+                    return "#d1d123";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_yellow.png";
+                }
             }
             Ships.YELLOW = YELLOW;
             class ORANGE {
-                static getName() { return 'player-ship_orange'; }
-                static getValue() { return '#cc5200'; }
-                static getPNG() { return '../assets/images/ships/ship_orange.png'; }
+                static getName() {
+                    return "player-ship_orange";
+                }
+                static getValue() {
+                    return "#cc5200";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_orange.png";
+                }
             }
             Ships.ORANGE = ORANGE;
             class GRASS {
-                static getName() { return 'player-ship_grass'; }
-                static getValue() { return '#739900'; }
-                static getPNG() { return '../assets/images/ships/ship_grass.png'; }
+                static getName() {
+                    return "player-ship_grass";
+                }
+                static getValue() {
+                    return "#739900";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_grass.png";
+                }
             }
             Ships.GRASS = GRASS;
             class DARKPINK {
-                static getName() { return 'player-ship_darkpink'; }
-                static getValue() { return '#993333'; }
-                static getPNG() { return '../assets/images/ships/ship_darkpink.png'; }
+                static getName() {
+                    return "player-ship_darkpink";
+                }
+                static getValue() {
+                    return "#993333";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_darkpink.png";
+                }
             }
             Ships.DARKPINK = DARKPINK;
         })(Ships = Images.Ships || (Images.Ships = {}));
@@ -355,45 +537,73 @@ var Assets;
             let Arrows;
             (function (Arrows) {
                 class Down {
-                    static getName() { return 'btn-down'; }
-                    static getPNG() { return '../assets/images/controller/shadedDark/shadedDark27.png'; }
+                    static getName() {
+                        return "btn-down";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/shadedDark/shadedDark27.png";
+                    }
                 }
                 Arrows.Down = Down;
                 class Up {
-                    static getName() { return 'btn-up'; }
-                    static getPNG() { return '../assets/images/controller/shadedDark/shadedDark26.png'; }
+                    static getName() {
+                        return "btn-up";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/shadedDark/shadedDark26.png";
+                    }
                 }
                 Arrows.Up = Up;
             })(Arrows = Buttons.Arrows || (Buttons.Arrows = {}));
             let Joystick;
             (function (Joystick) {
                 class WheelExternal {
-                    static getName() { return 'joystick-external-wheel'; }
-                    static getPNG() { return '../assets/images/controller/lineDark/lineDark46.png'; }
+                    static getName() {
+                        return "joystick-external-wheel";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/lineDark/lineDark46.png";
+                    }
                 }
                 Joystick.WheelExternal = WheelExternal;
                 class WheelInternal {
-                    static getName() { return 'joystick-internal-wheel'; }
-                    static getPNG() { return '../assets/images/controller/flatDark/flatDark10.png'; }
+                    static getName() {
+                        return "joystick-internal-wheel";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/flatDark/flatDark10.png";
+                    }
                 }
                 Joystick.WheelInternal = WheelInternal;
             })(Joystick = Buttons.Joystick || (Buttons.Joystick = {}));
             let Menu;
             (function (Menu) {
                 class Grey {
-                    static getName() { return 'grey-menu-button'; }
-                    static getPNG() { return '../assets/images/ui/grey_button04.png'; }
+                    static getName() {
+                        return "grey-menu-button";
+                    }
+                    static getPNG() {
+                        return "../assets/images/ui/grey_button04.png";
+                    }
                 }
                 Menu.Grey = Grey;
             })(Menu = Buttons.Menu || (Buttons.Menu = {}));
             class Fire {
-                static getName() { return 'btn-fire'; }
-                static getPNG() { return '../assets/images/controller/flatDark/flatDark48.png'; }
+                static getName() {
+                    return "btn-fire";
+                }
+                static getPNG() {
+                    return "../assets/images/controller/flatDark/flatDark48.png";
+                }
             }
             Buttons.Fire = Fire;
             class Shield {
-                static getName() { return 'btn-shield'; }
-                static getPNG() { return '../assets/images/controller/shadedDark/shadedDark48.png'; }
+                static getName() {
+                    return "btn-shield";
+                }
+                static getPNG() {
+                    return "../assets/images/controller/shadedDark/shadedDark48.png";
+                }
             }
             Buttons.Shield = Shield;
         })(Buttons = UI.Buttons || (UI.Buttons = {}));
@@ -4345,9 +4555,9 @@ class Marsaglia {
         this.w = i2 || 521288629;
     }
     intGenerator() {
-        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xFFFFFFFF;
-        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xFFFFFFFF;
-        return (((this.z & 0xFFFF) << 16) | (this.w & 0xFFFF)) & 0xFFFFFFFF;
+        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xffffffff;
+        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xffffffff;
+        return (((this.z & 0xffff) << 16) | (this.w & 0xffff)) & 0xffffffff;
     }
     doubleGenerator() {
         const i = this.intGenerator() / 4294967296;
@@ -4355,7 +4565,7 @@ class Marsaglia {
     }
     static createRandomized() {
         let now = new Date();
-        return new Marsaglia((now.getDate() / 60000) & 0xFFFFFFFF, now.getDate() & 0xFFFFFFFF);
+        return new Marsaglia((now.getDate() / 60000) & 0xffffffff, now.getDate() & 0xffffffff);
     }
 }
 exports.Marsaglia = Marsaglia;
@@ -111910,23 +112120,24 @@ function noiseDetail(octaves, fallout) {
     }
 }
 exports.noiseDetail = noiseDetail;
-;
 function noiseSeed(seed) {
     noiseProfile.seed = seed;
     noiseProfile.generator = null;
 }
 exports.noiseSeed = noiseSeed;
-;
 class PerlinNoise {
     constructor(seed) {
-        this.rnd = seed !== null ? new Marsaglia_1.Marsaglia(seed, (seed << 16) + (seed >> 16)) : Marsaglia_1.Marsaglia.createRandomized();
+        this.rnd =
+            seed !== null
+                ? new Marsaglia_1.Marsaglia(seed, (seed << 16) + (seed >> 16))
+                : Marsaglia_1.Marsaglia.createRandomized();
         this.perm = new Uint8Array(512);
         let j;
         for (let i = 0; i < 256; ++i) {
             this.perm[i] = i;
         }
         for (let i = 0; i < 256; ++i) {
-            const t = this.perm[j = this.rnd.intGenerator() & 0xFF];
+            const t = this.perm[(j = this.rnd.intGenerator() & 0xff)];
             this.perm[j] = this.perm[i];
             this.perm[i] = t;
         }
@@ -112102,13 +112313,14 @@ exports.pingPong = pingPong;
 
 /***/ }),
 /* 87 */,
-/* 88 */
+/* 88 */,
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Controller_1 = __webpack_require__(89);
+const Controller_1 = __webpack_require__(90);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -112130,7 +112342,7 @@ function startApp() {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112139,7 +112351,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const states_1 = __webpack_require__(90);
+const states_1 = __webpack_require__(91);
 const network_1 = __webpack_require__(19);
 const guid_1 = __webpack_require__(38);
 /**
@@ -112171,7 +112383,7 @@ exports.default = Controller;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112181,17 +112393,17 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(13));
-__export(__webpack_require__(91));
 __export(__webpack_require__(92));
 __export(__webpack_require__(93));
 __export(__webpack_require__(94));
 __export(__webpack_require__(95));
 __export(__webpack_require__(96));
 __export(__webpack_require__(97));
+__export(__webpack_require__(98));
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112253,7 +112465,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112348,7 +112560,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112383,7 +112595,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112514,7 +112726,7 @@ exports.AvatarSelector = AvatarSelector;
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112552,7 +112764,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112705,7 +112917,7 @@ exports.GameController = GameController;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

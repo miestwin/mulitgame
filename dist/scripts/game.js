@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 98);
+/******/ 	return __webpack_require__(__webpack_require__.s = 99);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -123,23 +123,39 @@ var Assets;
     let Shaders;
     (function (Shaders) {
         class Glow {
-            static getName() { return 'glow'; }
-            static getFRAG() { return '../assets/shaders/glow.frag'; }
+            static getName() {
+                return "glow";
+            }
+            static getFRAG() {
+                return "../assets/shaders/glow.frag";
+            }
         }
         Shaders.Glow = Glow;
         class Pixelate {
-            static getName() { return 'pixelate'; }
-            static getFRAG() { return '../assets/shaders/pixelate.frag'; }
+            static getName() {
+                return "pixelate";
+            }
+            static getFRAG() {
+                return "../assets/shaders/pixelate.frag";
+            }
         }
         Shaders.Pixelate = Pixelate;
     })(Shaders = Assets.Shaders || (Assets.Shaders = {}));
     let Fonts;
     (function (Fonts) {
         class Kenvector {
-            static getName() { return 'kenvector'; }
-            static getFamily() { return 'Kenvector Future'; }
-            static getWOFF() { return '../assets/fonts/kenvector/kenvector_future-webfont.woff'; }
-            static getWOFF2() { return '../assets/fonts/kenvector/kenvector_future-webfont.woff2'; }
+            static getName() {
+                return "kenvector";
+            }
+            static getFamily() {
+                return "Kenvector Future";
+            }
+            static getWOFF() {
+                return "../assets/fonts/kenvector/kenvector_future-webfont.woff";
+            }
+            static getWOFF2() {
+                return "../assets/fonts/kenvector/kenvector_future-webfont.woff2";
+            }
         }
         Fonts.Kenvector = Kenvector;
     })(Fonts = Assets.Fonts || (Assets.Fonts = {}));
@@ -148,81 +164,151 @@ var Assets;
         let Explosions;
         (function (Explosions) {
             class Three {
-                static getName() { return 'explosion-3'; }
-                static getPNG() { return '../assets/spritesheets/explosion-3.png'; }
-                static getFrameWidth() { return 128; }
-                static getFrameHeight() { return 80; }
-                static getMargin() { return 0; }
-                static getSpacing() { return 0; }
-                static getFrameMax() { return 10; }
+                static getName() {
+                    return "explosion-3";
+                }
+                static getPNG() {
+                    return "../assets/spritesheets/explosion-3.png";
+                }
+                static getFrameWidth() {
+                    return 128;
+                }
+                static getFrameHeight() {
+                    return 80;
+                }
+                static getMargin() {
+                    return 0;
+                }
+                static getSpacing() {
+                    return 0;
+                }
+                static getFrameMax() {
+                    return 10;
+                }
             }
             Explosions.Three = Three;
             class Comet {
-                static getName() { return 'comet-explosion'; }
-                static getPNG() { return '../assets/spritesheets/comet-explosion.png'; }
-                static getFrameWidth() { return 128; }
-                static getFrameHeight() { return 150; }
-                static getMargin() { return 0; }
-                static getSpacing() { return 0; }
-                static getFrameMax() { return 5; }
+                static getName() {
+                    return "comet-explosion";
+                }
+                static getPNG() {
+                    return "../assets/spritesheets/comet-explosion.png";
+                }
+                static getFrameWidth() {
+                    return 128;
+                }
+                static getFrameHeight() {
+                    return 150;
+                }
+                static getMargin() {
+                    return 0;
+                }
+                static getSpacing() {
+                    return 0;
+                }
+                static getFrameMax() {
+                    return 5;
+                }
             }
             Explosions.Comet = Comet;
         })(Explosions = Spritesheets.Explosions || (Spritesheets.Explosions = {}));
         let Bullets;
         (function (Bullets) {
             class RGBLaser {
-                static getName() { return 'rgb-laser'; }
-                static getPNG() { return '../assets/spritesheets/rgblaser.png'; }
-                static getFrameWidth() { return 4; }
-                static getFrameHeight() { return 4; }
-                static getMargin() { return 0; }
-                static getSpacing() { return 0; }
+                static getName() {
+                    return "rgb-laser";
+                }
+                static getPNG() {
+                    return "../assets/spritesheets/rgblaser.png";
+                }
+                static getFrameWidth() {
+                    return 4;
+                }
+                static getFrameHeight() {
+                    return 4;
+                }
+                static getMargin() {
+                    return 0;
+                }
+                static getSpacing() {
+                    return 0;
+                }
             }
             Bullets.RGBLaser = RGBLaser;
         })(Bullets = Spritesheets.Bullets || (Spritesheets.Bullets = {}));
         class Plasma {
-            static getName() { return 'plasma'; }
-            static getPNG() { return '../assets/spritesheets/plasma.png'; }
-            static getFrameWidth() { return 192; }
-            static getFrameHeight() { return 192; }
-            static getMargin() { return 0; }
-            static getSpacing() { return 50; }
-            static getFrameMax() { return 30; }
+            static getName() {
+                return "plasma";
+            }
+            static getPNG() {
+                return "../assets/spritesheets/plasma.png";
+            }
+            static getFrameWidth() {
+                return 192;
+            }
+            static getFrameHeight() {
+                return 192;
+            }
+            static getMargin() {
+                return 0;
+            }
+            static getSpacing() {
+                return 50;
+            }
+            static getFrameMax() {
+                return 30;
+            }
         }
         Spritesheets.Plasma = Plasma;
     })(Spritesheets = Assets.Spritesheets || (Assets.Spritesheets = {}));
     let Images;
     (function (Images) {
         class Shield {
-            static getName() { return 'shield'; }
-            static getPNG() { return '../assets/images/shield.png'; }
+            static getName() {
+                return "shield";
+            }
+            static getPNG() {
+                return "../assets/images/shield.png";
+            }
         }
         Images.Shield = Shield;
         class Transparent {
-            static getName() { return 'transparent'; }
-            static getPNG() { return '../assets/images/transparent.png'; }
+            static getName() {
+                return "transparent";
+            }
+            static getPNG() {
+                return "../assets/images/transparent.png";
+            }
         }
         Images.Transparent = Transparent;
         let Bulelts;
         (function (Bulelts) {
             class Bullet {
-                static getName() { return 'bullet'; }
-                static getPNG() { return '../assets/images/bullet.png'; }
+                static getName() {
+                    return "bullet";
+                }
+                static getPNG() {
+                    return "../assets/images/bullet.png";
+                }
             }
             Bulelts.Bullet = Bullet;
             class ShmupBullet {
-                static getName() { return 'shmup-bullet'; }
-                static getPNG() { return '../assets/images/shmup-bullet.png'; }
+                static getName() {
+                    return "shmup-bullet";
+                }
+                static getPNG() {
+                    return "../assets/images/shmup-bullet.png";
+                }
             }
             Bulelts.ShmupBullet = ShmupBullet;
             let Lasers;
             (function (Lasers) {
                 class Laser {
                     static getLaser(key) {
-                        if (key === 'test1') {
+                        if (key === "test1") {
                             return LaserGREEN;
                         }
-                        else if (key === 'test2') {
+                        else if (key === "test2") {
                             return LaserPURPLE;
                         }
                         else {
@@ -232,13 +318,21 @@ var Assets;
                 }
                 Lasers.Laser = Laser;
                 class LaserGREEN {
-                    static getName() { return 'laser-test'; }
-                    static getPNG() { return '../assets/images/laser3_test.png'; }
+                    static getName() {
+                        return "laser-test";
+                    }
+                    static getPNG() {
+                        return "../assets/images/laser3_test.png";
+                    }
                 }
                 Lasers.LaserGREEN = LaserGREEN;
                 class LaserPURPLE {
-                    static getName() { return 'laser-test-2'; }
-                    static getPNG() { return '../assets/images/laser2_test.png'; }
+                    static getName() {
+                        return "laser-test-2";
+                    }
+                    static getPNG() {
+                        return "../assets/images/laser2_test.png";
+                    }
                 }
                 Lasers.LaserPURPLE = LaserPURPLE;
             })(Lasers = Bulelts.Lasers || (Bulelts.Lasers = {}));
@@ -246,104 +340,192 @@ var Assets;
         let PowerUps;
         (function (PowerUps) {
             class MultiWeapon {
-                static getName() { return 'multi-weapon_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/bold_silver.png'; }
+                static getName() {
+                    return "multi-weapon_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/bold_silver.png";
+                }
             }
             PowerUps.MultiWeapon = MultiWeapon;
             class ResetPoints {
-                static getName() { return 'reset-points_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/pill_green.png'; }
+                static getName() {
+                    return "reset-points_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/pill_green.png";
+                }
             }
             PowerUps.ResetPoints = ResetPoints;
             class Untouchtable {
-                static getName() { return 'untouchtable_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/shield_bronze.png'; }
+                static getName() {
+                    return "untouchtable_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/shield_bronze.png";
+                }
             }
             PowerUps.Untouchtable = Untouchtable;
             class LittleDoctor {
-                static getName() { return 'little-doctor_powerup'; }
-                static getPNG() { return '../assets/images/power-ups/bolt_gold.png'; }
+                static getName() {
+                    return "little-doctor_powerup";
+                }
+                static getPNG() {
+                    return "../assets/images/power-ups/bolt_gold.png";
+                }
             }
             PowerUps.LittleDoctor = LittleDoctor;
         })(PowerUps = Images.PowerUps || (Images.PowerUps = {}));
         let ScoreText;
         (function (ScoreText) {
             class Plus {
-                static getName() { return 'plus-one'; }
-                static getPNG() { return '../assets/images/plusone.png'; }
+                static getName() {
+                    return "plus-one";
+                }
+                static getPNG() {
+                    return "../assets/images/plusone.png";
+                }
             }
             ScoreText.Plus = Plus;
             class Minus {
-                static getName() { return 'minus-one'; }
-                static getPNG() { return '../assets/images/minusone.png'; }
+                static getName() {
+                    return "minus-one";
+                }
+                static getPNG() {
+                    return "../assets/images/minusone.png";
+                }
             }
             ScoreText.Minus = Minus;
             class Minus10 {
-                static getName() { return 'minus-ten'; }
-                static getPNG() { return '../assets/images/minusten.png'; }
+                static getName() {
+                    return "minus-ten";
+                }
+                static getPNG() {
+                    return "../assets/images/minusten.png";
+                }
             }
             ScoreText.Minus10 = Minus10;
         })(ScoreText = Images.ScoreText || (Images.ScoreText = {}));
         let Ships;
         (function (Ships) {
             class GREEN {
-                static getName() { return 'player-ship_green'; }
-                static getValue() { return '#33cc33'; }
-                static getPNG() { return '../assets/images/ships/ship_green.png'; }
+                static getName() {
+                    return "player-ship_green";
+                }
+                static getValue() {
+                    return "#33cc33";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_green.png";
+                }
             }
             Ships.GREEN = GREEN;
             class PURPLE {
-                static getName() { return 'player-ship_purple'; }
-                static getValue() { return '#9933ff'; }
-                static getPNG() { return '../assets/images/ships/ship_purple.png'; }
+                static getName() {
+                    return "player-ship_purple";
+                }
+                static getValue() {
+                    return "#9933ff";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_purple.png";
+                }
             }
             Ships.PURPLE = PURPLE;
             class BLUE {
-                static getName() { return 'player-ship_blue'; }
-                static getValue() { return '#0066ff'; }
-                static getPNG() { return '../assets/images/ships/ship_blue.png'; }
+                static getName() {
+                    return "player-ship_blue";
+                }
+                static getValue() {
+                    return "#0066ff";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_blue.png";
+                }
             }
             Ships.BLUE = BLUE;
             class WATERY {
-                static getName() { return 'player-ship_watery'; }
-                static getValue() { return '#009999'; }
-                static getPNG() { return '../assets/images/ships/ship_watery.png'; }
+                static getName() {
+                    return "player-ship_watery";
+                }
+                static getValue() {
+                    return "#009999";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_watery.png";
+                }
             }
             Ships.WATERY = WATERY;
             class PINK {
-                static getName() { return 'player-ship_pink'; }
-                static getValue() { return '#ff3399'; }
-                static getPNG() { return '../assets/images/ships/ship_pink.png'; }
+                static getName() {
+                    return "player-ship_pink";
+                }
+                static getValue() {
+                    return "#ff3399";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_pink.png";
+                }
             }
             Ships.PINK = PINK;
             class RED {
-                static getName() { return 'player-ship_red'; }
-                static getValue() { return '#cc2900'; }
-                static getPNG() { return '../assets/images/ships/ship_red.png'; }
+                static getName() {
+                    return "player-ship_red";
+                }
+                static getValue() {
+                    return "#cc2900";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_red.png";
+                }
             }
             Ships.RED = RED;
             class YELLOW {
-                static getName() { return 'player-ship_yellow'; }
-                static getValue() { return '#d1d123'; }
-                static getPNG() { return '../assets/images/ships/ship_yellow.png'; }
+                static getName() {
+                    return "player-ship_yellow";
+                }
+                static getValue() {
+                    return "#d1d123";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_yellow.png";
+                }
             }
             Ships.YELLOW = YELLOW;
             class ORANGE {
-                static getName() { return 'player-ship_orange'; }
-                static getValue() { return '#cc5200'; }
-                static getPNG() { return '../assets/images/ships/ship_orange.png'; }
+                static getName() {
+                    return "player-ship_orange";
+                }
+                static getValue() {
+                    return "#cc5200";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_orange.png";
+                }
             }
             Ships.ORANGE = ORANGE;
             class GRASS {
-                static getName() { return 'player-ship_grass'; }
-                static getValue() { return '#739900'; }
-                static getPNG() { return '../assets/images/ships/ship_grass.png'; }
+                static getName() {
+                    return "player-ship_grass";
+                }
+                static getValue() {
+                    return "#739900";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_grass.png";
+                }
             }
             Ships.GRASS = GRASS;
             class DARKPINK {
-                static getName() { return 'player-ship_darkpink'; }
-                static getValue() { return '#993333'; }
-                static getPNG() { return '../assets/images/ships/ship_darkpink.png'; }
+                static getName() {
+                    return "player-ship_darkpink";
+                }
+                static getValue() {
+                    return "#993333";
+                }
+                static getPNG() {
+                    return "../assets/images/ships/ship_darkpink.png";
+                }
             }
             Ships.DARKPINK = DARKPINK;
         })(Ships = Images.Ships || (Images.Ships = {}));
@@ -355,45 +537,73 @@ var Assets;
             let Arrows;
             (function (Arrows) {
                 class Down {
-                    static getName() { return 'btn-down'; }
-                    static getPNG() { return '../assets/images/controller/shadedDark/shadedDark27.png'; }
+                    static getName() {
+                        return "btn-down";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/shadedDark/shadedDark27.png";
+                    }
                 }
                 Arrows.Down = Down;
                 class Up {
-                    static getName() { return 'btn-up'; }
-                    static getPNG() { return '../assets/images/controller/shadedDark/shadedDark26.png'; }
+                    static getName() {
+                        return "btn-up";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/shadedDark/shadedDark26.png";
+                    }
                 }
                 Arrows.Up = Up;
             })(Arrows = Buttons.Arrows || (Buttons.Arrows = {}));
             let Joystick;
             (function (Joystick) {
                 class WheelExternal {
-                    static getName() { return 'joystick-external-wheel'; }
-                    static getPNG() { return '../assets/images/controller/lineDark/lineDark46.png'; }
+                    static getName() {
+                        return "joystick-external-wheel";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/lineDark/lineDark46.png";
+                    }
                 }
                 Joystick.WheelExternal = WheelExternal;
                 class WheelInternal {
-                    static getName() { return 'joystick-internal-wheel'; }
-                    static getPNG() { return '../assets/images/controller/flatDark/flatDark10.png'; }
+                    static getName() {
+                        return "joystick-internal-wheel";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/flatDark/flatDark10.png";
+                    }
                 }
                 Joystick.WheelInternal = WheelInternal;
             })(Joystick = Buttons.Joystick || (Buttons.Joystick = {}));
             let Menu;
             (function (Menu) {
                 class Grey {
-                    static getName() { return 'grey-menu-button'; }
-                    static getPNG() { return '../assets/images/ui/grey_button04.png'; }
+                    static getName() {
+                        return "grey-menu-button";
+                    }
+                    static getPNG() {
+                        return "../assets/images/ui/grey_button04.png";
+                    }
                 }
                 Menu.Grey = Grey;
             })(Menu = Buttons.Menu || (Buttons.Menu = {}));
             class Fire {
-                static getName() { return 'btn-fire'; }
-                static getPNG() { return '../assets/images/controller/flatDark/flatDark48.png'; }
+                static getName() {
+                    return "btn-fire";
+                }
+                static getPNG() {
+                    return "../assets/images/controller/flatDark/flatDark48.png";
+                }
             }
             Buttons.Fire = Fire;
             class Shield {
-                static getName() { return 'btn-shield'; }
-                static getPNG() { return '../assets/images/controller/shadedDark/shadedDark48.png'; }
+                static getName() {
+                    return "btn-shield";
+                }
+                static getPNG() {
+                    return "../assets/images/controller/shadedDark/shadedDark48.png";
+                }
             }
             Buttons.Shield = Shield;
         })(Buttons = UI.Buttons || (UI.Buttons = {}));
@@ -2488,71 +2698,123 @@ var Const;
     let Ships;
     (function (Ships) {
         class GREEN {
-            static getName() { return 'player-ship_green'; }
-            static getValue() { return 0x33cc33; }
+            static getName() {
+                return "player-ship_green";
+            }
+            static getValue() {
+                return 0x33cc33;
+            }
         }
         Ships.GREEN = GREEN;
         class PURPLE {
-            static getName() { return 'player-ship_purple'; }
-            static getValue() { return 0x9933ff; }
+            static getName() {
+                return "player-ship_purple";
+            }
+            static getValue() {
+                return 0x9933ff;
+            }
         }
         Ships.PURPLE = PURPLE;
         class BLUE {
-            static getName() { return 'player-ship_blue'; }
-            static getValue() { return 0x0066ff; }
+            static getName() {
+                return "player-ship_blue";
+            }
+            static getValue() {
+                return 0x0066ff;
+            }
         }
         Ships.BLUE = BLUE;
         class WATERY {
-            static getName() { return 'player-ship_watery'; }
-            static getValue() { return 0x009999; }
+            static getName() {
+                return "player-ship_watery";
+            }
+            static getValue() {
+                return 0x009999;
+            }
         }
         Ships.WATERY = WATERY;
         class PINK {
-            static getName() { return 'player-ship_pink'; }
-            static getValue() { return 0xff3399; }
+            static getName() {
+                return "player-ship_pink";
+            }
+            static getValue() {
+                return 0xff3399;
+            }
         }
         Ships.PINK = PINK;
         class RED {
-            static getName() { return 'player-ship_red'; }
-            static getValue() { return 0xcc2900; }
+            static getName() {
+                return "player-ship_red";
+            }
+            static getValue() {
+                return 0xcc2900;
+            }
         }
         Ships.RED = RED;
         class YELLOW {
-            static getName() { return 'player-ship_yellow'; }
-            static getValue() { return 0xd1d123; }
+            static getName() {
+                return "player-ship_yellow";
+            }
+            static getValue() {
+                return 0xd1d123;
+            }
         }
         Ships.YELLOW = YELLOW;
         class ORANGE {
-            static getName() { return 'player-ship_orange'; }
-            static getValue() { return 0xcc5200; }
+            static getName() {
+                return "player-ship_orange";
+            }
+            static getValue() {
+                return 0xcc5200;
+            }
         }
         Ships.ORANGE = ORANGE;
         class GRASS {
-            static getName() { return 'player-ship_grass'; }
-            static getValue() { return 0x739900; }
+            static getName() {
+                return "player-ship_grass";
+            }
+            static getValue() {
+                return 0x739900;
+            }
         }
         Ships.GRASS = GRASS;
         class DARKPINK {
-            static getName() { return 'player-ship_darkpink'; }
-            static getValue() { return 0x993333; }
+            static getName() {
+                return "player-ship_darkpink";
+            }
+            static getValue() {
+                return 0x993333;
+            }
         }
         Ships.DARKPINK = DARKPINK;
     })(Ships = Const.Ships || (Const.Ships = {}));
     let Nebula;
     (function (Nebula) {
         class PURPLE {
-            static getName() { return 'nebula_purple'; }
-            static getValue() { return new utils_1.Color(179, 0, 179); }
+            static getName() {
+                return "nebula_purple";
+            }
+            static getValue() {
+                return new utils_1.Color(179, 0, 179);
+            }
         }
         Nebula.PURPLE = PURPLE;
         class ORANE {
-            static getName() { return 'nebula_orange'; }
-            static getValue() { return new utils_1.Color(225, 51, 0); }
+            static getName() {
+                return "nebula_orange";
+            }
+            static getValue() {
+                return new utils_1.Color(225, 51, 0);
+            }
         }
         Nebula.ORANE = ORANE;
         class GREEN {
-            static getName() { return 'nebula_green'; }
-            static getValue() { return new utils_1.Color(0, 153, 51); }
+            static getName() {
+                return "nebula_green";
+            }
+            static getValue() {
+                return new utils_1.Color(0, 153, 51);
+            }
         }
         Nebula.GREEN = GREEN;
         Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
@@ -2563,13 +2825,29 @@ var Const;
         Comet.Names = [];
     })(Comet = Const.Comet || (Const.Comet = {}));
     class Stars {
-        static getName() { return 'starsfield'; }
+        static getName() {
+            return "starsfield";
+        }
     }
     Const.Stars = Stars;
     let Element;
     (function (Element) {
-        Element.Colors = [0xccccff, 0xccffff, 0xb3ffb3, 0xffff99, 0xffb3ff, 0x99ccff];
-        Element.ColorsString = ['#ccccff', '#ccffff', '#b3ffb3', '#ffff99', '#ffb3ff', '#99ccff'];
+        Element.Colors = [
+            0xccccff,
+            0xccffff,
+            0xb3ffb3,
+            0xffff99,
+            0xffb3ff,
+            0x99ccff
+        ];
+        Element.ColorsString = [
+            "#ccccff",
+            "#ccffff",
+            "#b3ffb3",
+            "#ffff99",
+            "#ffb3ff",
+            "#99ccff"
+        ];
         Element.Names = [];
     })(Element = Const.Element || (Const.Element = {}));
 })(Const = exports.Const || (exports.Const = {}));
@@ -4239,9 +4517,9 @@ class Marsaglia {
         this.w = i2 || 521288629;
     }
     intGenerator() {
-        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xFFFFFFFF;
-        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xFFFFFFFF;
-        return (((this.z & 0xFFFF) << 16) | (this.w & 0xFFFF)) & 0xFFFFFFFF;
+        this.z = (36969 * (this.z & 65535) + (this.z >>> 16)) & 0xffffffff;
+        this.w = (18000 * (this.w & 65535) + (this.w >>> 16)) & 0xffffffff;
+        return (((this.z & 0xffff) << 16) | (this.w & 0xffff)) & 0xffffffff;
     }
     doubleGenerator() {
         const i = this.intGenerator() / 4294967296;
@@ -4249,7 +4527,7 @@ class Marsaglia {
     }
     static createRandomized() {
         let now = new Date();
-        return new Marsaglia((now.getDate() / 60000) & 0xFFFFFFFF, now.getDate() & 0xFFFFFFFF);
+        return new Marsaglia((now.getDate() / 60000) & 0xffffffff, now.getDate() & 0xffffffff);
     }
 }
 exports.Marsaglia = Marsaglia;
@@ -4525,9 +4803,9 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(112));
 __export(__webpack_require__(113));
 __export(__webpack_require__(114));
+__export(__webpack_require__(115));
 
 
 /***/ }),
@@ -112015,23 +112293,24 @@ function noiseDetail(octaves, fallout) {
     }
 }
 exports.noiseDetail = noiseDetail;
-;
 function noiseSeed(seed) {
     noiseProfile.seed = seed;
     noiseProfile.generator = null;
 }
 exports.noiseSeed = noiseSeed;
-;
 class PerlinNoise {
     constructor(seed) {
-        this.rnd = seed !== null ? new Marsaglia_1.Marsaglia(seed, (seed << 16) + (seed >> 16)) : Marsaglia_1.Marsaglia.createRandomized();
+        this.rnd =
+            seed !== null
+                ? new Marsaglia_1.Marsaglia(seed, (seed << 16) + (seed >> 16))
+                : Marsaglia_1.Marsaglia.createRandomized();
         this.perm = new Uint8Array(512);
         let j;
         for (let i = 0; i < 256; ++i) {
             this.perm[i] = i;
         }
         for (let i = 0; i < 256; ++i) {
-            const t = this.perm[j = this.rnd.intGenerator() & 0xFF];
+            const t = this.perm[(j = this.rnd.intGenerator() & 0xff)];
             this.perm[j] = this.perm[i];
             this.perm[i] = t;
         }
@@ -112216,9 +112495,9 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(39));
-__export(__webpack_require__(115));
 __export(__webpack_require__(116));
 __export(__webpack_require__(117));
+__export(__webpack_require__(88));
 __export(__webpack_require__(118));
 __export(__webpack_require__(119));
 __export(__webpack_require__(120));
@@ -112228,7 +112507,51 @@ __export(__webpack_require__(127));
 
 
 /***/ }),
-/* 88 */,
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(1);
+__webpack_require__(2);
+class Comet extends Phaser.Sprite {
+    constructor(game, x, y, key) {
+        super(game, x, y, key);
+        /**
+         * Wytrzymałość komety
+         * @type {number}
+         * @memberof Comet
+         */
+        this.health = 10;
+        this.checkWorldBounds = true;
+        this.outOfBoundsKill = true;
+        this.exists = false;
+        this.alive = false;
+        this.anchor.setTo(0, 0.5);
+        this.events.onKilled.add(() => {
+            this.health = 10;
+        }, this);
+    }
+    /**
+     * Generacja komety
+     * @param {number} x
+     * @param {number} y
+     * @param {number} sx
+     * @param {number} sy
+     * @memberof Comet
+     */
+    generate(x, y, sx, sy) {
+        this.reset(x, y, this._health);
+        this.body.velocity.x = sx;
+        this.body.velocity.y = sy;
+    }
+}
+exports.Comet = Comet;
+
+
+/***/ }),
 /* 89 */,
 /* 90 */,
 /* 91 */,
@@ -112238,13 +112561,14 @@ __export(__webpack_require__(127));
 /* 95 */,
 /* 96 */,
 /* 97 */,
-/* 98 */
+/* 98 */,
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(99);
+const Game_1 = __webpack_require__(100);
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 });
@@ -112266,7 +112590,7 @@ function startApp() {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112275,7 +112599,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const states_1 = __webpack_require__(100);
+const states_1 = __webpack_require__(101);
 const network_1 = __webpack_require__(37);
 const utils_1 = __webpack_require__(7);
 /**
@@ -112306,7 +112630,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112316,16 +112640,16 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(17));
-__export(__webpack_require__(101));
 __export(__webpack_require__(102));
-__export(__webpack_require__(111));
+__export(__webpack_require__(103));
+__export(__webpack_require__(112));
 __export(__webpack_require__(128));
 __export(__webpack_require__(129));
 __export(__webpack_require__(130));
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112379,7 +112703,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112388,10 +112712,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const QRious = __webpack_require__(103);
+const QRious = __webpack_require__(104);
 const States_1 = __webpack_require__(17);
-const config_1 = __webpack_require__(104);
-const generators = __webpack_require__(105);
+const config_1 = __webpack_require__(105);
+const generators = __webpack_require__(106);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(7);
@@ -112566,7 +112890,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -114934,19 +115258,19 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
-    url: 'https://thawing-ravine-92822.herokuapp.com'
+    url: "https://thawing-ravine-92822.herokuapp.com"
 };
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114955,15 +115279,15 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(106));
 __export(__webpack_require__(107));
 __export(__webpack_require__(108));
 __export(__webpack_require__(109));
 __export(__webpack_require__(110));
+__export(__webpack_require__(111));
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114983,10 +115307,10 @@ __webpack_require__(2);
 function stars(game, density, brightness, key) {
     const width = game.width;
     const height = game.height;
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     canvas.height = height;
     canvas.width = width;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     let imageData = ctx.createImageData(canvas.width, canvas.height);
     let data = createData(canvas.width, canvas.height, density, brightness, Math.random, imageData);
     ctx.putImageData(data, 0, 0);
@@ -114994,7 +115318,7 @@ function stars(game, density, brightness, key) {
     img.onload = () => {
         game.cache.addImage(key, img.src, img);
     };
-    img.src = canvas.toDataURL('image/png');
+    img.src = canvas.toDataURL("image/png");
 }
 exports.stars = stars;
 /**
@@ -115025,7 +115349,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115051,7 +115375,7 @@ exports.ship = ship;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115087,7 +115411,7 @@ exports.element = element;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115101,13 +115425,13 @@ function comet(game, width, height, rc, key) {
     const x = height / 2;
     const y = height / 2;
     const rt = height / 2;
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     canvas.height = height;
     canvas.width = width;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     var grd = ctx.createLinearGradient(0, 0, width, 0);
-    grd.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    grd.addColorStop(1, 'rgba(255, 255, 255, 0.2)');
+    grd.addColorStop(0, "rgba(255, 255, 255, 1)");
+    grd.addColorStop(1, "rgba(255, 255, 255, 0.2)");
     ctx.fillStyle = grd;
     ctx.arc(x, y, rt, 90, Math.PI, true);
     ctx.moveTo(x, height);
@@ -115116,7 +115440,7 @@ function comet(game, width, height, rc, key) {
     ctx.lineTo(x, 0);
     ctx.fill();
     ctx.beginPath();
-    ctx.fillStyle = '#332200';
+    ctx.fillStyle = "#332200";
     // ctx.arc(x, y, rc, 0, Math.PI * 2, true);
     // ctx.fill();
     const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(x, y), rc, 50));
@@ -115131,13 +115455,13 @@ function comet(game, width, height, rc, key) {
     img.onload = () => {
         game.cache.addImage(key, img.src, img);
     };
-    img.src = canvas.toDataURL('image/png');
+    img.src = canvas.toDataURL("image/png");
 }
 exports.comet = comet;
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115150,11 +115474,11 @@ const utils_1 = __webpack_require__(7);
 function nebula(game, name, offset, color) {
     const width = game.width;
     const height = game.height;
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     canvas.height = height;
     canvas.width = width;
-    canvas.style.backgroundColor = 'transparent';
-    const ctx = canvas.getContext('2d');
+    canvas.style.backgroundColor = "transparent";
+    const ctx = canvas.getContext("2d");
     let imageData = ctx.createImageData(canvas.width, canvas.height);
     let data = createData(canvas.width, canvas.height, offset, color, imageData);
     ctx.putImageData(data, 0, 0);
@@ -115162,7 +115486,7 @@ function nebula(game, name, offset, color) {
     img.onload = () => {
         game.cache.addImage(name, img.src, img);
     };
-    img.src = canvas.toDataURL('image/png');
+    img.src = canvas.toDataURL("image/png");
 }
 exports.nebula = nebula;
 function createData(width, height, offset, color, imageData) {
@@ -115180,7 +115504,7 @@ function createData(width, height, offset, color, imageData) {
             imageData.data[index * 4 + 1] = c.G;
             imageData.data[index * 4 + 2] = c.B;
             imageData.data[index * 4 + 3] = bright;
-            xoff = (x < width / 2) ? xoff + 0.007 : xoff - 0.007;
+            xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
         }
         yoff += 0.007;
     }
@@ -115189,7 +115513,7 @@ function createData(width, height, offset, color, imageData) {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115329,7 +115653,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115400,7 +115724,7 @@ exports.Bullets = Bullets;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115470,7 +115794,7 @@ exports.MultipleBullets = MultipleBullets;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115540,7 +115864,7 @@ exports.LittleDoctor = LittleDoctor;
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115570,7 +115894,7 @@ exports.Shield = Shield;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115652,56 +115976,6 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class Comet extends Phaser.Sprite {
-    constructor(game, x, y, key) {
-        super(game, x, y, key);
-        /**
-         * Wytrzymałość komety
-         *
-         * @type {number}
-         * @memberof Comet
-         */
-        this.health = 10;
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.events.onKilled.add(() => {
-            this.lastPlayerCollision = null;
-            this.health = 10;
-        }, this);
-        this.explosion = this.game.add.sprite(this.x, this.y, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
-        this.explosion.animations.add('explosion');
-        this.explosion.alive = false;
-        this.explosion.visible = false;
-        this.explosion.exists = false;
-        game.add.existing(this.explosion);
-    }
-    playExplosion() {
-        this.explosion.reset(this.x, this.y);
-        this.explosion.animations.play('explosion', 30, false, true);
-        this.explosion.body.velocity.x = this.body.velocity.x;
-    }
-    checkLastCollision(player) {
-        if (this.lastPlayerCollision === player) {
-            return true;
-        }
-        this.lastPlayerCollision = player;
-        return false;
-    }
-}
-exports.Comet = Comet;
-
-
-/***/ }),
 /* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -115716,10 +115990,10 @@ class CometExplosion extends Phaser.Group {
     constructor(game) {
         super(game);
         this.createMultiple(15, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
-        this.forEach((explosion) => {
+        this.forEach(explosion => {
             explosion.anchor.setTo(0.5);
             explosion.scale.setTo(0.8);
-            explosion.animations.add('explosion');
+            explosion.animations.add("explosion");
         }, this);
     }
     generate(x, y) {
@@ -115728,7 +116002,7 @@ class CometExplosion extends Phaser.Group {
             return;
         }
         explosion.reset(x, y);
-        explosion.play('explosion', 20, false, true);
+        explosion.play("explosion", 20, false, true);
     }
 }
 exports.CometExplosion = CometExplosion;
@@ -115746,16 +116020,17 @@ __webpack_require__(1);
 __webpack_require__(2);
 const const_1 = __webpack_require__(18);
 const utils_1 = __webpack_require__(7);
+const Comet_1 = __webpack_require__(88);
 class Comets extends Phaser.Group {
     constructor(game) {
-        super(game);
-        this.enableBody = true;
-        this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(2, const_1.Const.Comet.Names);
-        this.setAll('anchor.x', 0);
-        this.setAll('anchor.y', 0.5);
-        this.setAll('checkWorldBounds', true);
-        this.setAll('outOfBoundsKill', true);
+        super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
+        // this.enableBody = true;
+        // this.physicsBodyType = Phaser.Physics.ARCADE;
+        const_1.Const.Comet.Names.forEach(name => {
+            for (let i = 0; i < 3; i++) {
+                this.add(new Comet_1.Comet(game, 0, 0, name));
+            }
+        });
     }
     generate() {
         const comet = this.getFirstExists(false);
@@ -115763,8 +116038,11 @@ class Comets extends Phaser.Group {
         if (chance != 1 || !comet) {
             return;
         }
-        comet.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20), 10);
-        comet.body.velocity.x = utils_1.rnd.integerInRange(-300, -450);
+        const x = this.game.world.width;
+        const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
+        const sx = utils_1.rnd.integerInRange(-300, -450);
+        const sy = 0;
+        comet.generate(x, y, sx, sy);
     }
 }
 exports.Comets = Comets;
@@ -116328,39 +116606,39 @@ class Main extends Phaser.State {
     constructor() {
         super(...arguments);
         /**
-         * Kolekcja teł gry
-         * @private
-         * @type {Phaser.TileSprite[]}
-         * @memberof Main
-         */
+           * Kolekcja teł gry
+           * @private
+           * @type {Phaser.TileSprite[]}
+           * @memberof Main
+           */
         this.tiles = [];
         /**
-         * Flaga do wystartowania następnego poziomu
-         * @private
-         * @type {boolean}
-         * @memberof Main
-         */
+           * Flaga do wystartowania następnego poziomu
+           * @private
+           * @type {boolean}
+           * @memberof Main
+           */
         this.startNextStage = false;
         /**
-         * Aktualny poziom
-         * @private
-         * @type {number}
-         * @memberof Main
-         */
+           * Aktualny poziom
+           * @private
+           * @type {number}
+           * @memberof Main
+           */
         this.currentStage = 1;
         /**
-         * Flaga informująca o rozpoczęciu gry
-         * @private
-         * @type {boolean}
-         * @memberof Main
-         */
+           * Flaga informująca o rozpoczęciu gry
+           * @private
+           * @type {boolean}
+           * @memberof Main
+           */
         this.gameStartedFlag = false;
         /**
-         * Flaga informująca o zakończeniu gry
-         * @private
-         * @type {boolean}
-         * @memberof Main
-         */
+           * Flaga informująca o zakończeniu gry
+           * @private
+           * @type {boolean}
+           * @memberof Main
+           */
         this.gameEndedFlag = false;
         this.gameEndingFlag = false;
         this.gameRestarted = false;
@@ -116375,19 +116653,23 @@ class Main extends Phaser.State {
         this.game.state.players = {};
         this.players = this.game.add.group();
         // aktualizacja połączonych graczy
-        network_1.default.onUpdatePlayersState((player) => {
+        network_1.default.onUpdatePlayersState(player => {
             if (!this.game.state.players[player.id]) {
                 const count = Object.keys(this.game.state.players).length;
-                const start = (this.game.world.centerY / 2) + 100;
-                const offset = (this.game.world.centerY / 4) * (count - 1);
+                const start = this.game.world.centerY / 2 + 100;
+                const offset = this.game.world.centerY / 4 * (count - 1);
                 const y = start + offset;
-                const newPlayer = new models_1.Player(this.game, 50, y, { id: player.id, socketId: player.socketID, avatar: player.character });
+                const newPlayer = new models_1.Player(this.game, 50, y, {
+                    id: player.id,
+                    socketId: player.socketID,
+                    avatar: player.character
+                });
                 this.game.state.players[player.id] = newPlayer;
                 this.players.add(newPlayer);
             }
         });
         // usuń gracza z gry
-        network_1.default.onPlayerDisconnected((player) => {
+        network_1.default.onPlayerDisconnected(player => {
             this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
                 if (this.game.state.players[nextId].id == player.id) {
                     this.game.state.players[nextId].shield.destroy();
@@ -116398,13 +116680,13 @@ class Main extends Phaser.State {
                 return players;
             }, {});
         });
-        network_1.default.onUpdateTimer((sec) => {
-            this.timerText.setText('The game will start in ' + sec);
+        network_1.default.onUpdateTimer(sec => {
+            this.timerText.setText("The game will start in " + sec);
         });
         network_1.default.onStartGame(() => {
             if (Object.keys(this.game.state.players).length < 1) {
-                const message = 'No connected players';
-                const text = 'Try again';
+                const message = "No connected players";
+                const text = "Try again";
                 const action = () => this.game.state.start(States_1.States.MAIN_MENU);
                 this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
             }
@@ -116413,7 +116695,7 @@ class Main extends Phaser.State {
                 this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
                     this.gameStartedFlag = false;
-                    this.gameRestarted = false;
+                    // this.gameRestarted = false;
                     this.gameEndTimmeout = null;
                 }, 90000);
             }
@@ -116426,17 +116708,17 @@ class Main extends Phaser.State {
             const player = this.game.state.players[playerId];
             player.zPos = update;
         });
-        network_1.default.onPlayerFire((playerId) => {
+        network_1.default.onPlayerFire(playerId => {
             const player = this.game.state.players[playerId];
             player.shoot();
         });
         network_1.default.onNoConnectedPlayers(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
+            this.game.state.start(States_1.States.MESSAGE, true, false, "No connected players");
         });
         network_1.default.onPlayAgain(() => {
-            if (!this.gameRestarted) {
-                this.game.state.start(States_1.States.LOADING, true, true);
-            }
+            // if (!this.gameRestarted) {
+            this.game.state.start(States_1.States.LOADING, true, true);
+            // }
         });
         network_1.default.startTimer();
     }
@@ -116454,13 +116736,19 @@ class Main extends Phaser.State {
         if (this.gameStartedFlag && !this.gameEndedFlag) {
             this.comets.generate();
         }
-        if (this.startNextStage && (this.comets.countLiving() === 0) && !this.gameEndedFlag) {
+        console.log(this.comets.countLiving());
+        console.log(this.comets.countDead());
+        if (this.startNextStage &&
+            this.comets.countLiving() === 0 &&
+            !this.gameEndedFlag) {
             this.startNextStage = false;
             this.createStageInfo();
             this.generatePowerUps();
             this.nextStage();
         }
-        if (this.gameEndedFlag && (this.comets.countLiving() === 0) && !this.gameEndingFlag) {
+        if (this.gameEndedFlag &&
+            this.comets.countLiving() === 0 &&
+            !this.gameEndingFlag) {
             this.gameEndingFlag = true;
             this.endGame();
         }
@@ -116483,10 +116771,10 @@ class Main extends Phaser.State {
         }
     }
     /**
-     * Utworzenie teł gry
-     * @private
-     * @memberof Main
-     */
+       * Utworzenie teł gry
+       * @private
+       * @memberof Main
+       */
     createBackground() {
         const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
         backTile.autoScroll(-100, 0);
@@ -116498,26 +116786,26 @@ class Main extends Phaser.State {
         }
     }
     /**
-     * Utworzenie menu
-     * @private
-     * @memberof Main
-     */
+       * Utworzenie menu
+       * @private
+       * @memberof Main
+       */
     createMenu() {
         this.menuGroup = this.game.add.group();
         // tytuł gry
-        const instruction = this.game.add.text(this.game.world.centerX, 100, 'Scan QRCode and join to the game', {
+        const instruction = this.game.add.text(this.game.world.centerX, 100, "Scan QRCode and join to the game", {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
+            fill: "#ffffff",
+            align: "center"
         });
         instruction.anchor.set(0.5);
         // kod qr
-        const qr = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'qrcode');
+        const qr = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, "qrcode");
         qr.anchor.set(0.5);
-        this.timerText = this.game.add.text(this.game.world.centerX, this.game.height - 100, 'The game will start in ...', {
+        this.timerText = this.game.add.text(this.game.world.centerX, this.game.height - 100, "The game will start in ...", {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
+            fill: "#ffffff",
+            align: "center"
         });
         this.timerText.anchor.set(0.5);
         this.menuGroup.add(instruction);
@@ -116525,12 +116813,14 @@ class Main extends Phaser.State {
         this.menuGroup.add(this.timerText);
     }
     /**
-     * Usunięcie menu przed rozpoczęciem rozgrywki
-     * @private
-     * @memberof Main
-     */
+       * Usunięcie menu przed rozpoczęciem rozgrywki
+       * @private
+       * @memberof Main
+       */
     hideMenu() {
-        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 2000, Phaser.Easing.Linear.None, true);
+        const moveUpTween = this.game.add
+            .tween(this.menuGroup.position)
+            .to({ y: -this.game.height }, 2000, Phaser.Easing.Linear.None, true);
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
@@ -116547,21 +116837,23 @@ class Main extends Phaser.State {
     }
     createStageInfo() {
         this.menuGroup = this.game.add.group();
-        const stage = this.game.add.text(this.game.world.centerX, 50, 'Stage ' + this.currentStage, {
+        const stage = this.game.add.text(this.game.world.centerX, 50, "Stage " + this.currentStage, {
             font: `40px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
+            fill: "#ffffff",
+            align: "center"
         });
         stage.anchor.set(0.5);
-        const instruction = this.game.add.text(this.game.world.centerX, 100, 'Pick up power up', {
+        const instruction = this.game.add.text(this.game.world.centerX, 100, "Pick up power up", {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
+            fill: "#ffffff",
+            align: "center"
         });
         instruction.anchor.set(0.5);
         this.menuGroup.add(stage);
         this.menuGroup.add(instruction);
-        const moveUpTween = this.game.add.tween(this.menuGroup.position).to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
+        const moveUpTween = this.game.add
+            .tween(this.menuGroup.position)
+            .to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
@@ -116570,14 +116862,14 @@ class Main extends Phaser.State {
         }, this);
     }
     /**
-     * Koniec gry
-     * @private
-     * @memberof Main
-     */
+       * Koniec gry
+       * @private
+       * @memberof Main
+       */
     endGame() {
         this.shutdown();
         const players = [];
-        Object.keys(this.game.state.players).forEach((playerId) => {
+        Object.keys(this.game.state.players).forEach(playerId => {
             players.push(this.game.state.players[playerId]);
         });
         players.sort((a, b) => a.score - b.score);
@@ -116586,17 +116878,21 @@ class Main extends Phaser.State {
             const count = arr.length;
             const stepY = this.game.world.centerY / count;
             const offsetY = stepY / 2;
-            const y = stepY * (index + 1) + (offsetY * (count - 1));
-            const stepX = (50 * arr.length) / count;
+            const y = stepY * (index + 1) + offsetY * (count - 1);
+            const stepX = 50 * arr.length / count;
             const offsetX = stepX / 2;
-            const x = stepX * (index + 1) + (offsetX * (count - 1));
-            const moveToX = this.game.add.tween(player).to({ x: x + 30 }, 1000, Phaser.Easing.Linear.None, true);
-            const moveToY = this.game.add.tween(player).to({ y: y }, 1000, Phaser.Easing.Linear.None, true);
+            const x = stepX * (index + 1) + offsetX * (count - 1);
+            const moveToX = this.game.add
+                .tween(player)
+                .to({ x: x + 30 }, 1000, Phaser.Easing.Linear.None, true);
+            const moveToY = this.game.add
+                .tween(player)
+                .to({ y: y }, 1000, Phaser.Easing.Linear.None, true);
             moveToX.onComplete.add(() => {
                 const text = this.game.add.text(x + player.width + 20, y, player.score.toString(), {
                     font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-                    fill: '#ffffff',
-                    align: 'center'
+                    fill: "#ffffff",
+                    align: "center"
                 });
                 text.anchor.setTo(0, 0.5);
             }, this);
@@ -116607,20 +116903,20 @@ class Main extends Phaser.State {
     createEndMenu() {
         const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again\npress "PLAY AGAIN" in your controller', {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
+            fill: "#ffffff",
+            align: "center"
         });
         text.anchor.setTo(0.5);
     }
     /**
-     * Sprawdzanie kolizji
-     * @private
-     * @memberof Main
-     */
+       * Sprawdzanie kolizji
+       * @private
+       * @memberof Main
+       */
     checkCollisions() {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
-        Object.keys(this.game.state.players).forEach((playerId) => {
+        Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
             const collisionHandler = (bullet, comet) => {
                 bullet.kill();
@@ -116636,38 +116932,38 @@ class Main extends Phaser.State {
         });
     }
     /**
-     * Kolizja gracza z kometą
-     * @private
-     * @param {Player} player
-     * @param {Phaser.Sprite} comet
-     * @memberof Main
-     */
+       * Kolizja gracza z kometą
+       * @private
+       * @param {Player} player
+       * @param {Phaser.Sprite} comet
+       * @memberof Main
+       */
     player_comet_CollisionHandler(player, comet) {
         if (player.untouchtable === false) {
             player.score -= 10;
-            new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
+            new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "-10", "#FF0000");
             this.explosions.generate(comet.x, comet.y);
             comet.kill();
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
         }
     }
     /**
-     * Kolizja gracza ze wzmocnieniem
-     * @private
-     * @param {Player} player
-     * @param {IPowerUp} powerup
-     * @memberof Main
-     */
+       * Kolizja gracza ze wzmocnieniem
+       * @private
+       * @param {Player} player
+       * @param {IPowerUp} powerup
+       * @memberof Main
+       */
     player_powerup_CollisionHandler(player, powerup) {
         powerup.powerup(player);
-        new models_1.PowerUpText(this.game, player.x, player.y - (player.height / 2), powerup.name, '#FFFFFF');
+        new models_1.PowerUpText(this.game, player.x, player.y - player.height / 2, powerup.name, "#FFFFFF");
         player.powerups.push(powerup);
     }
     /**
-     * Generowanie wzmocnień
-     * @private
-     * @memberof Main
-     */
+       * Generowanie wzmocnień
+       * @private
+       * @memberof Main
+       */
     generatePowerUps() {
         this.players.forEach((player) => {
             player.removePowerups();
@@ -116680,15 +116976,17 @@ class Main extends Phaser.State {
         this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), (player) => { network_1.default.updatePlayerScore(player.id, player.socket, player.score, false); }));
+        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+        }));
     }
     /**
-     * Usunięcie wzmocnień z planszy
-     * @private
-     * @memberof Main
-     */
+       * Usunięcie wzmocnień z planszy
+       * @private
+       * @memberof Main
+       */
     destroyPowerUps() {
-        this.powerUps.forEach((powerup) => {
+        this.powerUps.forEach(powerup => {
             if (powerup.player == null) {
                 powerup.destroy();
             }
