@@ -23,9 +23,11 @@ export class UntouchtablePowerUp extends Phaser.Sprite implements IPowerUp {
 
   constructor(game: Phaser.Game, x: number, y: number) {
     super(game, x, y, Assets.Images.PowerUps.Untouchtable.getName());
+    this.outOfBoundsKill = true;
     this.anchor.setTo(0.5);
     game.add.existing(this);
     game.physics.arcade.enable(this);
+    this.body.velocity.x = -100;
   }
 
   /**

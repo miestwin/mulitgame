@@ -474,7 +474,6 @@ export class Main extends Phaser.State {
     moveUpTween.onComplete.add(() => {
       this.game.tweens.remove(moveUpTween);
       this.menuGroup.destroy();
-      this.destroyPowerUps();
       this.gameStartedFlag = true;
     }, this);
   }
@@ -645,10 +644,9 @@ export class Main extends Phaser.State {
    * @memberof Main
    */
   private generatePowerUps() {
-    // if (this.powerUps) {
-    //   // this.powerUps.destroy();
-    //   this.powerUps = [];
-    // }
+    if (this.powerUps) {
+      this.powerUps.destroy();
+    }
     this.powerUps = this.game.add.group();
 
     this.powerUps.add(
@@ -698,28 +696,5 @@ export class Main extends Phaser.State {
         }
       )
     );
-  }
-
-  /**
-   * Usunięcie wzmocnień z planszy
-   * @private
-   * @memberof Main
-   */
-  private destroyPowerUps() {
-    this.powerUps.forEachAlive(powerup => {
-      if (powerup.player === null) {
-        powerup.destroy();
-      }
-    }, this);
-    this.powerUps.forEachExists(powerup => {
-      if (powerup.player === null) {
-        powerup.destroy();
-      }
-    }, this);
-    this.powerUps.forEach(powerup => {
-      if (powerup.player === null) {
-        powerup.destroy();
-      }
-    }, this);
   }
 }

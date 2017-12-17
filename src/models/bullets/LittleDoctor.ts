@@ -23,14 +23,14 @@ export class LittleDoctor extends Phaser.Group implements IWeapon {
    * @type {number}
    * @memberof LittleDoctor
    */
-  public readonly bulletSpeed: number = 1000;
+  public readonly bulletSpeed: number = 1500;
 
   /**
    * Częstotliwość strzałów
    * @type {number}
    * @memberof LittleDoctor
    */
-  public readonly fireRate: number = 850;
+  public readonly fireRate: number = 1000;
 
   constructor(game: Phaser.Game, key: string) {
     super(

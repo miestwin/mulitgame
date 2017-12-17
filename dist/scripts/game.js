@@ -115801,7 +115801,6 @@ class Main extends Phaser.State {
         moveUpTween.onComplete.add(() => {
             this.game.tweens.remove(moveUpTween);
             this.menuGroup.destroy();
-            this.destroyPowerUps();
             this.gameStartedFlag = true;
         }, this);
     }
@@ -115914,10 +115913,9 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     generatePowerUps() {
-        // if (this.powerUps) {
-        //   // this.powerUps.destroy();
-        //   this.powerUps = [];
-        // }
+        if (this.powerUps) {
+            this.powerUps.destroy();
+        }
         this.powerUps = this.game.add.group();
         this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
@@ -115926,28 +115924,6 @@ class Main extends Phaser.State {
         this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
         }));
-    }
-    /**
-     * Usunięcie wzmocnień z planszy
-     * @private
-     * @memberof Main
-     */
-    destroyPowerUps() {
-        this.powerUps.forEachAlive(powerup => {
-            if (powerup.player === null) {
-                powerup.destroy();
-            }
-        }, this);
-        this.powerUps.forEachExists(powerup => {
-            if (powerup.player === null) {
-                powerup.destroy();
-            }
-        }, this);
-        this.powerUps.forEach(powerup => {
-            if (powerup.player === null) {
-                powerup.destroy();
-            }
-        }, this);
     }
 }
 exports.Main = Main;
@@ -116131,13 +116107,13 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof LittleDoctor
          */
-        this.bulletSpeed = 1000;
+        this.bulletSpeed = 1500;
         /**
          * Częstotliwość strzałów
          * @type {number}
          * @memberof LittleDoctor
          */
-        this.fireRate = 850;
+        this.fireRate = 1000;
         for (let i = 0; i < 20; i++) {
             this.add(new Bullet_1.Bullet(game, key, 500));
         }
@@ -116284,9 +116260,11 @@ class SplitShotPowerUp extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.SplitShoot.getName());
         this.name = "Multi Bullets";
+        this.outOfBoundsKill = true;
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.body.velocity.x = -100;
     }
     get player() {
         return this._player;
@@ -116329,10 +116307,12 @@ class ResetPointsPowerUp extends Phaser.Sprite {
     constructor(game, x, y, callback) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.ResetPoints.getName());
         this.name = "Reset Points";
+        this.outOfBoundsKill = true;
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
         this.callback = callback;
+        this.body.velocity.x = -100;
     }
     get player() {
         return this._player;
@@ -116375,9 +116355,11 @@ class UntouchtablePowerUp extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.Untouchtable.getName());
         this.name = "Untouchtable";
+        this.outOfBoundsKill = true;
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.body.velocity.x = -100;
     }
     get player() {
         return this._player;
@@ -116421,9 +116403,11 @@ class LittleDoctorPowerUp extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.PowerUps.LittleDoctor.getName());
         this.name = "Little Doctor";
+        this.outOfBoundsKill = true;
         this.anchor.setTo(0.5);
         game.add.existing(this);
         game.physics.arcade.enable(this);
+        this.body.velocity.x = -100;
     }
     get player() {
         return this._player;
