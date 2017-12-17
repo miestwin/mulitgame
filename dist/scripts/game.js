@@ -116070,7 +116070,7 @@ class SplitShot extends Phaser.Group {
          * Prędkość pojeyńczego pocisku
          * @memberof SplitShot
          */
-        this.bulletSpeed = 800;
+        this.bulletSpeed = 400;
         /**
          * Częstotliwość strzałów
          * @memberof SplitShot
@@ -116130,7 +116130,7 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof LittleDoctor
          */
-        this.bulletSpeed = 1500;
+        this.bulletSpeed = 1000;
         /**
          * Częstotliwość strzałów
          * @type {number}
@@ -116243,7 +116243,7 @@ class Comets extends Phaser.Group {
         }
         const x = this.game.world.width;
         const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
-        const sx = utils_1.rnd.integerInRange(-300, -450);
+        const sx = utils_1.rnd.integerInRange(-200, -300);
         const sy = 0;
         comet.generate(x, y, sx, sy);
     }
@@ -116590,8 +116590,8 @@ class Player extends Phaser.Sprite {
      * @memberof Player
      */
     update() {
-        this.body.velocity.x = this.vector.x * 8;
-        this.body.velocity.y = this.vector.y * 8;
+        this.body.velocity.x = this.vector.x * 6;
+        this.body.velocity.y = this.vector.y * 6;
         if (this.untouchtable) {
             this.alpha = 0.6;
         }

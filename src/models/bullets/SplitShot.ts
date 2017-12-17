@@ -28,7 +28,7 @@ export class SplitShot extends Phaser.Group implements IWeapon {
    * Prędkość pojeyńczego pocisku
    * @memberof SplitShot
    */
-  public readonly bulletSpeed = 800;
+  public readonly bulletSpeed = 400;
 
   /**
    * Częstotliwość strzałów

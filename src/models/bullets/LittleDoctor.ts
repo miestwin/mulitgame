@@ -23,7 +23,7 @@ export class LittleDoctor extends Phaser.Group implements IWeapon {
    * @type {number}
    * @memberof LittleDoctor
    */
-  public readonly bulletSpeed: number = 1500;
+  public readonly bulletSpeed: number = 1000;
 
   /**
    * Częstotliwość strzałów
