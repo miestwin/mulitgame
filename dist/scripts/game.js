@@ -115532,12 +115532,23 @@ class Main extends Phaser.State {
          */
         this.gameEndedFlag = false;
         this.gameEndingFlag = false;
+        /**
+         * Flaga wsakuzjąca czy gra została uruchomiona ponownie
+         * @private
+         * @type {boolean}
+         * @memberof Main
+         */
         this.gameRestarted = false;
     }
     init(restart) {
-        // if (restart) {
-        //   this.gameRestarted = true;
-        // }
+        if (restart) {
+            this.gameRestarted = true;
+        }
+        this.startNextStage = false;
+        this.gameEndedFlag = false;
+        this.gameEndingFlag = false;
+        this.gameStartedFlag = false;
+        this.currentStage = 1;
     }
     preload() {
         // utworzenie słownika graczy
@@ -115586,7 +115597,7 @@ class Main extends Phaser.State {
                 this.gameEndTimmeout = setTimeout(() => {
                     this.gameEndedFlag = true;
                     this.gameStartedFlag = false;
-                    // this.gameRestarted = false;
+                    this.gameRestarted = false;
                     this.gameEndTimmeout = null;
                 }, 90000);
             }
@@ -115595,10 +115606,6 @@ class Main extends Phaser.State {
             const player = this.game.state.players[playerId];
             player.vector = new Victor(update.x, update.y);
         });
-        // Network.onPlayerUpdateZ((playerId, update) => {
-        //   const player = (<any>this.game.state).players[playerId];
-        //   player.zPos = update;
-        // });
         network_1.default.onPlayerFire(playerId => {
             const player = this.game.state.players[playerId];
             player.fire();
@@ -115607,9 +115614,10 @@ class Main extends Phaser.State {
             this.game.state.start(States_1.States.MESSAGE, true, false, "No connected players");
         });
         network_1.default.onPlayAgain(() => {
-            // if (!this.gameRestarted) {
-            this.game.state.start(States_1.States.LOADING, true, true);
-            // }
+            if (!this.gameRestarted) {
+                network_1.default.removeListener(network_1.default.PLAY_AGAIN);
+                this.game.state.restart(true, false, true);
+            }
         });
         network_1.default.startTimer();
     }
@@ -115655,6 +115663,10 @@ class Main extends Phaser.State {
         network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
         network_1.default.removeListener(network_1.default.UPDATE_TIMER);
         network_1.default.removeListener(network_1.default.START_GAME);
+        // if (this.gameRestarted) {
+        //   this.gameRestarted = true;
+        //   Network.removeListener(Network.PLAY_AGAIN);
+        // }
         if (this.nextStageTimeout) {
             clearTimeout(this.nextStageTimeout);
         }

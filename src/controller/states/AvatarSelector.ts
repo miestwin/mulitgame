@@ -76,7 +76,7 @@ export class AvatarSelector extends Phaser.State {
 
     var helloText = this.game.add.text(
       this.game.world.centerX,
-      30,
+      40,
       "Choose your ship",
       {
         font: `25px ${Assets.Fonts.Kenvector.getFamily()}`,
@@ -131,7 +131,7 @@ export class AvatarSelector extends Phaser.State {
 
     var button = this.game.add.button(
       this.game.world.centerX,
-      this.game.height - 30,
+      this.game.height - 40,
       Assets.UI.Buttons.Menu.Grey.getName(),
       this.actionOnClick,
       this,
@@ -142,7 +142,7 @@ export class AvatarSelector extends Phaser.State {
     button.anchor.set(0.5, 1);
     var buttonText = this.game.add.text(
       this.game.world.centerX,
-      this.game.height - 35,
+      this.game.height - 45,
       "Continue",
       {
         font: `20px ${Assets.Fonts.Kenvector.getFamily()}`,

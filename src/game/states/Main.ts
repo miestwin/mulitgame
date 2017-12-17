@@ -137,12 +137,24 @@ export class Main extends Phaser.State {
    */
   private gameEndTimmeout: any;
 
+  /**
+   * Flaga wsakuzjąca czy gra została uruchomiona ponownie
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
   private gameRestarted: boolean = false;
 
   init(restart?: boolean) {
-    // if (restart) {
-    //   this.gameRestarted = true;
-    // }
+    if (restart) {
+      this.gameRestarted = true;
+    }
+
+    this.startNextStage = false;
+    this.gameEndedFlag = false;
+    this.gameEndingFlag = false;
+    this.gameStartedFlag = false;
+    this.currentStage = 1;
   }
 
   preload() {
@@ -205,7 +217,7 @@ export class Main extends Phaser.State {
         this.gameEndTimmeout = setTimeout(() => {
           this.gameEndedFlag = true;
           this.gameStartedFlag = false;
-          // this.gameRestarted = false;
+          this.gameRestarted = false;
           this.gameEndTimmeout = null;
         }, 90000);
       }
@@ -215,11 +227,6 @@ export class Main extends Phaser.State {
       const player = (<any>this.game.state).players[playerId];
       player.vector = new Victor(update.x, update.y);
     });
-
-    // Network.onPlayerUpdateZ((playerId, update) => {
-    //   const player = (<any>this.game.state).players[playerId];
-    //   player.zPos = update;
-    // });
 
     Network.onPlayerFire(playerId => {
       const player = (<any>this.game.state).players[playerId];
@@ -236,9 +243,10 @@ export class Main extends Phaser.State {
     });
 
     Network.onPlayAgain(() => {
-      // if (!this.gameRestarted) {
-      this.game.state.start(States.LOADING, true, true);
-      // }
+      if (!this.gameRestarted) {
+        Network.removeListener(Network.PLAY_AGAIN);
+        this.game.state.restart(true, false, true);
+      }
     });
 
     Network.startTimer();
@@ -299,6 +307,11 @@ export class Main extends Phaser.State {
     Network.removeListener(Network.UPDATE_PLAYERS_STATE);
     Network.removeListener(Network.UPDATE_TIMER);
     Network.removeListener(Network.START_GAME);
+
+    // if (this.gameRestarted) {
+    //   this.gameRestarted = true;
+    //   Network.removeListener(Network.PLAY_AGAIN);
+    // }
 
     if (this.nextStageTimeout) {
       clearTimeout(this.nextStageTimeout);

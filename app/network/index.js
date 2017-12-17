@@ -141,14 +141,6 @@ module.exports = server => {
     socket.on("end-game", (gameId, playerId) => {
       socket.game.started = false;
       socket.broadcast.to("game-" + gameId).emit("end-game", playerId);
-      // const players = getAllPlayersForGame(gameId);
-      // Object.keys(players).forEach(id => {
-      //     const player = players[id];
-      //     if (player) {
-      //         player.score = 0;
-      //         player.character = '';
-      //     }
-      // });
     });
 
     socket.on("play-again", gameId => {
