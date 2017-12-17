@@ -7,14 +7,6 @@ import { Assets } from "../../assets";
 
 export class Comet extends Phaser.Sprite {
   /**
-   * Stała wytrzymałość
-   * @private
-   * @type {number}
-   * @memberof Comet
-   */
-  private readonly _health: number;
-
-  /**
    * Wytrzymałość komety
    * @type {number}
    * @memberof Comet
@@ -45,7 +37,7 @@ export class Comet extends Phaser.Sprite {
    * @memberof Comet
    */
   public generate(x: number, y: number, sx: number, sy: number) {
-    this.reset(x, y, this._health);
+    this.reset(x, y, 10);
     this.body.velocity.x = sx;
     this.body.velocity.y = sy;
   }

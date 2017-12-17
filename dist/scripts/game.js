@@ -112589,7 +112589,7 @@ class Comet extends Phaser.Sprite {
      * @memberof Comet
      */
     generate(x, y, sx, sy) {
-        this.reset(x, y, this._health);
+        this.reset(x, y, 10);
         this.body.velocity.x = sx;
         this.body.velocity.y = sy;
     }
@@ -115635,7 +115635,7 @@ class Main extends Phaser.State {
                     this.gameStartedFlag = false;
                     this.gameRestarted = false;
                     this.gameEndTimmeout = null;
-                }, 90000);
+                }, 180000);
             }
         });
         network_1.default.onPlayedUpdateXY((playerId, update) => {
@@ -115780,7 +115780,7 @@ class Main extends Phaser.State {
             this.currentStage++;
             this.startNextStage = true;
             this.nextStageTimeout = null;
-        }, 30000);
+        }, 60000);
     }
     /**
      * Utworzenie menu poziomu
@@ -115915,7 +115915,6 @@ class Main extends Phaser.State {
         powerup.powerup(player);
         new models_1.PowerUpText(this.game, player.x, player.y - player.height / 2, powerup.name, "#FFFFFF");
         player.powerups.push(powerup);
-        // this.powerUps...
     }
     /**
      * Generowanie wzmocnień
@@ -115923,17 +115922,16 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     generatePowerUps() {
-        this.powerUps = [];
         // if (this.powerUps) {
         //   // this.powerUps.destroy();
         //   this.powerUps = [];
         // }
-        // this.powerUps = this.game.add.group();
-        this.powerUps.push(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.push(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.push(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.push(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.push(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
+        this.powerUps = this.game.add.group();
+        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
         }));
     }
@@ -115943,10 +115941,8 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     destroyPowerUps() {
-        this.powerUps.forEach(powerup => {
-            if (powerup.player == null) {
-                powerup.destroy();
-            }
+        this.powerUps.forEachAlive(powerup => {
+            powerup.destroy();
         }, this);
     }
 }

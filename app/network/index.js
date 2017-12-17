@@ -1,7 +1,7 @@
 const socketio = require("socket.io");
 const { Game, Player } = require("../models");
 const MAX_PLAYERS = 6;
-const TIME = 30;
+const TIME = 60;
 
 module.exports = server => {
   var io = socketio.listen(server);
