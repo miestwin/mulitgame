@@ -105,7 +105,9 @@ export class Player extends Phaser.Sprite {
     this.body.velocity.y = this.vector.y * 6;
 
     if (this.untouchtable) {
-      this.alpha = 0.6;
+      this.alpha = 0.5;
+    } else {
+      this.alpha = 1;
     }
   }
 

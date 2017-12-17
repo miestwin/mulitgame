@@ -707,7 +707,19 @@ export class Main extends Phaser.State {
    */
   private destroyPowerUps() {
     this.powerUps.forEachAlive(powerup => {
-      powerup.destroy();
+      if (powerup.player === null) {
+        powerup.destroy();
+      }
+    }, this);
+    this.powerUps.forEachExists(powerup => {
+      if (powerup.player === null) {
+        powerup.destroy();
+      }
+    }, this);
+    this.powerUps.forEach(powerup => {
+      if (powerup.player === null) {
+        powerup.destroy();
+      }
     }, this);
   }
 }

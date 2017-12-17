@@ -6,13 +6,6 @@ import { Player } from "../Player";
 import { Assets } from "../../assets";
 
 export class Comet extends Phaser.Sprite {
-  /**
-   * Wytrzymałość komety
-   * @type {number}
-   * @memberof Comet
-   */
-  public health: number = 10;
-
   private explosion: Phaser.Sprite;
 
   constructor(game: Phaser.Game, x: number, y: number, key: string) {
@@ -21,11 +14,8 @@ export class Comet extends Phaser.Sprite {
     this.outOfBoundsKill = true;
     this.exists = false;
     this.alive = false;
+    this.health = 10;
     this.anchor.setTo(0, 0.5);
-
-    this.events.onKilled.add(() => {
-      this.health = 10;
-    }, this);
   }
 
   /**

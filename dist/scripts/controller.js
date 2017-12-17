@@ -112677,7 +112677,7 @@ class AvatarSelector extends Phaser.State {
         this.scrolingMap.events.onDragStop.add(() => {
             this.scrolingMap.isBeingDraged = false;
         }, this);
-        var button = this.game.add.button(this.game.world.centerX, this.game.height - 50, assets_1.Assets.UI.Buttons.Menu.Select.getName(), this.actionOnClick, this, 2, 1, 0);
+        var button = this.game.add.button(this.game.world.centerX, this.game.height - 40, assets_1.Assets.UI.Buttons.Menu.Select.getName(), this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 1);
     }
     update() {

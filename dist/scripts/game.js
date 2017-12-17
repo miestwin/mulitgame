@@ -112565,20 +112565,12 @@ __webpack_require__(3);
 class Comet extends Phaser.Sprite {
     constructor(game, x, y, key) {
         super(game, x, y, key);
-        /**
-         * Wytrzymałość komety
-         * @type {number}
-         * @memberof Comet
-         */
-        this.health = 10;
         this.checkWorldBounds = true;
         this.outOfBoundsKill = true;
         this.exists = false;
         this.alive = false;
+        this.health = 10;
         this.anchor.setTo(0, 0.5);
-        this.events.onKilled.add(() => {
-            this.health = 10;
-        }, this);
     }
     /**
      * Generacja komety
@@ -115942,7 +115934,19 @@ class Main extends Phaser.State {
      */
     destroyPowerUps() {
         this.powerUps.forEachAlive(powerup => {
-            powerup.destroy();
+            if (powerup.player === null) {
+                powerup.destroy();
+            }
+        }, this);
+        this.powerUps.forEachExists(powerup => {
+            if (powerup.player === null) {
+                powerup.destroy();
+            }
+        }, this);
+        this.powerUps.forEach(powerup => {
+            if (powerup.player === null) {
+                powerup.destroy();
+            }
         }, this);
     }
 }
@@ -116008,7 +116012,7 @@ class SingleBullet extends Phaser.Group {
          */
         this.fireRate = 50;
         for (let i = 0; i < 40; i++) {
-            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.SingleBullet.getName(), 2.5));
+            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.SingleBullet.getName(), 2));
         }
     }
     get nextFire() {
@@ -116089,11 +116093,11 @@ class SplitShot extends Phaser.Group {
     fire(sx, sy) {
         if (this.game.time.now > this._nextFire) {
             const bullet_1 = this.getFirstExists(false);
-            bullet_1.fire(sx + 25, sy, this.bulletSpeed, 0, -200);
+            bullet_1.fire(sx + 25, sy, this.bulletSpeed, 0, -100);
             const bullet_2 = this.getFirstExists(false);
             bullet_2.fire(sx + 25, sy, this.bulletSpeed, 0, 0);
             const bullet_3 = this.getFirstExists(false);
-            bullet_3.fire(sx + 25, sy, this.bulletSpeed, 0, 200);
+            bullet_3.fire(sx + 25, sy, this.bulletSpeed, 0, 100);
             this._nextFire = this.game.time.now + this.fireRate;
         }
     }
@@ -116133,7 +116137,7 @@ class LittleDoctor extends Phaser.Group {
          * @type {number}
          * @memberof LittleDoctor
          */
-        this.fireRate = 700;
+        this.fireRate = 850;
         for (let i = 0; i < 20; i++) {
             this.add(new Bullet_1.Bullet(game, key, 500));
         }
@@ -116590,7 +116594,10 @@ class Player extends Phaser.Sprite {
         this.body.velocity.x = this.vector.x * 6;
         this.body.velocity.y = this.vector.y * 6;
         if (this.untouchtable) {
-            this.alpha = 0.6;
+            this.alpha = 0.5;
+        }
+        else {
+            this.alpha = 1;
         }
     }
     /**

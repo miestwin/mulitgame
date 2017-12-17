@@ -131,7 +131,7 @@ export class AvatarSelector extends Phaser.State {
 
     var button = this.game.add.button(
       this.game.world.centerX,
-      this.game.height - 50,
+      this.game.height - 40,
       Assets.UI.Buttons.Menu.Select.getName(),
       this.actionOnClick,
       this,
