@@ -86,17 +86,10 @@ export class GameController extends Phaser.State {
 
     Network.onEndGame((playerId: string) => {
       const message = playerId == (<any>this.game.state).id ? "Win" : "Lose";
-      this.game.state.start(
-        States.MESSAGE,
-        true,
-        false,
-        message,
-        "Play again",
-        () => {
-          Network.playAgain(gameId);
-          this.game.state.start(States.AVATAR_SELECTOR);
-        }
-      );
+      this.game.state.start(States.MESSAGE, true, false, message, true, () => {
+        Network.playAgain(gameId);
+        this.game.state.start(States.AVATAR_SELECTOR);
+      });
     });
 
     document

@@ -41,8 +41,13 @@ export class Loading extends Phaser.State {
     );
 
     this.game.load.image(
-      Assets.UI.Buttons.Menu.Grey.getName(),
-      Assets.UI.Buttons.Menu.Grey.getPNG()
+      Assets.UI.Buttons.Menu.Select.getName(),
+      Assets.UI.Buttons.Menu.Select.getPNG()
+    );
+
+    this.game.load.image(
+      Assets.UI.Buttons.Menu.Start.getName(),
+      Assets.UI.Buttons.Menu.Start.getPNG()
     );
 
     this.game.load.image(

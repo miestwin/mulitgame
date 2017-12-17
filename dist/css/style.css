@@ -1,19 +1,56 @@
 @font-face {
-  font-family: 'Kenvector Future';
+  font-family: "Kenvector Future";
   font-style: normal;
-  src: url('../assets/fonts/kenvector/kenvector_future-webfont.woff2') format('woff2'),
-       url('../assets/fonts/kenvector/kenvector_future-webfont.woff') format('woff');
+  src: url("../assets/fonts/kenvector/kenvector_future-webfont.woff2")
+      format("woff2"),
+    url("../assets/fonts/kenvector/kenvector_future-webfont.woff")
+      format("woff");
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #game {
-    min-width: 100vw;
-    min-height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+#controller {
+  opacity: 1;
+}
+
+.info {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  font-family: "Kenvector Future", monospace;
+  font-size: 30px;
+  text-align: center;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+#touch {
+  font-size: 40px;
+}
+
+@media (orientation: portrait) {
+  #controller {
+    opacity: 0;
+  }
+
+  #orientation {
+    display: flex;
+  }
 }

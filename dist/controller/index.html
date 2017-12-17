@@ -1,19 +1,27 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-        <title>Controller</title>
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-    <body>
-        <div id="controller">
-        </div>
-        <script src="../scripts/victor.min.js"></script>
-        <script src="../scripts/HealthBar.standalone.js"></script>
-        <script src="../scripts/controller.js"></script>
-        <script>
-            const gameId = "{{gameId}}";
-        </script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Controller</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="info" id="orientation">
+        <p>Turn your phone</p>
+    </div>
+    <div class="info" id="touch">
+        <p>Your phone dont't support Touch API</p>
+    </div>
+    <div id="controller"></div>
+    <script src="../scripts/victor.min.js"></script>
+    <script src="../scripts/HealthBar.standalone.js"></script>
+    <script src="../scripts/controller.js"></script>
+    <script>
+        const gameId = "{{gameId}}";
+    </script>
+</body>
+
 </html>

@@ -587,6 +587,24 @@ var Assets;
                     }
                 }
                 Menu.Grey = Grey;
+                class Select {
+                    static getName() {
+                        return "select-button";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/flatLight/flatLight41.png";
+                    }
+                }
+                Menu.Select = Select;
+                class Start {
+                    static getName() {
+                        return "start-button";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/flatLight/flatLight40.png";
+                    }
+                }
+                Menu.Start = Start;
             })(Menu = Buttons.Menu || (Buttons.Menu = {}));
             class Fire {
                 static getName() {
@@ -112334,15 +112352,23 @@ document.addEventListener("DOMContentLoaded", function () {
  *
  */
 function startApp() {
-    const controllerConfig = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        renderer: Phaser.AUTO,
-        parent: document.getElementById("controller"),
-        resolution: 1
-    };
-    // create controller
-    const controller = new Controller_1.default(controllerConfig);
+    if (isTouchDevice()) {
+        const controllerConfig = {
+            width: window.innerWidth,
+            height: window.innerHeight,
+            renderer: Phaser.AUTO,
+            parent: document.getElementById("controller"),
+            resolution: 1
+        };
+        // create controller
+        const controller = new Controller_1.default(controllerConfig);
+    }
+    else {
+        document.getElementById("touch").style.display = "flex";
+    }
+}
+function isTouchDevice() {
+    return "ontouchstart" in document.documentElement;
 }
 
 
@@ -112486,7 +112512,8 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.UI.Buttons.Joystick.WheelExternal.getName(), assets_1.Assets.UI.Buttons.Joystick.WheelExternal.getPNG());
         this.game.load.image(assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getName(), assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getPNG());
         this.game.load.image(assets_1.Assets.UI.Buttons.Fire.getName(), assets_1.Assets.UI.Buttons.Fire.getPNG());
-        this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Grey.getName(), assets_1.Assets.UI.Buttons.Menu.Grey.getPNG());
+        this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Select.getName(), assets_1.Assets.UI.Buttons.Menu.Select.getPNG());
+        this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Start.getName(), assets_1.Assets.UI.Buttons.Menu.Start.getPNG());
         this.game.load.image(assets_1.Assets.Images.Transparent.getName(), assets_1.Assets.Images.Transparent.getPNG());
         /* ships */
         this.game.load.image(assets_1.Assets.Images.Ships.GREEN.getName(), assets_1.Assets.Images.Ships.GREEN.getPNG());
@@ -112637,14 +112664,8 @@ class AvatarSelector extends Phaser.State {
         this.scrolingMap.events.onDragStop.add(() => {
             this.scrolingMap.isBeingDraged = false;
         }, this);
-        var button = this.game.add.button(this.game.world.centerX, this.game.height - 40, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.actionOnClick, this, 2, 1, 0);
+        var button = this.game.add.button(this.game.world.centerX, this.game.height - 50, assets_1.Assets.UI.Buttons.Menu.Select.getName(), this.actionOnClick, this, 2, 1, 0);
         button.anchor.set(0.5, 1);
-        var buttonText = this.game.add.text(this.game.world.centerX, this.game.height - 45, "Continue", {
-            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: "#000000",
-            align: "center"
-        });
-        buttonText.anchor.set(0.5, 1);
     }
     update() {
         for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
@@ -112704,20 +112725,23 @@ const assets_1 = __webpack_require__(4);
  * @extends {Phaser.State}
  */
 class Message extends Phaser.State {
-    init(message, text, action) {
+    init(message, btn, action) {
         this.message = message;
-        this.text = text ? text : null;
+        this.btn = btn ? btn : null;
         this.action = action ? action.bind(this) : null;
     }
     preload() { }
     create() {
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, { font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+        this.game.stage.backgroundColor = "#333333";
+        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 50, this.message, {
+            font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: "#ffffff",
+            align: "center"
+        });
         message.anchor.set(0.5);
-        if (this.text && this.action) {
-            var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 30, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.action, this, 2, 1, 0);
+        if (this.btn && this.action) {
+            var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 30, assets_1.Assets.UI.Buttons.Menu.Start.getName(), this.action, this, 2, 1, 0);
             button.anchor.set(0.5);
-            var buttonText = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 30, this.text, { font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#000000', align: 'center' });
-            buttonText.anchor.set(0.5);
         }
     }
 }
@@ -112777,7 +112801,7 @@ class GameController extends Phaser.State {
         });
         network_1.default.onEndGame((playerId) => {
             const message = playerId == this.game.state.id ? "Win" : "Lose";
-            this.game.state.start(States_1.States.MESSAGE, true, false, message, "Play again", () => {
+            this.game.state.start(States_1.States.MESSAGE, true, false, message, true, () => {
                 network_1.default.playAgain(gameId);
                 this.game.state.start(States_1.States.AVATAR_SELECTOR);
             });

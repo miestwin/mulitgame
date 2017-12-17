@@ -419,6 +419,22 @@ export namespace Assets {
             return "../assets/images/ui/grey_button04.png";
           }
         }
+        export class Select {
+          static getName(): string {
+            return "select-button";
+          }
+          static getPNG(): string {
+            return "../assets/images/controller/flatLight/flatLight41.png";
+          }
+        }
+        export class Start {
+          static getName(): string {
+            return "start-button";
+          }
+          static getPNG(): string {
+            return "../assets/images/controller/flatLight/flatLight40.png";
+          }
+        }
       }
       export class Fire {
         static getName(): string {

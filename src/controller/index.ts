@@ -9,13 +9,21 @@ document.addEventListener("DOMContentLoaded", function() {
  * 
  */
 function startApp(): void {
-  const controllerConfig = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    renderer: Phaser.AUTO,
-    parent: document.getElementById("controller"),
-    resolution: 1
-  };
-  // create controller
-  const controller = new Controller(controllerConfig);
+  if (isTouchDevice()) {
+    const controllerConfig = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      renderer: Phaser.AUTO,
+      parent: document.getElementById("controller"),
+      resolution: 1
+    };
+    // create controller
+    const controller = new Controller(controllerConfig);
+  } else {
+    document.getElementById("touch").style.display = "flex";
+  }
+}
+
+function isTouchDevice() {
+  return "ontouchstart" in document.documentElement;
 }

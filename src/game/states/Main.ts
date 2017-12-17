@@ -534,7 +534,7 @@ export class Main extends Phaser.State {
     const text = this.game.add.text(
       this.game.world.centerX,
       100,
-      'If you want play again\npress "PLAY AGAIN" in your controller',
+      'If you want play again\npress "START" in your controller',
       {
         font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
         fill: "#ffffff",

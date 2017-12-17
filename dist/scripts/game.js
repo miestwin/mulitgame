@@ -587,6 +587,24 @@ var Assets;
                     }
                 }
                 Menu.Grey = Grey;
+                class Select {
+                    static getName() {
+                        return "select-button";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/flatLight/flatLight41.png";
+                    }
+                }
+                Menu.Select = Select;
+                class Start {
+                    static getName() {
+                        return "start-button";
+                    }
+                    static getPNG() {
+                        return "../assets/images/controller/flatLight/flatLight40.png";
+                    }
+                }
+                Menu.Start = Start;
             })(Menu = Buttons.Menu || (Buttons.Menu = {}));
             class Fire {
                 static getName() {
@@ -115458,12 +115476,21 @@ class Message extends Phaser.State {
     }
     preload() { }
     create() {
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, { font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#ffffff', align: 'center' });
+        this.game.stage.backgroundColor = "#333333";
+        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, {
+            font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: "#ffffff",
+            align: "center"
+        });
         message.anchor.set(0.5);
         if (this.text && this.action) {
             var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.action, this, 2, 1, 0);
             button.anchor.set(0.5);
-            var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, { font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`, fill: '#000000', align: 'center' });
+            var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, {
+                font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+                fill: "#000000",
+                align: "center"
+            });
             buttonText.anchor.set(0.5);
         }
     }
@@ -115820,7 +115847,7 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     createEndMenu() {
-        const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again\npress "PLAY AGAIN" in your controller', {
+        const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again\npress "START" in your controller', {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
             align: "center"
