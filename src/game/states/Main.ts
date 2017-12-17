@@ -78,7 +78,7 @@ export class Main extends Phaser.State {
    * @type {Phaser.Group}
    * @memberof Main
    */
-  private powerUps: Phaser.Group;
+  private powerUps: Array<IPowerUp>;
 
   /**
    * Wiadomość informująca kiedy zacznie się gra
@@ -646,12 +646,14 @@ export class Main extends Phaser.State {
    * @memberof Main
    */
   private generatePowerUps() {
-    if (this.powerUps) {
-      this.powerUps.destroy();
-    }
-    this.powerUps = this.game.add.group();
+    this.powerUps = [];
+    // if (this.powerUps) {
+    //   // this.powerUps.destroy();
+    //   this.powerUps = [];
+    // }
+    // this.powerUps = this.game.add.group();
 
-    this.powerUps.add(
+    this.powerUps.push(
       new SplitShotPowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
@@ -659,7 +661,7 @@ export class Main extends Phaser.State {
       )
     );
 
-    this.powerUps.add(
+    this.powerUps.push(
       new LittleDoctorPowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
@@ -667,7 +669,7 @@ export class Main extends Phaser.State {
       )
     );
 
-    this.powerUps.add(
+    this.powerUps.push(
       new SplitShotPowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
@@ -675,7 +677,7 @@ export class Main extends Phaser.State {
       )
     );
 
-    this.powerUps.add(
+    this.powerUps.push(
       new UntouchtablePowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
@@ -683,7 +685,7 @@ export class Main extends Phaser.State {
       )
     );
 
-    this.powerUps.add(
+    this.powerUps.push(
       new ResetPointsPowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
@@ -711,6 +713,5 @@ export class Main extends Phaser.State {
         powerup.destroy();
       }
     }, this);
-    // this.powerUps.destroy();
   }
 }

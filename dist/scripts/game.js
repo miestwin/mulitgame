@@ -115923,15 +115923,17 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     generatePowerUps() {
-        if (this.powerUps) {
-            this.powerUps.destroy();
-        }
-        this.powerUps = this.game.add.group();
-        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
+        this.powerUps = [];
+        // if (this.powerUps) {
+        //   // this.powerUps.destroy();
+        //   this.powerUps = [];
+        // }
+        // this.powerUps = this.game.add.group();
+        this.powerUps.push(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.push(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.push(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.push(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.push(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
         }));
     }
@@ -115946,7 +115948,6 @@ class Main extends Phaser.State {
                 powerup.destroy();
             }
         }, this);
-        // this.powerUps.destroy();
     }
 }
 exports.Main = Main;

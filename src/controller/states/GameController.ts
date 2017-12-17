@@ -9,7 +9,6 @@ import { Assets } from "../../assets";
 import { colorLuminance } from "../../utils";
 
 declare var Victor;
-declare var HealthBar;
 declare var gameId;
 
 /**
