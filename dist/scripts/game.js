@@ -112613,6 +112613,7 @@ exports.Comet = Comet;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const Game_1 = __webpack_require__(98);
+document.addEventListener("DOMContentLoaded", requestFullscreen);
 document.addEventListener("DOMContentLoaded", function () {
     startApp();
 });
@@ -112630,6 +112631,14 @@ function startApp() {
     };
     // create game
     const game = new Game_1.default(gameConfig);
+}
+function requestFullscreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+    else if (document.documentElement.webkitRequestFullScreen) {
+        document.documentElement.webkitRequestFullScreen();
+    }
 }
 
 
@@ -112711,7 +112720,9 @@ const assets_1 = __webpack_require__(4);
 class Boot extends Phaser.State {
     init() {
         // set the scale mode
-        this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.game.scale.pageAlignHorizontally = true;
+        this.game.scale.pageAlignVertically = true;
         // set custom loader
         this.game.load = new core_1.AppAssetsLoader(this.game);
     }

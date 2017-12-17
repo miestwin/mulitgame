@@ -1,7 +1,17 @@
 import Controller from "./Controller";
 
 document.addEventListener("DOMContentLoaded", function() {
-  startApp();
+  if (window.innerWidth > window.innerHeight) {
+    startApp();
+  } else {
+    const onResize = () => {
+      if (window.innerWidth > window.innerHeight) {
+        startApp();
+        window.removeEventListener("resize", onResize);
+      }
+    };
+    window.addEventListener("resize", onResize);
+  }
 });
 
 /**

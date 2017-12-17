@@ -1,5 +1,6 @@
 import Game from "./Game";
 
+document.addEventListener("DOMContentLoaded", requestFullscreen);
 document.addEventListener("DOMContentLoaded", function() {
   startApp();
 });
@@ -18,4 +19,12 @@ function startApp(): void {
   };
   // create game
   const game = new Game(gameConfig);
+}
+
+function requestFullscreen() {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.webkitRequestFullScreen) {
+    document.documentElement.webkitRequestFullScreen();
+  }
 }

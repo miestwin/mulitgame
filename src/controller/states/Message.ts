@@ -52,7 +52,7 @@ export class Message extends Phaser.State {
 
     var message = this.game.add.text(
       this.game.world.centerX,
-      this.game.world.centerY - 50,
+      this.btn ? this.game.world.centerY - 50 : this.game.world.centerY,
       this.message,
       {
         font: `35px ${Assets.Fonts.Kenvector.getFamily()}`,

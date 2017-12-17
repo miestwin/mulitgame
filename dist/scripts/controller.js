@@ -112345,7 +112345,18 @@ exports.pingPong = pingPong;
 Object.defineProperty(exports, "__esModule", { value: true });
 const Controller_1 = __webpack_require__(90);
 document.addEventListener("DOMContentLoaded", function () {
-    startApp();
+    if (window.innerWidth > window.innerHeight) {
+        startApp();
+    }
+    else {
+        const onResize = () => {
+            if (window.innerWidth > window.innerHeight) {
+                startApp();
+                window.removeEventListener("resize", onResize);
+            }
+        };
+        window.addEventListener("resize", onResize);
+    }
 });
 /**
  * Uruchamia aplikację
@@ -112452,7 +112463,9 @@ const network_1 = __webpack_require__(34);
 class Boot extends Phaser.State {
     init() {
         // set the scale mode
-        this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.game.scale.pageAlignHorizontally = true;
+        this.game.scale.pageAlignVertically = true;
         // set custom loader
         this.game.load = new core_1.AppAssetsLoader(this.game);
     }
@@ -112733,7 +112746,7 @@ class Message extends Phaser.State {
     preload() { }
     create() {
         this.game.stage.backgroundColor = "#333333";
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 50, this.message, {
+        var message = this.game.add.text(this.game.world.centerX, this.btn ? this.game.world.centerY - 50 : this.game.world.centerY, this.message, {
             font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
             align: "center"

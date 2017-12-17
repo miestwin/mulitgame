@@ -22,7 +22,9 @@ declare var gameId;
 export class Boot extends Phaser.State {
   init() {
     // set the scale mode
-    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.pageAlignHorizontally = true;
+    this.game.scale.pageAlignVertically = true;
 
     // set custom loader
     this.game.load = new AppAssetsLoader(this.game);
