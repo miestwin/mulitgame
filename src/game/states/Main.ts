@@ -327,26 +327,28 @@ export class Main extends Phaser.State {
    * @memberof Main
    */
   private createBackground() {
-    const backTile = this.game.add.tileSprite(
-      0,
-      0,
-      this.game.width,
-      this.game.height,
-      Const.Stars.getName()
-    );
-    backTile.autoScroll(-100, 0);
-    this.tiles.push(backTile);
     for (let i = 0; i < Const.Nebula.Names.length; i++) {
-      const nebulaback = this.game.add.tileSprite(
+      const nebula = this.game.add.tileSprite(
         0,
         0,
         this.game.width,
         this.game.height,
         Const.Nebula.Names[i]
       );
-      nebulaback.autoScroll(-100, 0);
-      this.tiles.push(nebulaback);
+      nebula.autoScroll(-120, 0);
+      this.game.world.sendToBack(nebula);
+      this.tiles.push(nebula);
     }
+    const starfield = this.game.add.tileSprite(
+      0,
+      0,
+      this.game.width,
+      this.game.height,
+      Const.Stars.getName()
+    );
+    starfield.autoScroll(-80, 0);
+    this.game.world.sendToBack(starfield);
+    this.tiles.push(starfield);
   }
 
   /**

@@ -115381,7 +115381,7 @@ function comet(game, width, height, rc, key) {
     const ctx = canvas.getContext("2d");
     var grd = ctx.createLinearGradient(0, 0, width, 0);
     grd.addColorStop(0, "rgba(255, 255, 255, 1)");
-    grd.addColorStop(1, "rgba(255, 255, 255, 0.2)");
+    grd.addColorStop(1, "rgba(255, 255, 255, 0.5)");
     ctx.fillStyle = grd;
     ctx.arc(x, y, rt, 90, Math.PI, true);
     ctx.moveTo(x, height);
@@ -115390,9 +115390,7 @@ function comet(game, width, height, rc, key) {
     ctx.lineTo(x, 0);
     ctx.fill();
     ctx.beginPath();
-    ctx.fillStyle = "#332200";
-    // ctx.arc(x, y, rc, 0, Math.PI * 2, true);
-    // ctx.fill();
+    ctx.fillStyle = "#802b00";
     const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(x, y), rc, 50));
     points.push(points[0]);
     ctx.moveTo(points[0].X, points[0].Y);
@@ -115718,14 +115716,16 @@ class Main extends Phaser.State {
      * @memberof Main
      */
     createBackground() {
-        const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        backTile.autoScroll(-100, 0);
-        this.tiles.push(backTile);
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-            const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-100, 0);
-            this.tiles.push(nebulaback);
+            const nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
+            nebula.autoScroll(-120, 0);
+            this.game.world.sendToBack(nebula);
+            this.tiles.push(nebula);
         }
+        const starfield = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
+        starfield.autoScroll(-80, 0);
+        this.game.world.sendToBack(starfield);
+        this.tiles.push(starfield);
     }
     /**
      * Utworzenie menu
@@ -116237,7 +116237,7 @@ class Comets extends Phaser.Group {
     }
     generate() {
         const comet = this.getFirstExists(false);
-        const chance = utils_1.rnd.integerInRange(1, 20);
+        const chance = utils_1.rnd.integerInRange(1, 30);
         if (chance != 1 || !comet) {
             return;
         }

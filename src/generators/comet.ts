@@ -21,7 +21,7 @@ export function comet(
 
   var grd = ctx.createLinearGradient(0, 0, width, 0);
   grd.addColorStop(0, "rgba(255, 255, 255, 1)");
-  grd.addColorStop(1, "rgba(255, 255, 255, 0.2)");
+  grd.addColorStop(1, "rgba(255, 255, 255, 0.5)");
   ctx.fillStyle = grd;
   ctx.arc(x, y, rt, 90, Math.PI, true);
   ctx.moveTo(x, height);
@@ -29,11 +29,9 @@ export function comet(
   ctx.lineTo(width, 0);
   ctx.lineTo(x, 0);
   ctx.fill();
-  ctx.beginPath();
-  ctx.fillStyle = "#332200";
-  // ctx.arc(x, y, rc, 0, Math.PI * 2, true);
-  // ctx.fill();
 
+  ctx.beginPath();
+  ctx.fillStyle = "#802b00";
   const points = convexhull(generateRandomPoints(new Point(x, y), rc, 50));
   points.push(points[0]);
   ctx.moveTo(points[0].X, points[0].Y);
