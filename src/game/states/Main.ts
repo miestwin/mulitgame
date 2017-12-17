@@ -9,17 +9,18 @@ import Network from "../network";
 import { Assets } from "../../assets";
 import {
   Player,
-  Bullets,
-  Comets,
+  Bullet,
+  SingleBullet,
   Comet,
-  ScoreText,
+  Comets,
   CometExplosion,
   IPowerUp,
   ResetPointsPowerUp,
   UntouchtablePowerUp,
   LittleDoctorPowerUp,
-  MultiWeaponPowerUp,
-  PowerUpText
+  SplitShotPowerUp,
+  PowerUpText,
+  ScoreText
 } from "../../models";
 
 declare var Victor;
@@ -32,117 +33,116 @@ declare var Victor;
  */
 export class Main extends Phaser.State {
   /**
-     * Kolekcja teł gry
-     * @private
-     * @type {Phaser.TileSprite[]}
-     * @memberof Main
-     */
+   * Kolekcja teł gry
+   * @private
+   * @type {Phaser.TileSprite[]}
+   * @memberof Main
+   */
   private tiles: Phaser.TileSprite[] = [];
 
   /**
-     * Objekty należące do menu
-     * @private
-     * @type {Phaser.Group}
-     * @memberof Main
-     */
+   * Objekty należące do menu
+   * @private
+   * @type {Phaser.Group}
+   * @memberof Main
+   */
   private menuGroup: Phaser.Group;
 
   /**
-     * Kolekcja graczy do sprawdzania kolizji
-     * @private
-     * @type {Phaser.Group}
-     * @memberof Main
-     */
+   * Kolekcja graczy do sprawdzania kolizji
+   * @private
+   * @type {Phaser.Group}
+   * @memberof Main
+   */
   private players: Phaser.Group;
 
   /**
-     * Kolekcja obiektów z któych wypadają ulepszenia
-     * po ich zniszczeniu
-     * @private
-     * @type {Phaser.Group}
-     * @memberof Main
-     */
+   * Kolekcja komet
+   * @private
+   * @type {Comets}
+   * @memberof Main
+   */
   private comets: Comets;
 
   /**
-     * Kolekcja eksplozji komet
-     * @private
-     * @type {CometExplosion}
-     * @memberof Main
-     */
+   * Kolekcja eksplozji komet
+   * @private
+   * @type {CometExplosion}
+   * @memberof Main
+   */
   private explosions: CometExplosion;
 
   /**
-     * Kolekcja bonusów możliwych do zebrania
-     * @private
-     * @type {Phaser.Group}
-     * @memberof Main
-     */
+   * Kolekcja bonusów możliwych do zebrania
+   * @private
+   * @type {Phaser.Group}
+   * @memberof Main
+   */
   private powerUps: Phaser.Group;
 
   /**
-     * Wiadomość informująca kiedy zacznie się gra
-     * @private
-     * @type {Phaser.Text}
-     * @memberof Main
-     */
+   * Wiadomość informująca kiedy zacznie się gra
+   * @private
+   * @type {Phaser.Text}
+   * @memberof Main
+   */
   private timerText: Phaser.Text;
 
   /**
-     * Flaga do wystartowania następnego poziomu
-     * @private
-     * @type {boolean}
-     * @memberof Main
-     */
+   * Flaga do wystartowania następnego poziomu
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
   private startNextStage: boolean = false;
 
   /**
-     * Czas do następnego poziomu
-     * @private
-     * @type {*}
-     * @memberof Main
-     */
+   * Czas do następnego poziomu
+   * @private
+   * @type {*}
+   * @memberof Main
+   */
   private nextStageTimeout: any;
 
   /**
-     * Aktualny poziom
-     * @private
-     * @type {number}
-     * @memberof Main
-     */
+   * Aktualny poziom
+   * @private
+   * @type {number}
+   * @memberof Main
+   */
   private currentStage: number = 1;
 
   /**
-     * Flaga informująca o rozpoczęciu gry
-     * @private
-     * @type {boolean}
-     * @memberof Main
-     */
+   * Flaga informująca o rozpoczęciu gry
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
   private gameStartedFlag: boolean = false;
 
   /**
-     * Flaga informująca o zakończeniu gry
-     * @private
-     * @type {boolean}
-     * @memberof Main
-     */
+   * Flagi informujące o zakończeniu gry
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
   private gameEndedFlag: boolean = false;
   private gameEndingFlag: boolean = false;
 
   /**
-     * Czas do końca gry
-     * @private
-     * @type {*}
-     * @memberof Main
-     */
+   * Czas do końca gry
+   * @private
+   * @type {*}
+   * @memberof Main
+   */
   private gameEndTimmeout: any;
 
   private gameRestarted: boolean = false;
 
   init(restart?: boolean) {
-    if (restart) {
-      this.gameRestarted = true;
-    }
+    // if (restart) {
+    //   this.gameRestarted = true;
+    // }
   }
 
   preload() {
@@ -191,7 +191,7 @@ export class Main extends Phaser.State {
       if (Object.keys((<any>this.game.state).players).length < 1) {
         const message = "No connected players";
         const text = "Try again";
-        const action = () => this.game.state.start(States.MAIN_MENU);
+        const action = () => this.game.state.start(States.MAIN);
         this.game.state.start(
           States.MESSAGE,
           true,
@@ -216,14 +216,14 @@ export class Main extends Phaser.State {
       player.vector = new Victor(update.x, update.y);
     });
 
-    Network.onPlayerUpdateZ((playerId, update) => {
-      const player = (<any>this.game.state).players[playerId];
-      player.zPos = update;
-    });
+    // Network.onPlayerUpdateZ((playerId, update) => {
+    //   const player = (<any>this.game.state).players[playerId];
+    //   player.zPos = update;
+    // });
 
     Network.onPlayerFire(playerId => {
       const player = (<any>this.game.state).players[playerId];
-      player.shoot();
+      player.fire();
     });
 
     Network.onNoConnectedPlayers(() => {
@@ -262,13 +262,16 @@ export class Main extends Phaser.State {
     if (this.gameStartedFlag && !this.gameEndedFlag) {
       this.comets.generate();
     }
-    
+
     if (
       this.startNextStage &&
       this.comets.countLiving() === 0 &&
       !this.gameEndedFlag
     ) {
       this.startNextStage = false;
+      this.players.forEach((player: Player) => {
+        player.removePowerups();
+      }, this);
       this.createStageInfo();
       this.generatePowerUps();
       this.nextStage();
@@ -306,10 +309,10 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Utworzenie teł gry
-     * @private
-     * @memberof Main
-     */
+   * Utworzenie teł gry
+   * @private
+   * @memberof Main
+   */
   private createBackground() {
     const backTile = this.game.add.tileSprite(
       0,
@@ -334,10 +337,10 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Utworzenie menu
-     * @private
-     * @memberof Main
-     */
+   * Utworzenie menu
+   * @private
+   * @memberof Main
+   */
   private createMenu() {
     this.menuGroup = this.game.add.group();
 
@@ -380,10 +383,10 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Usunięcie menu przed rozpoczęciem rozgrywki
-     * @private
-     * @memberof Main
-     */
+   * Usunięcie menu przed rozpoczęciem rozgrywki
+   * @private
+   * @memberof Main
+   */
   private hideMenu() {
     const moveUpTween = this.game.add
       .tween(this.menuGroup.position)
@@ -395,6 +398,11 @@ export class Main extends Phaser.State {
     }, this);
   }
 
+  /**
+   * Odliczanie do następnego poziomu
+   * @private
+   * @memberof Main
+   */
   private nextStage() {
     this.nextStageTimeout = setTimeout(() => {
       this.gameStartedFlag = false;
@@ -404,6 +412,11 @@ export class Main extends Phaser.State {
     }, 30000);
   }
 
+  /**
+   * Utworzenie menu poziomu
+   * @private
+   * @memberof Main
+   */
   private createStageInfo() {
     this.menuGroup = this.game.add.group();
 
@@ -452,10 +465,10 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Koniec gry
-     * @private
-     * @memberof Main
-     */
+   * Koniec gry
+   * @private
+   * @memberof Main
+   */
   private endGame() {
     this.shutdown();
 
@@ -499,6 +512,11 @@ export class Main extends Phaser.State {
     this.createEndMenu();
   }
 
+  /**
+   * Utworzenie manu końcowego
+   * @private
+   * @memberof Main
+   */
   private createEndMenu() {
     const text = this.game.add.text(
       this.game.world.centerX,
@@ -514,10 +532,10 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Sprawdzanie kolizji
-     * @private
-     * @memberof Main
-     */
+   * Sprawdzanie kolizji
+   * @private
+   * @memberof Main
+   */
   private checkCollisions() {
     this.game.physics.arcade.overlap(
       this.players,
@@ -538,9 +556,9 @@ export class Main extends Phaser.State {
     Object.keys((<any>this.game.state).players).forEach(playerId => {
       const player: Player = (<any>this.game.state).players[playerId];
 
-      const collisionHandler = (bullet: Phaser.Sprite, comet: Comet) => {
+      const collisionHandler = (bullet: Bullet, comet: Comet) => {
+        comet.health -= bullet.dmg;
         bullet.kill();
-        comet.health -= player.bullets.damage;
         if (comet.health <= 0) {
           this.explosions.generate(comet.x, comet.y);
           player.score += 10;
@@ -555,7 +573,7 @@ export class Main extends Phaser.State {
       };
 
       this.game.physics.arcade.overlap(
-        player.bullets,
+        player.weapon,
         this.comets,
         collisionHandler,
         null,
@@ -565,12 +583,12 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Kolizja gracza z kometą
-     * @private
-     * @param {Player} player 
-     * @param {Phaser.Sprite} comet 
-     * @memberof Main
-     */
+   * Kolizja gracza z kometą
+   * @private
+   * @param {Player} player 
+   * @param {Comet} comet 
+   * @memberof Main
+   */
   private player_comet_CollisionHandler(player: Player, comet: Comet) {
     if (player.untouchtable === false) {
       player.score -= 10;
@@ -588,12 +606,12 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Kolizja gracza ze wzmocnieniem
-     * @private
-     * @param {Player} player 
-     * @param {IPowerUp} powerup 
-     * @memberof Main
-     */
+   * Kolizja gracza ze wzmocnieniem
+   * @private
+   * @param {Player} player 
+   * @param {IPowerUp} powerup 
+   * @memberof Main
+   */
   private player_powerup_CollisionHandler(player: Player, powerup: IPowerUp) {
     powerup.powerup(player);
     new PowerUpText(
@@ -604,25 +622,22 @@ export class Main extends Phaser.State {
       "#FFFFFF"
     );
     player.powerups.push(powerup);
+    // this.powerUps...
   }
 
   /**
-     * Generowanie wzmocnień
-     * @private
-     * @memberof Main
-     */
+   * Generowanie wzmocnień
+   * @private
+   * @memberof Main
+   */
   private generatePowerUps() {
-    this.players.forEach((player: Player) => {
-      player.removePowerups();
-    }, this);
-
     if (this.powerUps) {
       this.powerUps.destroy();
     }
     this.powerUps = this.game.add.group();
 
     this.powerUps.add(
-      new MultiWeaponPowerUp(
+      new SplitShotPowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
         rnd.integerInRange(100, this.game.height - 100)
@@ -638,7 +653,7 @@ export class Main extends Phaser.State {
     );
 
     this.powerUps.add(
-      new MultiWeaponPowerUp(
+      new SplitShotPowerUp(
         this.game,
         rnd.integerInRange(400, this.game.width - 100),
         rnd.integerInRange(100, this.game.height - 100)
@@ -671,15 +686,16 @@ export class Main extends Phaser.State {
   }
 
   /**
-     * Usunięcie wzmocnień z planszy
-     * @private
-     * @memberof Main
-     */
+   * Usunięcie wzmocnień z planszy
+   * @private
+   * @memberof Main
+   */
   private destroyPowerUps() {
     this.powerUps.forEach(powerup => {
       if (powerup.player == null) {
         powerup.destroy();
       }
     }, this);
+    // this.powerUps.destroy();
   }
 }

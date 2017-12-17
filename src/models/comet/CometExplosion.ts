@@ -2,7 +2,7 @@ import "p2";
 import "pixi";
 import "phaser";
 
-import { Assets } from "../assets";
+import { Assets } from "../../assets";
 
 export class CometExplosion extends Phaser.Group {
   constructor(game: Phaser.Game) {

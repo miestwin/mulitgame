@@ -1,1 +1,1 @@
-export * from './AppAssetsLoader';
+export * from "./AppAssetsLoader";

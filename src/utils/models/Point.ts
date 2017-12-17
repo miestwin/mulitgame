@@ -4,23 +4,22 @@
  * @class Point
  */
 export class Point {
-    
-    /**
+  /**
      * Współrzędna X
      * @type {number}
      * @memberof Point
      */
-    public X: number;
+  public X: number;
 
-    /**
+  /**
      * Współrzędna y
      * @type {number}
      * @memberof Point
      */
-    public Y: number;
+  public Y: number;
 
-    constructor(x?: number, y?: number) {
-        if (x) this.X = x;
-        if (y) this.Y = y;
-    }
+  constructor(x?: number, y?: number) {
+    if (x) this.X = x;
+    if (y) this.Y = y;
+  }
 }

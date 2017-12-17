@@ -1,8 +1,8 @@
-import { Player } from '../Player';
+import { Player } from "../Player";
 
 export interface IPowerUp {
-    readonly name: string;
-    player: Player;
-    powerup(player: Player, options?: any): void;
-    remove(): void;
+  readonly name: string;
+  player: Player;
+  powerup(player: Player, options?: any): void;
+  remove(): void;
 }

@@ -2,8 +2,8 @@ import "p2";
 import "pixi";
 import "phaser";
 
-import { Player } from "./Player";
-import { Assets } from "../assets";
+import { Player } from "../Player";
+import { Assets } from "../../assets";
 
 export class Comet extends Phaser.Sprite {
   /**

@@ -6,12 +6,19 @@ import { Assets } from "../../assets";
 import { Bullet } from "./Bullet";
 import { IWeapon } from "./IWeapon";
 
-export class LittleDoctor extends Phaser.Group implements IWeapon {
+/**
+ * Grupa pojedyńczych pocisków
+ * @export
+ * @class SingleBullet
+ * @extends {Phaser.Group}
+ * @implements {IWeapon}
+ */
+export class SingleBullet extends Phaser.Group implements IWeapon {
   /**
-   * Czy możliwe jest oddanie następnego strału
+   * Czy możliwe jest oddanie następnego strzału
    * @private
    * @type {number}
-   * @memberof LittleDoctor
+   * @memberof SingleBullet
    */
   private _nextFire: number = 0;
   public get nextFire(): number {
@@ -21,37 +28,39 @@ export class LittleDoctor extends Phaser.Group implements IWeapon {
   /**
    * Prędkość pojeyńczego pocisku
    * @type {number}
-   * @memberof LittleDoctor
+   * @memberof SingleBullet
    */
-  public readonly bulletSpeed: number = 1500;
+  public readonly bulletSpeed: number = 600;
 
   /**
    * Częstotliwość strzałów
    * @type {number}
-   * @memberof LittleDoctor
+   * @memberof SingleBullet
    */
-  public readonly fireRate: number = 700;
+  public readonly fireRate: number = 50;
 
-  constructor(game: Phaser.Game, key: string) {
+  constructor(game: Phaser.Game) {
     super(
       game,
       game.world,
-      "little-doctor",
+      "single-bullet",
       false,
       true,
       Phaser.Physics.ARCADE
     );
-    for (let i = 0; i < 20; i++) {
-      this.add(new Bullet(game, key, 500));
+    for (let i = 0; i < 40; i++) {
+      this.add(
+        new Bullet(game, Assets.Images.Bulelts.SingleBullet.getName(), 2.5)
+      );
     }
   }
 
   /**
    * Oddanie strzału
-   * @param {number} sx
+   * @param {number} sx 
    * @param {number} sy 
-   * @returns
-   * @memberof LittleDoctor
+   * @returns 
+   * @memberof SingleBullet
    */
   public fire(sx: number, sy: number) {
     const bullet: Bullet = this.getFirstExists(false);

@@ -159,9 +159,9 @@ export namespace Assets {
           return "../assets/images/bullet.png";
         }
       }
-      export class ShmupBullet {
+      export class SingleBullet {
         static getName(): string {
-          return "shmup-bullet";
+          return "single-bullet";
         }
         static getPNG(): string {
           return "../assets/images/shmup-bullet.png";
@@ -198,9 +198,9 @@ export namespace Assets {
       }
     }
     export namespace PowerUps {
-      export class MultiWeapon {
+      export class SplitShoot {
         static getName(): string {
-          return "multi-weapon_powerup";
+          return "split-shoot_powerup";
         }
         static getPNG(): string {
           return "../assets/images/power-ups/bold_silver.png";

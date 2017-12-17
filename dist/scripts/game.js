@@ -60,32 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 99);
+/******/ 	return __webpack_require__(__webpack_require__.s = 97);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(40);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(41);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(42);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -110,6 +89,27 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(39);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(40);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(41);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 4 */
@@ -292,15 +292,15 @@ var Assets;
                 }
             }
             Bulelts.Bullet = Bullet;
-            class ShmupBullet {
+            class SingleBullet {
                 static getName() {
-                    return "shmup-bullet";
+                    return "single-bullet";
                 }
                 static getPNG() {
                     return "../assets/images/shmup-bullet.png";
                 }
             }
-            Bulelts.ShmupBullet = ShmupBullet;
+            Bulelts.SingleBullet = SingleBullet;
             let Lasers;
             (function (Lasers) {
                 class Laser {
@@ -339,15 +339,15 @@ var Assets;
         })(Bulelts = Images.Bulelts || (Images.Bulelts = {}));
         let PowerUps;
         (function (PowerUps) {
-            class MultiWeapon {
+            class SplitShoot {
                 static getName() {
-                    return "multi-weapon_powerup";
+                    return "split-shoot_powerup";
                 }
                 static getPNG() {
                     return "../assets/images/power-ups/bold_silver.png";
                 }
             }
-            PowerUps.MultiWeapon = MultiWeapon;
+            PowerUps.SplitShoot = SplitShoot;
             class ResetPoints {
                 static getName() {
                     return "reset-points_powerup";
@@ -788,15 +788,15 @@ Emitter.prototype.hasListeners = function(event){
  * Module dependencies.
  */
 
-var keys = __webpack_require__(61);
-var hasBinary = __webpack_require__(21);
-var sliceBuffer = __webpack_require__(62);
-var after = __webpack_require__(63);
-var utf8 = __webpack_require__(64);
+var keys = __webpack_require__(60);
+var hasBinary = __webpack_require__(18);
+var sliceBuffer = __webpack_require__(61);
+var after = __webpack_require__(62);
+var utf8 = __webpack_require__(63);
 
 var base64encoder;
 if (global && global.ArrayBuffer) {
-  base64encoder = __webpack_require__(66);
+  base64encoder = __webpack_require__(65);
 }
 
 /**
@@ -854,7 +854,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(67);
+var Blob = __webpack_require__(66);
 
 /**
  * Encodes a packet.
@@ -1391,36 +1391,10 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(38));
-__export(__webpack_require__(76));
-__export(__webpack_require__(77));
-__export(__webpack_require__(31));
-__export(__webpack_require__(32));
-__export(__webpack_require__(78));
-__export(__webpack_require__(33));
-__export(__webpack_require__(35));
-__export(__webpack_require__(82));
-__export(__webpack_require__(83));
-__export(__webpack_require__(84));
-__export(__webpack_require__(36));
-__export(__webpack_require__(85));
-__export(__webpack_require__(86));
-
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1610,7 +1584,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1619,7 +1593,7 @@ process.umask = function() { return 0; };
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(48);
+exports = module.exports = __webpack_require__(47);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -1799,10 +1773,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /**
@@ -1845,7 +1819,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 
@@ -1857,7 +1831,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1866,7 +1840,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(68);
+exports = module.exports = __webpack_require__(67);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -2046,11 +2020,36 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 13 */,
-/* 14 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(35));
+__export(__webpack_require__(75));
+__export(__webpack_require__(76));
+__export(__webpack_require__(28));
+__export(__webpack_require__(29));
+__export(__webpack_require__(77));
+__export(__webpack_require__(30));
+__export(__webpack_require__(32));
+__export(__webpack_require__(81));
+__export(__webpack_require__(82));
+__export(__webpack_require__(83));
+__export(__webpack_require__(33));
+__export(__webpack_require__(84));
+__export(__webpack_require__(85));
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2058,11 +2057,11 @@ function localstorage() {
  * Module dependencies.
  */
 
-var debug = __webpack_require__(50)('socket.io-parser');
+var debug = __webpack_require__(49)('socket.io-parser');
 var Emitter = __webpack_require__(5);
-var hasBin = __webpack_require__(21);
-var binary = __webpack_require__(54);
-var isBuf = __webpack_require__(22);
+var hasBin = __webpack_require__(18);
+var binary = __webpack_require__(53);
+var isBuf = __webpack_require__(19);
 
 /**
  * Protocol version.
@@ -2456,12 +2455,12 @@ function error() {
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(59);
+var hasCORS = __webpack_require__(58);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -2497,10 +2496,10 @@ module.exports = function (opts) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2663,199 +2662,8 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
+/* 16 */,
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Nazwy stanów gry
- * @export
- * @class States
- */
-class States {
-}
-States.BOOT = 'Boot';
-States.LOADING = 'Loading';
-States.MAIN_MENU = 'MainMenu';
-States.START_GAME = 'StartGame';
-States.MESSAGE = 'Message';
-States.MAIN = 'Main';
-exports.States = States;
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(7);
-var Const;
-(function (Const) {
-    let Ships;
-    (function (Ships) {
-        class GREEN {
-            static getName() {
-                return "player-ship_green";
-            }
-            static getValue() {
-                return 0x33cc33;
-            }
-        }
-        Ships.GREEN = GREEN;
-        class PURPLE {
-            static getName() {
-                return "player-ship_purple";
-            }
-            static getValue() {
-                return 0x9933ff;
-            }
-        }
-        Ships.PURPLE = PURPLE;
-        class BLUE {
-            static getName() {
-                return "player-ship_blue";
-            }
-            static getValue() {
-                return 0x0066ff;
-            }
-        }
-        Ships.BLUE = BLUE;
-        class WATERY {
-            static getName() {
-                return "player-ship_watery";
-            }
-            static getValue() {
-                return 0x009999;
-            }
-        }
-        Ships.WATERY = WATERY;
-        class PINK {
-            static getName() {
-                return "player-ship_pink";
-            }
-            static getValue() {
-                return 0xff3399;
-            }
-        }
-        Ships.PINK = PINK;
-        class RED {
-            static getName() {
-                return "player-ship_red";
-            }
-            static getValue() {
-                return 0xcc2900;
-            }
-        }
-        Ships.RED = RED;
-        class YELLOW {
-            static getName() {
-                return "player-ship_yellow";
-            }
-            static getValue() {
-                return 0xd1d123;
-            }
-        }
-        Ships.YELLOW = YELLOW;
-        class ORANGE {
-            static getName() {
-                return "player-ship_orange";
-            }
-            static getValue() {
-                return 0xcc5200;
-            }
-        }
-        Ships.ORANGE = ORANGE;
-        class GRASS {
-            static getName() {
-                return "player-ship_grass";
-            }
-            static getValue() {
-                return 0x739900;
-            }
-        }
-        Ships.GRASS = GRASS;
-        class DARKPINK {
-            static getName() {
-                return "player-ship_darkpink";
-            }
-            static getValue() {
-                return 0x993333;
-            }
-        }
-        Ships.DARKPINK = DARKPINK;
-    })(Ships = Const.Ships || (Const.Ships = {}));
-    let Nebula;
-    (function (Nebula) {
-        class PURPLE {
-            static getName() {
-                return "nebula_purple";
-            }
-            static getValue() {
-                return new utils_1.Color(179, 0, 179);
-            }
-        }
-        Nebula.PURPLE = PURPLE;
-        class ORANE {
-            static getName() {
-                return "nebula_orange";
-            }
-            static getValue() {
-                return new utils_1.Color(225, 51, 0);
-            }
-        }
-        Nebula.ORANE = ORANE;
-        class GREEN {
-            static getName() {
-                return "nebula_green";
-            }
-            static getValue() {
-                return new utils_1.Color(0, 153, 51);
-            }
-        }
-        Nebula.GREEN = GREEN;
-        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
-        Nebula.Names = [];
-    })(Nebula = Const.Nebula || (Const.Nebula = {}));
-    let Comet;
-    (function (Comet) {
-        Comet.Names = [];
-    })(Comet = Const.Comet || (Const.Comet = {}));
-    class Stars {
-        static getName() {
-            return "starsfield";
-        }
-    }
-    Const.Stars = Stars;
-    let Element;
-    (function (Element) {
-        Element.Colors = [
-            0xccccff,
-            0xccffff,
-            0xb3ffb3,
-            0xffff99,
-            0xffb3ff,
-            0x99ccff
-        ];
-        Element.ColorsString = [
-            "#ccccff",
-            "#ccffff",
-            "#b3ffb3",
-            "#ffff99",
-            "#ffb3ff",
-            "#99ccff"
-        ];
-        Element.Names = [];
-    })(Element = Const.Element || (Const.Element = {}));
-})(Const = exports.Const || (exports.Const = {}));
-
-
-/***/ }),
-/* 19 */,
-/* 20 */
 /***/ (function(module, exports) {
 
 /**
@@ -2900,7 +2708,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 21 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2909,7 +2717,7 @@ module.exports = function parseuri(str) {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(53);
+var isArray = __webpack_require__(52);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
@@ -2966,10 +2774,10 @@ function hasBinary (obj) {
   return false;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2986,10 +2794,10 @@ function isBuf(obj) {
          (global.ArrayBuffer && obj instanceof ArrayBuffer);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2997,15 +2805,15 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(56);
-var Socket = __webpack_require__(28);
+var eio = __webpack_require__(55);
+var Socket = __webpack_require__(25);
 var Emitter = __webpack_require__(5);
-var parser = __webpack_require__(14);
-var on = __webpack_require__(29);
-var bind = __webpack_require__(30);
-var debug = __webpack_require__(9)('socket.io-client:manager');
-var indexOf = __webpack_require__(27);
-var Backoff = __webpack_require__(75);
+var parser = __webpack_require__(13);
+var on = __webpack_require__(26);
+var bind = __webpack_require__(27);
+var debug = __webpack_require__(8)('socket.io-client:manager');
+var indexOf = __webpack_require__(24);
+var Backoff = __webpack_require__(74);
 
 /**
  * IE6+ hasOwnProperty
@@ -3568,17 +3376,17 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 24 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(15);
-var XHR = __webpack_require__(60);
-var JSONP = __webpack_require__(70);
-var websocket = __webpack_require__(71);
+var XMLHttpRequest = __webpack_require__(14);
+var XHR = __webpack_require__(59);
+var JSONP = __webpack_require__(69);
+var websocket = __webpack_require__(70);
 
 /**
  * Export transports.
@@ -3625,22 +3433,22 @@ function polling (opts) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(16);
-var parseqs = __webpack_require__(10);
+var Transport = __webpack_require__(15);
+var parseqs = __webpack_require__(9);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(11);
-var yeast = __webpack_require__(26);
-var debug = __webpack_require__(12)('engine.io-client:polling');
+var inherit = __webpack_require__(10);
+var yeast = __webpack_require__(23);
+var debug = __webpack_require__(11)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3653,7 +3461,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(15);
+  var XMLHttpRequest = __webpack_require__(14);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -3879,7 +3687,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 26 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3954,7 +3762,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 27 */
+/* 24 */
 /***/ (function(module, exports) {
 
 
@@ -3969,7 +3777,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 28 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3977,13 +3785,13 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(14);
+var parser = __webpack_require__(13);
 var Emitter = __webpack_require__(5);
-var toArray = __webpack_require__(74);
-var on = __webpack_require__(29);
-var bind = __webpack_require__(30);
-var debug = __webpack_require__(9)('socket.io-client:socket');
-var parseqs = __webpack_require__(10);
+var toArray = __webpack_require__(73);
+var on = __webpack_require__(26);
+var bind = __webpack_require__(27);
+var debug = __webpack_require__(8)('socket.io-client:socket');
+var parseqs = __webpack_require__(9);
 
 /**
  * Module exports.
@@ -4393,7 +4201,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 29 */
+/* 26 */
 /***/ (function(module, exports) {
 
 
@@ -4423,7 +4231,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 30 */
+/* 27 */
 /***/ (function(module, exports) {
 
 /**
@@ -4452,7 +4260,7 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 31 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4476,7 +4284,7 @@ exports.grad1d = grad1d;
 
 
 /***/ }),
-/* 32 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4489,7 +4297,7 @@ exports.lerp = lerp;
 
 
 /***/ }),
-/* 33 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4498,14 +4306,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(78));
 __export(__webpack_require__(79));
+__export(__webpack_require__(31));
 __export(__webpack_require__(80));
-__export(__webpack_require__(34));
-__export(__webpack_require__(81));
 
 
 /***/ }),
-/* 34 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4534,7 +4342,7 @@ exports.Marsaglia = Marsaglia;
 
 
 /***/ }),
-/* 35 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4555,7 +4363,7 @@ exports.cross = cross;
 
 
 /***/ }),
-/* 36 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4568,214 +4376,11 @@ var rnd;
     }
     rnd.integerInRange = integerInRange;
 })(rnd = exports.rnd || (exports.rnd = {}));
-// export function rand(seed, offset) {
-//     return new rng.MT(hashcode(seed) + offset);
-// }
-// export function generateRandomSeed() {
-//     return (Math.random() * 1000000000000000000).toString(36);
-// }
 
 
 /***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const io = __webpack_require__(46);
-/**
- * Połączenie z serwerem
- * @export
- * @class Network
- */
-class Network {
-    static connect() {
-        Network.socket = io();
-        Network.initialize();
-    }
-    static initialize() {
-        Network.socket.on('disconnect', () => {
-            document.location.reload();
-        });
-    }
-    /**
-     * Usunięcie podanego listenere
-     * @static
-     * @param {string} listener
-     * @memberof Network
-     */
-    static removeListener(listener) {
-        Network.socket.off(listener);
-    }
-    /**
-     * Nadaje informację o nowej grze
-     * @static
-     * @param {any} id
-     * @memberof Network
-     */
-    static newGame(id) {
-        Network.socket.emit(Network.NEW_GAME, { id: id });
-    }
-    /**
-     * Polecenie rozpoczęcia odliczania do rozpoczęcia gry
-     * @static
-     * @memberof Network
-     */
-    static startTimer() {
-        Network.socket.emit(Network.START_TIMER);
-    }
-    /**
-     * Pobierz wszystkich graczy
-     * @static
-     * @memberof Network
-     */
-    static getAllPlayers() {
-        Network.socket.emit(Network.ALL_PLAYERS);
-    }
-    /**
-     * Aktualizacja wyniku gracza
-     * @static
-     * @param {any} playerId
-     * @param {any} socketId
-     * @param {any} score
-     * @memberof Network
-     */
-    static updatePlayerScore(playerId, socketId, score, vibration) {
-        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score, vibration);
-    }
-    static gameEnd(gameId, playerId) {
-        Network.socket.emit(Network.END_GAME, gameId, playerId);
-    }
-    /**
-     * Nasłuchiwanie czy gracz się rozłączył
-     * @static
-     * @param {Function} fn Funkcja która zostanie wykonana
-     * @memberof Network
-     */
-    static onPlayerDisconnected(fn) {
-        Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
-    }
-    /**
-     * Nasłuchiwanie czy gra została utworzona pomyślnie
-     * @static
-     * @param {Function} fn Funkcja która zostanie wykonana
-     * @memberof Network
-     */
-    static onGameAssignedSuccessful(fn) {
-        Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
-    }
-    /**
-     * Nasłuchiwanie zaktualizowania stanu graczy
-     * @static
-     * @param {Function} fn Funkcja która zostanie wykonana
-     * @memberof Network
-     */
-    static onUpdatePlayersState(fn) {
-        Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
-    }
-    /**
-     * Aktualizacja odliczania
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onUpdateTimer(fn) {
-        Network.socket.on(Network.UPDATE_TIMER, fn);
-    }
-    /**
-     * Rozpoczęcie gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onStartGame(fn) {
-        Network.socket.on(Network.START_GAME, fn);
-    }
-    /**
-     * Odebranie informacji o graczach
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGetAllPlayers(fn) {
-        Network.socket.on(Network.ALL_PLAYERS, fn);
-    }
-    /**
-     * Aktualizacja pozycji gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayedUpdateXY(fn) {
-        Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
-    }
-    /**
-     * Aktualizacja pozycji gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayerUpdateZ(fn) {
-        Network.socket.on(Network.UPDATE_PLAYER_Z, fn);
-    }
-    /**
-     * Oddanie strzału przez gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayerFire(fn) {
-        Network.socket.on(Network.PLAYER_FIRE, fn);
-    }
-    /**
-     * Wszyscy gracze rozłączyli się
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onNoConnectedPlayers(fn) {
-        Network.socket.on(Network.NO_CONNECTED_PLAYERS, fn);
-    }
-    /**
-     * Koniec gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onEndGame(fn) {
-        Network.socket.on(Network.END_GAME, fn);
-    }
-    /**
-     * Ponowne uruchomienie rozgrywki
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayAgain(fn) {
-        Network.socket.on(Network.PLAY_AGAIN, fn);
-    }
-}
-Network.NEW_GAME = 'new-game';
-Network.START_TIMER = 'start-timer';
-Network.PLAYER_DISCONNECTED = 'player-disconnected';
-Network.GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
-Network.UPDATE_PLAYERS_STATE = 'update-players-state';
-Network.UPDATE_TIMER = 'update-timer';
-Network.START_GAME = 'start-game';
-Network.ALL_PLAYERS = 'all-players';
-Network.UPDATE_PLAYER_XY = 'update-player-xy';
-Network.UPDATE_PLAYER_Z = 'update-player-z';
-Network.UPDATE_PLAYER_SCORE = 'update_player_score';
-Network.PLAYER_FIRE = 'player_fire';
-Network.NO_CONNECTED_PLAYERS = 'no_connected_players';
-Network.END_GAME = 'end-game';
-Network.PLAY_AGAIN = 'play-again';
-exports.default = Network;
-
-
-/***/ }),
-/* 38 */
+/* 34 */,
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4787,14 +4392,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns
  */
 function guid() {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    return (s4() +
+        s4() +
+        "-" +
+        s4() +
+        "-" +
+        s4() +
+        "-" +
+        s4() +
+        "-" +
+        s4() +
+        s4() +
+        s4());
 }
 exports.guid = guid;
 
 
 /***/ }),
-/* 39 */
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Nazwy stanów gry
+ * @export
+ * @class States
+ */
+class States {
+}
+States.BOOT = "Boot";
+States.LOADING = "Loading";
+States.MESSAGE = "Message";
+States.MAIN = "Main";
+exports.States = States;
+
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4803,13 +4442,58 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(38));
+__export(__webpack_require__(111));
+__export(__webpack_require__(112));
 __export(__webpack_require__(113));
-__export(__webpack_require__(114));
-__export(__webpack_require__(115));
 
 
 /***/ }),
-/* 40 */
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+/**
+ * Sprite pocisku
+ * @export
+ * @class Bullet
+ * @extends {Phaser.Sprite}
+ */
+class Bullet extends Phaser.Sprite {
+    constructor(game, key, dmg) {
+        super(game, 0, 0, key);
+        this.anchor.set(0.5);
+        this.checkWorldBounds = true;
+        this.outOfBoundsKill = true;
+        this.exists = false;
+        this.dmg = dmg;
+    }
+    /**
+     * Oddanie strzału
+     * @param {number} x
+     * @param {number} y
+     * @param {number} speed
+     * @param {number} gx
+     * @param {number} gy
+     * @memberof Bullet
+     */
+    fire(x, y, speed, gx, gy) {
+        this.reset(x, y);
+        this.body.velocity.x = speed;
+        this.body.gravity.x = gx;
+        this.body.gravity.y = gy;
+    }
+}
+exports.Bullet = Bullet;
+
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;/**
@@ -18427,7 +18111,7 @@ World.prototype.raycast = function(result, ray){
 });
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -27553,7 +27237,7 @@ Object.defineProperty(PIXI.TilingSprite.prototype, 'height', {
 }).call(this);
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -107917,10 +107601,10 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107929,20 +107613,20 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(44));
+__export(__webpack_require__(43));
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const FontFaceObserver = __webpack_require__(45);
+__webpack_require__(3);
+const FontFaceObserver = __webpack_require__(44);
 /**
  * Własna impementacja Loadera zasobów
  * @export
@@ -107960,29 +107644,28 @@ class AppAssetsLoader extends Phaser.Loader {
      * @param {any} fontName
      * @param {any} overwrite
      * @returns
-     * @memberof CustomLoader
+     * @memberof AppAssetsLoader
      */
     webfont(key, fontName, overwrite) {
-        if (typeof overwrite === 'undefined') {
+        if (typeof overwrite === "undefined") {
             overwrite = false;
         }
-        this.addToFileList('webfont', key, fontName);
+        this.addToFileList("webfont", key, fontName);
         return this;
     }
     /**
      * Ładowanie pliku
-     * @extends
      * @param {any} file
-     * @memberof CustomLoader
+     * @memberof AppAssetsLoader
      */
     loadFile(file) {
         super.loadFile(file);
-        if (file.type === 'webfont') {
+        if (file.type === "webfont") {
             const font = new FontFaceObserver(file.url);
             font.load(null, 10000).then(() => {
                 this.asyncComplete(file);
             }, () => {
-                this.asyncComplete(file, 'Error loading font ' + file.url);
+                this.asyncComplete(file, "Error loading font " + file.url);
             });
         }
     }
@@ -107991,7 +107674,7 @@ exports.AppAssetsLoader = AppAssetsLoader;
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
@@ -108005,7 +107688,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -108013,10 +107696,10 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
  * Module dependencies.
  */
 
-var url = __webpack_require__(47);
-var parser = __webpack_require__(14);
-var Manager = __webpack_require__(23);
-var debug = __webpack_require__(9)('socket.io-client');
+var url = __webpack_require__(46);
+var parser = __webpack_require__(13);
+var Manager = __webpack_require__(20);
+var debug = __webpack_require__(8)('socket.io-client');
 
 /**
  * Module exports.
@@ -108100,12 +107783,12 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(23);
-exports.Socket = __webpack_require__(28);
+exports.Manager = __webpack_require__(20);
+exports.Socket = __webpack_require__(25);
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -108113,8 +107796,8 @@ exports.Socket = __webpack_require__(28);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(20);
-var debug = __webpack_require__(9)('socket.io-client:url');
+var parseuri = __webpack_require__(17);
+var debug = __webpack_require__(8)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -108184,10 +107867,10 @@ function url (uri, loc) {
   return obj;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -108203,7 +107886,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(49);
+exports.humanize = __webpack_require__(48);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -108395,7 +108078,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -108553,7 +108236,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -108562,7 +108245,7 @@ function plural(ms, n, name) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(51);
+exports = module.exports = __webpack_require__(50);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -108742,10 +108425,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -108761,7 +108444,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(52);
+exports.humanize = __webpack_require__(51);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -108953,7 +108636,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports) {
 
 /**
@@ -109111,7 +108794,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -109122,7 +108805,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -109131,8 +108814,8 @@ module.exports = Array.isArray || function (arr) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(55);
-var isBuf = __webpack_require__(22);
+var isArray = __webpack_require__(54);
+var isBuf = __webpack_require__(19);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -109267,10 +108950,10 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -109281,19 +108964,19 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+module.exports = __webpack_require__(56);
+
+
+/***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 module.exports = __webpack_require__(57);
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-module.exports = __webpack_require__(58);
 
 /**
  * Exports parser
@@ -109305,21 +108988,21 @@ module.exports.parser = __webpack_require__(6);
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var transports = __webpack_require__(24);
+var transports = __webpack_require__(21);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(12)('engine.io-client:socket');
-var index = __webpack_require__(27);
+var debug = __webpack_require__(11)('engine.io-client:socket');
+var index = __webpack_require__(24);
 var parser = __webpack_require__(6);
-var parseuri = __webpack_require__(20);
-var parsejson = __webpack_require__(73);
-var parseqs = __webpack_require__(10);
+var parseuri = __webpack_require__(17);
+var parsejson = __webpack_require__(72);
+var parseqs = __webpack_require__(9);
 
 /**
  * Module exports.
@@ -109452,8 +109135,8 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(16);
-Socket.transports = __webpack_require__(24);
+Socket.Transport = __webpack_require__(15);
+Socket.transports = __webpack_require__(21);
 Socket.parser = __webpack_require__(6);
 
 /**
@@ -110053,10 +109736,10 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports) {
 
 
@@ -110079,18 +109762,18 @@ try {
 
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(15);
-var Polling = __webpack_require__(25);
+var XMLHttpRequest = __webpack_require__(14);
+var Polling = __webpack_require__(22);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(11);
-var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(10);
+var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -110496,10 +110179,10 @@ function unloadHandler () {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports) {
 
 
@@ -110524,7 +110207,7 @@ module.exports = Object.keys || function keys (obj){
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports) {
 
 /**
@@ -110559,7 +110242,7 @@ module.exports = function(arraybuffer, start, end) {
 
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -110593,7 +110276,7 @@ function noop() {}
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -110851,10 +110534,10 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)(module), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module), __webpack_require__(0)))
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -110882,7 +110565,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports) {
 
 /*
@@ -110955,7 +110638,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -111055,10 +110738,10 @@ module.exports = (function() {
   }
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -111074,7 +110757,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(69);
+exports.humanize = __webpack_require__(68);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -111266,7 +110949,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports) {
 
 /**
@@ -111424,7 +111107,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -111432,8 +111115,8 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(25);
-var inherit = __webpack_require__(11);
+var Polling = __webpack_require__(22);
+var inherit = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -111659,27 +111342,27 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(16);
+var Transport = __webpack_require__(15);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(10);
-var inherit = __webpack_require__(11);
-var yeast = __webpack_require__(26);
-var debug = __webpack_require__(12)('engine.io-client:websocket');
+var parseqs = __webpack_require__(9);
+var inherit = __webpack_require__(10);
+var yeast = __webpack_require__(23);
+var debug = __webpack_require__(11)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(72);
+    NodeWebSocket = __webpack_require__(71);
   } catch (e) { }
 }
 
@@ -111952,16 +111635,16 @@ WS.prototype.check = function () {
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -111996,10 +111679,10 @@ module.exports = function parsejson(data) {
     return (new Function('return ' + data))();
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -112018,7 +111701,7 @@ function toArray(list, index) {
 
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports) {
 
 
@@ -112109,7 +111792,7 @@ Backoff.prototype.setJitter = function(jitter){
 
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112129,11 +111812,10 @@ function map(value, istart, istop, ostart, ostop) {
     return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
 }
 exports.map = map;
-;
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112156,7 +111838,7 @@ exports.toHex = toHex;
 
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112164,17 +111846,17 @@ exports.toHex = toHex;
 Object.defineProperty(exports, "__esModule", { value: true });
 function colorLuminance(hex, lum = 0) {
     // validate hex string
-    hex = String(hex).replace(/[^0-9a-f]/gi, '');
+    hex = String(hex).replace(/[^0-9a-f]/gi, "");
     if (hex.length < 6) {
         hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
     }
     // convert to decimal and change luminosity
-    let rgb = '#';
+    let rgb = "#";
     let c;
     for (let i = 0; i < 3; i++) {
         c = parseInt(hex.substr(i * 2, 2), 16);
-        c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-        rgb += ('00' + c).substr(c.length);
+        c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
+        rgb += ("00" + c).substr(c.length);
     }
     return rgb;
 }
@@ -112182,7 +111864,7 @@ exports.colorLuminance = colorLuminance;
 
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112205,7 +111887,7 @@ exports.Point = Point;
 
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112224,43 +111906,43 @@ class Color {
         this.A = a ? a : 255;
     }
     /**
-     * Utwożenie nowego koloru
-     * @static
-     * @param {number} r
-     * @param {number} g
-     * @param {number} b
-     * @param {number} [a]
-     * @returns
-     * @memberof Color
-     */
+       * Utwożenie nowego koloru
+       * @static
+       * @param {number} r
+       * @param {number} g
+       * @param {number} b
+       * @param {number} [a]
+       * @returns
+       * @memberof Color
+       */
     static fromRGBA(r, g, b, a) {
         return new Color(r, g, b, a != null ? a : 255);
     }
     /**
-     * Zmiana rozjaśnienia koloru
-     * @static
-     * @param {Color} color
-     * @param {number} lum
-     * @returns
-     * @memberof Color
-     */
+       * Zmiana rozjaśnienia koloru
+       * @static
+       * @param {Color} color
+       * @param {number} lum
+       * @returns
+       * @memberof Color
+       */
     static rgbLum(color, lum) {
-        return new Color(Math.round(Math.min(Math.max(0, color.R + (color.R * lum)), 255)), Math.round(Math.min(Math.max(0, color.G + (color.G * lum)), 255)), Math.round(Math.min(Math.max(0, color.B + (color.B * lum)), 255)));
+        return new Color(Math.round(Math.min(Math.max(0, color.R + color.R * lum), 255)), Math.round(Math.min(Math.max(0, color.G + color.G * lum), 255)), Math.round(Math.min(Math.max(0, color.B + color.B * lum), 255)));
     }
 }
 exports.Color = Color;
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const lerp_1 = __webpack_require__(32);
-const grad_1 = __webpack_require__(31);
-const Marsaglia_1 = __webpack_require__(34);
+const lerp_1 = __webpack_require__(29);
+const grad_1 = __webpack_require__(28);
+const Marsaglia_1 = __webpack_require__(31);
 const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
 function noise(x, y, z) {
     if (noiseProfile.generator === null) {
@@ -112346,7 +112028,7 @@ exports.PerlinNoise = PerlinNoise;
 
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112364,7 +112046,7 @@ exports.hashcode = hashcode;
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112377,13 +112059,13 @@ exports.seed = seed;
 
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const cross_1 = __webpack_require__(35);
+const cross_1 = __webpack_require__(32);
 /**
  * Conveh hull
  * Monotone chain
@@ -112397,14 +112079,16 @@ function convexhull(points) {
     });
     const lower = [];
     for (let i = 0; i < points.length; i++) {
-        while (lower.length >= 2 && cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
+        while (lower.length >= 2 &&
+            cross_1.cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
             lower.pop();
         }
         lower.push(points[i]);
     }
     const upper = [];
     for (let i = points.length - 1; i >= 0; i--) {
-        while (upper.length >= 2 && cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
+        while (upper.length >= 2 &&
+            cross_1.cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
             upper.pop();
         }
         upper.push(points[i]);
@@ -112417,14 +112101,14 @@ exports.convexhull = convexhull;
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rnd_1 = __webpack_require__(36);
-const models_1 = __webpack_require__(33);
+const rnd_1 = __webpack_require__(33);
+const models_1 = __webpack_require__(30);
 /**
  * Tworzy tablicę losowych punktów
  * @export
@@ -112449,7 +112133,7 @@ exports.generateRandomPoints = generateRandomPoints;
 
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112485,25 +112169,369 @@ exports.pingPong = pingPong;
 
 
 /***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const io = __webpack_require__(45);
+/**
+ * Połączenie z serwerem
+ * @export
+ * @class Network
+ */
+class Network {
+    static connect() {
+        Network.socket = io();
+        Network.initialize();
+    }
+    static initialize() {
+        Network.socket.on('disconnect', () => {
+            document.location.reload();
+        });
+    }
+    /**
+     * Usunięcie podanego listenere
+     * @static
+     * @param {string} listener
+     * @memberof Network
+     */
+    static removeListener(listener) {
+        Network.socket.off(listener);
+    }
+    /**
+     * Nadaje informację o nowej grze
+     * @static
+     * @param {any} id
+     * @memberof Network
+     */
+    static newGame(id) {
+        Network.socket.emit(Network.NEW_GAME, { id: id });
+    }
+    /**
+     * Polecenie rozpoczęcia odliczania do rozpoczęcia gry
+     * @static
+     * @memberof Network
+     */
+    static startTimer() {
+        Network.socket.emit(Network.START_TIMER);
+    }
+    /**
+     * Pobierz wszystkich graczy
+     * @static
+     * @memberof Network
+     */
+    static getAllPlayers() {
+        Network.socket.emit(Network.ALL_PLAYERS);
+    }
+    /**
+     * Aktualizacja wyniku gracza
+     * @static
+     * @param {any} playerId
+     * @param {any} socketId
+     * @param {any} score
+     * @memberof Network
+     */
+    static updatePlayerScore(playerId, socketId, score, vibration) {
+        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score, vibration);
+    }
+    static gameEnd(gameId, playerId) {
+        Network.socket.emit(Network.END_GAME, gameId, playerId);
+    }
+    /**
+     * Nasłuchiwanie czy gracz się rozłączył
+     * @static
+     * @param {Function} fn Funkcja która zostanie wykonana
+     * @memberof Network
+     */
+    static onPlayerDisconnected(fn) {
+        Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
+    }
+    /**
+     * Nasłuchiwanie czy gra została utworzona pomyślnie
+     * @static
+     * @param {Function} fn Funkcja która zostanie wykonana
+     * @memberof Network
+     */
+    static onGameAssignedSuccessful(fn) {
+        Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
+    }
+    /**
+     * Nasłuchiwanie zaktualizowania stanu graczy
+     * @static
+     * @param {Function} fn Funkcja która zostanie wykonana
+     * @memberof Network
+     */
+    static onUpdatePlayersState(fn) {
+        Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
+    }
+    /**
+     * Aktualizacja odliczania
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateTimer(fn) {
+        Network.socket.on(Network.UPDATE_TIMER, fn);
+    }
+    /**
+     * Rozpoczęcie gry
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onStartGame(fn) {
+        Network.socket.on(Network.START_GAME, fn);
+    }
+    /**
+     * Odebranie informacji o graczach
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGetAllPlayers(fn) {
+        Network.socket.on(Network.ALL_PLAYERS, fn);
+    }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayedUpdateXY(fn) {
+        Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
+    }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayerUpdateZ(fn) {
+        Network.socket.on(Network.UPDATE_PLAYER_Z, fn);
+    }
+    /**
+     * Oddanie strzału przez gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayerFire(fn) {
+        Network.socket.on(Network.PLAYER_FIRE, fn);
+    }
+    /**
+     * Wszyscy gracze rozłączyli się
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onNoConnectedPlayers(fn) {
+        Network.socket.on(Network.NO_CONNECTED_PLAYERS, fn);
+    }
+    /**
+     * Koniec gry
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onEndGame(fn) {
+        Network.socket.on(Network.END_GAME, fn);
+    }
+    /**
+     * Ponowne uruchomienie rozgrywki
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayAgain(fn) {
+        Network.socket.on(Network.PLAY_AGAIN, fn);
+    }
+}
+Network.NEW_GAME = 'new-game';
+Network.START_TIMER = 'start-timer';
+Network.PLAYER_DISCONNECTED = 'player-disconnected';
+Network.GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
+Network.UPDATE_PLAYERS_STATE = 'update-players-state';
+Network.UPDATE_TIMER = 'update-timer';
+Network.START_GAME = 'start-game';
+Network.ALL_PLAYERS = 'all-players';
+Network.UPDATE_PLAYER_XY = 'update-player-xy';
+Network.UPDATE_PLAYER_Z = 'update-player-z';
+Network.UPDATE_PLAYER_SCORE = 'update_player_score';
+Network.PLAYER_FIRE = 'player_fire';
+Network.NO_CONNECTED_PLAYERS = 'no_connected_players';
+Network.END_GAME = 'end-game';
+Network.PLAY_AGAIN = 'play-again';
+exports.default = Network;
+
+
+/***/ }),
 /* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(39));
-__export(__webpack_require__(116));
-__export(__webpack_require__(117));
-__export(__webpack_require__(88));
-__export(__webpack_require__(118));
-__export(__webpack_require__(119));
-__export(__webpack_require__(120));
-__export(__webpack_require__(121));
-__export(__webpack_require__(126));
-__export(__webpack_require__(127));
+const utils_1 = __webpack_require__(12);
+var Const;
+(function (Const) {
+    let Ships;
+    (function (Ships) {
+        class GREEN {
+            static getName() {
+                return "player-ship_green";
+            }
+            static getValue() {
+                return 0x33cc33;
+            }
+        }
+        Ships.GREEN = GREEN;
+        class PURPLE {
+            static getName() {
+                return "player-ship_purple";
+            }
+            static getValue() {
+                return 0x9933ff;
+            }
+        }
+        Ships.PURPLE = PURPLE;
+        class BLUE {
+            static getName() {
+                return "player-ship_blue";
+            }
+            static getValue() {
+                return 0x0066ff;
+            }
+        }
+        Ships.BLUE = BLUE;
+        class WATERY {
+            static getName() {
+                return "player-ship_watery";
+            }
+            static getValue() {
+                return 0x009999;
+            }
+        }
+        Ships.WATERY = WATERY;
+        class PINK {
+            static getName() {
+                return "player-ship_pink";
+            }
+            static getValue() {
+                return 0xff3399;
+            }
+        }
+        Ships.PINK = PINK;
+        class RED {
+            static getName() {
+                return "player-ship_red";
+            }
+            static getValue() {
+                return 0xcc2900;
+            }
+        }
+        Ships.RED = RED;
+        class YELLOW {
+            static getName() {
+                return "player-ship_yellow";
+            }
+            static getValue() {
+                return 0xd1d123;
+            }
+        }
+        Ships.YELLOW = YELLOW;
+        class ORANGE {
+            static getName() {
+                return "player-ship_orange";
+            }
+            static getValue() {
+                return 0xcc5200;
+            }
+        }
+        Ships.ORANGE = ORANGE;
+        class GRASS {
+            static getName() {
+                return "player-ship_grass";
+            }
+            static getValue() {
+                return 0x739900;
+            }
+        }
+        Ships.GRASS = GRASS;
+        class DARKPINK {
+            static getName() {
+                return "player-ship_darkpink";
+            }
+            static getValue() {
+                return 0x993333;
+            }
+        }
+        Ships.DARKPINK = DARKPINK;
+    })(Ships = Const.Ships || (Const.Ships = {}));
+    let Nebula;
+    (function (Nebula) {
+        class PURPLE {
+            static getName() {
+                return "nebula_purple";
+            }
+            static getValue() {
+                return new utils_1.Color(179, 0, 179);
+            }
+        }
+        Nebula.PURPLE = PURPLE;
+        class ORANE {
+            static getName() {
+                return "nebula_orange";
+            }
+            static getValue() {
+                return new utils_1.Color(225, 51, 0);
+            }
+        }
+        Nebula.ORANE = ORANE;
+        class GREEN {
+            static getName() {
+                return "nebula_green";
+            }
+            static getValue() {
+                return new utils_1.Color(0, 153, 51);
+            }
+        }
+        Nebula.GREEN = GREEN;
+        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
+        Nebula.Names = [];
+    })(Nebula = Const.Nebula || (Const.Nebula = {}));
+    let Comet;
+    (function (Comet) {
+        Comet.Names = [];
+    })(Comet = Const.Comet || (Const.Comet = {}));
+    class Stars {
+        static getName() {
+            return "starsfield";
+        }
+    }
+    Const.Stars = Stars;
+    let Element;
+    (function (Element) {
+        Element.Colors = [
+            0xccccff,
+            0xccffff,
+            0xb3ffb3,
+            0xffff99,
+            0xffb3ff,
+            0x99ccff
+        ];
+        Element.ColorsString = [
+            "#ccccff",
+            "#ccffff",
+            "#b3ffb3",
+            "#ffff99",
+            "#ffb3ff",
+            "#99ccff"
+        ];
+        Element.Names = [];
+    })(Element = Const.Element || (Const.Element = {}));
+})(Const = exports.Const || (exports.Const = {}));
 
 
 /***/ }),
@@ -112513,9 +112541,9 @@ __export(__webpack_require__(127));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
+__webpack_require__(3);
 class Comet extends Phaser.Sprite {
     constructor(game, x, y, key) {
         super(game, x, y, key);
@@ -112560,16 +112588,14 @@ exports.Comet = Comet;
 /* 94 */,
 /* 95 */,
 /* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(100);
-document.addEventListener('DOMContentLoaded', function () {
+const Game_1 = __webpack_require__(98);
+document.addEventListener("DOMContentLoaded", function () {
     startApp();
 });
 /**
@@ -112581,7 +112607,7 @@ function startApp() {
         width: window.innerWidth,
         height: window.innerHeight,
         renderer: Phaser.AUTO,
-        parent: document.getElementById('game'),
+        parent: document.getElementById("game"),
         resolution: 1
     };
     // create game
@@ -112590,18 +112616,18 @@ function startApp() {
 
 
 /***/ }),
-/* 100 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const states_1 = __webpack_require__(101);
-const network_1 = __webpack_require__(37);
-const utils_1 = __webpack_require__(7);
+__webpack_require__(3);
+const states_1 = __webpack_require__(99);
+const network_1 = __webpack_require__(86);
+const utils_1 = __webpack_require__(12);
 /**
  * Utworzenie gry
  * @export
@@ -112619,8 +112645,6 @@ class Game extends Phaser.Game {
         // add states to game
         this.state.add(states_1.States.BOOT, states_1.Boot);
         this.state.add(states_1.States.LOADING, states_1.Loading);
-        this.state.add(states_1.States.MAIN_MENU, states_1.MainMenu);
-        this.state.add(states_1.States.START_GAME, states_1.StartGame);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
         this.state.add(states_1.States.MAIN, states_1.Main);
         this.state.start(states_1.States.BOOT);
@@ -112630,7 +112654,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 101 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112639,28 +112663,26 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(17));
-__export(__webpack_require__(102));
-__export(__webpack_require__(103));
-__export(__webpack_require__(112));
-__export(__webpack_require__(128));
-__export(__webpack_require__(129));
-__export(__webpack_require__(130));
+__export(__webpack_require__(36));
+__export(__webpack_require__(100));
+__export(__webpack_require__(101));
+__export(__webpack_require__(108));
+__export(__webpack_require__(109));
 
 
 /***/ }),
-/* 102 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const States_1 = __webpack_require__(17);
-const core_1 = __webpack_require__(43);
-const network_1 = __webpack_require__(37);
+__webpack_require__(3);
+const States_1 = __webpack_require__(36);
+const core_1 = __webpack_require__(42);
+const network_1 = __webpack_require__(86);
 const assets_1 = __webpack_require__(4);
 /**
  * Uruchamianie systemu
@@ -112682,13 +112704,6 @@ class Boot extends Phaser.State {
         });
         // load font
         this.game.load.webfont(assets_1.Assets.Fonts.Kenvector.getName(), assets_1.Assets.Fonts.Kenvector.getFamily());
-        // load loading sprite
-        // this.game.load.spritesheet(
-        //     Assets.Spritesheets.Explosions.Three.getName(), 
-        //     Assets.Spritesheets.Explosions.Three.getPNG(),
-        //     Assets.Spritesheets.Explosions.Three.getFrameWidth(),
-        //     Assets.Spritesheets.Explosions.Three.getFrameHeight(),
-        //     Assets.Spritesheets.Explosions.Three.getFrameMax());
     }
     create() {
         // assign new game
@@ -112703,22 +112718,22 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 103 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const QRious = __webpack_require__(104);
-const States_1 = __webpack_require__(17);
-const config_1 = __webpack_require__(105);
-const generators = __webpack_require__(106);
+__webpack_require__(3);
+const QRious = __webpack_require__(102);
+const States_1 = __webpack_require__(36);
+const config_1 = __webpack_require__(103);
+const generators = __webpack_require__(104);
 const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(18);
-const utils_1 = __webpack_require__(7);
+const const_1 = __webpack_require__(87);
+const utils_1 = __webpack_require__(12);
 /**
  * Ładowanie zasobów
  * @export
@@ -112727,7 +112742,7 @@ const utils_1 = __webpack_require__(7);
  */
 class Loading extends Phaser.State {
     preload() {
-        this.game.stage.backgroundColor = '#000000';
+        this.game.stage.backgroundColor = "#000000";
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
@@ -112735,14 +112750,10 @@ class Loading extends Phaser.State {
         this.game.load.spritesheet(assets_1.Assets.Spritesheets.Explosions.Comet.getName(), assets_1.Assets.Spritesheets.Explosions.Comet.getPNG(), assets_1.Assets.Spritesheets.Explosions.Comet.getFrameWidth(), assets_1.Assets.Spritesheets.Explosions.Comet.getFrameHeight(), assets_1.Assets.Spritesheets.Explosions.Comet.getFrameMax());
         this.game.load.spritesheet(assets_1.Assets.Spritesheets.Bullets.RGBLaser.getName(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getPNG(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getFrameWidth(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getFrameHeight());
         /* game images */
-        this.game.load.image(assets_1.Assets.Images.Shield.getName(), assets_1.Assets.Images.Shield.getPNG());
-        this.game.load.image(assets_1.Assets.Images.PowerUps.MultiWeapon.getName(), assets_1.Assets.Images.PowerUps.MultiWeapon.getPNG());
+        this.game.load.image(assets_1.Assets.Images.PowerUps.SplitShoot.getName(), assets_1.Assets.Images.PowerUps.SplitShoot.getPNG());
         this.game.load.image(assets_1.Assets.Images.PowerUps.LittleDoctor.getName(), assets_1.Assets.Images.PowerUps.LittleDoctor.getPNG());
         this.game.load.image(assets_1.Assets.Images.PowerUps.ResetPoints.getName(), assets_1.Assets.Images.PowerUps.ResetPoints.getPNG());
         this.game.load.image(assets_1.Assets.Images.PowerUps.Untouchtable.getName(), assets_1.Assets.Images.PowerUps.Untouchtable.getPNG());
-        this.game.load.image(assets_1.Assets.Images.ScoreText.Plus.getName(), assets_1.Assets.Images.ScoreText.Plus.getPNG());
-        this.game.load.image(assets_1.Assets.Images.ScoreText.Minus.getName(), assets_1.Assets.Images.ScoreText.Minus.getPNG());
-        this.game.load.image(assets_1.Assets.Images.ScoreText.Minus10.getName(), assets_1.Assets.Images.ScoreText.Minus10.getPNG());
         /* ships */
         this.game.load.image(assets_1.Assets.Images.Ships.GREEN.getName(), assets_1.Assets.Images.Ships.GREEN.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.PURPLE.getName(), assets_1.Assets.Images.Ships.PURPLE.getPNG());
@@ -112754,102 +112765,82 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.Ships.ORANGE.getName(), assets_1.Assets.Images.Ships.ORANGE.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.GRASS.getName(), assets_1.Assets.Images.Ships.GRASS.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.DARKPINK.getName(), assets_1.Assets.Images.Ships.DARKPINK.getPNG());
-        this.game.load.image(assets_1.Assets.Images.Bulelts.ShmupBullet.getName(), assets_1.Assets.Images.Bulelts.ShmupBullet.getPNG());
+        this.game.load.image(assets_1.Assets.Images.Bulelts.SingleBullet.getName(), assets_1.Assets.Images.Bulelts.SingleBullet.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.Bullet.getName(), assets_1.Assets.Images.Bulelts.Bullet.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.Lasers.LaserGREEN.getName(), assets_1.Assets.Images.Bulelts.Lasers.LaserGREEN.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.Lasers.LaserPURPLE.getName(), assets_1.Assets.Images.Bulelts.Lasers.LaserPURPLE.getPNG());
         /* ui */
         this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Grey.getName(), assets_1.Assets.UI.Buttons.Menu.Grey.getPNG());
-        /* shaders */
-        // this.game.load.shader(
-        //     Assets.Shaders.Glow.getName(),
-        //     Assets.Shaders.Glow.getFRAG()
-        // );
-        // this.game.load.shader(
-        //     Assets.Shaders.Pixelate.getName(),
-        //     Assets.Shaders.Pixelate.getFRAG()
-        // );
     }
     create() {
         // create qrcode and go to next state
-        this.loadingText.setText('Create Textures ...');
-        Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
-            this.loadingText.setText('Create QRCode Complete');
+        this.loadingText.setText("Create Textures ...");
+        Promise.all([this.createQRCode(), this.createTextures()])
+            .then(() => {
+            this.loadingText.setText("Create QRCode Complete");
             this.game.state.start(States_1.States.MAIN);
+        })
+            .catch(() => {
+            this.game.state.start(States_1.States.MESSAGE, true, false, "Problem with generating texture");
         });
-        // .catch(() => {
-        //     this.game.state.start(States.MESSAGE, true, false, 'Problem with generating texture');
-        // });
-        // this.createQRCode().then(() => {
-        //     this.loadingText.setText('Create QRCode Complete');
-        //     this.game.state.start(States.MAIN_MENU);
-        // });
     }
     /**
-     * Funkcja stanu ładowania
-     * Tworzy ekran ładowania
-     * Wywoływana jest na początku
-     * @private
-     * @memberof Loading
-     */
+       * Funkcja stanu ładowania
+       * Tworzy ekran ładowania
+       * Wywoływana jest na początku
+       * @private
+       * @memberof Loading
+       */
     loadStart() {
-        // this.loadingSprite = this.game.add.sprite(
-        //     this.game.world.centerX,
-        //     this.game.world.centerY - 40,
-        //     Assets.Spritesheets.Explosions.Three.getName());
-        // this.loadingSprite.anchor.set(0.5);
-        // this.loadingSprite.scale.set(1.1);
-        // this.loadingSprite.animations.add('boom');
-        // this.loadingSprite.animations.play('boom', 20, true);
-        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'Loading ...', {
+        this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Loading ...", {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
+            fill: "#ffffff",
+            align: "center"
         });
         this.loadingText.anchor.set(0.5);
     }
     /**
-     * Funkcja stanu ładowania
-     * Aktualizuje informację o postępach ładowania
-     * @private
-     * @param {any} progress
-     * @param {any} cacheKey
-     * @param {any} success
-     * @param {any} totalLoaded
-     * @param {any} totalFiles
-     * @memberof Loading
-     */
+       * Funkcja stanu ładowania
+       * Aktualizuje informację o postępach ładowania
+       * @private
+       * @param {any} progress
+       * @param {any} cacheKey
+       * @param {any} success
+       * @param {any} totalLoaded
+       * @param {any} totalFiles
+       * @memberof Loading
+       */
     fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
         this.loadingText.setText(`Loading ${progress}%`);
     }
     /**
-     * Funkcja stanu ładowania
-     * Informuje o zakończeniu ładowania zasobów
-     * @private
-     * @memberof Loading
-     */
+       * Funkcja stanu ładowania
+       * Informuje o zakończeniu ładowania zasobów
+       * @private
+       * @memberof Loading
+       */
     loadComplete() {
-        this.loadingText.setText('Load Complete');
+        this.loadingText.setText("Load Complete");
     }
     /**
-     * Tworzenie kodu QR
-     * @private
-     * @returns {Promise<any>}
-     * @memberof Loading
-     */
+       * Tworzenie kodu QR
+       * @private
+       * @returns {Promise<any>}
+       * @memberof Loading
+       */
     createQRCode() {
         let that = this;
         return new Promise((resolve, reject) => {
             let qr = new QRious({
-                value: config_1.default.url + '/controller/' + this.game.state.id,
-                background: '#ffffff',
+                value: config_1.default.url + "/controller/" + this.game.state.id,
+                background: "#ffffff",
                 padding: 20,
                 size: 300
             });
-            qr = qr.toDataURL('image/jpeg');
+            qr = qr.toDataURL("image/jpeg");
             let img = new Image();
             img.onload = () => {
-                that.game.cache.addImage('qrcode', img.src, img);
+                that.game.cache.addImage("qrcode", img.src, img);
                 resolve();
             };
             img.title = this.game.state.id;
@@ -112859,29 +112850,23 @@ class Loading extends Phaser.State {
     createTextures() {
         return new Promise((resolve, reject) => {
             generators.stars(this.game, 0.02, 0.125, const_1.Const.Stars.getName());
-            const_1.Const.Nebula.Names.push('nebula-1');
+            const_1.Const.Nebula.Names.push("nebula-1");
             const nebulaColor = const_1.Const.Nebula.Colors[utils_1.rnd.integerInRange(0, 1)];
             for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-                generators.nebula(this.game, 'nebula-1', utils_1.rnd.integerInRange(0, 1000), nebulaColor);
+                generators.nebula(this.game, "nebula-1", utils_1.rnd.integerInRange(0, 1000), nebulaColor);
             }
-            const_1.Const.Comet.Names.push('comet-1');
-            const_1.Const.Comet.Names.push('comet-2');
-            const_1.Const.Comet.Names.push('comet-3');
-            const_1.Const.Comet.Names.push('comet-4');
-            const_1.Const.Comet.Names.push('comet-5');
-            const_1.Const.Comet.Names.push('comet-6');
-            generators.comet(this.game, 200, 80, 20, 'comet-1');
-            generators.comet(this.game, 150, 40, 10, 'comet-2');
-            generators.comet(this.game, 200, 60, 15, 'comet-3');
-            generators.comet(this.game, 160, 50, 12, 'comet-4');
-            generators.comet(this.game, 170, 55, 13, 'comet-5');
-            generators.comet(this.game, 100, 20, 5, 'comet-6');
-            for (let i = 0; i < 5; i++) {
-                const name = 'element-' + i;
-                const color = const_1.Const.Element.Colors[utils_1.rnd.integerInRange(0, 5)];
-                const_1.Const.Element.Names.push(name);
-                generators.element(this.game, name, color);
-            }
+            const_1.Const.Comet.Names.push("comet-1");
+            const_1.Const.Comet.Names.push("comet-2");
+            const_1.Const.Comet.Names.push("comet-3");
+            const_1.Const.Comet.Names.push("comet-4");
+            const_1.Const.Comet.Names.push("comet-5");
+            const_1.Const.Comet.Names.push("comet-6");
+            generators.comet(this.game, 200, 80, 20, "comet-1");
+            generators.comet(this.game, 150, 40, 10, "comet-2");
+            generators.comet(this.game, 200, 60, 15, "comet-3");
+            generators.comet(this.game, 160, 50, 12, "comet-4");
+            generators.comet(this.game, 170, 55, 13, "comet-5");
+            generators.comet(this.game, 100, 20, 5, "comet-6");
             resolve();
         });
     }
@@ -112890,7 +112875,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 104 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -115258,7 +115243,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 105 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115270,7 +115255,7 @@ exports.default = {
 
 
 /***/ }),
-/* 106 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115279,23 +115264,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(105));
+__export(__webpack_require__(106));
 __export(__webpack_require__(107));
-__export(__webpack_require__(108));
-__export(__webpack_require__(109));
-__export(__webpack_require__(110));
-__export(__webpack_require__(111));
 
 
 /***/ }),
-/* 107 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
+__webpack_require__(3);
 /**
  * Generacja gwiazd na scenie
  * @export
@@ -115349,78 +115332,16 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 108 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-function ship(game, key, color) {
-    const graphics = game.add.graphics(0, 0);
-    graphics.beginFill(0x1f1f60);
-    graphics.lineStyle(6, color, 1);
-    graphics.moveTo(40, 50);
-    graphics.lineTo(100, 75);
-    graphics.lineTo(40, 100);
-    graphics.lineTo(60, 75);
-    graphics.lineTo(40, 50);
-    graphics.endFill();
-    game.cache.addImage(key, null, graphics.generateTexture().baseTexture.source);
-    graphics.destroy();
-}
-exports.ship = ship;
-
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const utils_1 = __webpack_require__(7);
-function element(game, key, color) {
-    const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(10, 10), 5, 20));
-    points.push(points[0]);
-    // const bmd = game.add.bitmapData(10, 10, key, true);
-    // bmd.ctx.fillStyle = color;
-    // bmd.ctx.moveTo(points[0].X, points[0].Y);
-    // for (let i = 1; i < points.length; i++) {
-    //     bmd.ctx.lineTo(points[i].X, points[i].Y);
-    // }
-    // bmd.ctx.fill();
-    // bmd.generateTexture(key);
-    const graphics = game.add.graphics(0, 0);
-    graphics.beginFill(color);
-    graphics.moveTo(points[0].X, points[0].Y);
-    for (let j = 1; j < points.length; j++) {
-        const point = points[j];
-        graphics.lineTo(point.X, point.Y);
-    }
-    graphics.endFill();
-    game.cache.addImage(key, null, graphics.generateTexture().baseTexture.source);
-    graphics.destroy();
-}
-exports.element = element;
-
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const utils_1 = __webpack_require__(7);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
 function comet(game, width, height, rc, key) {
     const x = height / 2;
     const y = height / 2;
@@ -115461,16 +115382,16 @@ exports.comet = comet;
 
 
 /***/ }),
-/* 111 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const utils_1 = __webpack_require__(7);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
 function nebula(game, name, offset, color) {
     const width = game.width;
     const height = game.height;
@@ -115513,1045 +115434,15 @@ function createData(width, height, offset, color, imageData) {
 
 
 /***/ }),
-/* 112 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const States_1 = __webpack_require__(17);
-const network_1 = __webpack_require__(37);
-const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(18);
-const models_1 = __webpack_require__(87);
-/**
- * Menu główne
- * @export
- * @class MainMenu
- * @extends {Phaser.State}
- */
-class MainMenu extends Phaser.State {
-    constructor() {
-        super(...arguments);
-        /**
-         * Tablica wiadomości o połączonychgraczach
-         * @private
-         * @type {Array<Phaser.Text>}
-         * @memberof MainMenu
-         */
-        this.messages = [];
-    }
-    preload() {
-        this.game.stage.backgroundColor = '#000000';
-        this.game.state.players = {};
-        network_1.default.onUpdatePlayersState((player) => {
-            // update players state
-            if (!this.game.state.players[player.id]) {
-                this.game.state.players[player.id] =
-                    new models_1.Player(this.game, -100, 540, { id: player.id, socketId: player.socketID, avatar: player.character });
-                this.game.state.players[player.id].anchor.setTo(0.5, 1);
-                this.game.state.players[player.id].scale.setTo(0.4);
-            }
-            this.showConnected();
-        });
-        network_1.default.onPlayerDisconnected((player) => {
-            // remove player
-            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
-                if (this.game.state.players[nextId].id == player.id) {
-                    this.game.state.players[nextId].destroy();
-                    return players;
-                }
-                players[nextId] = this.game.state.players[nextId];
-                return players;
-            }, {});
-            this.showConnected();
-        });
-        network_1.default.onUpdateTimer((sec) => {
-            this.timer.setText('The game will start in ' + sec);
-        });
-        network_1.default.onStartGame(() => {
-            if (Object.keys(this.game.state.players).length < 1) {
-                const message = 'No connected players';
-                const text = 'Try again';
-                const action = () => this.game.state.start(States_1.States.MAIN_MENU);
-                this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
-            }
-            else {
-                this.game.state.players = {};
-                this.game.state.started = true;
-                this.game.state.start(States_1.States.START_GAME);
-            }
-        });
-        network_1.default.startTimer();
-    }
-    create() {
-        const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader(assets_1.Assets.Shaders.Glow.getName()));
-        const starsback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        // starsback.filters = [filter];
-        starsback.autoScroll(-100, 0);
-        for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-            const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-100, 0);
-        }
-        // show game title
-        const title = this.game.add.text(this.game.world.centerX, 40, 'SUPER GAME TITLE', {
-            font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
-        });
-        title.anchor.set(0.5, 0);
-        // show qrcode
-        const qr = this.game.add.sprite(this.game.world.centerX, 100, 'qrcode');
-        qr.anchor.set(0.5, 0);
-        // show game id
-        var gameIdText = this.game.add.text(this.game.world.centerX, 405, this.game.state.id, {
-            font: `15px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
-        });
-        gameIdText.anchor.set(0.5, 0);
-        this.timer = this.game.add.text(this.game.world.centerX, 440, 'The game will start in ...', {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: '#ffffff',
-            align: 'center'
-        });
-        this.timer.anchor.set(0.5, 0);
-    }
-    shutdown() {
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
-        network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
-        network_1.default.removeListener(network_1.default.UPDATE_TIMER);
-        network_1.default.removeListener(network_1.default.START_GAME);
-    }
-    showConnected() {
-        // remove all messages
-        this.messages.forEach((text) => {
-            text.destroy();
-        });
-        this.messages.length = 0;
-        // show players idle
-        Object.keys(this.game.state.players).forEach((playerId, index, playersId) => {
-            const count = playersId.length;
-            const step = this.game.world.centerX / count;
-            const offset = step / 2;
-            const x = step * (index + 1) + (offset * (count - 1));
-            this.game.state.players[playerId].x = x;
-            const text = this.game.add.text(x, 555, `Player ${index + 1}\nconnected`, {
-                font: `11px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-                fill: '#ffffff',
-                align: 'center'
-            });
-            text.anchor.set(0.5, 0);
-            this.messages.push(text);
-        });
-    }
-}
-exports.MainMenu = MainMenu;
-
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class Bullets extends Phaser.Group {
-    constructor(game) {
-        super(game);
-        /**
-         * Czy możliwe jest oddanie następnego strału
-         * @private
-         * @type {number}
-         * @memberof Bullets
-         */
-        this._nextFire = 0;
-        /**
-         * Prędkość pojeyńczego pocisku
-         * @type {number}
-         * @memberof Bullets
-         */
-        this.bulletSpeed = 600;
-        /**
-         * Częstotliwość strzałów
-         * @type {number}
-         * @memberof Bullets
-         */
-        this.fireRate = 50;
-        /**
-         * Obrażenia zadawane przez pocisk
-         * @type {number}
-         * @memberof Bullets
-         */
-        this.damage = 2.5;
-        this.enableBody = true;
-        this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(100, assets_1.Assets.Images.Bulelts.ShmupBullet.getName());
-        this.setAll('anchor.x', 0.5);
-        this.setAll('anchor.y', 0.5);
-        this.setAll('checkWorldBounds', true);
-        this.setAll('outOfBoundsKill', true);
-    }
-    /**
-     * Czy możliwe jest oddanie następnego strału
-     * @readonly
-     * @type {number}
-     * @memberof Bullets
-     */
-    get nextFire() {
-        return this._nextFire;
-    }
-    shoot(sx, sy) {
-        const bullet = this.getFirstExists(false);
-        if (!bullet) {
-            return;
-        }
-        if (this.game.time.now > this._nextFire) {
-            bullet.reset(sx + 20, sy);
-            bullet.body.velocity.x = this.bulletSpeed;
-            this._nextFire = this.game.time.now + this.fireRate;
-        }
-    }
-}
-exports.Bullets = Bullets;
-
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class MultipleBullets extends Phaser.Group {
-    constructor(game) {
-        super(game);
-        /**
-         * Czy możliwe jest oddanie następnego strału
-         * @private
-         * @memberof MultipleBullets
-         */
-        this._nextFire = 0;
-        /**
-         * Prędkość pojeyńczego pocisku
-         * @private
-         * @memberof MultipleBullets
-         */
-        this.bulletSpeed = 800;
-        /**
-         * Częstotliwość strzałów
-         * @private
-         * @memberof MultipleBullets
-         */
-        this.fireRate = 150;
-        /**
-         * Obrażenia zadawane przez pocisk
-         * @type {number}
-         * @memberof MultipleBullets
-         */
-        this.damage = 1;
-        this.enableBody = true;
-        this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(100, assets_1.Assets.Images.Bulelts.Bullet.getName());
-        this.setAll('anchor.x', 0.5);
-        this.setAll('anchor.y', 0.5);
-        this.setAll('checkWorldBounds', true);
-        this.setAll('outOfBoundsKill', true);
-    }
-    get nextFire() {
-        return this._nextFire;
-    }
-    shoot(sx, sy) {
-        if (this.game.time.now > this._nextFire) {
-            const bullet_1 = this.getFirstExists(false);
-            bullet_1.reset(sx + 25, sy);
-            bullet_1.body.velocity.x = this.bulletSpeed;
-            bullet_1.body.gravity.y = -200;
-            const bullet_2 = this.getFirstExists(false);
-            bullet_2.reset(sx + 25, sy);
-            bullet_2.body.velocity.x = this.bulletSpeed;
-            bullet_2.body.gravity.y = 0;
-            const bullet_3 = this.getFirstExists(false);
-            bullet_3.reset(sx + 25, sy);
-            bullet_3.body.velocity.x = this.bulletSpeed;
-            bullet_3.body.gravity.y = 200;
-            this._nextFire = this.game.time.now + this.fireRate;
-        }
-    }
-}
-exports.MultipleBullets = MultipleBullets;
-
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-class LittleDoctor extends Phaser.Group {
-    constructor(game, key) {
-        super(game);
-        /**
-         * Czy możliwe jest oddanie następnego strału
-         * @private
-         * @type {number}
-         * @memberof Bullets
-         */
-        this._nextFire = 0;
-        /**
-         * Prędkość pojeyńczego pocisku
-         * @type {number}
-         * @memberof Bullets
-         */
-        this.bulletSpeed = 1500;
-        /**
-         * Częstotliwość strzałów
-         * @type {number}
-         * @memberof Bullets
-         */
-        this.fireRate = 700;
-        /**
-         * Obrażenia zadawane przez pocisk
-         * @type {number}
-         * @memberof Bullets
-         */
-        this.damage = 500;
-        this.enableBody = true;
-        this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(100, key);
-        this.setAll('anchor.x', 0);
-        this.setAll('anchor.y', 0.5);
-        this.setAll('checkWorldBounds', true);
-        this.setAll('outOfBoundsKill', true);
-    }
-    /**
-     * Czy możliwe jest oddanie następnego strału
-     * @readonly
-     * @type {number}
-     * @memberof Bullets
-     */
-    get nextFire() {
-        return this._nextFire;
-    }
-    shoot(sx, sy) {
-        const bullet = this.getFirstExists(false);
-        if (!bullet) {
-            return;
-        }
-        if (this.game.time.now > this._nextFire) {
-            bullet.reset(sx + 20, sy);
-            bullet.body.velocity.x = this.bulletSpeed;
-            this._nextFire = this.game.time.now + this.fireRate;
-        }
-    }
-}
-exports.LittleDoctor = LittleDoctor;
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-class Shield extends Phaser.Sprite {
-    get playerId() {
-        return this._playerId;
-    }
-    constructor(game, x, y, playerId) {
-        super(game, x, y, 'shield');
-        this._playerId = playerId;
-        this.anchor.setTo(0.5);
-        this.scale.setTo(0);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-    }
-    setXY(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-exports.Shield = Shield;
-
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const bullets_1 = __webpack_require__(39);
-class Player extends Phaser.Sprite {
-    constructor(game, x, y, { id, socketId, avatar }) {
-        super(game, x, y, avatar);
-        /**
-         * Wzmocnienia gracza
-         * @type {IPowerUp[]}
-         * @memberof Player
-         */
-        this.powerups = [];
-        this._id = id;
-        this._socketId = socketId;
-        this.score = 0;
-        this.zPos = false;
-        this.untouchtable = false;
-        this.vector = new Victor(0, 0);
-        this.angle = 0;
-        this.anchor.setTo(0.5);
-        this.scale.setTo(0.4);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.collideWorldBounds = true;
-        this.bullets = new bullets_1.Bullets(game);
-    }
-    get id() {
-        return this._id;
-    }
-    get socket() {
-        return this._socketId;
-    }
-    /**
-     * Ustawia X i Y grafiki
-     * @param {number} x
-     * @param {number} y
-     * @memberof Player
-     */
-    setXY(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    /**
-     * Aktualizacja gracza
-     * @memberof Player
-     */
-    update() {
-        this.body.velocity.x = this.vector.x * 8;
-        this.body.velocity.y = this.vector.y * 8;
-        if (this.untouchtable) {
-            this.alpha = 0.6;
-        }
-    }
-    /**
-     * Oddanie strzału
-     * @memberof Player
-     */
-    shoot() {
-        this.bullets.shoot(this.x, this.y);
-    }
-    /**
-     * Usunięcie wzmocnień
-     * @memberof Player
-     */
-    removePowerups() {
-        this.powerups.forEach((powerup) => {
-            powerup.remove();
-        });
-        this.powerups = [];
-    }
-}
-exports.Player = Player;
-
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class CometExplosion extends Phaser.Group {
-    constructor(game) {
-        super(game);
-        this.createMultiple(15, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
-        this.forEach(explosion => {
-            explosion.anchor.setTo(0.5);
-            explosion.scale.setTo(0.8);
-            explosion.animations.add("explosion");
-        }, this);
-    }
-    generate(x, y) {
-        const explosion = this.getFirstDead();
-        if (!explosion) {
-            return;
-        }
-        explosion.reset(x, y);
-        explosion.play("explosion", 20, false, true);
-    }
-}
-exports.CometExplosion = CometExplosion;
-
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const const_1 = __webpack_require__(18);
-const utils_1 = __webpack_require__(7);
-const Comet_1 = __webpack_require__(88);
-class Comets extends Phaser.Group {
-    constructor(game) {
-        super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
-        // this.enableBody = true;
-        // this.physicsBodyType = Phaser.Physics.ARCADE;
-        const_1.Const.Comet.Names.forEach(name => {
-            for (let i = 0; i < 3; i++) {
-                this.add(new Comet_1.Comet(game, 0, 0, name));
-            }
-        });
-    }
-    generate() {
-        const comet = this.getFirstExists(false);
-        const chance = utils_1.rnd.integerInRange(1, 20);
-        if (chance != 1 || !comet) {
-            return;
-        }
-        const x = this.game.world.width;
-        const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
-        const sx = utils_1.rnd.integerInRange(-300, -450);
-        const sy = 0;
-        comet.generate(x, y, sx, sy);
-    }
-}
-exports.Comets = Comets;
-
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const const_1 = __webpack_require__(18);
-const utils_1 = __webpack_require__(7);
-class Elements extends Phaser.Group {
-    constructor(game) {
-        super(game);
-        this.enableBody = true;
-        this.physicsBodyType = Phaser.Physics.ARCADE;
-        this.createMultiple(10, const_1.Const.Element.Names);
-        this.setAll('anchor.x', 0.5);
-        this.setAll('anchor.y', 0.5);
-        this.setAll('scale.x', 1.5);
-        this.setAll('scale.y', 1.5);
-        this.setAll('checkWorldBounds', true);
-        this.setAll('outOfBoundsKill', true);
-    }
-    generate() {
-        const element = this.getFirstDead();
-        const chance = utils_1.rnd.integerInRange(1, 5);
-        if (chance != 1 || !element) {
-            return;
-        }
-        element.reset(this.game.world.width, utils_1.rnd.integerInRange(20, this.game.world.height - 20));
-        element.body.velocity.x = utils_1.rnd.integerInRange(-600, -700);
-    }
-}
-exports.Elements = Elements;
-
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(122));
-__export(__webpack_require__(123));
-__export(__webpack_require__(124));
-__export(__webpack_require__(125));
-
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-const bullets_1 = __webpack_require__(39);
-class MultiWeaponPowerUp extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.MultiWeapon.getName());
-        this.name = 'Multi Bullets';
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof MultiWeaponPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.bullets = new bullets_1.MultipleBullets(this.game);
-        this.kill();
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof MultiWeaponPowerUp
-     */
-    remove() {
-        this._player.bullets = new bullets_1.Bullets(this.game);
-        this.destroy();
-    }
-}
-exports.MultiWeaponPowerUp = MultiWeaponPowerUp;
-
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class ResetPointsPowerUp extends Phaser.Sprite {
-    constructor(game, x, y, callback) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.ResetPoints.getName());
-        this.name = 'Reset Points';
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.callback = callback;
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof MultiWeaponPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.score = 0;
-        this.kill();
-        this.callback(this._player);
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof MultiWeaponPowerUp
-     */
-    remove() {
-        this.destroy();
-    }
-}
-exports.ResetPointsPowerUp = ResetPointsPowerUp;
-
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class UntouchtablePowerUp extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.Untouchtable.getName());
-        this.name = 'Untouchtable';
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof MultiWeaponPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.untouchtable = true;
-        this.kill();
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof MultiWeaponPowerUp
-     */
-    remove() {
-        this._player.untouchtable = false;
-        this.destroy();
-    }
-}
-exports.UntouchtablePowerUp = UntouchtablePowerUp;
-
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-const bullets_1 = __webpack_require__(39);
-class LittleDoctorPowerUp extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.LittleDoctor.getName());
-        this.name = 'Little Doctor';
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof MultiWeaponPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.bullets = new bullets_1.LittleDoctor(this.game, assets_1.Assets.Images.Bulelts.Lasers.Laser.getLaser('test1').getName());
-        this.kill();
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof MultiWeaponPowerUp
-     */
-    remove() {
-        this._player.bullets = new bullets_1.Bullets(this.game);
-        this.destroy();
-    }
-}
-exports.LittleDoctorPowerUp = LittleDoctorPowerUp;
-
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class ScoreText extends Phaser.Text {
-    constructor(game, x, y, key, color) {
-        super(game, x, y, key, {
-            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: color,
-            align: 'center'
-        });
-        this.anchor.set(0.5);
-        game.add.existing(this);
-        this.moveUpTween = game.add.tween(this).to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween = game.add.tween(this).to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween.onComplete.add(() => {
-            this.game.tweens.remove(this.moveUpTween);
-            this.game.tweens.remove(this.fadeOutTween);
-            this.destroy();
-        }, this);
-    }
-}
-exports.ScoreText = ScoreText;
-
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const assets_1 = __webpack_require__(4);
-class PowerUpText extends Phaser.Text {
-    constructor(game, x, y, key, color) {
-        const suffix = ' power up';
-        super(game, x, y, key + suffix, {
-            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: color,
-            align: 'center'
-        });
-        this.anchor.set(0.5);
-        game.add.existing(this);
-        this.moveUpTween = game.add.tween(this).to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween = game.add.tween(this).to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween.onComplete.add(() => {
-            this.game.tweens.remove(this.moveUpTween);
-            this.game.tweens.remove(this.fadeOutTween);
-            this.destroy();
-        }, this);
-    }
-}
-exports.PowerUpText = PowerUpText;
-
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
-const const_1 = __webpack_require__(18);
-const assets_1 = __webpack_require__(4);
-const network_1 = __webpack_require__(37);
-const States_1 = __webpack_require__(17);
-const models_1 = __webpack_require__(87);
-/**
- * Start rozgrywki
- * @export
- * @class Boot
- * @extends {Phaser.State}
- */
-class StartGame extends Phaser.State {
-    constructor() {
-        super(...arguments);
-        /**
-         * Kolekcja teł gry
-         * @private
-         * @type {Phaser.TileSprite[]}
-         * @memberof StartGame
-         */
-        this.tiles = [];
-        this.gameEndFlag = false;
-    }
-    preload() {
-        network_1.default.onGetAllPlayers((players) => {
-            Object.keys(players).forEach((playerId, index, playersId) => {
-                const count = playersId.length;
-                const step = this.game.world.centerY / count;
-                const offset = step / 2;
-                const y = step * (index + 1) + (offset * (count - 1));
-                const player = new models_1.Player(this.game, 50, y, { id: players[playerId].id, socketId: players[playerId].socketID, avatar: players[playerId].character });
-                const shield = new models_1.Shield(this.game, 50, y, player.id);
-                // player.shield = shield;
-                this.game.state.players[playerId] = player;
-                this.players.add(player);
-                this.shields.add(shield);
-                // this.collidedComets[playerId] = new Set();
-            });
-        });
-        network_1.default.onPlayedUpdateXY((playerId, update) => {
-            const player = this.game.state.players[playerId];
-            player.vector = new Victor(update.x, update.y).rotateDeg(player.angle);
-        });
-        network_1.default.onPlayerUpdateZ((playerId, update) => {
-            const player = this.game.state.players[playerId];
-            player.zPos = update;
-        });
-        network_1.default.onPlayerFire((playerId) => {
-            const player = this.game.state.players[playerId];
-            this.bullets.shoot(player.x, player.y);
-        });
-        network_1.default.onPlayerDisconnected((player) => {
-            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
-                if (this.game.state.players[nextId].id == player.id) {
-                    this.game.state.players[nextId].shield.destroy();
-                    this.game.state.players[nextId].destroy();
-                    return players;
-                }
-                players[nextId] = this.game.state.players[nextId];
-                return players;
-            }, {});
-        });
-        network_1.default.onNoConnectedPlayers(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, 'No connected players');
-        });
-        network_1.default.getAllPlayers();
-    }
-    create() {
-        this.players = this.game.add.group();
-        this.shields = this.game.add.group();
-        const filter = new Phaser.Filter(this.game, null, this.game.cache.getShader(assets_1.Assets.Shaders.Glow.getName()));
-        this.game.physics.setBoundsToWorld();
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        backTile.filters = [filter];
-        backTile.autoScroll(-100, 0);
-        this.tiles.push(backTile);
-        for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-            const nebulaback = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            nebulaback.autoScroll(-100, 0);
-            this.tiles.push(nebulaback);
-        }
-        this.points = new models_1.Elements(this.game);
-        this.comets = new models_1.Comets(this.game);
-        this.bullets = new models_1.Bullets(this.game);
-        this.powerUps = this.game.add.group();
-        // debug
-        this.game.time.advancedTiming = true;
-        this.gameEndInterval = setInterval(() => {
-            this.gameEndFlag = true;
-            clearInterval(this.gameEndInterval);
-        }, 30000);
-    }
-    update() {
-        if (!this.gameEndFlag) {
-            this.points.generate();
-            this.comets.generate();
-        }
-        this.game.physics.arcade.overlap(this.players, this.points, this.player_point_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.shields, this.points, this.shield_point_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.bullets, this.comets, this.bullet_comet_CollisionHandler, null, this);
-        if (this.gameEndFlag && this.points.countLiving() === 0 && this.comets.countLiving() === 0) {
-            this.removeListeners();
-            const players = [];
-            let bestScore = 0;
-            let winner;
-            Object.keys(this.game.state.players).forEach((playerId) => {
-                players.push(this.game.state.players[playerId]);
-            });
-            players.sort((a, b) => a.score - b.score);
-            players.forEach((player, index, arr) => {
-                const count = arr.length;
-                const stepY = this.game.world.centerY / count;
-                const offsetY = stepY / 2;
-                const y = stepY * (index + 1) + (offsetY * (count - 1));
-                const stepX = (50 * arr.length) / count;
-                const offsetX = stepX / 2;
-                const x = stepX * (index + 1) + (offsetX * (count - 1));
-                player.x = x + 30;
-                player.y = y;
-                player.vector = new Victor(0, 0);
-            });
-            network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
-        }
-        this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
-    }
-    player_point_CollisionHandler(player, point) {
-        player.score += 1;
-        point.kill();
-        new models_1.ScoreText(this.game, player.x, player.y - (player.height / 2), '+1', '#00FF00');
-        network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-    }
-    player_comet_CollisionHandler(player, comet) {
-        // if (player.shield.scale.x < 0.3 && !comet.checkLastCollision(player)) {
-        //     player.score -= 10;
-        //     new ScoreText(this.game, player.x, player.y - (player.height / 2), '-10', '#FF0000');
-        //     comet.kill();
-        //     Network.updatePlayerScore(player.id, player.socket, player.score);
-        // }
-    }
-    shield_point_CollisionHandler(shield, point) {
-        const player = this.game.state.players[shield.playerId];
-        player.score += 1;
-        point.kill();
-        network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-    }
-    bullet_comet_CollisionHandler(bullet, comet) {
-        bullet.kill();
-        comet.health -= 1;
-        if (comet.health <= 0) {
-            this.generatePowerUp(comet.x, comet.y);
-            // comet.playExplosion();
-            comet.kill();
-        }
-    }
-    player_powerup_CollisionHandler(player, pu) {
-        pu.powerup(player);
-        pu.destroy();
-    }
-    generatePowerUp(x, y) {
-        // const chance = rnd.integerInRange(1, 20);
-        // if (chance != 1) return;
-        // const pu = new PowerUpShield(this.game, x, y);
-        // pu.body.velocity.x = -400;
-        // this.powerUps.add(pu);
-    }
-    removeListeners() {
-        network_1.default.removeListener(network_1.default.ALL_PLAYERS);
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_Z);
-        network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
-        network_1.default.removeListener(network_1.default.NO_CONNECTED_PLAYERS);
-    }
-    shutdown() {
-        this.removeListeners();
-    }
-}
-exports.StartGame = StartGame;
-
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(2);
+__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 /**
  * Wyświetlanie wiadomości z błędami
@@ -116581,21 +115472,21 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 130 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const utils_1 = __webpack_require__(7);
-const States_1 = __webpack_require__(17);
-const const_1 = __webpack_require__(18);
-const network_1 = __webpack_require__(37);
+__webpack_require__(3);
+const utils_1 = __webpack_require__(12);
+const States_1 = __webpack_require__(36);
+const const_1 = __webpack_require__(87);
+const network_1 = __webpack_require__(86);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(87);
+const models_1 = __webpack_require__(110);
 /**
  * Widok główny
  * @export
@@ -116606,47 +115497,47 @@ class Main extends Phaser.State {
     constructor() {
         super(...arguments);
         /**
-           * Kolekcja teł gry
-           * @private
-           * @type {Phaser.TileSprite[]}
-           * @memberof Main
-           */
+         * Kolekcja teł gry
+         * @private
+         * @type {Phaser.TileSprite[]}
+         * @memberof Main
+         */
         this.tiles = [];
         /**
-           * Flaga do wystartowania następnego poziomu
-           * @private
-           * @type {boolean}
-           * @memberof Main
-           */
+         * Flaga do wystartowania następnego poziomu
+         * @private
+         * @type {boolean}
+         * @memberof Main
+         */
         this.startNextStage = false;
         /**
-           * Aktualny poziom
-           * @private
-           * @type {number}
-           * @memberof Main
-           */
+         * Aktualny poziom
+         * @private
+         * @type {number}
+         * @memberof Main
+         */
         this.currentStage = 1;
         /**
-           * Flaga informująca o rozpoczęciu gry
-           * @private
-           * @type {boolean}
-           * @memberof Main
-           */
+         * Flaga informująca o rozpoczęciu gry
+         * @private
+         * @type {boolean}
+         * @memberof Main
+         */
         this.gameStartedFlag = false;
         /**
-           * Flaga informująca o zakończeniu gry
-           * @private
-           * @type {boolean}
-           * @memberof Main
-           */
+         * Flagi informujące o zakończeniu gry
+         * @private
+         * @type {boolean}
+         * @memberof Main
+         */
         this.gameEndedFlag = false;
         this.gameEndingFlag = false;
         this.gameRestarted = false;
     }
     init(restart) {
-        if (restart) {
-            this.gameRestarted = true;
-        }
+        // if (restart) {
+        //   this.gameRestarted = true;
+        // }
     }
     preload() {
         // utworzenie słownika graczy
@@ -116687,7 +115578,7 @@ class Main extends Phaser.State {
             if (Object.keys(this.game.state.players).length < 1) {
                 const message = "No connected players";
                 const text = "Try again";
-                const action = () => this.game.state.start(States_1.States.MAIN_MENU);
+                const action = () => this.game.state.start(States_1.States.MAIN);
                 this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
             }
             else {
@@ -116704,13 +115595,13 @@ class Main extends Phaser.State {
             const player = this.game.state.players[playerId];
             player.vector = new Victor(update.x, update.y);
         });
-        network_1.default.onPlayerUpdateZ((playerId, update) => {
-            const player = this.game.state.players[playerId];
-            player.zPos = update;
-        });
+        // Network.onPlayerUpdateZ((playerId, update) => {
+        //   const player = (<any>this.game.state).players[playerId];
+        //   player.zPos = update;
+        // });
         network_1.default.onPlayerFire(playerId => {
             const player = this.game.state.players[playerId];
-            player.shoot();
+            player.fire();
         });
         network_1.default.onNoConnectedPlayers(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, "No connected players");
@@ -116736,12 +115627,13 @@ class Main extends Phaser.State {
         if (this.gameStartedFlag && !this.gameEndedFlag) {
             this.comets.generate();
         }
-        console.log(this.comets.countLiving());
-        console.log(this.comets.countDead());
         if (this.startNextStage &&
             this.comets.countLiving() === 0 &&
             !this.gameEndedFlag) {
             this.startNextStage = false;
+            this.players.forEach((player) => {
+                player.removePowerups();
+            }, this);
             this.createStageInfo();
             this.generatePowerUps();
             this.nextStage();
@@ -116771,10 +115663,10 @@ class Main extends Phaser.State {
         }
     }
     /**
-       * Utworzenie teł gry
-       * @private
-       * @memberof Main
-       */
+     * Utworzenie teł gry
+     * @private
+     * @memberof Main
+     */
     createBackground() {
         const backTile = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
         backTile.autoScroll(-100, 0);
@@ -116786,10 +115678,10 @@ class Main extends Phaser.State {
         }
     }
     /**
-       * Utworzenie menu
-       * @private
-       * @memberof Main
-       */
+     * Utworzenie menu
+     * @private
+     * @memberof Main
+     */
     createMenu() {
         this.menuGroup = this.game.add.group();
         // tytuł gry
@@ -116813,10 +115705,10 @@ class Main extends Phaser.State {
         this.menuGroup.add(this.timerText);
     }
     /**
-       * Usunięcie menu przed rozpoczęciem rozgrywki
-       * @private
-       * @memberof Main
-       */
+     * Usunięcie menu przed rozpoczęciem rozgrywki
+     * @private
+     * @memberof Main
+     */
     hideMenu() {
         const moveUpTween = this.game.add
             .tween(this.menuGroup.position)
@@ -116827,6 +115719,11 @@ class Main extends Phaser.State {
             this.startNextStage = true;
         }, this);
     }
+    /**
+     * Odliczanie do następnego poziomu
+     * @private
+     * @memberof Main
+     */
     nextStage() {
         this.nextStageTimeout = setTimeout(() => {
             this.gameStartedFlag = false;
@@ -116835,6 +115732,11 @@ class Main extends Phaser.State {
             this.nextStageTimeout = null;
         }, 30000);
     }
+    /**
+     * Utworzenie menu poziomu
+     * @private
+     * @memberof Main
+     */
     createStageInfo() {
         this.menuGroup = this.game.add.group();
         const stage = this.game.add.text(this.game.world.centerX, 50, "Stage " + this.currentStage, {
@@ -116862,10 +115764,10 @@ class Main extends Phaser.State {
         }, this);
     }
     /**
-       * Koniec gry
-       * @private
-       * @memberof Main
-       */
+     * Koniec gry
+     * @private
+     * @memberof Main
+     */
     endGame() {
         this.shutdown();
         const players = [];
@@ -116900,6 +115802,11 @@ class Main extends Phaser.State {
         network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
         this.createEndMenu();
     }
+    /**
+     * Utworzenie manu końcowego
+     * @private
+     * @memberof Main
+     */
     createEndMenu() {
         const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again\npress "PLAY AGAIN" in your controller', {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
@@ -116909,18 +115816,18 @@ class Main extends Phaser.State {
         text.anchor.setTo(0.5);
     }
     /**
-       * Sprawdzanie kolizji
-       * @private
-       * @memberof Main
-       */
+     * Sprawdzanie kolizji
+     * @private
+     * @memberof Main
+     */
     checkCollisions() {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
         Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
             const collisionHandler = (bullet, comet) => {
+                comet.health -= bullet.dmg;
                 bullet.kill();
-                comet.health -= player.bullets.damage;
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
                     player.score += 10;
@@ -116928,16 +115835,16 @@ class Main extends Phaser.State {
                     comet.kill();
                 }
             };
-            this.game.physics.arcade.overlap(player.bullets, this.comets, collisionHandler, null, this);
+            this.game.physics.arcade.overlap(player.weapon, this.comets, collisionHandler, null, this);
         });
     }
     /**
-       * Kolizja gracza z kometą
-       * @private
-       * @param {Player} player
-       * @param {Phaser.Sprite} comet
-       * @memberof Main
-       */
+     * Kolizja gracza z kometą
+     * @private
+     * @param {Player} player
+     * @param {Comet} comet
+     * @memberof Main
+     */
     player_comet_CollisionHandler(player, comet) {
         if (player.untouchtable === false) {
             player.score -= 10;
@@ -116948,52 +115855,716 @@ class Main extends Phaser.State {
         }
     }
     /**
-       * Kolizja gracza ze wzmocnieniem
-       * @private
-       * @param {Player} player
-       * @param {IPowerUp} powerup
-       * @memberof Main
-       */
+     * Kolizja gracza ze wzmocnieniem
+     * @private
+     * @param {Player} player
+     * @param {IPowerUp} powerup
+     * @memberof Main
+     */
     player_powerup_CollisionHandler(player, powerup) {
         powerup.powerup(player);
         new models_1.PowerUpText(this.game, player.x, player.y - player.height / 2, powerup.name, "#FFFFFF");
         player.powerups.push(powerup);
+        // this.powerUps...
     }
     /**
-       * Generowanie wzmocnień
-       * @private
-       * @memberof Main
-       */
+     * Generowanie wzmocnień
+     * @private
+     * @memberof Main
+     */
     generatePowerUps() {
-        this.players.forEach((player) => {
-            player.removePowerups();
-        }, this);
         if (this.powerUps) {
             this.powerUps.destroy();
         }
         this.powerUps = this.game.add.group();
-        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.MultiWeaponPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
         this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
         }));
     }
     /**
-       * Usunięcie wzmocnień z planszy
-       * @private
-       * @memberof Main
-       */
+     * Usunięcie wzmocnień z planszy
+     * @private
+     * @memberof Main
+     */
     destroyPowerUps() {
         this.powerUps.forEach(powerup => {
             if (powerup.player == null) {
                 powerup.destroy();
             }
         }, this);
+        // this.powerUps.destroy();
     }
 }
 exports.Main = Main;
+
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(37));
+__export(__webpack_require__(114));
+__export(__webpack_require__(117));
+__export(__webpack_require__(122));
+__export(__webpack_require__(125));
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+const Bullet_1 = __webpack_require__(38);
+/**
+ * Grupa pojedyńczych pocisków
+ * @export
+ * @class SingleBullet
+ * @extends {Phaser.Group}
+ * @implements {IWeapon}
+ */
+class SingleBullet extends Phaser.Group {
+    constructor(game) {
+        super(game, game.world, "single-bullet", false, true, Phaser.Physics.ARCADE);
+        /**
+         * Czy możliwe jest oddanie następnego strzału
+         * @private
+         * @type {number}
+         * @memberof SingleBullet
+         */
+        this._nextFire = 0;
+        /**
+         * Prędkość pojeyńczego pocisku
+         * @type {number}
+         * @memberof SingleBullet
+         */
+        this.bulletSpeed = 600;
+        /**
+         * Częstotliwość strzałów
+         * @type {number}
+         * @memberof SingleBullet
+         */
+        this.fireRate = 50;
+        for (let i = 0; i < 40; i++) {
+            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.SingleBullet.getName(), 2.5));
+        }
+    }
+    get nextFire() {
+        return this._nextFire;
+    }
+    /**
+     * Oddanie strzału
+     * @param {number} sx
+     * @param {number} sy
+     * @returns
+     * @memberof SingleBullet
+     */
+    fire(sx, sy) {
+        const bullet = this.getFirstExists(false);
+        if (!bullet) {
+            return;
+        }
+        if (this.game.time.now > this._nextFire) {
+            bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0);
+            this._nextFire = this.game.time.now + this.fireRate;
+        }
+    }
+}
+exports.SingleBullet = SingleBullet;
+
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+const Bullet_1 = __webpack_require__(38);
+/**
+ * Grupa potrójnych pocisków
+ * @export
+ * @class SplitShot
+ * @extends {Phaser.Group}
+ * @implements {IWeapon}
+ */
+class SplitShot extends Phaser.Group {
+    constructor(game) {
+        super(game, game.world, "split-shot", false, true, Phaser.Physics.ARCADE);
+        /**
+        * Czy możliwe jest oddanie następnego strału
+        * @private
+        * @memberof MultipleBullets
+        */
+        this._nextFire = 0;
+        /**
+         * Prędkość pojeyńczego pocisku
+         * @memberof SplitShot
+         */
+        this.bulletSpeed = 800;
+        /**
+         * Częstotliwość strzałów
+         * @memberof SplitShot
+         */
+        this.fireRate = 150;
+        for (let i = 0; i < 50; i++) {
+            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.Bullet.getName(), 1));
+        }
+    }
+    get nextFire() {
+        return this._nextFire;
+    }
+    /**
+     * Oddanie strzału
+     * @param {number} sx
+     * @param {number} sy
+     * @memberof SplitShot
+     */
+    fire(sx, sy) {
+        if (this.game.time.now > this._nextFire) {
+            const bullet_1 = this.getFirstExists(false);
+            bullet_1.fire(sx + 25, sy, this.bulletSpeed, 0, -200);
+            const bullet_2 = this.getFirstExists(false);
+            bullet_2.fire(sx + 25, sy, this.bulletSpeed, 0, 0);
+            const bullet_3 = this.getFirstExists(false);
+            bullet_3.fire(sx + 25, sy, this.bulletSpeed, 0, 200);
+            this._nextFire = this.game.time.now + this.fireRate;
+        }
+    }
+}
+exports.SplitShot = SplitShot;
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const Bullet_1 = __webpack_require__(38);
+class LittleDoctor extends Phaser.Group {
+    constructor(game, key) {
+        super(game, game.world, "little-doctor", false, true, Phaser.Physics.ARCADE);
+        /**
+         * Czy możliwe jest oddanie następnego strału
+         * @private
+         * @type {number}
+         * @memberof LittleDoctor
+         */
+        this._nextFire = 0;
+        /**
+         * Prędkość pojeyńczego pocisku
+         * @type {number}
+         * @memberof LittleDoctor
+         */
+        this.bulletSpeed = 1500;
+        /**
+         * Częstotliwość strzałów
+         * @type {number}
+         * @memberof LittleDoctor
+         */
+        this.fireRate = 700;
+        for (let i = 0; i < 20; i++) {
+            this.add(new Bullet_1.Bullet(game, key, 500));
+        }
+    }
+    get nextFire() {
+        return this._nextFire;
+    }
+    /**
+     * Oddanie strzału
+     * @param {number} sx
+     * @param {number} sy
+     * @returns
+     * @memberof LittleDoctor
+     */
+    fire(sx, sy) {
+        const bullet = this.getFirstExists(false);
+        if (!bullet) {
+            return;
+        }
+        if (this.game.time.now > this._nextFire) {
+            bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0);
+            this._nextFire = this.game.time.now + this.fireRate;
+        }
+    }
+}
+exports.LittleDoctor = LittleDoctor;
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(115));
+__export(__webpack_require__(88));
+__export(__webpack_require__(116));
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class CometExplosion extends Phaser.Group {
+    constructor(game) {
+        super(game, game.world, "comet-explosion", false, false);
+        this.createMultiple(15, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
+        this.forEach(explosion => {
+            explosion.anchor.setTo(0.5);
+            explosion.scale.setTo(0.8);
+            explosion.animations.add("explosion");
+        }, this);
+    }
+    generate(x, y) {
+        const explosion = this.getFirstDead();
+        if (!explosion) {
+            return;
+        }
+        explosion.reset(x, y);
+        explosion.play("explosion", 18, false, true);
+    }
+}
+exports.CometExplosion = CometExplosion;
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const const_1 = __webpack_require__(87);
+const utils_1 = __webpack_require__(12);
+const Comet_1 = __webpack_require__(88);
+class Comets extends Phaser.Group {
+    constructor(game) {
+        super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
+        const_1.Const.Comet.Names.forEach(name => {
+            for (let i = 0; i < 3; i++) {
+                this.add(new Comet_1.Comet(game, 0, 0, name));
+            }
+        });
+    }
+    generate() {
+        const comet = this.getFirstExists(false);
+        const chance = utils_1.rnd.integerInRange(1, 20);
+        if (chance != 1 || !comet) {
+            return;
+        }
+        const x = this.game.world.width;
+        const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
+        const sx = utils_1.rnd.integerInRange(-300, -450);
+        const sy = 0;
+        comet.generate(x, y, sx, sy);
+    }
+}
+exports.Comets = Comets;
+
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(118));
+__export(__webpack_require__(119));
+__export(__webpack_require__(120));
+__export(__webpack_require__(121));
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+const bullets_1 = __webpack_require__(37);
+class SplitShotPowerUp extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.SplitShoot.getName());
+        this.name = "Multi Bullets";
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    get player() {
+        return this._player;
+    }
+    /**
+     * Przydzielenie wzmocnienia
+     * @param {Player} player
+     * @param {*} [options]
+     * @memberof SplitShotPowerUp
+     */
+    powerup(player, options) {
+        this._player = player;
+        this._player.weapon = new bullets_1.SplitShot(this.game);
+        this.kill();
+    }
+    /**
+     * Usunięcie wzmocnienia
+     * @memberof SplitShotPowerUp
+     */
+    remove() {
+        this._player.weapon = new bullets_1.SingleBullet(this.game);
+        this.destroy();
+    }
+}
+exports.SplitShotPowerUp = SplitShotPowerUp;
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class ResetPointsPowerUp extends Phaser.Sprite {
+    constructor(game, x, y, callback) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.ResetPoints.getName());
+        this.name = "Reset Points";
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.callback = callback;
+    }
+    get player() {
+        return this._player;
+    }
+    /**
+     * Przydzielenie wzmocnienia
+     * @param {Player} player
+     * @param {*} [options]
+     * @memberof ResetPointsPowerUp
+     */
+    powerup(player, options) {
+        this._player = player;
+        this._player.score = 0;
+        this.kill();
+        this.callback(this._player);
+    }
+    /**
+     * Usunięcie wzmocnienia
+     * @memberof ResetPointsPowerUp
+     */
+    remove() {
+        this.destroy();
+    }
+}
+exports.ResetPointsPowerUp = ResetPointsPowerUp;
+
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class UntouchtablePowerUp extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.Untouchtable.getName());
+        this.name = "Untouchtable";
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    get player() {
+        return this._player;
+    }
+    /**
+     * Przydzielenie wzmocnienia
+     * @param {Player} player
+     * @param {*} [options]
+     * @memberof UntouchtablePowerUp
+     */
+    powerup(player, options) {
+        this._player = player;
+        this._player.untouchtable = true;
+        this.kill();
+    }
+    /**
+     * Usunięcie wzmocnienia
+     * @memberof UntouchtablePowerUp
+     */
+    remove() {
+        this._player.untouchtable = false;
+        this.destroy();
+    }
+}
+exports.UntouchtablePowerUp = UntouchtablePowerUp;
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+const bullets_1 = __webpack_require__(37);
+class LittleDoctorPowerUp extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.PowerUps.LittleDoctor.getName());
+        this.name = "Little Doctor";
+        this.anchor.setTo(0.5);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+    }
+    get player() {
+        return this._player;
+    }
+    /**
+     * Przydzielenie wzmocnienia
+     * @param {Player} player
+     * @param {*} [options]
+     * @memberof LittleDoctorPowerUp
+     */
+    powerup(player, options) {
+        this._player = player;
+        this._player.weapon = new bullets_1.LittleDoctor(this.game, assets_1.Assets.Images.Bulelts.Lasers.Laser.getLaser("test1").getName());
+        this.kill();
+    }
+    /**
+     * Usunięcie wzmocnienia
+     * @memberof LittleDoctorPowerUp
+     */
+    remove() {
+        this._player.weapon = new bullets_1.SingleBullet(this.game);
+        this.destroy();
+    }
+}
+exports.LittleDoctorPowerUp = LittleDoctorPowerUp;
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(123));
+__export(__webpack_require__(124));
+
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class ScoreText extends Phaser.Text {
+    constructor(game, x, y, key, color) {
+        super(game, x, y, key, {
+            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: color,
+            align: "center"
+        });
+        this.anchor.set(0.5);
+        game.add.existing(this);
+        this.moveUpTween = game.add
+            .tween(this)
+            .to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween = game.add
+            .tween(this)
+            .to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween.onComplete.add(() => {
+            this.game.tweens.remove(this.moveUpTween);
+            this.game.tweens.remove(this.fadeOutTween);
+            this.destroy();
+        }, this);
+    }
+}
+exports.ScoreText = ScoreText;
+
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const assets_1 = __webpack_require__(4);
+class PowerUpText extends Phaser.Text {
+    constructor(game, x, y, key, color) {
+        const suffix = " power up";
+        super(game, x, y, key + suffix, {
+            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: color,
+            align: "center"
+        });
+        this.anchor.set(0.5);
+        game.add.existing(this);
+        this.moveUpTween = game.add
+            .tween(this)
+            .to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween = game.add
+            .tween(this)
+            .to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
+        this.fadeOutTween.onComplete.add(() => {
+            this.game.tweens.remove(this.moveUpTween);
+            this.game.tweens.remove(this.fadeOutTween);
+            this.destroy();
+        }, this);
+    }
+}
+exports.PowerUpText = PowerUpText;
+
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+const bullets_1 = __webpack_require__(37);
+class Player extends Phaser.Sprite {
+    constructor(game, x, y, { id, socketId, avatar }) {
+        super(game, x, y, avatar);
+        /**
+         * Wzmocnienia gracza
+         * @type {IPowerUp[]}
+         * @memberof Player
+         */
+        this.powerups = [];
+        this._id = id;
+        this._socketId = socketId;
+        this.score = 0;
+        this.untouchtable = false;
+        this.vector = new Victor(0, 0);
+        this.anchor.setTo(0.5);
+        this.scale.setTo(0.4);
+        game.add.existing(this);
+        game.physics.arcade.enable(this);
+        this.body.collideWorldBounds = true;
+        this.weapon = new bullets_1.SingleBullet(game);
+    }
+    get id() {
+        return this._id;
+    }
+    get socket() {
+        return this._socketId;
+    }
+    /**
+     * Ustawia X i Y grafiki
+     * @param {number} x
+     * @param {number} y
+     * @memberof Player
+     */
+    setXY(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    /**
+     * Aktualizacja gracza
+     * @memberof Player
+     */
+    update() {
+        this.body.velocity.x = this.vector.x * 8;
+        this.body.velocity.y = this.vector.y * 8;
+        if (this.untouchtable) {
+            this.alpha = 0.6;
+        }
+    }
+    /**
+     * Oddanie strzału
+     * @memberof Player
+     */
+    fire() {
+        this.weapon.fire(this.x, this.y);
+    }
+    /**
+     * Usunięcie wzmocnień
+     * @memberof Player
+     */
+    removePowerups() {
+        this.powerups.forEach((powerup) => {
+            powerup.remove();
+        });
+        this.powerups = [];
+    }
+}
+exports.Player = Player;
 
 
 /***/ })

@@ -4,10 +4,8 @@
  * @class States
  */
 export class States {
-    static BOOT: string = 'Boot';
-    static LOADING: string = 'Loading';
-    static MAIN_MENU: string = 'MainMenu';
-    static START_GAME: string = 'StartGame';
-    static MESSAGE: string = 'Message';
-    static MAIN: string = 'Main';
+  static BOOT: string = "Boot";
+  static LOADING: string = "Loading";
+  static MESSAGE: string = "Message";
+  static MAIN: string = "Main";
 }

@@ -1,4 +1,4 @@
-import { Point } from './models';
+import { Point } from "./models";
 
 /**
  * Wskazówki zegara
@@ -9,5 +9,5 @@ import { Point } from './models';
  * @returns {number} 
  */
 export function cross(a: Point, b: Point, o: Point): number {
-    return (a.X - o.X)  * (b.Y - o.Y) - (a.Y - o.Y) * (b.X - o.X);
+  return (a.X - o.X) * (b.Y - o.Y) - (a.Y - o.Y) * (b.X - o.X);
 }

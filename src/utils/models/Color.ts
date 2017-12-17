@@ -4,19 +4,19 @@
  * @class Color
  */
 export class Color {
-    public R: number;
-    public G: number;
-    public B: number;
-    public A: number;
+  public R: number;
+  public G: number;
+  public B: number;
+  public A: number;
 
-    constructor(r: number, g: number, b: number, a?: number) {
-        this.R = r;
-        this.G = g;
-        this.B = b;
-        this.A = a ? a : 255;
-    }
+  constructor(r: number, g: number, b: number, a?: number) {
+    this.R = r;
+    this.G = g;
+    this.B = b;
+    this.A = a ? a : 255;
+  }
 
-    /**
+  /**
      * Utwożenie nowego koloru
      * @static
      * @param {number} r 
@@ -26,11 +26,11 @@ export class Color {
      * @returns 
      * @memberof Color
      */
-    public static fromRGBA(r: number, g: number, b: number, a?: number) {
-        return new Color(r, g, b, a != null ? a : 255);
-    }
+  public static fromRGBA(r: number, g: number, b: number, a?: number) {
+    return new Color(r, g, b, a != null ? a : 255);
+  }
 
-    /**
+  /**
      * Zmiana rozjaśnienia koloru
      * @static
      * @param {Color} color 
@@ -38,11 +38,11 @@ export class Color {
      * @returns 
      * @memberof Color
      */
-    public static rgbLum(color: Color, lum: number) {
-        return new Color(
-            Math.round(Math.min(Math.max(0, color.R + (color.R * lum)), 255)),
-            Math.round(Math.min(Math.max(0, color.G + (color.G * lum)), 255)),
-            Math.round(Math.min(Math.max(0, color.B + (color.B * lum)), 255))
-        );
-    }
+  public static rgbLum(color: Color, lum: number) {
+    return new Color(
+      Math.round(Math.min(Math.max(0, color.R + color.R * lum), 255)),
+      Math.round(Math.min(Math.max(0, color.G + color.G * lum), 255)),
+      Math.round(Math.min(Math.max(0, color.B + color.B * lum), 255))
+    );
+  }
 }

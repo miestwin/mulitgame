@@ -6,6 +6,8 @@
  */
 export function toHex(n: number) {
   let hex = n.toString(16);
-  while (hex.length < 2) { hex = "0" + hex; }
+  while (hex.length < 2) {
+    hex = "0" + hex;
+  }
   return hex;
 }

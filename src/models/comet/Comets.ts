@@ -2,8 +2,8 @@ import "p2";
 import "pixi";
 import "phaser";
 
-import { Const } from "../const";
-import { rnd } from "../utils";
+import { Const } from "../../const";
+import { rnd } from "../../utils";
 import { Comet } from "./Comet";
 
 export class Comets extends Phaser.Group {
