@@ -12,3 +12,6 @@ export * from "./convexhull";
 export * from "./rnd";
 export * from "./generateRandomPoints";
 export * from "./ping-pong";
+export * from "./smoothNoise";
+export * from "./generateNoise";
+export * from "./cosinInterpolation";

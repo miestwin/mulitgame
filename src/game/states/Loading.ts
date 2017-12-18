@@ -7,7 +7,7 @@ import config from "../../config";
 import * as generators from "../../generators";
 import { Assets } from "../../assets";
 import { Const } from "../../const";
-import { rnd } from "../../utils";
+import { rnd, generateNoise } from "../../utils";
 
 /**
  * Ładowanie zasobów
@@ -145,19 +145,19 @@ export class Loading extends Phaser.State {
   create() {
     // create qrcode and go to next state
     this.loadingText.setText("Create Textures ...");
-    Promise.all([this.createQRCode(), this.createTextures()])
-      .then(() => {
-        this.loadingText.setText("Create QRCode Complete");
-        this.game.state.start(States.MAIN);
-      })
-      .catch(() => {
-        this.game.state.start(
-          States.MESSAGE,
-          true,
-          false,
-          "Problem with generating texture"
-        );
-      });
+    Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
+      this.loadingText.setText("Create QRCode Complete");
+      // this.game.state.start(States.MAIN);
+      this.game.state.start("Test");
+    });
+    // .catch(() => {
+    //   this.game.state.start(
+    //     States.MESSAGE,
+    //     true,
+    //     false,
+    //     "Problem with generating texture"
+    //   );
+    // });
   }
 
   /**
@@ -238,12 +238,13 @@ export class Loading extends Phaser.State {
       Const.Nebula.Names.push("nebula-1");
       const nebulaColor = Const.Nebula.Colors[rnd.integerInRange(0, 1)];
       for (let i = 0; i < Const.Nebula.Names.length; i++) {
-        generators.nebula(
-          this.game,
-          "nebula-1",
-          rnd.integerInRange(0, 1000),
-          nebulaColor
-        );
+        // generators.nebula(
+        //   this.game,
+        //   "nebula-1",
+        //   rnd.integerInRange(0, 1000),
+        //   nebulaColor
+        // );
+        generators.nebulaTest(this.game, "nebula-1");
       }
       Const.Comet.Names.push("comet-1");
       Const.Comet.Names.push("comet-2");

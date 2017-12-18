@@ -3,6 +3,7 @@ import "pixi";
 import "phaser";
 
 import { States, Boot, Loading, Message, Main } from "./states";
+import { Test } from "./states/Test";
 
 import Network from "./network";
 import { guid } from "../utils";
@@ -29,6 +30,7 @@ export default class Game extends Phaser.Game {
     this.state.add(States.MESSAGE, Message);
     this.state.add(States.MAIN, Main);
 
+    this.state.add("Test", Test);
     this.state.start(States.BOOT);
   }
 }
