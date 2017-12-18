@@ -15,3 +15,4 @@ export * from "./ping-pong";
 export * from "./smoothNoise";
 export * from "./generateNoise";
 export * from "./cosinInterpolation";
+export * from "./turbulence";
