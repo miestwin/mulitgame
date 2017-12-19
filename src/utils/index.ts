@@ -16,3 +16,4 @@ export * from "./smoothNoise";
 export * from "./generateNoise";
 export * from "./cosinInterpolation";
 export * from "./turbulence";
+export * from "./getClouds";

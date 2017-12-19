@@ -109,7 +109,13 @@ export namespace Const {
         return new Color(0, 153, 51);
       }
     }
-    export const Colors = [new Color(179, 0, 179), new Color(0, 153, 51)];
+    export const Colors = [
+      new Color(71, 209, 71),
+      new Color(153, 0, 153),
+      new Color(46, 184, 46),
+      new Color(179, 0, 179),
+      new Color(0, 153, 51)
+    ];
     export const Names = [];
   }
 

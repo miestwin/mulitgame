@@ -335,7 +335,7 @@ export class Main extends Phaser.State {
         this.game.height,
         Const.Nebula.Names[i]
       );
-      nebula.autoScroll(-120, 0);
+      // nebula.autoScroll(-120, 0);
       this.game.world.sendToBack(nebula);
       this.tiles.push(nebula);
     }

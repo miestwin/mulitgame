@@ -9,14 +9,16 @@ import {
   generateNoise,
   smoothNoise,
   cosineInterpolation,
-  turbulence
+  turbulence,
+  getClouds
 } from "../utils";
 
 export function nebula(
   game: Phaser.Game,
   name: string,
   offset: number,
-  color: Color
+  color: Color,
+  clouds: boolean
 ) {
   const width = game.width;
   const height = game.height;
@@ -26,7 +28,14 @@ export function nebula(
   canvas.style.backgroundColor = "transparent";
   const ctx = canvas.getContext("2d");
   let imageData = ctx.createImageData(canvas.width, canvas.height);
-  let data = createData(canvas.width, canvas.height, offset, color, imageData);
+  let data = createData(
+    canvas.width,
+    canvas.height,
+    offset,
+    color,
+    imageData,
+    clouds
+  );
   ctx.putImageData(data, 0, 0);
 
   let img = new Image();
@@ -41,8 +50,10 @@ function createData(
   height: number,
   offset: number,
   color: Color,
-  imageData: ImageData
+  imageData: ImageData,
+  clouds: boolean
 ): ImageData {
+  const arr = [];
   let yoff = offset;
   let toff = 0;
   for (let y = 0; y < height; y++) {
@@ -50,29 +61,28 @@ function createData(
     for (let x = 0; x < width; x++) {
       const index = y * width + x;
       const n = noise(yoff, xoff);
-      // const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
-      // let bright = map(n, 0, 1, 0, 150);
-      let bright = map(n, 0, 1, 0, 255);
-      imageData.data[index * 4 + 0] = bright;
-      imageData.data[index * 4 + 1] = bright;
-      imageData.data[index * 4 + 2] = bright;
-      imageData.data[index * 4 + 3] = 255;
+      const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
+      // let bright = map(n, 0, 1, 0, 255);
       // bright = bright / 3;
-      // imageData.data[index * 4 + 0] = c.R;
-      // imageData.data[index * 4 + 1] = c.G;
-      // imageData.data[index * 4 + 2] = c.B;
-      // imageData.data[index * 4 + 3] = bright;
+      imageData.data[index * 4 + 0] = color.R;
+      imageData.data[index * 4 + 1] = color.G;
+      imageData.data[index * 4 + 2] = color.B;
+      const bright = clouds
+        ? map(getClouds(n), 0, 0.05, 0, 255)
+        : map(n, 0, 1, 0, 100);
+      imageData.data[index * 4 + 3] = bright; // map(getClouds(n), 0, 0.05, 0, 255);
+      // arr.push(getClouds(n));
       // xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
-      xoff += 0.1;
+      xoff += 0.007;
     }
-    yoff += 0.1;
+    yoff += 0.007;
     // yoff += 0.007;
   }
-
+  // console.log(arr);
   return imageData;
 }
 
-export function nebulaTest(game: Phaser.Game, name: string) {
+export function nebulaTest(game: Phaser.Game, name: string, color: Color) {
   const arr = generateNoise(game.width, game.height);
   const width = game.width;
   const height = game.height;
@@ -82,7 +92,7 @@ export function nebulaTest(game: Phaser.Game, name: string) {
   canvas.style.backgroundColor = "transparent";
   const ctx = canvas.getContext("2d");
   let imageData = ctx.createImageData(canvas.width, canvas.height);
-  let data = createDataTest(canvas.width, canvas.height, arr, imageData);
+  let data = createDataTest(canvas.width, canvas.height, arr, imageData, color);
   ctx.putImageData(data, 0, 0);
 
   let img = new Image();
@@ -96,7 +106,8 @@ export function createDataTest(
   width: number,
   height: number,
   arr: number[][],
-  imageData: ImageData
+  imageData: ImageData,
+  color: Color
 ) {
   // const w = [0, 0, 0, 0, 0, 0.5];
   // for (let i = 4; i >= 0; i--) {
@@ -134,15 +145,17 @@ export function createDataTest(
         // arr[y][x] = total;
       }
       // total = map(total, 0, 1, 0, 50);
-      total = total < 0.5 ? 0 : 255;
-      imageData.data[index * 4 + 0] = total;
-      imageData.data[index * 4 + 1] = total;
-      imageData.data[index * 4 + 2] = total;
-      imageData.data[index * 4 + 3] = 255;
-      xoff++;
+      // total = total < 0.5 ? 0 : 255;
+      // const c = Color.rgbLum(color, map(total, 0, 1, 0, 0.5));
+      imageData.data[index * 4 + 0] = total < 0.5 ? 0 : color.R;
+      imageData.data[index * 4 + 1] = total < 0.5 ? 0 : color.G;
+      imageData.data[index * 4 + 2] = total < 0.5 ? 0 : color.B;
+      imageData.data[index * 4 + 3] =
+        total < 0.5 ? 0 : map(total, 0, 1, 0, 255);
+      xoff += 0.01;
     }
-    yoff++;
+    yoff += 0.01;
   }
-  console.log(imageData.data);
+
   return imageData;
 }

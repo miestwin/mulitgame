@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 101);
+/******/ 	return __webpack_require__(__webpack_require__.s = 102);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2068,6 +2068,7 @@ __export(__webpack_require__(35));
 __export(__webpack_require__(87));
 __export(__webpack_require__(88));
 __export(__webpack_require__(89));
+__export(__webpack_require__(90));
 
 
 /***/ }),
@@ -4616,7 +4617,13 @@ var Const;
             }
         }
         Nebula.GREEN = GREEN;
-        Nebula.Colors = [new utils_1.Color(179, 0, 179), new utils_1.Color(0, 153, 51)];
+        Nebula.Colors = [
+            new utils_1.Color(71, 209, 71),
+            new utils_1.Color(153, 0, 153),
+            new utils_1.Color(46, 184, 46),
+            new utils_1.Color(179, 0, 179),
+            new utils_1.Color(0, 153, 51)
+        ];
         Nebula.Names = [];
     })(Nebula = Const.Nebula || (Const.Nebula = {}));
     let Comet;
@@ -4663,9 +4670,9 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(40));
-__export(__webpack_require__(115));
 __export(__webpack_require__(116));
 __export(__webpack_require__(117));
+__export(__webpack_require__(118));
 
 
 /***/ }),
@@ -112428,6 +112435,23 @@ exports.turbulence = turbulence;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+function getClouds(a) {
+    const density = 0.5;
+    const sharpness = 0.1;
+    a = 1 - Math.pow(Math.E, -(a - density) * sharpness);
+    a = a < 0 ? 0 : a;
+    return a;
+}
+exports.getClouds = getClouds;
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Nazwy stanów gry
  * @export
@@ -112443,7 +112467,7 @@ exports.States = States;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112641,7 +112665,7 @@ exports.default = Network;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112678,7 +112702,6 @@ exports.Comet = Comet;
 
 
 /***/ }),
-/* 93 */,
 /* 94 */,
 /* 95 */,
 /* 96 */,
@@ -112686,13 +112709,14 @@ exports.Comet = Comet;
 /* 98 */,
 /* 99 */,
 /* 100 */,
-/* 101 */
+/* 101 */,
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(102);
+const Game_1 = __webpack_require__(103);
 document.addEventListener("DOMContentLoaded", requestFullscreen);
 document.addEventListener("DOMContentLoaded", function () {
     startApp();
@@ -112723,7 +112747,7 @@ function requestFullscreen() {
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112732,9 +112756,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(103);
-const Test_1 = __webpack_require__(130);
-const network_1 = __webpack_require__(91);
+const states_1 = __webpack_require__(104);
+const Test_1 = __webpack_require__(131);
+const network_1 = __webpack_require__(92);
 const utils_1 = __webpack_require__(12);
 /**
  * Utworzenie gry
@@ -112763,7 +112787,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112772,15 +112796,15 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(90));
-__export(__webpack_require__(104));
+__export(__webpack_require__(91));
 __export(__webpack_require__(105));
-__export(__webpack_require__(112));
+__export(__webpack_require__(106));
 __export(__webpack_require__(113));
+__export(__webpack_require__(114));
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112789,9 +112813,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(90);
+const States_1 = __webpack_require__(91);
 const core_1 = __webpack_require__(44);
-const network_1 = __webpack_require__(91);
+const network_1 = __webpack_require__(92);
 const assets_1 = __webpack_require__(4);
 /**
  * Uruchamianie systemu
@@ -112829,7 +112853,7 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112838,9 +112862,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(106);
-const config_1 = __webpack_require__(107);
-const generators = __webpack_require__(108);
+const QRious = __webpack_require__(107);
+const config_1 = __webpack_require__(108);
+const generators = __webpack_require__(109);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(38);
 const utils_1 = __webpack_require__(12);
@@ -112965,17 +112989,32 @@ class Loading extends Phaser.State {
     createTextures() {
         return new Promise((resolve, reject) => {
             generators.stars(this.game, 0.02, 0.125, const_1.Const.Stars.getName());
+            // Const.Nebula.Names.push("nebula-3");
+            // generators.nebulaTest(this.game, "nebula-3", Const.Nebula.Colors[0]);
+            // Const.Nebula.Names.push("nebula-2");
+            // generators.nebulaTest(this.game, "nebula-2", Const.Nebula.Colors[0]);
+            // Const.Nebula.Names.push("nebula-4");
+            // generators.nebula(
+            //   this.game,
+            //   "nebula-4",
+            //   rnd.integerInRange(0, 1000),
+            //   Const.Nebula.Colors[1],
+            //   true
+            // );
+            const_1.Const.Nebula.Names.push("nebula-3");
+            generators.nebula(this.game, "nebula-3", utils_1.rnd.integerInRange(0, 1000), const_1.Const.Nebula.Colors[3], true);
+            // Const.Nebula.Names.push("nebula-2");
+            // generators.nebula(
+            //   this.game,
+            //   "nebula-2",
+            //   rnd.integerInRange(0, 1000),
+            //   Const.Nebula.Colors[1],
+            //   true
+            // );
             const_1.Const.Nebula.Names.push("nebula-1");
-            const nebulaColor = const_1.Const.Nebula.Colors[utils_1.rnd.integerInRange(0, 1)];
-            for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-                // generators.nebula(
-                //   this.game,
-                //   "nebula-1",
-                //   rnd.integerInRange(0, 1000),
-                //   nebulaColor
-                // );
-                generators.nebulaTest(this.game, "nebula-1");
-            }
+            generators.nebula(this.game, "nebula-1", utils_1.rnd.integerInRange(0, 1000), const_1.Const.Nebula.Colors[0], false);
+            // for (let i = 0; i < Const.Nebula.Names.length; i++) {
+            // }
             const_1.Const.Comet.Names.push("comet-1");
             const_1.Const.Comet.Names.push("comet-2");
             const_1.Const.Comet.Names.push("comet-3");
@@ -112996,7 +113035,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -115364,7 +115403,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115376,7 +115415,7 @@ exports.default = {
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115385,13 +115424,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(109));
 __export(__webpack_require__(110));
 __export(__webpack_require__(111));
+__export(__webpack_require__(112));
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115453,7 +115492,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115501,7 +115540,7 @@ exports.comet = comet;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115511,7 +115550,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(12);
-function nebula(game, name, offset, color) {
+function nebula(game, name, offset, color, clouds) {
     const width = game.width;
     const height = game.height;
     const canvas = document.createElement("canvas");
@@ -115520,7 +115559,7 @@ function nebula(game, name, offset, color) {
     canvas.style.backgroundColor = "transparent";
     const ctx = canvas.getContext("2d");
     let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = createData(canvas.width, canvas.height, offset, color, imageData);
+    let data = createData(canvas.width, canvas.height, offset, color, imageData, clouds);
     ctx.putImageData(data, 0, 0);
     let img = new Image();
     img.onload = () => {
@@ -115529,7 +115568,8 @@ function nebula(game, name, offset, color) {
     img.src = canvas.toDataURL("image/png");
 }
 exports.nebula = nebula;
-function createData(width, height, offset, color, imageData) {
+function createData(width, height, offset, color, imageData, clouds) {
+    const arr = [];
     let yoff = offset;
     let toff = 0;
     for (let y = 0; y < height; y++) {
@@ -115537,27 +115577,27 @@ function createData(width, height, offset, color, imageData) {
         for (let x = 0; x < width; x++) {
             const index = y * width + x;
             const n = utils_1.noise(yoff, xoff);
-            // const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
-            // let bright = map(n, 0, 1, 0, 150);
-            let bright = utils_1.map(n, 0, 1, 0, 255);
-            imageData.data[index * 4 + 0] = bright;
-            imageData.data[index * 4 + 1] = bright;
-            imageData.data[index * 4 + 2] = bright;
-            imageData.data[index * 4 + 3] = 255;
+            const c = utils_1.Color.rgbLum(color, utils_1.map(n, 0, 1, 0, 0.5));
+            // let bright = map(n, 0, 1, 0, 255);
             // bright = bright / 3;
-            // imageData.data[index * 4 + 0] = c.R;
-            // imageData.data[index * 4 + 1] = c.G;
-            // imageData.data[index * 4 + 2] = c.B;
-            // imageData.data[index * 4 + 3] = bright;
+            imageData.data[index * 4 + 0] = color.R;
+            imageData.data[index * 4 + 1] = color.G;
+            imageData.data[index * 4 + 2] = color.B;
+            const bright = clouds
+                ? utils_1.map(utils_1.getClouds(n), 0, 0.05, 0, 255)
+                : utils_1.map(n, 0, 1, 0, 100);
+            imageData.data[index * 4 + 3] = bright; // map(getClouds(n), 0, 0.05, 0, 255);
+            // arr.push(getClouds(n));
             // xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
-            xoff += 0.1;
+            xoff += 0.007;
         }
-        yoff += 0.1;
+        yoff += 0.007;
         // yoff += 0.007;
     }
+    // console.log(arr);
     return imageData;
 }
-function nebulaTest(game, name) {
+function nebulaTest(game, name, color) {
     const arr = utils_1.generateNoise(game.width, game.height);
     const width = game.width;
     const height = game.height;
@@ -115567,7 +115607,7 @@ function nebulaTest(game, name) {
     canvas.style.backgroundColor = "transparent";
     const ctx = canvas.getContext("2d");
     let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = createDataTest(canvas.width, canvas.height, arr, imageData);
+    let data = createDataTest(canvas.width, canvas.height, arr, imageData, color);
     ctx.putImageData(data, 0, 0);
     let img = new Image();
     img.onload = () => {
@@ -115576,7 +115616,7 @@ function nebulaTest(game, name) {
     img.src = canvas.toDataURL("image/png");
 }
 exports.nebulaTest = nebulaTest;
-function createDataTest(width, height, arr, imageData) {
+function createDataTest(width, height, arr, imageData, color) {
     // const w = [0, 0, 0, 0, 0, 0.5];
     // for (let i = 4; i >= 0; i--) {
     //   w[i] = w[i + 1] / 2;
@@ -115606,30 +115646,31 @@ function createDataTest(width, height, arr, imageData) {
             let total = 0.0;
             let frequency = 1 / width;
             let amplitude = 0.5;
-            for (let i = 0; i < 16; i++) {
+            for (let i = 0; i < 6; i++) {
                 total += utils_1.noise(xoff * frequency, yoff * frequency) * amplitude;
                 frequency *= 2;
                 amplitude *= 0.5;
                 // arr[y][x] = total;
             }
             // total = map(total, 0, 1, 0, 50);
-            total = total < 0.5 ? 0 : 255;
-            imageData.data[index * 4 + 0] = total;
-            imageData.data[index * 4 + 1] = total;
-            imageData.data[index * 4 + 2] = total;
-            imageData.data[index * 4 + 3] = 255;
-            xoff++;
+            // total = total < 0.5 ? 0 : 255;
+            // const c = Color.rgbLum(color, map(total, 0, 1, 0, 0.5));
+            imageData.data[index * 4 + 0] = total < 0.5 ? 0 : color.R;
+            imageData.data[index * 4 + 1] = total < 0.5 ? 0 : color.G;
+            imageData.data[index * 4 + 2] = total < 0.5 ? 0 : color.B;
+            imageData.data[index * 4 + 3] =
+                total < 0.5 ? 0 : utils_1.map(total, 0, 1, 0, 255);
+            xoff += 0.01;
         }
-        yoff++;
+        yoff += 0.01;
     }
-    console.log(imageData.data);
     return imageData;
 }
 exports.createDataTest = createDataTest;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115676,7 +115717,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115686,11 +115727,11 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const utils_1 = __webpack_require__(12);
-const States_1 = __webpack_require__(90);
+const States_1 = __webpack_require__(91);
 const const_1 = __webpack_require__(38);
-const network_1 = __webpack_require__(91);
+const network_1 = __webpack_require__(92);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(114);
+const models_1 = __webpack_require__(115);
 /**
  * Widok główny
  * @export
@@ -115886,7 +115927,7 @@ class Main extends Phaser.State {
     createBackground() {
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
             const nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            nebula.autoScroll(-120, 0);
+            // nebula.autoScroll(-120, 0);
             this.game.world.sendToBack(nebula);
             this.tiles.push(nebula);
         }
@@ -116106,7 +116147,7 @@ exports.Main = Main;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116116,14 +116157,14 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(39));
-__export(__webpack_require__(118));
-__export(__webpack_require__(121));
-__export(__webpack_require__(126));
-__export(__webpack_require__(129));
+__export(__webpack_require__(119));
+__export(__webpack_require__(122));
+__export(__webpack_require__(127));
+__export(__webpack_require__(130));
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116192,7 +116233,7 @@ exports.SingleBullet = SingleBullet;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116258,7 +116299,7 @@ exports.SplitShot = SplitShot;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116319,7 +116360,7 @@ exports.LittleDoctor = LittleDoctor;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116328,13 +116369,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(119));
-__export(__webpack_require__(92));
 __export(__webpack_require__(120));
+__export(__webpack_require__(93));
+__export(__webpack_require__(121));
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116367,7 +116408,7 @@ exports.CometExplosion = CometExplosion;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116378,7 +116419,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const const_1 = __webpack_require__(38);
 const utils_1 = __webpack_require__(12);
-const Comet_1 = __webpack_require__(92);
+const Comet_1 = __webpack_require__(93);
 class Comets extends Phaser.Group {
     constructor(game) {
         super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
@@ -116405,7 +116446,7 @@ exports.Comets = Comets;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116414,14 +116455,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(122));
 __export(__webpack_require__(123));
 __export(__webpack_require__(124));
 __export(__webpack_require__(125));
+__export(__webpack_require__(126));
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116469,7 +116510,7 @@ exports.SplitShotPowerUp = SplitShotPowerUp;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116517,7 +116558,7 @@ exports.ResetPointsPowerUp = ResetPointsPowerUp;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116564,7 +116605,7 @@ exports.UntouchtablePowerUp = UntouchtablePowerUp;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116612,7 +116653,7 @@ exports.LittleDoctorPowerUp = LittleDoctorPowerUp;
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116621,12 +116662,12 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(127));
 __export(__webpack_require__(128));
+__export(__webpack_require__(129));
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116662,7 +116703,7 @@ exports.ScoreText = ScoreText;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116699,7 +116740,7 @@ exports.PowerUpText = PowerUpText;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116782,7 +116823,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116797,7 +116838,12 @@ class Test extends Phaser.State {
     create() {
         for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
             const nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
+            this.game.world.sendToBack(nebula);
+            nebula.autoScroll(-100 + 50 * i, 0);
         }
+        const starfield = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
+        this.game.world.sendToBack(starfield);
+        starfield.autoScroll(-50, 0);
     }
     shutdown() { }
 }

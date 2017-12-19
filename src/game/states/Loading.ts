@@ -235,17 +235,44 @@ export class Loading extends Phaser.State {
   private createTextures(): Promise<any> {
     return new Promise((resolve, reject) => {
       generators.stars(this.game, 0.02, 0.125, Const.Stars.getName());
+      // Const.Nebula.Names.push("nebula-3");
+      // generators.nebulaTest(this.game, "nebula-3", Const.Nebula.Colors[0]);
+      // Const.Nebula.Names.push("nebula-2");
+      // generators.nebulaTest(this.game, "nebula-2", Const.Nebula.Colors[0]);
+      // Const.Nebula.Names.push("nebula-4");
+      // generators.nebula(
+      //   this.game,
+      //   "nebula-4",
+      //   rnd.integerInRange(0, 1000),
+      //   Const.Nebula.Colors[1],
+      //   true
+      // );
+      Const.Nebula.Names.push("nebula-3");
+      generators.nebula(
+        this.game,
+        "nebula-3",
+        rnd.integerInRange(0, 1000),
+        Const.Nebula.Colors[3],
+        true
+      );
+      // Const.Nebula.Names.push("nebula-2");
+      // generators.nebula(
+      //   this.game,
+      //   "nebula-2",
+      //   rnd.integerInRange(0, 1000),
+      //   Const.Nebula.Colors[1],
+      //   true
+      // );
       Const.Nebula.Names.push("nebula-1");
-      const nebulaColor = Const.Nebula.Colors[rnd.integerInRange(0, 1)];
-      for (let i = 0; i < Const.Nebula.Names.length; i++) {
-        // generators.nebula(
-        //   this.game,
-        //   "nebula-1",
-        //   rnd.integerInRange(0, 1000),
-        //   nebulaColor
-        // );
-        generators.nebulaTest(this.game, "nebula-1");
-      }
+      generators.nebula(
+        this.game,
+        "nebula-1",
+        rnd.integerInRange(0, 1000),
+        Const.Nebula.Colors[0],
+        false
+      );
+      // for (let i = 0; i < Const.Nebula.Names.length; i++) {
+      // }
       Const.Comet.Names.push("comet-1");
       Const.Comet.Names.push("comet-2");
       Const.Comet.Names.push("comet-3");

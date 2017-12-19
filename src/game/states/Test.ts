@@ -18,7 +18,18 @@ export class Test extends Phaser.State {
         this.game.height,
         Const.Nebula.Names[i]
       );
+      this.game.world.sendToBack(nebula);
+      nebula.autoScroll(-100 + 50 * i, 0);
     }
+    const starfield = this.game.add.tileSprite(
+      0,
+      0,
+      this.game.width,
+      this.game.height,
+      Const.Stars.getName()
+    );
+    this.game.world.sendToBack(starfield);
+    starfield.autoScroll(-50, 0);
   }
 
   shutdown() {}
