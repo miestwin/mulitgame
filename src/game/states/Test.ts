@@ -19,7 +19,7 @@ export class Test extends Phaser.State {
         Const.Nebula.Names[i]
       );
       this.game.world.sendToBack(nebula);
-      nebula.autoScroll(-100 + 50 * i, 0);
+      // nebula.autoScroll(-100 + 50 * i, 0);
     }
     const starfield = this.game.add.tileSprite(
       0,
@@ -29,7 +29,7 @@ export class Test extends Phaser.State {
       Const.Stars.getName()
     );
     this.game.world.sendToBack(starfield);
-    starfield.autoScroll(-50, 0);
+    // starfield.autoScroll(-50, 0);
   }
 
   shutdown() {}

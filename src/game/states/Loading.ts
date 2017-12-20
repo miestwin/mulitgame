@@ -145,19 +145,20 @@ export class Loading extends Phaser.State {
   create() {
     // create qrcode and go to next state
     this.loadingText.setText("Create Textures ...");
-    Promise.all([this.createQRCode(), this.createTextures()]).then(() => {
-      this.loadingText.setText("Create QRCode Complete");
-      // this.game.state.start(States.MAIN);
-      this.game.state.start("Test");
-    });
-    // .catch(() => {
-    //   this.game.state.start(
-    //     States.MESSAGE,
-    //     true,
-    //     false,
-    //     "Problem with generating texture"
-    //   );
-    // });
+    Promise.all([this.createQRCode(), this.createTextures()])
+      .then(() => {
+        this.loadingText.setText("Create QRCode Complete");
+        this.game.state.start(States.MAIN);
+        // this.game.state.start("Test");
+      })
+      .catch(() => {
+        this.game.state.start(
+          States.MESSAGE,
+          true,
+          false,
+          "Problem with generating texture"
+        );
+      });
   }
 
   /**
@@ -253,7 +254,9 @@ export class Loading extends Phaser.State {
         "nebula-3",
         rnd.integerInRange(0, 1000),
         Const.Nebula.Colors[3],
-        true
+        true,
+        0.3,
+        0.05
       );
       // Const.Nebula.Names.push("nebula-2");
       // generators.nebula(
@@ -269,7 +272,9 @@ export class Loading extends Phaser.State {
         "nebula-1",
         rnd.integerInRange(0, 1000),
         Const.Nebula.Colors[0],
-        false
+        false,
+        0.4,
+        0.05
       );
       // for (let i = 0; i < Const.Nebula.Names.length; i++) {
       // }

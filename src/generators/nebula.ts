@@ -10,7 +10,8 @@ import {
   smoothNoise,
   cosineInterpolation,
   turbulence,
-  getClouds
+  getClouds,
+  minmax
 } from "../utils";
 
 export function nebula(
@@ -18,7 +19,9 @@ export function nebula(
   name: string,
   offset: number,
   color: Color,
-  clouds: boolean
+  clouds?: boolean,
+  density?: number,
+  sharpness?: number
 ) {
   const width = game.width;
   const height = game.height;
@@ -34,7 +37,9 @@ export function nebula(
     offset,
     color,
     imageData,
-    clouds
+    clouds,
+    density,
+    sharpness
   );
   ctx.putImageData(data, 0, 0);
 
@@ -51,34 +56,65 @@ function createData(
   offset: number,
   color: Color,
   imageData: ImageData,
-  clouds: boolean
+  clouds?: boolean,
+  density?: number,
+  sharpness?: number
 ): ImageData {
-  const arr = [];
+  const temp = [];
   let yoff = offset;
-  let toff = 0;
   for (let y = 0; y < height; y++) {
     let xoff = offset;
     for (let x = 0; x < width; x++) {
       const index = y * width + x;
       const n = noise(yoff, xoff);
-      const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
-      // let bright = map(n, 0, 1, 0, 255);
-      // bright = bright / 3;
+      // imageData.data[index * 4 + 0] = color.R;
+      // imageData.data[index * 4 + 1] = color.G;
+      // imageData.data[index * 4 + 2] = color.B;
+      // arr[index * 4 + 3]
+      const clouds = getClouds(
+        n,
+        density ? density : 0.5,
+        sharpness ? sharpness : 0.1
+      );
+      temp.push(clouds);
+      // const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
+      // imageData.data[index * 4 + 0] = color.R;
+      // imageData.data[index * 4 + 1] = color.G;
+      // imageData.data[index * 4 + 2] = color.B;
+      // const bright = clouds
+      //   ? map(
+      //       getClouds(n, density ? density : 0.5, sharpness ? sharpness : 0.1),
+      //       0,
+      //       0.05,
+      //       0,
+      //       255
+      //     )
+      //   : map(n, 0, 1, 0, 100);
+      // imageData.data[index * 4 + 3] = bright;
+      // xoff += 0.007;
+      xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
+    }
+    yoff += 0.007;
+  }
+
+  const { min, max } = minmax(temp);
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const index = y * width + x;
       imageData.data[index * 4 + 0] = color.R;
       imageData.data[index * 4 + 1] = color.G;
       imageData.data[index * 4 + 2] = color.B;
-      const bright = clouds
-        ? map(getClouds(n), 0, 0.05, 0, 255)
-        : map(n, 0, 1, 0, 100);
-      imageData.data[index * 4 + 3] = bright; // map(getClouds(n), 0, 0.05, 0, 255);
-      // arr.push(getClouds(n));
-      // xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
-      xoff += 0.007;
+      imageData.data[index * 4 + 3] = map(
+        temp[index],
+        0,
+        max > 0.05 ? max : 0.05,
+        0,
+        200
+      );
     }
-    yoff += 0.007;
-    // yoff += 0.007;
   }
-  // console.log(arr);
+
   return imageData;
 }
 

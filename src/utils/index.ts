@@ -17,3 +17,4 @@ export * from "./generateNoise";
 export * from "./cosinInterpolation";
 export * from "./turbulence";
 export * from "./getClouds";
+export * from "./minmax";
