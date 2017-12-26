@@ -115701,6 +115701,42 @@ function createDataTest(width, height, arr, imageData, color) {
     return imageData;
 }
 exports.createDataTest = createDataTest;
+function createData_TEST_2(width, height, offset, color, imageData, clouds, density, sharpness) {
+    // noiseDetail(2, null);
+    let yoff = offset;
+    for (let y = 0; y < height; y++) {
+        let xoff = offset;
+        for (let x = 0; x < width; x++) {
+            const index = y * width + x;
+            const n = utils_1.noise(yoff, xoff);
+            const bright = utils_1.map(n, 0, 1, 0, 255);
+            // const clouds = getClouds(
+            //   n,
+            //   density ? density : 0.5,
+            //   sharpness ? sharpness : 0.1
+            // );
+            imageData.data[index * 4 + 0] = bright;
+            imageData.data[index * 4 + 1] = bright;
+            imageData.data[index * 4 + 2] = bright;
+            imageData.data[index * 4 + 3] = 255;
+            // const bright = clouds
+            //   ? map(
+            //       getClouds(n, density ? density : 0.5, sharpness ? sharpness : 0.1),
+            //       0,
+            //       0.05,
+            //       0,
+            //       255
+            //     )
+            //   : map(n, 0, 1, 0, 100);
+            // imageData.data[index * 4 + 3] = bright;
+            // xoff += 0.007;
+            /// xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
+            xoff += 0.007;
+        }
+        yoff += 0.007;
+    }
+    return imageData;
+}
 
 
 /***/ }),
@@ -116875,8 +116911,14 @@ class Test extends Phaser.State {
             this.game.world.sendToBack(nebula);
             // nebula.autoScroll(-100 + 50 * i, 0);
         }
-        const starfield = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        this.game.world.sendToBack(starfield);
+        // const starfield = this.game.add.tileSprite(
+        //   0,
+        //   0,
+        //   this.game.width,
+        //   this.game.height,
+        //   Const.Stars.getName()
+        // );
+        // this.game.world.sendToBack(starfield);
         // starfield.autoScroll(-50, 0);
     }
     shutdown() { }

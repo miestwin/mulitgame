@@ -11,7 +11,8 @@ import {
   cosineInterpolation,
   turbulence,
   getClouds,
-  minmax
+  minmax,
+  noiseDetail
 } from "../utils";
 
 export function nebula(
@@ -191,6 +192,53 @@ export function createDataTest(
       xoff += 0.01;
     }
     yoff += 0.01;
+  }
+
+  return imageData;
+}
+
+function createData_TEST_2(
+  width: number,
+  height: number,
+  offset: number,
+  color: Color,
+  imageData: ImageData,
+  clouds?: boolean,
+  density?: number,
+  sharpness?: number
+): ImageData {
+  // noiseDetail(2, null);
+  let yoff = offset;
+  for (let y = 0; y < height; y++) {
+    let xoff = offset;
+    for (let x = 0; x < width; x++) {
+      const index = y * width + x;
+      const n = noise(yoff, xoff);
+      const bright = map(n, 0, 1, 0, 255);
+      // const clouds = getClouds(
+      //   n,
+      //   density ? density : 0.5,
+      //   sharpness ? sharpness : 0.1
+      // );
+      imageData.data[index * 4 + 0] = bright;
+      imageData.data[index * 4 + 1] = bright;
+      imageData.data[index * 4 + 2] = bright;
+      imageData.data[index * 4 + 3] = 255;
+      // const bright = clouds
+      //   ? map(
+      //       getClouds(n, density ? density : 0.5, sharpness ? sharpness : 0.1),
+      //       0,
+      //       0.05,
+      //       0,
+      //       255
+      //     )
+      //   : map(n, 0, 1, 0, 100);
+      // imageData.data[index * 4 + 3] = bright;
+      // xoff += 0.007;
+      /// xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
+      xoff += 0.007;
+    }
+    yoff += 0.007;
   }
 
   return imageData;
