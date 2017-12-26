@@ -1,23 +1,183 @@
 @font-face {
   font-family: "Kenvector Future";
-  font-style: normal;
   src: url("../assets/fonts/kenvector/kenvector_future-webfont.woff2")
       format("woff2"),
     url("../assets/fonts/kenvector/kenvector_future-webfont.woff")
       format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
+.comets-image {
+  background-image: url("../assets/images/comets.png");
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+html,
 body {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  color: #333;
+  background: #23292d;
+  -webkit-font-smoothing: antialiased;
+  font: 300 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  font-family: "Kenvector Future";
+}
+
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0;
+  outline: 0;
+  border: 0;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: "Kenvector Future";
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn__ok {
+  background: #0f9675;
+  color: #fff;
+}
+.btn__ok:hover {
+  background: #0a7d61;
+}
+.btn__warning {
+  background: #ab131c;
+  color: #fff;
+}
+.btn__warning:hover {
+  background: #880c14;
+}
+
+.app {
+  display: block;
+  width: 100%;
+}
+.app__nav {
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+  background: #ab131b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app__nav p {
+  color: #fff;
+  padding: 15px 35px;
+  margin: 0;
+  font-family: "Kenvector Future";
+}
+.app__content {
+  margin: 50px auto 50px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  border-radius: 4px;
+}
+.app__container {
+  padding: 35px;
+  display: block;
+}
+.app__footer {
+  border-radius: 0 0 4px 4px;
+  background: #0f9675;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+.app__footer p {
+  margin: 0;
+  font-family: "Kenvector Future";
+}
+
+.game-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0 auto 20px;
+  background-color: #f9f9f9;
+  transition: all 0.1s;
+}
+
+.game-item:last-child {
+  margin: 0 auto;
+}
+
+.game-item:hover {
+  transform: scale(1.006);
+}
+
+.game-item__btn {
+  display: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  font-size: 12px;
+}
+
+.game-item__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-radius: 3px;
+}
+
+.game-item-image {
+  width: 150px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 3px;
+}
+
+.game-item__description {
+  flex: 1;
+  margin-left: 10px;
+  border-top-right-radius: 3px;
+}
+
+.game-item__description p {
+  margin: 0;
 }
 
 #game {
-  min-width: 100vw;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 #controller {
@@ -37,7 +197,7 @@ body {
   font-family: "Kenvector Future", monospace;
   font-size: 30px;
   text-align: center;
-  background-color: #333333;
+  background-color: #23292d;
   color: #ffffff;
 }
 

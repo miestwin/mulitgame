@@ -10,17 +10,17 @@ export class Test extends Phaser.State {
   preload() {}
 
   create() {
-    for (let i = 0; i < Const.Nebula.Names.length; i++) {
-      const nebula = this.game.add.tileSprite(
-        0,
-        0,
-        this.game.width,
-        this.game.height,
-        Const.Nebula.Names[i]
-      );
-      this.game.world.sendToBack(nebula);
-      // nebula.autoScroll(-100 + 50 * i, 0);
-    }
+    // for (let i = 0; i < Const.Nebula.Names.length; i++) {
+    //   const nebula = this.game.add.tileSprite(
+    //     0,
+    //     0,
+    //     this.game.width,
+    //     this.game.height,
+    //     Const.Nebula.Names[i]
+    //   );
+    //   this.game.world.sendToBack(nebula);
+    // nebula.autoScroll(-100 + 50 * i, 0);
+    // }
     // const starfield = this.game.add.tileSprite(
     //   0,
     //   0,

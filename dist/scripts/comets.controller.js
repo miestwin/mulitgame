@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 103);
+/******/ 	return __webpack_require__(__webpack_require__.s = 95);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -94,21 +94,21 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(42);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(41);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(43);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(42);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(44);
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(43);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -127,7 +127,7 @@ var Assets;
                 return "glow";
             }
             static getFRAG() {
-                return "../assets/shaders/glow.frag";
+                return "../../assets/shaders/glow.frag";
             }
         }
         Shaders.Glow = Glow;
@@ -136,7 +136,7 @@ var Assets;
                 return "pixelate";
             }
             static getFRAG() {
-                return "../assets/shaders/pixelate.frag";
+                return "../../assets/shaders/pixelate.frag";
             }
         }
         Shaders.Pixelate = Pixelate;
@@ -151,10 +151,10 @@ var Assets;
                 return "Kenvector Future";
             }
             static getWOFF() {
-                return "../assets/fonts/kenvector/kenvector_future-webfont.woff";
+                return "../../assets/fonts/kenvector/kenvector_future-webfont.woff";
             }
             static getWOFF2() {
-                return "../assets/fonts/kenvector/kenvector_future-webfont.woff2";
+                return "../../assets/fonts/kenvector/kenvector_future-webfont.woff2";
             }
         }
         Fonts.Kenvector = Kenvector;
@@ -168,7 +168,7 @@ var Assets;
                     return "explosion-3";
                 }
                 static getPNG() {
-                    return "../assets/spritesheets/explosion-3.png";
+                    return "../../assets/spritesheets/explosion-3.png";
                 }
                 static getFrameWidth() {
                     return 128;
@@ -192,7 +192,7 @@ var Assets;
                     return "comet-explosion";
                 }
                 static getPNG() {
-                    return "../assets/spritesheets/comet-explosion.png";
+                    return "../../assets/spritesheets/comet-explosion.png";
                 }
                 static getFrameWidth() {
                     return 128;
@@ -219,7 +219,7 @@ var Assets;
                     return "rgb-laser";
                 }
                 static getPNG() {
-                    return "../assets/spritesheets/rgblaser.png";
+                    return "../../assets/spritesheets/rgblaser.png";
                 }
                 static getFrameWidth() {
                     return 4;
@@ -241,7 +241,7 @@ var Assets;
                 return "plasma";
             }
             static getPNG() {
-                return "../assets/spritesheets/plasma.png";
+                return "../../assets/spritesheets/plasma.png";
             }
             static getFrameWidth() {
                 return 192;
@@ -268,7 +268,7 @@ var Assets;
                 return "shield";
             }
             static getPNG() {
-                return "../assets/images/shield.png";
+                return "../../assets/images/shield.png";
             }
         }
         Images.Shield = Shield;
@@ -277,7 +277,7 @@ var Assets;
                 return "transparent";
             }
             static getPNG() {
-                return "../assets/images/transparent.png";
+                return "../../assets/images/transparent.png";
             }
         }
         Images.Transparent = Transparent;
@@ -288,7 +288,7 @@ var Assets;
                     return "bullet";
                 }
                 static getPNG() {
-                    return "../assets/images/bullet.png";
+                    return "../../assets/images/bullet.png";
                 }
             }
             Bulelts.Bullet = Bullet;
@@ -297,7 +297,7 @@ var Assets;
                     return "single-bullet";
                 }
                 static getPNG() {
-                    return "../assets/images/shmup-bullet.png";
+                    return "../../assets/images/shmup-bullet.png";
                 }
             }
             Bulelts.SingleBullet = SingleBullet;
@@ -322,7 +322,7 @@ var Assets;
                         return "laser-test";
                     }
                     static getPNG() {
-                        return "../assets/images/laser3_test.png";
+                        return "../../assets/images/laser3_test.png";
                     }
                 }
                 Lasers.LaserGREEN = LaserGREEN;
@@ -331,7 +331,7 @@ var Assets;
                         return "laser-test-2";
                     }
                     static getPNG() {
-                        return "../assets/images/laser2_test.png";
+                        return "../../assets/images/laser2_test.png";
                     }
                 }
                 Lasers.LaserPURPLE = LaserPURPLE;
@@ -344,7 +344,7 @@ var Assets;
                     return "split-shoot_powerup";
                 }
                 static getPNG() {
-                    return "../assets/images/power-ups/bold_silver.png";
+                    return "../../assets/images/power-ups/bold_silver.png";
                 }
             }
             PowerUps.SplitShoot = SplitShoot;
@@ -353,7 +353,7 @@ var Assets;
                     return "reset-points_powerup";
                 }
                 static getPNG() {
-                    return "../assets/images/power-ups/pill_green.png";
+                    return "../../assets/images/power-ups/pill_green.png";
                 }
             }
             PowerUps.ResetPoints = ResetPoints;
@@ -362,7 +362,7 @@ var Assets;
                     return "untouchtable_powerup";
                 }
                 static getPNG() {
-                    return "../assets/images/power-ups/shield_bronze.png";
+                    return "../../assets/images/power-ups/shield_bronze.png";
                 }
             }
             PowerUps.Untouchtable = Untouchtable;
@@ -371,7 +371,7 @@ var Assets;
                     return "little-doctor_powerup";
                 }
                 static getPNG() {
-                    return "../assets/images/power-ups/bolt_gold.png";
+                    return "../../assets/images/power-ups/bolt_gold.png";
                 }
             }
             PowerUps.LittleDoctor = LittleDoctor;
@@ -383,7 +383,7 @@ var Assets;
                     return "plus-one";
                 }
                 static getPNG() {
-                    return "../assets/images/plusone.png";
+                    return "../../assets/images/plusone.png";
                 }
             }
             ScoreText.Plus = Plus;
@@ -392,7 +392,7 @@ var Assets;
                     return "minus-one";
                 }
                 static getPNG() {
-                    return "../assets/images/minusone.png";
+                    return "../../assets/images/minusone.png";
                 }
             }
             ScoreText.Minus = Minus;
@@ -401,7 +401,7 @@ var Assets;
                     return "minus-ten";
                 }
                 static getPNG() {
-                    return "../assets/images/minusten.png";
+                    return "../../assets/images/minusten.png";
                 }
             }
             ScoreText.Minus10 = Minus10;
@@ -416,7 +416,7 @@ var Assets;
                     return "#33cc33";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_green.png";
+                    return "../../assets/images/ships/ship_green.png";
                 }
             }
             Ships.GREEN = GREEN;
@@ -428,7 +428,7 @@ var Assets;
                     return "#9933ff";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_purple.png";
+                    return "../../assets/images/ships/ship_purple.png";
                 }
             }
             Ships.PURPLE = PURPLE;
@@ -440,7 +440,7 @@ var Assets;
                     return "#0066ff";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_blue.png";
+                    return "../../assets/images/ships/ship_blue.png";
                 }
             }
             Ships.BLUE = BLUE;
@@ -452,7 +452,7 @@ var Assets;
                     return "#009999";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_watery.png";
+                    return "../../assets/images/ships/ship_watery.png";
                 }
             }
             Ships.WATERY = WATERY;
@@ -464,7 +464,7 @@ var Assets;
                     return "#ff3399";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_pink.png";
+                    return "../../assets/images/ships/ship_pink.png";
                 }
             }
             Ships.PINK = PINK;
@@ -476,7 +476,7 @@ var Assets;
                     return "#cc2900";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_red.png";
+                    return "../../assets/images/ships/ship_red.png";
                 }
             }
             Ships.RED = RED;
@@ -488,7 +488,7 @@ var Assets;
                     return "#d1d123";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_yellow.png";
+                    return "../../assets/images/ships/ship_yellow.png";
                 }
             }
             Ships.YELLOW = YELLOW;
@@ -500,7 +500,7 @@ var Assets;
                     return "#cc5200";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_orange.png";
+                    return "../../assets/images/ships/ship_orange.png";
                 }
             }
             Ships.ORANGE = ORANGE;
@@ -512,7 +512,7 @@ var Assets;
                     return "#739900";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_grass.png";
+                    return "../../assets/images/ships/ship_grass.png";
                 }
             }
             Ships.GRASS = GRASS;
@@ -524,7 +524,7 @@ var Assets;
                     return "#993333";
                 }
                 static getPNG() {
-                    return "../assets/images/ships/ship_darkpink.png";
+                    return "../../assets/images/ships/ship_darkpink.png";
                 }
             }
             Ships.DARKPINK = DARKPINK;
@@ -541,7 +541,7 @@ var Assets;
                         return "btn-down";
                     }
                     static getPNG() {
-                        return "../assets/images/controller/shadedDark/shadedDark27.png";
+                        return "../../assets/images/controller/shadedDark/shadedDark27.png";
                     }
                 }
                 Arrows.Down = Down;
@@ -550,7 +550,7 @@ var Assets;
                         return "btn-up";
                     }
                     static getPNG() {
-                        return "../assets/images/controller/shadedDark/shadedDark26.png";
+                        return "../../assets/images/controller/shadedDark/shadedDark26.png";
                     }
                 }
                 Arrows.Up = Up;
@@ -562,7 +562,7 @@ var Assets;
                         return "joystick-external-wheel";
                     }
                     static getPNG() {
-                        return "../assets/images/controller/lineDark/lineDark46.png";
+                        return "../../assets/images/controller/lineDark/lineDark46.png";
                     }
                 }
                 Joystick.WheelExternal = WheelExternal;
@@ -571,7 +571,7 @@ var Assets;
                         return "joystick-internal-wheel";
                     }
                     static getPNG() {
-                        return "../assets/images/controller/flatDark/flatDark10.png";
+                        return "../../assets/images/controller/flatDark/flatDark10.png";
                     }
                 }
                 Joystick.WheelInternal = WheelInternal;
@@ -583,7 +583,7 @@ var Assets;
                         return "grey-menu-button";
                     }
                     static getPNG() {
-                        return "../assets/images/ui/grey_button04.png";
+                        return "../../assets/images/ui/grey_button04.png";
                     }
                 }
                 Menu.Grey = Grey;
@@ -592,7 +592,7 @@ var Assets;
                         return "select-button";
                     }
                     static getPNG() {
-                        return "../assets/images/controller/flatLight/flatLight41.png";
+                        return "../../assets/images/controller/flatLight/flatLight41.png";
                     }
                 }
                 Menu.Select = Select;
@@ -601,7 +601,7 @@ var Assets;
                         return "start-button";
                     }
                     static getPNG() {
-                        return "../assets/images/controller/flatLight/flatLight40.png";
+                        return "../../assets/images/controller/flatLight/flatLight40.png";
                     }
                 }
                 Menu.Start = Start;
@@ -611,7 +611,7 @@ var Assets;
                     return "btn-fire";
                 }
                 static getPNG() {
-                    return "../assets/images/controller/flatDark/flatDark48.png";
+                    return "../../assets/images/controller/flatDark/flatDark48.png";
                 }
             }
             Buttons.Fire = Fire;
@@ -620,7 +620,7 @@ var Assets;
                     return "btn-shield";
                 }
                 static getPNG() {
-                    return "../assets/images/controller/shadedDark/shadedDark48.png";
+                    return "../../assets/images/controller/shadedDark/shadedDark48.png";
                 }
             }
             Buttons.Shield = Shield;
@@ -806,15 +806,15 @@ Emitter.prototype.hasListeners = function(event){
  * Module dependencies.
  */
 
-var keys = __webpack_require__(63);
+var keys = __webpack_require__(62);
 var hasBinary = __webpack_require__(18);
-var sliceBuffer = __webpack_require__(64);
-var after = __webpack_require__(65);
-var utf8 = __webpack_require__(66);
+var sliceBuffer = __webpack_require__(63);
+var after = __webpack_require__(64);
+var utf8 = __webpack_require__(65);
 
 var base64encoder;
 if (global && global.ArrayBuffer) {
-  base64encoder = __webpack_require__(68);
+  base64encoder = __webpack_require__(67);
 }
 
 /**
@@ -872,7 +872,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(69);
+var Blob = __webpack_require__(68);
 
 /**
  * Encodes a packet.
@@ -1611,7 +1611,7 @@ process.umask = function() { return 0; };
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(50);
+exports = module.exports = __webpack_require__(49);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -1858,7 +1858,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(70);
+exports = module.exports = __webpack_require__(69);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -2052,24 +2052,24 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(37));
 __export(__webpack_require__(28));
-__export(__webpack_require__(78));
+__export(__webpack_require__(77));
 __export(__webpack_require__(29));
 __export(__webpack_require__(30));
-__export(__webpack_require__(79));
+__export(__webpack_require__(78));
 __export(__webpack_require__(31));
 __export(__webpack_require__(33));
+__export(__webpack_require__(82));
 __export(__webpack_require__(83));
 __export(__webpack_require__(84));
-__export(__webpack_require__(85));
 __export(__webpack_require__(34));
+__export(__webpack_require__(85));
 __export(__webpack_require__(86));
-__export(__webpack_require__(87));
 __export(__webpack_require__(35));
+__export(__webpack_require__(87));
 __export(__webpack_require__(88));
 __export(__webpack_require__(89));
 __export(__webpack_require__(90));
 __export(__webpack_require__(91));
-__export(__webpack_require__(92));
 
 
 /***/ }),
@@ -2081,10 +2081,10 @@ __export(__webpack_require__(92));
  * Module dependencies.
  */
 
-var debug = __webpack_require__(52)('socket.io-parser');
+var debug = __webpack_require__(51)('socket.io-parser');
 var Emitter = __webpack_require__(5);
 var hasBin = __webpack_require__(18);
-var binary = __webpack_require__(56);
+var binary = __webpack_require__(55);
 var isBuf = __webpack_require__(19);
 
 /**
@@ -2484,7 +2484,7 @@ function error() {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(61);
+var hasCORS = __webpack_require__(60);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -2686,7 +2686,28 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 16 */,
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Nazwy stanów kontrolera
+ * @export
+ * @class States
+ */
+class States {
+}
+States.BOOT = "Boot";
+States.LOADING = "Loading";
+States.AVATAR_SELECTOR = "AvatarSelector";
+States.MESSAGE = "Message";
+States.GAME_CONTROLLER = "GameController";
+exports.States = States;
+
+
+/***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
@@ -2741,7 +2762,7 @@ module.exports = function parseuri(str) {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(55);
+var isArray = __webpack_require__(54);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
@@ -2829,7 +2850,7 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(58);
+var eio = __webpack_require__(57);
 var Socket = __webpack_require__(25);
 var Emitter = __webpack_require__(5);
 var parser = __webpack_require__(13);
@@ -2837,7 +2858,7 @@ var on = __webpack_require__(26);
 var bind = __webpack_require__(27);
 var debug = __webpack_require__(8)('socket.io-client:manager');
 var indexOf = __webpack_require__(24);
-var Backoff = __webpack_require__(77);
+var Backoff = __webpack_require__(76);
 
 /**
  * IE6+ hasOwnProperty
@@ -3408,9 +3429,9 @@ Manager.prototype.onreconnect = function () {
  */
 
 var XMLHttpRequest = __webpack_require__(14);
-var XHR = __webpack_require__(62);
-var JSONP = __webpack_require__(72);
-var websocket = __webpack_require__(73);
+var XHR = __webpack_require__(61);
+var JSONP = __webpack_require__(71);
+var websocket = __webpack_require__(72);
 
 /**
  * Export transports.
@@ -3811,7 +3832,7 @@ module.exports = function(arr, obj){
 
 var parser = __webpack_require__(13);
 var Emitter = __webpack_require__(5);
-var toArray = __webpack_require__(76);
+var toArray = __webpack_require__(75);
 var on = __webpack_require__(26);
 var bind = __webpack_require__(27);
 var debug = __webpack_require__(8)('socket.io-client:socket');
@@ -4353,10 +4374,10 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(79));
 __export(__webpack_require__(80));
-__export(__webpack_require__(81));
 __export(__webpack_require__(32));
-__export(__webpack_require__(82));
+__export(__webpack_require__(81));
 
 
 /***/ }),
@@ -4454,7 +4475,211 @@ exports.smoothNoise = smoothNoise;
 
 
 /***/ }),
-/* 36 */,
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const io = __webpack_require__(47);
+/**
+ * Połączenie z serwerem
+ * @export
+ * @class Network
+ */
+class Network {
+    static connect() {
+        Network.socket = io();
+        Network.initialize();
+    }
+    static initialize() {
+        Network.socket.on('disconnect', () => {
+            document.location.reload();
+        });
+    }
+    /**
+     * Usunięcie podanego listenere
+     * @static
+     * @param {string} listener
+     * @memberof Network
+     */
+    static removeListener(listener) {
+        Network.socket.off(listener);
+    }
+    /**
+     * Nadaje informację o nowym graczu
+     * @static
+     * @param {any} id
+     * @memberof Network
+     */
+    static newPlayer({ id, gameId }) {
+        Network.socket.emit(Network.NEW_PLAYER, { id: id, gameId: gameId });
+    }
+    /**
+     * Ustawia postać gracza
+     * @static
+     * @param {string} character
+     * @memberof Network
+     */
+    static setPlayerAvatar(character) {
+        Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
+    }
+    /**
+     * Pobiera postacie które są już używane
+     * @static
+     * @memberof Network
+     */
+    static getAvatarsInUse() {
+        Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
+    }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @memberof Network
+     */
+    static updatePlayerXY(gameId, update) {
+        Network.socket.emit(Network.UPDATE_PLAYER_XY, gameId, update);
+    }
+    /**
+     * Aktualizacja pozycji gracza
+     * @static
+     * @param {any} gameID
+     * @param {any} update
+     * @memberof Network
+     */
+    static updatePlayerZ(gameID, update) {
+        Network.socket.emit(Network.UPDATE_PLAYER_Z, gameID, update);
+    }
+    /**
+     * Poinformowanie o oddaniu strzału przez gracza
+     * @static
+     * @param {any} gameID
+     * @memberof Network
+     */
+    static playerFire(gameID) {
+        Network.socket.emit(Network.PLAYER_FIRE, gameID);
+    }
+    /**
+     * Ponowne uruchomienie gry
+     * @static
+     * @param {any} gameID
+     * @memberof Network
+     */
+    static playAgain(gameID) {
+        Network.socket.emit(Network.PLAY_AGAIN, gameID);
+    }
+    /**
+     * Gra jest niedostępna
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGameNotAvailable(fn) {
+        Network.socket.on(Network.GAME_NOT_AVAILABLE, fn);
+    }
+    /**
+     * Gra ma zajęte wszystkie sloty
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGameFull(fn) {
+        Network.socket.on(Network.GAME_FULL, fn);
+    }
+    /**
+     * Gra już się rozpoczeła
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onGameAlreadyStarted(fn) {
+        Network.socket.on(Network.GAME_ALREADY_STARTED, fn);
+    }
+    /**
+     * Gracz został utworzony pomyślnie
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onPlayerAssignedSuccessful(fn) {
+        Network.socket.on(Network.PLAYER_ASSIGNED_SUCCESSFUL, fn);
+    }
+    /**
+     * Otrzymanie potwierdzenia
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onReceiveConfirmation(fn) {
+        Network.socket.on(Network.RECEIVE_CONFIRMATION, fn);
+    }
+    /**
+     * Aktualizacja wyboru postaci
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateAvatarSelector(fn) {
+        Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
+    }
+    /**
+     * Rozpoczęcie gry
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onStartGame(fn) {
+        Network.socket.on(Network.START_GAME, fn);
+    }
+    /**
+     * Aktualizacja odliczania
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateTimer(fn) {
+        Network.socket.on(Network.UPDATE_TIMER, fn);
+    }
+    /**
+     * Aktualizacja wyniku gracza
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onUpdateScore(fn) {
+        Network.socket.on(Network.UPDATE_PLAYER_SCORE, fn);
+    }
+    /**
+     * Koniec gry
+     * @static
+     * @param {Function} fn
+     * @memberof Network
+     */
+    static onEndGame(fn) {
+        Network.socket.on(Network.END_GAME, fn);
+    }
+}
+Network.NEW_PLAYER = 'new-player';
+Network.SET_PLAYER_CHARACTER = 'set-player-character';
+Network.GET_CHARACTERS_IN_USE = 'get-characters-in-use';
+Network.GAME_NOT_AVAILABLE = 'game-not-available';
+Network.GAME_FULL = 'game-full';
+Network.GAME_ALREADY_STARTED = 'game-already-started';
+Network.PLAYER_ASSIGNED_SUCCESSFUL = 'player-assigned-successful';
+Network.RECEIVE_CONFIRMATION = 'receive-confirmation';
+Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
+Network.START_GAME = 'start-game';
+Network.UPDATE_PLAYER_XY = 'update-player-xy';
+Network.UPDATE_TIMER = 'update-timer';
+Network.UPDATE_PLAYER_Z = 'update-player-z';
+Network.UPDATE_PLAYER_SCORE = 'update_player_score';
+Network.PLAYER_FIRE = 'player_fire';
+Network.END_GAME = 'end-game';
+Network.PLAY_AGAIN = 'play-again';
+exports.default = Network;
+
+
+/***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4487,262 +4712,10 @@ exports.guid = guid;
 
 
 /***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Nazwy stanów gry
- * @export
- * @class States
- */
-class States {
-}
-States.BOOT = "Boot";
-States.LOADING = "Loading";
-States.MESSAGE = "Message";
-States.MAIN = "Main";
-exports.States = States;
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = __webpack_require__(12);
-var Const;
-(function (Const) {
-    let Ships;
-    (function (Ships) {
-        class GREEN {
-            static getName() {
-                return "player-ship_green";
-            }
-            static getValue() {
-                return 0x33cc33;
-            }
-        }
-        Ships.GREEN = GREEN;
-        class PURPLE {
-            static getName() {
-                return "player-ship_purple";
-            }
-            static getValue() {
-                return 0x9933ff;
-            }
-        }
-        Ships.PURPLE = PURPLE;
-        class BLUE {
-            static getName() {
-                return "player-ship_blue";
-            }
-            static getValue() {
-                return 0x0066ff;
-            }
-        }
-        Ships.BLUE = BLUE;
-        class WATERY {
-            static getName() {
-                return "player-ship_watery";
-            }
-            static getValue() {
-                return 0x009999;
-            }
-        }
-        Ships.WATERY = WATERY;
-        class PINK {
-            static getName() {
-                return "player-ship_pink";
-            }
-            static getValue() {
-                return 0xff3399;
-            }
-        }
-        Ships.PINK = PINK;
-        class RED {
-            static getName() {
-                return "player-ship_red";
-            }
-            static getValue() {
-                return 0xcc2900;
-            }
-        }
-        Ships.RED = RED;
-        class YELLOW {
-            static getName() {
-                return "player-ship_yellow";
-            }
-            static getValue() {
-                return 0xd1d123;
-            }
-        }
-        Ships.YELLOW = YELLOW;
-        class ORANGE {
-            static getName() {
-                return "player-ship_orange";
-            }
-            static getValue() {
-                return 0xcc5200;
-            }
-        }
-        Ships.ORANGE = ORANGE;
-        class GRASS {
-            static getName() {
-                return "player-ship_grass";
-            }
-            static getValue() {
-                return 0x739900;
-            }
-        }
-        Ships.GRASS = GRASS;
-        class DARKPINK {
-            static getName() {
-                return "player-ship_darkpink";
-            }
-            static getValue() {
-                return 0x993333;
-            }
-        }
-        Ships.DARKPINK = DARKPINK;
-    })(Ships = Const.Ships || (Const.Ships = {}));
-    let Nebula;
-    (function (Nebula) {
-        class PURPLE {
-            static getName() {
-                return "nebula_purple";
-            }
-            static getValue() {
-                return new utils_1.Color(179, 0, 179);
-            }
-        }
-        Nebula.PURPLE = PURPLE;
-        class ORANE {
-            static getName() {
-                return "nebula_orange";
-            }
-            static getValue() {
-                return new utils_1.Color(225, 51, 0);
-            }
-        }
-        Nebula.ORANE = ORANE;
-        class GREEN {
-            static getName() {
-                return "nebula_green";
-            }
-            static getValue() {
-                return new utils_1.Color(0, 153, 51);
-            }
-        }
-        Nebula.GREEN = GREEN;
-        Nebula.Colors = [
-            new utils_1.Color(71, 209, 71),
-            new utils_1.Color(153, 0, 153),
-            new utils_1.Color(46, 184, 46),
-            new utils_1.Color(179, 0, 179),
-            new utils_1.Color(0, 153, 51)
-        ];
-        Nebula.Names = [];
-    })(Nebula = Const.Nebula || (Const.Nebula = {}));
-    let Comet;
-    (function (Comet) {
-        Comet.Names = [];
-    })(Comet = Const.Comet || (Const.Comet = {}));
-    class Stars {
-        static getName() {
-            return "starsfield";
-        }
-    }
-    Const.Stars = Stars;
-    let Element;
-    (function (Element) {
-        Element.Colors = [
-            0xccccff,
-            0xccffff,
-            0xb3ffb3,
-            0xffff99,
-            0xffb3ff,
-            0x99ccff
-        ];
-        Element.ColorsString = [
-            "#ccccff",
-            "#ccffff",
-            "#b3ffb3",
-            "#ffff99",
-            "#ffb3ff",
-            "#99ccff"
-        ];
-        Element.Names = [];
-    })(Element = Const.Element || (Const.Element = {}));
-})(Const = exports.Const || (exports.Const = {}));
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(41));
-__export(__webpack_require__(117));
-__export(__webpack_require__(118));
-__export(__webpack_require__(119));
-
-
-/***/ }),
+/* 38 */,
+/* 39 */,
+/* 40 */,
 /* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-/**
- * Sprite pocisku
- * @export
- * @class Bullet
- * @extends {Phaser.Sprite}
- */
-class Bullet extends Phaser.Sprite {
-    constructor(game, key, dmg) {
-        super(game, 0, 0, key);
-        this.anchor.set(0.5);
-        this.checkWorldBounds = true;
-        this.outOfBoundsKill = true;
-        this.exists = false;
-        this.dmg = dmg;
-    }
-    /**
-     * Oddanie strzału
-     * @param {number} x
-     * @param {number} y
-     * @param {number} speed
-     * @param {number} gx
-     * @param {number} gy
-     * @memberof Bullet
-     */
-    fire(x, y, speed, gx, gy) {
-        this.reset(x, y);
-        this.body.velocity.x = speed;
-        this.body.gravity.x = gx;
-        this.body.gravity.y = gy;
-    }
-}
-exports.Bullet = Bullet;
-
-
-/***/ }),
-/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;/**
@@ -18360,7 +18333,7 @@ World.prototype.raycast = function(result, ray){
 });
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -27486,7 +27459,7 @@ Object.defineProperty(PIXI.TilingSprite.prototype, 'height', {
 }).call(this);
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -107853,7 +107826,7 @@ PIXI.TextureSilentFail = true;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107862,11 +107835,11 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(46));
+__export(__webpack_require__(45));
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107875,7 +107848,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const FontFaceObserver = __webpack_require__(47);
+const FontFaceObserver = __webpack_require__(46);
 /**
  * Własna impementacja Loadera zasobów
  * @export
@@ -107923,7 +107896,7 @@ exports.AppAssetsLoader = AppAssetsLoader;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
@@ -107937,7 +107910,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107945,7 +107918,7 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
  * Module dependencies.
  */
 
-var url = __webpack_require__(49);
+var url = __webpack_require__(48);
 var parser = __webpack_require__(13);
 var Manager = __webpack_require__(20);
 var debug = __webpack_require__(8)('socket.io-client');
@@ -108037,7 +108010,7 @@ exports.Socket = __webpack_require__(25);
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -108119,7 +108092,7 @@ function url (uri, loc) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -108135,7 +108108,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(51);
+exports.humanize = __webpack_require__(50);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -108327,7 +108300,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /**
@@ -108485,7 +108458,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -108494,7 +108467,7 @@ function plural(ms, n, name) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(53);
+exports = module.exports = __webpack_require__(52);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -108677,7 +108650,7 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -108693,7 +108666,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(54);
+exports.humanize = __webpack_require__(53);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -108885,7 +108858,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports) {
 
 /**
@@ -109043,7 +109016,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -109054,7 +109027,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -109063,7 +109036,7 @@ module.exports = Array.isArray || function (arr) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(57);
+var isArray = __webpack_require__(56);
 var isBuf = __webpack_require__(19);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
@@ -109202,7 +109175,7 @@ exports.removeBlobs = function(data, callback) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -109213,19 +109186,19 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+module.exports = __webpack_require__(58);
+
+
+/***/ }),
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 module.exports = __webpack_require__(59);
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-module.exports = __webpack_require__(60);
 
 /**
  * Exports parser
@@ -109237,7 +109210,7 @@ module.exports.parser = __webpack_require__(6);
 
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -109250,7 +109223,7 @@ var debug = __webpack_require__(11)('engine.io-client:socket');
 var index = __webpack_require__(24);
 var parser = __webpack_require__(6);
 var parseuri = __webpack_require__(17);
-var parsejson = __webpack_require__(75);
+var parsejson = __webpack_require__(74);
 var parseqs = __webpack_require__(9);
 
 /**
@@ -109988,7 +109961,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports) {
 
 
@@ -110011,7 +109984,7 @@ try {
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -110431,7 +110404,7 @@ function unloadHandler () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports) {
 
 
@@ -110456,7 +110429,7 @@ module.exports = Object.keys || function keys (obj){
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports) {
 
 /**
@@ -110491,7 +110464,7 @@ module.exports = function(arraybuffer, start, end) {
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -110525,7 +110498,7 @@ function noop() {}
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -110783,10 +110756,10 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(67)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(66)(module), __webpack_require__(0)))
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -110814,7 +110787,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports) {
 
 /*
@@ -110887,7 +110860,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -110990,7 +110963,7 @@ module.exports = (function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -111006,7 +110979,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(71);
+exports.humanize = __webpack_require__(70);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -111198,7 +111171,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports) {
 
 /**
@@ -111356,7 +111329,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -111594,7 +111567,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -111611,7 +111584,7 @@ var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(74);
+    NodeWebSocket = __webpack_require__(73);
   } catch (e) { }
 }
 
@@ -111887,13 +111860,13 @@ WS.prototype.check = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -111931,7 +111904,7 @@ module.exports = function parsejson(data) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -111950,7 +111923,7 @@ function toArray(list, index) {
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports) {
 
 
@@ -112041,7 +112014,7 @@ Backoff.prototype.setJitter = function(jitter){
 
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112064,7 +112037,7 @@ exports.toHex = toHex;
 
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112090,7 +112063,7 @@ exports.colorLuminance = colorLuminance;
 
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112113,7 +112086,7 @@ exports.Point = Point;
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112160,7 +112133,7 @@ exports.Color = Color;
 
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112254,7 +112227,7 @@ exports.PerlinNoise = PerlinNoise;
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112272,7 +112245,7 @@ exports.hashcode = hashcode;
 
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112285,7 +112258,7 @@ exports.seed = seed;
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112327,7 +112300,7 @@ exports.convexhull = convexhull;
 
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112359,7 +112332,7 @@ exports.generateRandomPoints = generateRandomPoints;
 
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112395,7 +112368,7 @@ exports.pingPong = pingPong;
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112416,7 +112389,7 @@ exports.generateNoise = generateNoise;
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112430,7 +112403,7 @@ exports.cosineInterpolation = cosineInterpolation;
 
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112451,7 +112424,7 @@ exports.turbulence = turbulence;
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112468,7 +112441,7 @@ exports.getClouds = getClouds;
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112488,287 +112461,57 @@ exports.minmax = minmax;
 
 
 /***/ }),
-/* 93 */
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const io = __webpack_require__(48);
-/**
- * Połączenie z serwerem
- * @export
- * @class Network
- */
-class Network {
-    static connect() {
-        Network.socket = io();
-        Network.initialize();
-    }
-    static initialize() {
-        Network.socket.on('disconnect', () => {
-            document.location.reload();
-        });
-    }
-    /**
-     * Usunięcie podanego listenere
-     * @static
-     * @param {string} listener
-     * @memberof Network
-     */
-    static removeListener(listener) {
-        Network.socket.off(listener);
-    }
-    /**
-     * Nadaje informację o nowej grze
-     * @static
-     * @param {any} id
-     * @memberof Network
-     */
-    static newGame(id) {
-        Network.socket.emit(Network.NEW_GAME, { id: id });
-    }
-    /**
-     * Polecenie rozpoczęcia odliczania do rozpoczęcia gry
-     * @static
-     * @memberof Network
-     */
-    static startTimer() {
-        Network.socket.emit(Network.START_TIMER);
-    }
-    /**
-     * Pobierz wszystkich graczy
-     * @static
-     * @memberof Network
-     */
-    static getAllPlayers() {
-        Network.socket.emit(Network.ALL_PLAYERS);
-    }
-    /**
-     * Aktualizacja wyniku gracza
-     * @static
-     * @param {any} playerId
-     * @param {any} socketId
-     * @param {any} score
-     * @memberof Network
-     */
-    static updatePlayerScore(playerId, socketId, score, vibration) {
-        Network.socket.emit(Network.UPDATE_PLAYER_SCORE, playerId, socketId, score, vibration);
-    }
-    static gameEnd(gameId, playerId) {
-        Network.socket.emit(Network.END_GAME, gameId, playerId);
-    }
-    /**
-     * Nasłuchiwanie czy gracz się rozłączył
-     * @static
-     * @param {Function} fn Funkcja która zostanie wykonana
-     * @memberof Network
-     */
-    static onPlayerDisconnected(fn) {
-        Network.socket.on(Network.PLAYER_DISCONNECTED, fn);
-    }
-    /**
-     * Nasłuchiwanie czy gra została utworzona pomyślnie
-     * @static
-     * @param {Function} fn Funkcja która zostanie wykonana
-     * @memberof Network
-     */
-    static onGameAssignedSuccessful(fn) {
-        Network.socket.on(Network.GAME_ASSIGNED_SUCCESSFUL, fn);
-    }
-    /**
-     * Nasłuchiwanie zaktualizowania stanu graczy
-     * @static
-     * @param {Function} fn Funkcja która zostanie wykonana
-     * @memberof Network
-     */
-    static onUpdatePlayersState(fn) {
-        Network.socket.on(Network.UPDATE_PLAYERS_STATE, fn);
-    }
-    /**
-     * Aktualizacja odliczania
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onUpdateTimer(fn) {
-        Network.socket.on(Network.UPDATE_TIMER, fn);
-    }
-    /**
-     * Rozpoczęcie gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onStartGame(fn) {
-        Network.socket.on(Network.START_GAME, fn);
-    }
-    /**
-     * Odebranie informacji o graczach
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGetAllPlayers(fn) {
-        Network.socket.on(Network.ALL_PLAYERS, fn);
-    }
-    /**
-     * Aktualizacja pozycji gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayedUpdateXY(fn) {
-        Network.socket.on(Network.UPDATE_PLAYER_XY, fn);
-    }
-    /**
-     * Aktualizacja pozycji gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayerUpdateZ(fn) {
-        Network.socket.on(Network.UPDATE_PLAYER_Z, fn);
-    }
-    /**
-     * Oddanie strzału przez gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayerFire(fn) {
-        Network.socket.on(Network.PLAYER_FIRE, fn);
-    }
-    /**
-     * Wszyscy gracze rozłączyli się
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onNoConnectedPlayers(fn) {
-        Network.socket.on(Network.NO_CONNECTED_PLAYERS, fn);
-    }
-    /**
-     * Koniec gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onEndGame(fn) {
-        Network.socket.on(Network.END_GAME, fn);
-    }
-    /**
-     * Ponowne uruchomienie rozgrywki
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayAgain(fn) {
-        Network.socket.on(Network.PLAY_AGAIN, fn);
-    }
-}
-Network.NEW_GAME = 'new-game';
-Network.START_TIMER = 'start-timer';
-Network.PLAYER_DISCONNECTED = 'player-disconnected';
-Network.GAME_ASSIGNED_SUCCESSFUL = 'game-assigned-successful';
-Network.UPDATE_PLAYERS_STATE = 'update-players-state';
-Network.UPDATE_TIMER = 'update-timer';
-Network.START_GAME = 'start-game';
-Network.ALL_PLAYERS = 'all-players';
-Network.UPDATE_PLAYER_XY = 'update-player-xy';
-Network.UPDATE_PLAYER_Z = 'update-player-z';
-Network.UPDATE_PLAYER_SCORE = 'update_player_score';
-Network.PLAYER_FIRE = 'player_fire';
-Network.NO_CONNECTED_PLAYERS = 'no_connected_players';
-Network.END_GAME = 'end-game';
-Network.PLAY_AGAIN = 'play-again';
-exports.default = Network;
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-class Comet extends Phaser.Sprite {
-    constructor(game, x, y, key) {
-        super(game, x, y, key);
-        this.checkWorldBounds = true;
-        this.outOfBoundsKill = true;
-        this.exists = false;
-        this.alive = false;
-        this.health = 10;
-        this.anchor.setTo(0, 0.5);
-    }
-    /**
-     * Generacja komety
-     * @param {number} x
-     * @param {number} y
-     * @param {number} sx
-     * @param {number} sy
-     * @memberof Comet
-     */
-    generate(x, y, sx, sy) {
-        this.reset(x, y, 10);
-        this.body.velocity.x = sx;
-        this.body.velocity.y = sy;
-    }
-}
-exports.Comet = Comet;
-
-
-/***/ }),
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(104);
-document.addEventListener("DOMContentLoaded", requestFullscreen);
+const Controller_1 = __webpack_require__(96);
 document.addEventListener("DOMContentLoaded", function () {
-    startApp();
+    if (window.innerWidth > window.innerHeight) {
+        startApp();
+    }
+    else {
+        const onResize = () => {
+            if (window.innerWidth > window.innerHeight) {
+                startApp();
+                window.removeEventListener("resize", onResize);
+            }
+        };
+        window.addEventListener("resize", onResize);
+    }
 });
 /**
  * Uruchamia aplikację
  *
  */
 function startApp() {
-    const gameConfig = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        renderer: Phaser.AUTO,
-        parent: document.getElementById("game"),
-        resolution: 1
-    };
-    // create game
-    const game = new Game_1.default(gameConfig);
+    if (isTouchDevice()) {
+        const controllerConfig = {
+            width: window.innerWidth,
+            height: window.innerHeight,
+            renderer: Phaser.AUTO,
+            parent: document.getElementById("controller"),
+            resolution: 1
+        };
+        // create controller
+        const controller = new Controller_1.default(controllerConfig);
+    }
+    else {
+        document.getElementById("touch").style.display = "flex";
+    }
 }
-function requestFullscreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    }
-    else if (document.documentElement.webkitRequestFullScreen) {
-        document.documentElement.webkitRequestFullScreen();
-    }
+function isTouchDevice() {
+    return "ontouchstart" in document.documentElement;
 }
 
 
 /***/ }),
-/* 104 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112777,38 +112520,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const states_1 = __webpack_require__(105);
-const Test_1 = __webpack_require__(132);
-const network_1 = __webpack_require__(93);
-const utils_1 = __webpack_require__(12);
+const states_1 = __webpack_require__(97);
+const network_1 = __webpack_require__(36);
+const guid_1 = __webpack_require__(37);
 /**
- * Utworzenie gry
+ * Utworzenie kontrolera
  * @export
- * @class Game
+ * @class Controller
  * @extends {Phaser.Game}
  */
-class Game extends Phaser.Game {
+class Controller extends Phaser.Game {
     constructor(config) {
         super(config);
-        // create game id
-        this.state.id = utils_1.guid();
-        this.state.started = false;
+        // create controller id
+        this.state.id = guid_1.guid();
+        this.state.color = null;
         // connect to server
         network_1.default.connect();
-        // add states to game
+        // add states to controller
         this.state.add(states_1.States.BOOT, states_1.Boot);
         this.state.add(states_1.States.LOADING, states_1.Loading);
+        this.state.add(states_1.States.AVATAR_SELECTOR, states_1.AvatarSelector);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
-        this.state.add(states_1.States.MAIN, states_1.Main);
-        this.state.add("Test", Test_1.Test);
+        this.state.add(states_1.States.GAME_CONTROLLER, states_1.GameController);
         this.state.start(states_1.States.BOOT);
     }
 }
-exports.default = Game;
+exports.default = Controller;
 
 
 /***/ }),
-/* 105 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112817,15 +112559,16 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(38));
-__export(__webpack_require__(106));
-__export(__webpack_require__(107));
-__export(__webpack_require__(114));
-__export(__webpack_require__(115));
+__export(__webpack_require__(16));
+__export(__webpack_require__(98));
+__export(__webpack_require__(99));
+__export(__webpack_require__(100));
+__export(__webpack_require__(101));
+__export(__webpack_require__(102));
 
 
 /***/ }),
-/* 106 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112834,10 +112577,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(38);
-const core_1 = __webpack_require__(45);
-const network_1 = __webpack_require__(93);
+const States_1 = __webpack_require__(16);
+const core_1 = __webpack_require__(44);
 const assets_1 = __webpack_require__(4);
+const network_1 = __webpack_require__(36);
 /**
  * Uruchamianie systemu
  * @export
@@ -112847,7 +112590,7 @@ const assets_1 = __webpack_require__(4);
 class Boot extends Phaser.State {
     init() {
         // set the scale mode
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.pageAlignVertically = true;
         // set custom loader
@@ -112855,26 +112598,34 @@ class Boot extends Phaser.State {
     }
     preload() {
         // initialize response from server
-        network_1.default.onGameAssignedSuccessful(() => {
+        network_1.default.onPlayerAssignedSuccessful(() => {
             this.game.state.start(States_1.States.LOADING);
+        });
+        network_1.default.onGameAlreadyStarted(() => {
+            const message = "Game already started";
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
+        });
+        network_1.default.onGameFull(() => {
+            const message = "Game is full";
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
+        });
+        network_1.default.onGameNotAvailable(() => {
+            const message = "Game not available";
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
         });
         // load font
         this.game.load.webfont(assets_1.Assets.Fonts.Kenvector.getName(), assets_1.Assets.Fonts.Kenvector.getFamily());
     }
     create() {
         // assign new game
-        console.log(this.game.state.id);
-        network_1.default.newGame(this.game.state.id);
-    }
-    shutdown() {
-        network_1.default.removeListener(network_1.default.GAME_ASSIGNED_SUCCESSFUL);
+        network_1.default.newPlayer({ id: this.game.state.id, gameId: gameId });
     }
 }
 exports.Boot = Boot;
 
 
 /***/ }),
-/* 107 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112883,13 +112634,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const QRious = __webpack_require__(108);
-const States_1 = __webpack_require__(38);
-const config_1 = __webpack_require__(109);
-const generators = __webpack_require__(110);
+const States_1 = __webpack_require__(16);
 const assets_1 = __webpack_require__(4);
-const const_1 = __webpack_require__(39);
-const utils_1 = __webpack_require__(12);
 /**
  * Ładowanie zasobów
  * @export
@@ -112902,14 +112648,13 @@ class Loading extends Phaser.State {
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
-        /* spritesheets */
-        this.game.load.spritesheet(assets_1.Assets.Spritesheets.Explosions.Comet.getName(), assets_1.Assets.Spritesheets.Explosions.Comet.getPNG(), assets_1.Assets.Spritesheets.Explosions.Comet.getFrameWidth(), assets_1.Assets.Spritesheets.Explosions.Comet.getFrameHeight(), assets_1.Assets.Spritesheets.Explosions.Comet.getFrameMax());
-        this.game.load.spritesheet(assets_1.Assets.Spritesheets.Bullets.RGBLaser.getName(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getPNG(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getFrameWidth(), assets_1.Assets.Spritesheets.Bullets.RGBLaser.getFrameHeight());
-        /* game images */
-        this.game.load.image(assets_1.Assets.Images.PowerUps.SplitShoot.getName(), assets_1.Assets.Images.PowerUps.SplitShoot.getPNG());
-        this.game.load.image(assets_1.Assets.Images.PowerUps.LittleDoctor.getName(), assets_1.Assets.Images.PowerUps.LittleDoctor.getPNG());
-        this.game.load.image(assets_1.Assets.Images.PowerUps.ResetPoints.getName(), assets_1.Assets.Images.PowerUps.ResetPoints.getPNG());
-        this.game.load.image(assets_1.Assets.Images.PowerUps.Untouchtable.getName(), assets_1.Assets.Images.PowerUps.Untouchtable.getPNG());
+        /* ui */
+        this.game.load.image(assets_1.Assets.UI.Buttons.Joystick.WheelExternal.getName(), assets_1.Assets.UI.Buttons.Joystick.WheelExternal.getPNG());
+        this.game.load.image(assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getName(), assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getPNG());
+        this.game.load.image(assets_1.Assets.UI.Buttons.Fire.getName(), assets_1.Assets.UI.Buttons.Fire.getPNG());
+        this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Select.getName(), assets_1.Assets.UI.Buttons.Menu.Select.getPNG());
+        this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Start.getName(), assets_1.Assets.UI.Buttons.Menu.Start.getPNG());
+        this.game.load.image(assets_1.Assets.Images.Transparent.getName(), assets_1.Assets.Images.Transparent.getPNG());
         /* ships */
         this.game.load.image(assets_1.Assets.Images.Ships.GREEN.getName(), assets_1.Assets.Images.Ships.GREEN.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.PURPLE.getName(), assets_1.Assets.Images.Ships.PURPLE.getPNG());
@@ -112921,25 +112666,9 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.Ships.ORANGE.getName(), assets_1.Assets.Images.Ships.ORANGE.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.GRASS.getName(), assets_1.Assets.Images.Ships.GRASS.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.DARKPINK.getName(), assets_1.Assets.Images.Ships.DARKPINK.getPNG());
-        this.game.load.image(assets_1.Assets.Images.Bulelts.SingleBullet.getName(), assets_1.Assets.Images.Bulelts.SingleBullet.getPNG());
-        this.game.load.image(assets_1.Assets.Images.Bulelts.Bullet.getName(), assets_1.Assets.Images.Bulelts.Bullet.getPNG());
-        this.game.load.image(assets_1.Assets.Images.Bulelts.Lasers.LaserGREEN.getName(), assets_1.Assets.Images.Bulelts.Lasers.LaserGREEN.getPNG());
-        this.game.load.image(assets_1.Assets.Images.Bulelts.Lasers.LaserPURPLE.getName(), assets_1.Assets.Images.Bulelts.Lasers.LaserPURPLE.getPNG());
-        /* ui */
-        this.game.load.image(assets_1.Assets.UI.Buttons.Menu.Grey.getName(), assets_1.Assets.UI.Buttons.Menu.Grey.getPNG());
     }
     create() {
-        // create qrcode and go to next state
-        this.loadingText.setText("Create Textures ...");
-        Promise.all([this.createQRCode(), this.createTextures()])
-            .then(() => {
-            this.loadingText.setText("Create QRCode Complete");
-            this.game.state.start(States_1.States.MAIN);
-            // this.game.state.start("Test");
-        })
-            .catch(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, "Problem with generating texture");
-        });
+        this.game.state.start(States_1.States.AVATAR_SELECTOR);
     }
     /**
        * Funkcja stanu ładowania
@@ -112950,7 +112679,7 @@ class Loading extends Phaser.State {
        */
     loadStart() {
         this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Loading ...", {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
             align: "center"
         });
@@ -112979,2476 +112708,12 @@ class Loading extends Phaser.State {
     loadComplete() {
         this.loadingText.setText("Load Complete");
     }
-    /**
-       * Tworzenie kodu QR
-       * @private
-       * @returns {Promise<any>}
-       * @memberof Loading
-       */
-    createQRCode() {
-        let that = this;
-        return new Promise((resolve, reject) => {
-            let qr = new QRious({
-                value: config_1.default.url + "/controller/" + this.game.state.id,
-                background: "#ffffff",
-                padding: 20,
-                size: 300
-            });
-            qr = qr.toDataURL("image/jpeg");
-            let img = new Image();
-            img.onload = () => {
-                that.game.cache.addImage("qrcode", img.src, img);
-                resolve();
-            };
-            img.title = this.game.state.id;
-            img.src = qr;
-        });
-    }
-    createTextures() {
-        return new Promise((resolve, reject) => {
-            generators.stars(this.game, 0.02, 0.125, const_1.Const.Stars.getName());
-            // Const.Nebula.Names.push("nebula-3");
-            // generators.nebulaTest(this.game, "nebula-3", Const.Nebula.Colors[0]);
-            // Const.Nebula.Names.push("nebula-2");
-            // generators.nebulaTest(this.game, "nebula-2", Const.Nebula.Colors[0]);
-            // Const.Nebula.Names.push("nebula-4");
-            // generators.nebula(
-            //   this.game,
-            //   "nebula-4",
-            //   rnd.integerInRange(0, 1000),
-            //   Const.Nebula.Colors[1],
-            //   true
-            // );
-            const_1.Const.Nebula.Names.push("nebula-3");
-            generators.nebula(this.game, "nebula-3", utils_1.rnd.integerInRange(0, 1000), const_1.Const.Nebula.Colors[3], true, 0.3, 0.05);
-            // Const.Nebula.Names.push("nebula-2");
-            // generators.nebula(
-            //   this.game,
-            //   "nebula-2",
-            //   rnd.integerInRange(0, 1000),
-            //   Const.Nebula.Colors[1],
-            //   true
-            // );
-            const_1.Const.Nebula.Names.push("nebula-1");
-            generators.nebula(this.game, "nebula-1", utils_1.rnd.integerInRange(0, 1000), const_1.Const.Nebula.Colors[0], false, 0.4, 0.05);
-            // for (let i = 0; i < Const.Nebula.Names.length; i++) {
-            // }
-            const_1.Const.Comet.Names.push("comet-1");
-            const_1.Const.Comet.Names.push("comet-2");
-            const_1.Const.Comet.Names.push("comet-3");
-            const_1.Const.Comet.Names.push("comet-4");
-            const_1.Const.Comet.Names.push("comet-5");
-            const_1.Const.Comet.Names.push("comet-6");
-            generators.comet(this.game, 200, 80, 20, "comet-1");
-            generators.comet(this.game, 150, 40, 10, "comet-2");
-            generators.comet(this.game, 200, 60, 15, "comet-3");
-            generators.comet(this.game, 160, 50, 12, "comet-4");
-            generators.comet(this.game, 170, 55, 13, "comet-5");
-            generators.comet(this.game, 100, 20, 5, "comet-6");
-            resolve();
-        });
-    }
 }
 exports.Loading = Loading;
 
 
 /***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
- * QRious v4.0.2
- * Copyright (C) 2017 Alasdair Mercer
- * Copyright (C) 2010 Tom Zerucha
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-(function (global, factory) {
-   true ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.QRious = factory());
-}(this, (function () { 'use strict';
-
-  /*
-   * Copyright (C) 2017 Alasdair Mercer, !ninja
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   */
-
-  /**
-   * A bare-bones constructor for surrogate prototype swapping.
-   *
-   * @private
-   * @constructor
-   */
-  var Constructor = /* istanbul ignore next */ function() {};
-  /**
-   * A reference to <code>Object.prototype.hasOwnProperty</code>.
-   *
-   * @private
-   * @type {Function}
-   */
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
-  /**
-   * A reference to <code>Array.prototype.slice</code>.
-   *
-   * @private
-   * @type {Function}
-   */
-  var slice = Array.prototype.slice;
-
-  /**
-   * Creates an object which inherits the given <code>prototype</code>.
-   *
-   * Optionally, the created object can be extended further with the specified <code>properties</code>.
-   *
-   * @param {Object} prototype - the prototype to be inherited by the created object
-   * @param {Object} [properties] - the optional properties to be extended by the created object
-   * @return {Object} The newly created object.
-   * @private
-   */
-  function createObject(prototype, properties) {
-    var result;
-    /* istanbul ignore next */
-    if (typeof Object.create === 'function') {
-      result = Object.create(prototype);
-    } else {
-      Constructor.prototype = prototype;
-      result = new Constructor();
-      Constructor.prototype = null;
-    }
-
-    if (properties) {
-      extendObject(true, result, properties);
-    }
-
-    return result;
-  }
-
-  /**
-   * Extends the constructor to which this method is associated with the <code>prototype</code> and/or
-   * <code>statics</code> provided.
-   *
-   * If <code>name</code> is provided, it will be used as the class name and can be accessed via a special
-   * <code>class_</code> property on the child constructor, otherwise the class name of the super constructor will be used
-   * instead. The class name may also be used string representation for instances of the child constructor (via
-   * <code>toString</code>), but this is not applicable to the <i>lite</i> version of Nevis.
-   *
-   * If <code>constructor</code> is provided, it will be used as the constructor for the child, otherwise a simple
-   * constructor which only calls the super constructor will be used instead.
-   *
-   * The super constructor can be accessed via a special <code>super_</code> property on the child constructor.
-   *
-   * @param {string} [name=this.class_] - the class name to be used for the child constructor
-   * @param {Function} [constructor] - the constructor for the child
-   * @param {Object} [prototype] - the prototype properties to be defined for the child
-   * @param {Object} [statics] - the static properties to be defined for the child
-   * @return {Function} The child <code>constructor</code> provided or the one created if none was given.
-   * @public
-   */
-  function extend(name, constructor, prototype, statics) {
-    var superConstructor = this;
-
-    if (typeof name !== 'string') {
-      statics = prototype;
-      prototype = constructor;
-      constructor = name;
-      name = null;
-    }
-
-    if (typeof constructor !== 'function') {
-      statics = prototype;
-      prototype = constructor;
-      constructor = function() {
-        return superConstructor.apply(this, arguments);
-      };
-    }
-
-    extendObject(false, constructor, superConstructor, statics);
-
-    constructor.prototype = createObject(superConstructor.prototype, prototype);
-    constructor.prototype.constructor = constructor;
-
-    constructor.class_ = name || superConstructor.class_;
-    constructor.super_ = superConstructor;
-
-    return constructor;
-  }
-
-  /**
-   * Extends the specified <code>target</code> object with the properties in each of the <code>sources</code> provided.
-   *
-   * if any source is <code>null</code> it will be ignored.
-   *
-   * @param {boolean} own - <code>true</code> to only copy <b>own</b> properties from <code>sources</code> onto
-   * <code>target</code>; otherwise <code>false</code>
-   * @param {Object} target - the target object which should be extended
-   * @param {...Object} [sources] - the source objects whose properties are to be copied onto <code>target</code>
-   * @return {void}
-   * @private
-   */
-  function extendObject(own, target, sources) {
-    sources = slice.call(arguments, 2);
-
-    var property;
-    var source;
-
-    for (var i = 0, length = sources.length; i < length; i++) {
-      source = sources[i];
-
-      for (property in source) {
-        if (!own || hasOwnProperty.call(source, property)) {
-          target[property] = source[property];
-        }
-      }
-    }
-  }
-
-  var extend_1 = extend;
-
-  /**
-   * The base class from which all others should extend.
-   *
-   * @public
-   * @constructor
-   */
-  function Nevis() {}
-  Nevis.class_ = 'Nevis';
-  Nevis.super_ = Object;
-
-  /**
-   * Extends the constructor to which this method is associated with the <code>prototype</code> and/or
-   * <code>statics</code> provided.
-   *
-   * If <code>name</code> is provided, it will be used as the class name and can be accessed via a special
-   * <code>class_</code> property on the child constructor, otherwise the class name of the super constructor will be used
-   * instead. The class name may also be used string representation for instances of the child constructor (via
-   * <code>toString</code>), but this is not applicable to the <i>lite</i> version of Nevis.
-   *
-   * If <code>constructor</code> is provided, it will be used as the constructor for the child, otherwise a simple
-   * constructor which only calls the super constructor will be used instead.
-   *
-   * The super constructor can be accessed via a special <code>super_</code> property on the child constructor.
-   *
-   * @param {string} [name=this.class_] - the class name to be used for the child constructor
-   * @param {Function} [constructor] - the constructor for the child
-   * @param {Object} [prototype] - the prototype properties to be defined for the child
-   * @param {Object} [statics] - the static properties to be defined for the child
-   * @return {Function} The child <code>constructor</code> provided or the one created if none was given.
-   * @public
-   * @static
-   * @memberof Nevis
-   */
-  Nevis.extend = extend_1;
-
-  var nevis = Nevis;
-
-  var lite = nevis;
-
-  /**
-   * Responsible for rendering a QR code {@link Frame} on a specific type of element.
-   *
-   * A renderer may be dependant on the rendering of another element, so the ordering of their execution is important.
-   *
-   * The rendering of a element can be deferred by disabling the renderer initially, however, any attempt get the element
-   * from the renderer will result in it being immediately enabled and the element being rendered.
-   *
-   * @param {QRious} qrious - the {@link QRious} instance to be used
-   * @param {*} element - the element onto which the QR code is to be rendered
-   * @param {boolean} [enabled] - <code>true</code> this {@link Renderer} is enabled; otherwise <code>false</code>.
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Renderer = lite.extend(function(qrious, element, enabled) {
-    /**
-     * The {@link QRious} instance.
-     *
-     * @protected
-     * @type {QRious}
-     * @memberof Renderer#
-     */
-    this.qrious = qrious;
-
-    /**
-     * The element onto which this {@link Renderer} is rendering the QR code.
-     *
-     * @protected
-     * @type {*}
-     * @memberof Renderer#
-     */
-    this.element = element;
-    this.element.qrious = qrious;
-
-    /**
-     * Whether this {@link Renderer} is enabled.
-     *
-     * @protected
-     * @type {boolean}
-     * @memberof Renderer#
-     */
-    this.enabled = Boolean(enabled);
-  }, {
-
-    /**
-     * Draws the specified QR code <code>frame</code> on the underlying element.
-     *
-     * Implementations of {@link Renderer} <b>must</b> override this method with their own specific logic.
-     *
-     * @param {Frame} frame - the {@link Frame} to be drawn
-     * @return {void}
-     * @protected
-     * @abstract
-     * @memberof Renderer#
-     */
-    draw: function(frame) {},
-
-    /**
-     * Returns the element onto which this {@link Renderer} is rendering the QR code.
-     *
-     * If this method is called while this {@link Renderer} is disabled, it will be immediately enabled and rendered
-     * before the element is returned.
-     *
-     * @return {*} The element.
-     * @public
-     * @memberof Renderer#
-     */
-    getElement: function() {
-      if (!this.enabled) {
-        this.enabled = true;
-        this.render();
-      }
-
-      return this.element;
-    },
-
-    /**
-     * Calculates the size (in pixel units) to represent an individual module within the QR code based on the
-     * <code>frame</code> provided.
-     *
-     * Any configured padding will be excluded from the returned size.
-     *
-     * The returned value will be at least one, even in cases where the size of the QR code does not fit its contents.
-     * This is done so that the inevitable clipping is handled more gracefully since this way at least something is
-     * displayed instead of just a blank space filled by the background color.
-     *
-     * @param {Frame} frame - the {@link Frame} from which the module size is to be derived
-     * @return {number} The pixel size for each module in the QR code which will be no less than one.
-     * @protected
-     * @memberof Renderer#
-     */
-    getModuleSize: function(frame) {
-      var qrious = this.qrious;
-      var padding = qrious.padding || 0;
-      var pixels = Math.floor((qrious.size - (padding * 2)) / frame.width);
-
-      return Math.max(1, pixels);
-    },
-
-    /**
-     * Calculates the offset/padding (in pixel units) to be inserted before the QR code based on the <code>frame</code>
-     * provided.
-     *
-     * The returned value will be zero if there is no available offset or if the size of the QR code does not fit its
-     * contents. It will never be a negative value. This is done so that the inevitable clipping appears more naturally
-     * and it is not clipped from all directions.
-     *
-     * @param {Frame} frame - the {@link Frame} from which the offset is to be derived
-     * @return {number} The pixel offset for the QR code which will be no less than zero.
-     * @protected
-     * @memberof Renderer#
-     */
-    getOffset: function(frame) {
-      var qrious = this.qrious;
-      var padding = qrious.padding;
-
-      if (padding != null) {
-        return padding;
-      }
-
-      var moduleSize = this.getModuleSize(frame);
-      var offset = Math.floor((qrious.size - (moduleSize * frame.width)) / 2);
-
-      return Math.max(0, offset);
-    },
-
-    /**
-     * Renders a QR code on the underlying element based on the <code>frame</code> provided.
-     *
-     * @param {Frame} frame - the {@link Frame} to be rendered
-     * @return {void}
-     * @public
-     * @memberof Renderer#
-     */
-    render: function(frame) {
-      if (this.enabled) {
-        this.resize();
-        this.reset();
-        this.draw(frame);
-      }
-    },
-
-    /**
-     * Resets the underlying element, effectively clearing any previously rendered QR code.
-     *
-     * Implementations of {@link Renderer} <b>must</b> override this method with their own specific logic.
-     *
-     * @return {void}
-     * @protected
-     * @abstract
-     * @memberof Renderer#
-     */
-    reset: function() {},
-
-    /**
-     * Ensures that the size of the underlying element matches that defined on the associated {@link QRious} instance.
-     *
-     * Implementations of {@link Renderer} <b>must</b> override this method with their own specific logic.
-     *
-     * @return {void}
-     * @protected
-     * @abstract
-     * @memberof Renderer#
-     */
-    resize: function() {}
-
-  });
-
-  var Renderer_1 = Renderer;
-
-  /**
-   * An implementation of {@link Renderer} for working with <code>canvas</code> elements.
-   *
-   * @public
-   * @class
-   * @extends Renderer
-   */
-  var CanvasRenderer = Renderer_1.extend({
-
-    /**
-     * @override
-     */
-    draw: function(frame) {
-      var i, j;
-      var qrious = this.qrious;
-      var moduleSize = this.getModuleSize(frame);
-      var offset = this.getOffset(frame);
-      var context = this.element.getContext('2d');
-
-      context.fillStyle = qrious.foreground;
-      context.globalAlpha = qrious.foregroundAlpha;
-
-      for (i = 0; i < frame.width; i++) {
-        for (j = 0; j < frame.width; j++) {
-          if (frame.buffer[(j * frame.width) + i]) {
-            context.fillRect((moduleSize * i) + offset, (moduleSize * j) + offset, moduleSize, moduleSize);
-          }
-        }
-      }
-    },
-
-    /**
-     * @override
-     */
-    reset: function() {
-      var qrious = this.qrious;
-      var context = this.element.getContext('2d');
-      var size = qrious.size;
-
-      context.lineWidth = 1;
-      context.clearRect(0, 0, size, size);
-      context.fillStyle = qrious.background;
-      context.globalAlpha = qrious.backgroundAlpha;
-      context.fillRect(0, 0, size, size);
-    },
-
-    /**
-     * @override
-     */
-    resize: function() {
-      var element = this.element;
-
-      element.width = element.height = this.qrious.size;
-    }
-
-  });
-
-  var CanvasRenderer_1 = CanvasRenderer;
-
-  /* eslint no-multi-spaces: "off" */
-
-
-
-  /**
-   * Contains alignment pattern information.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Alignment = lite.extend(null, {
-
-    /**
-     * The alignment pattern block.
-     *
-     * @public
-     * @static
-     * @type {number[]}
-     * @memberof Alignment
-     */
-    BLOCK: [
-      0,  11, 15, 19, 23, 27, 31,
-      16, 18, 20, 22, 24, 26, 28, 20, 22, 24, 24, 26, 28, 28, 22, 24, 24,
-      26, 26, 28, 28, 24, 24, 26, 26, 26, 28, 28, 24, 26, 26, 26, 28, 28
-    ]
-
-  });
-
-  var Alignment_1 = Alignment;
-
-  /* eslint no-multi-spaces: "off" */
-
-
-
-  /**
-   * Contains error correction information.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var ErrorCorrection = lite.extend(null, {
-
-    /**
-     * The error correction blocks.
-     *
-     * There are four elements per version. The first two indicate the number of blocks, then the data width, and finally
-     * the ECC width.
-     *
-     * @public
-     * @static
-     * @type {number[]}
-     * @memberof ErrorCorrection
-     */
-    BLOCKS: [
-      1,  0,  19,  7,     1,  0,  16,  10,    1,  0,  13,  13,    1,  0,  9,   17,
-      1,  0,  34,  10,    1,  0,  28,  16,    1,  0,  22,  22,    1,  0,  16,  28,
-      1,  0,  55,  15,    1,  0,  44,  26,    2,  0,  17,  18,    2,  0,  13,  22,
-      1,  0,  80,  20,    2,  0,  32,  18,    2,  0,  24,  26,    4,  0,  9,   16,
-      1,  0,  108, 26,    2,  0,  43,  24,    2,  2,  15,  18,    2,  2,  11,  22,
-      2,  0,  68,  18,    4,  0,  27,  16,    4,  0,  19,  24,    4,  0,  15,  28,
-      2,  0,  78,  20,    4,  0,  31,  18,    2,  4,  14,  18,    4,  1,  13,  26,
-      2,  0,  97,  24,    2,  2,  38,  22,    4,  2,  18,  22,    4,  2,  14,  26,
-      2,  0,  116, 30,    3,  2,  36,  22,    4,  4,  16,  20,    4,  4,  12,  24,
-      2,  2,  68,  18,    4,  1,  43,  26,    6,  2,  19,  24,    6,  2,  15,  28,
-      4,  0,  81,  20,    1,  4,  50,  30,    4,  4,  22,  28,    3,  8,  12,  24,
-      2,  2,  92,  24,    6,  2,  36,  22,    4,  6,  20,  26,    7,  4,  14,  28,
-      4,  0,  107, 26,    8,  1,  37,  22,    8,  4,  20,  24,    12, 4,  11,  22,
-      3,  1,  115, 30,    4,  5,  40,  24,    11, 5,  16,  20,    11, 5,  12,  24,
-      5,  1,  87,  22,    5,  5,  41,  24,    5,  7,  24,  30,    11, 7,  12,  24,
-      5,  1,  98,  24,    7,  3,  45,  28,    15, 2,  19,  24,    3,  13, 15,  30,
-      1,  5,  107, 28,    10, 1,  46,  28,    1,  15, 22,  28,    2,  17, 14,  28,
-      5,  1,  120, 30,    9,  4,  43,  26,    17, 1,  22,  28,    2,  19, 14,  28,
-      3,  4,  113, 28,    3,  11, 44,  26,    17, 4,  21,  26,    9,  16, 13,  26,
-      3,  5,  107, 28,    3,  13, 41,  26,    15, 5,  24,  30,    15, 10, 15,  28,
-      4,  4,  116, 28,    17, 0,  42,  26,    17, 6,  22,  28,    19, 6,  16,  30,
-      2,  7,  111, 28,    17, 0,  46,  28,    7,  16, 24,  30,    34, 0,  13,  24,
-      4,  5,  121, 30,    4,  14, 47,  28,    11, 14, 24,  30,    16, 14, 15,  30,
-      6,  4,  117, 30,    6,  14, 45,  28,    11, 16, 24,  30,    30, 2,  16,  30,
-      8,  4,  106, 26,    8,  13, 47,  28,    7,  22, 24,  30,    22, 13, 15,  30,
-      10, 2,  114, 28,    19, 4,  46,  28,    28, 6,  22,  28,    33, 4,  16,  30,
-      8,  4,  122, 30,    22, 3,  45,  28,    8,  26, 23,  30,    12, 28, 15,  30,
-      3,  10, 117, 30,    3,  23, 45,  28,    4,  31, 24,  30,    11, 31, 15,  30,
-      7,  7,  116, 30,    21, 7,  45,  28,    1,  37, 23,  30,    19, 26, 15,  30,
-      5,  10, 115, 30,    19, 10, 47,  28,    15, 25, 24,  30,    23, 25, 15,  30,
-      13, 3,  115, 30,    2,  29, 46,  28,    42, 1,  24,  30,    23, 28, 15,  30,
-      17, 0,  115, 30,    10, 23, 46,  28,    10, 35, 24,  30,    19, 35, 15,  30,
-      17, 1,  115, 30,    14, 21, 46,  28,    29, 19, 24,  30,    11, 46, 15,  30,
-      13, 6,  115, 30,    14, 23, 46,  28,    44, 7,  24,  30,    59, 1,  16,  30,
-      12, 7,  121, 30,    12, 26, 47,  28,    39, 14, 24,  30,    22, 41, 15,  30,
-      6,  14, 121, 30,    6,  34, 47,  28,    46, 10, 24,  30,    2,  64, 15,  30,
-      17, 4,  122, 30,    29, 14, 46,  28,    49, 10, 24,  30,    24, 46, 15,  30,
-      4,  18, 122, 30,    13, 32, 46,  28,    48, 14, 24,  30,    42, 32, 15,  30,
-      20, 4,  117, 30,    40, 7,  47,  28,    43, 22, 24,  30,    10, 67, 15,  30,
-      19, 6,  118, 30,    18, 31, 47,  28,    34, 34, 24,  30,    20, 61, 15,  30
-    ],
-
-    /**
-     * The final format bits with mask (level << 3 | mask).
-     *
-     * @public
-     * @static
-     * @type {number[]}
-     * @memberof ErrorCorrection
-     */
-    FINAL_FORMAT: [
-      // L
-      0x77c4, 0x72f3, 0x7daa, 0x789d, 0x662f, 0x6318, 0x6c41, 0x6976,
-      // M
-      0x5412, 0x5125, 0x5e7c, 0x5b4b, 0x45f9, 0x40ce, 0x4f97, 0x4aa0,
-      // Q
-      0x355f, 0x3068, 0x3f31, 0x3a06, 0x24b4, 0x2183, 0x2eda, 0x2bed,
-      // H
-      0x1689, 0x13be, 0x1ce7, 0x19d0, 0x0762, 0x0255, 0x0d0c, 0x083b
-    ],
-
-    /**
-     * A map of human-readable ECC levels.
-     *
-     * @public
-     * @static
-     * @type {Object.<string, number>}
-     * @memberof ErrorCorrection
-     */
-    LEVELS: {
-      L: 1,
-      M: 2,
-      Q: 3,
-      H: 4
-    }
-
-  });
-
-  var ErrorCorrection_1 = ErrorCorrection;
-
-  /**
-   * Contains Galois field information.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Galois = lite.extend(null, {
-
-    /**
-     * The Galois field exponent table.
-     *
-     * @public
-     * @static
-     * @type {number[]}
-     * @memberof Galois
-     */
-    EXPONENT: [
-      0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1d, 0x3a, 0x74, 0xe8, 0xcd, 0x87, 0x13, 0x26,
-      0x4c, 0x98, 0x2d, 0x5a, 0xb4, 0x75, 0xea, 0xc9, 0x8f, 0x03, 0x06, 0x0c, 0x18, 0x30, 0x60, 0xc0,
-      0x9d, 0x27, 0x4e, 0x9c, 0x25, 0x4a, 0x94, 0x35, 0x6a, 0xd4, 0xb5, 0x77, 0xee, 0xc1, 0x9f, 0x23,
-      0x46, 0x8c, 0x05, 0x0a, 0x14, 0x28, 0x50, 0xa0, 0x5d, 0xba, 0x69, 0xd2, 0xb9, 0x6f, 0xde, 0xa1,
-      0x5f, 0xbe, 0x61, 0xc2, 0x99, 0x2f, 0x5e, 0xbc, 0x65, 0xca, 0x89, 0x0f, 0x1e, 0x3c, 0x78, 0xf0,
-      0xfd, 0xe7, 0xd3, 0xbb, 0x6b, 0xd6, 0xb1, 0x7f, 0xfe, 0xe1, 0xdf, 0xa3, 0x5b, 0xb6, 0x71, 0xe2,
-      0xd9, 0xaf, 0x43, 0x86, 0x11, 0x22, 0x44, 0x88, 0x0d, 0x1a, 0x34, 0x68, 0xd0, 0xbd, 0x67, 0xce,
-      0x81, 0x1f, 0x3e, 0x7c, 0xf8, 0xed, 0xc7, 0x93, 0x3b, 0x76, 0xec, 0xc5, 0x97, 0x33, 0x66, 0xcc,
-      0x85, 0x17, 0x2e, 0x5c, 0xb8, 0x6d, 0xda, 0xa9, 0x4f, 0x9e, 0x21, 0x42, 0x84, 0x15, 0x2a, 0x54,
-      0xa8, 0x4d, 0x9a, 0x29, 0x52, 0xa4, 0x55, 0xaa, 0x49, 0x92, 0x39, 0x72, 0xe4, 0xd5, 0xb7, 0x73,
-      0xe6, 0xd1, 0xbf, 0x63, 0xc6, 0x91, 0x3f, 0x7e, 0xfc, 0xe5, 0xd7, 0xb3, 0x7b, 0xf6, 0xf1, 0xff,
-      0xe3, 0xdb, 0xab, 0x4b, 0x96, 0x31, 0x62, 0xc4, 0x95, 0x37, 0x6e, 0xdc, 0xa5, 0x57, 0xae, 0x41,
-      0x82, 0x19, 0x32, 0x64, 0xc8, 0x8d, 0x07, 0x0e, 0x1c, 0x38, 0x70, 0xe0, 0xdd, 0xa7, 0x53, 0xa6,
-      0x51, 0xa2, 0x59, 0xb2, 0x79, 0xf2, 0xf9, 0xef, 0xc3, 0x9b, 0x2b, 0x56, 0xac, 0x45, 0x8a, 0x09,
-      0x12, 0x24, 0x48, 0x90, 0x3d, 0x7a, 0xf4, 0xf5, 0xf7, 0xf3, 0xfb, 0xeb, 0xcb, 0x8b, 0x0b, 0x16,
-      0x2c, 0x58, 0xb0, 0x7d, 0xfa, 0xe9, 0xcf, 0x83, 0x1b, 0x36, 0x6c, 0xd8, 0xad, 0x47, 0x8e, 0x00
-    ],
-
-    /**
-     * The Galois field log table.
-     *
-     * @public
-     * @static
-     * @type {number[]}
-     * @memberof Galois
-     */
-    LOG: [
-      0xff, 0x00, 0x01, 0x19, 0x02, 0x32, 0x1a, 0xc6, 0x03, 0xdf, 0x33, 0xee, 0x1b, 0x68, 0xc7, 0x4b,
-      0x04, 0x64, 0xe0, 0x0e, 0x34, 0x8d, 0xef, 0x81, 0x1c, 0xc1, 0x69, 0xf8, 0xc8, 0x08, 0x4c, 0x71,
-      0x05, 0x8a, 0x65, 0x2f, 0xe1, 0x24, 0x0f, 0x21, 0x35, 0x93, 0x8e, 0xda, 0xf0, 0x12, 0x82, 0x45,
-      0x1d, 0xb5, 0xc2, 0x7d, 0x6a, 0x27, 0xf9, 0xb9, 0xc9, 0x9a, 0x09, 0x78, 0x4d, 0xe4, 0x72, 0xa6,
-      0x06, 0xbf, 0x8b, 0x62, 0x66, 0xdd, 0x30, 0xfd, 0xe2, 0x98, 0x25, 0xb3, 0x10, 0x91, 0x22, 0x88,
-      0x36, 0xd0, 0x94, 0xce, 0x8f, 0x96, 0xdb, 0xbd, 0xf1, 0xd2, 0x13, 0x5c, 0x83, 0x38, 0x46, 0x40,
-      0x1e, 0x42, 0xb6, 0xa3, 0xc3, 0x48, 0x7e, 0x6e, 0x6b, 0x3a, 0x28, 0x54, 0xfa, 0x85, 0xba, 0x3d,
-      0xca, 0x5e, 0x9b, 0x9f, 0x0a, 0x15, 0x79, 0x2b, 0x4e, 0xd4, 0xe5, 0xac, 0x73, 0xf3, 0xa7, 0x57,
-      0x07, 0x70, 0xc0, 0xf7, 0x8c, 0x80, 0x63, 0x0d, 0x67, 0x4a, 0xde, 0xed, 0x31, 0xc5, 0xfe, 0x18,
-      0xe3, 0xa5, 0x99, 0x77, 0x26, 0xb8, 0xb4, 0x7c, 0x11, 0x44, 0x92, 0xd9, 0x23, 0x20, 0x89, 0x2e,
-      0x37, 0x3f, 0xd1, 0x5b, 0x95, 0xbc, 0xcf, 0xcd, 0x90, 0x87, 0x97, 0xb2, 0xdc, 0xfc, 0xbe, 0x61,
-      0xf2, 0x56, 0xd3, 0xab, 0x14, 0x2a, 0x5d, 0x9e, 0x84, 0x3c, 0x39, 0x53, 0x47, 0x6d, 0x41, 0xa2,
-      0x1f, 0x2d, 0x43, 0xd8, 0xb7, 0x7b, 0xa4, 0x76, 0xc4, 0x17, 0x49, 0xec, 0x7f, 0x0c, 0x6f, 0xf6,
-      0x6c, 0xa1, 0x3b, 0x52, 0x29, 0x9d, 0x55, 0xaa, 0xfb, 0x60, 0x86, 0xb1, 0xbb, 0xcc, 0x3e, 0x5a,
-      0xcb, 0x59, 0x5f, 0xb0, 0x9c, 0xa9, 0xa0, 0x51, 0x0b, 0xf5, 0x16, 0xeb, 0x7a, 0x75, 0x2c, 0xd7,
-      0x4f, 0xae, 0xd5, 0xe9, 0xe6, 0xe7, 0xad, 0xe8, 0x74, 0xd6, 0xf4, 0xea, 0xa8, 0x50, 0x58, 0xaf
-    ]
-
-  });
-
-  var Galois_1 = Galois;
-
-  /**
-   * Contains version pattern information.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Version = lite.extend(null, {
-
-    /**
-     * The version pattern block.
-     *
-     * @public
-     * @static
-     * @type {number[]}
-     * @memberof Version
-     */
-    BLOCK: [
-      0xc94, 0x5bc, 0xa99, 0x4d3, 0xbf6, 0x762, 0x847, 0x60d, 0x928, 0xb78, 0x45d, 0xa17, 0x532,
-      0x9a6, 0x683, 0x8c9, 0x7ec, 0xec4, 0x1e1, 0xfab, 0x08e, 0xc1a, 0x33f, 0xd75, 0x250, 0x9d5,
-      0x6f0, 0x8ba, 0x79f, 0xb0b, 0x42e, 0xa64, 0x541, 0xc69
-    ]
-
-  });
-
-  var Version_1 = Version;
-
-  /**
-   * Generates information for a QR code frame based on a specific value to be encoded.
-   *
-   * @param {Frame~Options} options - the options to be used
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Frame = lite.extend(function(options) {
-    var dataBlock, eccBlock, index, neccBlock1, neccBlock2;
-    var valueLength = options.value.length;
-
-    this._badness = [];
-    this._level = ErrorCorrection_1.LEVELS[options.level];
-    this._polynomial = [];
-    this._value = options.value;
-    this._version = 0;
-    this._stringBuffer = [];
-
-    while (this._version < 40) {
-      this._version++;
-
-      index = ((this._level - 1) * 4) + ((this._version - 1) * 16);
-
-      neccBlock1 = ErrorCorrection_1.BLOCKS[index++];
-      neccBlock2 = ErrorCorrection_1.BLOCKS[index++];
-      dataBlock = ErrorCorrection_1.BLOCKS[index++];
-      eccBlock = ErrorCorrection_1.BLOCKS[index];
-
-      index = (dataBlock * (neccBlock1 + neccBlock2)) + neccBlock2 - 3 + (this._version <= 9);
-
-      if (valueLength <= index) {
-        break;
-      }
-    }
-
-    this._dataBlock = dataBlock;
-    this._eccBlock = eccBlock;
-    this._neccBlock1 = neccBlock1;
-    this._neccBlock2 = neccBlock2;
-
-    /**
-     * The data width is based on version.
-     *
-     * @public
-     * @type {number}
-     * @memberof Frame#
-     */
-    // FIXME: Ensure that it fits instead of being truncated.
-    var width = this.width = 17 + (4 * this._version);
-
-    /**
-     * The image buffer.
-     *
-     * @public
-     * @type {number[]}
-     * @memberof Frame#
-     */
-    this.buffer = Frame._createArray(width * width);
-
-    this._ecc = Frame._createArray(dataBlock + ((dataBlock + eccBlock) * (neccBlock1 + neccBlock2)) + neccBlock2);
-    this._mask = Frame._createArray(((width * (width + 1)) + 1) / 2);
-
-    this._insertFinders();
-    this._insertAlignments();
-
-    // Insert single foreground cell.
-    this.buffer[8 + (width * (width - 8))] = 1;
-
-    this._insertTimingGap();
-    this._reverseMask();
-    this._insertTimingRowAndColumn();
-    this._insertVersion();
-    this._syncMask();
-    this._convertBitStream(valueLength);
-    this._calculatePolynomial();
-    this._appendEccToData();
-    this._interleaveBlocks();
-    this._pack();
-    this._finish();
-  }, {
-
-    _addAlignment: function(x, y) {
-      var i;
-      var buffer = this.buffer;
-      var width = this.width;
-
-      buffer[x + (width * y)] = 1;
-
-      for (i = -2; i < 2; i++) {
-        buffer[x + i + (width * (y - 2))] = 1;
-        buffer[x - 2 + (width * (y + i + 1))] = 1;
-        buffer[x + 2 + (width * (y + i))] = 1;
-        buffer[x + i + 1 + (width * (y + 2))] = 1;
-      }
-
-      for (i = 0; i < 2; i++) {
-        this._setMask(x - 1, y + i);
-        this._setMask(x + 1, y - i);
-        this._setMask(x - i, y - 1);
-        this._setMask(x + i, y + 1);
-      }
-    },
-
-    _appendData: function(data, dataLength, ecc, eccLength) {
-      var bit, i, j;
-      var polynomial = this._polynomial;
-      var stringBuffer = this._stringBuffer;
-
-      for (i = 0; i < eccLength; i++) {
-        stringBuffer[ecc + i] = 0;
-      }
-
-      for (i = 0; i < dataLength; i++) {
-        bit = Galois_1.LOG[stringBuffer[data + i] ^ stringBuffer[ecc]];
-
-        if (bit !== 255) {
-          for (j = 1; j < eccLength; j++) {
-            stringBuffer[ecc + j - 1] = stringBuffer[ecc + j] ^
-              Galois_1.EXPONENT[Frame._modN(bit + polynomial[eccLength - j])];
-          }
-        } else {
-          for (j = ecc; j < ecc + eccLength; j++) {
-            stringBuffer[j] = stringBuffer[j + 1];
-          }
-        }
-
-        stringBuffer[ecc + eccLength - 1] = bit === 255 ? 0 : Galois_1.EXPONENT[Frame._modN(bit + polynomial[0])];
-      }
-    },
-
-    _appendEccToData: function() {
-      var i;
-      var data = 0;
-      var dataBlock = this._dataBlock;
-      var ecc = this._calculateMaxLength();
-      var eccBlock = this._eccBlock;
-
-      for (i = 0; i < this._neccBlock1; i++) {
-        this._appendData(data, dataBlock, ecc, eccBlock);
-
-        data += dataBlock;
-        ecc += eccBlock;
-      }
-
-      for (i = 0; i < this._neccBlock2; i++) {
-        this._appendData(data, dataBlock + 1, ecc, eccBlock);
-
-        data += dataBlock + 1;
-        ecc += eccBlock;
-      }
-    },
-
-    _applyMask: function(mask) {
-      var r3x, r3y, x, y;
-      var buffer = this.buffer;
-      var width = this.width;
-
-      switch (mask) {
-      case 0:
-        for (y = 0; y < width; y++) {
-          for (x = 0; x < width; x++) {
-            if (!((x + y) & 1) && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 1:
-        for (y = 0; y < width; y++) {
-          for (x = 0; x < width; x++) {
-            if (!(y & 1) && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 2:
-        for (y = 0; y < width; y++) {
-          for (r3x = 0, x = 0; x < width; x++, r3x++) {
-            if (r3x === 3) {
-              r3x = 0;
-            }
-
-            if (!r3x && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 3:
-        for (r3y = 0, y = 0; y < width; y++, r3y++) {
-          if (r3y === 3) {
-            r3y = 0;
-          }
-
-          for (r3x = r3y, x = 0; x < width; x++, r3x++) {
-            if (r3x === 3) {
-              r3x = 0;
-            }
-
-            if (!r3x && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 4:
-        for (y = 0; y < width; y++) {
-          for (r3x = 0, r3y = (y >> 1) & 1, x = 0; x < width; x++, r3x++) {
-            if (r3x === 3) {
-              r3x = 0;
-              r3y = !r3y;
-            }
-
-            if (!r3y && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 5:
-        for (r3y = 0, y = 0; y < width; y++, r3y++) {
-          if (r3y === 3) {
-            r3y = 0;
-          }
-
-          for (r3x = 0, x = 0; x < width; x++, r3x++) {
-            if (r3x === 3) {
-              r3x = 0;
-            }
-
-            if (!((x & y & 1) + !(!r3x | !r3y)) && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 6:
-        for (r3y = 0, y = 0; y < width; y++, r3y++) {
-          if (r3y === 3) {
-            r3y = 0;
-          }
-
-          for (r3x = 0, x = 0; x < width; x++, r3x++) {
-            if (r3x === 3) {
-              r3x = 0;
-            }
-
-            if (!((x & y & 1) + (r3x && r3x === r3y) & 1) && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      case 7:
-        for (r3y = 0, y = 0; y < width; y++, r3y++) {
-          if (r3y === 3) {
-            r3y = 0;
-          }
-
-          for (r3x = 0, x = 0; x < width; x++, r3x++) {
-            if (r3x === 3) {
-              r3x = 0;
-            }
-
-            if (!((r3x && r3x === r3y) + (x + y & 1) & 1) && !this._isMasked(x, y)) {
-              buffer[x + (y * width)] ^= 1;
-            }
-          }
-        }
-
-        break;
-      }
-    },
-
-    _calculateMaxLength: function() {
-      return (this._dataBlock * (this._neccBlock1 + this._neccBlock2)) + this._neccBlock2;
-    },
-
-    _calculatePolynomial: function() {
-      var i, j;
-      var eccBlock = this._eccBlock;
-      var polynomial = this._polynomial;
-
-      polynomial[0] = 1;
-
-      for (i = 0; i < eccBlock; i++) {
-        polynomial[i + 1] = 1;
-
-        for (j = i; j > 0; j--) {
-          polynomial[j] = polynomial[j] ? polynomial[j - 1] ^
-            Galois_1.EXPONENT[Frame._modN(Galois_1.LOG[polynomial[j]] + i)] : polynomial[j - 1];
-        }
-
-        polynomial[0] = Galois_1.EXPONENT[Frame._modN(Galois_1.LOG[polynomial[0]] + i)];
-      }
-
-      // Use logs for generator polynomial to save calculation step.
-      for (i = 0; i <= eccBlock; i++) {
-        polynomial[i] = Galois_1.LOG[polynomial[i]];
-      }
-    },
-
-    _checkBadness: function() {
-      var b, b1, h, x, y;
-      var bad = 0;
-      var badness = this._badness;
-      var buffer = this.buffer;
-      var width = this.width;
-
-      // Blocks of same colour.
-      for (y = 0; y < width - 1; y++) {
-        for (x = 0; x < width - 1; x++) {
-          // All foreground colour.
-          if ((buffer[x + (width * y)] &&
-            buffer[x + 1 + (width * y)] &&
-            buffer[x + (width * (y + 1))] &&
-            buffer[x + 1 + (width * (y + 1))]) ||
-            // All background colour.
-            !(buffer[x + (width * y)] ||
-            buffer[x + 1 + (width * y)] ||
-            buffer[x + (width * (y + 1))] ||
-            buffer[x + 1 + (width * (y + 1))])) {
-            bad += Frame.N2;
-          }
-        }
-      }
-
-      var bw = 0;
-
-      // X runs.
-      for (y = 0; y < width; y++) {
-        h = 0;
-
-        badness[0] = 0;
-
-        for (b = 0, x = 0; x < width; x++) {
-          b1 = buffer[x + (width * y)];
-
-          if (b === b1) {
-            badness[h]++;
-          } else {
-            badness[++h] = 1;
-          }
-
-          b = b1;
-          bw += b ? 1 : -1;
-        }
-
-        bad += this._getBadness(h);
-      }
-
-      if (bw < 0) {
-        bw = -bw;
-      }
-
-      var count = 0;
-      var big = bw;
-      big += big << 2;
-      big <<= 1;
-
-      while (big > width * width) {
-        big -= width * width;
-        count++;
-      }
-
-      bad += count * Frame.N4;
-
-      // Y runs.
-      for (x = 0; x < width; x++) {
-        h = 0;
-
-        badness[0] = 0;
-
-        for (b = 0, y = 0; y < width; y++) {
-          b1 = buffer[x + (width * y)];
-
-          if (b === b1) {
-            badness[h]++;
-          } else {
-            badness[++h] = 1;
-          }
-
-          b = b1;
-        }
-
-        bad += this._getBadness(h);
-      }
-
-      return bad;
-    },
-
-    _convertBitStream: function(length) {
-      var bit, i;
-      var ecc = this._ecc;
-      var version = this._version;
-
-      // Convert string to bit stream. 8-bit data to QR-coded 8-bit data (numeric, alphanumeric, or kanji not supported).
-      for (i = 0; i < length; i++) {
-        ecc[i] = this._value.charCodeAt(i);
-      }
-
-      var stringBuffer = this._stringBuffer = ecc.slice();
-      var maxLength = this._calculateMaxLength();
-
-      if (length >= maxLength - 2) {
-        length = maxLength - 2;
-
-        if (version > 9) {
-          length--;
-        }
-      }
-
-      // Shift and re-pack to insert length prefix.
-      var index = length;
-
-      if (version > 9) {
-        stringBuffer[index + 2] = 0;
-        stringBuffer[index + 3] = 0;
-
-        while (index--) {
-          bit = stringBuffer[index];
-
-          stringBuffer[index + 3] |= 255 & (bit << 4);
-          stringBuffer[index + 2] = bit >> 4;
-        }
-
-        stringBuffer[2] |= 255 & (length << 4);
-        stringBuffer[1] = length >> 4;
-        stringBuffer[0] = 0x40 | (length >> 12);
-      } else {
-        stringBuffer[index + 1] = 0;
-        stringBuffer[index + 2] = 0;
-
-        while (index--) {
-          bit = stringBuffer[index];
-
-          stringBuffer[index + 2] |= 255 & (bit << 4);
-          stringBuffer[index + 1] = bit >> 4;
-        }
-
-        stringBuffer[1] |= 255 & (length << 4);
-        stringBuffer[0] = 0x40 | (length >> 4);
-      }
-
-      // Fill to end with pad pattern.
-      index = length + 3 - (version < 10);
-
-      while (index < maxLength) {
-        stringBuffer[index++] = 0xec;
-        stringBuffer[index++] = 0x11;
-      }
-    },
-
-    _getBadness: function(length) {
-      var i;
-      var badRuns = 0;
-      var badness = this._badness;
-
-      for (i = 0; i <= length; i++) {
-        if (badness[i] >= 5) {
-          badRuns += Frame.N1 + badness[i] - 5;
-        }
-      }
-
-      // FBFFFBF as in finder.
-      for (i = 3; i < length - 1; i += 2) {
-        if (badness[i - 2] === badness[i + 2] &&
-          badness[i + 2] === badness[i - 1] &&
-          badness[i - 1] === badness[i + 1] &&
-          badness[i - 1] * 3 === badness[i] &&
-          // Background around the foreground pattern? Not part of the specs.
-          (badness[i - 3] === 0 || i + 3 > length ||
-          badness[i - 3] * 3 >= badness[i] * 4 ||
-          badness[i + 3] * 3 >= badness[i] * 4)) {
-          badRuns += Frame.N3;
-        }
-      }
-
-      return badRuns;
-    },
-
-    _finish: function() {
-      // Save pre-mask copy of frame.
-      this._stringBuffer = this.buffer.slice();
-
-      var currentMask, i;
-      var bit = 0;
-      var mask = 30000;
-
-      /*
-       * Using for instead of while since in original Arduino code if an early mask was "good enough" it wouldn't try for
-       * a better one since they get more complex and take longer.
-       */
-      for (i = 0; i < 8; i++) {
-        // Returns foreground-background imbalance.
-        this._applyMask(i);
-
-        currentMask = this._checkBadness();
-
-        // Is current mask better than previous best?
-        if (currentMask < mask) {
-          mask = currentMask;
-          bit = i;
-        }
-
-        // Don't increment "i" to a void redoing mask.
-        if (bit === 7) {
-          break;
-        }
-
-        // Reset for next pass.
-        this.buffer = this._stringBuffer.slice();
-      }
-
-      // Redo best mask as none were "good enough" (i.e. last wasn't bit).
-      if (bit !== i) {
-        this._applyMask(bit);
-      }
-
-      // Add in final mask/ECC level bytes.
-      mask = ErrorCorrection_1.FINAL_FORMAT[bit + (this._level - 1 << 3)];
-
-      var buffer = this.buffer;
-      var width = this.width;
-
-      // Low byte.
-      for (i = 0; i < 8; i++, mask >>= 1) {
-        if (mask & 1) {
-          buffer[width - 1 - i + (width * 8)] = 1;
-
-          if (i < 6) {
-            buffer[8 + (width * i)] = 1;
-          } else {
-            buffer[8 + (width * (i + 1))] = 1;
-          }
-        }
-      }
-
-      // High byte.
-      for (i = 0; i < 7; i++, mask >>= 1) {
-        if (mask & 1) {
-          buffer[8 + (width * (width - 7 + i))] = 1;
-
-          if (i) {
-            buffer[6 - i + (width * 8)] = 1;
-          } else {
-            buffer[7 + (width * 8)] = 1;
-          }
-        }
-      }
-    },
-
-    _interleaveBlocks: function() {
-      var i, j;
-      var dataBlock = this._dataBlock;
-      var ecc = this._ecc;
-      var eccBlock = this._eccBlock;
-      var k = 0;
-      var maxLength = this._calculateMaxLength();
-      var neccBlock1 = this._neccBlock1;
-      var neccBlock2 = this._neccBlock2;
-      var stringBuffer = this._stringBuffer;
-
-      for (i = 0; i < dataBlock; i++) {
-        for (j = 0; j < neccBlock1; j++) {
-          ecc[k++] = stringBuffer[i + (j * dataBlock)];
-        }
-
-        for (j = 0; j < neccBlock2; j++) {
-          ecc[k++] = stringBuffer[(neccBlock1 * dataBlock) + i + (j * (dataBlock + 1))];
-        }
-      }
-
-      for (j = 0; j < neccBlock2; j++) {
-        ecc[k++] = stringBuffer[(neccBlock1 * dataBlock) + i + (j * (dataBlock + 1))];
-      }
-
-      for (i = 0; i < eccBlock; i++) {
-        for (j = 0; j < neccBlock1 + neccBlock2; j++) {
-          ecc[k++] = stringBuffer[maxLength + i + (j * eccBlock)];
-        }
-      }
-
-      this._stringBuffer = ecc;
-    },
-
-    _insertAlignments: function() {
-      var i, x, y;
-      var version = this._version;
-      var width = this.width;
-
-      if (version > 1) {
-        i = Alignment_1.BLOCK[version];
-        y = width - 7;
-
-        for (;;) {
-          x = width - 7;
-
-          while (x > i - 3) {
-            this._addAlignment(x, y);
-
-            if (x < i) {
-              break;
-            }
-
-            x -= i;
-          }
-
-          if (y <= i + 9) {
-            break;
-          }
-
-          y -= i;
-
-          this._addAlignment(6, y);
-          this._addAlignment(y, 6);
-        }
-      }
-    },
-
-    _insertFinders: function() {
-      var i, j, x, y;
-      var buffer = this.buffer;
-      var width = this.width;
-
-      for (i = 0; i < 3; i++) {
-        j = 0;
-        y = 0;
-
-        if (i === 1) {
-          j = width - 7;
-        }
-        if (i === 2) {
-          y = width - 7;
-        }
-
-        buffer[y + 3 + (width * (j + 3))] = 1;
-
-        for (x = 0; x < 6; x++) {
-          buffer[y + x + (width * j)] = 1;
-          buffer[y + (width * (j + x + 1))] = 1;
-          buffer[y + 6 + (width * (j + x))] = 1;
-          buffer[y + x + 1 + (width * (j + 6))] = 1;
-        }
-
-        for (x = 1; x < 5; x++) {
-          this._setMask(y + x, j + 1);
-          this._setMask(y + 1, j + x + 1);
-          this._setMask(y + 5, j + x);
-          this._setMask(y + x + 1, j + 5);
-        }
-
-        for (x = 2; x < 4; x++) {
-          buffer[y + x + (width * (j + 2))] = 1;
-          buffer[y + 2 + (width * (j + x + 1))] = 1;
-          buffer[y + 4 + (width * (j + x))] = 1;
-          buffer[y + x + 1 + (width * (j + 4))] = 1;
-        }
-      }
-    },
-
-    _insertTimingGap: function() {
-      var x, y;
-      var width = this.width;
-
-      for (y = 0; y < 7; y++) {
-        this._setMask(7, y);
-        this._setMask(width - 8, y);
-        this._setMask(7, y + width - 7);
-      }
-
-      for (x = 0; x < 8; x++) {
-        this._setMask(x, 7);
-        this._setMask(x + width - 8, 7);
-        this._setMask(x, width - 8);
-      }
-    },
-
-    _insertTimingRowAndColumn: function() {
-      var x;
-      var buffer = this.buffer;
-      var width = this.width;
-
-      for (x = 0; x < width - 14; x++) {
-        if (x & 1) {
-          this._setMask(8 + x, 6);
-          this._setMask(6, 8 + x);
-        } else {
-          buffer[8 + x + (width * 6)] = 1;
-          buffer[6 + (width * (8 + x))] = 1;
-        }
-      }
-    },
-
-    _insertVersion: function() {
-      var i, j, x, y;
-      var buffer = this.buffer;
-      var version = this._version;
-      var width = this.width;
-
-      if (version > 6) {
-        i = Version_1.BLOCK[version - 7];
-        j = 17;
-
-        for (x = 0; x < 6; x++) {
-          for (y = 0; y < 3; y++, j--) {
-            if (1 & (j > 11 ? version >> j - 12 : i >> j)) {
-              buffer[5 - x + (width * (2 - y + width - 11))] = 1;
-              buffer[2 - y + width - 11 + (width * (5 - x))] = 1;
-            } else {
-              this._setMask(5 - x, 2 - y + width - 11);
-              this._setMask(2 - y + width - 11, 5 - x);
-            }
-          }
-        }
-      }
-    },
-
-    _isMasked: function(x, y) {
-      var bit = Frame._getMaskBit(x, y);
-
-      return this._mask[bit] === 1;
-    },
-
-    _pack: function() {
-      var bit, i, j;
-      var k = 1;
-      var v = 1;
-      var width = this.width;
-      var x = width - 1;
-      var y = width - 1;
-
-      // Interleaved data and ECC codes.
-      var length = ((this._dataBlock + this._eccBlock) * (this._neccBlock1 + this._neccBlock2)) + this._neccBlock2;
-
-      for (i = 0; i < length; i++) {
-        bit = this._stringBuffer[i];
-
-        for (j = 0; j < 8; j++, bit <<= 1) {
-          if (0x80 & bit) {
-            this.buffer[x + (width * y)] = 1;
-          }
-
-          // Find next fill position.
-          do {
-            if (v) {
-              x--;
-            } else {
-              x++;
-
-              if (k) {
-                if (y !== 0) {
-                  y--;
-                } else {
-                  x -= 2;
-                  k = !k;
-
-                  if (x === 6) {
-                    x--;
-                    y = 9;
-                  }
-                }
-              } else if (y !== width - 1) {
-                y++;
-              } else {
-                x -= 2;
-                k = !k;
-
-                if (x === 6) {
-                  x--;
-                  y -= 8;
-                }
-              }
-            }
-
-            v = !v;
-          } while (this._isMasked(x, y));
-        }
-      }
-    },
-
-    _reverseMask: function() {
-      var x, y;
-      var width = this.width;
-
-      for (x = 0; x < 9; x++) {
-        this._setMask(x, 8);
-      }
-
-      for (x = 0; x < 8; x++) {
-        this._setMask(x + width - 8, 8);
-        this._setMask(8, x);
-      }
-
-      for (y = 0; y < 7; y++) {
-        this._setMask(8, y + width - 7);
-      }
-    },
-
-    _setMask: function(x, y) {
-      var bit = Frame._getMaskBit(x, y);
-
-      this._mask[bit] = 1;
-    },
-
-    _syncMask: function() {
-      var x, y;
-      var width = this.width;
-
-      for (y = 0; y < width; y++) {
-        for (x = 0; x <= y; x++) {
-          if (this.buffer[x + (width * y)]) {
-            this._setMask(x, y);
-          }
-        }
-      }
-    }
-
-  }, {
-
-    _createArray: function(length) {
-      var i;
-      var array = [];
-
-      for (i = 0; i < length; i++) {
-        array[i] = 0;
-      }
-
-      return array;
-    },
-
-    _getMaskBit: function(x, y) {
-      var bit;
-
-      if (x > y) {
-        bit = x;
-        x = y;
-        y = bit;
-      }
-
-      bit = y;
-      bit += y * y;
-      bit >>= 1;
-      bit += x;
-
-      return bit;
-    },
-
-    _modN: function(x) {
-      while (x >= 255) {
-        x -= 255;
-        x = (x >> 8) + (x & 255);
-      }
-
-      return x;
-    },
-
-    // *Badness* coefficients.
-    N1: 3,
-    N2: 3,
-    N3: 40,
-    N4: 10
-
-  });
-
-  var Frame_1 = Frame;
-
-  /**
-   * The options used by {@link Frame}.
-   *
-   * @typedef {Object} Frame~Options
-   * @property {string} level - The ECC level to be used.
-   * @property {string} value - The value to be encoded.
-   */
-
-  /**
-   * An implementation of {@link Renderer} for working with <code>img</code> elements.
-   *
-   * This depends on {@link CanvasRenderer} being executed first as this implementation simply applies the data URL from
-   * the rendered <code>canvas</code> element as the <code>src</code> for the <code>img</code> element being rendered.
-   *
-   * @public
-   * @class
-   * @extends Renderer
-   */
-  var ImageRenderer = Renderer_1.extend({
-
-    /**
-     * @override
-     */
-    draw: function() {
-      this.element.src = this.qrious.toDataURL();
-    },
-
-    /**
-     * @override
-     */
-    reset: function() {
-      this.element.src = '';
-    },
-
-    /**
-     * @override
-     */
-    resize: function() {
-      var element = this.element;
-
-      element.width = element.height = this.qrious.size;
-    }
-
-  });
-
-  var ImageRenderer_1 = ImageRenderer;
-
-  /**
-   * Defines an available option while also configuring how values are applied to the target object.
-   *
-   * Optionally, a default value can be specified as well a value transformer for greater control over how the option
-   * value is applied.
-   *
-   * If no value transformer is specified, then any specified option will be applied directly. All values are maintained
-   * on the target object itself as a field using the option name prefixed with a single underscore.
-   *
-   * When an option is specified as modifiable, the {@link OptionManager} will be required to include a setter for the
-   * property that is defined on the target object that uses the option name.
-   *
-   * @param {string} name - the name to be used
-   * @param {boolean} [modifiable] - <code>true</code> if the property defined on target objects should include a setter;
-   * otherwise <code>false</code>
-   * @param {*} [defaultValue] - the default value to be used
-   * @param {Option~ValueTransformer} [valueTransformer] - the value transformer to be used
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Option = lite.extend(function(name, modifiable, defaultValue, valueTransformer) {
-    /**
-     * The name for this {@link Option}.
-     *
-     * @public
-     * @type {string}
-     * @memberof Option#
-     */
-    this.name = name;
-
-    /**
-     * Whether a setter should be included on the property defined on target objects for this {@link Option}.
-     *
-     * @public
-     * @type {boolean}
-     * @memberof Option#
-     */
-    this.modifiable = Boolean(modifiable);
-
-    /**
-     * The default value for this {@link Option}.
-     *
-     * @public
-     * @type {*}
-     * @memberof Option#
-     */
-    this.defaultValue = defaultValue;
-
-    this._valueTransformer = valueTransformer;
-  }, {
-
-    /**
-     * Transforms the specified <code>value</code> so that it can be applied for this {@link Option}.
-     *
-     * If a value transformer has been specified for this {@link Option}, it will be called upon to transform
-     * <code>value</code>. Otherwise, <code>value</code> will be returned directly.
-     *
-     * @param {*} value - the value to be transformed
-     * @return {*} The transformed value or <code>value</code> if no value transformer is specified.
-     * @public
-     * @memberof Option#
-     */
-    transform: function(value) {
-      var transformer = this._valueTransformer;
-      if (typeof transformer === 'function') {
-        return transformer(value, this);
-      }
-
-      return value;
-    }
-
-  });
-
-  var Option_1 = Option;
-
-  /**
-   * Returns a transformed value for the specified <code>value</code> to be applied for the <code>option</code> provided.
-   *
-   * @callback Option~ValueTransformer
-   * @param {*} value - the value to be transformed
-   * @param {Option} option - the {@link Option} for which <code>value</code> is being transformed
-   * @return {*} The transform value.
-   */
-
-  /**
-   * Contains utility methods that are useful throughout the library.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Utilities = lite.extend(null, {
-
-    /**
-     * Returns the absolute value of a given number.
-     *
-     * This method is simply a convenient shorthand for <code>Math.abs</code> while ensuring that nulls are returned as
-     * <code>null</code> instead of zero.
-     *
-     * @param {number} value - the number whose absolute value is to be returned
-     * @return {number} The absolute value of <code>value</code> or <code>null</code> if <code>value</code> is
-     * <code>null</code>.
-     * @public
-     * @static
-     * @memberof Utilities
-     */
-    abs: function(value) {
-      return value != null ? Math.abs(value) : null;
-    },
-
-    /**
-     * Returns whether the specified <code>object</code> has a property with the specified <code>name</code> as an own
-     * (not inherited) property.
-     *
-     * @param {Object} object - the object on which the property is to be checked
-     * @param {string} name - the name of the property to be checked
-     * @return {boolean} <code>true</code> if <code>object</code> has an own property with <code>name</code>.
-     * @public
-     * @static
-     * @memberof Utilities
-     */
-    hasOwn: function(object, name) {
-      return Object.prototype.hasOwnProperty.call(object, name);
-    },
-
-    /**
-     * A non-operation method that does absolutely nothing.
-     *
-     * @return {void}
-     * @public
-     * @static
-     * @memberof Utilities
-     */
-    noop: function() {},
-
-    /**
-     * Transforms the specified <code>string</code> to upper case while remaining null-safe.
-     *
-     * @param {string} string - the string to be transformed to upper case
-     * @return {string} <code>string</code> transformed to upper case if <code>string</code> is not <code>null</code>.
-     * @public
-     * @static
-     * @memberof Utilities
-     */
-    toUpperCase: function(string) {
-      return string != null ? string.toUpperCase() : null;
-    }
-
-  });
-
-  var Utilities_1 = Utilities;
-
-  /**
-   * Manages multiple {@link Option} instances that are intended to be used by multiple implementations.
-   *
-   * Although the option definitions are shared between targets, the values are maintained on the targets themselves.
-   *
-   * @param {Option[]} options - the options to be used
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var OptionManager = lite.extend(function(options) {
-    /**
-     * The available options for this {@link OptionManager}.
-     *
-     * @public
-     * @type {Object.<string, Option>}
-     * @memberof OptionManager#
-     */
-    this.options = {};
-
-    options.forEach(function(option) {
-      this.options[option.name] = option;
-    }, this);
-  }, {
-
-    /**
-     * Returns whether an option with the specified <code>name</code> is available.
-     *
-     * @param {string} name - the name of the {@link Option} whose existence is to be checked
-     * @return {boolean} <code>true</code> if an {@link Option} exists with <code>name</code>; otherwise
-     * <code>false</code>.
-     * @public
-     * @memberof OptionManager#
-     */
-    exists: function(name) {
-      return this.options[name] != null;
-    },
-
-    /**
-     * Returns the value of the option with the specified <code>name</code> on the <code>target</code> object provided.
-     *
-     * @param {string} name - the name of the {@link Option} whose value on <code>target</code> is to be returned
-     * @param {Object} target - the object from which the value of the named {@link Option} is to be returned
-     * @return {*} The value of the {@link Option} with <code>name</code> on <code>target</code>.
-     * @public
-     * @memberof OptionManager#
-     */
-    get: function(name, target) {
-      return OptionManager._get(this.options[name], target);
-    },
-
-    /**
-     * Returns a copy of all of the available options on the <code>target</code> object provided.
-     *
-     * @param {Object} target - the object from which the option name/value pairs are to be returned
-     * @return {Object.<string, *>} A hash containing the name/value pairs of all options on <code>target</code>.
-     * @public
-     * @memberof OptionManager#
-     */
-    getAll: function(target) {
-      var name;
-      var options = this.options;
-      var result = {};
-
-      for (name in options) {
-        if (Utilities_1.hasOwn(options, name)) {
-          result[name] = OptionManager._get(options[name], target);
-        }
-      }
-
-      return result;
-    },
-
-    /**
-     * Initializes the available options for the <code>target</code> object provided and then applies the initial values
-     * within the speciifed <code>options</code>.
-     *
-     * This method will throw an error if any of the names within <code>options</code> does not match an available option.
-     *
-     * This involves setting the default values and defining properties for all of the available options on
-     * <code>target</code> before finally calling {@link OptionMananger#setAll} with <code>options</code> and
-     * <code>target</code>. Any options that are configured to be modifiable will have a setter included in their defined
-     * property that will allow its corresponding value to be modified.
-     *
-     * If a change handler is specified, it will be called whenever the value changes on <code>target</code> for a
-     * modifiable option, but only when done so via the defined property's setter.
-     *
-     * @param {Object.<string, *>} options - the name/value pairs of the initial options to be set
-     * @param {Object} target - the object on which the options are to be initialized
-     * @param {Function} [changeHandler] - the function to be called whenever the value of an modifiable option changes on
-     * <code>target</code>
-     * @return {void}
-     * @throws {Error} If <code>options</code> contains an invalid option name.
-     * @public
-     * @memberof OptionManager#
-     */
-    init: function(options, target, changeHandler) {
-      if (typeof changeHandler !== 'function') {
-        changeHandler = Utilities_1.noop;
-      }
-
-      var name, option;
-
-      for (name in this.options) {
-        if (Utilities_1.hasOwn(this.options, name)) {
-          option = this.options[name];
-
-          OptionManager._set(option, option.defaultValue, target);
-          OptionManager._createAccessor(option, target, changeHandler);
-        }
-      }
-
-      this._setAll(options, target, true);
-    },
-
-    /**
-     * Sets the value of the option with the specified <code>name</code> on the <code>target</code> object provided to
-     * <code>value</code>.
-     *
-     * This method will throw an error if <code>name</code> does not match an available option or matches an option that
-     * cannot be modified.
-     *
-     * If <code>value</code> is <code>null</code> and the {@link Option} has a default value configured, then that default
-     * value will be used instead. If the {@link Option} also has a value transformer configured, it will be used to
-     * transform whichever value was determined to be used.
-     *
-     * This method returns whether the value of the underlying field on <code>target</code> was changed as a result.
-     *
-     * @param {string} name - the name of the {@link Option} whose value is to be set
-     * @param {*} value - the value to be set for the named {@link Option} on <code>target</code>
-     * @param {Object} target - the object on which <code>value</code> is to be set for the named {@link Option}
-     * @return {boolean} <code>true</code> if the underlying field on <code>target</code> was changed; otherwise
-     * <code>false</code>.
-     * @throws {Error} If <code>name</code> is invalid or is for an option that cannot be modified.
-     * @public
-     * @memberof OptionManager#
-     */
-    set: function(name, value, target) {
-      return this._set(name, value, target);
-    },
-
-    /**
-     * Sets all of the specified <code>options</code> on the <code>target</code> object provided to their corresponding
-     * values.
-     *
-     * This method will throw an error if any of the names within <code>options</code> does not match an available option
-     * or matches an option that cannot be modified.
-     *
-     * If any value within <code>options</code> is <code>null</code> and the corresponding {@link Option} has a default
-     * value configured, then that default value will be used instead. If an {@link Option} also has a value transformer
-     * configured, it will be used to transform whichever value was determined to be used.
-     *
-     * This method returns whether the value for any of the underlying fields on <code>target</code> were changed as a
-     * result.
-     *
-     * @param {Object.<string, *>} options - the name/value pairs of options to be set
-     * @param {Object} target - the object on which the options are to be set
-     * @return {boolean} <code>true</code> if any of the underlying fields on <code>target</code> were changed; otherwise
-     * <code>false</code>.
-     * @throws {Error} If <code>options</code> contains an invalid option name or an option that cannot be modiifed.
-     * @public
-     * @memberof OptionManager#
-     */
-    setAll: function(options, target) {
-      return this._setAll(options, target);
-    },
-
-    _set: function(name, value, target, allowUnmodifiable) {
-      var option = this.options[name];
-      if (!option) {
-        throw new Error('Invalid option: ' + name);
-      }
-      if (!option.modifiable && !allowUnmodifiable) {
-        throw new Error('Option cannot be modified: ' + name);
-      }
-
-      return OptionManager._set(option, value, target);
-    },
-
-    _setAll: function(options, target, allowUnmodifiable) {
-      if (!options) {
-        return false;
-      }
-
-      var name;
-      var changed = false;
-
-      for (name in options) {
-        if (Utilities_1.hasOwn(options, name) && this._set(name, options[name], target, allowUnmodifiable)) {
-          changed = true;
-        }
-      }
-
-      return changed;
-    }
-
-  }, {
-
-    _createAccessor: function(option, target, changeHandler) {
-      var descriptor = {
-        get: function() {
-          return OptionManager._get(option, target);
-        }
-      };
-
-      if (option.modifiable) {
-        descriptor.set = function(value) {
-          if (OptionManager._set(option, value, target)) {
-            changeHandler(value, option);
-          }
-        };
-      }
-
-      Object.defineProperty(target, option.name, descriptor);
-    },
-
-    _get: function(option, target) {
-      return target['_' + option.name];
-    },
-
-    _set: function(option, value, target) {
-      var fieldName = '_' + option.name;
-      var oldValue = target[fieldName];
-      var newValue = option.transform(value != null ? value : option.defaultValue);
-
-      target[fieldName] = newValue;
-
-      return newValue !== oldValue;
-    }
-
-  });
-
-  var OptionManager_1 = OptionManager;
-
-  /**
-   * Called whenever the value of a modifiable {@link Option} is changed on a target object via the defined property's
-   * setter.
-   *
-   * @callback OptionManager~ChangeHandler
-   * @param {*} value - the new value for <code>option</code> on the target object
-   * @param {Option} option - the modifable {@link Option} whose value has changed on the target object.
-   * @return {void}
-   */
-
-  /**
-   * A basic manager for {@link Service} implementations that are mapped to simple names.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var ServiceManager = lite.extend(function() {
-    this._services = {};
-  }, {
-
-    /**
-     * Returns the {@link Service} being managed with the specified <code>name</code>.
-     *
-     * @param {string} name - the name of the {@link Service} to be returned
-     * @return {Service} The {@link Service} is being managed with <code>name</code>.
-     * @throws {Error} If no {@link Service} is being managed with <code>name</code>.
-     * @public
-     * @memberof ServiceManager#
-     */
-    getService: function(name) {
-      var service = this._services[name];
-      if (!service) {
-        throw new Error('Service is not being managed with name: ' + name);
-      }
-
-      return service;
-    },
-
-    /**
-     * Sets the {@link Service} implementation to be managed for the specified <code>name</code> to the
-     * <code>service</code> provided.
-     *
-     * @param {string} name - the name of the {@link Service} to be managed with <code>name</code>
-     * @param {Service} service - the {@link Service} implementation to be managed
-     * @return {void}
-     * @throws {Error} If a {@link Service} is already being managed with the same <code>name</code>.
-     * @public
-     * @memberof ServiceManager#
-     */
-    setService: function(name, service) {
-      if (this._services[name]) {
-        throw new Error('Service is already managed with name: ' + name);
-      }
-
-      if (service) {
-        this._services[name] = service;
-      }
-    }
-
-  });
-
-  var ServiceManager_1 = ServiceManager;
-
-  var optionManager = new OptionManager_1([
-    new Option_1('background', true, 'white'),
-    new Option_1('backgroundAlpha', true, 1, Utilities_1.abs),
-    new Option_1('element'),
-    new Option_1('foreground', true, 'black'),
-    new Option_1('foregroundAlpha', true, 1, Utilities_1.abs),
-    new Option_1('level', true, 'L', Utilities_1.toUpperCase),
-    new Option_1('mime', true, 'image/png'),
-    new Option_1('padding', true, null, Utilities_1.abs),
-    new Option_1('size', true, 100, Utilities_1.abs),
-    new Option_1('value', true, '')
-  ]);
-  var serviceManager = new ServiceManager_1();
-
-  /**
-   * Enables configuration of a QR code generator which uses HTML5 <code>canvas</code> for rendering.
-   *
-   * @param {QRious~Options} [options] - the options to be used
-   * @throws {Error} If any <code>options</code> are invalid.
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var QRious = lite.extend(function(options) {
-    optionManager.init(options, this, this.update.bind(this));
-
-    var element = optionManager.get('element', this);
-    var elementService = serviceManager.getService('element');
-    var canvas = element && elementService.isCanvas(element) ? element : elementService.createCanvas();
-    var image = element && elementService.isImage(element) ? element : elementService.createImage();
-
-    this._canvasRenderer = new CanvasRenderer_1(this, canvas, true);
-    this._imageRenderer = new ImageRenderer_1(this, image, image === element);
-
-    this.update();
-  }, {
-
-    /**
-     * Returns all of the options configured for this {@link QRious}.
-     *
-     * Any changes made to the returned object will not be reflected in the options themselves or their corresponding
-     * underlying fields.
-     *
-     * @return {Object.<string, *>} A copy of the applied options.
-     * @public
-     * @memberof QRious#
-     */
-    get: function() {
-      return optionManager.getAll(this);
-    },
-
-    /**
-     * Sets all of the specified <code>options</code> and automatically updates this {@link QRious} if any of the
-     * underlying fields are changed as a result.
-     *
-     * This is the preferred method for updating multiple options at one time to avoid unnecessary updates between
-     * changes.
-     *
-     * @param {QRious~Options} options - the options to be set
-     * @return {void}
-     * @throws {Error} If any <code>options</code> are invalid or cannot be modified.
-     * @public
-     * @memberof QRious#
-     */
-    set: function(options) {
-      if (optionManager.setAll(options, this)) {
-        this.update();
-      }
-    },
-
-    /**
-     * Returns the image data URI for the generated QR code using the <code>mime</code> provided.
-     *
-     * @param {string} [mime] - the MIME type for the image
-     * @return {string} The image data URI for the QR code.
-     * @public
-     * @memberof QRious#
-     */
-    toDataURL: function(mime) {
-      return this.canvas.toDataURL(mime || this.mime);
-    },
-
-    /**
-     * Updates this {@link QRious} by generating a new {@link Frame} and re-rendering the QR code.
-     *
-     * @return {void}
-     * @protected
-     * @memberof QRious#
-     */
-    update: function() {
-      var frame = new Frame_1({
-        level: this.level,
-        value: this.value
-      });
-
-      this._canvasRenderer.render(frame);
-      this._imageRenderer.render(frame);
-    }
-
-  }, {
-
-    /**
-     * Configures the <code>service</code> provided to be used by all {@link QRious} instances.
-     *
-     * @param {Service} service - the {@link Service} to be configured
-     * @return {void}
-     * @throws {Error} If a {@link Service} has already been configured with the same name.
-     * @public
-     * @static
-     * @memberof QRious
-     */
-    use: function(service) {
-      serviceManager.setService(service.getName(), service);
-    }
-
-  });
-
-  Object.defineProperties(QRious.prototype, {
-
-    canvas: {
-      /**
-       * Returns the <code>canvas</code> element being used to render the QR code for this {@link QRious}.
-       *
-       * @return {*} The <code>canvas</code> element.
-       * @public
-       * @memberof QRious#
-       * @alias canvas
-       */
-      get: function() {
-        return this._canvasRenderer.getElement();
-      }
-    },
-
-    image: {
-      /**
-       * Returns the <code>img</code> element being used to render the QR code for this {@link QRious}.
-       *
-       * @return {*} The <code>img</code> element.
-       * @public
-       * @memberof QRious#
-       * @alias image
-       */
-      get: function() {
-        return this._imageRenderer.getElement();
-      }
-    }
-
-  });
-
-  var QRious_1$2 = QRious;
-
-  /**
-   * The options used by {@link QRious}.
-   *
-   * @typedef {Object} QRious~Options
-   * @property {string} [background="white"] - The background color to be applied to the QR code.
-   * @property {number} [backgroundAlpha=1] - The background alpha to be applied to the QR code.
-   * @property {*} [element] - The element to be used to render the QR code which may either be an <code>canvas</code> or
-   * <code>img</code>. The element(s) will be created if needed.
-   * @property {string} [foreground="black"] - The foreground color to be applied to the QR code.
-   * @property {number} [foregroundAlpha=1] - The foreground alpha to be applied to the QR code.
-   * @property {string} [level="L"] - The error correction level to be applied to the QR code.
-   * @property {string} [mime="image/png"] - The MIME type to be used to render the image for the QR code.
-   * @property {number} [padding] - The padding for the QR code in pixels.
-   * @property {number} [size=100] - The size of the QR code in pixels.
-   * @property {string} [value=""] - The value to be encoded within the QR code.
-   */
-
-  var index = QRious_1$2;
-
-  /**
-   * Defines a service contract that must be met by all implementations.
-   *
-   * @public
-   * @class
-   * @extends Nevis
-   */
-  var Service = lite.extend({
-
-    /**
-     * Returns the name of this {@link Service}.
-     *
-     * @return {string} The service name.
-     * @public
-     * @abstract
-     * @memberof Service#
-     */
-    getName: function() {}
-
-  });
-
-  var Service_1 = Service;
-
-  /**
-   * A service for working with elements.
-   *
-   * @public
-   * @class
-   * @extends Service
-   */
-  var ElementService = Service_1.extend({
-
-    /**
-     * Creates an instance of a canvas element.
-     *
-     * Implementations of {@link ElementService} <b>must</b> override this method with their own specific logic.
-     *
-     * @return {*} The newly created canvas element.
-     * @public
-     * @abstract
-     * @memberof ElementService#
-     */
-    createCanvas: function() {},
-
-    /**
-     * Creates an instance of a image element.
-     *
-     * Implementations of {@link ElementService} <b>must</b> override this method with their own specific logic.
-     *
-     * @return {*} The newly created image element.
-     * @public
-     * @abstract
-     * @memberof ElementService#
-     */
-    createImage: function() {},
-
-    /**
-     * @override
-     */
-    getName: function() {
-      return 'element';
-    },
-
-    /**
-     * Returns whether the specified <code>element</code> is a canvas.
-     *
-     * Implementations of {@link ElementService} <b>must</b> override this method with their own specific logic.
-     *
-     * @param {*} element - the element to be checked
-     * @return {boolean} <code>true</code> if <code>element</code> is a canvas; otherwise <code>false</code>.
-     * @public
-     * @abstract
-     * @memberof ElementService#
-     */
-    isCanvas: function(element) {},
-
-    /**
-     * Returns whether the specified <code>element</code> is an image.
-     *
-     * Implementations of {@link ElementService} <b>must</b> override this method with their own specific logic.
-     *
-     * @param {*} element - the element to be checked
-     * @return {boolean} <code>true</code> if <code>element</code> is an image; otherwise <code>false</code>.
-     * @public
-     * @abstract
-     * @memberof ElementService#
-     */
-    isImage: function(element) {}
-
-  });
-
-  var ElementService_1 = ElementService;
-
-  /**
-   * An implementation of {@link ElementService} intended for use within a browser environment.
-   *
-   * @public
-   * @class
-   * @extends ElementService
-   */
-  var BrowserElementService = ElementService_1.extend({
-
-    /**
-     * @override
-     */
-    createCanvas: function() {
-      return document.createElement('canvas');
-    },
-
-    /**
-     * @override
-     */
-    createImage: function() {
-      return document.createElement('img');
-    },
-
-    /**
-     * @override
-     */
-    isCanvas: function(element) {
-      return element instanceof HTMLCanvasElement;
-    },
-
-    /**
-     * @override
-     */
-    isImage: function(element) {
-      return element instanceof HTMLImageElement;
-    }
-
-  });
-
-  var BrowserElementService_1 = BrowserElementService;
-
-  index.use(new BrowserElementService_1());
-
-  var QRious_1 = index;
-
-  return QRious_1;
-
-})));
-
-//# sourceMappingURL=qrious.js.map
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
-    url: "https://thawing-ravine-92822.herokuapp.com"
-};
-
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(111));
-__export(__webpack_require__(112));
-__export(__webpack_require__(113));
-
-
-/***/ }),
-/* 111 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115457,290 +112722,133 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
+const States_1 = __webpack_require__(16);
+const network_1 = __webpack_require__(36);
+const assets_1 = __webpack_require__(4);
 /**
- * Generacja gwiazd na scenie
+ * Wybór postaci
  * @export
- * @param {Phaser.Game} game
- * @param {number} density
- * @param {number} brightness
- * @returns
+ * @class AvatarSelector
+ * @extends {Phaser.State}
  */
-function stars(game, density, brightness, key) {
-    const width = game.width;
-    const height = game.height;
-    const canvas = document.createElement("canvas");
-    canvas.height = height;
-    canvas.width = width;
-    const ctx = canvas.getContext("2d");
-    let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = createData(canvas.width, canvas.height, density, brightness, Math.random, imageData);
-    ctx.putImageData(data, 0, 0);
-    let img = new Image();
-    img.onload = () => {
-        game.cache.addImage(key, img.src, img);
-    };
-    img.src = canvas.toDataURL("image/png");
-}
-exports.stars = stars;
-/**
- * Generowanie gwiazd punktowych
- * @export
- * @param {number} width szerokość sceny
- * @param {number} height wysokość sceny
- * @param {number} density // [0, 1]
- * @param {number} brightness // wartość na bazie której wybierana będzie jasność każdej gwiazdy
- * @param {Function} prng // generator liczb pseudolosowych
- */
-function createData(width, height, density, brightness, prng, imageData) {
-    // liczba gwiazd do wygenerowania
-    const count = Math.round(width * height * density);
-    for (let i = 0; i < count; i++) {
-        // wybór piksela z jednolitym rozkładem
-        const r = Math.floor(prng() * width * height);
-        // losowe wybranie jasności z rozkładu wykładniczego
-        let c = Math.round(255 * Math.log(1 - prng()) * -brightness);
-        // kolor w skali szarości
-        imageData.data[r * 4 + 0] = c;
-        imageData.data[r * 4 + 1] = c;
-        imageData.data[r * 4 + 2] = c;
-        imageData.data[r * 4 + 3] = 255;
+class AvatarSelector extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        /**
+           * Dostępne statki
+           * @private
+           * @type {Array<any>}
+           * @memberof AvatarSelector
+           */
+        this.ships = [
+            { class: assets_1.Assets.Images.Ships.GREEN, use: false },
+            { class: assets_1.Assets.Images.Ships.PURPLE, use: false },
+            { class: assets_1.Assets.Images.Ships.BLUE, use: false },
+            { class: assets_1.Assets.Images.Ships.WATERY, use: false },
+            { class: assets_1.Assets.Images.Ships.PINK, use: false },
+            { class: assets_1.Assets.Images.Ships.RED, use: false },
+            { class: assets_1.Assets.Images.Ships.YELLOW, use: false },
+            { class: assets_1.Assets.Images.Ships.ORANGE, use: false },
+            { class: assets_1.Assets.Images.Ships.GRASS, use: false },
+            { class: assets_1.Assets.Images.Ships.DARKPINK, use: false }
+        ];
     }
-    return imageData;
-}
-
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const utils_1 = __webpack_require__(12);
-function comet(game, width, height, rc, key) {
-    const x = height / 2;
-    const y = height / 2;
-    const rt = height / 2;
-    const canvas = document.createElement("canvas");
-    canvas.height = height;
-    canvas.width = width;
-    const ctx = canvas.getContext("2d");
-    var grd = ctx.createLinearGradient(0, 0, width, 0);
-    grd.addColorStop(0, "rgba(255, 255, 255, 1)");
-    grd.addColorStop(1, "rgba(255, 255, 255, 0.5)");
-    ctx.fillStyle = grd;
-    ctx.arc(x, y, rt, 90, Math.PI, true);
-    ctx.moveTo(x, height);
-    ctx.lineTo(width, height);
-    ctx.lineTo(width, 0);
-    ctx.lineTo(x, 0);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.fillStyle = "#802b00";
-    const points = utils_1.convexhull(utils_1.generateRandomPoints(new utils_1.Point(x, y), rc, 50));
-    points.push(points[0]);
-    ctx.moveTo(points[0].X, points[0].Y);
-    for (let j = 1; j < points.length; j++) {
-        const point = points[j];
-        ctx.lineTo(point.X, point.Y);
-    }
-    ctx.fill();
-    let img = new Image();
-    img.onload = () => {
-        game.cache.addImage(key, img.src, img);
-    };
-    img.src = canvas.toDataURL("image/png");
-}
-exports.comet = comet;
-
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const utils_1 = __webpack_require__(12);
-function nebula(game, name, offset, color, clouds, density, sharpness) {
-    const width = game.width;
-    const height = game.height;
-    const canvas = document.createElement("canvas");
-    canvas.height = height;
-    canvas.width = width;
-    canvas.style.backgroundColor = "transparent";
-    const ctx = canvas.getContext("2d");
-    let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = createData(canvas.width, canvas.height, offset, color, imageData, clouds, density, sharpness);
-    ctx.putImageData(data, 0, 0);
-    let img = new Image();
-    img.onload = () => {
-        game.cache.addImage(name, img.src, img);
-    };
-    img.src = canvas.toDataURL("image/png");
-}
-exports.nebula = nebula;
-function createData(width, height, offset, color, imageData, clouds, density, sharpness) {
-    const temp = [];
-    let yoff = offset;
-    for (let y = 0; y < height; y++) {
-        let xoff = offset;
-        for (let x = 0; x < width; x++) {
-            const index = y * width + x;
-            const n = utils_1.noise(yoff, xoff);
-            // imageData.data[index * 4 + 0] = color.R;
-            // imageData.data[index * 4 + 1] = color.G;
-            // imageData.data[index * 4 + 2] = color.B;
-            // arr[index * 4 + 3]
-            const clouds = utils_1.getClouds(n, density ? density : 0.5, sharpness ? sharpness : 0.1);
-            temp.push(clouds);
-            // const c = Color.rgbLum(color, map(n, 0, 1, 0, 0.5));
-            // imageData.data[index * 4 + 0] = color.R;
-            // imageData.data[index * 4 + 1] = color.G;
-            // imageData.data[index * 4 + 2] = color.B;
-            // const bright = clouds
-            //   ? map(
-            //       getClouds(n, density ? density : 0.5, sharpness ? sharpness : 0.1),
-            //       0,
-            //       0.05,
-            //       0,
-            //       255
-            //     )
-            //   : map(n, 0, 1, 0, 100);
-            // imageData.data[index * 4 + 3] = bright;
-            // xoff += 0.007;
-            xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
-        }
-        yoff += 0.007;
-    }
-    const { min, max } = utils_1.minmax(temp);
-    for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-            const index = y * width + x;
-            imageData.data[index * 4 + 0] = color.R;
-            imageData.data[index * 4 + 1] = color.G;
-            imageData.data[index * 4 + 2] = color.B;
-            imageData.data[index * 4 + 3] = utils_1.map(temp[index], 0, max > 0.05 ? max : 0.05, 0, 200);
-        }
-    }
-    return imageData;
-}
-function nebulaTest(game, name, color) {
-    const arr = utils_1.generateNoise(game.width, game.height);
-    const width = game.width;
-    const height = game.height;
-    const canvas = document.createElement("canvas");
-    canvas.height = height;
-    canvas.width = width;
-    canvas.style.backgroundColor = "transparent";
-    const ctx = canvas.getContext("2d");
-    let imageData = ctx.createImageData(canvas.width, canvas.height);
-    let data = createDataTest(canvas.width, canvas.height, arr, imageData, color);
-    ctx.putImageData(data, 0, 0);
-    let img = new Image();
-    img.onload = () => {
-        game.cache.addImage(name, img.src, img);
-    };
-    img.src = canvas.toDataURL("image/png");
-}
-exports.nebulaTest = nebulaTest;
-function createDataTest(width, height, arr, imageData, color) {
-    // const w = [0, 0, 0, 0, 0, 0.5];
-    // for (let i = 4; i >= 0; i--) {
-    //   w[i] = w[i + 1] / 2;
-    // }
-    const off = Math.random() * 32769;
-    let yoff = off;
-    for (let y = 0; y < height; y++) {
-        let xoff = off;
-        for (let x = 0; x < width; x++) {
-            const index = y * width + x;
-            // const n = noise(arr[y][x], arr[y][x]);
-            // let total = 0;
-            // for (let i = 1; i < 7; i++) {
-            //   const smooth = smoothNoise(
-            //     arr,
-            //     x / Math.pow(i, 2),
-            //     y / Math.pow(i, 2),
-            //     width,
-            //     height
-            //   );
-            //   total += smooth * w[i - 1];
-            // }
-            // const iterp = cosineInterpolation(x / 64, y / 64, arr[y][x]);
-            // let bright = map(arr[y][x], 0, 1, 0, 255);
-            // const turb = turbulence(arr, x, y, 64, width, height);
-            // let bright = map(turb, 0, 1, 0, 255);
-            let total = 0.0;
-            let frequency = 1 / width;
-            let amplitude = 0.5;
-            for (let i = 0; i < 6; i++) {
-                total += utils_1.noise(xoff * frequency, yoff * frequency) * amplitude;
-                frequency *= 2;
-                amplitude *= 0.5;
-                // arr[y][x] = total;
+    preload() {
+        network_1.default.onUpdateAvatarSelector((res) => {
+            if (res instanceof Array) {
+                this.ships = this.ships.map(character => {
+                    character.use = false;
+                    if (~res.indexOf(character.name)) {
+                        character.use = true;
+                    }
+                    return character;
+                });
             }
-            // total = map(total, 0, 1, 0, 50);
-            // total = total < 0.5 ? 0 : 255;
-            // const c = Color.rgbLum(color, map(total, 0, 1, 0, 0.5));
-            imageData.data[index * 4 + 0] = total < 0.5 ? 0 : color.R;
-            imageData.data[index * 4 + 1] = total < 0.5 ? 0 : color.G;
-            imageData.data[index * 4 + 2] = total < 0.5 ? 0 : color.B;
-            imageData.data[index * 4 + 3] =
-                total < 0.5 ? 0 : utils_1.map(total, 0, 1, 0, 255);
-            xoff += 0.01;
-        }
-        yoff += 0.01;
+            else {
+                this.ships = this.ships.map(character => {
+                    if (character.name == res) {
+                        character.use = true;
+                    }
+                    return character;
+                });
+            }
+        });
+        network_1.default.getAvatarsInUse();
     }
-    return imageData;
-}
-exports.createDataTest = createDataTest;
-function createData_TEST_2(width, height, offset, color, imageData, clouds, density, sharpness) {
-    // noiseDetail(2, null);
-    let yoff = offset;
-    for (let y = 0; y < height; y++) {
-        let xoff = offset;
-        for (let x = 0; x < width; x++) {
-            const index = y * width + x;
-            const n = utils_1.noise(yoff, xoff);
-            const bright = utils_1.map(n, 0, 1, 0, 255);
-            // const clouds = getClouds(
-            //   n,
-            //   density ? density : 0.5,
-            //   sharpness ? sharpness : 0.1
-            // );
-            imageData.data[index * 4 + 0] = bright;
-            imageData.data[index * 4 + 1] = bright;
-            imageData.data[index * 4 + 2] = bright;
-            imageData.data[index * 4 + 3] = 255;
-            // const bright = clouds
-            //   ? map(
-            //       getClouds(n, density ? density : 0.5, sharpness ? sharpness : 0.1),
-            //       0,
-            //       0.05,
-            //       0,
-            //       255
-            //     )
-            //   : map(n, 0, 1, 0, 100);
-            // imageData.data[index * 4 + 3] = bright;
-            // xoff += 0.007;
-            /// xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
-            xoff += 0.007;
+    create() {
+        this.game.stage.backgroundColor = "#333333";
+        var helloText = this.game.add.text(this.game.world.centerX, 40, "Choose your ship", {
+            font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: "#ffffff",
+            align: "center"
+        });
+        helloText.anchor.set(0.5, 0);
+        this.scrolingMap = this.game.add.tileSprite(0, 80, this.game.width / 2 + this.ships.length * 140 + 30, this.game.height - 180, assets_1.Assets.Images.Transparent.getName());
+        this.scrolingMap.inputEnabled = true;
+        this.scrolingMap.input.enableDrag(false);
+        this.scrolingMap.savedPosition = new Phaser.Point(this.scrolingMap.x, this.scrolingMap.y);
+        this.scrolingMap.isBeingDraged = false;
+        this.scrolingMap.movingSpeed = 0;
+        this.scrolingMap.input.allowVerticalDrag = false;
+        this.scrolingMap.input.boundsRect = new Phaser.Rectangle(this.game.width - this.scrolingMap.width, 80, this.scrolingMap.width * 2 - this.game.width, this.game.height - 180);
+        for (var i = 0; i < this.ships.length; i++) {
+            const ship = this.game.add.sprite(this.game.world.centerX + i * 120, this.game.world.centerY - 60, this.ships[i].class.getName());
+            ship.anchor.set(0.5, 1);
+            ship.scale.setTo(0.3);
+            this.scrolingMap.addChild(ship);
         }
-        yoff += 0.007;
+        this.scrolingMap.events.onDragStart.add(() => {
+            this.scrolingMap.isBeingDraged = true;
+            this.scrolingMap.movingSpeed = 0;
+        }, this);
+        this.scrolingMap.events.onDragStop.add(() => {
+            this.scrolingMap.isBeingDraged = false;
+        }, this);
+        var button = this.game.add.button(this.game.world.centerX, this.game.height - 40, assets_1.Assets.UI.Buttons.Menu.Select.getName(), this.actionOnClick, this, 2, 1, 0);
+        button.anchor.set(0.5, 1);
     }
-    return imageData;
+    update() {
+        for (let _i = 0; _i < this.scrolingMap.children.length; _i++) {
+            if (this.ships[_i].use) {
+                this.scrolingMap.children[_i].alpha = 0.5;
+            }
+            else {
+                this.scrolingMap.children[_i].alpha = 1;
+            }
+            if (this.scrolingMap.children[_i].worldPosition.x <
+                this.game.world.centerX + 60 &&
+                this.scrolingMap.children[_i].worldPosition.x >
+                    this.game.world.centerX - 60) {
+                this.scrolingMap.getChildAt(_i).scale.set(0.6, 0.6);
+                this.selectedShipIndex = _i;
+            }
+            else {
+                this.scrolingMap.getChildAt(_i).scale.set(0.4, 0.4);
+            }
+        }
+    }
+    shutdown() {
+        network_1.default.removeListener(network_1.default.UPDATE_CHARACTER_SELECTOR);
+    }
+    /**
+       * Akcja wyboru avatara
+       * @private
+       * @memberof AvatarSelector
+       */
+    actionOnClick() {
+        if (!this.ships[this.selectedShipIndex].use) {
+            network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].class.getName());
+            this.game.state.shipClass = this.ships[this.selectedShipIndex].class;
+            this.game.state.color = this.ships[this.selectedShipIndex].class.getValue();
+            this.game.state.start(States_1.States.GAME_CONTROLLER);
+        }
+    }
 }
+exports.AvatarSelector = AvatarSelector;
 
 
 /***/ }),
-/* 114 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115757,29 +112865,23 @@ const assets_1 = __webpack_require__(4);
  * @extends {Phaser.State}
  */
 class Message extends Phaser.State {
-    init(message, text, action) {
+    init(message, btn, action) {
         this.message = message;
-        this.text = text ? text : null;
+        this.btn = btn ? btn : null;
         this.action = action ? action.bind(this) : null;
     }
     preload() { }
     create() {
         this.game.stage.backgroundColor = "#333333";
-        var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 30, this.message, {
+        var message = this.game.add.text(this.game.world.centerX, this.btn ? this.game.world.centerY - 50 : this.game.world.centerY, this.message, {
             font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
             align: "center"
         });
         message.anchor.set(0.5);
-        if (this.text && this.action) {
-            var button = this.game.add.button(this.game.world.centerX, this.game.height + 30, assets_1.Assets.UI.Buttons.Menu.Grey.getName(), this.action, this, 2, 1, 0);
+        if (this.btn && this.action) {
+            var button = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 30, assets_1.Assets.UI.Buttons.Menu.Start.getName(), this.action, this, 2, 1, 0);
             button.anchor.set(0.5);
-            var buttonText = this.game.add.text(this.game.world.centerX, this.game.height + 30, this.text, {
-                font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-                fill: "#000000",
-                align: "center"
-            });
-            buttonText.anchor.set(0.5);
         }
     }
 }
@@ -115787,7 +112889,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 115 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115796,1134 +112898,165 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const utils_1 = __webpack_require__(12);
-const States_1 = __webpack_require__(38);
-const const_1 = __webpack_require__(39);
-const network_1 = __webpack_require__(93);
+const States_1 = __webpack_require__(16);
+const network_1 = __webpack_require__(36);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(116);
+const utils_1 = __webpack_require__(12);
 /**
- * Widok główny
+ * Kontroler gry
  * @export
- * @class Main
+ * @class GameController
  * @extends {Phaser.State}
  */
-class Main extends Phaser.State {
+class GameController extends Phaser.State {
     constructor() {
         super(...arguments);
         /**
-         * Kolekcja teł gry
+         * Wektor pozycji początkowej kontolera
          * @private
-         * @type {Phaser.TileSprite[]}
-         * @memberof Main
+         * @memberof GameController
          */
-        this.tiles = [];
+        this.leftTouchStartPos = new Victor(0, 0);
         /**
-         * Flaga do wystartowania następnego poziomu
+         * Wektor aktualnej pozycji kontolera
          * @private
-         * @type {boolean}
-         * @memberof Main
+         * @memberof GameController
          */
-        this.startNextStage = false;
+        this.leftTouchPos = new Victor(0, 0);
         /**
-         * Aktualny poziom
+         * Wektor pozycji gracza
          * @private
-         * @type {number}
-         * @memberof Main
+         * @memberof GameController
          */
-        this.currentStage = 1;
-        /**
-         * Flaga informująca o rozpoczęciu gry
-         * @private
-         * @type {boolean}
-         * @memberof Main
-         */
-        this.gameStartedFlag = false;
-        /**
-         * Flagi informujące o zakończeniu gry
-         * @private
-         * @type {boolean}
-         * @memberof Main
-         */
-        this.gameEndedFlag = false;
-        this.gameEndingFlag = false;
-        /**
-         * Flaga wsakuzjąca czy gra została uruchomiona ponownie
-         * @private
-         * @type {boolean}
-         * @memberof Main
-         */
-        this.gameRestarted = false;
-    }
-    init(restart) {
-        if (restart) {
-            this.gameRestarted = true;
-        }
-        this.startNextStage = false;
-        this.gameEndedFlag = false;
-        this.gameEndingFlag = false;
-        this.gameStartedFlag = false;
-        this.currentStage = 1;
+        this.leftVector = new Victor(0, 0);
+        this.frameCounter = 0;
     }
     preload() {
-        // utworzenie słownika graczy
-        this.game.state.players = {};
-        this.players = this.game.add.group();
-        // aktualizacja połączonych graczy
-        network_1.default.onUpdatePlayersState(player => {
-            if (!this.game.state.players[player.id]) {
-                const count = Object.keys(this.game.state.players).length;
-                const start = this.game.world.centerY / 2 + 100;
-                const offset = this.game.world.centerY / 4 * (count - 1);
-                const y = start + offset;
-                const newPlayer = new models_1.Player(this.game, 50, y, {
-                    id: player.id,
-                    socketId: player.socketID,
-                    avatar: player.character
-                });
-                this.game.state.players[player.id] = newPlayer;
-                this.players.add(newPlayer);
+        this.game.stage.backgroundColor = this.game.state.color;
+        network_1.default.onUpdateScore((score, vibration) => {
+            this.scoreText.setText(score.toString());
+            if (vibration) {
+                this.signalPointsLost();
             }
         });
-        // usuń gracza z gry
-        network_1.default.onPlayerDisconnected(player => {
-            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
-                if (this.game.state.players[nextId].id == player.id) {
-                    this.game.state.players[nextId].shield.destroy();
-                    this.game.state.players[nextId].destroy();
-                    return players;
-                }
-                players[nextId] = this.game.state.players[nextId];
-                return players;
-            }, {});
+        network_1.default.onEndGame((playerId) => {
+            const message = playerId == this.game.state.id ? "Win" : "Lose";
+            this.game.state.start(States_1.States.MESSAGE, true, false, message, true, () => {
+                network_1.default.playAgain(gameId);
+                this.game.state.start(States_1.States.AVATAR_SELECTOR);
+            });
         });
-        network_1.default.onUpdateTimer(sec => {
-            this.timerText.setText("The game will start in " + sec);
-        });
-        network_1.default.onStartGame(() => {
-            if (Object.keys(this.game.state.players).length < 1) {
-                const message = "No connected players";
-                const text = "Try again";
-                const action = () => this.game.state.start(States_1.States.MAIN);
-                this.game.state.start(States_1.States.MESSAGE, true, false, message, text, action);
-            }
-            else {
-                this.hideMenu();
-                this.gameEndTimmeout = setTimeout(() => {
-                    this.gameEndedFlag = true;
-                    this.gameStartedFlag = false;
-                    this.gameRestarted = false;
-                    this.gameEndTimmeout = null;
-                }, 180000);
-            }
-        });
-        network_1.default.onPlayedUpdateXY((playerId, update) => {
-            const player = this.game.state.players[playerId];
-            player.vector = new Victor(update.x, update.y);
-        });
-        network_1.default.onPlayerFire(playerId => {
-            const player = this.game.state.players[playerId];
-            player.fire();
-        });
-        network_1.default.onNoConnectedPlayers(() => {
-            this.game.state.start(States_1.States.MESSAGE, true, false, "No connected players");
-        });
-        network_1.default.onPlayAgain(() => {
-            if (!this.gameRestarted) {
-                network_1.default.removeListener(network_1.default.PLAY_AGAIN);
-                this.game.state.restart(true, false, true);
-            }
-        });
-        network_1.default.startTimer();
+        document
+            .getElementById("controller")
+            .addEventListener("touchstart", this.onTouchStart.bind(this));
+        document
+            .getElementById("controller")
+            .addEventListener("touchmove", this.onTouchMove.bind(this));
+        document
+            .getElementById("controller")
+            .addEventListener("touchend", this.onTouchEnd.bind(this));
     }
     create() {
-        this.game.physics.setBoundsToWorld();
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.comets = new models_1.Comets(this.game);
-        this.explosions = new models_1.CometExplosion(this.game);
-        this.createBackground();
-        this.createMenu();
-        // debug
-        this.game.time.advancedTiming = true;
+        this.leftTouchStartPos = new Victor(this.game.world.centerX / 2, this.game.world.centerY);
+        this.leftTouchPos.copy(this.leftTouchStartPos);
+        this.scoreText = this.game.add.text(this.game.world.centerX + this.game.world.centerX / 2, 50, "Sync", {
+            font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
+            fill: "#ffffff",
+            align: "center"
+        });
+        this.scoreText.anchor.setTo(0.5);
+        const color = parseInt(utils_1.colorLuminance(this.game.state.color, -0.2).replace("#", ""), 16);
+        const graphics = this.game.add.graphics(0, 0);
+        graphics.beginFill(color);
+        graphics.drawCircle(100, 100, 200);
+        graphics.endFill();
+        graphics.beginFill(0xffffff);
+        graphics.drawCircle(100, 30, 10);
+        graphics.drawCircle(170, 100, 10);
+        graphics.drawCircle(100, 170, 10);
+        graphics.drawCircle(30, 100, 10);
+        graphics.endFill();
+        const leftPadBack = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, graphics.generateTexture());
+        leftPadBack.anchor.setTo(0.5);
+        graphics.destroy();
+        this.leftPad = this.game.add.image(this.leftTouchStartPos.x, this.leftTouchStartPos.y, assets_1.Assets.UI.Buttons.Joystick.WheelInternal.getName());
+        this.leftPad.anchor.setTo(0.5);
+        this.leftPad.scale.setTo(0.5);
+        this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
+            network_1.default.playerFire(gameId);
+        }, this);
+        this.fireBtn.scale.setTo(1.3);
+        this.fireBtn.anchor.setTo(0.5);
     }
     update() {
-        if (this.gameStartedFlag && !this.gameEndedFlag) {
-            this.comets.generate();
+        this.leftPad.x = this.leftTouchPos.x;
+        this.leftPad.y = this.leftTouchPos.y;
+        this.frameCounter++;
+        if (this.frameCounter % 3 === 0) {
+            network_1.default.updatePlayerXY(gameId, {
+                x: this.leftVector.x,
+                y: this.leftVector.y
+            });
         }
-        if (this.startNextStage &&
-            this.comets.countLiving() === 0 &&
-            !this.gameEndedFlag) {
-            this.startNextStage = false;
-            this.players.forEach((player) => {
-                player.removePowerups();
-            }, this);
-            this.createStageInfo();
-            this.generatePowerUps();
-            this.nextStage();
-        }
-        if (this.gameEndedFlag &&
-            this.comets.countLiving() === 0 &&
-            !this.gameEndingFlag) {
-            this.gameEndingFlag = true;
-            this.endGame();
-        }
-        this.checkCollisions();
-        this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
     }
     shutdown() {
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_XY);
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_Z);
-        network_1.default.removeListener(network_1.default.PLAYER_DISCONNECTED);
-        network_1.default.removeListener(network_1.default.NO_CONNECTED_PLAYERS);
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYERS_STATE);
-        network_1.default.removeListener(network_1.default.UPDATE_TIMER);
-        network_1.default.removeListener(network_1.default.START_GAME);
-        // if (this.gameRestarted) {
-        //   this.gameRestarted = true;
-        //   Network.removeListener(Network.PLAY_AGAIN);
-        // }
-        if (this.nextStageTimeout) {
-            clearTimeout(this.nextStageTimeout);
-        }
-        if (this.gameEndTimmeout) {
-            clearTimeout(this.gameEndTimmeout);
-        }
+        document
+            .getElementById("controller")
+            .removeEventListener("touchstart", this.onTouchStart.bind(this));
+        document
+            .getElementById("controller")
+            .removeEventListener("touchmove", this.onTouchMove.bind(this));
+        document
+            .getElementById("controller")
+            .removeEventListener("touchend", this.onTouchEnd.bind(this));
+        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
     }
-    /**
-     * Utworzenie teł gry
-     * @private
-     * @memberof Main
-     */
-    createBackground() {
-        for (let i = 1; i <= const_1.Const.Nebula.Names.length; i++) {
-            const nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i - 1]);
-            nebula.autoScroll(-100 + -50 * i, 0);
-            this.game.world.sendToBack(nebula);
-            this.tiles.push(nebula);
-        }
-        const starfield = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
-        starfield.autoScroll(-50, 0);
-        this.game.world.sendToBack(starfield);
-        this.tiles.push(starfield);
+    signalPointsLost() {
+        window.navigator.vibrate(500);
     }
-    /**
-     * Utworzenie menu
-     * @private
-     * @memberof Main
-     */
-    createMenu() {
-        this.menuGroup = this.game.add.group();
-        // tytuł gry
-        const instruction = this.game.add.text(this.game.world.centerX, 100, "Scan QRCode and join to the game", {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: "#ffffff",
-            align: "center"
-        });
-        instruction.anchor.set(0.5);
-        // kod qr
-        const qr = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, "qrcode");
-        qr.anchor.set(0.5);
-        this.timerText = this.game.add.text(this.game.world.centerX, this.game.height - 100, "The game will start in ...", {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: "#ffffff",
-            align: "center"
-        });
-        this.timerText.anchor.set(0.5);
-        this.menuGroup.add(instruction);
-        this.menuGroup.add(qr);
-        this.menuGroup.add(this.timerText);
-    }
-    /**
-     * Usunięcie menu przed rozpoczęciem rozgrywki
-     * @private
-     * @memberof Main
-     */
-    hideMenu() {
-        const moveUpTween = this.game.add
-            .tween(this.menuGroup.position)
-            .to({ y: -this.game.height }, 2000, Phaser.Easing.Linear.None, true);
-        moveUpTween.onComplete.add(() => {
-            this.game.tweens.remove(moveUpTween);
-            this.menuGroup.destroy();
-            this.startNextStage = true;
-        }, this);
-    }
-    /**
-     * Odliczanie do następnego poziomu
-     * @private
-     * @memberof Main
-     */
-    nextStage() {
-        this.nextStageTimeout = setTimeout(() => {
-            this.gameStartedFlag = false;
-            this.currentStage++;
-            this.startNextStage = true;
-            this.nextStageTimeout = null;
-        }, 60000);
-    }
-    /**
-     * Utworzenie menu poziomu
-     * @private
-     * @memberof Main
-     */
-    createStageInfo() {
-        this.menuGroup = this.game.add.group();
-        const stage = this.game.add.text(this.game.world.centerX, 50, "Stage " + this.currentStage, {
-            font: `40px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: "#ffffff",
-            align: "center"
-        });
-        stage.anchor.set(0.5);
-        const instruction = this.game.add.text(this.game.world.centerX, 100, "Pick up power up", {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: "#ffffff",
-            align: "center"
-        });
-        instruction.anchor.set(0.5);
-        this.menuGroup.add(stage);
-        this.menuGroup.add(instruction);
-        const moveUpTween = this.game.add
-            .tween(this.menuGroup.position)
-            .to({ y: -this.game.height }, 1000, Phaser.Easing.Linear.None, true, 10000);
-        moveUpTween.onComplete.add(() => {
-            this.game.tweens.remove(moveUpTween);
-            this.menuGroup.destroy();
-            this.gameStartedFlag = true;
-        }, this);
-    }
-    /**
-     * Koniec gry
-     * @private
-     * @memberof Main
-     */
-    endGame() {
-        this.shutdown();
-        const players = [];
-        Object.keys(this.game.state.players).forEach(playerId => {
-            players.push(this.game.state.players[playerId]);
-        });
-        players.sort((a, b) => a.score - b.score);
-        players.forEach((player, index, arr) => {
-            player.vector = new Victor(0, 0);
-            const count = arr.length;
-            const stepY = this.game.world.centerY / count;
-            const offsetY = stepY / 2;
-            const y = stepY * (index + 1) + offsetY * (count - 1);
-            const stepX = 50 * arr.length / count;
-            const offsetX = stepX / 2;
-            const x = stepX * (index + 1) + offsetX * (count - 1);
-            const moveToX = this.game.add
-                .tween(player)
-                .to({ x: x + 30 }, 1000, Phaser.Easing.Linear.None, true);
-            const moveToY = this.game.add
-                .tween(player)
-                .to({ y: y }, 1000, Phaser.Easing.Linear.None, true);
-            moveToX.onComplete.add(() => {
-                const text = this.game.add.text(x + player.width + 20, y, player.score.toString(), {
-                    font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-                    fill: "#ffffff",
-                    align: "center"
-                });
-                text.anchor.setTo(0, 0.5);
-            }, this);
-        });
-        network_1.default.gameEnd(this.game.state.id, players[players.length - 1].id);
-        this.createEndMenu();
-    }
-    /**
-     * Utworzenie manu końcowego
-     * @private
-     * @memberof Main
-     */
-    createEndMenu() {
-        const text = this.game.add.text(this.game.world.centerX, 100, 'If you want play again\npress "START" in your controller', {
-            font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: "#ffffff",
-            align: "center"
-        });
-        text.anchor.setTo(0.5);
-    }
-    /**
-     * Sprawdzanie kolizji
-     * @private
-     * @memberof Main
-     */
-    checkCollisions() {
-        this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
-        Object.keys(this.game.state.players).forEach(playerId => {
-            const player = this.game.state.players[playerId];
-            const collisionHandler = (bullet, comet) => {
-                comet.health -= bullet.dmg;
-                bullet.kill();
-                if (comet.health <= 0) {
-                    this.explosions.generate(comet.x, comet.y);
-                    player.score += 10;
-                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-                    comet.kill();
-                }
-            };
-            this.game.physics.arcade.overlap(player.weapon, this.comets, collisionHandler, null, this);
-        });
-    }
-    /**
-     * Kolizja gracza z kometą
-     * @private
-     * @param {Player} player
-     * @param {Comet} comet
-     * @memberof Main
-     */
-    player_comet_CollisionHandler(player, comet) {
-        if (player.untouchtable === false) {
-            player.score -= 10;
-            new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "-10", "#FF0000");
-            this.explosions.generate(comet.x, comet.y);
-            comet.kill();
-            network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
-        }
-    }
-    /**
-     * Kolizja gracza ze wzmocnieniem
-     * @private
-     * @param {Player} player
-     * @param {IPowerUp} powerup
-     * @memberof Main
-     */
-    player_powerup_CollisionHandler(player, powerup) {
-        powerup.powerup(player);
-        new models_1.PowerUpText(this.game, player.x, player.y - player.height / 2, powerup.name, "#FFFFFF");
-        player.powerups.push(powerup);
-    }
-    /**
-     * Generowanie wzmocnień
-     * @private
-     * @memberof Main
-     */
-    generatePowerUps() {
-        if (this.powerUps) {
-            this.powerUps.destroy();
-        }
-        this.powerUps = this.game.add.group();
-        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
-            network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-        }));
-    }
-}
-exports.Main = Main;
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(40));
-__export(__webpack_require__(120));
-__export(__webpack_require__(123));
-__export(__webpack_require__(128));
-__export(__webpack_require__(131));
-
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-const Bullet_1 = __webpack_require__(41);
-/**
- * Grupa pojedyńczych pocisków
- * @export
- * @class SingleBullet
- * @extends {Phaser.Group}
- * @implements {IWeapon}
- */
-class SingleBullet extends Phaser.Group {
-    constructor(game) {
-        super(game, game.world, "single-bullet", false, true, Phaser.Physics.ARCADE);
-        /**
-         * Czy możliwe jest oddanie następnego strzału
-         * @private
-         * @type {number}
-         * @memberof SingleBullet
-         */
-        this._nextFire = 0;
-        /**
-         * Prędkość pojeyńczego pocisku
-         * @type {number}
-         * @memberof SingleBullet
-         */
-        this.bulletSpeed = 600;
-        /**
-         * Częstotliwość strzałów
-         * @type {number}
-         * @memberof SingleBullet
-         */
-        this.fireRate = 50;
-        for (let i = 0; i < 40; i++) {
-            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.SingleBullet.getName(), 2));
-        }
-    }
-    get nextFire() {
-        return this._nextFire;
-    }
-    /**
-     * Oddanie strzału
-     * @param {number} sx
-     * @param {number} sy
-     * @returns
-     * @memberof SingleBullet
-     */
-    fire(sx, sy) {
-        const bullet = this.getFirstExists(false);
-        if (!bullet) {
-            return;
-        }
-        if (this.game.time.now > this._nextFire) {
-            bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0);
-            this._nextFire = this.game.time.now + this.fireRate;
-        }
-    }
-}
-exports.SingleBullet = SingleBullet;
-
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-const Bullet_1 = __webpack_require__(41);
-/**
- * Grupa potrójnych pocisków
- * @export
- * @class SplitShot
- * @extends {Phaser.Group}
- * @implements {IWeapon}
- */
-class SplitShot extends Phaser.Group {
-    constructor(game) {
-        super(game, game.world, "split-shot", false, true, Phaser.Physics.ARCADE);
-        /**
-        * Czy możliwe jest oddanie następnego strału
-        * @private
-        * @memberof MultipleBullets
-        */
-        this._nextFire = 0;
-        /**
-         * Prędkość pojeyńczego pocisku
-         * @memberof SplitShot
-         */
-        this.bulletSpeed = 400;
-        /**
-         * Częstotliwość strzałów
-         * @memberof SplitShot
-         */
-        this.fireRate = 150;
-        for (let i = 0; i < 50; i++) {
-            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.Bullet.getName(), 1));
-        }
-    }
-    get nextFire() {
-        return this._nextFire;
-    }
-    /**
-     * Oddanie strzału
-     * @param {number} sx
-     * @param {number} sy
-     * @memberof SplitShot
-     */
-    fire(sx, sy) {
-        if (this.game.time.now > this._nextFire) {
-            const bullet_1 = this.getFirstExists(false);
-            bullet_1.fire(sx + 25, sy, this.bulletSpeed, 0, -100);
-            const bullet_2 = this.getFirstExists(false);
-            bullet_2.fire(sx + 25, sy, this.bulletSpeed, 0, 0);
-            const bullet_3 = this.getFirstExists(false);
-            bullet_3.fire(sx + 25, sy, this.bulletSpeed, 0, 100);
-            this._nextFire = this.game.time.now + this.fireRate;
-        }
-    }
-}
-exports.SplitShot = SplitShot;
-
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const Bullet_1 = __webpack_require__(41);
-class LittleDoctor extends Phaser.Group {
-    constructor(game, key) {
-        super(game, game.world, "little-doctor", false, true, Phaser.Physics.ARCADE);
-        /**
-         * Czy możliwe jest oddanie następnego strału
-         * @private
-         * @type {number}
-         * @memberof LittleDoctor
-         */
-        this._nextFire = 0;
-        /**
-         * Prędkość pojeyńczego pocisku
-         * @type {number}
-         * @memberof LittleDoctor
-         */
-        this.bulletSpeed = 1500;
-        /**
-         * Częstotliwość strzałów
-         * @type {number}
-         * @memberof LittleDoctor
-         */
-        this.fireRate = 1000;
-        for (let i = 0; i < 20; i++) {
-            this.add(new Bullet_1.Bullet(game, key, 500));
-        }
-    }
-    get nextFire() {
-        return this._nextFire;
-    }
-    /**
-     * Oddanie strzału
-     * @param {number} sx
-     * @param {number} sy
-     * @returns
-     * @memberof LittleDoctor
-     */
-    fire(sx, sy) {
-        const bullet = this.getFirstExists(false);
-        if (!bullet) {
-            return;
-        }
-        if (this.game.time.now > this._nextFire) {
-            bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0);
-            this._nextFire = this.game.time.now + this.fireRate;
-        }
-    }
-}
-exports.LittleDoctor = LittleDoctor;
-
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(121));
-__export(__webpack_require__(94));
-__export(__webpack_require__(122));
-
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-class CometExplosion extends Phaser.Group {
-    constructor(game) {
-        super(game, game.world, "comet-explosion", false, false);
-        this.createMultiple(15, assets_1.Assets.Spritesheets.Explosions.Comet.getName());
-        this.forEach(explosion => {
-            explosion.anchor.setTo(0.5);
-            explosion.scale.setTo(0.8);
-            explosion.animations.add("explosion");
-        }, this);
-    }
-    generate(x, y) {
-        const explosion = this.getFirstDead();
-        if (!explosion) {
-            return;
-        }
-        explosion.reset(x, y);
-        explosion.play("explosion", 18, false, true);
-    }
-}
-exports.CometExplosion = CometExplosion;
-
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const const_1 = __webpack_require__(39);
-const utils_1 = __webpack_require__(12);
-const Comet_1 = __webpack_require__(94);
-class Comets extends Phaser.Group {
-    constructor(game) {
-        super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
-        const_1.Const.Comet.Names.forEach(name => {
-            for (let i = 0; i < 3; i++) {
-                this.add(new Comet_1.Comet(game, 0, 0, name));
+    onTouchStart(e) {
+        e.preventDefault();
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            const touch = e.changedTouches[i];
+            if (touch.clientX < this.game.world.centerX) {
+                this.leftTouchID = touch.identifier;
+                this.leftTouchPos.copy(this.leftTouchStartPos);
+                this.leftVector = new Victor(0, 0);
+                break;
             }
-        });
-    }
-    generate() {
-        const comet = this.getFirstExists(false);
-        const chance = utils_1.rnd.integerInRange(1, 30);
-        if (chance != 1 || !comet) {
-            return;
-        }
-        const x = this.game.world.width;
-        const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
-        const sx = utils_1.rnd.integerInRange(-200, -300);
-        const sy = 0;
-        comet.generate(x, y, sx, sy);
-    }
-}
-exports.Comets = Comets;
-
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(124));
-__export(__webpack_require__(125));
-__export(__webpack_require__(126));
-__export(__webpack_require__(127));
-
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-const bullets_1 = __webpack_require__(40);
-class SplitShotPowerUp extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.SplitShoot.getName());
-        this.name = "Multi Bullets";
-        this.outOfBoundsKill = true;
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.velocity.x = -100;
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof SplitShotPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.weapon = new bullets_1.SplitShot(this.game);
-        this.kill();
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof SplitShotPowerUp
-     */
-    remove() {
-        this._player.weapon = new bullets_1.SingleBullet(this.game);
-        this.destroy();
-    }
-}
-exports.SplitShotPowerUp = SplitShotPowerUp;
-
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-class ResetPointsPowerUp extends Phaser.Sprite {
-    constructor(game, x, y, callback) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.ResetPoints.getName());
-        this.name = "Reset Points";
-        this.outOfBoundsKill = true;
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.callback = callback;
-        this.body.velocity.x = -100;
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof ResetPointsPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.score = 0;
-        this.kill();
-        this.callback(this._player);
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof ResetPointsPowerUp
-     */
-    remove() {
-        this.destroy();
-    }
-}
-exports.ResetPointsPowerUp = ResetPointsPowerUp;
-
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-class UntouchtablePowerUp extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.Untouchtable.getName());
-        this.name = "Untouchtable";
-        this.outOfBoundsKill = true;
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.velocity.x = -100;
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof UntouchtablePowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.untouchtable = true;
-        this.kill();
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof UntouchtablePowerUp
-     */
-    remove() {
-        this._player.untouchtable = false;
-        this.destroy();
-    }
-}
-exports.UntouchtablePowerUp = UntouchtablePowerUp;
-
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-const bullets_1 = __webpack_require__(40);
-class LittleDoctorPowerUp extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, assets_1.Assets.Images.PowerUps.LittleDoctor.getName());
-        this.name = "Little Doctor";
-        this.outOfBoundsKill = true;
-        this.anchor.setTo(0.5);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.velocity.x = -100;
-    }
-    get player() {
-        return this._player;
-    }
-    /**
-     * Przydzielenie wzmocnienia
-     * @param {Player} player
-     * @param {*} [options]
-     * @memberof LittleDoctorPowerUp
-     */
-    powerup(player, options) {
-        this._player = player;
-        this._player.weapon = new bullets_1.LittleDoctor(this.game, assets_1.Assets.Images.Bulelts.Lasers.Laser.getLaser("test1").getName());
-        this.kill();
-    }
-    /**
-     * Usunięcie wzmocnienia
-     * @memberof LittleDoctorPowerUp
-     */
-    remove() {
-        this._player.weapon = new bullets_1.SingleBullet(this.game);
-        this.destroy();
-    }
-}
-exports.LittleDoctorPowerUp = LittleDoctorPowerUp;
-
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(129));
-__export(__webpack_require__(130));
-
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-class ScoreText extends Phaser.Text {
-    constructor(game, x, y, key, color) {
-        super(game, x, y, key, {
-            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: color,
-            align: "center"
-        });
-        this.anchor.set(0.5);
-        game.add.existing(this);
-        this.moveUpTween = game.add
-            .tween(this)
-            .to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween = game.add
-            .tween(this)
-            .to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween.onComplete.add(() => {
-            this.game.tweens.remove(this.moveUpTween);
-            this.game.tweens.remove(this.fadeOutTween);
-            this.destroy();
-        }, this);
-    }
-}
-exports.ScoreText = ScoreText;
-
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const assets_1 = __webpack_require__(4);
-class PowerUpText extends Phaser.Text {
-    constructor(game, x, y, key, color) {
-        const suffix = " power up";
-        super(game, x, y, key + suffix, {
-            font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
-            fill: color,
-            align: "center"
-        });
-        this.anchor.set(0.5);
-        game.add.existing(this);
-        this.moveUpTween = game.add
-            .tween(this)
-            .to({ y: y - 50 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween = game.add
-            .tween(this)
-            .to({ alpha: 0 }, 1500, Phaser.Easing.Linear.None, true);
-        this.fadeOutTween.onComplete.add(() => {
-            this.game.tweens.remove(this.moveUpTween);
-            this.game.tweens.remove(this.fadeOutTween);
-            this.destroy();
-        }, this);
-    }
-}
-exports.PowerUpText = PowerUpText;
-
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const bullets_1 = __webpack_require__(40);
-class Player extends Phaser.Sprite {
-    constructor(game, x, y, { id, socketId, avatar }) {
-        super(game, x, y, avatar);
-        /**
-         * Wzmocnienia gracza
-         * @type {IPowerUp[]}
-         * @memberof Player
-         */
-        this.powerups = [];
-        this._id = id;
-        this._socketId = socketId;
-        this.score = 0;
-        this.untouchtable = false;
-        this.vector = new Victor(0, 0);
-        this.anchor.setTo(0.5);
-        this.scale.setTo(0.4);
-        game.add.existing(this);
-        game.physics.arcade.enable(this);
-        this.body.collideWorldBounds = true;
-        this.weapon = new bullets_1.SingleBullet(game);
-    }
-    get id() {
-        return this._id;
-    }
-    get socket() {
-        return this._socketId;
-    }
-    /**
-     * Ustawia X i Y grafiki
-     * @param {number} x
-     * @param {number} y
-     * @memberof Player
-     */
-    setXY(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    /**
-     * Aktualizacja gracza
-     * @memberof Player
-     */
-    update() {
-        this.body.velocity.x = this.vector.x * 6;
-        this.body.velocity.y = this.vector.y * 6;
-        if (this.untouchtable) {
-            this.alpha = 0.5;
-        }
-        else {
-            this.alpha = 1;
         }
     }
-    /**
-     * Oddanie strzału
-     * @memberof Player
-     */
-    fire() {
-        this.weapon.fire(this.x, this.y);
-    }
-    /**
-     * Usunięcie wzmocnień
-     * @memberof Player
-     */
-    removePowerups() {
-        this.powerups.forEach((powerup) => {
-            powerup.remove();
-        });
-        this.powerups = [];
-    }
-}
-exports.Player = Player;
-
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-const const_1 = __webpack_require__(39);
-class Test extends Phaser.State {
-    preload() { }
-    create() {
-        for (let i = 0; i < const_1.Const.Nebula.Names.length; i++) {
-            const nebula = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Nebula.Names[i]);
-            this.game.world.sendToBack(nebula);
-            // nebula.autoScroll(-100 + 50 * i, 0);
+    onTouchMove(e) {
+        e.preventDefault();
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            const touch = e.changedTouches[i];
+            if (touch.identifier == this.leftTouchID) {
+                this.leftTouchPos = new Victor(touch.clientX, touch.clientY);
+                if (Math.abs(this.leftTouchStartPos.distance(this.leftTouchPos)) > 90) {
+                    this.leftTouchPos.subtract(this.leftTouchStartPos);
+                    this.leftTouchPos.normalize();
+                    this.leftTouchPos.multiply(new Victor(90, 90));
+                    this.leftTouchPos.add(this.leftTouchStartPos);
+                }
+                this.leftVector.copy(this.leftTouchPos);
+                this.leftVector.subtract(this.leftTouchStartPos);
+                break;
+            }
         }
-        // const starfield = this.game.add.tileSprite(
-        //   0,
-        //   0,
-        //   this.game.width,
-        //   this.game.height,
-        //   Const.Stars.getName()
-        // );
-        // this.game.world.sendToBack(starfield);
-        // starfield.autoScroll(-50, 0);
     }
-    shutdown() { }
+    onTouchEnd(e) {
+        e.preventDefault();
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            const touch = e.changedTouches[i];
+            if (touch.identifier == this.leftTouchID) {
+                this.leftTouchID = -1;
+                this.leftTouchPos.copy(this.leftTouchStartPos);
+                break;
+            }
+        }
+    }
 }
-exports.Test = Test;
+exports.GameController = GameController;
 
 
 /***/ })

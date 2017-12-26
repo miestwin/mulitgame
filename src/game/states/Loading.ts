@@ -151,7 +151,8 @@ export class Loading extends Phaser.State {
         this.game.state.start(States.MAIN);
         // this.game.state.start("Test");
       })
-      .catch(() => {
+      .catch(e => {
+        console.log(e);
         this.game.state.start(
           States.MESSAGE,
           true,
@@ -217,7 +218,7 @@ export class Loading extends Phaser.State {
     let that = this;
     return new Promise((resolve, reject) => {
       let qr = new QRious({
-        value: config.url + "/controller/" + (<any>this.game.state).id,
+        value: config.url + "/" + (<any>this.game.state).id,
         background: "#ffffff",
         padding: 20,
         size: 300

@@ -1,18 +1,17 @@
-const express = require('express');
-const config = require('./config');
+const express = require("express");
+const config = require("./config");
 const app = express();
 
-const server = require('http').createServer(app);
+const server = require("http").createServer(app);
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + "/dist"));
 
-require('./app/routing')(app);
+require("./routing")(app);
 
-require('./app/network')(server);
+require("./app/network")(server);
 
 if (require.main === module) {
-    server.listen(config.port, () => {
-        console.log(`Listening on ${config.port}`);
-    });
+  server.listen(config.port, () => {
+    console.log(`Listening on ${config.port}`);
+  });
 }
-

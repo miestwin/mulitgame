@@ -5,7 +5,7 @@ export namespace Assets {
         return "glow";
       }
       static getFRAG(): string {
-        return "../assets/shaders/glow.frag";
+        return "../../assets/shaders/glow.frag";
       }
     }
     export class Pixelate {
@@ -13,7 +13,7 @@ export namespace Assets {
         return "pixelate";
       }
       static getFRAG(): string {
-        return "../assets/shaders/pixelate.frag";
+        return "../../assets/shaders/pixelate.frag";
       }
     }
   }
@@ -27,10 +27,10 @@ export namespace Assets {
         return "Kenvector Future";
       }
       static getWOFF(): string {
-        return "../assets/fonts/kenvector/kenvector_future-webfont.woff";
+        return "../../assets/fonts/kenvector/kenvector_future-webfont.woff";
       }
       static getWOFF2(): string {
-        return "../assets/fonts/kenvector/kenvector_future-webfont.woff2";
+        return "../../assets/fonts/kenvector/kenvector_future-webfont.woff2";
       }
     }
   }
@@ -42,7 +42,7 @@ export namespace Assets {
           return "explosion-3";
         }
         static getPNG(): string {
-          return "../assets/spritesheets/explosion-3.png";
+          return "../../assets/spritesheets/explosion-3.png";
         }
         static getFrameWidth(): number {
           return 128;
@@ -65,7 +65,7 @@ export namespace Assets {
           return "comet-explosion";
         }
         static getPNG(): string {
-          return "../assets/spritesheets/comet-explosion.png";
+          return "../../assets/spritesheets/comet-explosion.png";
         }
         static getFrameWidth(): number {
           return 128;
@@ -91,7 +91,7 @@ export namespace Assets {
           return "rgb-laser";
         }
         static getPNG(): string {
-          return "../assets/spritesheets/rgblaser.png";
+          return "../../assets/spritesheets/rgblaser.png";
         }
         static getFrameWidth(): number {
           return 4;
@@ -113,7 +113,7 @@ export namespace Assets {
         return "plasma";
       }
       static getPNG(): string {
-        return "../assets/spritesheets/plasma.png";
+        return "../../assets/spritesheets/plasma.png";
       }
       static getFrameWidth(): number {
         return 192;
@@ -139,7 +139,7 @@ export namespace Assets {
         return "shield";
       }
       static getPNG(): string {
-        return "../assets/images/shield.png";
+        return "../../assets/images/shield.png";
       }
     }
     export class Transparent {
@@ -147,7 +147,7 @@ export namespace Assets {
         return "transparent";
       }
       static getPNG(): string {
-        return "../assets/images/transparent.png";
+        return "../../assets/images/transparent.png";
       }
     }
     export namespace Bulelts {
@@ -156,7 +156,7 @@ export namespace Assets {
           return "bullet";
         }
         static getPNG(): string {
-          return "../assets/images/bullet.png";
+          return "../../assets/images/bullet.png";
         }
       }
       export class SingleBullet {
@@ -164,7 +164,7 @@ export namespace Assets {
           return "single-bullet";
         }
         static getPNG(): string {
-          return "../assets/images/shmup-bullet.png";
+          return "../../assets/images/shmup-bullet.png";
         }
       }
       export namespace Lasers {
@@ -184,7 +184,7 @@ export namespace Assets {
             return "laser-test";
           }
           static getPNG(): string {
-            return "../assets/images/laser3_test.png";
+            return "../../assets/images/laser3_test.png";
           }
         }
         export class LaserPURPLE {
@@ -192,7 +192,7 @@ export namespace Assets {
             return "laser-test-2";
           }
           static getPNG(): string {
-            return "../assets/images/laser2_test.png";
+            return "../../assets/images/laser2_test.png";
           }
         }
       }
@@ -203,7 +203,7 @@ export namespace Assets {
           return "split-shoot_powerup";
         }
         static getPNG(): string {
-          return "../assets/images/power-ups/bold_silver.png";
+          return "../../assets/images/power-ups/bold_silver.png";
         }
       }
       export class ResetPoints {
@@ -211,7 +211,7 @@ export namespace Assets {
           return "reset-points_powerup";
         }
         static getPNG(): string {
-          return "../assets/images/power-ups/pill_green.png";
+          return "../../assets/images/power-ups/pill_green.png";
         }
       }
       export class Untouchtable {
@@ -219,7 +219,7 @@ export namespace Assets {
           return "untouchtable_powerup";
         }
         static getPNG(): string {
-          return "../assets/images/power-ups/shield_bronze.png";
+          return "../../assets/images/power-ups/shield_bronze.png";
         }
       }
       export class LittleDoctor {
@@ -227,7 +227,7 @@ export namespace Assets {
           return "little-doctor_powerup";
         }
         static getPNG(): string {
-          return "../assets/images/power-ups/bolt_gold.png";
+          return "../../assets/images/power-ups/bolt_gold.png";
         }
       }
     }
@@ -237,7 +237,7 @@ export namespace Assets {
           return "plus-one";
         }
         public static getPNG() {
-          return "../assets/images/plusone.png";
+          return "../../assets/images/plusone.png";
         }
       }
       export class Minus {
@@ -245,7 +245,7 @@ export namespace Assets {
           return "minus-one";
         }
         public static getPNG() {
-          return "../assets/images/minusone.png";
+          return "../../assets/images/minusone.png";
         }
       }
 
@@ -254,7 +254,7 @@ export namespace Assets {
           return "minus-ten";
         }
         public static getPNG() {
-          return "../assets/images/minusten.png";
+          return "../../assets/images/minusten.png";
         }
       }
     }
@@ -267,7 +267,7 @@ export namespace Assets {
           return "#33cc33";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_green.png";
+          return "../../assets/images/ships/ship_green.png";
         }
       }
       export class PURPLE {
@@ -278,7 +278,7 @@ export namespace Assets {
           return "#9933ff";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_purple.png";
+          return "../../assets/images/ships/ship_purple.png";
         }
       }
       export class BLUE {
@@ -289,7 +289,7 @@ export namespace Assets {
           return "#0066ff";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_blue.png";
+          return "../../assets/images/ships/ship_blue.png";
         }
       }
       export class WATERY {
@@ -300,7 +300,7 @@ export namespace Assets {
           return "#009999";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_watery.png";
+          return "../../assets/images/ships/ship_watery.png";
         }
       }
       export class PINK {
@@ -311,7 +311,7 @@ export namespace Assets {
           return "#ff3399";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_pink.png";
+          return "../../assets/images/ships/ship_pink.png";
         }
       }
       export class RED {
@@ -322,7 +322,7 @@ export namespace Assets {
           return "#cc2900";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_red.png";
+          return "../../assets/images/ships/ship_red.png";
         }
       }
       export class YELLOW {
@@ -333,7 +333,7 @@ export namespace Assets {
           return "#d1d123";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_yellow.png";
+          return "../../assets/images/ships/ship_yellow.png";
         }
       }
       export class ORANGE {
@@ -344,7 +344,7 @@ export namespace Assets {
           return "#cc5200";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_orange.png";
+          return "../../assets/images/ships/ship_orange.png";
         }
       }
       export class GRASS {
@@ -355,7 +355,7 @@ export namespace Assets {
           return "#739900";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_grass.png";
+          return "../../assets/images/ships/ship_grass.png";
         }
       }
       export class DARKPINK {
@@ -366,7 +366,7 @@ export namespace Assets {
           return "#993333";
         }
         public static getPNG() {
-          return "../assets/images/ships/ship_darkpink.png";
+          return "../../assets/images/ships/ship_darkpink.png";
         }
       }
     }
@@ -380,7 +380,7 @@ export namespace Assets {
             return "btn-down";
           }
           static getPNG(): string {
-            return "../assets/images/controller/shadedDark/shadedDark27.png";
+            return "../../assets/images/controller/shadedDark/shadedDark27.png";
           }
         }
         export class Up {
@@ -388,7 +388,7 @@ export namespace Assets {
             return "btn-up";
           }
           static getPNG(): string {
-            return "../assets/images/controller/shadedDark/shadedDark26.png";
+            return "../../assets/images/controller/shadedDark/shadedDark26.png";
           }
         }
       }
@@ -398,7 +398,7 @@ export namespace Assets {
             return "joystick-external-wheel";
           }
           static getPNG(): string {
-            return "../assets/images/controller/lineDark/lineDark46.png";
+            return "../../assets/images/controller/lineDark/lineDark46.png";
           }
         }
         export class WheelInternal {
@@ -406,7 +406,7 @@ export namespace Assets {
             return "joystick-internal-wheel";
           }
           static getPNG(): string {
-            return "../assets/images/controller/flatDark/flatDark10.png";
+            return "../../assets/images/controller/flatDark/flatDark10.png";
           }
         }
       }
@@ -416,7 +416,7 @@ export namespace Assets {
             return "grey-menu-button";
           }
           static getPNG(): string {
-            return "../assets/images/ui/grey_button04.png";
+            return "../../assets/images/ui/grey_button04.png";
           }
         }
         export class Select {
@@ -424,7 +424,7 @@ export namespace Assets {
             return "select-button";
           }
           static getPNG(): string {
-            return "../assets/images/controller/flatLight/flatLight41.png";
+            return "../../assets/images/controller/flatLight/flatLight41.png";
           }
         }
         export class Start {
@@ -432,7 +432,7 @@ export namespace Assets {
             return "start-button";
           }
           static getPNG(): string {
-            return "../assets/images/controller/flatLight/flatLight40.png";
+            return "../../assets/images/controller/flatLight/flatLight40.png";
           }
         }
       }
@@ -441,7 +441,7 @@ export namespace Assets {
           return "btn-fire";
         }
         static getPNG(): string {
-          return "../assets/images/controller/flatDark/flatDark48.png";
+          return "../../assets/images/controller/flatDark/flatDark48.png";
         }
       }
       export class Shield {
@@ -449,7 +449,7 @@ export namespace Assets {
           return "btn-shield";
         }
         static getPNG(): string {
-          return "../assets/images/controller/shadedDark/shadedDark48.png";
+          return "../../assets/images/controller/shadedDark/shadedDark48.png";
         }
       }
     }

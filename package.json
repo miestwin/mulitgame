@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@types/node": "^8.5.2",
     "express": "4.15.3",
     "fontfaceobserver": "2.0.13",
     "gl-vec2": "^1.0.0",
@@ -12,6 +13,7 @@
     "png-pong": "^1.0.0",
     "processing-js": "^1.6.6",
     "qrious": "4.0.2",
+    "quickhull3d": "^2.0.1",
     "regl": "^1.3.0",
     "rng": "^0.2.2",
     "screenfull": "^3.3.1",
