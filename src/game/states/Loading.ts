@@ -3,7 +3,6 @@ import "pixi";
 import "phaser";
 import * as QRious from "qrious";
 import { States } from "./States";
-import config from "../../config";
 import * as generators from "../../generators";
 import { Assets } from "../../assets";
 import { Const } from "../../const";
@@ -218,7 +217,7 @@ export class Loading extends Phaser.State {
     let that = this;
     return new Promise((resolve, reject) => {
       let qr = new QRious({
-        value: config.url + "/" + (<any>this.game.state).id,
+        value: window.location.href + "/" + (<any>this.game.state).id,
         background: "#ffffff",
         padding: 20,
         size: 300

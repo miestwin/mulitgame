@@ -1,0 +1,21 @@
+module.exports = {
+  NEW_GAME: "new-game",
+  NEW_PLAYER: "new-player",
+  PLAYER_UPDATE: "player-update",
+  PLAYER_JOINED: "player-joined",
+  UPDATE_SCORE: "update-score",
+  UPDATE_PLAYER_AVATAR: "update-player-avatar",
+  UPDATE_GAME_STATE: "update-game-state",
+  USING_AVATARS: "get-using-avatars",
+  USING_NAMES: "get-using-names",
+  GAME_STATE: "game-state",
+  GAME_START: "game-start",
+  GAME_END: "game-end",
+  GAME_GET_READY: "game-get-ready",
+  GAME_RESET: "game-reset",
+  GAME_INVALID: "game-invalid",
+  GAME_NOT_AVAILABLE: "game-not-available",
+  GAME_HAS_STARTED: "game-has-started",
+  GAME_FULL: "game-full",
+  DISCONNECT: "disconnect"
+};

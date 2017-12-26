@@ -2,10 +2,10 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 
-const gamePath = path.join(__dirname, "../../../dist/games/comets/game.html");
+const gamePath = path.join(__dirname, "../../dist/games/comets/game.html");
 const controllerPath = path.join(
   __dirname,
-  "../../../dist/games/comets/controller.html"
+  "../../dist/games/comets/controller.html"
 );
 
 router.get("/", (req, res) => {

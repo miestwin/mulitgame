@@ -1,23 +1,4 @@
 export namespace Assets {
-  export namespace Shaders {
-    export class Glow {
-      static getName(): string {
-        return "glow";
-      }
-      static getFRAG(): string {
-        return "../../assets/shaders/glow.frag";
-      }
-    }
-    export class Pixelate {
-      static getName(): string {
-        return "pixelate";
-      }
-      static getFRAG(): string {
-        return "../../assets/shaders/pixelate.frag";
-      }
-    }
-  }
-
   export namespace Fonts {
     export class Kenvector {
       static getName(): string {
@@ -37,29 +18,6 @@ export namespace Assets {
 
   export namespace Spritesheets {
     export namespace Explosions {
-      export class Three {
-        static getName(): string {
-          return "explosion-3";
-        }
-        static getPNG(): string {
-          return "../../assets/spritesheets/explosion-3.png";
-        }
-        static getFrameWidth(): number {
-          return 128;
-        }
-        static getFrameHeight(): number {
-          return 80;
-        }
-        static getMargin(): number {
-          return 0;
-        }
-        static getSpacing(): number {
-          return 0;
-        }
-        static getFrameMax(): number {
-          return 10;
-        }
-      }
       export class Comet {
         static getName(): string {
           return "comet-explosion";
@@ -107,41 +65,9 @@ export namespace Assets {
         }
       }
     }
-
-    export class Plasma {
-      static getName(): string {
-        return "plasma";
-      }
-      static getPNG(): string {
-        return "../../assets/spritesheets/plasma.png";
-      }
-      static getFrameWidth(): number {
-        return 192;
-      }
-      static getFrameHeight(): number {
-        return 192;
-      }
-      static getMargin(): number {
-        return 0;
-      }
-      static getSpacing(): number {
-        return 50;
-      }
-      static getFrameMax(): number {
-        return 30;
-      }
-    }
   }
 
   export namespace Images {
-    export class Shield {
-      static getName(): string {
-        return "shield";
-      }
-      static getPNG(): string {
-        return "../../assets/images/shield.png";
-      }
-    }
     export class Transparent {
       static getName(): string {
         return "transparent";
@@ -231,33 +157,7 @@ export namespace Assets {
         }
       }
     }
-    export namespace ScoreText {
-      export class Plus {
-        public static getName() {
-          return "plus-one";
-        }
-        public static getPNG() {
-          return "../../assets/images/plusone.png";
-        }
-      }
-      export class Minus {
-        public static getName() {
-          return "minus-one";
-        }
-        public static getPNG() {
-          return "../../assets/images/minusone.png";
-        }
-      }
 
-      export class Minus10 {
-        public static getName() {
-          return "minus-ten";
-        }
-        public static getPNG() {
-          return "../../assets/images/minusten.png";
-        }
-      }
-    }
     export namespace Ships {
       export class GREEN {
         public static getName() {

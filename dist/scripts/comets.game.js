@@ -4518,9 +4518,9 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(40));
+__export(__webpack_require__(116));
 __export(__webpack_require__(117));
 __export(__webpack_require__(118));
-__export(__webpack_require__(119));
 
 
 /***/ }),
@@ -112778,7 +112778,7 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(105);
-const Test_1 = __webpack_require__(132);
+const Test_1 = __webpack_require__(131);
 const network_1 = __webpack_require__(92);
 const utils_1 = __webpack_require__(12);
 /**
@@ -112820,8 +112820,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(38));
 __export(__webpack_require__(106));
 __export(__webpack_require__(107));
+__export(__webpack_require__(113));
 __export(__webpack_require__(114));
-__export(__webpack_require__(115));
 
 
 /***/ }),
@@ -112885,8 +112885,7 @@ __webpack_require__(2);
 __webpack_require__(3);
 const QRious = __webpack_require__(108);
 const States_1 = __webpack_require__(38);
-const config_1 = __webpack_require__(109);
-const generators = __webpack_require__(110);
+const generators = __webpack_require__(109);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(93);
 const utils_1 = __webpack_require__(12);
@@ -112990,7 +112989,7 @@ class Loading extends Phaser.State {
         let that = this;
         return new Promise((resolve, reject) => {
             let qr = new QRious({
-                value: config_1.default.url + "/" + this.game.state.id,
+                value: window.location.href + "/" + this.game.state.id,
                 background: "#ffffff",
                 padding: 20,
                 size: 300
@@ -115427,29 +115426,17 @@ exports.Loading = Loading;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
-    url: "https://thawing-ravine-92822.herokuapp.com/comets"
-};
-
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(110));
 __export(__webpack_require__(111));
 __export(__webpack_require__(112));
-__export(__webpack_require__(113));
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115511,7 +115498,7 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115559,7 +115546,7 @@ exports.comet = comet;
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115741,7 +115728,7 @@ function createData_TEST_2(width, height, offset, color, imageData, clouds, dens
 
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115788,7 +115775,7 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115802,7 +115789,7 @@ const States_1 = __webpack_require__(38);
 const const_1 = __webpack_require__(93);
 const network_1 = __webpack_require__(92);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(116);
+const models_1 = __webpack_require__(115);
 /**
  * Widok główny
  * @export
@@ -116218,7 +116205,7 @@ exports.Main = Main;
 
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116228,14 +116215,14 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(39));
-__export(__webpack_require__(120));
-__export(__webpack_require__(123));
-__export(__webpack_require__(128));
-__export(__webpack_require__(131));
+__export(__webpack_require__(119));
+__export(__webpack_require__(122));
+__export(__webpack_require__(127));
+__export(__webpack_require__(130));
 
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116304,7 +116291,7 @@ exports.SingleBullet = SingleBullet;
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116370,7 +116357,7 @@ exports.SplitShot = SplitShot;
 
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116431,7 +116418,7 @@ exports.LittleDoctor = LittleDoctor;
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116440,13 +116427,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(121));
+__export(__webpack_require__(120));
 __export(__webpack_require__(94));
-__export(__webpack_require__(122));
+__export(__webpack_require__(121));
 
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116479,7 +116466,7 @@ exports.CometExplosion = CometExplosion;
 
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116517,7 +116504,7 @@ exports.Comets = Comets;
 
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116526,14 +116513,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(123));
 __export(__webpack_require__(124));
 __export(__webpack_require__(125));
 __export(__webpack_require__(126));
-__export(__webpack_require__(127));
 
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116581,7 +116568,7 @@ exports.SplitShotPowerUp = SplitShotPowerUp;
 
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116629,7 +116616,7 @@ exports.ResetPointsPowerUp = ResetPointsPowerUp;
 
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116676,7 +116663,7 @@ exports.UntouchtablePowerUp = UntouchtablePowerUp;
 
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116724,7 +116711,7 @@ exports.LittleDoctorPowerUp = LittleDoctorPowerUp;
 
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116733,12 +116720,12 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(128));
 __export(__webpack_require__(129));
-__export(__webpack_require__(130));
 
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116774,7 +116761,7 @@ exports.ScoreText = ScoreText;
 
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116811,7 +116798,7 @@ exports.PowerUpText = PowerUpText;
 
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116894,7 +116881,7 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
