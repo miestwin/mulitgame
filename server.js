@@ -18,7 +18,7 @@ var io = socketio.listen(server);
 io.sockets.on("connection", socket => {
   console.log(
     "New connection from " +
-      socket.handshake.address.address +
+      socket.handshake.address +
       " on socket " +
       socket.id
   );

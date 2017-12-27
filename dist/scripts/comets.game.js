@@ -115682,6 +115682,7 @@ class Main extends Phaser.State {
         this.game.state.players = {};
         this.players = this.game.add.group();
         network_1.default.onUpdateGameState(data => {
+            let playerAdded = false;
             Object.keys(data.players).forEach(playerId => {
                 if (!this.game.state.players[playerId]) {
                     const count = Object.keys(this.game.state.players).length;
@@ -115695,16 +115696,19 @@ class Main extends Phaser.State {
                     });
                     this.game.state.players[playerId] = newPlayer;
                     this.players.add(newPlayer);
+                    playerAdded = true;
                 }
             });
-            this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
-                if (!data.players[nextId]) {
-                    this.game.state.players[nextId].destroy();
+            if (!playerAdded) {
+                this.game.state.players = Object.keys(this.game.state.players).reduce((players, nextId) => {
+                    if (!data.players[nextId]) {
+                        this.game.state.players[nextId].destroy();
+                        return players;
+                    }
+                    players[nextId] = this.game.state.players[nextId];
                     return players;
-                }
-                players[nextId] = this.game.state.players[nextId];
-                return players;
-            }, {});
+                }, {});
+            }
         });
         network_1.default.onGameReset(data => {
             if (!this.gameRestarted) {
@@ -115966,7 +115970,7 @@ class Main extends Phaser.State {
                     player.score += 10;
                     network_1.default.updateScore({
                         playerId: player.id,
-                        gameId: gameId,
+                        gameId: this.game.state.id,
                         score: player.score,
                         vibration: false
                     });
@@ -115991,7 +115995,7 @@ class Main extends Phaser.State {
             comet.kill();
             network_1.default.updateScore({
                 playerId: player.id,
-                gameId: gameId,
+                gameId: this.game.state.id,
                 score: player.score,
                 vibration: true
             });
@@ -116026,7 +116030,7 @@ class Main extends Phaser.State {
         this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
             network_1.default.updateScore({
                 playerId: player.id,
-                gameId: gameId,
+                gameId: this.game.state.id,
                 score: player.score,
                 vibration: false
             });

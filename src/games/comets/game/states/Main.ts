@@ -169,6 +169,7 @@ export class Main extends Phaser.State {
     this.players = this.game.add.group();
 
     Network.onUpdateGameState(data => {
+      let playerAdded = false;
       Object.keys(data.players).forEach(playerId => {
         if (!(<any>this.game.state).players[playerId]) {
           const count = Object.keys((<any>this.game.state).players).length;
@@ -182,19 +183,22 @@ export class Main extends Phaser.State {
           });
           (<any>this.game.state).players[playerId] = newPlayer;
           this.players.add(newPlayer);
+          playerAdded = true;
         }
       });
 
-      (<any>this.game.state).players = Object.keys(
-        (<any>this.game.state).players
-      ).reduce((players, nextId) => {
-        if (!data.players[nextId]) {
-          (<any>this.game.state).players[nextId].destroy();
+      if (!playerAdded) {
+        (<any>this.game.state).players = Object.keys(
+          (<any>this.game.state).players
+        ).reduce((players, nextId) => {
+          if (!data.players[nextId]) {
+            (<any>this.game.state).players[nextId].destroy();
+            return players;
+          }
+          players[nextId] = (<any>this.game.state).players[nextId];
           return players;
-        }
-        players[nextId] = (<any>this.game.state).players[nextId];
-        return players;
-      }, {});
+        }, {});
+      }
     });
 
     Network.onGameReset(data => {

@@ -77,9 +77,9 @@ export class GameController extends Phaser.State {
   preload() {
     this.game.stage.backgroundColor = (<any>this.game.state).color;
 
-    Network.onUpdateScore((score: number, vibration: boolean) => {
-      this.scoreText.setText(score.toString());
-      if (vibration) {
+    Network.onUpdateScore(data => {
+      this.scoreText.setText(data.score.toString());
+      if (data.vibration) {
         this.signalPointsLost();
       }
     });
