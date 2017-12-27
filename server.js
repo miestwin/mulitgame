@@ -5,7 +5,6 @@ const actions = require("./actions");
 const app = express();
 
 const MAX_PLAYERS = 4;
-const TIME = 60;
 var currentGames = {};
 
 const server = require("http").createServer(app);
@@ -70,13 +69,13 @@ io.sockets.on("connection", socket => {
       kickClient(socket);
       return false;
     }
-    currentGames[data.id].players[data.playerId].avatar = data.avatar;
+    currentGames[data.gameId].players[data.playerId].avatar = data.avatar;
     socket.broadcast
       .to("game-" + data.gameId)
       .emit(actions.UPDATE_PLAYER_AVATAR, data.avatar);
     io
       .to(currentGames[data.gameId].viewer)
-      .emit(actions.UPDATE_GAME_STATE, currentGames[gameRoom]);
+      .emit(actions.UPDATE_GAME_STATE, currentGames[data.gameId]);
   });
 
   socket.on(actions.GAME_START, function(data) {
@@ -165,11 +164,6 @@ if (require.main === module) {
 function createNewGame(socket, id, name) {
   console.log("Game identified as " + socket.id + " using id " + id);
 
-  if (!verifyGameRoom(id)) {
-    kickClient(socket);
-    return false;
-  }
-
   currentGames[id] = {};
   currentGames[id].id = id;
   currentGames[id].viewer = socket.id;
@@ -179,7 +173,7 @@ function createNewGame(socket, id, name) {
 
   socket.join("game-" + id);
 
-  io.to(socket.id).emit(actions.UPDATE_GAME_STATE, currentGames[gameRoom]);
+  io.to(socket.id).emit(actions.UPDATE_GAME_STATE, currentGames[id]);
 
   socket.on("disconnect", () => {
     console.log(
@@ -195,7 +189,7 @@ function assignNewPlayer(socket, id, gameId, avatar, name) {
     "New player entered game " +
       socket.id +
       " using id " +
-      playerId +
+      id +
       " and gameId " +
       gameId
   );
@@ -218,7 +212,7 @@ function assignNewPlayer(socket, id, gameId, avatar, name) {
   for (var ii in currentGames[gameId].players) {
     playerCount++;
   }
-  if (playerCount >= maxPlayers) {
+  if (playerCount >= MAX_PLAYERS) {
     io.to(socket.id).emit(actions.GAME_FULL);
     return false;
   }
@@ -236,7 +230,7 @@ function assignNewPlayer(socket, id, gameId, avatar, name) {
   io.to(socket.id).emit(actions.PLAYER_JOINED);
   io
     .to(currentGames[gameId].viewer)
-    .emit(actions.UPDATE_GAME_STATE, currentGames[gameRoom]);
+    .emit(actions.UPDATE_GAME_STATE, currentGames[gameId]);
 
   socket.on("disconnect", () => {
     console.log(
@@ -255,7 +249,7 @@ function assignNewPlayer(socket, id, gameId, avatar, name) {
         .emit(actions.UPDATE_PLAYER_AVATAR);
       io
         .to(currentGames[gameId].viewer)
-        .emit(actions.UPDATE_GAME_STATE, currentGames[gameRoom]);
+        .emit(actions.UPDATE_GAME_STATE, currentGames[gameId]);
     }
   });
 }
@@ -269,6 +263,6 @@ function verifyGameRoom(id) {
 
 function kickClient(socket) {
   console.log("Client kicked " + socket.id);
-  io.sockets.socket(socket.id).emit(actions.GAME_INVALID);
+  io.to(socket.id).emit(actions.GAME_INVALID);
   socket.disconnect();
 }

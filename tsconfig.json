@@ -3,11 +3,12 @@
     "module": "commonjs",
     "target": "es2015",
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node"],
+    "allowJs": true
   },
   "files": [
-    "./src/controller/index.ts",
-    "./src/game/index.ts",
+    "./src/games/comets/controller/index.ts",
+    "./src/games/comets/game/index.ts",
     "./node_modules/phaser/typescript/phaser.comments.d.ts",
     "./node_modules/phaser/typescript/pixi.comments.d.ts",
     "./node_modules/@types/node/index.d.ts"

@@ -1,0 +1,694 @@
+import "p2";
+import "pixi";
+import "phaser";
+
+import { rnd } from "../../../../utils";
+import { States } from "./States";
+import { Const } from "../../../../const";
+import Network from "../../../../network";
+import * as actions from "../../../../../actions";
+import { Assets } from "../../../../assets";
+import {
+  Player,
+  Bullet,
+  SingleBullet,
+  Comet,
+  Comets,
+  CometExplosion,
+  IPowerUp,
+  ResetPointsPowerUp,
+  UntouchtablePowerUp,
+  LittleDoctorPowerUp,
+  SplitShotPowerUp,
+  PowerUpText,
+  ScoreText
+} from "../../models";
+
+declare var Victor;
+
+/**
+ * Widok główny
+ * @export
+ * @class Main
+ * @extends {Phaser.State}
+ */
+export class Main extends Phaser.State {
+  /**
+   * Kolekcja teł gry
+   * @private
+   * @type {Phaser.TileSprite[]}
+   * @memberof Main
+   */
+  private tiles: Phaser.TileSprite[] = [];
+
+  /**
+   * Objekty należące do menu
+   * @private
+   * @type {Phaser.Group}
+   * @memberof Main
+   */
+  private menuGroup: Phaser.Group;
+
+  /**
+   * Kolekcja graczy do sprawdzania kolizji
+   * @private
+   * @type {Phaser.Group}
+   * @memberof Main
+   */
+  private players: Phaser.Group;
+
+  /**
+   * Kolekcja komet
+   * @private
+   * @type {Comets}
+   * @memberof Main
+   */
+  private comets: Comets;
+
+  /**
+   * Kolekcja eksplozji komet
+   * @private
+   * @type {CometExplosion}
+   * @memberof Main
+   */
+  private explosions: CometExplosion;
+
+  /**
+   * Kolekcja bonusów możliwych do zebrania
+   * @private
+   * @type {Phaser.Group}
+   * @memberof Main
+   */
+  private powerUps: Phaser.Group;
+
+  /**
+   * Wiadomość informująca kiedy zacznie się gra
+   * @private
+   * @type {Phaser.Text}
+   * @memberof Main
+   */
+  private timerText: Phaser.Text;
+
+  /**
+   * Flaga do wystartowania następnego poziomu
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
+  private startNextStage: boolean = false;
+
+  /**
+   * Czas do następnego poziomu
+   * @private
+   * @type {*}
+   * @memberof Main
+   */
+  private nextStageTimeout: any;
+
+  /**
+   * Aktualny poziom
+   * @private
+   * @type {number}
+   * @memberof Main
+   */
+  private currentStage: number = 1;
+
+  /**
+   * Flaga informująca o rozpoczęciu gry
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
+  private gameStartedFlag: boolean = false;
+
+  /**
+   * Flagi informujące o zakończeniu gry
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
+  private gameEndedFlag: boolean = false;
+  private gameEndingFlag: boolean = false;
+
+  /**
+   * Czas do końca gry
+   * @private
+   * @type {*}
+   * @memberof Main
+   */
+  private gameEndTimmeout: any;
+
+  /**
+   * Flaga wsakuzjąca czy gra została uruchomiona ponownie
+   * @private
+   * @type {boolean}
+   * @memberof Main
+   */
+  private gameRestarted: boolean = false;
+
+  private gameStartTimeout: any;
+  private timerInterval: any;
+
+  init(restart?: boolean) {
+    if (restart) {
+      this.gameRestarted = true;
+    }
+
+    this.startNextStage = false;
+    this.gameEndedFlag = false;
+    this.gameEndingFlag = false;
+    this.gameStartedFlag = false;
+    this.currentStage = 1;
+  }
+
+  preload() {
+    this.game.stage.backgroundColor = "#000000";
+    // utworzenie słownika graczy
+    (<any>this.game.state).players = {};
+
+    this.players = this.game.add.group();
+
+    Network.onUpdateGameState(data => {
+      Object.keys(data.players).forEach(playerId => {
+        if (!(<any>this.game.state).players[playerId]) {
+          const count = Object.keys((<any>this.game.state).players).length;
+          const start = this.game.world.centerY / 2 + 100;
+          const offset = this.game.world.centerY / 4 * (count - 1);
+          const y = start + offset;
+          const newPlayer = new Player(this.game, 50, y, {
+            id: data.players[playerId].id,
+            socketId: data.players[playerId].socketId,
+            avatar: data.players[playerId].avatar
+          });
+          (<any>this.game.state).players[playerId] = newPlayer;
+          this.players.add(newPlayer);
+        }
+      });
+
+      (<any>this.game.state).players = Object.keys(
+        (<any>this.game.state).players
+      ).reduce((players, nextId) => {
+        if (!data.players[nextId]) {
+          (<any>this.game.state).players[nextId].destroy();
+          return players;
+        }
+        players[nextId] = (<any>this.game.state).players[nextId];
+        return players;
+      }, {});
+    });
+
+    Network.onGameReset(data => {
+      if (!this.gameRestarted) {
+        Network.removeListener(actions.GAME_RESET);
+        this.game.state.restart(true, false, true);
+      }
+    });
+
+    Network.onPlayerUpdate(data => {
+      const player = (<any>this.game.state).players[data.playerId];
+      player.vector = new Victor(data.x, data.y);
+      if (data.fire) {
+        player.fire();
+      }
+    });
+  }
+
+  create() {
+    this.game.physics.setBoundsToWorld();
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    this.comets = new Comets(this.game);
+    this.explosions = new CometExplosion(this.game);
+
+    this.createBackground();
+    this.createMenu();
+
+    this.gameStartTimeout = setTimeout(() => {
+      if (Object.keys((<any>this.game.state).players).length < 1) {
+        const message = "No connected players";
+        const text = "Try again";
+        const action = () => this.game.state.start(States.MAIN);
+        this.game.state.start(
+          States.MESSAGE,
+          true,
+          false,
+          message,
+          text,
+          action
+        );
+      } else {
+        Network.gameStart({ gameId: (<any>this.game.state).id });
+        this.hideMenu();
+        this.gameEndTimmeout = setTimeout(() => {
+          this.gameEndedFlag = true;
+          this.gameStartedFlag = false;
+          this.gameRestarted = false;
+          this.gameEndTimmeout = null;
+        }, 180000);
+      }
+      clearTimeout(this.gameStartTimeout);
+      this.gameStartTimeout = null;
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }, 60000);
+
+    let counter = 60;
+    this.timerInterval = setInterval(() => {
+      this.timerText.setText("The game will start in " + counter);
+      counter--;
+    }, 1000);
+
+    // debug
+    this.game.time.advancedTiming = true;
+  }
+
+  update() {
+    if (this.gameStartedFlag && !this.gameEndedFlag) {
+      this.comets.generate();
+    }
+
+    if (
+      this.startNextStage &&
+      this.comets.countLiving() === 0 &&
+      !this.gameEndedFlag
+    ) {
+      this.startNextStage = false;
+      this.players.forEach((player: Player) => {
+        player.removePowerups();
+      }, this);
+      this.createStageInfo();
+      this.generatePowerUps();
+      this.nextStage();
+    }
+
+    if (
+      this.gameEndedFlag &&
+      this.comets.countLiving() === 0 &&
+      !this.gameEndingFlag
+    ) {
+      this.gameEndingFlag = true;
+      this.endGame();
+    }
+
+    this.checkCollisions();
+
+    this.game.debug.text(this.time.fps.toString(), 2, 14, "#00ff00");
+  }
+
+  shutdown() {
+    Network.removeListener(actions.PLAYER_UPDATE);
+    Network.removeListener(actions.UPDATE_GAME_STATE);
+
+    if (this.nextStageTimeout) {
+      clearTimeout(this.nextStageTimeout);
+    }
+    if (this.gameEndTimmeout) {
+      clearTimeout(this.gameEndTimmeout);
+    }
+  }
+
+  /**
+   * Utworzenie teł gry
+   * @private
+   * @memberof Main
+   */
+  private createBackground() {
+    for (let i = 1; i <= Const.Nebula.Names.length; i++) {
+      const nebula = this.game.add.tileSprite(
+        0,
+        0,
+        this.game.width,
+        this.game.height,
+        Const.Nebula.Names[i - 1]
+      );
+      nebula.autoScroll(-100 + -50 * i, 0);
+      this.game.world.sendToBack(nebula);
+      this.tiles.push(nebula);
+    }
+    const starfield = this.game.add.tileSprite(
+      0,
+      0,
+      this.game.width,
+      this.game.height,
+      Const.Stars.getName()
+    );
+    starfield.autoScroll(-50, 0);
+    this.game.world.sendToBack(starfield);
+    this.tiles.push(starfield);
+  }
+
+  /**
+   * Utworzenie menu
+   * @private
+   * @memberof Main
+   */
+  private createMenu() {
+    this.menuGroup = this.game.add.group();
+
+    // tytuł gry
+    const instruction = this.game.add.text(
+      this.game.world.centerX,
+      100,
+      "Scan QRCode and join to the game",
+      {
+        font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+        fill: "#ffffff",
+        align: "center"
+      }
+    );
+    instruction.anchor.set(0.5);
+
+    // kod qr
+    const qr = this.game.add.sprite(
+      this.game.world.centerX,
+      this.game.world.centerY,
+      "qrcode"
+    );
+    qr.anchor.set(0.5);
+
+    this.timerText = this.game.add.text(
+      this.game.world.centerX,
+      this.game.height - 100,
+      "The game will start in ...",
+      {
+        font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+        fill: "#ffffff",
+        align: "center"
+      }
+    );
+    this.timerText.anchor.set(0.5);
+
+    this.menuGroup.add(instruction);
+    this.menuGroup.add(qr);
+    this.menuGroup.add(this.timerText);
+  }
+
+  /**
+   * Usunięcie menu przed rozpoczęciem rozgrywki
+   * @private
+   * @memberof Main
+   */
+  private hideMenu() {
+    const moveUpTween = this.game.add
+      .tween(this.menuGroup.position)
+      .to({ y: -this.game.height }, 2000, Phaser.Easing.Linear.None, true);
+    moveUpTween.onComplete.add(() => {
+      this.game.tweens.remove(moveUpTween);
+      this.menuGroup.destroy();
+      this.startNextStage = true;
+    }, this);
+  }
+
+  /**
+   * Odliczanie do następnego poziomu
+   * @private
+   * @memberof Main
+   */
+  private nextStage() {
+    this.nextStageTimeout = setTimeout(() => {
+      this.gameStartedFlag = false;
+      this.currentStage++;
+      this.startNextStage = true;
+      this.nextStageTimeout = null;
+    }, 60000);
+  }
+
+  /**
+   * Utworzenie menu poziomu
+   * @private
+   * @memberof Main
+   */
+  private createStageInfo() {
+    this.menuGroup = this.game.add.group();
+
+    const stage = this.game.add.text(
+      this.game.world.centerX,
+      50,
+      "Stage " + this.currentStage,
+      {
+        font: `40px ${Assets.Fonts.Kenvector.getFamily()}`,
+        fill: "#ffffff",
+        align: "center"
+      }
+    );
+    stage.anchor.set(0.5);
+
+    const instruction = this.game.add.text(
+      this.game.world.centerX,
+      100,
+      "Pick up power up",
+      {
+        font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+        fill: "#ffffff",
+        align: "center"
+      }
+    );
+    instruction.anchor.set(0.5);
+
+    this.menuGroup.add(stage);
+    this.menuGroup.add(instruction);
+
+    const moveUpTween = this.game.add
+      .tween(this.menuGroup.position)
+      .to(
+        { y: -this.game.height },
+        1000,
+        Phaser.Easing.Linear.None,
+        true,
+        10000
+      );
+    moveUpTween.onComplete.add(() => {
+      this.game.tweens.remove(moveUpTween);
+      this.menuGroup.destroy();
+      this.gameStartedFlag = true;
+    }, this);
+  }
+
+  /**
+   * Koniec gry
+   * @private
+   * @memberof Main
+   */
+  private endGame() {
+    this.shutdown();
+
+    const players = [];
+    Object.keys((<any>this.game.state).players).forEach(playerId => {
+      players.push((<any>this.game.state).players[playerId]);
+    });
+    players.sort((a: Player, b: Player) => a.score - b.score);
+    players.forEach((player: Player, index: number, arr: Player[]) => {
+      player.vector = new Victor(0, 0);
+      const count = arr.length;
+      const stepY = this.game.world.centerY / count;
+      const offsetY = stepY / 2;
+      const y = stepY * (index + 1) + offsetY * (count - 1);
+      const stepX = 50 * arr.length / count;
+      const offsetX = stepX / 2;
+      const x = stepX * (index + 1) + offsetX * (count - 1);
+      const moveToX = this.game.add
+        .tween(player)
+        .to({ x: x + 30 }, 1000, Phaser.Easing.Linear.None, true);
+      const moveToY = this.game.add
+        .tween(player)
+        .to({ y: y }, 1000, Phaser.Easing.Linear.None, true);
+      moveToX.onComplete.add(() => {
+        const text = this.game.add.text(
+          x + player.width + 20,
+          y,
+          player.score.toString(),
+          {
+            font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+            fill: "#ffffff",
+            align: "center"
+          }
+        );
+        text.anchor.setTo(0, 0.5);
+      }, this);
+    });
+
+    Network.endGame({
+      gameId: (<any>this.game.state).id,
+      playerId: players[players.length - 1].id
+    });
+
+    this.createEndMenu();
+  }
+
+  /**
+   * Utworzenie manu końcowego
+   * @private
+   * @memberof Main
+   */
+  private createEndMenu() {
+    const text = this.game.add.text(
+      this.game.world.centerX,
+      100,
+      'If you want play again\npress "START" in your controller',
+      {
+        font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
+        fill: "#ffffff",
+        align: "center"
+      }
+    );
+    text.anchor.setTo(0.5);
+  }
+
+  /**
+   * Sprawdzanie kolizji
+   * @private
+   * @memberof Main
+   */
+  private checkCollisions() {
+    this.game.physics.arcade.overlap(
+      this.players,
+      this.comets,
+      this.player_comet_CollisionHandler,
+      null,
+      this
+    );
+
+    this.game.physics.arcade.overlap(
+      this.players,
+      this.powerUps,
+      this.player_powerup_CollisionHandler,
+      null,
+      this
+    );
+
+    Object.keys((<any>this.game.state).players).forEach(playerId => {
+      const player: Player = (<any>this.game.state).players[playerId];
+
+      const collisionHandler = (bullet: Bullet, comet: Comet) => {
+        comet.health -= bullet.dmg;
+        bullet.kill();
+        if (comet.health <= 0) {
+          this.explosions.generate(comet.x, comet.y);
+          player.score += 10;
+          Network.updateScore({
+            playerId: player.id,
+            gameId: (<any>this.game.state).id,
+            score: player.score,
+            vibration: false
+          });
+          comet.kill();
+        }
+      };
+
+      this.game.physics.arcade.overlap(
+        player.weapon,
+        this.comets,
+        collisionHandler,
+        null,
+        this
+      );
+    });
+  }
+
+  /**
+   * Kolizja gracza z kometą
+   * @private
+   * @param {Player} player 
+   * @param {Comet} comet 
+   * @memberof Main
+   */
+  private player_comet_CollisionHandler(player: Player, comet: Comet) {
+    if (player.untouchtable === false) {
+      player.score -= 10;
+      new ScoreText(
+        this.game,
+        player.x,
+        player.y - player.height / 2,
+        "-10",
+        "#FF0000"
+      );
+      this.explosions.generate(comet.x, comet.y);
+      comet.kill();
+      Network.updateScore({
+        playerId: player.id,
+        gameId: (<any>this.game.state).id,
+        score: player.score,
+        vibration: true
+      });
+    }
+  }
+
+  /**
+   * Kolizja gracza ze wzmocnieniem
+   * @private
+   * @param {Player} player 
+   * @param {IPowerUp} powerup 
+   * @memberof Main
+   */
+  private player_powerup_CollisionHandler(player: Player, powerup: IPowerUp) {
+    powerup.powerup(player);
+    new PowerUpText(
+      this.game,
+      player.x,
+      player.y - player.height / 2,
+      powerup.name,
+      "#FFFFFF"
+    );
+    player.powerups.push(powerup);
+  }
+
+  /**
+   * Generowanie wzmocnień
+   * @private
+   * @memberof Main
+   */
+  private generatePowerUps() {
+    if (this.powerUps) {
+      this.powerUps.destroy();
+    }
+    this.powerUps = this.game.add.group();
+
+    this.powerUps.add(
+      new SplitShotPowerUp(
+        this.game,
+        rnd.integerInRange(400, this.game.width - 100),
+        rnd.integerInRange(100, this.game.height - 100)
+      )
+    );
+
+    this.powerUps.add(
+      new LittleDoctorPowerUp(
+        this.game,
+        rnd.integerInRange(400, this.game.width - 100),
+        rnd.integerInRange(100, this.game.height - 100)
+      )
+    );
+
+    this.powerUps.add(
+      new SplitShotPowerUp(
+        this.game,
+        rnd.integerInRange(400, this.game.width - 100),
+        rnd.integerInRange(100, this.game.height - 100)
+      )
+    );
+
+    this.powerUps.add(
+      new UntouchtablePowerUp(
+        this.game,
+        rnd.integerInRange(400, this.game.width - 100),
+        rnd.integerInRange(100, this.game.height - 100)
+      )
+    );
+
+    this.powerUps.add(
+      new ResetPointsPowerUp(
+        this.game,
+        rnd.integerInRange(400, this.game.width - 100),
+        rnd.integerInRange(100, this.game.height - 100),
+        player => {
+          Network.updateScore({
+            playerId: player.id,
+            gameId: (<any>this.game.state).id,
+            score: player.score,
+            vibration: false
+          });
+        }
+      )
+    );
+  }
+}

@@ -8,8 +8,8 @@ const p2 = path.join(phaserModule, "build/custom/p2.js");
 
 module.exports = {
   entry: {
-    "comets.controller": "./src/controller/index.ts",
-    "comets.game": "./src/game/index.ts"
+    "comets.controller": "./src/games/comets/controller/index.ts",
+    "comets.game": "./src/games/comets/game/index.ts"
   },
   output: {
     filename: "[name].js",

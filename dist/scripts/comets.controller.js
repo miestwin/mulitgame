@@ -120,27 +120,6 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Assets;
 (function (Assets) {
-    let Shaders;
-    (function (Shaders) {
-        class Glow {
-            static getName() {
-                return "glow";
-            }
-            static getFRAG() {
-                return "../../assets/shaders/glow.frag";
-            }
-        }
-        Shaders.Glow = Glow;
-        class Pixelate {
-            static getName() {
-                return "pixelate";
-            }
-            static getFRAG() {
-                return "../../assets/shaders/pixelate.frag";
-            }
-        }
-        Shaders.Pixelate = Pixelate;
-    })(Shaders = Assets.Shaders || (Assets.Shaders = {}));
     let Fonts;
     (function (Fonts) {
         class Kenvector {
@@ -163,30 +142,6 @@ var Assets;
     (function (Spritesheets) {
         let Explosions;
         (function (Explosions) {
-            class Three {
-                static getName() {
-                    return "explosion-3";
-                }
-                static getPNG() {
-                    return "../../assets/spritesheets/explosion-3.png";
-                }
-                static getFrameWidth() {
-                    return 128;
-                }
-                static getFrameHeight() {
-                    return 80;
-                }
-                static getMargin() {
-                    return 0;
-                }
-                static getSpacing() {
-                    return 0;
-                }
-                static getFrameMax() {
-                    return 10;
-                }
-            }
-            Explosions.Three = Three;
             class Comet {
                 static getName() {
                     return "comet-explosion";
@@ -236,42 +191,9 @@ var Assets;
             }
             Bullets.RGBLaser = RGBLaser;
         })(Bullets = Spritesheets.Bullets || (Spritesheets.Bullets = {}));
-        class Plasma {
-            static getName() {
-                return "plasma";
-            }
-            static getPNG() {
-                return "../../assets/spritesheets/plasma.png";
-            }
-            static getFrameWidth() {
-                return 192;
-            }
-            static getFrameHeight() {
-                return 192;
-            }
-            static getMargin() {
-                return 0;
-            }
-            static getSpacing() {
-                return 50;
-            }
-            static getFrameMax() {
-                return 30;
-            }
-        }
-        Spritesheets.Plasma = Plasma;
     })(Spritesheets = Assets.Spritesheets || (Assets.Spritesheets = {}));
     let Images;
     (function (Images) {
-        class Shield {
-            static getName() {
-                return "shield";
-            }
-            static getPNG() {
-                return "../../assets/images/shield.png";
-            }
-        }
-        Images.Shield = Shield;
         class Transparent {
             static getName() {
                 return "transparent";
@@ -376,36 +298,6 @@ var Assets;
             }
             PowerUps.LittleDoctor = LittleDoctor;
         })(PowerUps = Images.PowerUps || (Images.PowerUps = {}));
-        let ScoreText;
-        (function (ScoreText) {
-            class Plus {
-                static getName() {
-                    return "plus-one";
-                }
-                static getPNG() {
-                    return "../../assets/images/plusone.png";
-                }
-            }
-            ScoreText.Plus = Plus;
-            class Minus {
-                static getName() {
-                    return "minus-one";
-                }
-                static getPNG() {
-                    return "../../assets/images/minusone.png";
-                }
-            }
-            ScoreText.Minus = Minus;
-            class Minus10 {
-                static getName() {
-                    return "minus-ten";
-                }
-                static getPNG() {
-                    return "../../assets/images/minusten.png";
-                }
-            }
-            ScoreText.Minus10 = Minus10;
-        })(ScoreText = Images.ScoreText || (Images.ScoreText = {}));
         let Ships;
         (function (Ships) {
             class GREEN {
@@ -807,7 +699,7 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(62);
-var hasBinary = __webpack_require__(18);
+var hasBinary = __webpack_require__(20);
 var sliceBuffer = __webpack_require__(63);
 var after = __webpack_require__(64);
 var utf8 = __webpack_require__(65);
@@ -1413,6 +1305,38 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(77));
+__export(__webpack_require__(30));
+__export(__webpack_require__(78));
+__export(__webpack_require__(31));
+__export(__webpack_require__(32));
+__export(__webpack_require__(79));
+__export(__webpack_require__(33));
+__export(__webpack_require__(35));
+__export(__webpack_require__(83));
+__export(__webpack_require__(84));
+__export(__webpack_require__(85));
+__export(__webpack_require__(36));
+__export(__webpack_require__(86));
+__export(__webpack_require__(87));
+__export(__webpack_require__(37));
+__export(__webpack_require__(88));
+__export(__webpack_require__(89));
+__export(__webpack_require__(90));
+__export(__webpack_require__(91));
+__export(__webpack_require__(92));
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1602,7 +1526,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1791,10 +1715,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -1837,7 +1761,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -1849,7 +1773,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2038,42 +1962,132 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 12 */
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  NEW_GAME: "new-game",
+  NEW_PLAYER: "new-player",
+  PLAYER_UPDATE: "player-update",
+  PLAYER_JOINED: "player-joined",
+  UPDATE_SCORE: "update-score",
+  UPDATE_PLAYER_AVATAR: "update-player-avatar",
+  UPDATE_GAME_STATE: "update-game-state",
+  USING_AVATARS: "get-using-avatars",
+  USING_NAMES: "get-using-names",
+  GAME_STATE: "game-state",
+  GAME_START: "game-start",
+  GAME_END: "game-end",
+  GAME_GET_READY: "game-get-ready",
+  GAME_RESET: "game-reset",
+  GAME_INVALID: "game-invalid",
+  GAME_NOT_AVAILABLE: "game-not-available",
+  GAME_HAS_STARTED: "game-has-started",
+  GAME_FULL: "game-full",
+  DISCONNECT: "disconnect"
+};
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(37));
-__export(__webpack_require__(28));
-__export(__webpack_require__(77));
-__export(__webpack_require__(29));
-__export(__webpack_require__(30));
-__export(__webpack_require__(78));
-__export(__webpack_require__(31));
-__export(__webpack_require__(33));
-__export(__webpack_require__(82));
-__export(__webpack_require__(83));
-__export(__webpack_require__(84));
-__export(__webpack_require__(34));
-__export(__webpack_require__(85));
-__export(__webpack_require__(86));
-__export(__webpack_require__(35));
-__export(__webpack_require__(87));
-__export(__webpack_require__(88));
-__export(__webpack_require__(89));
-__export(__webpack_require__(90));
-__export(__webpack_require__(91));
+const io = __webpack_require__(47);
+const actions = __webpack_require__(13);
+class Network {
+    static connect() {
+        Network.socket = io();
+        Network.initialize();
+    }
+    static initialize() {
+        Network.socket.on("disconnect", () => {
+            document.location.reload();
+        });
+    }
+    static removeListener(listener) {
+        Network.socket.off(listener);
+    }
+    static newGame(data) {
+        Network.socket.emit(actions.NEW_GAME, data);
+    }
+    static newPlayer(data) {
+        Network.socket.emit(actions.NEW_PLAYER, data);
+    }
+    static setPlayerAvatar(data) {
+        Network.socket.emit(actions.UPDATE_PLAYER_AVATAR, data);
+    }
+    static getUsingAvatars(data) {
+        Network.socket.emit(actions.USING_AVATARS, data);
+    }
+    static updateScore(data) {
+        Network.socket.emit(actions.UPDATE_SCORE, data);
+    }
+    static gameStart(data) {
+        Network.socket.emit(actions.GAME_START, data);
+    }
+    static endGame(data) {
+        Network.socket.emit(actions.GAME_END, data);
+    }
+    static playerUpdate(data) {
+        Network.socket.emit(actions.PLAYER_UPDATE, data);
+    }
+    static resetGame(data) {
+        Network.socket.emit(actions.GAME_RESET, data);
+    }
+    static gameState(data) {
+        Network.socket.emit(actions.GAME_STATE, data);
+    }
+    static onGameStart(fn) {
+        Network.socket.on(actions.GAME_START, fn);
+    }
+    static onPlayerUpdate(fn) {
+        Network.socket.on(actions.PLAYER_UPDATE, fn);
+    }
+    static onEndGame(fn) {
+        Network.socket.on(actions.GAME_END, fn);
+    }
+    static onGameInvalid(fn) {
+        Network.socket.on(actions.GAME_INVALID, fn);
+    }
+    static onUpdateGameState(fn) {
+        Network.socket.on(actions.UPDATE_GAME_STATE, fn);
+    }
+    static onGameNotAvailable(fn) {
+        Network.socket.on(actions.GAME_NOT_AVAILABLE, fn);
+    }
+    static onGameFull(fn) {
+        Network.socket.on(actions.GAME_FULL, fn);
+    }
+    static onGameHasStarted(fn) {
+        Network.socket.on(actions.GAME_HAS_STARTED);
+    }
+    static onPlayerJoined(fn) {
+        Network.socket.on(actions.PLAYER_JOINED, fn);
+    }
+    static onUsingAvatars(fn) {
+        Network.socket.on(actions.USING_AVATARS, fn);
+    }
+    static onUpdatePlayerAvatar(fn) {
+        Network.socket.on(actions.UPDATE_PLAYER_AVATAR, fn);
+    }
+    static onUpdateScore(fn) {
+        Network.socket.on(actions.UPDATE_SCORE, fn);
+    }
+    static onGameReset(fn) {
+        Network.socket.on(actions.GAME_RESET, fn);
+    }
+}
+exports.default = Network;
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2083,9 +2097,9 @@ __export(__webpack_require__(91));
 
 var debug = __webpack_require__(51)('socket.io-parser');
 var Emitter = __webpack_require__(5);
-var hasBin = __webpack_require__(18);
+var hasBin = __webpack_require__(20);
 var binary = __webpack_require__(55);
-var isBuf = __webpack_require__(19);
+var isBuf = __webpack_require__(21);
 
 /**
  * Protocol version.
@@ -2479,7 +2493,7 @@ function error() {
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -2523,7 +2537,7 @@ module.exports = function (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2686,7 +2700,7 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2708,7 +2722,7 @@ exports.States = States;
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /**
@@ -2753,7 +2767,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -2822,7 +2836,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2842,7 +2856,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2851,13 +2865,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(57);
-var Socket = __webpack_require__(25);
+var Socket = __webpack_require__(27);
 var Emitter = __webpack_require__(5);
-var parser = __webpack_require__(13);
-var on = __webpack_require__(26);
-var bind = __webpack_require__(27);
-var debug = __webpack_require__(8)('socket.io-client:manager');
-var indexOf = __webpack_require__(24);
+var parser = __webpack_require__(15);
+var on = __webpack_require__(28);
+var bind = __webpack_require__(29);
+var debug = __webpack_require__(9)('socket.io-client:manager');
+var indexOf = __webpack_require__(26);
 var Backoff = __webpack_require__(76);
 
 /**
@@ -3421,14 +3435,14 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(14);
+var XMLHttpRequest = __webpack_require__(16);
 var XHR = __webpack_require__(61);
 var JSONP = __webpack_require__(71);
 var websocket = __webpack_require__(72);
@@ -3481,19 +3495,19 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(15);
-var parseqs = __webpack_require__(9);
+var Transport = __webpack_require__(17);
+var parseqs = __webpack_require__(10);
 var parser = __webpack_require__(6);
-var inherit = __webpack_require__(10);
-var yeast = __webpack_require__(23);
-var debug = __webpack_require__(11)('engine.io-client:polling');
+var inherit = __webpack_require__(11);
+var yeast = __webpack_require__(25);
+var debug = __webpack_require__(12)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -3506,7 +3520,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(14);
+  var XMLHttpRequest = __webpack_require__(16);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -3732,7 +3746,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3807,7 +3821,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 
@@ -3822,7 +3836,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3830,13 +3844,13 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(13);
+var parser = __webpack_require__(15);
 var Emitter = __webpack_require__(5);
 var toArray = __webpack_require__(75);
-var on = __webpack_require__(26);
-var bind = __webpack_require__(27);
-var debug = __webpack_require__(8)('socket.io-client:socket');
-var parseqs = __webpack_require__(9);
+var on = __webpack_require__(28);
+var bind = __webpack_require__(29);
+var debug = __webpack_require__(9)('socket.io-client:socket');
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -4246,7 +4260,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports) {
 
 
@@ -4276,7 +4290,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports) {
 
 /**
@@ -4305,7 +4319,7 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4328,7 +4342,7 @@ exports.map = map;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4352,7 +4366,7 @@ exports.grad1d = grad1d;
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4365,7 +4379,7 @@ exports.lerp = lerp;
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4374,14 +4388,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(79));
 __export(__webpack_require__(80));
-__export(__webpack_require__(32));
 __export(__webpack_require__(81));
+__export(__webpack_require__(34));
+__export(__webpack_require__(82));
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4410,7 +4424,7 @@ exports.Marsaglia = Marsaglia;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4431,7 +4445,7 @@ exports.cross = cross;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4447,7 +4461,7 @@ var rnd;
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4472,243 +4486,6 @@ function smoothNoise(noise, x, y, noiseWidth, noiseHeight) {
     return value;
 }
 exports.smoothNoise = smoothNoise;
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const io = __webpack_require__(47);
-/**
- * Połączenie z serwerem
- * @export
- * @class Network
- */
-class Network {
-    static connect() {
-        Network.socket = io();
-        Network.initialize();
-    }
-    static initialize() {
-        Network.socket.on('disconnect', () => {
-            document.location.reload();
-        });
-    }
-    /**
-     * Usunięcie podanego listenere
-     * @static
-     * @param {string} listener
-     * @memberof Network
-     */
-    static removeListener(listener) {
-        Network.socket.off(listener);
-    }
-    /**
-     * Nadaje informację o nowym graczu
-     * @static
-     * @param {any} id
-     * @memberof Network
-     */
-    static newPlayer({ id, gameId }) {
-        Network.socket.emit(Network.NEW_PLAYER, { id: id, gameId: gameId });
-    }
-    /**
-     * Ustawia postać gracza
-     * @static
-     * @param {string} character
-     * @memberof Network
-     */
-    static setPlayerAvatar(character) {
-        Network.socket.emit(Network.SET_PLAYER_CHARACTER, character);
-    }
-    /**
-     * Pobiera postacie które są już używane
-     * @static
-     * @memberof Network
-     */
-    static getAvatarsInUse() {
-        Network.socket.emit(Network.GET_CHARACTERS_IN_USE);
-    }
-    /**
-     * Aktualizacja pozycji gracza
-     * @static
-     * @memberof Network
-     */
-    static updatePlayerXY(gameId, update) {
-        Network.socket.emit(Network.UPDATE_PLAYER_XY, gameId, update);
-    }
-    /**
-     * Aktualizacja pozycji gracza
-     * @static
-     * @param {any} gameID
-     * @param {any} update
-     * @memberof Network
-     */
-    static updatePlayerZ(gameID, update) {
-        Network.socket.emit(Network.UPDATE_PLAYER_Z, gameID, update);
-    }
-    /**
-     * Poinformowanie o oddaniu strzału przez gracza
-     * @static
-     * @param {any} gameID
-     * @memberof Network
-     */
-    static playerFire(gameID) {
-        Network.socket.emit(Network.PLAYER_FIRE, gameID);
-    }
-    /**
-     * Ponowne uruchomienie gry
-     * @static
-     * @param {any} gameID
-     * @memberof Network
-     */
-    static playAgain(gameID) {
-        Network.socket.emit(Network.PLAY_AGAIN, gameID);
-    }
-    /**
-     * Gra jest niedostępna
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGameNotAvailable(fn) {
-        Network.socket.on(Network.GAME_NOT_AVAILABLE, fn);
-    }
-    /**
-     * Gra ma zajęte wszystkie sloty
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGameFull(fn) {
-        Network.socket.on(Network.GAME_FULL, fn);
-    }
-    /**
-     * Gra już się rozpoczeła
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onGameAlreadyStarted(fn) {
-        Network.socket.on(Network.GAME_ALREADY_STARTED, fn);
-    }
-    /**
-     * Gracz został utworzony pomyślnie
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onPlayerAssignedSuccessful(fn) {
-        Network.socket.on(Network.PLAYER_ASSIGNED_SUCCESSFUL, fn);
-    }
-    /**
-     * Otrzymanie potwierdzenia
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onReceiveConfirmation(fn) {
-        Network.socket.on(Network.RECEIVE_CONFIRMATION, fn);
-    }
-    /**
-     * Aktualizacja wyboru postaci
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onUpdateAvatarSelector(fn) {
-        Network.socket.on(Network.UPDATE_CHARACTER_SELECTOR, fn);
-    }
-    /**
-     * Rozpoczęcie gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onStartGame(fn) {
-        Network.socket.on(Network.START_GAME, fn);
-    }
-    /**
-     * Aktualizacja odliczania
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onUpdateTimer(fn) {
-        Network.socket.on(Network.UPDATE_TIMER, fn);
-    }
-    /**
-     * Aktualizacja wyniku gracza
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onUpdateScore(fn) {
-        Network.socket.on(Network.UPDATE_PLAYER_SCORE, fn);
-    }
-    /**
-     * Koniec gry
-     * @static
-     * @param {Function} fn
-     * @memberof Network
-     */
-    static onEndGame(fn) {
-        Network.socket.on(Network.END_GAME, fn);
-    }
-}
-Network.NEW_PLAYER = 'new-player';
-Network.SET_PLAYER_CHARACTER = 'set-player-character';
-Network.GET_CHARACTERS_IN_USE = 'get-characters-in-use';
-Network.GAME_NOT_AVAILABLE = 'game-not-available';
-Network.GAME_FULL = 'game-full';
-Network.GAME_ALREADY_STARTED = 'game-already-started';
-Network.PLAYER_ASSIGNED_SUCCESSFUL = 'player-assigned-successful';
-Network.RECEIVE_CONFIRMATION = 'receive-confirmation';
-Network.UPDATE_CHARACTER_SELECTOR = 'update-character-selector';
-Network.START_GAME = 'start-game';
-Network.UPDATE_PLAYER_XY = 'update-player-xy';
-Network.UPDATE_TIMER = 'update-timer';
-Network.UPDATE_PLAYER_Z = 'update-player-z';
-Network.UPDATE_PLAYER_SCORE = 'update_player_score';
-Network.PLAYER_FIRE = 'player_fire';
-Network.END_GAME = 'end-game';
-Network.PLAY_AGAIN = 'play-again';
-exports.default = Network;
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Tworzy identyfikator globalnie unikatowy
- * @export
- * @returns
- */
-function guid() {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    return (s4() +
-        s4() +
-        "-" +
-        s4() +
-        "-" +
-        s4() +
-        "-" +
-        s4() +
-        "-" +
-        s4() +
-        s4() +
-        s4());
-}
-exports.guid = guid;
 
 
 /***/ }),
@@ -107823,7 +107600,7 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 44 */
@@ -107919,9 +107696,9 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})}; true?module
  */
 
 var url = __webpack_require__(48);
-var parser = __webpack_require__(13);
-var Manager = __webpack_require__(20);
-var debug = __webpack_require__(8)('socket.io-client');
+var parser = __webpack_require__(15);
+var Manager = __webpack_require__(22);
+var debug = __webpack_require__(9)('socket.io-client');
 
 /**
  * Module exports.
@@ -108005,8 +107782,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(20);
-exports.Socket = __webpack_require__(25);
+exports.Manager = __webpack_require__(22);
+exports.Socket = __webpack_require__(27);
 
 
 /***/ }),
@@ -108018,8 +107795,8 @@ exports.Socket = __webpack_require__(25);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(17);
-var debug = __webpack_require__(8)('socket.io-client:url');
+var parseuri = __webpack_require__(19);
+var debug = __webpack_require__(9)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -108647,7 +108424,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 52 */
@@ -109037,7 +108814,7 @@ module.exports = Array.isArray || function (arr) {
  */
 
 var isArray = __webpack_require__(56);
-var isBuf = __webpack_require__(19);
+var isBuf = __webpack_require__(21);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -109217,14 +108994,14 @@ module.exports.parser = __webpack_require__(6);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(21);
+var transports = __webpack_require__(23);
 var Emitter = __webpack_require__(5);
-var debug = __webpack_require__(11)('engine.io-client:socket');
-var index = __webpack_require__(24);
+var debug = __webpack_require__(12)('engine.io-client:socket');
+var index = __webpack_require__(26);
 var parser = __webpack_require__(6);
-var parseuri = __webpack_require__(17);
+var parseuri = __webpack_require__(19);
 var parsejson = __webpack_require__(74);
-var parseqs = __webpack_require__(9);
+var parseqs = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -109357,8 +109134,8 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(15);
-Socket.transports = __webpack_require__(21);
+Socket.Transport = __webpack_require__(17);
+Socket.transports = __webpack_require__(23);
 Socket.parser = __webpack_require__(6);
 
 /**
@@ -109991,11 +109768,11 @@ try {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(14);
-var Polling = __webpack_require__(22);
+var XMLHttpRequest = __webpack_require__(16);
+var Polling = __webpack_require__(24);
 var Emitter = __webpack_require__(5);
-var inherit = __webpack_require__(10);
-var debug = __webpack_require__(11)('engine.io-client:polling-xhr');
+var inherit = __webpack_require__(11);
+var debug = __webpack_require__(12)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -111337,8 +111114,8 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(22);
-var inherit = __webpack_require__(10);
+var Polling = __webpack_require__(24);
+var inherit = __webpack_require__(11);
 
 /**
  * Module exports.
@@ -111574,12 +111351,12 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(15);
+var Transport = __webpack_require__(17);
 var parser = __webpack_require__(6);
-var parseqs = __webpack_require__(9);
-var inherit = __webpack_require__(10);
-var yeast = __webpack_require__(23);
-var debug = __webpack_require__(11)('engine.io-client:websocket');
+var parseqs = __webpack_require__(10);
+var inherit = __webpack_require__(11);
+var yeast = __webpack_require__(25);
+var debug = __webpack_require__(12)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -112021,6 +111798,38 @@ Backoff.prototype.setJitter = function(jitter){
 
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
+ * Tworzy identyfikator globalnie unikatowy
+ * @export
+ * @returns
+ */
+function guid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    return (s4() +
+        s4() +
+        "-" +
+        s4() +
+        "-" +
+        s4() +
+        "-" +
+        s4() +
+        "-" +
+        s4() +
+        s4() +
+        s4());
+}
+exports.guid = guid;
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
  * Zmiana wartości całkowitej na heksadecymalną
  * @export
  * @param {any} n
@@ -112037,7 +111846,7 @@ exports.toHex = toHex;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112063,7 +111872,7 @@ exports.colorLuminance = colorLuminance;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112086,7 +111895,7 @@ exports.Point = Point;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112133,15 +111942,15 @@ exports.Color = Color;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const lerp_1 = __webpack_require__(30);
-const grad_1 = __webpack_require__(29);
-const Marsaglia_1 = __webpack_require__(32);
+const lerp_1 = __webpack_require__(32);
+const grad_1 = __webpack_require__(31);
+const Marsaglia_1 = __webpack_require__(34);
 const noiseProfile = { generator: null, octaves: 4, fallout: 0.5, seed: null };
 function noise(x, y, z) {
     if (noiseProfile.generator === null) {
@@ -112227,7 +112036,7 @@ exports.PerlinNoise = PerlinNoise;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112245,7 +112054,7 @@ exports.hashcode = hashcode;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112258,13 +112067,13 @@ exports.seed = seed;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const cross_1 = __webpack_require__(33);
+const cross_1 = __webpack_require__(35);
 /**
  * Conveh hull
  * Monotone chain
@@ -112300,14 +112109,14 @@ exports.convexhull = convexhull;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rnd_1 = __webpack_require__(34);
-const models_1 = __webpack_require__(31);
+const rnd_1 = __webpack_require__(36);
+const models_1 = __webpack_require__(33);
 /**
  * Tworzy tablicę losowych punktów
  * @export
@@ -112332,7 +112141,7 @@ exports.generateRandomPoints = generateRandomPoints;
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112368,13 +112177,13 @@ exports.pingPong = pingPong;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const map_1 = __webpack_require__(28);
+const map_1 = __webpack_require__(30);
 function generateNoise(width, height) {
     let noise = [];
     for (let y = 0; y < height; y++) {
@@ -112389,7 +112198,7 @@ exports.generateNoise = generateNoise;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112403,13 +112212,13 @@ exports.cosineInterpolation = cosineInterpolation;
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const smoothNoise_1 = __webpack_require__(35);
+const smoothNoise_1 = __webpack_require__(37);
 function turbulence(noise, x, y, size, noiseWidth, noiseHeight) {
     let value = 0;
     const initialSize = size;
@@ -112424,7 +112233,7 @@ exports.turbulence = turbulence;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112441,7 +112250,7 @@ exports.getClouds = getClouds;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112461,7 +112270,6 @@ exports.minmax = minmax;
 
 
 /***/ }),
-/* 92 */,
 /* 93 */,
 /* 94 */,
 /* 95 */
@@ -112470,6 +112278,9 @@ exports.minmax = minmax;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
 const Controller_1 = __webpack_require__(96);
 document.addEventListener("DOMContentLoaded", function () {
     if (window.innerWidth > window.innerHeight) {
@@ -112521,8 +112332,8 @@ __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
 const states_1 = __webpack_require__(97);
-const network_1 = __webpack_require__(36);
-const guid_1 = __webpack_require__(37);
+const network_1 = __webpack_require__(14);
+const utils_1 = __webpack_require__(7);
 /**
  * Utworzenie kontrolera
  * @export
@@ -112533,7 +112344,7 @@ class Controller extends Phaser.Game {
     constructor(config) {
         super(config);
         // create controller id
-        this.state.id = guid_1.guid();
+        this.state.id = utils_1.guid();
         this.state.color = null;
         // connect to server
         network_1.default.connect();
@@ -112559,7 +112370,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(16));
+__export(__webpack_require__(18));
 __export(__webpack_require__(98));
 __export(__webpack_require__(99));
 __export(__webpack_require__(100));
@@ -112577,10 +112388,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(16);
+const States_1 = __webpack_require__(18);
 const core_1 = __webpack_require__(44);
 const assets_1 = __webpack_require__(4);
-const network_1 = __webpack_require__(36);
+const actions = __webpack_require__(13);
+const network_1 = __webpack_require__(14);
 /**
  * Uruchamianie systemu
  * @export
@@ -112598,10 +112410,10 @@ class Boot extends Phaser.State {
     }
     preload() {
         // initialize response from server
-        network_1.default.onPlayerAssignedSuccessful(() => {
+        network_1.default.onPlayerJoined(() => {
             this.game.state.start(States_1.States.LOADING);
         });
-        network_1.default.onGameAlreadyStarted(() => {
+        network_1.default.onGameHasStarted(() => {
             const message = "Game already started";
             this.game.state.start(States_1.States.MESSAGE, true, false, message);
         });
@@ -112613,12 +112425,19 @@ class Boot extends Phaser.State {
             const message = "Game not available";
             this.game.state.start(States_1.States.MESSAGE, true, false, message);
         });
+        network_1.default.onGameInvalid(() => {
+            const message = "Game invalid";
+            this.game.state.start(States_1.States.MESSAGE, true, false, message);
+        });
         // load font
         this.game.load.webfont(assets_1.Assets.Fonts.Kenvector.getName(), assets_1.Assets.Fonts.Kenvector.getFamily());
     }
     create() {
         // assign new game
-        network_1.default.newPlayer({ id: this.game.state.id, gameId: gameId });
+        network_1.default.newPlayer({ playerId: this.game.state.id, gameId: gameId });
+    }
+    shutdown() {
+        network_1.default.removeListener(actions.PLAYER_JOINED);
     }
 }
 exports.Boot = Boot;
@@ -112634,7 +112453,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(16);
+const States_1 = __webpack_require__(18);
 const assets_1 = __webpack_require__(4);
 /**
  * Ładowanie zasobów
@@ -112644,7 +112463,7 @@ const assets_1 = __webpack_require__(4);
  */
 class Loading extends Phaser.State {
     preload() {
-        this.game.stage.backgroundColor = "#000000";
+        this.game.stage.backgroundColor = "#23292d";
         this.game.load.onLoadStart.add(this.loadStart, this);
         this.game.load.onFileComplete.add(this.fileComplete, this);
         this.game.load.onLoadComplete.add(this.loadComplete, this);
@@ -112722,8 +112541,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(16);
-const network_1 = __webpack_require__(36);
+const States_1 = __webpack_require__(18);
+const actions = __webpack_require__(13);
+const network_1 = __webpack_require__(14);
 const assets_1 = __webpack_require__(4);
 /**
  * Wybór postaci
@@ -112754,29 +112574,27 @@ class AvatarSelector extends Phaser.State {
         ];
     }
     preload() {
-        network_1.default.onUpdateAvatarSelector((res) => {
-            if (res instanceof Array) {
-                this.ships = this.ships.map(character => {
-                    character.use = false;
-                    if (~res.indexOf(character.name)) {
-                        character.use = true;
-                    }
-                    return character;
-                });
-            }
-            else {
-                this.ships = this.ships.map(character => {
-                    if (character.name == res) {
-                        character.use = true;
-                    }
-                    return character;
-                });
-            }
+        network_1.default.onUsingAvatars(data => {
+            this.ships = this.ships.map(character => {
+                character.use = false;
+                if (~data.indexOf(character.name)) {
+                    character.use = true;
+                }
+                return character;
+            });
         });
-        network_1.default.getAvatarsInUse();
+        network_1.default.onUpdatePlayerAvatar(data => {
+            this.ships = this.ships.map(character => {
+                if (character.name == data) {
+                    character.use = true;
+                }
+                return character;
+            });
+        });
+        network_1.default.getUsingAvatars({ gameId: gameId });
     }
     create() {
-        this.game.stage.backgroundColor = "#333333";
+        this.game.stage.backgroundColor = "#23292d";
         var helloText = this.game.add.text(this.game.world.centerX, 40, "Choose your ship", {
             font: `25px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
@@ -112828,7 +112646,8 @@ class AvatarSelector extends Phaser.State {
         }
     }
     shutdown() {
-        network_1.default.removeListener(network_1.default.UPDATE_CHARACTER_SELECTOR);
+        network_1.default.removeListener(actions.UPDATE_PLAYER_AVATAR);
+        network_1.default.removeListener(actions.USING_AVATARS);
     }
     /**
        * Akcja wyboru avatara
@@ -112837,7 +112656,11 @@ class AvatarSelector extends Phaser.State {
        */
     actionOnClick() {
         if (!this.ships[this.selectedShipIndex].use) {
-            network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].class.getName());
+            network_1.default.setPlayerAvatar({
+                playerId: this.game.state.id,
+                gameId: gameId,
+                avatar: this.ships[this.selectedShipIndex].class.getName()
+            });
             this.game.state.shipClass = this.ships[this.selectedShipIndex].class;
             this.game.state.color = this.ships[this.selectedShipIndex].class.getValue();
             this.game.state.start(States_1.States.GAME_CONTROLLER);
@@ -112872,7 +112695,7 @@ class Message extends Phaser.State {
     }
     preload() { }
     create() {
-        this.game.stage.backgroundColor = "#333333";
+        this.game.stage.backgroundColor = "#23292d";
         var message = this.game.add.text(this.game.world.centerX, this.btn ? this.game.world.centerY - 50 : this.game.world.centerY, this.message, {
             font: `35px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
@@ -112898,10 +112721,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
 __webpack_require__(2);
 __webpack_require__(3);
-const States_1 = __webpack_require__(16);
-const network_1 = __webpack_require__(36);
+const States_1 = __webpack_require__(18);
+const network_1 = __webpack_require__(14);
+const actions = __webpack_require__(13);
 const assets_1 = __webpack_require__(4);
-const utils_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(7);
 /**
  * Kontroler gry
  * @export
@@ -112939,10 +112763,13 @@ class GameController extends Phaser.State {
                 this.signalPointsLost();
             }
         });
-        network_1.default.onEndGame((playerId) => {
-            const message = playerId == this.game.state.id ? "Win" : "Lose";
+        network_1.default.onEndGame(data => {
+            const message = data == this.game.state.id ? "Win" : "Lose";
             this.game.state.start(States_1.States.MESSAGE, true, false, message, true, () => {
-                network_1.default.playAgain(gameId);
+                network_1.default.resetGame({
+                    playerId: this.game.state.id,
+                    gameId: gameId
+                });
                 this.game.state.start(States_1.States.AVATAR_SELECTOR);
             });
         });
@@ -112983,7 +112810,13 @@ class GameController extends Phaser.State {
         this.leftPad.anchor.setTo(0.5);
         this.leftPad.scale.setTo(0.5);
         this.fireBtn = this.game.add.button(this.game.world.centerX + this.game.world.centerX / 2, this.game.world.centerY, assets_1.Assets.UI.Buttons.Fire.getName(), () => {
-            network_1.default.playerFire(gameId);
+            network_1.default.playerUpdate({
+                playerId: this.game.state.id,
+                gameId: gameId,
+                fire: true,
+                x: this.leftVector.x,
+                y: this.leftVector.y
+            });
         }, this);
         this.fireBtn.scale.setTo(1.3);
         this.fireBtn.anchor.setTo(0.5);
@@ -112992,8 +112825,11 @@ class GameController extends Phaser.State {
         this.leftPad.x = this.leftTouchPos.x;
         this.leftPad.y = this.leftTouchPos.y;
         this.frameCounter++;
-        if (this.frameCounter % 3 === 0) {
-            network_1.default.updatePlayerXY(gameId, {
+        if (this.frameCounter % 30 === 0) {
+            network_1.default.playerUpdate({
+                playerId: this.game.state.id,
+                gameId: gameId,
+                fire: false,
                 x: this.leftVector.x,
                 y: this.leftVector.y
             });
@@ -113009,7 +112845,8 @@ class GameController extends Phaser.State {
         document
             .getElementById("controller")
             .removeEventListener("touchend", this.onTouchEnd.bind(this));
-        network_1.default.removeListener(network_1.default.UPDATE_PLAYER_SCORE);
+        network_1.default.removeListener(actions.UPDATE_SCORE);
+        network_1.default.removeListener(actions.GAME_END);
     }
     signalPointsLost() {
         window.navigator.vibrate(500);
