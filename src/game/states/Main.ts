@@ -596,7 +596,7 @@ export class Main extends Phaser.State {
 
     this.game.physics.arcade.overlap(
       this.players,
-      this.powerUps,
+      this.bombs,
       this.player_powerup_CollisionHandler,
       null,
       this
@@ -687,12 +687,12 @@ export class Main extends Phaser.State {
       bullet.kill();
       if (ufo.health <= 0) {
         this.explosions.generate(ufo.x, ufo.y);
-        player.score += 5;
+        player.score += 10;
         new ScoreText(
           this.game,
           player.x,
           player.y - player.height / 2,
-          "+5",
+          "+10",
           "#00FF00"
         );
         Network.updatePlayerScore(
@@ -803,7 +803,7 @@ export class Main extends Phaser.State {
 
   private player_bomb_CollisionHandler(player: Player, bomb: Bomb) {
     if (player.untouchtable === false) {
-      player.score -= 30;
+      player.score -= 60;
       new ScoreText(
         this.game,
         player.x,

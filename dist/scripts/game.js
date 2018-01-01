@@ -112847,7 +112847,7 @@ class Bomb extends Phaser.Sprite {
     }
     update() {
         if (this.player != null) {
-            this.game.physics.arcade.moveToObject(this, this.player, 200);
+            this.game.physics.arcade.moveToObject(this, this.player, 250);
         }
     }
 }
@@ -116323,7 +116323,7 @@ class Main extends Phaser.State {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.ufos, this.player_ufo_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.shards, this.player_shard_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.bombs, this.player_powerup_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_bomb_CollisionHandler, null, this);
         Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
@@ -116367,8 +116367,8 @@ class Main extends Phaser.State {
             bullet.kill();
             if (ufo.health <= 0) {
                 this.explosions.generate(ufo.x, ufo.y);
-                player.score += 5;
-                new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+5", "#00FF00");
+                player.score += 10;
+                new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+10", "#00FF00");
                 network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
                 this.shards.generate(ufo.x, ufo.y);
                 ufo.kill();
@@ -116424,7 +116424,7 @@ class Main extends Phaser.State {
     }
     player_bomb_CollisionHandler(player, bomb) {
         if (player.untouchtable === false) {
-            player.score -= 30;
+            player.score -= 60;
             new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "-30", "#FF0000");
             this.explosions.generate(bomb.x, bomb.y);
             bomb.kill();

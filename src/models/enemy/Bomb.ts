@@ -45,7 +45,7 @@ export class Bomb extends Phaser.Sprite {
 
   update() {
     if (this.player != null) {
-      this.game.physics.arcade.moveToObject(this, this.player, 200);
+      this.game.physics.arcade.moveToObject(this, this.player, 250);
     }
   }
 }
