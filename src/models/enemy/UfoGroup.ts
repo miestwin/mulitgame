@@ -22,7 +22,7 @@ export class UfoGroup extends Phaser.Group {
     }
     const x = this.game.world.width;
     const y = rnd.integerInRange(20, this.game.world.height - 20);
-    const sx = rnd.integerInRange(-60, -100);
+    const sx = rnd.integerInRange(-1500, -200);
     const sy = 0;
     ufo.generate(x, y, sx, sy);
   }

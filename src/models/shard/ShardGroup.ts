@@ -15,8 +15,7 @@ export class ShardGroup extends Phaser.Group {
 
   public generate(x: number, y: number) {
     const shard: Shard = this.getFirstExists(false);
-    const chance = rnd.integerInRange(1, 20);
-    if (chance != 1 || !shard) {
+    if (!shard) {
       return;
     }
     shard.generate(x, y);

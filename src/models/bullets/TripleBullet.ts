@@ -23,14 +23,14 @@ export class TripleBullet extends Phaser.Group implements IWeapon {
    * @type {number}
    * @memberof SingleBullet
    */
-  public readonly bulletSpeed: number = 250;
+  public readonly bulletSpeed: number = 400;
 
   /**
    * Częstotliwość strzałów
    * @type {number}
    * @memberof SingleBullet
    */
-  public readonly fireRate: number = 1300;
+  public readonly fireRate: number = 1800;
 
   constructor(game: Phaser.Game) {
     super(

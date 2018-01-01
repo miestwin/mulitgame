@@ -116645,13 +116645,13 @@ class TripleBullet extends Phaser.Group {
          * @type {number}
          * @memberof SingleBullet
          */
-        this.bulletSpeed = 250;
+        this.bulletSpeed = 400;
         /**
          * Częstotliwość strzałów
          * @type {number}
          * @memberof SingleBullet
          */
-        this.fireRate = 1300;
+        this.fireRate = 1800;
         for (let i = 0; i < 50; i++) {
             this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.SingleBullet.getName(), 2));
         }
@@ -116809,7 +116809,7 @@ class UfoGroup extends Phaser.Group {
         }
         const x = this.game.world.width;
         const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
-        const sx = utils_1.rnd.integerInRange(-60, -100);
+        const sx = utils_1.rnd.integerInRange(-1500, -200);
         const sy = 0;
         ufo.generate(x, y, sx, sy);
     }
@@ -117218,7 +117218,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const utils_1 = __webpack_require__(7);
 const Shard_1 = __webpack_require__(96);
 class ShardGroup extends Phaser.Group {
     constructor(game) {
@@ -117229,8 +117228,7 @@ class ShardGroup extends Phaser.Group {
     }
     generate(x, y) {
         const shard = this.getFirstExists(false);
-        const chance = utils_1.rnd.integerInRange(1, 20);
-        if (chance != 1 || !shard) {
+        if (!shard) {
             return;
         }
         shard.generate(x, y);
