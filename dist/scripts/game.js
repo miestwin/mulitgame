@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 104);
+/******/ 	return __webpack_require__(__webpack_require__.s = 105);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,10 +68,24 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(42);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(43);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(44);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -96,20 +110,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(43);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(44);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 4 */
@@ -263,6 +263,15 @@ var Assets;
     })(Spritesheets = Assets.Spritesheets || (Assets.Spritesheets = {}));
     let Images;
     (function (Images) {
+        class Shard {
+            static getName() {
+                return "shard";
+            }
+            static getPNG() {
+                return "../assets/images/shard.png";
+            }
+        }
+        Images.Shard = Shard;
         class Shield {
             static getName() {
                 return "shield";
@@ -1439,7 +1448,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 7 */
@@ -2550,7 +2559,7 @@ module.exports = function (opts) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 15 */
@@ -2828,7 +2837,7 @@ function hasBinary (obj) {
   return false;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 19 */
@@ -2848,7 +2857,7 @@ function isBuf(obj) {
          (global.ArrayBuffer && obj instanceof ArrayBuffer);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 20 */
@@ -3487,7 +3496,7 @@ function polling (opts) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 22 */
@@ -4494,10 +4503,10 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(37));
-__export(__webpack_require__(118));
 __export(__webpack_require__(119));
 __export(__webpack_require__(120));
 __export(__webpack_require__(121));
+__export(__webpack_require__(122));
 
 
 /***/ }),
@@ -4508,8 +4517,8 @@ __export(__webpack_require__(121));
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 /**
  * Sprite pocisku
  * @export
@@ -107906,8 +107915,8 @@ __export(__webpack_require__(46));
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const FontFaceObserver = __webpack_require__(47);
 /**
  * Własna impementacja Loadera zasobów
@@ -108149,7 +108158,7 @@ function url (uri, loc) {
   return obj;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 50 */
@@ -109232,7 +109241,7 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 57 */
@@ -110018,7 +110027,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 61 */
@@ -110461,7 +110470,7 @@ function unloadHandler () {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 63 */
@@ -110816,7 +110825,7 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(67)(module), __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(67)(module), __webpack_require__(3)))
 
 /***/ }),
 /* 67 */
@@ -111020,7 +111029,7 @@ module.exports = (function() {
   }
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 70 */
@@ -111624,7 +111633,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 73 */
@@ -111917,7 +111926,7 @@ WS.prototype.check = function () {
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 74 */
@@ -111961,7 +111970,7 @@ module.exports = function parsejson(data) {
     return (new Function('return ' + data))();
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 76 */
@@ -112726,8 +112735,8 @@ exports.default = Network;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 class Comet extends Phaser.Sprite {
     constructor(game, x, y, key) {
         super(game, x, y, key);
@@ -112763,8 +112772,8 @@ exports.Comet = Comet;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const bullets_1 = __webpack_require__(36);
 class Ufo extends Phaser.Sprite {
     constructor(game, x, y, key) {
@@ -112795,7 +112804,33 @@ exports.Ufo = Ufo;
 
 
 /***/ }),
-/* 96 */,
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(1);
+__webpack_require__(2);
+const assets_1 = __webpack_require__(4);
+class Shard extends Phaser.Sprite {
+    constructor(game, x, y) {
+        super(game, x, y, assets_1.Assets.Images.Shard.getName());
+        this.points = 50;
+        this.checkWorldBounds = true;
+        this.outOfBoundsKill = true;
+        this.exists = false;
+        this.alive = false;
+    }
+    generate(x, y) {
+        this.reset(x, y);
+    }
+}
+exports.Shard = Shard;
+
+
+/***/ }),
 /* 97 */,
 /* 98 */,
 /* 99 */,
@@ -112803,13 +112838,14 @@ exports.Ufo = Ufo;
 /* 101 */,
 /* 102 */,
 /* 103 */,
-/* 104 */
+/* 104 */,
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Game_1 = __webpack_require__(105);
+const Game_1 = __webpack_require__(106);
 document.addEventListener("DOMContentLoaded", requestFullscreen);
 document.addEventListener("DOMContentLoaded", function () {
     startApp();
@@ -112840,17 +112876,17 @@ function requestFullscreen() {
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
-const states_1 = __webpack_require__(106);
-const Test_1 = __webpack_require__(136);
+const states_1 = __webpack_require__(107);
+const Test_1 = __webpack_require__(139);
 const network_1 = __webpack_require__(93);
 const utils_1 = __webpack_require__(7);
 /**
@@ -112880,7 +112916,7 @@ exports.default = Game;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112890,22 +112926,22 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(40));
-__export(__webpack_require__(107));
 __export(__webpack_require__(108));
-__export(__webpack_require__(115));
+__export(__webpack_require__(109));
 __export(__webpack_require__(116));
+__export(__webpack_require__(117));
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const States_1 = __webpack_require__(40);
 const core_1 = __webpack_require__(45);
 const network_1 = __webpack_require__(93);
@@ -112946,19 +112982,19 @@ exports.Boot = Boot;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
-const QRious = __webpack_require__(109);
+const QRious = __webpack_require__(110);
 const States_1 = __webpack_require__(40);
-const config_1 = __webpack_require__(110);
-const generators = __webpack_require__(111);
+const config_1 = __webpack_require__(111);
+const generators = __webpack_require__(112);
 const assets_1 = __webpack_require__(4);
 const const_1 = __webpack_require__(41);
 const utils_1 = __webpack_require__(7);
@@ -112981,6 +113017,7 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.Enemy.Bomb.getName(), assets_1.Assets.Images.Enemy.Bomb.getPNG());
         this.game.load.image(assets_1.Assets.Images.Enemy.Fighter.getName(), assets_1.Assets.Images.Enemy.Fighter.getPNG());
         this.game.load.image(assets_1.Assets.Images.Enemy.Ufo.getName(), assets_1.Assets.Images.Enemy.Ufo.getPNG());
+        this.game.load.image(assets_1.Assets.Images.Shard.getName(), assets_1.Assets.Images.Shard.getPNG());
         this.game.load.image(assets_1.Assets.Images.PowerUps.SplitShoot.getName(), assets_1.Assets.Images.PowerUps.SplitShoot.getPNG());
         this.game.load.image(assets_1.Assets.Images.PowerUps.LittleDoctor.getName(), assets_1.Assets.Images.PowerUps.LittleDoctor.getPNG());
         this.game.load.image(assets_1.Assets.Images.PowerUps.ResetPoints.getName(), assets_1.Assets.Images.PowerUps.ResetPoints.getPNG());
@@ -113128,7 +113165,7 @@ exports.Loading = Loading;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -115496,7 +115533,7 @@ exports.Loading = Loading;
 //# sourceMappingURL=qrious.js.map
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115508,7 +115545,7 @@ exports.default = {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115517,21 +115554,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(112));
 __export(__webpack_require__(113));
 __export(__webpack_require__(114));
+__export(__webpack_require__(115));
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 /**
  * Generacja gwiazd na scenie
  * @export
@@ -115585,15 +115622,15 @@ function createData(width, height, density, brightness, prng, imageData) {
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const utils_1 = __webpack_require__(7);
 function comet(game, width, height, rc, key) {
     const x = height / 2;
@@ -115633,15 +115670,15 @@ exports.comet = comet;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const utils_1 = __webpack_require__(7);
 function nebula(game, name, offset, color, clouds, density, sharpness) {
     const width = game.width;
@@ -115815,15 +115852,15 @@ function createData_TEST_2(width, height, offset, color, imageData, clouds, dens
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 /**
  * Wyświetlanie wiadomości z błędami
@@ -115862,21 +115899,21 @@ exports.Message = Message;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const utils_1 = __webpack_require__(7);
 const States_1 = __webpack_require__(40);
 const const_1 = __webpack_require__(41);
 const network_1 = __webpack_require__(93);
 const assets_1 = __webpack_require__(4);
-const models_1 = __webpack_require__(117);
+const models_1 = __webpack_require__(118);
 /**
  * Widok główny
  * @export
@@ -116014,6 +116051,7 @@ class Main extends Phaser.State {
     create() {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.shards = new models_1.ShardGroup(this.game);
         this.comets = new models_1.Comets(this.game);
         this.explosions = new models_1.CometExplosion(this.game);
         this.ufos = new models_1.UfoGroup(this.game);
@@ -116152,7 +116190,7 @@ class Main extends Phaser.State {
             align: "center"
         });
         stage.anchor.set(0.5);
-        const instruction = this.game.add.text(this.game.world.centerX, 100, "Pick up power up", {
+        const instruction = this.game.add.text(this.game.world.centerX, 100, "Get ready", {
             font: `30px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: "#ffffff",
             align: "center"
@@ -116228,20 +116266,34 @@ class Main extends Phaser.State {
      */
     checkCollisions() {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.ufos, this.player_ufo_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.shards, this.player_shard_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
         Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
-            const collisionHandler = (bullet, comet) => {
+            const cometCollisionHandler = (bullet, comet) => {
                 comet.health -= bullet.dmg;
                 bullet.kill();
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
-                    player.score += 10;
+                    player.score += 15;
                     network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
                     comet.kill();
                 }
             };
-            this.game.physics.arcade.overlap(player.weapon, this.comets, collisionHandler, null, this);
+            this.game.physics.arcade.overlap(player.weapon, this.comets, cometCollisionHandler, null, this);
+            const ufoCollisionHandler = (bullet, ufo) => {
+                ufo.health -= bullet.dmg;
+                bullet.kill();
+                if (ufo.health <= 0) {
+                    this.explosions.generate(ufo.x, ufo.y);
+                    player.score += 5;
+                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+                    this.shards.generate(ufo.x, ufo.y);
+                    ufo.kill();
+                }
+            };
+            this.game.physics.arcade.overlap(player.weapon, this.ufos, ufoCollisionHandler, null, this);
         });
     }
     /**
@@ -116259,6 +116311,21 @@ class Main extends Phaser.State {
             comet.kill();
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
         }
+    }
+    player_ufo_CollisionHandler(player, ufo) {
+        if (player.untouchtable === false) {
+            player.score -= 10;
+            new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "-10", "#FF0000");
+            this.explosions.generate(ufo.x, ufo.y);
+            ufo.kill();
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
+        }
+    }
+    player_shard_CollisionHandler(player, shard) {
+        player.score += shard.points;
+        new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, shard.points.toString(), "#FF0000");
+        shard.kill();
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
     }
     /**
      * Kolizja gracza ze wzmocnieniem
@@ -116282,10 +116349,34 @@ class Main extends Phaser.State {
             this.powerUps.destroy();
         }
         this.powerUps = this.game.add.group();
-        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.SplitShotPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
-        this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100)));
+        // this.powerUps.add(
+        //   new SplitShotPowerUp(
+        //     this.game,
+        //     rnd.integerInRange(400, this.game.width - 100),
+        //     rnd.integerInRange(100, this.game.height - 100)
+        //   )
+        // );
+        // this.powerUps.add(
+        //   new LittleDoctorPowerUp(
+        //     this.game,
+        //     rnd.integerInRange(400, this.game.width - 100),
+        //     rnd.integerInRange(100, this.game.height - 100)
+        //   )
+        // );
+        // this.powerUps.add(
+        //   new SplitShotPowerUp(
+        //     this.game,
+        //     rnd.integerInRange(400, this.game.width - 100),
+        //     rnd.integerInRange(100, this.game.height - 100)
+        //   )
+        // );
+        // this.powerUps.add(
+        //   new UntouchtablePowerUp(
+        //     this.game,
+        //     rnd.integerInRange(400, this.game.width - 100),
+        //     rnd.integerInRange(100, this.game.height - 100)
+        //   )
+        // );
         this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
         }));
@@ -116295,7 +116386,7 @@ exports.Main = Main;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116305,23 +116396,24 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(36));
-__export(__webpack_require__(122));
-__export(__webpack_require__(125));
-__export(__webpack_require__(127));
-__export(__webpack_require__(132));
-__export(__webpack_require__(135));
+__export(__webpack_require__(123));
+__export(__webpack_require__(126));
+__export(__webpack_require__(128));
+__export(__webpack_require__(133));
+__export(__webpack_require__(136));
+__export(__webpack_require__(137));
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 const Bullet_1 = __webpack_require__(37);
 /**
@@ -116382,15 +116474,15 @@ exports.SingleBullet = SingleBullet;
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 const Bullet_1 = __webpack_require__(37);
 /**
@@ -116448,15 +116540,15 @@ exports.SplitShot = SplitShot;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const Bullet_1 = __webpack_require__(37);
 class LittleDoctor extends Phaser.Group {
     constructor(game, key) {
@@ -116509,15 +116601,15 @@ exports.LittleDoctor = LittleDoctor;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 const Bullet_1 = __webpack_require__(37);
 class TripleBullet extends Phaser.Group {
@@ -116572,7 +116664,7 @@ exports.TripleBullet = TripleBullet;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116581,21 +116673,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(123));
-__export(__webpack_require__(94));
 __export(__webpack_require__(124));
+__export(__webpack_require__(94));
+__export(__webpack_require__(125));
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 class CometExplosion extends Phaser.Group {
     constructor(game) {
@@ -116620,15 +116712,15 @@ exports.CometExplosion = CometExplosion;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const const_1 = __webpack_require__(41);
 const utils_1 = __webpack_require__(7);
 const Comet_1 = __webpack_require__(94);
@@ -116658,7 +116750,7 @@ exports.Comets = Comets;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116668,19 +116760,19 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(95));
-__export(__webpack_require__(126));
+__export(__webpack_require__(127));
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 const Ufo_1 = __webpack_require__(95);
 const utils_1 = __webpack_require__(7);
@@ -116708,7 +116800,7 @@ exports.UfoGroup = UfoGroup;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116717,22 +116809,22 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(128));
 __export(__webpack_require__(129));
 __export(__webpack_require__(130));
 __export(__webpack_require__(131));
+__export(__webpack_require__(132));
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 const bullets_1 = __webpack_require__(36);
 class SplitShotPowerUp extends Phaser.Sprite {
@@ -116772,15 +116864,15 @@ exports.SplitShotPowerUp = SplitShotPowerUp;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 class ResetPointsPowerUp extends Phaser.Sprite {
     constructor(game, x, y, callback) {
@@ -116820,15 +116912,15 @@ exports.ResetPointsPowerUp = ResetPointsPowerUp;
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 class UntouchtablePowerUp extends Phaser.Sprite {
     constructor(game, x, y) {
@@ -116867,15 +116959,15 @@ exports.UntouchtablePowerUp = UntouchtablePowerUp;
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 const bullets_1 = __webpack_require__(36);
 class LittleDoctorPowerUp extends Phaser.Sprite {
@@ -116915,7 +117007,7 @@ exports.LittleDoctorPowerUp = LittleDoctorPowerUp;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116924,20 +117016,20 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(133));
 __export(__webpack_require__(134));
+__export(__webpack_require__(135));
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 class ScoreText extends Phaser.Text {
     constructor(game, x, y, key, color) {
@@ -116965,15 +117057,15 @@ exports.ScoreText = ScoreText;
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const assets_1 = __webpack_require__(4);
 class PowerUpText extends Phaser.Text {
     constructor(game, x, y, key, color) {
@@ -117002,15 +117094,15 @@ exports.PowerUpText = PowerUpText;
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
 const bullets_1 = __webpack_require__(36);
 class Player extends Phaser.Sprite {
     constructor(game, x, y, { id, socketId, avatar }) {
@@ -117085,15 +117177,60 @@ exports.Player = Player;
 
 
 /***/ }),
-/* 136 */
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(96));
+__export(__webpack_require__(138));
+
+
+/***/ }),
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(3);
+const utils_1 = __webpack_require__(7);
+const Shard_1 = __webpack_require__(96);
+class ShardGroup extends Phaser.Group {
+    constructor(game) {
+        super(game, game.world, "shards", false, true, Phaser.Physics.ARCADE);
+        for (let i = 0; i < 10; i++) {
+            this.add(new Shard_1.Shard(game, 0, 0));
+        }
+    }
+    generate(x, y) {
+        const shard = this.getFirstExists(false);
+        const chance = utils_1.rnd.integerInRange(1, 20);
+        if (chance != 1 || !shard) {
+            return;
+        }
+        shard.generate(x, y);
+    }
+}
+exports.ShardGroup = ShardGroup;
+
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(0);
+__webpack_require__(1);
+__webpack_require__(2);
 const const_1 = __webpack_require__(41);
 class Test extends Phaser.State {
     preload() { }
