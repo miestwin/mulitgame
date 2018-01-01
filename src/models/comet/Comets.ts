@@ -24,7 +24,7 @@ export class Comets extends Phaser.Group {
     }
     const x = this.game.world.width;
     const y = rnd.integerInRange(20, this.game.world.height - 20);
-    const sx = rnd.integerInRange(-100, -200);
+    const sx = rnd.integerInRange(-200, -250);
     const sy = 0;
     comet.generate(x, y, sx, sy);
   }

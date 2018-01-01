@@ -603,7 +603,14 @@ export class Main extends Phaser.State {
         bullet.kill();
         if (comet.health <= 0) {
           this.explosions.generate(comet.x, comet.y);
-          player.score += 15;
+          player.score += 20;
+          new ScoreText(
+            this.game,
+            player.x,
+            player.y - player.height / 2,
+            "+20",
+            "#00FF00"
+          );
           Network.updatePlayerScore(
             player.id,
             player.socket,
@@ -629,6 +636,13 @@ export class Main extends Phaser.State {
         if (ufo.health <= 0) {
           this.explosions.generate(ufo.x, ufo.y);
           player.score += 5;
+          new ScoreText(
+            this.game,
+            player.x,
+            player.y - player.height / 2,
+            "+5",
+            "#00FF00"
+          );
           Network.updatePlayerScore(
             player.id,
             player.socket,
@@ -647,6 +661,29 @@ export class Main extends Phaser.State {
         null,
         this
       );
+
+      this.ufos.forEachAlive((ufo: Ufo) => {
+        const ufoBulletCollisionHandler = (plr: Player, bullet: Bullet) => {
+          plr.score -= bullet.dmg;
+          new ScoreText(
+            this.game,
+            plr.x,
+            plr.y - plr.height / 2,
+            "-" + bullet.dmg,
+            "#FF0000"
+          );
+          Network.updatePlayerScore(plr.id, plr.socket, plr.score, false);
+          bullet.kill();
+        };
+
+        this.game.physics.arcade.overlap(
+          player,
+          ufo,
+          ufoBulletCollisionHandler,
+          null,
+          this
+        );
+      }, this);
     });
   }
 
@@ -695,11 +732,11 @@ export class Main extends Phaser.State {
       this.game,
       player.x,
       player.y - player.height / 2,
-      shard.points.toString(),
-      "#FF0000"
+      "+" + shard.points.toString(),
+      "#00FF00"
     );
     shard.kill();
-    Network.updatePlayerScore(player.id, player.socket, player.score, true);
+    Network.updatePlayerScore(player.id, player.socket, player.score, false);
   }
 
   /**

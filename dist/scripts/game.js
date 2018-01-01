@@ -116276,7 +116276,8 @@ class Main extends Phaser.State {
                 bullet.kill();
                 if (comet.health <= 0) {
                     this.explosions.generate(comet.x, comet.y);
-                    player.score += 15;
+                    player.score += 20;
+                    new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+20", "#00FF00");
                     network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
                     this.generateRandomPowerUps(comet.x, comet.y);
                     comet.kill();
@@ -116289,12 +116290,22 @@ class Main extends Phaser.State {
                 if (ufo.health <= 0) {
                     this.explosions.generate(ufo.x, ufo.y);
                     player.score += 5;
+                    new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+5", "#00FF00");
                     network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
                     this.shards.generate(ufo.x, ufo.y);
                     ufo.kill();
                 }
             };
             this.game.physics.arcade.overlap(player.weapon, this.ufos, ufoCollisionHandler, null, this);
+            this.ufos.forEachAlive((ufo) => {
+                const ufoBulletCollisionHandler = (plr, bullet) => {
+                    plr.score -= bullet.dmg;
+                    new models_1.ScoreText(this.game, plr.x, plr.y - plr.height / 2, "-" + bullet.dmg, "#FF0000");
+                    network_1.default.updatePlayerScore(plr.id, plr.socket, plr.score, false);
+                    bullet.kill();
+                };
+                this.game.physics.arcade.overlap(player, ufo, ufoBulletCollisionHandler, null, this);
+            }, this);
         });
     }
     /**
@@ -116324,9 +116335,9 @@ class Main extends Phaser.State {
     }
     player_shard_CollisionHandler(player, shard) {
         player.score += shard.points;
-        new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, shard.points.toString(), "#FF0000");
+        new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+" + shard.points.toString(), "#00FF00");
         shard.kill();
-        network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
+        network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
     }
     /**
      * Kolizja gracza ze wzmocnieniem
@@ -116759,7 +116770,7 @@ class Comets extends Phaser.Group {
         }
         const x = this.game.world.width;
         const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
-        const sx = utils_1.rnd.integerInRange(-100, -200);
+        const sx = utils_1.rnd.integerInRange(-200, -250);
         const sy = 0;
         comet.generate(x, y, sx, sy);
     }
@@ -116809,7 +116820,7 @@ class UfoGroup extends Phaser.Group {
         }
         const x = this.game.world.width;
         const y = utils_1.rnd.integerInRange(20, this.game.world.height - 20);
-        const sx = utils_1.rnd.integerInRange(-1500, -200);
+        const sx = utils_1.rnd.integerInRange(-200, -250);
         const sy = 0;
         ufo.generate(x, y, sx, sy);
     }
