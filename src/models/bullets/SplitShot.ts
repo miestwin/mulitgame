@@ -52,11 +52,11 @@ export class SplitShot extends Phaser.Group implements IWeapon {
   public fire(sx: number, sy: number) {
     if (this.game.time.now > this._nextFire) {
       const bullet_1: Bullet = this.getFirstExists(false);
-      bullet_1.fire(sx + 25, sy, this.bulletSpeed, 0, -100);
+      bullet_1.fire(sx + 25, sy, this.bulletSpeed, 0, 0, 0, -100);
       const bullet_2: Bullet = this.getFirstExists(false);
-      bullet_2.fire(sx + 25, sy, this.bulletSpeed, 0, 0);
+      bullet_2.fire(sx + 25, sy, this.bulletSpeed, 0, 0, 0, 0);
       const bullet_3: Bullet = this.getFirstExists(false);
-      bullet_3.fire(sx + 25, sy, this.bulletSpeed, 0, 100);
+      bullet_3.fire(sx + 25, sy, this.bulletSpeed, 0, 0, 0, 100);
       this._nextFire = this.game.time.now + this.fireRate;
     }
   }

@@ -34,10 +34,20 @@ export class Bullet extends Phaser.Sprite {
    * @param {number} gy 
    * @memberof Bullet
    */
-  public fire(x: number, y: number, speed: number, gx: number, gy: number) {
+  public fire(
+    x: number,
+    y: number,
+    speedX: number,
+    speedY: number,
+    angle: number,
+    gx: number,
+    gy: number
+  ) {
     this.reset(x, y);
-    this.body.velocity.x = speed;
+    this.angle = angle;
     this.body.gravity.x = gx;
     this.body.gravity.y = gy;
+    this.body.velocity.x = speedX;
+    this.body.velocity.y = speedY;
   }
 }

@@ -6,14 +6,7 @@ import { Assets } from "../../assets";
 import { Bullet } from "./Bullet";
 import { IWeapon } from "./IWeapon";
 
-/**
- * Grupa pojedyńczych pocisków
- * @export
- * @class SingleBullet
- * @extends {Phaser.Group}
- * @implements {IWeapon}
- */
-export class SingleBullet extends Phaser.Group implements IWeapon {
+export class TripleBullet extends Phaser.Group implements IWeapon {
   /**
    * Czy możliwe jest oddanie następnego strzału
    * @private
@@ -30,25 +23,25 @@ export class SingleBullet extends Phaser.Group implements IWeapon {
    * @type {number}
    * @memberof SingleBullet
    */
-  public readonly bulletSpeed: number = 600;
+  public readonly bulletSpeed: number = 250;
 
   /**
    * Częstotliwość strzałów
    * @type {number}
    * @memberof SingleBullet
    */
-  public readonly fireRate: number = 50;
+  public readonly fireRate: number = 1300;
 
   constructor(game: Phaser.Game) {
     super(
       game,
       game.world,
-      "single-bullet",
+      "triple-bullet",
       false,
       true,
       Phaser.Physics.ARCADE
     );
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 50; i++) {
       this.add(
         new Bullet(game, Assets.Images.Bulelts.SingleBullet.getName(), 2)
       );
@@ -63,12 +56,13 @@ export class SingleBullet extends Phaser.Group implements IWeapon {
    * @memberof SingleBullet
    */
   public fire(sx: number, sy: number) {
-    const bullet: Bullet = this.getFirstExists(false);
-    if (!bullet) {
-      return;
-    }
     if (this.game.time.now > this._nextFire) {
-      bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0, 0, 0);
+      const bullet_1: Bullet = this.getFirstExists(false);
+      bullet_1.fire(sx, sy, 0, this.bulletSpeed, 270, 0, 0);
+      const bullet_2: Bullet = this.getFirstExists(false);
+      bullet_2.fire(sx, sy, -this.bulletSpeed, 0, 180, 0, 0);
+      const bullet_3: Bullet = this.getFirstExists(false);
+      bullet_3.fire(sx, sy, 0, -this.bulletSpeed, 90, 0, 0);
       this._nextFire = this.game.time.now + this.fireRate;
     }
   }

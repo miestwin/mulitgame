@@ -20,7 +20,11 @@ import {
   LittleDoctorPowerUp,
   SplitShotPowerUp,
   PowerUpText,
-  ScoreText
+  ScoreText,
+  UfoGroup,
+  Ufo,
+  Shard,
+  ShardGroup
 } from "../../models";
 
 declare var Victor;
@@ -71,6 +75,10 @@ export class Main extends Phaser.State {
    * @memberof Main
    */
   private explosions: CometExplosion;
+
+  private ufos: UfoGroup;
+
+  private shards: ShardGroup;
 
   /**
    * Kolekcja bonusów możliwych do zebrania
@@ -256,8 +264,10 @@ export class Main extends Phaser.State {
     this.game.physics.setBoundsToWorld();
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    this.shards = new ShardGroup(this.game);
     this.comets = new Comets(this.game);
     this.explosions = new CometExplosion(this.game);
+    this.ufos = new UfoGroup(this.game);
 
     this.createBackground();
     this.createMenu();
@@ -269,11 +279,13 @@ export class Main extends Phaser.State {
   update() {
     if (this.gameStartedFlag && !this.gameEndedFlag) {
       this.comets.generate();
+      this.ufos.generate();
     }
 
     if (
       this.startNextStage &&
       this.comets.countLiving() === 0 &&
+      this.ufos.countLiving() === 0 &&
       !this.gameEndedFlag
     ) {
       this.startNextStage = false;
@@ -450,7 +462,7 @@ export class Main extends Phaser.State {
     const instruction = this.game.add.text(
       this.game.world.centerX,
       100,
-      "Pick up power up",
+      "Get ready",
       {
         font: `30px ${Assets.Fonts.Kenvector.getFamily()}`,
         fill: "#ffffff",
@@ -561,6 +573,22 @@ export class Main extends Phaser.State {
 
     this.game.physics.arcade.overlap(
       this.players,
+      this.ufos,
+      this.player_ufo_CollisionHandler,
+      null,
+      this
+    );
+
+    this.game.physics.arcade.overlap(
+      this.players,
+      this.shards,
+      this.player_shard_CollisionHandler,
+      null,
+      this
+    );
+
+    this.game.physics.arcade.overlap(
+      this.players,
       this.powerUps,
       this.player_powerup_CollisionHandler,
       null,
@@ -570,12 +598,12 @@ export class Main extends Phaser.State {
     Object.keys((<any>this.game.state).players).forEach(playerId => {
       const player: Player = (<any>this.game.state).players[playerId];
 
-      const collisionHandler = (bullet: Bullet, comet: Comet) => {
+      const cometCollisionHandler = (bullet: Bullet, comet: Comet) => {
         comet.health -= bullet.dmg;
         bullet.kill();
         if (comet.health <= 0) {
           this.explosions.generate(comet.x, comet.y);
-          player.score += 10;
+          player.score += 15;
           Network.updatePlayerScore(
             player.id,
             player.socket,
@@ -589,7 +617,32 @@ export class Main extends Phaser.State {
       this.game.physics.arcade.overlap(
         player.weapon,
         this.comets,
-        collisionHandler,
+        cometCollisionHandler,
+        null,
+        this
+      );
+
+      const ufoCollisionHandler = (bullet: Bullet, ufo: Ufo) => {
+        ufo.health -= bullet.dmg;
+        bullet.kill();
+        if (ufo.health <= 0) {
+          this.explosions.generate(ufo.x, ufo.y);
+          player.score += 5;
+          Network.updatePlayerScore(
+            player.id,
+            player.socket,
+            player.score,
+            false
+          );
+          this.shards.generate(ufo.x, ufo.y);
+          ufo.kill();
+        }
+      };
+
+      this.game.physics.arcade.overlap(
+        player.weapon,
+        this.ufos,
+        ufoCollisionHandler,
         null,
         this
       );
@@ -617,6 +670,35 @@ export class Main extends Phaser.State {
       comet.kill();
       Network.updatePlayerScore(player.id, player.socket, player.score, true);
     }
+  }
+
+  private player_ufo_CollisionHandler(player: Player, ufo: Ufo) {
+    if (player.untouchtable === false) {
+      player.score -= 10;
+      new ScoreText(
+        this.game,
+        player.x,
+        player.y - player.height / 2,
+        "-10",
+        "#FF0000"
+      );
+      this.explosions.generate(ufo.x, ufo.y);
+      ufo.kill();
+      Network.updatePlayerScore(player.id, player.socket, player.score, true);
+    }
+  }
+
+  private player_shard_CollisionHandler(player: Player, shard: Shard) {
+    player.score += shard.points;
+    new ScoreText(
+      this.game,
+      player.x,
+      player.y - player.height / 2,
+      shard.points.toString(),
+      "#FF0000"
+    );
+    shard.kill();
+    Network.updatePlayerScore(player.id, player.socket, player.score, true);
   }
 
   /**
@@ -649,37 +731,37 @@ export class Main extends Phaser.State {
     }
     this.powerUps = this.game.add.group();
 
-    this.powerUps.add(
-      new SplitShotPowerUp(
-        this.game,
-        rnd.integerInRange(400, this.game.width - 100),
-        rnd.integerInRange(100, this.game.height - 100)
-      )
-    );
+    // this.powerUps.add(
+    //   new SplitShotPowerUp(
+    //     this.game,
+    //     rnd.integerInRange(400, this.game.width - 100),
+    //     rnd.integerInRange(100, this.game.height - 100)
+    //   )
+    // );
 
-    this.powerUps.add(
-      new LittleDoctorPowerUp(
-        this.game,
-        rnd.integerInRange(400, this.game.width - 100),
-        rnd.integerInRange(100, this.game.height - 100)
-      )
-    );
+    // this.powerUps.add(
+    //   new LittleDoctorPowerUp(
+    //     this.game,
+    //     rnd.integerInRange(400, this.game.width - 100),
+    //     rnd.integerInRange(100, this.game.height - 100)
+    //   )
+    // );
 
-    this.powerUps.add(
-      new SplitShotPowerUp(
-        this.game,
-        rnd.integerInRange(400, this.game.width - 100),
-        rnd.integerInRange(100, this.game.height - 100)
-      )
-    );
+    // this.powerUps.add(
+    //   new SplitShotPowerUp(
+    //     this.game,
+    //     rnd.integerInRange(400, this.game.width - 100),
+    //     rnd.integerInRange(100, this.game.height - 100)
+    //   )
+    // );
 
-    this.powerUps.add(
-      new UntouchtablePowerUp(
-        this.game,
-        rnd.integerInRange(400, this.game.width - 100),
-        rnd.integerInRange(100, this.game.height - 100)
-      )
-    );
+    // this.powerUps.add(
+    //   new UntouchtablePowerUp(
+    //     this.game,
+    //     rnd.integerInRange(400, this.game.width - 100),
+    //     rnd.integerInRange(100, this.game.height - 100)
+    //   )
+    // );
 
     this.powerUps.add(
       new ResetPointsPowerUp(

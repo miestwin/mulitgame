@@ -59,7 +59,7 @@ export class LittleDoctor extends Phaser.Group implements IWeapon {
       return;
     }
     if (this.game.time.now > this._nextFire) {
-      bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0);
+      bullet.fire(sx + 20, sy, this.bulletSpeed, 0, 0, 0, 0);
       this._nextFire = this.game.time.now + this.fireRate;
     }
   }

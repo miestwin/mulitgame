@@ -134,6 +134,14 @@ export namespace Assets {
   }
 
   export namespace Images {
+    export class Shard {
+      static getName(): string {
+        return "shard";
+      }
+      static getPNG(): string {
+        return "../assets/images/shard.png";
+      }
+    }
     export class Shield {
       static getName(): string {
         return "shield";
@@ -367,6 +375,33 @@ export namespace Assets {
         }
         public static getPNG() {
           return "../assets/images/ships/ship_darkpink.png";
+        }
+      }
+    }
+
+    export namespace Enemy {
+      export class Ufo {
+        public static getName() {
+          return "enemy-ufo";
+        }
+        public static getPNG() {
+          return "../../assets/images/ships/ufo.png";
+        }
+      }
+      export class Bomb {
+        public static getName() {
+          return "enemy-bomb";
+        }
+        public static getPNG() {
+          return "../../assets/images/ships/bomb.png";
+        }
+      }
+      export class Fighter {
+        public static getName() {
+          return "enemy-fighter";
+        }
+        public static getPNG() {
+          return "../../assets/images/ships/fighter.png";
         }
       }
     }
