@@ -12,7 +12,7 @@ import {
   Bullet,
   SingleBullet,
   Comet,
-  Comets,
+  CometGroup,
   CometExplosion,
   IPowerUp,
   ResetPointsPowerUp,
@@ -24,7 +24,9 @@ import {
   UfoGroup,
   Ufo,
   Shard,
-  ShardGroup
+  ShardGroup,
+  Bomb,
+  BombGroup
 } from "../../models";
 
 declare var Victor;
@@ -66,7 +68,7 @@ export class Main extends Phaser.State {
    * @type {Comets}
    * @memberof Main
    */
-  private comets: Comets;
+  private comets: CometGroup;
 
   /**
    * Kolekcja eksplozji komet
@@ -79,6 +81,8 @@ export class Main extends Phaser.State {
   private ufos: UfoGroup;
 
   private shards: ShardGroup;
+
+  private bombs: BombGroup;
 
   /**
    * Kolekcja bonusów możliwych do zebrania
@@ -265,9 +269,10 @@ export class Main extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.shards = new ShardGroup(this.game);
-    this.comets = new Comets(this.game);
+    this.comets = new CometGroup(this.game);
     this.explosions = new CometExplosion(this.game);
     this.ufos = new UfoGroup(this.game);
+    this.bombs = new BombGroup(this.game);
 
     this.createBackground();
     this.createMenu();
@@ -595,6 +600,14 @@ export class Main extends Phaser.State {
       this
     );
 
+    this.game.physics.arcade.overlap(
+      this.players,
+      this.powerUps,
+      this.player_bomb_CollisionHandler,
+      null,
+      this
+    );
+
     Object.keys((<any>this.game.state).players).forEach(playerId => {
       const player: Player = (<any>this.game.state).players[playerId];
 
@@ -662,23 +675,25 @@ export class Main extends Phaser.State {
         this
       );
 
-      this.ufos.forEachAlive((ufo: Ufo) => {
+      this.ufos.forEach((ufo: Ufo) => {
         const ufoBulletCollisionHandler = (plr: Player, bullet: Bullet) => {
-          plr.score -= bullet.dmg;
-          new ScoreText(
-            this.game,
-            plr.x,
-            plr.y - plr.height / 2,
-            "-" + bullet.dmg,
-            "#FF0000"
-          );
-          Network.updatePlayerScore(plr.id, plr.socket, plr.score, false);
-          bullet.kill();
+          if (player.untouchtable === false) {
+            plr.score -= bullet.dmg;
+            new ScoreText(
+              this.game,
+              plr.x,
+              plr.y - plr.height / 2,
+              "-" + bullet.dmg,
+              "#FF0000"
+            );
+            Network.updatePlayerScore(plr.id, plr.socket, plr.score, false);
+            bullet.kill();
+          }
         };
 
         this.game.physics.arcade.overlap(
           player,
-          ufo,
+          ufo.weapon,
           ufoBulletCollisionHandler,
           null,
           this
@@ -737,6 +752,22 @@ export class Main extends Phaser.State {
     );
     shard.kill();
     Network.updatePlayerScore(player.id, player.socket, player.score, false);
+  }
+
+  private player_bomb_CollisionHandler(player: Player, bomb: Bomb) {
+    if (player.untouchtable === false) {
+      player.score -= 30;
+      new ScoreText(
+        this.game,
+        player.x,
+        player.y - player.height / 2,
+        "-30",
+        "#FF0000"
+      );
+      this.explosions.generate(bomb.x, bomb.y);
+      bomb.kill();
+      Network.updatePlayerScore(player.id, player.socket, player.score, true);
+    }
   }
 
   /**

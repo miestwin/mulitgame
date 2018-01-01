@@ -43,7 +43,7 @@ export class TripleBullet extends Phaser.Group implements IWeapon {
     );
     for (let i = 0; i < 50; i++) {
       this.add(
-        new Bullet(game, Assets.Images.Bulelts.SingleBullet.getName(), 2)
+        new Bullet(game, Assets.Images.Bulelts.SingleBullet.getName(), 8)
       );
     }
   }

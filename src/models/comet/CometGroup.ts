@@ -6,7 +6,7 @@ import { Const } from "../../const";
 import { rnd } from "../../utils";
 import { Comet } from "./Comet";
 
-export class Comets extends Phaser.Group {
+export class CometGroup extends Phaser.Group {
   constructor(game: Phaser.Game) {
     super(game, game.world, "comets", false, true, Phaser.Physics.ARCADE);
     Const.Comet.Names.forEach(name => {
