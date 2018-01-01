@@ -285,12 +285,14 @@ export class Main extends Phaser.State {
     if (this.gameStartedFlag && !this.gameEndedFlag) {
       this.comets.generate();
       this.ufos.generate();
+      this.bombs.generate();
     }
 
     if (
       this.startNextStage &&
       this.comets.countLiving() === 0 &&
       this.ufos.countLiving() === 0 &&
+      this.bombs.countLiving() === 0 &&
       !this.gameEndedFlag
     ) {
       this.startNextStage = false;
