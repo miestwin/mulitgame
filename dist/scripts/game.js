@@ -112847,7 +112847,7 @@ class Bomb extends Phaser.Sprite {
     }
     update() {
         if (this.player != null) {
-            this.game.physics.arcade.moveToObject(this, this.player, 250);
+            this.game.physics.arcade.moveToObject(this, this.player, 200);
         }
     }
 }
@@ -117202,8 +117202,7 @@ __webpack_require__(2);
 const assets_1 = __webpack_require__(4);
 class PowerUpText extends Phaser.Text {
     constructor(game, x, y, key, color) {
-        const suffix = " power up";
-        super(game, x, y, key + suffix, {
+        super(game, x, y, key, {
             font: `20px ${assets_1.Assets.Fonts.Kenvector.getFamily()}`,
             fill: color,
             align: "center"

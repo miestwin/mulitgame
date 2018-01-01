@@ -15,8 +15,7 @@ export class PowerUpText extends Phaser.Text {
     key: string,
     color: string
   ) {
-    const suffix: string = " power up";
-    super(game, x, y, key + suffix, {
+    super(game, x, y, key, {
       font: `20px ${Assets.Fonts.Kenvector.getFamily()}`,
       fill: color,
       align: "center"
