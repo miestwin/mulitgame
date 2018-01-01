@@ -112817,6 +112817,7 @@ __webpack_require__(2);
 class Bomb extends Phaser.Sprite {
     constructor(game, x, y, key) {
         super(game, x, y, key);
+        this.noticeRange = 150;
         this.checkWorldBounds = true;
         this.outOfBoundsKill = true;
         this.exists = false;
@@ -112829,7 +112830,26 @@ class Bomb extends Phaser.Sprite {
         this.body.velocity.x = sx;
         this.body.velocity.y = sy;
     }
-    update() { }
+    chceckDistance(player) {
+        if (this.game.physics.arcade.distanceBetween(player, this) <
+            this.noticeRange &&
+            this.player == null) {
+            this.player = player;
+        }
+        else if (this.game.physics.arcade.distanceBetween(player, this) <
+            this.noticeRange &&
+            this.player != null) {
+            return;
+        }
+        else {
+            this.player = null;
+        }
+    }
+    update() {
+        if (this.player != null) {
+            this.game.physics.arcade.moveToObject(this, this.player, 200);
+        }
+    }
 }
 exports.Bomb = Bomb;
 
@@ -116307,57 +116327,69 @@ class Main extends Phaser.State {
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_bomb_CollisionHandler, null, this);
         Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
-            const cometCollisionHandler = (bullet, comet) => {
-                comet.health -= bullet.dmg;
-                bullet.kill();
-                if (comet.health <= 0) {
-                    this.explosions.generate(comet.x, comet.y);
-                    player.score += 20;
-                    new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+20", "#00FF00");
-                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-                    this.generateRandomPowerUps(comet.x, comet.y);
-                    comet.kill();
-                }
-            };
-            this.game.physics.arcade.overlap(player.weapon, this.comets, cometCollisionHandler, null, this);
-            const ufoCollisionHandler = (bullet, ufo) => {
-                ufo.health -= bullet.dmg;
-                bullet.kill();
-                if (ufo.health <= 0) {
-                    this.explosions.generate(ufo.x, ufo.y);
-                    player.score += 5;
-                    new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+5", "#00FF00");
-                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-                    this.shards.generate(ufo.x, ufo.y);
-                    ufo.kill();
-                }
-            };
-            this.game.physics.arcade.overlap(player.weapon, this.ufos, ufoCollisionHandler, null, this);
-            const bombCollisionHandler = (bullet, bomb) => {
-                bomb.health -= bullet.dmg;
-                bullet.kill();
-                if (bomb.health <= 0) {
-                    this.explosions.generate(bomb.x, bomb.y);
-                    player.score += 10;
-                    new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+10", "#00FF00");
-                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-                    this.shards.generate(bomb.x, bomb.y);
-                    bomb.kill();
-                }
-            };
-            this.game.physics.arcade.overlap(player.weapon, this.bombs, bombCollisionHandler, null, this);
+            this.bullet_comet_CollisionHandler(player);
+            this.bullet_ufo_CollisionHandler(player);
+            this.bullet_bomb_CollisionHandler(player);
             this.ufos.forEach((ufo) => {
-                const ufoBulletCollisionHandler = (plr, bullet) => {
-                    if (player.untouchtable === false) {
-                        plr.score -= bullet.dmg;
-                        new models_1.ScoreText(this.game, plr.x, plr.y - plr.height / 2, "-" + bullet.dmg, "#FF0000");
-                        network_1.default.updatePlayerScore(plr.id, plr.socket, plr.score, false);
-                        bullet.kill();
-                    }
-                };
-                this.game.physics.arcade.overlap(player, ufo.weapon, ufoBulletCollisionHandler, null, this);
+                this.game.physics.arcade.overlap(player, ufo.weapon, this.player_bullet_CollisionHandler, null, this);
+            }, this);
+            this.bombs.forEach((bomb) => {
+                bomb.chceckDistance(player);
             }, this);
         });
+    }
+    player_bullet_CollisionHandler(player, bullet) {
+        if (player.untouchtable === false) {
+            player.score -= bullet.dmg;
+            new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "-" + bullet.dmg, "#FF0000");
+            network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
+            bullet.kill();
+        }
+    }
+    bullet_bomb_CollisionHandler(player) {
+        const collisionHandler = (bullet, bomb) => {
+            bomb.health -= bullet.dmg;
+            bullet.kill();
+            if (bomb.health <= 0) {
+                this.explosions.generate(bomb.x, bomb.y);
+                player.score += 10;
+                new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+10", "#00FF00");
+                network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+                this.shards.generate(bomb.x, bomb.y);
+                bomb.kill();
+            }
+        };
+        this.game.physics.arcade.overlap(player.weapon, this.bombs, collisionHandler, null, this);
+    }
+    bullet_ufo_CollisionHandler(player) {
+        const collisionHandler = (bullet, ufo) => {
+            ufo.health -= bullet.dmg;
+            bullet.kill();
+            if (ufo.health <= 0) {
+                this.explosions.generate(ufo.x, ufo.y);
+                player.score += 5;
+                new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+5", "#00FF00");
+                network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+                this.shards.generate(ufo.x, ufo.y);
+                ufo.kill();
+            }
+        };
+        this.game.physics.arcade.overlap(player.weapon, this.ufos, collisionHandler, null, this);
+    }
+    bullet_comet_CollisionHandler(player) {
+        const collisionHandler = (bullet, comet) => {
+            comet.health -= bullet.dmg;
+            bullet.kill();
+            if (comet.health <= 0) {
+                this.explosions.generate(comet.x, comet.y);
+                player.score += 20;
+                new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+20", "#00FF00");
+                network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+                this.generateRandomPowerUps(comet.x, comet.y);
+                comet.kill();
+            }
+        };
+        this.game.physics.arcade.overlap(player.weapon, this.comets, collisionHandler, null, this);
     }
     /**
      * Kolizja gracza z kometą

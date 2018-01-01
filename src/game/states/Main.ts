@@ -612,128 +612,141 @@ export class Main extends Phaser.State {
 
     Object.keys((<any>this.game.state).players).forEach(playerId => {
       const player: Player = (<any>this.game.state).players[playerId];
-
-      const cometCollisionHandler = (bullet: Bullet, comet: Comet) => {
-        comet.health -= bullet.dmg;
-        bullet.kill();
-        if (comet.health <= 0) {
-          this.explosions.generate(comet.x, comet.y);
-          player.score += 20;
-          new ScoreText(
-            this.game,
-            player.x,
-            player.y - player.height / 2,
-            "+20",
-            "#00FF00"
-          );
-          Network.updatePlayerScore(
-            player.id,
-            player.socket,
-            player.score,
-            false
-          );
-          this.generateRandomPowerUps(comet.x, comet.y);
-          comet.kill();
-        }
-      };
-
-      this.game.physics.arcade.overlap(
-        player.weapon,
-        this.comets,
-        cometCollisionHandler,
-        null,
-        this
-      );
-
-      const ufoCollisionHandler = (bullet: Bullet, ufo: Ufo) => {
-        ufo.health -= bullet.dmg;
-        bullet.kill();
-        if (ufo.health <= 0) {
-          this.explosions.generate(ufo.x, ufo.y);
-          player.score += 5;
-          new ScoreText(
-            this.game,
-            player.x,
-            player.y - player.height / 2,
-            "+5",
-            "#00FF00"
-          );
-          Network.updatePlayerScore(
-            player.id,
-            player.socket,
-            player.score,
-            false
-          );
-          this.shards.generate(ufo.x, ufo.y);
-          ufo.kill();
-        }
-      };
-
-      this.game.physics.arcade.overlap(
-        player.weapon,
-        this.ufos,
-        ufoCollisionHandler,
-        null,
-        this
-      );
-
-      const bombCollisionHandler = (bullet: Bullet, bomb: Bomb) => {
-        bomb.health -= bullet.dmg;
-        bullet.kill();
-        if (bomb.health <= 0) {
-          this.explosions.generate(bomb.x, bomb.y);
-          player.score += 10;
-          new ScoreText(
-            this.game,
-            player.x,
-            player.y - player.height / 2,
-            "+10",
-            "#00FF00"
-          );
-          Network.updatePlayerScore(
-            player.id,
-            player.socket,
-            player.score,
-            false
-          );
-          this.shards.generate(bomb.x, bomb.y);
-          bomb.kill();
-        }
-      };
-
-      this.game.physics.arcade.overlap(
-        player.weapon,
-        this.bombs,
-        bombCollisionHandler,
-        null,
-        this
-      );
+      this.bullet_comet_CollisionHandler(player);
+      this.bullet_ufo_CollisionHandler(player);
+      this.bullet_bomb_CollisionHandler(player);
 
       this.ufos.forEach((ufo: Ufo) => {
-        const ufoBulletCollisionHandler = (plr: Player, bullet: Bullet) => {
-          if (player.untouchtable === false) {
-            plr.score -= bullet.dmg;
-            new ScoreText(
-              this.game,
-              plr.x,
-              plr.y - plr.height / 2,
-              "-" + bullet.dmg,
-              "#FF0000"
-            );
-            Network.updatePlayerScore(plr.id, plr.socket, plr.score, false);
-            bullet.kill();
-          }
-        };
-
         this.game.physics.arcade.overlap(
           player,
           ufo.weapon,
-          ufoBulletCollisionHandler,
+          this.player_bullet_CollisionHandler,
           null,
           this
         );
       }, this);
+
+      this.bombs.forEach((bomb: Bomb) => {
+        bomb.chceckDistance(player);
+      }, this);
     });
+  }
+
+  private player_bullet_CollisionHandler(player: Player, bullet: Bullet) {
+    if (player.untouchtable === false) {
+      player.score -= bullet.dmg;
+      new ScoreText(
+        this.game,
+        player.x,
+        player.y - player.height / 2,
+        "-" + bullet.dmg,
+        "#FF0000"
+      );
+      Network.updatePlayerScore(player.id, player.socket, player.score, true);
+      bullet.kill();
+    }
+  }
+
+  private bullet_bomb_CollisionHandler(player: Player) {
+    const collisionHandler = (bullet: Bullet, bomb: Bomb) => {
+      bomb.health -= bullet.dmg;
+      bullet.kill();
+      if (bomb.health <= 0) {
+        this.explosions.generate(bomb.x, bomb.y);
+        player.score += 10;
+        new ScoreText(
+          this.game,
+          player.x,
+          player.y - player.height / 2,
+          "+10",
+          "#00FF00"
+        );
+        Network.updatePlayerScore(
+          player.id,
+          player.socket,
+          player.score,
+          false
+        );
+        this.shards.generate(bomb.x, bomb.y);
+        bomb.kill();
+      }
+    };
+
+    this.game.physics.arcade.overlap(
+      player.weapon,
+      this.bombs,
+      collisionHandler,
+      null,
+      this
+    );
+  }
+
+  private bullet_ufo_CollisionHandler(player: Player) {
+    const collisionHandler = (bullet: Bullet, ufo: Ufo) => {
+      ufo.health -= bullet.dmg;
+      bullet.kill();
+      if (ufo.health <= 0) {
+        this.explosions.generate(ufo.x, ufo.y);
+        player.score += 5;
+        new ScoreText(
+          this.game,
+          player.x,
+          player.y - player.height / 2,
+          "+5",
+          "#00FF00"
+        );
+        Network.updatePlayerScore(
+          player.id,
+          player.socket,
+          player.score,
+          false
+        );
+        this.shards.generate(ufo.x, ufo.y);
+        ufo.kill();
+      }
+    };
+
+    this.game.physics.arcade.overlap(
+      player.weapon,
+      this.ufos,
+      collisionHandler,
+      null,
+      this
+    );
+  }
+
+  private bullet_comet_CollisionHandler(player: Player) {
+    const collisionHandler = (bullet: Bullet, comet: Comet) => {
+      comet.health -= bullet.dmg;
+      bullet.kill();
+      if (comet.health <= 0) {
+        this.explosions.generate(comet.x, comet.y);
+        player.score += 20;
+        new ScoreText(
+          this.game,
+          player.x,
+          player.y - player.height / 2,
+          "+20",
+          "#00FF00"
+        );
+        Network.updatePlayerScore(
+          player.id,
+          player.socket,
+          player.score,
+          false
+        );
+        this.generateRandomPowerUps(comet.x, comet.y);
+        comet.kill();
+      }
+    };
+
+    this.game.physics.arcade.overlap(
+      player.weapon,
+      this.comets,
+      collisionHandler,
+      null,
+      this
+    );
   }
 
   /**
