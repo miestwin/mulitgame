@@ -116323,8 +116323,8 @@ class Main extends Phaser.State {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.ufos, this.player_ufo_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.shards, this.player_shard_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.bombs, this.player_powerup_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_bomb_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.bombs, this.player_bomb_CollisionHandler, null, this);
         Object.keys(this.game.state.players).forEach(playerId => {
             const player = this.game.state.players[playerId];
             this.bullet_comet_CollisionHandler(player);

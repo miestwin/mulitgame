@@ -596,7 +596,7 @@ export class Main extends Phaser.State {
 
     this.game.physics.arcade.overlap(
       this.players,
-      this.bombs,
+      this.powerUps,
       this.player_powerup_CollisionHandler,
       null,
       this
@@ -604,7 +604,7 @@ export class Main extends Phaser.State {
 
     this.game.physics.arcade.overlap(
       this.players,
-      this.powerUps,
+      this.bombs,
       this.player_bomb_CollisionHandler,
       null,
       this
