@@ -610,6 +610,7 @@ export class Main extends Phaser.State {
             player.score,
             false
           );
+          this.generateRandomPowerUps(comet.x, comet.y);
           comet.kill();
         }
       };
@@ -718,6 +719,24 @@ export class Main extends Phaser.State {
       "#FFFFFF"
     );
     player.powerups.push(powerup);
+  }
+
+  private generateRandomPowerUps(x: number, y: number) {
+    const pu = rnd.integerInRange(1, 3);
+    const chance = rnd.integerInRange(1, 10);
+    if (chance !== 1) {
+      return;
+    }
+    switch (pu) {
+      case 1:
+        this.powerUps.add(new SplitShotPowerUp(this.game, x, y));
+        break;
+      case 2:
+        this.powerUps.add(new LittleDoctorPowerUp(this.game, x, y));
+        break;
+      case 3:
+        this.powerUps.add(new UntouchtablePowerUp(this.game, x, y));
+    }
   }
 
   /**

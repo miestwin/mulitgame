@@ -116278,6 +116278,7 @@ class Main extends Phaser.State {
                     this.explosions.generate(comet.x, comet.y);
                     player.score += 15;
                     network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+                    this.generateRandomPowerUps(comet.x, comet.y);
                     comet.kill();
                 }
             };
@@ -116338,6 +116339,23 @@ class Main extends Phaser.State {
         powerup.powerup(player);
         new models_1.PowerUpText(this.game, player.x, player.y - player.height / 2, powerup.name, "#FFFFFF");
         player.powerups.push(powerup);
+    }
+    generateRandomPowerUps(x, y) {
+        const pu = utils_1.rnd.integerInRange(1, 3);
+        const chance = utils_1.rnd.integerInRange(1, 10);
+        if (chance !== 1) {
+            return;
+        }
+        switch (pu) {
+            case 1:
+                this.powerUps.add(new models_1.SplitShotPowerUp(this.game, x, y));
+                break;
+            case 2:
+                this.powerUps.add(new models_1.LittleDoctorPowerUp(this.game, x, y));
+                break;
+            case 3:
+                this.powerUps.add(new models_1.UntouchtablePowerUp(this.game, x, y));
+        }
     }
     /**
      * Generowanie wzmocnień
