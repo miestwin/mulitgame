@@ -270,6 +270,33 @@ export namespace Assets {
         }
       }
     }
+
+    export namespace Enemy {
+      export class Ufo {
+        public static getName() {
+          return "enemy-ufo";
+        }
+        public static getPNG() {
+          return "../../assets/images/ships/ufo.png";
+        }
+      }
+      export class Bomb {
+        public static getName() {
+          return "enemy-bomb";
+        }
+        public static getPNG() {
+          return "../../assets/images/ships/bomb.png";
+        }
+      }
+      export class Fighter {
+        public static getName() {
+          return "enemy-fighter";
+        }
+        public static getPNG() {
+          return "../../assets/images/ships/fighter.png";
+        }
+      }
+    }
   }
 
   export namespace UI {

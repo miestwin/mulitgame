@@ -18,7 +18,7 @@ export class Comets extends Phaser.Group {
 
   public generate() {
     const comet: Comet = this.getFirstExists(false);
-    const chance = rnd.integerInRange(1, 30);
+    const chance = rnd.integerInRange(1, 50);
     if (chance != 1 || !comet) {
       return;
     }

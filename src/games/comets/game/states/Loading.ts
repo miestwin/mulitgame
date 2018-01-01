@@ -43,6 +43,21 @@ export class Loading extends Phaser.State {
     /* game images */
 
     this.game.load.image(
+      Assets.Images.Enemy.Bomb.getName(),
+      Assets.Images.Enemy.Bomb.getPNG()
+    );
+
+    this.game.load.image(
+      Assets.Images.Enemy.Fighter.getName(),
+      Assets.Images.Enemy.Fighter.getPNG()
+    );
+
+    this.game.load.image(
+      Assets.Images.Enemy.Ufo.getName(),
+      Assets.Images.Enemy.Ufo.getPNG()
+    );
+
+    this.game.load.image(
       Assets.Images.PowerUps.SplitShoot.getName(),
       Assets.Images.PowerUps.SplitShoot.getPNG()
     );

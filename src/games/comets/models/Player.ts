@@ -83,6 +83,7 @@ export class Player extends Phaser.Sprite {
     game.physics.arcade.enable(this);
     this.body.collideWorldBounds = true;
     this.weapon = new SingleBullet(game);
+    game.world.setChildIndex(this, 15);
   }
 
   /**

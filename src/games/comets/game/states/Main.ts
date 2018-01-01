@@ -21,7 +21,8 @@ import {
   LittleDoctorPowerUp,
   SplitShotPowerUp,
   PowerUpText,
-  ScoreText
+  ScoreText,
+  UfoGroup
 } from "../../models";
 
 declare var Victor;
@@ -72,6 +73,8 @@ export class Main extends Phaser.State {
    * @memberof Main
    */
   private explosions: CometExplosion;
+
+  private ufos: UfoGroup;
 
   /**
    * Kolekcja bonusów możliwych do zebrania
@@ -187,18 +190,18 @@ export class Main extends Phaser.State {
         }
       });
 
-      if (!playerAdded) {
-        (<any>this.game.state).players = Object.keys(
-          (<any>this.game.state).players
-        ).reduce((players, nextId) => {
-          if (!data.players[nextId]) {
-            (<any>this.game.state).players[nextId].destroy();
-            return players;
-          }
-          players[nextId] = (<any>this.game.state).players[nextId];
-          return players;
-        }, {});
-      }
+      // if (!playerAdded) {
+      //   (<any>this.game.state).players = Object.keys(
+      //     (<any>this.game.state).players
+      //   ).reduce((players, nextId) => {
+      //     if (!data.players[nextId]) {
+      //       (<any>this.game.state).players[nextId].destroy();
+      //       return players;
+      //     }
+      //     players[nextId] = (<any>this.game.state).players[nextId];
+      //     return players;
+      //   }, {});
+      // }
     });
 
     Network.onGameReset(data => {
@@ -223,6 +226,7 @@ export class Main extends Phaser.State {
 
     this.comets = new Comets(this.game);
     this.explosions = new CometExplosion(this.game);
+    this.ufos = new UfoGroup(this.game);
 
     this.createBackground();
     this.createMenu();
@@ -269,11 +273,13 @@ export class Main extends Phaser.State {
   update() {
     if (this.gameStartedFlag && !this.gameEndedFlag) {
       this.comets.generate();
+      this.ufos.generate();
     }
 
     if (
       this.startNextStage &&
       this.comets.countLiving() === 0 &&
+      this.ufos.countLiving() === 0 &&
       !this.gameEndedFlag
     ) {
       this.startNextStage = false;

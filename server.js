@@ -60,7 +60,7 @@ io.sockets.on("connection", socket => {
       currentGames[data.gameId].players[data.playerId].score = data.score;
       io
         .to(currentGames[data.gameId].players[data.playerId].socketId)
-        .emit(actions.UPDATE_SCORE);
+        .emit(actions.UPDATE_SCORE, data);
     }
   });
 
@@ -236,20 +236,22 @@ function assignNewPlayer(socket, id, gameId, avatar, name) {
     console.log(
       "Player on socket " + socket.id + " and id " + id + " disconnected"
     );
-    delete currentGames[gameId].players[id];
-    var count = 0;
-    for (var ii in currentGames[gameId].players) {
-      count++;
-    }
-    if (count < 1) {
-      socket.broadcast.to("game-" + gameId).emit(actions.GAME_END);
-    } else {
-      socket.broadcast
-        .to("game-" + data.gameId)
-        .emit(actions.UPDATE_PLAYER_AVATAR);
-      io
-        .to(currentGames[gameId].viewer)
-        .emit(actions.UPDATE_GAME_STATE, currentGames[gameId]);
+    if (currentGames[gameId]) {
+      delete currentGames[gameId].players[id];
+      var count = 0;
+      for (var ii in currentGames[gameId].players) {
+        count++;
+      }
+      if (count < 1) {
+        socket.broadcast.to("game-" + gameId).emit(actions.GAME_END);
+      } else {
+        socket.broadcast
+          .to("game-" + data.gameId)
+          .emit(actions.UPDATE_PLAYER_AVATAR);
+        io
+          .to(currentGames[gameId].viewer)
+          .emit(actions.UPDATE_GAME_STATE, currentGames[gameId]);
+      }
     }
   });
 }
