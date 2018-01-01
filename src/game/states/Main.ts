@@ -677,6 +677,38 @@ export class Main extends Phaser.State {
         this
       );
 
+      const bombCollisionHandler = (bullet: Bullet, bomb: Bomb) => {
+        bomb.health -= bullet.dmg;
+        bullet.kill();
+        if (bomb.health <= 0) {
+          this.explosions.generate(bomb.x, bomb.y);
+          player.score += 10;
+          new ScoreText(
+            this.game,
+            player.x,
+            player.y - player.height / 2,
+            "+10",
+            "#00FF00"
+          );
+          Network.updatePlayerScore(
+            player.id,
+            player.socket,
+            player.score,
+            false
+          );
+          this.shards.generate(bomb.x, bomb.y);
+          bomb.kill();
+        }
+      };
+
+      this.game.physics.arcade.overlap(
+        player.weapon,
+        this.bombs,
+        bombCollisionHandler,
+        null,
+        this
+      );
+
       this.ufos.forEach((ufo: Ufo) => {
         const ufoBulletCollisionHandler = (plr: Player, bullet: Bullet) => {
           if (player.untouchtable === false) {
@@ -820,52 +852,22 @@ export class Main extends Phaser.State {
     }
     this.powerUps = this.game.add.group();
 
-    // this.powerUps.add(
-    //   new SplitShotPowerUp(
-    //     this.game,
-    //     rnd.integerInRange(400, this.game.width - 100),
-    //     rnd.integerInRange(100, this.game.height - 100)
-    //   )
-    // );
-
-    // this.powerUps.add(
-    //   new LittleDoctorPowerUp(
-    //     this.game,
-    //     rnd.integerInRange(400, this.game.width - 100),
-    //     rnd.integerInRange(100, this.game.height - 100)
-    //   )
-    // );
-
-    // this.powerUps.add(
-    //   new SplitShotPowerUp(
-    //     this.game,
-    //     rnd.integerInRange(400, this.game.width - 100),
-    //     rnd.integerInRange(100, this.game.height - 100)
-    //   )
-    // );
-
-    // this.powerUps.add(
-    //   new UntouchtablePowerUp(
-    //     this.game,
-    //     rnd.integerInRange(400, this.game.width - 100),
-    //     rnd.integerInRange(100, this.game.height - 100)
-    //   )
-    // );
-
-    this.powerUps.add(
-      new ResetPointsPowerUp(
-        this.game,
-        rnd.integerInRange(400, this.game.width - 100),
-        rnd.integerInRange(100, this.game.height - 100),
-        player => {
-          Network.updatePlayerScore(
-            player.id,
-            player.socket,
-            player.score,
-            false
-          );
-        }
-      )
-    );
+    if (this.currentStage !== 1) {
+      this.powerUps.add(
+        new ResetPointsPowerUp(
+          this.game,
+          rnd.integerInRange(400, this.game.width - 100),
+          rnd.integerInRange(100, this.game.height - 100),
+          player => {
+            Network.updatePlayerScore(
+              player.id,
+              player.socket,
+              player.score,
+              false
+            );
+          }
+        )
+      );
+    }
   }
 }

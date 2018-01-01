@@ -16,5 +16,6 @@ export class Shard extends Phaser.Sprite {
 
   public generate(x: number, y: number) {
     this.reset(x, y);
+    this.body.velocity.x = -100;
   }
 }

@@ -112856,6 +112856,7 @@ class Shard extends Phaser.Sprite {
     }
     generate(x, y) {
         this.reset(x, y);
+        this.body.velocity.x = -100;
     }
 }
 exports.Shard = Shard;
@@ -116332,6 +116333,19 @@ class Main extends Phaser.State {
                 }
             };
             this.game.physics.arcade.overlap(player.weapon, this.ufos, ufoCollisionHandler, null, this);
+            const bombCollisionHandler = (bullet, bomb) => {
+                bomb.health -= bullet.dmg;
+                bullet.kill();
+                if (bomb.health <= 0) {
+                    this.explosions.generate(bomb.x, bomb.y);
+                    player.score += 10;
+                    new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+10", "#00FF00");
+                    network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+                    this.shards.generate(bomb.x, bomb.y);
+                    bomb.kill();
+                }
+            };
+            this.game.physics.arcade.overlap(player.weapon, this.bombs, bombCollisionHandler, null, this);
             this.ufos.forEach((ufo) => {
                 const ufoBulletCollisionHandler = (plr, bullet) => {
                     if (player.untouchtable === false) {
@@ -116424,37 +116438,11 @@ class Main extends Phaser.State {
             this.powerUps.destroy();
         }
         this.powerUps = this.game.add.group();
-        // this.powerUps.add(
-        //   new SplitShotPowerUp(
-        //     this.game,
-        //     rnd.integerInRange(400, this.game.width - 100),
-        //     rnd.integerInRange(100, this.game.height - 100)
-        //   )
-        // );
-        // this.powerUps.add(
-        //   new LittleDoctorPowerUp(
-        //     this.game,
-        //     rnd.integerInRange(400, this.game.width - 100),
-        //     rnd.integerInRange(100, this.game.height - 100)
-        //   )
-        // );
-        // this.powerUps.add(
-        //   new SplitShotPowerUp(
-        //     this.game,
-        //     rnd.integerInRange(400, this.game.width - 100),
-        //     rnd.integerInRange(100, this.game.height - 100)
-        //   )
-        // );
-        // this.powerUps.add(
-        //   new UntouchtablePowerUp(
-        //     this.game,
-        //     rnd.integerInRange(400, this.game.width - 100),
-        //     rnd.integerInRange(100, this.game.height - 100)
-        //   )
-        // );
-        this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
-            network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-        }));
+        if (this.currentStage !== 1) {
+            this.powerUps.add(new models_1.ResetPointsPowerUp(this.game, utils_1.rnd.integerInRange(400, this.game.width - 100), utils_1.rnd.integerInRange(100, this.game.height - 100), player => {
+                network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
+            }));
+        }
     }
 }
 exports.Main = Main;
