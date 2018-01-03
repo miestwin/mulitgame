@@ -1,5 +1,5 @@
 export function smoothNoise(
-  noise: number[][],
+  noise: number[],
   x: number,
   y: number,
   noiseWidth: number,
@@ -19,10 +19,15 @@ export function smoothNoise(
 
   // smooth the noise with bilinear interpolation
   let value = 0;
-  value += fractX * fractY * noise[y1][x1];
-  value += (1 - fractX) * fractY * noise[y1][x2];
-  value += fractX * (1 - fractY) * noise[y2][x1];
-  value += (1 - fractX) * (1 - fractY) * noise[y2][x2];
+  // value += fractX * fractY * noise[y1][x1];
+  // value += (1 - fractX) * fractY * noise[y1][x2];
+  // value += fractX * (1 - fractY) * noise[y2][x1];
+  // value += (1 - fractX) * (1 - fractY) * noise[y2][x2];
+
+  value += fractX * fractY * noise[y1 * noiseWidth + x1];
+  value += (1 - fractX) * fractY * noise[y1 * noiseWidth + x2];
+  value += fractX * (1 - fractY) * noise[y2 * noiseWidth + x1];
+  value += (1 - fractX) * (1 - fractY) * noise[y2 * noiseWidth + x2];
 
   return value;
 }

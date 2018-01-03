@@ -1,11 +1,13 @@
 import { map } from "./map";
 
 export function generateNoise(width: number, height: number) {
-  let noise = [];
+  const noise = [];
   for (let y = 0; y < height; y++) {
-    noise.push([]);
+    // noise.push([]);
     for (let x = 0; x < width; x++) {
-      noise[y][x] = map(Math.random() * 32769, 0, 32768, 0, 1);
+      const index = y * width + x;
+      noise[index] = map(Math.random() * 32769, 0, 32768, 0, 1);
+      // noise[y][x] = map(Math.random() * 32769, 0, 32768, 0, 1);
     }
   }
   return noise;

@@ -1,7 +1,7 @@
 import { smoothNoise } from "./smoothNoise";
 
 export function turbulence(
-  noise: number[][],
+  noise: number[], //[][]
   x: number,
   y: number,
   size: number,
