@@ -214,19 +214,20 @@ function createData_TEST_2(
       const index = y * width + x;
       // const bright = map(temp[index], 0, 1, 0, 255);
       // const bright = map(
-      //   smoothNoise(temp, x / 8, y / 8, width, height),
+      //   smoothNoise(temp, x / 32, y / 32, width, height),
       //   0,
       //   1,
       //   0,
       //   255
       // );
       const n = turbulence(temp, x, y, 64, width, height);
-      const clouds = getClouds(n / 255, 0.4, 0.05);
-      const bright = clouds * 255; // map(clouds, 0, 1, 0, 255);
-      imageData.data[index * 4 + 0] = 71;
-      imageData.data[index * 4 + 1] = 209;
-      imageData.data[index * 4 + 2] = 71;
-      imageData.data[index * 4 + 3] = bright;
+      // const clouds = getClouds(n / 255, 0.4, 0.05);
+      // const bright = clouds * 255; // map(clouds, 0, 1, 0, 255);
+      const bright = n;
+      imageData.data[index * 4 + 0] = bright;
+      imageData.data[index * 4 + 1] = bright;
+      imageData.data[index * 4 + 2] = bright;
+      imageData.data[index * 4 + 3] = 255;
     }
   }
 

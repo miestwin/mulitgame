@@ -13,33 +13,33 @@ export class Test extends Phaser.State {
   create() {
     this.game.stage.backgroundColor = "#000000";
     // this.comets = new CometGroup(this.game);
-    // for (let i = 0; i < Const.Nebula.Names.length; i++) {
-    //   const nebula = this.game.add.tileSprite(
-    //     0,
-    //     0,
-    //     this.game.width,
-    //     this.game.height,
-    //     Const.Nebula.Names[i]
-    //   );
-    //   this.game.world.sendToBack(nebula);
-    //   // nebula.autoScroll(-100 + 50 * i, 0);
-    // }
+    for (let i = 0; i < Const.Nebula.Names.length; i++) {
+      const nebula = this.game.add.tileSprite(
+        0,
+        0,
+        this.game.width,
+        this.game.height,
+        Const.Nebula.Names[i]
+      );
+      this.game.world.sendToBack(nebula);
+    }
 
-    this.game.add.tileSprite(
-      0,
-      0,
-      this.game.width,
-      this.game.height,
-      "nebula-test"
-    );
-    const starfield = this.game.add.tileSprite(
-      0,
-      0,
-      this.game.width,
-      this.game.height,
-      Const.Stars.getName()
-    );
-    this.game.world.sendToBack(starfield);
+    // this.game.add.tileSprite(
+    //   0,
+    //   0,
+    //   this.game.width,
+    //   this.game.height,
+    //   "nebula-test"
+    // );
+
+    // const starfield = this.game.add.tileSprite(
+    //   0,
+    //   0,
+    //   this.game.width,
+    //   this.game.height,
+    //   Const.Stars.getName()
+    // );
+    // this.game.world.sendToBack(starfield);
   }
 
   update() {
