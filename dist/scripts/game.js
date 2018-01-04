@@ -113105,8 +113105,8 @@ class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()])
             .then(() => {
             this.loadingText.setText("Create QRCode Complete");
-            this.game.state.start(States_1.States.MAIN);
-            // this.game.state.start("Test");
+            // this.game.state.start(States.MAIN);
+            this.game.state.start("Test");
         })
             .catch(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, "Problem with generating texture");
@@ -115785,8 +115785,8 @@ function createData(width, height, offset, color, imageData, clouds, density, sh
             //     )
             //   : map(n, 0, 1, 0, 100);
             // imageData.data[index * 4 + 3] = bright;
-            // xoff += 0.007;
-            xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
+            xoff += 0.007;
+            // xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
         }
         yoff += 0.007;
     }
@@ -117381,14 +117381,8 @@ class Test extends Phaser.State {
         //   this.game.height,
         //   "nebula-test"
         // );
-        // const starfield = this.game.add.tileSprite(
-        //   0,
-        //   0,
-        //   this.game.width,
-        //   this.game.height,
-        //   Const.Stars.getName()
-        // );
-        // this.game.world.sendToBack(starfield);
+        const starfield = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, const_1.Const.Stars.getName());
+        this.game.world.sendToBack(starfield);
     }
     update() {
         // this.comets.generate();

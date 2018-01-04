@@ -32,14 +32,14 @@ export class Test extends Phaser.State {
     //   "nebula-test"
     // );
 
-    // const starfield = this.game.add.tileSprite(
-    //   0,
-    //   0,
-    //   this.game.width,
-    //   this.game.height,
-    //   Const.Stars.getName()
-    // );
-    // this.game.world.sendToBack(starfield);
+    const starfield = this.game.add.tileSprite(
+      0,
+      0,
+      this.game.width,
+      this.game.height,
+      Const.Stars.getName()
+    );
+    this.game.world.sendToBack(starfield);
   }
 
   update() {

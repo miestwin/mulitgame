@@ -92,8 +92,8 @@ function createData(
       //     )
       //   : map(n, 0, 1, 0, 100);
       // imageData.data[index * 4 + 3] = bright;
-      // xoff += 0.007;
-      xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
+      xoff += 0.007;
+      // xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
     }
     yoff += 0.007;
   }
