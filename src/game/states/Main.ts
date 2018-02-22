@@ -23,8 +23,8 @@ import {
   ScoreText,
   UfoGroup,
   Ufo,
-  Shard,
-  ShardGroup,
+  Crystal,
+  CrystalGroup,
   Bomb,
   BombGroup
 } from "../../models";
@@ -80,7 +80,7 @@ export class Main extends Phaser.State {
 
   private ufos: UfoGroup;
 
-  private shards: ShardGroup;
+  private crystals: CrystalGroup;
 
   private bombs: BombGroup;
 
@@ -268,7 +268,7 @@ export class Main extends Phaser.State {
     this.game.physics.setBoundsToWorld();
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.shards = new ShardGroup(this.game);
+    this.crystals = new CrystalGroup(this.game);
     this.comets = new CometGroup(this.game);
     this.explosions = new CometExplosion(this.game);
     this.ufos = new UfoGroup(this.game);
@@ -588,7 +588,7 @@ export class Main extends Phaser.State {
 
     this.game.physics.arcade.overlap(
       this.players,
-      this.shards,
+      this.crystals,
       this.player_shard_CollisionHandler,
       null,
       this
@@ -667,7 +667,7 @@ export class Main extends Phaser.State {
           player.score,
           false
         );
-        this.shards.generate(bomb.x, bomb.y);
+        this.crystals.generate(bomb.x, bomb.y);
         bomb.kill();
       }
     };
@@ -701,7 +701,7 @@ export class Main extends Phaser.State {
           player.score,
           false
         );
-        this.shards.generate(ufo.x, ufo.y);
+        this.crystals.generate(ufo.x, ufo.y);
         ufo.kill();
       }
     };
@@ -788,16 +788,16 @@ export class Main extends Phaser.State {
     }
   }
 
-  private player_shard_CollisionHandler(player: Player, shard: Shard) {
-    player.score += shard.points;
+  private player_shard_CollisionHandler(player: Player, crystal: Crystal) {
+    player.score += crystal.points;
     new ScoreText(
       this.game,
       player.x,
       player.y - player.height / 2,
-      "+" + shard.points.toString(),
+      "+" + crystal.points.toString(),
       "#00FF00"
     );
-    shard.kill();
+    crystal.kill();
     Network.updatePlayerScore(player.id, player.socket, player.score, false);
   }
 

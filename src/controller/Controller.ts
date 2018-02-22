@@ -2,14 +2,7 @@ import "p2";
 import "pixi";
 import "phaser";
 
-import {
-  States,
-  Boot,
-  Loading,
-  AvatarSelector,
-  Message,
-  GameController
-} from "./states";
+import { States, Boot, Loading, Selector, Message, Pad } from "./states";
 
 import Network from "./network";
 import { guid } from "../utils/guid";
@@ -33,9 +26,9 @@ export default class Controller extends Phaser.Game {
     // add states to controller
     this.state.add(States.BOOT, Boot);
     this.state.add(States.LOADING, Loading);
-    this.state.add(States.AVATAR_SELECTOR, AvatarSelector);
+    this.state.add(States.SELECTOR, Selector);
     this.state.add(States.MESSAGE, Message);
-    this.state.add(States.GAME_CONTROLLER, GameController);
+    this.state.add(States.PAD, Pad);
 
     this.state.start(States.BOOT);
   }

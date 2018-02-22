@@ -3,18 +3,18 @@ import "pixi";
 import "phaser";
 
 import { rnd } from "../../utils";
-import { Shard } from "./Shard";
+import { Crystal } from "./Crystal";
 
-export class ShardGroup extends Phaser.Group {
+export class CrystalGroup extends Phaser.Group {
   constructor(game: Phaser.Game) {
     super(game, game.world, "shards", false, true, Phaser.Physics.ARCADE);
     for (let i = 0; i < 10; i++) {
-      this.add(new Shard(game, 0, 0));
+      this.add(new Crystal(game, 0, 0));
     }
   }
 
   public generate(x: number, y: number) {
-    const shard: Shard = this.getFirstExists(false);
+    const shard: Crystal = this.getFirstExists(false);
     if (!shard) {
       return;
     }

@@ -17,7 +17,7 @@ declare var gameId;
  * @class GameController
  * @extends {Phaser.State}
  */
-export class GameController extends Phaser.State {
+export class Pad extends Phaser.State {
   /**
    * Identyfikator zdarzenia dla lewej części kontrolera
    * @private
@@ -87,7 +87,7 @@ export class GameController extends Phaser.State {
       const message = playerId == (<any>this.game.state).id ? "Win" : "Lose";
       this.game.state.start(States.MESSAGE, true, false, message, true, () => {
         Network.playAgain(gameId);
-        this.game.state.start(States.AVATAR_SELECTOR);
+        this.game.state.start(States.SELECTOR);
       });
     });
 

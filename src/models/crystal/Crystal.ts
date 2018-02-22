@@ -4,7 +4,7 @@ import "phaser";
 
 import { Assets } from "../../assets";
 
-export class Shard extends Phaser.Sprite {
+export class Crystal extends Phaser.Sprite {
   readonly points = 50;
   constructor(game: Phaser.Game, x: number, y: number) {
     super(game, x, y, Assets.Images.Shard.getName());

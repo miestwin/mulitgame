@@ -4,4 +4,4 @@ export * from "./enemy";
 export * from "./powerups";
 export * from "./text";
 export * from "./Player";
-export * from "./shard";
+export * from "./crystal";

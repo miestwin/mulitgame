@@ -12,7 +12,7 @@ import { Assets } from "../../assets";
  * @class AvatarSelector
  * @extends {Phaser.State}
  */
-export class AvatarSelector extends Phaser.State {
+export class Selector extends Phaser.State {
   /**
      * Dostępne statki
      * @private
@@ -183,7 +183,7 @@ export class AvatarSelector extends Phaser.State {
       (<any>this.game.state).color = this.ships[
         this.selectedShipIndex
       ].class.getValue();
-      this.game.state.start(States.GAME_CONTROLLER);
+      this.game.state.start(States.PAD);
     }
   }
 }
