@@ -2740,9 +2740,9 @@ class States {
 }
 States.BOOT = "Boot";
 States.LOADING = "Loading";
-States.AVATAR_SELECTOR = "AvatarSelector";
+States.SELECTOR = "Selector";
 States.MESSAGE = "Message";
-States.GAME_CONTROLLER = "GameController";
+States.PAD = "Pad";
 exports.States = States;
 
 
@@ -112589,9 +112589,9 @@ class Controller extends Phaser.Game {
         // add states to controller
         this.state.add(states_1.States.BOOT, states_1.Boot);
         this.state.add(states_1.States.LOADING, states_1.Loading);
-        this.state.add(states_1.States.AVATAR_SELECTOR, states_1.AvatarSelector);
+        this.state.add(states_1.States.SELECTOR, states_1.Selector);
         this.state.add(states_1.States.MESSAGE, states_1.Message);
-        this.state.add(states_1.States.GAME_CONTROLLER, states_1.GameController);
+        this.state.add(states_1.States.PAD, states_1.Pad);
         this.state.start(states_1.States.BOOT);
     }
 }
@@ -112717,7 +112717,7 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.Ships.DARKPINK.getName(), assets_1.Assets.Images.Ships.DARKPINK.getPNG());
     }
     create() {
-        this.game.state.start(States_1.States.AVATAR_SELECTOR);
+        this.game.state.start(States_1.States.SELECTOR);
     }
     /**
        * Funkcja stanu ładowania
@@ -112780,7 +112780,7 @@ const assets_1 = __webpack_require__(4);
  * @class AvatarSelector
  * @extends {Phaser.State}
  */
-class AvatarSelector extends Phaser.State {
+class Selector extends Phaser.State {
     constructor() {
         super(...arguments);
         /**
@@ -112889,11 +112889,11 @@ class AvatarSelector extends Phaser.State {
             network_1.default.setPlayerAvatar(this.ships[this.selectedShipIndex].class.getName());
             this.game.state.shipClass = this.ships[this.selectedShipIndex].class;
             this.game.state.color = this.ships[this.selectedShipIndex].class.getValue();
-            this.game.state.start(States_1.States.GAME_CONTROLLER);
+            this.game.state.start(States_1.States.PAD);
         }
     }
 }
-exports.AvatarSelector = AvatarSelector;
+exports.Selector = Selector;
 
 
 /***/ }),
@@ -112957,7 +112957,7 @@ const utils_1 = __webpack_require__(7);
  * @class GameController
  * @extends {Phaser.State}
  */
-class GameController extends Phaser.State {
+class Pad extends Phaser.State {
     constructor() {
         super(...arguments);
         /**
@@ -112992,7 +112992,7 @@ class GameController extends Phaser.State {
             const message = playerId == this.game.state.id ? "Win" : "Lose";
             this.game.state.start(States_1.States.MESSAGE, true, false, message, true, () => {
                 network_1.default.playAgain(gameId);
-                this.game.state.start(States_1.States.AVATAR_SELECTOR);
+                this.game.state.start(States_1.States.SELECTOR);
             });
         });
         document
@@ -113105,7 +113105,7 @@ class GameController extends Phaser.State {
         }
     }
 }
-exports.GameController = GameController;
+exports.Pad = Pad;
 
 
 /***/ })

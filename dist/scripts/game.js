@@ -112872,7 +112872,7 @@ __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
 const assets_1 = __webpack_require__(4);
-class Shard extends Phaser.Sprite {
+class Crystal extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, assets_1.Assets.Images.Shard.getName());
         this.points = 50;
@@ -112886,7 +112886,7 @@ class Shard extends Phaser.Sprite {
         this.body.velocity.x = -100;
     }
 }
-exports.Shard = Shard;
+exports.Crystal = Crystal;
 
 
 /***/ }),
@@ -113105,8 +113105,8 @@ class Loading extends Phaser.State {
         Promise.all([this.createQRCode(), this.createTextures()])
             .then(() => {
             this.loadingText.setText("Create QRCode Complete");
-            // this.game.state.start(States.MAIN);
-            this.game.state.start("Test");
+            this.game.state.start(States_1.States.MAIN);
+            // this.game.state.start("Test");
         })
             .catch(() => {
             this.game.state.start(States_1.States.MESSAGE, true, false, "Problem with generating texture");
@@ -116106,7 +116106,7 @@ class Main extends Phaser.State {
     create() {
         this.game.physics.setBoundsToWorld();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.shards = new models_1.ShardGroup(this.game);
+        this.crystals = new models_1.CrystalGroup(this.game);
         this.comets = new models_1.CometGroup(this.game);
         this.explosions = new models_1.CometExplosion(this.game);
         this.ufos = new models_1.UfoGroup(this.game);
@@ -116325,7 +116325,7 @@ class Main extends Phaser.State {
     checkCollisions() {
         this.game.physics.arcade.overlap(this.players, this.comets, this.player_comet_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.ufos, this.player_ufo_CollisionHandler, null, this);
-        this.game.physics.arcade.overlap(this.players, this.shards, this.player_shard_CollisionHandler, null, this);
+        this.game.physics.arcade.overlap(this.players, this.crystals, this.player_shard_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.powerUps, this.player_powerup_CollisionHandler, null, this);
         this.game.physics.arcade.overlap(this.players, this.bombs, this.player_bomb_CollisionHandler, null, this);
         Object.keys(this.game.state.players).forEach(playerId => {
@@ -116358,7 +116358,7 @@ class Main extends Phaser.State {
                 player.score += 10;
                 new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+10", "#00FF00");
                 network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-                this.shards.generate(bomb.x, bomb.y);
+                this.crystals.generate(bomb.x, bomb.y);
                 bomb.kill();
             }
         };
@@ -116373,7 +116373,7 @@ class Main extends Phaser.State {
                 player.score += 10;
                 new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+10", "#00FF00");
                 network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
-                this.shards.generate(ufo.x, ufo.y);
+                this.crystals.generate(ufo.x, ufo.y);
                 ufo.kill();
             }
         };
@@ -116419,10 +116419,10 @@ class Main extends Phaser.State {
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
         }
     }
-    player_shard_CollisionHandler(player, shard) {
-        player.score += shard.points;
-        new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+" + shard.points.toString(), "#00FF00");
-        shard.kill();
+    player_shard_CollisionHandler(player, crystal) {
+        player.score += crystal.points;
+        new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "+" + crystal.points.toString(), "#00FF00");
+        crystal.kill();
         network_1.default.updatePlayerScore(player.id, player.socket, player.score, false);
     }
     player_bomb_CollisionHandler(player, bomb) {
@@ -117335,12 +117335,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 __webpack_require__(1);
 __webpack_require__(2);
-const Shard_1 = __webpack_require__(97);
-class ShardGroup extends Phaser.Group {
+const Crystal_1 = __webpack_require__(97);
+class CrystalGroup extends Phaser.Group {
     constructor(game) {
         super(game, game.world, "shards", false, true, Phaser.Physics.ARCADE);
         for (let i = 0; i < 10; i++) {
-            this.add(new Shard_1.Shard(game, 0, 0));
+            this.add(new Crystal_1.Crystal(game, 0, 0));
         }
     }
     generate(x, y) {
@@ -117351,7 +117351,7 @@ class ShardGroup extends Phaser.Group {
         shard.generate(x, y);
     }
 }
-exports.ShardGroup = ShardGroup;
+exports.CrystalGroup = CrystalGroup;
 
 
 /***/ }),

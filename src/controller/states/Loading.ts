@@ -108,7 +108,7 @@ export class Loading extends Phaser.State {
   }
 
   create() {
-    this.game.state.start(States.AVATAR_SELECTOR);
+    this.game.state.start(States.SELECTOR);
   }
 
   /**
