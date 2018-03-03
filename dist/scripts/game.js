@@ -112838,23 +112838,32 @@ class Bomb extends Phaser.Sprite {
         this.body.velocity.y = sy;
     }
     chceckDistance(player) {
-        if (this.game.physics.arcade.distanceBetween(player, this) <
-            this.noticeRange &&
-            this.player == null) {
+        if (this.game.physics.arcade.distanceBetween(player, this) < this.noticeRange) {
             this.player = player;
         }
-        else if (this.game.physics.arcade.distanceBetween(player, this) <
-            this.noticeRange &&
-            this.player != null) {
-            return;
-        }
-        else {
-            this.player = null;
-        }
+        // if (
+        //   this.game.physics.arcade.distanceBetween(player, this) <
+        //     this.noticeRange &&
+        //   this.player == null
+        // ) {
+        //   this.player = player;
+        // } else if (
+        //   this.game.physics.arcade.distanceBetween(player, this) <
+        //     this.noticeRange &&
+        //   this.player != null
+        // ) {
+        //   return;
+        // } else {
+        //   this.player = null;
+        // }
     }
     update() {
         if (this.player != null) {
             this.game.physics.arcade.moveToObject(this, this.player, 200);
+            if (this.game.physics.arcade.distanceBetween(this.player, this) >
+                this.noticeRange) {
+                this.player = null;
+            }
         }
     }
 }
@@ -115785,8 +115794,8 @@ function createData(width, height, offset, color, imageData, clouds, density, sh
             //     )
             //   : map(n, 0, 1, 0, 100);
             // imageData.data[index * 4 + 3] = bright;
-            xoff += 0.007;
-            // xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
+            // xoff += 0.007;
+            xoff = x < width / 2 ? xoff + 0.007 : xoff - 0.007;
         }
         yoff += 0.007;
     }
@@ -116337,7 +116346,9 @@ class Main extends Phaser.State {
                 this.game.physics.arcade.overlap(player, ufo.weapon, this.player_bullet_CollisionHandler, null, this);
             }, this);
             this.bombs.forEach((bomb) => {
-                bomb.chceckDistance(player);
+                if (player.untouchtable === false) {
+                    bomb.chceckDistance(player);
+                }
             }, this);
         });
     }
@@ -116430,6 +116441,7 @@ class Main extends Phaser.State {
             player.score -= 60;
             new models_1.ScoreText(this.game, player.x, player.y - player.height / 2, "-30", "#FF0000");
             this.explosions.generate(bomb.x, bomb.y);
+            bomb.player = null;
             bomb.kill();
             network_1.default.updatePlayerScore(player.id, player.socket, player.score, true);
         }

@@ -27,25 +27,36 @@ export class Bomb extends Phaser.Sprite {
 
   public chceckDistance(player: Player) {
     if (
-      this.game.physics.arcade.distanceBetween(player, this) <
-        this.noticeRange &&
-      this.player == null
+      this.game.physics.arcade.distanceBetween(player, this) < this.noticeRange
     ) {
       this.player = player;
-    } else if (
-      this.game.physics.arcade.distanceBetween(player, this) <
-        this.noticeRange &&
-      this.player != null
-    ) {
-      return;
-    } else {
-      this.player = null;
     }
+    // if (
+    //   this.game.physics.arcade.distanceBetween(player, this) <
+    //     this.noticeRange &&
+    //   this.player == null
+    // ) {
+    //   this.player = player;
+    // } else if (
+    //   this.game.physics.arcade.distanceBetween(player, this) <
+    //     this.noticeRange &&
+    //   this.player != null
+    // ) {
+    //   return;
+    // } else {
+    //   this.player = null;
+    // }
   }
 
   update() {
     if (this.player != null) {
       this.game.physics.arcade.moveToObject(this, this.player, 200);
+      if (
+        this.game.physics.arcade.distanceBetween(this.player, this) >
+        this.noticeRange
+      ) {
+        this.player = null;
+      }
     }
   }
 }

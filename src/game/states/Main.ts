@@ -627,7 +627,9 @@ export class Main extends Phaser.State {
       }, this);
 
       this.bombs.forEach((bomb: Bomb) => {
-        bomb.chceckDistance(player);
+        if (player.untouchtable === false) {
+          bomb.chceckDistance(player);
+        }
       }, this);
     });
   }
@@ -812,6 +814,7 @@ export class Main extends Phaser.State {
         "#FF0000"
       );
       this.explosions.generate(bomb.x, bomb.y);
+      bomb.player = null;
       bomb.kill();
       Network.updatePlayerScore(player.id, player.socket, player.score, true);
     }
