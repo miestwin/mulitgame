@@ -141,6 +141,11 @@ export class Loading extends Phaser.State {
     );
 
     this.game.load.image(
+      Assets.Images.Bulelts.GreenLaser.getName(),
+      Assets.Images.Bulelts.GreenLaser.getPNG()
+    );
+
+    this.game.load.image(
       Assets.Images.Bulelts.Bullet.getName(),
       Assets.Images.Bulelts.Bullet.getPNG()
     );

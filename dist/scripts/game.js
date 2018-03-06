@@ -113111,6 +113111,7 @@ class Loading extends Phaser.State {
         this.game.load.image(assets_1.Assets.Images.Ships.GRASS.getName(), assets_1.Assets.Images.Ships.GRASS.getPNG());
         this.game.load.image(assets_1.Assets.Images.Ships.DARKPINK.getName(), assets_1.Assets.Images.Ships.DARKPINK.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.SingleBullet.getName(), assets_1.Assets.Images.Bulelts.SingleBullet.getPNG());
+        this.game.load.image(assets_1.Assets.Images.Bulelts.GreenLaser.getName(), assets_1.Assets.Images.Bulelts.GreenLaser.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.Bullet.getName(), assets_1.Assets.Images.Bulelts.Bullet.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.Lasers.LaserGREEN.getName(), assets_1.Assets.Images.Bulelts.Lasers.LaserGREEN.getPNG());
         this.game.load.image(assets_1.Assets.Images.Bulelts.Lasers.LaserPURPLE.getName(), assets_1.Assets.Images.Bulelts.Lasers.LaserPURPLE.getPNG());
