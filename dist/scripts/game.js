@@ -116566,7 +116566,9 @@ class SingleBullet extends Phaser.Group {
          */
         this.fireRate = 50;
         for (let i = 0; i < 40; i++) {
-            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.GreenLaser.getName(), 2));
+            const bullet = new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.GreenLaser.getName(), 2);
+            bullet.scale.setTo(0.5);
+            this.add(bullet);
         }
     }
     get nextFire() {

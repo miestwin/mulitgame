@@ -49,7 +49,13 @@ export class SingleBullet extends Phaser.Group implements IWeapon {
       Phaser.Physics.ARCADE
     );
     for (let i = 0; i < 40; i++) {
-      this.add(new Bullet(game, Assets.Images.Bulelts.GreenLaser.getName(), 2));
+      const bullet = new Bullet(
+        game,
+        Assets.Images.Bulelts.GreenLaser.getName(),
+        2
+      );
+      bullet.scale.setTo(0.5);
+      this.add(bullet);
     }
   }
 
