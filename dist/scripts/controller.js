@@ -310,6 +310,15 @@ var Assets;
                 }
             }
             Bulelts.SingleBullet = SingleBullet;
+            class GreenLaser {
+                static getName() {
+                    return "green-laser";
+                }
+                static getPNG() {
+                    return "../assets/images/laserGreen04.png";
+                }
+            }
+            Bulelts.GreenLaser = GreenLaser;
             let Lasers;
             (function (Lasers) {
                 class Laser {

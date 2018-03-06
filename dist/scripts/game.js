@@ -310,6 +310,15 @@ var Assets;
                 }
             }
             Bulelts.SingleBullet = SingleBullet;
+            class GreenLaser {
+                static getName() {
+                    return "green-laser";
+                }
+                static getPNG() {
+                    return "../assets/images/laserGreen04.png";
+                }
+            }
+            Bulelts.GreenLaser = GreenLaser;
             let Lasers;
             (function (Lasers) {
                 class Laser {
@@ -116556,7 +116565,7 @@ class SingleBullet extends Phaser.Group {
          */
         this.fireRate = 50;
         for (let i = 0; i < 40; i++) {
-            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.SingleBullet.getName(), 2));
+            this.add(new Bullet_1.Bullet(game, assets_1.Assets.Images.Bulelts.GreenLaser.getName(), 2));
         }
     }
     get nextFire() {

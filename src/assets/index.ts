@@ -175,6 +175,14 @@ export namespace Assets {
           return "../assets/images/shmup-bullet.png";
         }
       }
+      export class GreenLaser {
+        static getName(): string {
+          return "green-laser";
+        }
+        static getPNG(): string {
+          return "../assets/images/laserGreen04.png";
+        }
+      }
       export namespace Lasers {
         export class Laser {
           static getLaser(key: string) {
